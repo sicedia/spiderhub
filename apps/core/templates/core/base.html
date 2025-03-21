@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}SPIDERHUB{% endblock %}</title>
+  {% load static %}
+
+  <!-- CSS Global (puede ser de core o de un vendor) -->
+  <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+  
+  <!-- Bloque adicional de CSS que se cargará en las páginas hijas -->
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  <!-- HEADER GLOBAL -->
+  <header>
+    <nav class="navbar">
+      <a href="#" class="logo">
+        <!-- SVG del logotipo -->
+        SPIDERHUB
+      </a>
+      <ul class="nav-links">
+        <li><a href="{% url 'home:index' %}">Inicio</a></li>
+        <li><a href="#">Explorar Datos</a></li>
+        <li><a href="#">Relaciones</a></li>
+        <li><a href="#">Acerca de</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="#">Administración</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO ESPECÍFICO DE CADA PÁGINA -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- FOOTER GLOBAL -->
+  <footer>
+    <!-- Aquí puedes poner el footer estándar de tu sitio -->
+    <p>© 2023 SPIDERHUB. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Scripts globales -->
+  <script src="{% static 'core/js/base.js' %}"></script>
+  <!-- Bloque de scripts específicos de la página hija -->
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

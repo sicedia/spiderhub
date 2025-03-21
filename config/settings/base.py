@@ -39,6 +39,7 @@ LOCAL_APPS = [
     'apps.relationships.apps.RelationshipsConfig',
     'apps.about.apps.AboutConfig',
     'apps.contact.apps.ContactConfig',
+    'apps.home.apps.HomeConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -83,9 +84,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-LANGUAGE_CODE = 'es-es'
+LANGUAGE_CODE = 'en'       # Idioma principal
 TIME_ZONE = 'UTC'
 USE_I18N = True
+USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
