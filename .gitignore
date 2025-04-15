@@ -1,6 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,linux,macos,django,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,linux,macos,django,python
 
+pyspider
 ### Django ###
 *.log
 *.pot
@@ -338,3 +339,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,linux,macos,django,python
+*.pyc
