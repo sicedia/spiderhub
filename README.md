@@ -36,7 +36,8 @@ source pyspider/bin/activate
 
 4. Install dependencies
 ```bash
-pip install -r requirements.txt
+python.exe -m pip install --upgrade pip
+pip install -r requirements/base.txt
 ```
 
 ### Database Setup

@@ -5,9 +5,9 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('acerca-de/', include('apps.about.urls')),
-    path('', include('apps.home.urls', namespace='home')),
+    path('', include('apps.core.urls')),
+    path('admin/', admin.site.urls)
+
 ]
 
 if settings.DEBUG:

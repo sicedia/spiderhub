@@ -35,11 +35,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'apps.core.apps.CoreConfig',
-    'apps.data_explorer.apps.DataExplorerConfig',
-    'apps.relationships.apps.RelationshipsConfig',
-    'apps.about.apps.AboutConfig',
-    'apps.contact.apps.ContactConfig',
-    'apps.home.apps.HomeConfig',
+    'apps.documents.apps.DocumentsConfig', 
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -89,6 +85,11 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+LANGUAGES = [
+    ('es', 'Spanish'),
+    ('en', 'English')
+]
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'

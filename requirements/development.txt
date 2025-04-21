@@ -1,0 +1,36 @@
+# Core packages
+django  # Latest Django LTS version
+djangorestframework  # REST API framework
+django-filter  # Filtering for Django querysets
+django-cors-headers  # Cross-Origin Resource Sharing
+
+# Database adapters
+psycopg2-binary  # PostgreSQL adapter
+dj-database-url  # Database URL configuration
+
+# Development server
+django-debug-toolbar  # Debug toolbar for development
+whitenoise  # Static file serving
+
+# Testing
+pytest  # Testing framework
+pytest-django  # Django plugin for pytest
+factory-boy  # Test data generation
+coverage  # Code coverage tool
+
+# Code quality
+flake8  # Code linter
+black  # Code formatter
+isort  # Import sorter
+mypy  # Type checking
+
+# Documentation
+sphinx  # Documentation generator
+django-extensions  # Extensions for Django
+
+# Security
+django-environ  # Environment variable handling
+python-dotenv  # .env file support
+
+# Asset pipeline
+django-compressor  # CSS/JS compression
