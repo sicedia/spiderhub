@@ -36,6 +36,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'apps.core.apps.CoreConfig',
     'apps.documents.apps.DocumentsConfig', 
+    'apps.admin_panel.apps.AdminPanelConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -80,7 +81,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-LANGUAGE_CODE = 'en'       # Idioma principal
+LANGUAGE_CODE = 'es'       # Idioma principal
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True

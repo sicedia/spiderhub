@@ -9,10 +9,11 @@ def redirect_to_upload(request):
 # Class-based views
 class UploadView(View):
     def get(self, request):
-        pass
+        return render(request, 'admin_panel/admin.html')
     
     def post(self, request):
-        pass
+        # Here you would process file uploads
+        return redirect('admin_panel:upload')
 
 class MetadataListView(ListView):
     template_name = 'admin_panel/metadata.html'

@@ -11,6 +11,10 @@ class ActorAdmin(admin.ModelAdmin):
 class TagInline(admin.TabularInline):
     model = Tag
     extra = 1
+    max_num = 10  # Maximum number of forms
+    min_num = 0   # Minimum number of forms
+    autocomplete_fields = ('theme',)  # Use autocomplete for foreign keys
+    show_change_link = True  # Provides a link to edit the related object
 
 @admin.register(Theme)
 class ThemeAdmin(admin.ModelAdmin):
