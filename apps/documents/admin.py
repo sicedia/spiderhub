@@ -1,12 +1,20 @@
 from django.contrib import admin
 
 from django.contrib import admin
-from .models import Actor, Theme, Tag, Document
+from .models import Actor, Theme, Tag, Document, Location
 
 @admin.register(Actor)
 class ActorAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
+
+@admin.register(Location)
+class LocationAdmin(admin.ModelAdmin):
+    model = Location
+    extra = 1
+    max_num = 10  # Maximum number of forms
+    min_num = 0   # Minimum number of forms
+    show_change_link = True  # Provides a link to edit the related object
 
 class TagInline(admin.TabularInline):
     model = Tag

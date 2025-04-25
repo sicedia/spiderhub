@@ -1,6 +1,6 @@
 {% extends "admin_panel/base.html" %}
+{% load static %}
 {% block content %}
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,8 +25,7 @@
       </a>
       <ul class="nav-links">
         <li><a href="{% url 'admin_panel:home' %}">Volver al Sitio</a></li>
-        <li><a href="{% url 'some_app:about' %}">Acerca de</a></li>
-        <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        <li><a href="{% url 'admin_panel:logout' %}">Cerrar Sesión</a></li>
       </ul>
     </nav>
   </header>

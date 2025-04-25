@@ -36,3 +36,12 @@ class SettingsView(View):
     
     def post(self, request):
         pass
+
+class LogoutView(View):
+    def get(self, request):
+        # Handle logout
+        return redirect('admin_panel:home')
+    
+    def post(self, request):
+        # Handle logout
+        return redirect('admin_panel:home')

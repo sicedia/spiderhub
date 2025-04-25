@@ -70,7 +70,8 @@ class Document(BaseModel):
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='uploaded_documents')
 
     def __str__(self):
-        return f"{self.title} ({self.place}, {self.date})"
+        location_name = self.location.name if self.location else "No location"
+        return f"{self.title} ({location_name}, {self.date})"
     
     class Meta:
         ordering = ['-date', 'title']

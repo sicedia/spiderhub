@@ -8,4 +8,5 @@ urlpatterns = [
     path('metadata/', views.MetadataListView.as_view(), name='metadata'),
     path('stats/', views.StatsView.as_view(), name='stats'),
     path('settings/', views.SettingsView.as_view(), name='settings'),
+    path('logout/', views.LogoutView.as_view(), name='logout'),
 ]
