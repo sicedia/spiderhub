@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from django.contrib import admin
-from .models import Actor, Theme, Tag, Document, Location
+from .models import Actor, Theme, Tag, Document, Location, DocumentFile
 
 @admin.register(Actor)
 class ActorAdmin(admin.ModelAdmin):
@@ -37,6 +37,10 @@ class TagAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     autocomplete_fields = ('theme',)
 
+class DocumentFileInline(admin.TabularInline):
+    model = DocumentFile
+    extra = 1  # Number of empty forms to display
+
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
     list_display = ('title', 'location', 'date', 'created_by', 'created_at', 'is_ai_generated')
@@ -45,6 +49,7 @@ class DocumentAdmin(admin.ModelAdmin):
     date_hierarchy = 'date'
     filter_horizontal = ('actors', 'themes', 'tags')
     readonly_fields = ('created_at', 'updated_at')
+    inlines = [DocumentFileInline]
     
     fieldsets = (
         ('Basic Information', {
@@ -55,9 +60,6 @@ class DocumentAdmin(admin.ModelAdmin):
         }),
         ('Relationships', {
             'fields': ('actors', 'themes', 'tags')
-        }),
-        ('Files and Links', {
-            'fields': ('file', 'url')
         }),
         ('Analysis and AI', {
             'fields': ('is_ai_generated', 'confidence_level'),

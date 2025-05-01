@@ -31,7 +31,7 @@ class Tag(BaseModel):
     def __str__(self):
         return f"{self.theme.name} - {self.name}"
 class Document(BaseModel):
-    title = models.CharField(max_length=255)  # Opcional, si deseas asignar un título para facilitar la identificación
+    title = models.CharField(max_length=255)
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, related_name='documents')
     date = models.DateField()
     characteristics = models.TextField()
@@ -53,11 +53,6 @@ class Document(BaseModel):
     themes = models.ManyToManyField(Theme, related_name="documents", blank=True)
     tags = models.ManyToManyField(Tag, related_name="documents", blank=True)
 
-
-    #Links and files
-    file = models.FileField(upload_to='documents/')
-    url = models.URLField(blank=True, null=True, help_text="URL del documento (si aplica)")
-
     # Analysis and AI
     is_ai_generated = models.BooleanField(default=True, help_text="Indica si el análisis fue generado por IA")
     confidence_level = models.DecimalField(
@@ -75,3 +70,12 @@ class Document(BaseModel):
     
     class Meta:
         ordering = ['-date', 'title']
+
+class DocumentFile(BaseModel):
+    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='files')
+    file = models.FileField(upload_to='documents/')
+    url = models.URLField(blank=True, null=True, help_text="URL relacionada con este archivo (si aplica)")
+    name = models.CharField(max_length=255, blank=True, help_text="Nombre descriptivo del archivo")
+    
+    def __str__(self):
+        return f"{self.name or 'Archivo'} - {self.document.title}"
