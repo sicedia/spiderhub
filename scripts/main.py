@@ -16,14 +16,17 @@ from langchain_openai.chat_models import ChatOpenAI
 from langchain_google_genai import GoogleGenerativeAI
 from langchain.schema import HumanMessage
 from langchain.prompts import ChatPromptTemplate
+from langchain.evaluation import load_evaluator, EvaluatorType
 
-# ���� NUEVAS LIBRERÍAS
-from ragas.metrics import groundedness
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import FAISS
-from langchain.embeddings import OpenAIEmbeddings
-from selfcheckgpt import SelfCheck
-import numpy as np
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="[%(asctime)s] %(levelname)s %(name)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
+logger = logging.getLogger(__name__)
 
 # Directories
 PDF_DIR = 'documents'
@@ -66,7 +69,7 @@ TEMPLATE = Template(r"""
 # {{ title }}
 
 **Date:** {{ date }}  
-**Locations:** {{ locations | join(', ') }}
+**Locations:** {{ locations }}
 
 ## Characteristics
 {{ characteristics }}
@@ -93,32 +96,6 @@ TEMPLATE = Template(r"""
 )
 
 # Utility functions
-def compute_confidence(pdf_text: str, summary: str) -> float:
-    """
-    Devuelve un score 0-1 que combina groundedness (0.6) y consistencia (0.4).
-    """
-    # ---------  Groundedness  ---------
-    splitter = RecursiveCharacterTextSplitter(chunk_size=512, chunk_overlap=64)
-    pdf_chunks     = splitter.split_text(pdf_text)
-    summary_chunks = splitter.split_text(summary)
-
-    # indexar PDF
-    store = FAISS.from_texts(pdf_chunks, OpenAIEmbeddings())
-
-    # score por chunk
-    g_scores = []
-    for c in summary_chunks:
-        hits   = store.similarity_search(c, k=3)
-        score  = groundedness.compute(c, [h.page_content for h in hits])
-        g_scores.append(score)
-    groundedness_global = float(np.mean(g_scores))
-
-    # ---------  Consistencia interna  ---------
-    sc = SelfCheck(model="gpt-4o-mini")  # mismo modelo que usas para resumir
-    consistency = sc.score(summary, n_generations=6)  # 0-1
-
-    # combinación
-    return 0.6 * groundedness_global + 0.4 * consistency
 
 def extract_text(path: str) -> str:
     reader = PyPDF2.PdfReader(path)
@@ -136,13 +113,18 @@ def identify_tags(text: str) -> Dict[str, List[str]]:
 
 def build_prompts():
     narrative = ChatPromptTemplate.from_messages([
-        ("system", "You are an expert analyst."),
-        ("human", "Read the text below and produce a long, detailed narrative summary in full sentences and paragraphs:\n\n{text}")
+        (
+        "system",
+        "You are a senior policy analyst. Read the source text and write a **concise narrative "
+        "summary in English**, maximum 180 words, in full sentences and paragraphs. "
+        "Do **NOT** invent information; if something is missing, write: 'No information available.'."
+    ),
+        ("human", "Read the text below and produce a concise narrative summary in full sentences and paragraphs. If information is missing, state 'No information available.'\n\n{text}")
     ])
     fields = {
         "title": "Extract a concise, descriptive title:",
-        "date": "Identify the exact document date (YYYY-MM-DD):",
-        "locations": "List all countries/locations involved. Output Ecuador, Colombia, etc.",
+        "date": "Identify the document’s exact date in YYYY-MM-DD. If only month/year: use 'YYYY-MM'. If none: 'No information available.",
+        "locations": "List all countries/locations involved.",
         "characteristics": "Describe the main characteristics in detail:",
         "actors": "Detail all actors and stakeholders verbosely:",
         "main_themes": "Explain the main themes thoroughly:",
@@ -153,7 +135,7 @@ def build_prompts():
     for instr in fields.values():
         prompts.append(
             ChatPromptTemplate.from_messages([
-                ("system", "You are an expert extractor."),
+                ("system", "You are an expert extractor. Provide concise answers based strictly on the narrative. If the requested information is not present, reply 'No information available.'"),
                 ("human", f"Narrative:\n{{narrative}}\n\n{instr}")
             ])
         )
@@ -161,18 +143,63 @@ def build_prompts():
 
 
 def process_pdf(pdf_file: str, llm, prompts, field_keys):
+    logger.info(f"Start processing PDF: {pdf_file}")
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     path = os.path.join(PDF_DIR, pdf_file)
     text = extract_text(path)
     tags = identify_tags(text)
+    logger.debug(f"Extracted text length={len(text)}; tags found={tags}")
 
     # Generate narrative
     narrative_msg = prompts[0].format_messages(text=text)[1].content
     narrative = llm.invoke([HumanMessage(content=narrative_msg)])
-    narrative = narrative if isinstance(narrative, str) else narrative.content
+    if not isinstance(narrative, str):
+        narrative = narrative.content
+    logger.debug("Narrative generated")
 
-    # 3️⃣ CAMPO: CONFIDENCE
-    confidence = compute_confidence(text, narrative)
+    # —————— Add faithfulness evaluation here ——————
+    # 1) LLM juez
+    llm_juez = ChatOpenAI(
+        model="gpt-4o",
+        temperature=0,
+        openai_api_key=os.getenv("LLMS_API_KEY"),
+        base_url=os.getenv("LLMS_API_URL"),
+    )
+
+    # 2) Rúbrica 1-10 para fidelidad factual
+    faithfulness_rubric = {
+        "faithfulness": """
+        Score 1: The summary is mostly unrelated or contradicts the source.
+        Score 4: The summary captures some facts but adds invented details.
+        Score 7: The summary is broadly faithful with minor inaccuracies/omissions.
+        Score 10: The summary is perfectly faithful—no unverifiable info added.
+        +"""
+    }
+    # 3) Cargar evaluador de puntuación
+    evaluator = load_evaluator(
+        "score_string",
+        criteria=faithfulness_rubric,
+        llm=llm_juez,
+    )
+    # 4) Evaluar
+    res = evaluator.evaluate_strings(
+        input=text,
+        prediction=narrative,
+    )
+    score_1_10 = int(res["score"])
+    score_1_100 = score_1_10 * 10
+    reasoning = res["reasoning"]
+    # Etiquetas cualitativas
+    label = (
+        "malo"     if score_1_100 < 50 else
+        "regular"  if score_1_100 < 80 else
+        "excelente"
+    )
+    faithfulness_score = score_1_100
+    faithfulness_label = label
+    logger.info(f"Faithfulness (0-100): {faithfulness_score} ({faithfulness_label}); reasoning={reasoning}")
+    # ————————————————————————————————————————
+
 
     # Extract fields
     result = {"narrative": narrative}
@@ -180,48 +207,54 @@ def process_pdf(pdf_file: str, llm, prompts, field_keys):
         field_msg = prompt.format_messages(narrative=narrative)[1].content
         value = llm.invoke([HumanMessage(content=field_msg)])
         result[key] = value if isinstance(value, str) else value.content
+        logger.debug(f"Extracted field '{key}': {result[key]}")
 
     result['tags'] = tags
     result['link'] = pdf_file
 
     # Compose markdown
     base = os.path.splitext(pdf_file)[0]
-    md = (f"## Narrative Summary\n\n{narrative}\n\n"
-          f"**Confidence score:** {confidence}\n\n" +
-          TEMPLATE.render(
-              title=result['title'], date=result['date'],
-              locations=result['locations'], characteristics=result['characteristics'],
-              actors=result['actors'], main_themes=result['main_themes'],
-              practical_applications=result['practical_applications'],
-              resulting_commitments=result['resulting_commitments'],
-              identified_tags=tags, link=pdf_file
-          ))
-    # Save markdown and convert to DOCX
     md_path = os.path.join(OUTPUT_DIR, f"{base}.md")
     docx_path = os.path.join(OUTPUT_DIR, f"{base}.docx")
-
-    with open(md_path, 'w', encoding='utf-8') as f:
-        f.write(md)
+    with open(md_path, "w", encoding="utf-8") as f:
+        f.write(
+            f"Métrica de confianza (0-100): {faithfulness_score} ({faithfulness_label})\n\n" 
+            +"## Narrative Summary\n\n"
+            + result["narrative"]
+            + "\n\n"
+            + TEMPLATE.render(
+                title=result['title'], date=result['date'],
+                locations=result['locations'], characteristics=result['characteristics'],
+                actors=result['actors'], main_themes=result['main_themes'],
+                practical_applications=result['practical_applications'],
+                resulting_commitments=result['resulting_commitments'],
+                identified_tags=tags, link=pdf_file
+            )
+        )
     try:
         pypandoc.convert_file(md_path, 'docx', outputfile=docx_path)
-        print(f"Processed {pdf_file}: generated {md_path}, {docx_path}")
-    except Exception as e:
-        print(f"Error converting {md_path} to DOCX: {e}")
+        logger.info(f"Processed {pdf_file}: generated {md_path}, {docx_path}")
+    except Exception:
+        logger.exception(f"Error converting {md_path} to DOCX")
 
+    
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--provider', choices=['openai','gemini'], default='openai')
-    parser.add_argument('--model', default='gpt-4o-mini')
+    parser.add_argument('--model', default='openai/gpt-4o')
+    # gemini/gemini-2.5-flash-preview-04-17
     args = parser.parse_args()
 
+    logger.info(f"Using provider={args.provider}, model={args.model}")
+
+    API_KEY = os.getenv('LLMS_API_KEY')
+    BASE_URL = os.getenv('LLMS_API_URL')
     # Instantiate LLM
     if args.provider == 'openai':
-        api = os.getenv('OPENAI_API_KEY')
-        llm = ChatOpenAI(model=args.model, openai_api_key=api)
+        llm = ChatOpenAI(model=args.model, api_key=API_KEY, base_url=BASE_URL)
     else:
-        api = os.getenv('GOOGLE_API_KEY')
-        llm = GoogleGenerativeAI(model=args.model, google_api_key=api)
+        llm = GoogleGenerativeAI(model=args.model, api_key=API_KEY, base_url=BASE_URL)
 
     prompts, field_keys = build_prompts()
 
@@ -230,5 +263,10 @@ def main():
         if file.lower().endswith('.pdf'):
             process_pdf(file, llm, prompts, field_keys)
 
+    logger.info("All PDFs processed successfully.")
+
+
 if __name__ == '__main__':
     main()
+
+# o4 mini
