@@ -1,4 +1,3 @@
-# config/settings/base.py
 import os
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
@@ -8,16 +7,13 @@ def get_env_variable(var_name):
     try:
         return os.environ[var_name]
     except KeyError:
-        error_msg = f"Se requiere la variable de entorno '{var_name}'"
-        raise ImproperlyConfigured(error_msg)
+        raise ImproperlyConfigured(f"Se requiere la variable de entorno '{var_name}'")
 
-# Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env_variable('DJANGO_SECRET_KEY')
 
-# Application definition
+# Aplicaciones
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -26,21 +22,19 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
 THIRD_PARTY_APPS = [
     'rest_framework',
     'django_filters',
     'corsheaders',
 ]
-
 LOCAL_APPS = [
     'apps.core.apps.CoreConfig',
     'apps.documents.apps.DocumentsConfig', 
     'apps.admin_panel.apps.AdminPanelConfig',
 ]
-
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
+# Middlewares
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -72,7 +66,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Password validation
+# Validadores de Contraseña
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -80,31 +74,30 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Internationalization
-LANGUAGE_CODE = 'es'       # Idioma principal
+# Internacionalización
+LANGUAGE_CODE = 'es'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
 LANGUAGES = [
     ('es', 'Spanish'),
-    ('en', 'English')
+    ('en', 'English'),
 ]
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
-# Static files (CSS, JavaScript, Images)
+# Archivos Estáticos y Medios
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Default primary key field type
+# Otras configuraciones
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# REST Framework
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,

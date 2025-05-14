@@ -21,3 +21,7 @@ def home_page(request):
 def about_page(request):
     """About page view"""
     return render(request, 'core/about.html')
+
+def test_page(request):
+    """Test page view"""
+    return render(request, 'core/test.html')

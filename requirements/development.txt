@@ -34,3 +34,9 @@ python-dotenv  # .env file support
 
 # Asset pipeline
 django-compressor  # CSS/JS compression
+
+# Converting string to boolean
+str2bool
+
+#gunicorn  # WSGI HTTP server for UNIX
+waitress

@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+from str2bool import str2bool
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,13 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+hs&a8yas-23xkx@fn*l*x1+9+19p_0^n0fb(hvp!(^7%08kv_'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = str2bool(os.environ.get('DEBUG'))
 
 ALLOWED_HOSTS = []
 
+# Add here your deployment HOSTS
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://localhost:5085', 'http://127.0.0.1:8000', 'http://127.0.0.1:5085', 'https://spiderhub.cedia.edu.ec']
 
 # Application definition
 
@@ -52,10 +57,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
+
+HOME_TEMPLATES = os.path.join(BASE_DIR, 'templates')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [HOME_TEMPLATES],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
