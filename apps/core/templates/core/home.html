@@ -1,33 +1,18 @@
 {% extends "core/base.html" %}
+{% load static %}
 {% block title %}SPIDERHUB: Transformación Digital{% endblock %}
+
 {% block content %}
-<!-- Pega aquí todo el <body> de tu index.html (sin <html>, <head>, <body>) -->
-<!-- Header Navigation -->
-
-
+  
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
       <h1>SPIDERHUB: Fomentando la Transformación Digital UE - AL</h1>
       <p>Descubre los acuerdos y compromisos que impulsan la transformación digital en Europa y América Latina.</p>
-      <a href="explore.html" class="btn btn-primary">Explorar Base de Datos</a>
+      <a href="{% url 'core:explore' %}" class="btn btn-primary">Explorar Base de Datos</a>
     </div>
-    <div class="hero-graphic">
-      <svg id="world-map" width="500" height="300" viewBox="0 0 500 300">
-        <!-- Simplified world map outline focusing on EU and LATAM -->
-        <path class="europe" d="M250 100 Q270 80 290 85 Q310 90 330 80 Q350 75 370 85 Q380 95 370 110 Q360 120 350 125 Q330 130 310 120 Q290 115 280 125 Q270 130 260 125 Q250 120 250 100Z" fill="#094EB2" opacity="0.2" />
-        <path class="latam" d="M220 140 Q230 150 220 160 Q210 170 200 180 Q190 200 180 210 Q170 220 160 210 Q150 200 160 190 Q170 180 180 170 Q190 160 200 150 Q210 140 220 140Z" fill="#34A853" opacity="0.2" />
-        
-        <!-- Connection points -->
-        <circle class="connection-point" cx="300" cy="100" r="5" fill="#094EB2" />
-        <circle class="connection-point" cx="190" cy="180" r="5" fill="#34A853" />
-        <circle class="connection-point" cx="330" cy="110" r="5" fill="#094EB2" />
-        <circle class="connection-point" cx="170" cy="200" r="5" fill="#34A853" />
-        
-        <!-- Connection lines -->
-        <path class="connection-line" d="M300 100 Q250 140 190 180" stroke="#094EB2" stroke-width="2" fill="none" />
-        <path class="connection-line" d="M330 110 Q250 160 170 200" stroke="#34A853" stroke-width="2" fill="none" />
-      </svg>
+    <div class="hero-graphic" id="node-web">
+      <!-- Canvas for node web animation will be added by JS -->
     </div>
   </section>
 
@@ -40,12 +25,16 @@
         <div class="stat-label">Documentos Analizados</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" data-target="{{country_count}}">0</div>
+        <div class="stat-number" data-target="{{ country_count }}">0</div>
         <div class="stat-label">Países Involucrados</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" data-target="80" data-suffix="%">0%</div>
-        <div class="stat-label">Confianza Promedio</div>
+        <div class="stat-number" data-target="{{ actors_count}}"">0</div>
+        <div class="stat-label">Actores Involucrados</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-target="{{ project_count }}">0</div>
+        <div class="stat-label">Proyectos Conjuntos</div>
       </div>
     </div>
   </section>
@@ -53,81 +42,139 @@
   <!-- Recent Documents Section -->
   <section class="documents-section">
     <h2 class="section-title">Documentos Recientes</h2>
-    <div class="documents-container">
-      <div class="document-card">
-        <div class="document-header">
-          <div class="document-title">Agenda Digital para América Latina y el Caribe</div>
-          <div class="document-meta">
-            <span>CEPAL</span>
-            <span>2022</span>
-          </div>
-        </div>
-        <div class="document-body">
-          <p>Iniciativa regional para el desarrollo digital en América Latina y su vinculación con políticas europeas.</p>
-          <div class="confidence-meter">
-            <div class="confidence-label">
-              <span>Nivel de confianza</span>
-              <span>85%</span>
+    
+    <div class="carousel-container">
+      <button class="carousel-nav carousel-prev" aria-label="Anterior">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
+        </svg>
+      </button>
+      
+      <div class="carousel-wrapper">
+        <div class="documents-container carousel-track">
+          <div class="document-card">
+            <div class="document-header">
+              <div class="document-title">Agenda Digital para América Latina y el Caribe</div>
+              <div class="document-meta">
+                <span>CEPAL</span>
+                <span>2022</span>
+              </div>
             </div>
-            <div class="confidence-bar">
-              <div class="confidence-level" data-confidence="85"></div>
+            <div class="document-body">
+              <p>Iniciativa regional para el desarrollo digital en América Latina y su vinculación con políticas europeas, enfocada en reducir la brecha digital.</p>
+            </div>
+            <div class="document-footer">
+              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
             </div>
           </div>
-        </div>
-        <div class="document-footer">
-          <a href="#" class="btn btn-secondary">Ver Detalles</a>
-        </div>
-      </div>
 
-      <div class="document-card">
-        <div class="document-header">
-          <div class="document-title">Plan de Acción Digital EU-LATAM</div>
-          <div class="document-meta">
-            <span>Comisión Europea</span>
-            <span>2023</span>
-          </div>
-        </div>
-        <div class="document-body">
-          <p>Estrategia conjunta para el desarrollo de infraestructuras digitales y marcos regulatorios comunes.</p>
-          <div class="confidence-meter">
-            <div class="confidence-label">
-              <span>Nivel de confianza</span>
-              <span>92%</span>
+          <div class="document-card">
+            <div class="document-header">
+              <div class="document-title">Plan de Acción Digital EU-LATAM</div>
+              <div class="document-meta">
+                <span>Comisión Europea</span>
+                <span>2023</span>
+              </div>
             </div>
-            <div class="confidence-bar">
-              <div class="confidence-level" data-confidence="92"></div>
+            <div class="document-body">
+              <p>Estrategia conjunta para el desarrollo de infraestructuras digitales y marcos regulatorios comunes entre la Unión Europea y América Latina.</p>
+            </div>
+            <div class="document-footer">
+              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
             </div>
           </div>
-        </div>
-        <div class="document-footer">
-          <a href="#" class="btn btn-secondary">Ver Detalles</a>
-        </div>
-      </div>
 
-      <div class="document-card">
-        <div class="document-header">
-          <div class="document-title">Declaración de Montevideo</div>
-          <div class="document-meta">
-            <span>Uruguay</span>
-            <span>2021</span>
-          </div>
-        </div>
-        <div class="document-body">
-          <p>Acuerdo sobre estándares de protección de datos y ciberseguridad con enfoque transnacional.</p>
-          <div class="confidence-meter">
-            <div class="confidence-label">
-              <span>Temas por documento</span>
-              <span>78%</span>
+          <div class="document-card">
+            <div class="document-header">
+              <div class="document-title">Declaración de Montevideo</div>
+              <div class="document-meta">
+                <span>Uruguay</span>
+                <span>2021</span>
+              </div>
             </div>
-            <div class="confidence-bar">
-              <div class="confidence-level" data-confidence="78"></div>
+            <div class="document-body">
+              <p>Acuerdo sobre estándares de protección de datos y ciberseguridad con enfoque transnacional entre varios países de la región.</p>
+            </div>
+            <div class="document-footer">
+              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
             </div>
           </div>
-        </div>
-        <div class="document-footer">
-          <a href="#" class="btn btn-secondary">Ver Detalles</a>
+          
+          <div class="document-card">
+            <div class="document-header">
+              <div class="document-title">EU-LAC Digital Alliance Joint Declaration</div>
+              <div class="document-meta">
+                <span>Unión Europea</span>
+                <span>2023</span>
+              </div>
+            </div>
+            <div class="document-body">
+              <p>Marco informal basado en valores para profundizar la asociación y cooperación entre la UE y América Latina en materia de transformación digital.</p>
+            </div>
+            <div class="document-footer">
+              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
+            </div>
+          </div>
+          
+          <div class="document-card">
+            <div class="document-header">
+              <div class="document-title">Acuerdo de Cooperación Digital España-Brasil</div>
+              <div class="document-meta">
+                <span>España/Brasil</span>
+                <span>2023</span>
+              </div>
+            </div>
+            <div class="document-body">
+              <p>Acuerdo bilateral para impulsar iniciativas tecnológicas y compartir conocimientos en IA y desarrollo de talento digital entre ambos países.</p>
+            </div>
+            <div class="document-footer">
+              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
+            </div>
+          </div>
+          
+          <div class="document-card">
+            <div class="document-header">
+              <div class="document-title">Estrategia Digital Colombia 2025</div>
+              <div class="document-meta">
+                <span>Colombia</span>
+                <span>2023</span>
+              </div>
+            </div>
+            <div class="document-body">
+              <p>Plan nacional para la transformación digital de Colombia, con énfasis en infraestructura, inclusión digital y desarrollo de habilidades técnicas.</p>
+            </div>
+            <div class="document-footer">
+              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
+            </div>
+          </div>
+          
+          <div class="document-card">
+            <div class="document-header">
+              <div class="document-title">Plan Nacional de IA México</div>
+              <div class="document-meta">
+                <span>México</span>
+                <span>2023</span>
+              </div>
+            </div>
+            <div class="document-body">
+              <p>Estrategia mexicana para el desarrollo e implementación de Inteligencia Artificial con enfoque en ética, gobernanza y aplicaciones sociales.</p>
+            </div>
+            <div class="document-footer">
+              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
+            </div>
+          </div>
         </div>
       </div>
+      
+      <button class="carousel-nav carousel-next" aria-label="Siguiente">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12l-4.58 4.59z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="carousel-indicators">
+      <!-- Indicators will be added by JavaScript -->
     </div>
   </section>
 
@@ -135,10 +182,11 @@
   <section class="cta-section">
     <h2>Descubre las conexiones que impulsan la transformación digital</h2>
     <p>Explora la red de acuerdos, políticas y compromisos que están definiendo el futuro digital entre Europa y América Latina. Visualiza relaciones complejas de manera intuitiva.</p>
-    <a href="explore.html" class="btn btn-secondary">Ver Relaciones en Red</a>
+    <a href="{% url 'core:explore' %}" class="btn btn-secondary">Ver Relaciones en Red</a>
   </section>
 
+{% endblock %}
 
-
-
+{% block extra_scripts %}
+  <script src="{% static 'core/js/main.js' %}"></script>
 {% endblock %}

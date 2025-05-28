@@ -2,6 +2,10 @@ import os
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 
+from dotenv import load_dotenv
+# Cargar variables de entorno desde un archivo .env
+load_dotenv()
+
 def get_env_variable(var_name):
     """Obtener variable de entorno o lanzar excepción."""
     try:

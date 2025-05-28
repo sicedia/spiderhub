@@ -1,0 +1,298 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}SPIDERHUB: Acerca de Nosotros - Transformación Digital UE - AL{% endblock %}
+{% block extra_head %}  
+<link rel="stylesheet" href="{% static 'core/css/about_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- About Hero Section -->
+<div class="about-hero">
+    <div class="about-hero-content">
+        <h1>Acerca de SPIDERHUB</h1>
+      <p>Conectando documentos y políticas para impulsar la transformación digital entre Europa y América Latina</p>
+    </div>
+</div>
+
+<!-- Main Content Section -->
+<div class="about-container">
+    <!-- Project Description Section -->
+    <section class="about-section">
+      <h2 class="section-title">Nuestro Proyecto</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>SPIDERHUB nace como una iniciativa conjunta entre instituciones europeas y latinoamericanas para analizar, conectar y visibilizar los acuerdos, políticas y compromisos relacionados con la transformación digital entre ambas regiones.</p>
+          <p>Mediante el uso de tecnologías avanzadas de inteligencia artificial, creamos una red interconectada de información que permite a investigadores, formuladores de políticas y al público en general comprender las relaciones complejas que están moldeando el futuro digital de nuestras sociedades.</p>
+          <p>Nuestros principales objetivos son:</p>
+          <ul>
+            <li>Centralizar la documentación relevante sobre transformación digital entre la UE y América Latina.</li>
+            <li>Analizar automáticamente los compromisos y políticas mediante IA.</li>
+            <li>Visualizar las conexiones entre actores, temas y compromisos.</li>
+            <li>Facilitar la toma de decisiones informadas basadas en datos concretos.</li>
+          </ul>
+        </div>
+        <div class="about-image">
+          <svg width="400" height="300" viewBox="0 0 400 300" class="connection-map">
+            <!-- Simplified world map outline focusing on EU and LATAM -->
+            <path d="M250 80 Q270 60 290 65 Q310 70 330 60 Q350 55 370 65 Q380 75 370 90 Q360 100 350 105 Q330 110 310 100 Q290 95 280 105 Q270 110 260 105 Q250 100 250 80Z" fill="#094EB2" opacity="0.15" stroke="#094EB2" stroke-width="2"/>
+            <path d="M120 140 Q130 150 120 160 Q110 170 100 180 Q90 200 80 210 Q70 220 60 210 Q50 200 60 190 Q70 180 80 170 Q90 160 100 150 Q110 140 120 140Z" fill="#34A853" opacity="0.15" stroke="#34A853" stroke-width="2"/>
+            
+            <!-- Connection points -->
+            <circle cx="300" cy="80" r="8" fill="#094EB2" class="pulse-circle"/>
+            <circle cx="90" cy="180" r="8" fill="#34A853" class="pulse-circle"/>
+            <circle cx="330" cy="90" r="8" fill="#094EB2" class="pulse-circle"/>
+            <circle cx="70" cy="200" r="8" fill="#34A853" class="pulse-circle"/>
+            
+            <!-- Connection lines with labels -->
+            <path d="M300 80 Q200 130 90 180" stroke="#094EB2" stroke-width="2" fill="none" stroke-dasharray="5,3"/>
+            <path d="M330 90 Q200 150 70 200" stroke="#34A853" stroke-width="2" fill="none" stroke-dasharray="5,3"/>
+            
+            <!-- Labels -->
+            <text x="330" y="70" font-size="12" fill="#094EB2" font-weight="bold">Europa</text>
+            <text x="60" y="230" font-size="12" fill="#34A853" font-weight="bold">América Latina</text>
+            <text x="180" y="140" font-size="14" fill="#333" font-weight="bold">SPIDERHUB</text>
+            
+            <!-- Legend items -->
+            <circle cx="320" cy="250" r="6" fill="#094EB2"/>
+            <text x="330" y="254" font-size="12" fill="#333">Política UE</text>
+            
+            <circle cx="320" cy="270" r="6" fill="#34A853"/>
+            <text x="330" y="274" font-size="12" fill="#333">Política AL</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section class="about-section methodology-section">
+      <h2 class="section-title">Nuestra Metodología</h2>
+      <div class="methodology-steps">
+        <div class="methodology-step">
+          <div class="step-icon">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="12" fill="#094EB2" opacity="0.1"/>
+              <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" fill="#094EB2"/>
+              <path d="M14 2V8H20L14 2Z" fill="#034092"/>
+            </svg>
+          </div>
+          <div class="step-content">
+            <h3>1. Recolección de Documentos</h3>
+            <p>Recopilamos documentos oficiales, acuerdos, políticas y estrategias relacionadas con la transformación digital de fuentes gubernamentales, organizaciones internacionales y entidades privadas relevantes.</p>
+          </div>
+        </div>
+        
+        <div class="methodology-step">
+          <div class="step-icon">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="12" fill="#094EB2" opacity="0.1"/>
+              <path d="M12 16.5C14.21 16.5 16 14.71 16 12.5H8C8 14.71 9.79 16.5 12 16.5ZM12 8.5C9.79 8.5 8 10.29 8 12.5H16C16 10.29 14.21 8.5 12 8.5ZM19 5H5C3.9 5 3 5.9 3 7V17C3 18.1 3.9 19 5 19H19C20.1 19 21 18.1 21 17V7C21 5.9 20.1 5 19 5Z" fill="#094EB2"/>
+            </svg>
+          </div>
+          <div class="step-content">
+            <h3>2. Procesamiento con IA</h3>
+            <p>Nuestro sistema de inteligencia artificial analiza los documentos, identificando actores, compromisos, temas clave y relaciones entre diferentes políticas, extrayendo metadatos estructurados.</p>
+          </div>
+        </div>
+        
+        <div class="methodology-step">
+          <div class="step-icon">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="12" fill="#34A853" opacity="0.1"/>
+              <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM10 14.17L16.59 7.58L18 9L10 17L6 13L7.41 11.59L10 14.17Z" fill="#34A853"/>
+            </svg>
+          </div>
+          <div class="step-content">
+            <h3>3. Validación y Enriquecimiento</h3>
+            <p>Expertos revisan y validan los resultados del análisis automático, asegurando precisión y confiabilidad en los datos. Se agregan contextos adicionales cuando es necesario.</p>
+          </div>
+        </div>
+        
+        <div class="methodology-step">
+          <div class="step-icon">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="12" fill="#34A853" opacity="0.1"/>
+              <path d="M3.9 12C3.9 10.29 5.29 8.9 7 8.9H11V7H7C4.24 7 2 9.24 2 12C2 14.76 4.24 17 7 17H11V15.1H7C5.29 15.1 3.9 13.71 3.9 12ZM8 13H16V11H8V13ZM17 7H13V8.9H17C18.71 8.9 20.1 10.29 20.1 12C20.1 13.71 18.71 15.1 17 15.1H13V17H17C19.76 17 22 14.76 22 12C22 9.24 19.76 7 17 7Z" fill="#34A853"/>
+            </svg>
+          </div>
+          <div class="step-content">
+            <h3>4. Visualización de Conexiones</h3>
+            <p>Creamos visualizaciones y relaciones entre documentos, permitiendo a los usuarios explorar la red compleja de políticas y compromisos que conectan la UE y América Latina.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="about-section partners-section">
+      <h2 class="section-title">Nuestros Socios</h2>
+      <p class="partners-intro">SPIDERHUB es posible gracias a la colaboración entre instituciones líderes de Europa y América Latina.</p>
+      <div class="partners-grid">
+        <div class="partner-card">
+          <div class="partner-logo eu-commission">
+            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="40" fill="#FFFFFF"/>
+              <circle cx="40" cy="40" r="38" fill="#094EB2"/>
+              <path d="M40 15 L45 30 L60 30 L48 40 L53 55 L40 45 L27 55 L32 40 L20 30 L35 30 Z" fill="#FFCC00"/>
+            </svg>
+          </div>
+          <div class="partner-info">
+            <h3>Comisión Europea</h3>
+            <p>Apoyo institucional y financiación principal del proyecto a través del programa Horizon Europe.</p>
+          </div>
+        </div>
+        
+        <div class="partner-card">
+          <div class="partner-logo cepal">
+            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="40" fill="#FFFFFF"/>
+              <circle cx="40" cy="40" r="38" fill="#34A853"/>
+              <path d="M25 30 H55 V50 H25 Z" fill="#FFFFFF"/>
+              <text x="28" y="43" font-family="Arial" font-size="12" font-weight="bold" fill="#34A853">CEPAL</text>
+            </svg>
+          </div>
+          <div class="partner-info">
+            <h3>CEPAL</h3>
+            <p>Coordinación regional en América Latina y el Caribe, aportando experiencia en políticas de desarrollo digital.</p>
+          </div>
+        </div>
+        
+        <div class="partner-card">
+          <div class="partner-logo digital-future">
+            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="40" fill="#FFFFFF"/>
+              <rect x="20" y="20" width="40" height="40" rx="5" fill="#333333"/>
+              <path d="M30 40 L35 35 L40 40 L45 35 L50 40 L45 45 L50 50 L45 55 L40 50 L35 55 L30 50 L35 45 Z" fill="#FFFFFF"/>
+            </svg>
+          </div>
+          <div class="partner-info">
+            <h3>Instituto Digital Future</h3>
+            <p>Desarrollo tecnológico e implementación de los sistemas de IA para el análisis documental.</p>
+          </div>
+        </div>
+        
+        <div class="partner-card">
+          <div class="partner-logo uc3m">
+            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="40" fill="#FFFFFF"/>
+              <rect x="15" y="25" width="50" height="30" fill="#7C0A02"/>
+              <text x="22" y="45" font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF">UC3M</text>
+            </svg>
+          </div>
+          <div class="partner-info">
+            <h3>Universidad Carlos III de Madrid</h3>
+            <p>Coordinación académica y validación metodológica del proyecto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="about-section team-section">
+      <h2 class="section-title">Equipo Principal</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="member-photo">
+            <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="50" fill="#e0e0e0"/>
+              <circle cx="50" cy="40" r="20" fill="#bdbdbd"/>
+              <path d="M50 65 C35 65 25 75 25 90 L75 90 C75 75 65 65 50 65 Z" fill="#bdbdbd"/>
+            </svg>
+          </div>
+          <h3>Dra. Ana Martínez</h3>
+          <p class="member-role">Directora del Proyecto</p>
+          <p class="member-org">Universidad Carlos III de Madrid</p>
+        </div>
+        
+        <div class="team-member">
+          <div class="member-photo">
+            <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="50" fill="#e0e0e0"/>
+              <circle cx="50" cy="40" r="20" fill="#bdbdbd"/>
+              <path d="M50 65 C35 65 25 75 25 90 L75 90 C75 75 65 65 50 65 Z" fill="#bdbdbd"/>
+            </svg>
+          </div>
+          <h3>Dr. Javier Silva</h3>
+          <p class="member-role">Director Técnico</p>
+          <p class="member-org">Instituto Digital Future</p>
+        </div>
+        
+        <div class="team-member">
+          <div class="member-photo">
+            <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="50" fill="#e0e0e0"/>
+              <circle cx="50" cy="40" r="20" fill="#bdbdbd"/>
+              <path d="M50 65 C35 65 25 75 25 90 L75 90 C75 75 65 65 50 65 Z" fill="#bdbdbd"/>
+            </svg>
+          </div>
+          <h3>Dra. Lucía Gómez</h3>
+          <p class="member-role">Coordinadora LATAM</p>
+          <p class="member-org">CEPAL</p>
+        </div>
+        
+        <div class="team-member">
+          <div class="member-photo">
+            <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="50" fill="#e0e0e0"/>
+              <circle cx="50" cy="40" r="20" fill="#bdbdbd"/>
+              <path d="M50 65 C35 65 25 75 25 90 L75 90 C75 75 65 65 50 65 Z" fill="#bdbdbd"/>
+            </svg>
+          </div>
+          <h3>Dr. Marco Bianchi</h3>
+          <p class="member-role">Coordinador UE</p>
+          <p class="member-org">Comisión Europea</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="about-section contact-section">
+      <h2 class="section-title">Contacto</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <p>¿Tienes dudas sobre SPIDERHUB o deseas colaborar con nosotros? Ponte en contacto a través del formulario o utiliza los siguientes medios:</p>
+          <div class="contact-detail">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="#094EB2"/>
+            </svg>
+            <span>info@spiderhub.org</span>
+          </div>
+          <div class="contact-detail">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#094EB2"/>
+            </svg>
+            <span>Madrid, España</span>
+          </div>
+          <div class="contact-detail">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" fill="#094EB2"/>
+            </svg>
+            <span>+34 912 345 678</span>
+          </div>
+        </div>
+        
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" placeholder="Tu nombre">
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="tu@correo.com">
+          </div>
+          <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" rows="4" placeholder="Escribe tu mensaje aquí..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+        </form>
+      </div>
+    </section>
+</div>
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+<script src="{% static 'core/js/main.js' %}"></script>
+<script src="{% static 'core/js/about.js' %}"></script>
+{% endblock %}

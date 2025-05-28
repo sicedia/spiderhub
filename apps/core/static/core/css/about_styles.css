@@ -1,0 +1,299 @@
+/* About Page Specific Styles */
+.about-hero {
+  background: linear-gradient(135deg, rgba(9,78,178,0.1) 0%, rgba(52,168,83,0.1) 100%);
+  padding: 5rem 5% 3rem;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.about-hero h1 {
+  font-size: 2.8rem;
+  color: #094EB2;
+  margin-bottom: 1rem;
+}
+
+.about-hero p {
+  font-size: 1.2rem;
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 5%;
+}
+
+.about-section {
+  margin-bottom: 4rem;
+}
+
+.about-content {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.about-text ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-text li {
+  margin-bottom: 0.5rem;
+}
+
+/* Methodology Section Styles */
+.methodology-section {
+  background-color: #f9f9f9;
+  padding: 3rem;
+  border-radius: 10px;
+  margin: 4rem 0;
+}
+
+.methodology-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.methodology-step {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.step-icon {
+  flex-shrink: 0;
+}
+
+.step-content h3 {
+  color: #094EB2;
+  margin-bottom: 0.5rem;
+}
+
+.step-content p {
+  color: #555;
+}
+
+/* Partners Section Styles */
+.partners-intro {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.partner-card {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+
+.partner-card:hover {
+  transform: translateY(-5px);
+}
+
+.partner-logo {
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+}
+
+.partner-info h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.partner-info p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Team Section Styles */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.team-member {
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+}
+
+.member-photo {
+  margin-bottom: 1rem;
+}
+
+.team-member h3 {
+  color: #333;
+  margin-bottom: 0.3rem;
+  font-size: 1.1rem;
+}
+
+.member-role {
+  color: #094EB2;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.member-org {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Contact Section Styles */
+.contact-section {
+  background-color: #f9f9f9;
+  padding: 3rem;
+  border-radius: 10px;
+}
+
+.contact-container {
+  display: flex;
+  gap: 3rem;
+}
+
+.contact-info {
+  flex: 1;
+}
+
+.contact-info p {
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.contact-detail {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.contact-detail svg {
+  margin-right: 0.8rem;
+}
+
+.contact-form {
+  flex: 1;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+/* Animation for connection map */
+.pulse-circle {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    r: 8;
+    opacity: 1;
+  }
+  50% {
+    r: 12;
+    opacity: 0.7;
+  }
+  100% {
+    r: 8;
+    opacity: 1;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .about-content {
+    flex-direction: column;
+  }
+  
+  .about-image {
+    order: -1;
+    margin-bottom: 2rem;
+  }
+  
+  .contact-container {
+    flex-direction: column;
+  }
+  
+  .contact-info {
+    margin-bottom: 2rem;
+  }
+  
+  .methodology-step {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .step-icon {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .partners-grid,
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,906 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}SPIDERHUB: Explorar Diálogos - Transformación Digital UE - AL{% endblock %}
+{% block extra_head %}  
+<link rel="stylesheet" href="{% static 'core/css/explore_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+<main class="explore-container">
+  <!-- Top Search Bar -->
+  <div class="search-header">
+    <h1>Explorar Diálogos Digitales</h1>
+    <p>Descubre los acuerdos y compromisos de transformación digital entre Europa y América Latina</p>
+      
+    <div class="search-bar-container">
+      <form class="search-bar">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="#666"/>
+        </svg>
+        <input type="text" placeholder="Buscar por palabra clave o frase..." autofocus>
+        <button type="submit">Buscar</button>
+      </form>
+    </div>
+      
+    <div class="active-filters">
+      <!-- Aquí se mostrarán los chips de filtros activos -->
+    </div>
+  </div>
+
+  <!-- View Selector Tabs -->
+  <div class="view-selector">
+    <button class="view-tab active" data-view="list">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 13h18v-2H3v2zm0-7v2h18V6H3zm0 12h18v-2H3v2z" fill="currentColor"/>
+      </svg>
+      Lista
+    </button>
+    <button class="view-tab" data-view="map">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z" fill="currentColor"/>
+      </svg>
+      Mapa
+    </button>
+  </div>
+
+  <!-- Main Content Area with Sidebar and Results -->
+  <div class="content-area">
+    <!-- Filter Sidebar -->
+    <aside class="filter-sidebar">
+      <div class="filter-header">
+        <h2>Filtros</h2>
+        <button class="filter-toggle mobile-only">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor"/>
+          </svg>
+        </button>
+        <button class="clear-filters">Limpiar todos</button>
+      </div>
+        
+      <div class="filter-groups">
+        <!-- Accordion style filters -->
+        <div class="filter-accordion">
+          <!-- Document Type -->
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Tipo de Documento</span>
+              <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="accordion-content">
+              <div class="filter-options">
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="type" value="declaration">
+                  <span>Declaraciones</span>
+                  <span class="count">22</span>
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="type" value="agreement">
+                  <span>Acuerdos</span>
+                  <span class="count">24</span>
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="type" value="strategy">
+                  <span>Estrategias</span>
+                  <span class="count">18</span>
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="type" value="law">
+                  <span>Leyes</span>
+                  <span class="count">15</span>
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="type" value="report">
+                  <span>Informes</span>
+                  <span class="count">14</span>
+                </label>
+              </div>
+            </div>
+          </div>
+            
+          <!-- Legal Characteristics -->
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Características Legales</span>
+              <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="accordion-content">
+              <h4 class="filter-subheading">Carácter Legal</h4>
+              <div class="filter-options">
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="legal" value="politically-binding">
+                  <span>Políticamente vinculante</span>
+                  <span class="count">35</span>
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="legal" value="legally-binding">
+                  <span>Legalmente vinculante</span>
+                  <span class="count">28</span>
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="legal" value="non-binding">
+                  <span>No vinculante</span>
+                  <span class="count">42</span>
+                </label>
+              </div>
+                
+              <h4 class="filter-subheading">Alcance</h4>
+              <div class="filter-options">
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="scope" value="regional">
+                  <span>Regional</span>
+                  <span class="count">38</span>
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="scope" value="bilateral">
+                  <span>Bilateral</span>
+                  <span class="count">47</span>
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="scope" value="multilateral">
+                  <span>Multilateral</span>
+                  <span class="count">25</span>
+                </label>
+                <label class="filter-checkbox">
+                  <input type="checkbox" name="scope" value="national">
+                  <span>Nacional</span>
+                  <span class="count">31</span>
+                </label>
+              </div>
+            </div>
+          </div>
+            
+          <!-- Countries -->
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Países</span>
+              <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="accordion-content">
+              <div class="search-box">
+                <input type="text" placeholder="Buscar país...">
+              </div>
+                
+              <div class="region-tabs">
+                <button class="region-tab active" data-region="all">Todos</button>
+                <button class="region-tab" data-region="eu">UE</button>
+                <button class="region-tab" data-region="latam">LATAM</button>
+              </div>
+                
+              <div class="filter-options scrollable">
+                <label class="filter-checkbox eu-country">
+                  <input type="checkbox" name="country" value="eu">
+                  <span>Unión Europea</span>
+                  <span class="count">45</span>
+                </label>
+                <label class="filter-checkbox eu-country">
+                  <input type="checkbox" name="country" value="spain">
+                  <span>España</span>
+                  <span class="count">28</span>
+                </label>
+                <label class="filter-checkbox eu-country">
+                  <input type="checkbox" name="country" value="germany">
+                  <span>Alemania</span>
+                  <span class="count">18</span>
+                </label>
+                <label class="filter-checkbox eu-country">
+                  <input type="checkbox" name="country" value="france">
+                  <span>Francia</span>
+                  <span class="count">16</span>
+                </label>
+                <label class="filter-checkbox latam-country">
+                  <input type="checkbox" name="country" value="brazil">
+                  <span>Brasil (BRA)</span>
+                  <span class="count">32</span>
+                </label>
+                <label class="filter-checkbox latam-country">
+                  <input type="checkbox" name="country" value="mexico">
+                  <span>México (MEX)</span>
+                  <span class="count">24</span>
+                </label>
+                <label class="filter-checkbox latam-country">
+                  <input type="checkbox" name="country" value="colombia">
+                  <span>Colombia (COL)</span>
+                  <span class="count">19</span>
+                </label>
+                <label class="filter-checkbox latam-country">
+                  <input type="checkbox" name="country" value="chile">
+                  <span>Chile (CHL)</span>
+                  <span class="count">15</span>
+                </label>
+                <label class="filter-checkbox latam-country">
+                  <input type="checkbox" name="country" value="argentina">
+                  <span>Argentina (ARG)</span>
+                  <span class="count">21</span>
+                </label>
+                <label class="filter-checkbox latam-country">
+                  <input type="checkbox" name="country" value="peru">
+                  <span>Perú (PER)</span>
+                  <span class="count">12</span>
+                </label>
+                <label class="filter-checkbox latam-country">
+                  <input type="checkbox" name="country" value="panama">
+                  <span>Panamá (PAN)</span>
+                  <span class="count">9</span>
+                </label>
+                <label class="filter-checkbox latam-country">
+                  <input type="checkbox" name="country" value="uruguay">
+                  <span>Uruguay (URY)</span>
+                  <span class="count">8</span>
+                </label>
+              </div>
+            </div>
+          </div>
+            
+            <!-- Date Range -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span>Periodo</span>
+                <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="accordion-content">
+                <div class="date-range">
+                  <div class="date-field">
+                    <label for="date-from">Desde:</label>
+                    <input type="date" id="date-from" name="date-from">
+                  </div>
+                  <div class="date-field">
+                    <label for="date-to">Hasta:</label>
+                    <input type="date" id="date-to" name="date-to">
+                  </div>
+                  
+                  <div class="date-presets">
+                    <button class="date-preset" data-years="1">Último año</button>
+                    <button class="date-preset" data-years="3">Últimos 3 años</button>
+                    <button class="date-preset" data-years="5">Últimos 5 años</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Themes -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span>Temas</span>
+                <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="accordion-content">
+                <div class="search-box">
+                  <input type="text" placeholder="Buscar tema...">
+                </div>
+                
+                <div class="theme-category">
+                  <h4 class="filter-subheading">Transformación Digital</h4>
+                  <div class="filter-options">
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="digital-agenda">
+                      <span>Agenda Digital</span>
+                      <span class="count">29</span>
+                    </label>
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="digital-infrastructure">
+                      <span>Infraestructura Digital</span>
+                      <span class="count">37</span>
+                    </label>
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="digital-economy">
+                      <span>Economía Digital</span>
+                      <span class="count">32</span>
+                    </label>
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="digital-skills">
+                      <span>Habilidades Digitales</span>
+                      <span class="count">24</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="theme-category">
+                  <h4 class="filter-subheading">Tecnología e Innovación</h4>
+                  <div class="filter-options">
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="ai">
+                      <span>Inteligencia Artificial</span>
+                      <span class="count">23</span>
+                    </label>
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="tech-regulations">
+                      <span>Regulaciones Tecnológicas</span>
+                      <span class="count">18</span>
+                    </label>
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="sustainable-tech">
+                      <span>Tecnología Sostenible</span>
+                      <span class="count">15</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="theme-category">
+                  <h4 class="filter-subheading">Datos y Gobernanza</h4>
+                  <div class="filter-options">
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="data-governance">
+                      <span>Gobernanza de Datos</span>
+                      <span class="count">21</span>
+                    </label>
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="data-protection">
+                      <span>Protección de Datos</span>
+                      <span class="count">34</span>
+                    </label>
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="cybersecurity">
+                      <span>Ciberseguridad</span>
+                      <span class="count">29</span>
+                    </label>
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="digital-governance">
+                      <span>Gobernanza Digital</span>
+                      <span class="count">31</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="theme-category">
+                  <h4 class="filter-subheading">Inclusión y Desarrollo Social</h4>
+                  <div class="filter-options">
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="digital-inclusion">
+                      <span>Inclusión Digital</span>
+                      <span class="count">25</span>
+                    </label>
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="digital-education">
+                      <span>Educación Digital</span>
+                      <span class="count">28</span>
+                    </label>
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="gender-equality">
+                      <span>Igualdad de Género</span>
+                      <span class="count">19</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="theme-category">
+                  <h4 class="filter-subheading">Cooperación Regional</h4>
+                  <div class="filter-options">
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="eu-lac-alliance">
+                      <span>Alianza UE-ALC</span>
+                      <span class="count">15</span>
+                    </label>
+                    <label class="filter-checkbox">
+                      <input type="checkbox" name="theme" value="bi-regional">
+                      <span>Cooperación Bi-regional</span>
+                      <span class="count">22</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Actors -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span>Actores</span>
+                <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="accordion-content">
+                <div class="search-box">
+                  <input type="text" placeholder="Buscar actor...">
+                </div>
+                
+                <div class="filter-options">
+                  <h4 class="filter-subheading">Actores Políticos</h4>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="actor" value="governments">
+                    <span>Gobiernos</span>
+                    <span class="count">62</span>
+                  </label>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="actor" value="eu">
+                    <span>Unión Europea</span>
+                    <span class="count">38</span>
+                  </label>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="actor" value="lac-states">
+                    <span>Estados ALC</span>
+                    <span class="count">42</span>
+                  </label>
+                  
+                  <h4 class="filter-subheading">Investigación e Innovación</h4>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="actor" value="academic">
+                    <span>Instituciones Académicas</span>
+                    <span class="count">28</span>
+                  </label>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="actor" value="research-orgs">
+                    <span>Organizaciones de Investigación</span>
+                    <span class="count">23</span>
+                  </label>
+                  
+                  <h4 class="filter-subheading">Actores Económicos</h4>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="actor" value="private">
+                    <span>Sector Privado</span>
+                    <span class="count">42</span>
+                  </label>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="actor" value="industry">
+                    <span>Actores Industriales</span>
+                    <span class="count">31</span>
+                  </label>
+                  
+                  <h4 class="filter-subheading">Sociedad Civil</h4>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="actor" value="ngo">
+                    <span>ONGs</span>
+                    <span class="count">34</span>
+                  </label>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="actor" value="civil-society">
+                    <span>Organizaciones de Sociedad Civil</span>
+                    <span class="count">29</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Beneficiaries -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span>Grupos Beneficiarios</span>
+                <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="accordion-content">
+                <div class="filter-options">
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="beneficiary" value="citizens">
+                    <span>Ciudadanos</span>
+                    <span class="count">58</span>
+                  </label>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="beneficiary" value="youth">
+                    <span>Juventud</span>
+                    <span class="count">35</span>
+                  </label>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="beneficiary" value="women">
+                    <span>Mujeres</span>
+                    <span class="count">26</span>
+                  </label>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="beneficiary" value="sme">
+                    <span>PYMES</span>
+                    <span class="count">41</span>
+                  </label>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="beneficiary" value="research">
+                    <span>Comunidad Científica</span>
+                    <span class="count">33</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Alignment -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span>Alineaciones</span>
+                <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="accordion-content">
+                <h4 class="filter-subheading">Políticas UE</h4>
+                <div class="filter-options">
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="eu-policy" value="global-gateway">
+                    <span>Global Gateway</span>
+                    <span class="count">24</span>
+                  </label>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="eu-policy" value="digital-decade">
+                    <span>Digital Decade</span>
+                    <span class="count">31</span>
+                  </label>
+                </div>
+                
+                <h4 class="filter-subheading">ODS</h4>
+                <div class="filter-options">
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="sdg" value="sdg8">
+                    <span>ODS 8 - Trabajo decente y crecimiento económico</span>
+                    <span class="count">36</span>
+                  </label>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="sdg" value="sdg9">
+                    <span>ODS 9 - Industria, innovación e infraestructura</span>
+                    <span class="count">42</span>
+                  </label>
+                  <label class="filter-checkbox">
+                    <input type="checkbox" name="sdg" value="sdg17">
+                    <span>ODS 17 - Alianzas para lograr los objetivos</span>
+                    <span class="count">39</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="filter-actions">
+          <button class="btn btn-secondary btn-reset-filters">Restablecer</button>
+          <button class="btn btn-primary apply-filters">Aplicar Filtros</button>
+        </div>
+      </aside>
+
+      <!-- Results Container -->
+      <div class="results-container">
+        <!-- List View (default) -->
+        <div class="list-view active list-display-mode-list">
+          <div class="results-header">
+            <div class="results-summary">
+              <span class="results-count">50 documentos encontrados</span>
+            </div>
+            
+            <div class="results-controls">
+              <div class="sort-control">
+                <label for="sort-by">Ordenar por:</label>
+                <select id="sort-by">
+                  <option value="relevance">Relevancia</option>
+                  <option value="date-desc">Fecha (más reciente)</option>
+                  <option value="date-asc">Fecha (más antiguo)</option>
+                </select>
+              </div>
+              
+              <div class="display-control">
+                <button class="display-option" data-display="card">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 3V11H11V3H3ZM9 9H5V5H9V9ZM3 13V21H11V13H3ZM9 19H5V15H9V19ZM13 3V11H21V3H13ZM19 9H15V5H19V9ZM13 13V21H21V13H13ZM19 19H15V15H19V19Z" fill="currentColor"/>
+                  </svg>
+                </button>
+                <button class="display-option active" data-display="list">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 13h18v-2H3v2zm0-7v2h18V6H3zm0 12h18v-2H3v2z" fill="currentColor"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Document Cards Container -->
+          <div class="documents-grid">
+            <!-- Document Card 1 -->
+            <div class="document-card">
+              <div class="document-type">Acuerdo</div>
+              <div class="document-header">
+                <div class="document-title">Agenda Digital para América Latina y el Caribe</div>
+                <div class="document-meta">
+                  <span class="document-date">Marzo 2022</span>
+                  <span class="document-organization">CEPAL</span>
+                </div>
+              </div>
+              <div class="document-body">
+                <div class="document-tags">
+                  <span class="doc-tag location">América Latina</span>
+                  <span class="doc-tag actor">Gobiernos</span>
+                  <span class="doc-tag theme">Infraestructura</span>
+                </div>
+                <p class="document-excerpt">Iniciativa regional para el desarrollo digital en América Latina y su vinculación con políticas europeas, enfocada en reducir la brecha digital...</p>
+                
+              </div>
+              <div class="document-footer">
+                <a href="{% url 'core:document_detail' %}"class="btn btn-secondary">Ver Detalles</a>
+                <button class="document-action">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="currentColor"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Document Card 2 -->
+            <div class="document-card">
+              <div class="document-type">Estrategia</div>
+              <div class="document-header">
+                <div class="document-title">Plan de Acción Digital EU-LATAM</div>
+                <div class="document-meta">
+                  <span class="document-date">Enero 2023</span>
+                  <span class="document-organization">Comisión Europea</span>
+                </div>
+              </div>
+              <div class="document-body">
+                <div class="document-tags">
+                  <span class="doc-tag location">Unión Europea</span>
+                  <span class="doc-tag actor">ONGs</span>
+                  <span class="doc-tag theme">Gobernanza Digital</span>
+                </div>
+                <p class="document-excerpt">Estrategia conjunta para el desarrollo de infraestructuras digitales y marcos regulatorios comunes entre la Unión Europea y América Latina...</p>
+                
+              </div>
+              <div class="document-footer">
+                <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
+                <button class="document-action">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="currentColor"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Document Card 3 -->
+            <div class="document-card">
+              <div class="document-type">Declaración</div>
+              <div class="document-header">
+                <div class="document-title">Declaración de Montevideo</div>
+                <div class="document-meta">
+                  <span class="document-date">Octubre 2021</span>
+                  <span class="document-organization">Uruguay</span>
+                </div>
+              </div>
+              <div class="document-body">
+                <div class="document-tags">
+                  <span class="doc-tag location">América Latina</span>
+                  <span class="doc-tag actor">Gobiernos</span>
+                  <span class="doc-tag theme">Ciberseguridad</span>
+                </div>
+                <p class="document-excerpt">Acuerdo sobre estándares de protección de datos y ciberseguridad con enfoque transnacional, adoptado por representantes de varios países...</p>
+                
+              </div>
+              <div class="document-footer">
+                <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
+                <button class="document-action">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="currentColor"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Document Card 4 -->
+            <div class="document-card">
+              <div class="document-type">Acuerdo</div>
+              <div class="document-header">
+                <div class="document-title">Marco de Cooperación Digital España-Brasil</div>
+                <div class="document-meta">
+                  <span class="document-date">Abril 2023</span>
+                  <span class="document-organization">España/Brasil</span>
+                </div>
+              </div>
+              <div class="document-body">
+                <div class="document-tags">
+                  <span class="doc-tag location">España</span>
+                  <span class="doc-tag location">Brasil</span>
+                  <span class="doc-tag actor">Sector Privado</span>
+                </div>
+                <p class="document-excerpt">Acuerdo bilateral para impulsar iniciativas tecnológicas y compartir conocimientos en IA y desarrollo de talento digital entre ambos países...</p>
+                
+              </div>
+              <div class="document-footer">
+                <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
+                <button class="document-action">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="currentColor"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Document Card 5 -->
+            <div class="document-card">
+              <div class="document-type">Informe</div>
+              <div class="document-header">
+                <div class="document-title">Transformación Digital en Latinoamérica</div>
+                <div class="document-meta">
+                  <span class="document-date">Junio 2022</span>
+                  <span class="document-organization">BID</span>
+                </div>
+              </div>
+              <div class="document-body">
+                <div class="document-tags">
+                  <span class="doc-tag location">América Latina</span>
+                  <span class="doc-tag actor">Organismos Internacionales</span>
+                  <span class="doc-tag theme">Educación Digital</span>
+                </div>
+                <p class="document-excerpt">Análisis completo del estado actual de la transformación digital en la región, con especial énfasis en oportunidades y desafíos...</p>
+                
+              </div>
+              <div class="document-footer">
+                <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
+                <button class="document-action">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="currentColor"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Document Card 6 -->
+            <div class="document-card">
+              <div class="document-type">Ley</div>
+              <div class="document-header">
+                <div class="document-title">Ley de Protección de Datos Personales</div>
+                <div class="document-meta">
+                  <span class="document-date">Febrero 2021</span>
+                  <span class="document-organization">Colombia</span>
+                </div>
+              </div>
+              <div class="document-body">
+                <div class="document-tags">
+                  <span class="doc-tag location">Colombia</span>
+                  <span class="doc-tag actor">Gobiernos</span>
+                  <span class="doc-tag theme">Protección de Datos</span>
+                </div>
+                <p class="document-excerpt">Marco legal para la protección de datos personales en Colombia, compatible con estándares internacionales como el GDPR europeo...</p>
+                
+              </div>
+              <div class="document-footer">
+                <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
+                <button class="document-action">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="currentColor"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Sentinel for Infinite Scroll -->
+            <div id="scroll-sentinel"></div>
+          </div>
+          <div class="documents-list">
+            <!-- Document List Item 1 -->
+            <div class="document-list-item">
+              <div class="document-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 2H6C4.9 2 4.01 2.9 4.01 4L4 20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8L14 2ZM16 18H8V16H16V18ZM16 14H8V12H16V14ZM13 9V3.5L18.5 9H13Z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="document-list-content">
+                <div class="document-list-title">Agenda Digital para América Latina y el Caribe</div>
+                <div class="document-list-meta">
+                  <span>CEPAL • Marzo 2022</span>
+                </div>
+                <div class="document-list-tags">
+                  <span class="doc-tag location">América Latina</span>
+                  <span class="doc-tag actor">Gobiernos</span>
+                  <span class="doc-tag theme">Infraestructura</span>
+                </div>
+                <p class="document-excerpt">Iniciativa regional para el desarrollo digital en América Latina y su vinculación con políticas europeas, enfocada en reducir la brecha digital...</p>
+              </div>
+              <div class="document-list-actions">
+                <a href="{% url 'core:document_detail' %}" class="btn btn-secondary btn-sm">Ver Detalles</a>
+              </div>
+            </div>
+
+            <!-- Document List Item 2 -->
+            <div class="document-list-item">
+              <div class="document-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 2H6C4.9 2 4.01 2.9 4.01 4L4 20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8L14 2ZM16 18H8V16H16V18ZM16 14H8V12H16V14ZM13 9V3.5L18.5 9H13Z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="document-list-content">
+                <div class="document-list-title">Plan de Acción Digital EU-LATAM</div>
+                <div class="document-list-meta">
+                  <span>Comisión Europea • Enero 2023</span>
+                </div>
+                <div class="document-list-tags">
+                  <span class="doc-tag location">Unión Europea</span>
+                  <span class="doc-tag actor">ONGs</span>
+                  <span class="doc-tag theme">Gobernanza Digital</span>
+                </div>
+                <p class="document-excerpt">Estrategia conjunta para el desarrollo de infraestructuras digitales y marcos regulatorios comunes entre la Unión Europea y América Latina...</p>
+              </div>
+              <div class="document-list-actions">
+                <a href="{% url 'core:document_detail' %}"class="btn btn-secondary btn-sm">Ver Detalles</a>
+              </div>
+            </div>
+
+            <!-- Document List Item 3 -->
+            <div class="document-list-item">
+              <div class="document-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 2H6C4.9 2 4.01 2.9 4.01 4L4 20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8L14 2ZM16 18H8V16H16V18ZM16 14H8V12H16V14ZM13 9V3.5L18.5 9H13Z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="document-list-content">
+                <div class="document-list-title">Declaración de Montevideo</div>
+                <div class="document-list-meta">
+                  <span>Uruguay • Octubre 2021</span>
+                </div>
+                <div class="document-list-tags">
+                  <span class="doc-tag location">América Latina</span>
+                  <span class="doc-tag actor">Gobiernos</span>
+                  <span class="doc-tag theme">Ciberseguridad</span>
+                </div>
+                <p class="document-excerpt">Acuerdo sobre estándares de protección de datos y ciberseguridad con enfoque transnacional, adoptado por representantes de varios países...</p>
+              </div>
+              <div class="document-list-actions">
+                <a href="{% url 'core:document_detail' %}" class="btn btn-secondary btn-sm">Ver Detalles</a>
+              </div>
+            </div>
+          </div>
+          <div class="pagination-container">
+            <div class="pagination">
+              <button class="pagination-btn prev-page" disabled>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
+                </svg>
+              </button>
+              <button class="pagination-btn active">1</button>
+              <button class="pagination-btn">2</button>
+              <button class="pagination-btn">3</button>
+              <span class="pagination-ellipsis">...</span>
+              <button class="pagination-btn">12</button>
+              <button class="pagination-btn next-page">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="currentColor"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Map View -->
+        <div class="map-view">
+          <div class="map-container">
+            <div id="interactive-map">
+              <!-- Mapa interactivo será renderizado por JavaScript -->
+              <div class="map-placeholder">
+                <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z" fill="#094EB2"/>
+                </svg>
+                <p>Cargando mapa interactivo...</p>
+              </div>
+            </div>
+            
+            <!-- Map Legend -->
+            <div class="map-legend">
+              <h3>Leyenda</h3>
+              <ul class="legend-items">
+                <li>
+                  <span class="legend-marker" style="background-color: #094EB2;"></span>
+                  <span>Unión Europea</span>
+                </li>
+                <li>
+                  <span class="legend-marker" style="background-color: #34A853;"></span>
+                  <span>América Latina</span>
+                </li>
+                <li>
+                  <span class="legend-marker" style="background-color: #FBBC04;"></span>
+                  <span>Acuerdos Bilaterales</span>
+                </li>
+                <li>
+                  <span class="legend-marker cluster"></span>
+                  <span>Grupo de documentos</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
+
+{% block extra_scripts %}
+  <script src="{% static 'core/js/explore.js' %}"></script>
+{% endblock %}s

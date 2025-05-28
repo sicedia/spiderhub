@@ -22,6 +22,14 @@ def about_page(request):
     """About page view"""
     return render(request, 'core/about.html')
 
+def explore_page(request):
+    """Explore page view"""
+    return render(request, 'core/explore.html')
+
+def document_detail_page(request):
+    """Document Detail page view"""
+    return render(request, 'core/document_detail.html')
+
 def test_page(request):
     """Test page view"""
     return render(request, 'core/test.html')

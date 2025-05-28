@@ -1,18 +1,21 @@
+{% load static %}
 <header>
     <nav class="navbar">
-        <a href="#" class="logo">
-            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="15" cy="15" r="15" fill="#094EB2" />
-              <path d="M15 5L25 15L15 25L5 15L15 5Z" fill="#34A853" />
-              <circle cx="15" cy="15" r="5" fill="white" />
-            </svg>
-            SPIDERHUB
-          </a>
+      <a href="{% url 'core:home' %}" class="logo">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="15" cy="15" r="15" fill="#094EB2" />
+          <path d="M15 5L25 15L15 25L5 15L15 5Z" fill="#34A853" />
+          <circle cx="15" cy="15" r="5" fill="white" />
+        </svg>
+        SPIDERHUB
+      </a>
       <ul class="nav-links">
         <li><a href="{% url 'core:home' %}">Inicio</a></li>
-
+        <li><a href="{% url 'core:explore' %}">Explorar Datos</a></li>
+        <li><a href="#">Relaciones</a></li>
+        <li><a href="{% url 'core:about' %}">Acerca de</a></li>
         <li><a href="#">Contacto</a></li>
-        <li><a href="{% url 'admin_panel:upload' %}">Administración</a></li>
+        <li><a href="{% url 'admin-panel:home' %}">Administración</a></li>
       </ul>
-    </nav>
-  </header>
+  </nav>
+</header>

@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SPIDERHUB: Panel de Administración</title>
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-  <link rel="stylesheet" href="{% static 'css/admin_styles.css' %}">
+  <link rel="stylesheet" href="{% static 'admin_panel/css/admin_styles.css' %}">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body class="admin-body">
@@ -25,6 +25,7 @@
       </a>
       <ul class="nav-links">
         <li><a href="{% url 'admin_panel:home' %}">Volver al Sitio</a></li>
+
         <li><a href="{% url 'admin_panel:logout' %}">Cerrar Sesión</a></li>
       </ul>
     </nav>
@@ -45,7 +46,13 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="currentColor"/>
           </svg>
-          <span>Editar Metadatos</span>
+          <span>Buscar Metadatos</span>
+        </div>
+        <div class="admin-nav-item" data-target="metadata-editor-section" data-url="{% url 'admin_panel:metadata' %}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2ZM16 18H8V16H16V18ZM16 14H8V12H16V14ZM13 9V3.5L18.5 9H13Z" fill="currentColor"/>
+          </svg>
+          <span>Editor de Metadatos</span>
         </div>
         <div class="admin-nav-item" data-target="stats-section">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -309,7 +316,7 @@
                   </div>
                 </td>
                 <td>
-                  <button class="btn btn-secondary btn-sm">Editar</button>
+                  <button class="btn btn-secondary btn-sm edit-metadata-btn" data-document="Estrategia Digital Colombia 2025">Editar</button>
                 </td>
               </tr>
               <tr>
@@ -324,7 +331,7 @@
                   </div>
                 </td>
                 <td>
-                  <button class="btn btn-secondary btn-sm">Editar</button>
+                  <<button class="btn btn-secondary btn-sm edit-metadata-btn" data-document="Marco Regulación Digital AL 2023">Editar</button>
                 </td>
               </tr>
               <tr>
@@ -339,7 +346,7 @@
                   </div>
                 </td>
                 <td>
-                  <button class="btn btn-secondary btn-sm">Editar</button>
+                  <button class="btn btn-secondary btn-sm edit-metadata-btn" data-document="Plan Digital UE 2024">Editar</button>
                 </td>
               </tr>
             </tbody>
@@ -377,116 +384,280 @@
             </div>
           </div>
         </div>
-        
-        <div class="metadata-editor">
-          <h2>Editor de Metadatos</h2>
-          <p class="editor-note">Selecciona un documento para editar sus metadatos</p>
+      </section>
           
-          <!-- This will be populated dynamically when a document is selected -->
-          <div class="editor-form" style="display: none;">
-            <div class="form-group">
-              <label for="edit-title">Título del Documento</label>
-              <input type="text" id="edit-title" value="Estrategia Digital Colombia 2025" />
+      <!-- New Metadata Editor Section -->
+      <section id="metadata-editor-section" class="admin-section">
+        <div class="section-header">
+          <h1>Editor de Metadatos</h1>
+          <p>Edita y mejora la información extraída por la IA</p>
+        </div>
+        
+        <div class="metadata-editor-container">
+          <div class="editor-header">
+            <div class="document-selector">
+              <label for="document-select">Documento actual:</label>
+              <select id="document-select">
+                <option value="">Seleccionar documento...</option>
+                <option value="1">Estrategia Digital Colombia 2025</option>
+                <option value="2">Marco Regulación Digital AL 2023</option>
+                <option value="3">Plan Digital UE 2024</option>
+              </select>
             </div>
-            
-            <div class="form-row">
-              <div class="form-group">
-                <label for="edit-date">Fecha</label>
-                <input type="date" id="edit-date" value="2023-08-15" />
+            <div class="document-actions">
+              <button class="btn btn-secondary btn-icon" id="preview-document">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
+                </svg>
+                <span>Vista previa</span>
+              </button>
+              <button class="btn btn-secondary btn-icon" id="download-document">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                </svg>
+                <span>Descargar</span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="editor-content">
+            <div class="editor-welcome" id="editor-welcome">
+              <div class="welcome-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2ZM16 18H8V16H16V18ZM16 14H8V12H16V14ZM13 9V3.5L18.5 9H13Z" fill="#094EB2" opacity="0.7"/>
+                </svg>
               </div>
-              <div class="form-group">
-                <label>Ubicaciones</label>
-                <div class="tags-input" id="locations-input">
-                  <div class="tag">
-                    Colombia<span class="tag-remove">×</span>
+              <h2>Selecciona un documento para editar</h2>
+              <p>Puedes seleccionar un documento de la lista desplegable o desde la sección de Búsqueda de Metadatos.</p>
+              <button class="btn btn-primary btn-large goto-search-btn">
+                Ir a Búsqueda de Metadatos
+              </button>
+            </div>
+          
+            <div class="editor-form" id="editor-form" style="display: none;">
+              <div class="form-tabs">
+                <button class="form-tab active" data-tab="basic-info">Información Básica</button>
+                <button class="form-tab" data-tab="categories">Categorización</button>
+                <button class="form-tab" data-tab="content">Contenido</button>
+                <button class="form-tab" data-tab="relations">Relaciones</button>
+              </div>
+              
+              <div class="form-panels">
+                <!-- Basic Info Panel -->
+                <div class="form-panel active" id="basic-info-panel">
+                  <div class="form-group">
+                    <label for="edit-title">Título del Documento</label>
+                    <input type="text" id="edit-title" value="Estrategia Digital Colombia 2025" />
                   </div>
-                  <input type="text" placeholder="Añadir ubicación..." />
-                </div>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label>Organizaciones</label>
-              <div class="tags-input" id="orgs-input">
-                <div class="tag">
-                  Ministerio TIC Colombia<span class="tag-remove">×</span>
-                </div>
-                <input type="text" placeholder="Añadir organización..." />
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label>Actores</label>
-              <div class="tags-input" id="actors-input">
-                <div class="tag">
-                  Gobierno<span class="tag-remove">×</span>
-                </div>
-                <div class="tag">
-                  Sector Privado<span class="tag-remove">×</span>
-                </div>
-                <input type="text" placeholder="Añadir actor..." />
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label>Temas</label>
-              <div class="tags-input" id="themes-input">
-                <div class="tag">
-                  Infraestructura Digital<span class="tag-remove">×</span>
-                </div>
-                <div class="tag">
-                  Ciberseguridad<span class="tag-remove">×</span>
-                </div>
-                <input type="text" placeholder="Añadir tema..." />
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label>Etiquetas por Tema</label>
-              <div class="theme-tags-container">
-                <div class="theme-group">
-                  <div class="theme-name">Infraestructura Digital</div>
-                  <div class="tags-input" id="theme-infra-tags">
-                    <div class="tag">
-                      Redes 5G<span class="tag-remove">×</span>
+                  
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="edit-date">Fecha</label>
+                      <input type="date" id="edit-date" value="2023-08-15" />
                     </div>
-                    <div class="tag">
-                      Fibra Óptica<span class="tag-remove">×</span>
+                    <div class="form-group">
+                      <label for="document-language">Idioma</label>
+                      <select id="document-language">
+                        <option value="es">Español</option>
+                        <option value="en">Inglés</option>
+                        <option value="pt">Portugués</option>
+                        <option value="fr">Francés</option>
+                      </select>
                     </div>
-                    <input type="text" placeholder="Añadir etiqueta..." />
+                    <div class="form-group">
+                      <label for="document-type">Tipo</label>
+                      <select id="document-type">
+                        <option value="strategy">Estrategia</option>
+                        <option value="agreement">Acuerdo</option>
+                        <option value="declaration">Declaración</option>
+                        <option value="regulation">Regulación</option>
+                        <option value="report">Informe</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label>Organizaciones</label>
+                      <div class="tags-input" id="orgs-input">
+                        <div class="tag">
+                          Ministerio TIC Colombia<span class="tag-remove">×</span>
+                        </div>
+                        <input type="text" placeholder="Añadir organización..." />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Ubicaciones</label>
+                      <div class="tags-input" id="locations-input">
+                        <div class="tag">
+                          Colombia<span class="tag-remove">×</span>
+                        </div>
+                        <input type="text" placeholder="Añadir ubicación..." />
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="theme-group">
-                  <div class="theme-name">Ciberseguridad</div>
-                  <div class="tags-input" id="theme-security-tags">
-                    <div class="tag">
-                      Protocolos<span class="tag-remove">×</span>
+                
+                <!-- Categories Panel -->
+                <div class="form-panel" id="categories-panel">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label>Actores</label>
+                      <div class="tags-input" id="actors-input">
+                        <div class="tag">
+                          Gobierno<span class="tag-remove">×</span>
+                        </div>
+                        <div class="tag">
+                          Sector Privado<span class="tag-remove">×</span>
+                        </div>
+                        <input type="text" placeholder="Añadir actor..." />
+                      </div>
                     </div>
-                    <input type="text" placeholder="Añadir etiqueta..." />
+                    <div class="form-group">
+                      <label>Temas</label>
+                      <div class="tags-input" id="themes-input">
+                        <div class="tag">
+                          Infraestructura Digital<span class="tag-remove">×</span>
+                        </div>
+                        <div class="tag">
+                          Ciberseguridad<span class="tag-remove">×</span>
+                        </div>
+                        <input type="text" placeholder="Añadir tema..." />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label>Etiquetas por Tema</label>
+                    <div class="theme-tags-container">
+                      <div class="theme-group">
+                        <div class="theme-header">
+                          <div class="theme-name">Infraestructura Digital</div>
+                          <button class="theme-remove">×</button>
+                        </div>
+                        <div class="tags-input" id="theme-infra-tags">
+                          <div class="tag">
+                            Redes 5G<span class="tag-remove">×</span>
+                          </div>
+                          <div class="tag">
+                            Fibra Óptica<span class="tag-remove">×</span>
+                          </div>
+                          <input type="text" placeholder="Añadir etiqueta..." />
+                        </div>
+                      </div>
+                      <div class="theme-group">
+                        <div class="theme-header">
+                          <div class="theme-name">Ciberseguridad</div>
+                          <button class="theme-remove">×</button>
+                        </div>
+                        <div class="tags-input" id="theme-security-tags">
+                          <div class="tag">
+                            Protocolos<span class="tag-remove">×</span>
+                          </div>
+                          <input type="text" placeholder="Añadir etiqueta..." />
+                        </div>
+                      </div>
+                      <button class="btn btn-sm btn-secondary add-theme-btn">+ Añadir grupo de tema</button>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label>Etiquetas Generales</label>
+                    <div class="tags-input" id="general-tags">
+                      <div class="tag">
+                        Transformación Digital<span class="tag-remove">×</span>
+                      </div>
+                      <div class="tag">
+                        Inclusión<span class="tag-remove">×</span>
+                      </div>
+                      <div class="tag">
+                        Innovación<span class="tag-remove">×</span>
+                      </div>
+                      <input type="text" placeholder="Añadir etiqueta general..." />
+                    </div>
                   </div>
                 </div>
-                <button class="btn btn-sm btn-secondary add-theme-btn">+ Añadir grupo de tema</button>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label for="edit-summary">Resumen</label>
-              <textarea id="edit-summary" rows="8" class="expandable-textarea">Este documento establece la hoja de ruta para la transformación digital de Colombia hasta el año 2025, con énfasis en infraestructura, educación digital y ciberseguridad.</textarea>
-              <p class="form-note">El campo se expandirá automáticamente con contenido más extenso</p>
-            </div>
-            
-            <div class="form-group">
-              <label for="edit-commitments">Compromisos Principales</label>
-              <textarea id="edit-commitments" rows="8" class="expandable-textarea">1. Inversión del 3% del PIB en infraestructura digital.
+                
+                <!-- Content Panel -->
+                <div class="form-panel" id="content-panel">
+                  <div class="form-group">
+                    <label for="edit-summary">Resumen</label>
+                    <textarea id="edit-summary" rows="6" class="expandable-textarea">Este documento establece la hoja de ruta para la transformación digital de Colombia hasta el año 2025, con énfasis en infraestructura, educación digital y ciberseguridad.</textarea>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-analysis">Análisis</label>
+                    <textarea id="edit-analysis" rows="6" class="expandable-textarea">El documento presenta un enfoque integral que alinea las políticas colombianas con estándares internacionales, especialmente los de la Unión Europea. Destaca la prioridad en cerrar la brecha digital a través de infraestructura y capacitación. La implementación del marco de ciberseguridad nacional muestra una creciente conciencia sobre los desafíos de seguridad digital en la región.</textarea>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-commitments">Compromisos Principales</label>
+                    <textarea id="edit-commitments" rows="6" class="expandable-textarea">1. Inversión del 3% del PIB en infraestructura digital.
 2. Capacitación de 500,000 ciudadanos en habilidades digitales.
 3. Implementación de un marco de ciberseguridad nacional.
 4. Digitalización del 80% de los servicios gubernamentales.</textarea>
-              <p class="form-note">Utiliza formato de lista numerada para mejor organización</p>
-            </div>
-            
-            <div class="form-actions">
-              <button class="btn btn-secondary">Cancelar</button>
-              <button class="btn btn-primary">Guardar Cambios</button>
+                    <p class="form-note">Utiliza formato de lista numerada para mejor organización</p>
+                  </div>
+                </div>
+                
+                <!-- Relations Panel -->
+                <div class="form-panel" id="relations-panel">
+                  <div class="form-group">
+                    <label>Documentos Relacionados</label>
+                    <div class="related-documents-editor">
+                      <div class="related-document-item">
+                        <div class="related-document-info">
+                          <div class="related-document-title">Plan de Acción Digital EU-LATAM</div>
+                          <div class="related-document-meta">Comisión Europea • 2023</div>
+                        </div>
+                        <div class="relation-type">
+                          <select>
+                            <option value="references">Hace referencia a</option>
+                            <option value="builds-on">Se basa en</option>
+                            <option value="implements">Implementa</option>
+                            <option value="supersedes">Sustituye a</option>
+                          </select>
+                        </div>
+                        <button class="relation-remove">×</button>
+                      </div>
+                      
+                      <div class="related-document-item">
+                        <div class="related-document-info">
+                          <div class="related-document-title">Declaración de Montevideo</div>
+                          <div class="related-document-meta">Uruguay • 2021</div>
+                        </div>
+                        <div class="relation-type">
+                          <select>
+                            <option value="references">Hace referencia a</option>
+                            <option value="builds-on" selected>Se basa en</option>
+                            <option value="implements">Implementa</option>
+                            <option value="supersedes">Sustituye a</option>
+                          </select>
+                        </div>
+                        <button class="relation-remove">×</button>
+                      </div>
+                      
+                      <button class="btn btn-sm btn-secondary add-relation-btn">+ Añadir relación</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-actions">
+                <button class="btn btn-secondary" id="cancel-edit">Cancelar</button>
+                <div class="save-options">
+                  <button class="btn btn-primary" id="save-metadata">Guardar Cambios</button>
+                  <button class="btn btn-icon save-options-toggle" id="save-options-toggle">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                  <div class="save-dropdown" id="save-dropdown">
+                    <button class="save-option" id="save-and-next">Guardar y siguiente</button>
+                    <button class="save-option" id="save-and-return">Guardar y volver a búsqueda</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -846,11 +1017,11 @@
       </div>
     </div>
     <div class="copyright">
-      <p>&copy; 2025 SPIDERHUB. Todos los derechos reservados CEDIA.</p>
+      <p>&copy; 2023 SPIDERHUB. Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <script src="{% static 'js/admin.js' %}"></script>
+  <script src="{% static 'admin_panel/js/admin.js' %}"></script>
 </body>
 </html>
 {% endblock %}
