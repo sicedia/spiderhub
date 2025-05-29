@@ -32,13 +32,13 @@ class Tag(BaseModel):
         return f"{self.theme.name} - {self.name}"
 class Document(BaseModel):
     title = models.CharField(max_length=255)
-    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, related_name='documents')
+    executive_summary = models.TextField(blank=True, help_text="Resumen ejecutivo")
+    location = models.ForeignKey(
+        Location, on_delete=models.SET_NULL, null=True, related_name='documents'
+    )
     date = models.DateField()
-    characteristics = models.TextField()
-    practical_applications = models.TextField()
-    resulting_commitments = models.TextField()
     status = models.CharField(
-        max_length=20, 
+        max_length=20,
         choices=[
             ('processing', 'Processing'),
             ('complete', 'Complete'),
@@ -47,27 +47,46 @@ class Document(BaseModel):
         ],
         default='processing'
     )
+    score = models.IntegerField(null=True, blank=True)
+    lead_country_iso = models.CharField(max_length=3, blank=True, null=True)
+    legal_bindingness = models.CharField(max_length=50, blank=True)
+    coverage_scope = models.CharField(max_length=50, blank=True)
+    review_schedule = models.CharField(max_length=50, blank=True)
     
-    #Relationships
+    # relationships
     actors = models.ManyToManyField(Actor, related_name="documents", blank=True)
     themes = models.ManyToManyField(Theme, related_name="documents", blank=True)
     tags = models.ManyToManyField(Tag, related_name="documents", blank=True)
+    agreement_types = models.ManyToManyField(
+        'AgreementType', related_name='documents', blank=True
+    )
+    beneficiary_groups = models.ManyToManyField(
+        'BeneficiaryGroup', related_name='documents', blank=True
+    )
+    countries = models.ManyToManyField(
+        'Country', related_name='documents', blank=True
+    )
+    sdg_alignments = models.ManyToManyField(
+        'SdgGoal', related_name='documents', blank=True
+    )
 
     # Analysis and AI
-    is_ai_generated = models.BooleanField(default=True, help_text="Indica si el análisis fue generado por IA")
+    is_ai_generated = models.BooleanField(
+        default=True, help_text="Indica si el análisis fue generado por IA"
+    )
     confidence_level = models.DecimalField(
-        max_digits=5, 
-        decimal_places=2,
-        help_text="Nivel de confianza del análisis (visible solo para administradores)"
+        max_digits=5, decimal_places=2,
+        help_text="Nivel de confianza (solo administradores)"
     )
     admin_notes = models.TextField(blank=True)
-
-    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='uploaded_documents')
+    created_by = models.ForeignKey(
+        User, on_delete=models.SET_NULL, null=True, related_name='uploaded_documents'
+    )
 
     def __str__(self):
-        location_name = self.location.name if self.location else "No location"
-        return f"{self.title} ({location_name}, {self.date})"
-    
+        loc = self.location.name if self.location else "No location"
+        return f"{self.title} ({loc}, {self.date})"
+
     class Meta:
         ordering = ['-date', 'title']
 
@@ -79,3 +98,76 @@ class DocumentFile(BaseModel):
     
     def __str__(self):
         return f"{self.name or 'Archivo'} - {self.document.title}"
+
+# New detail models
+
+class Characteristic(BaseModel):
+    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='characteristics')
+    text = models.TextField()
+
+    def __str__(self):
+        return self.text[:50]
+
+
+class PracticalApplication(BaseModel):
+    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='practical_applications')
+    text = models.TextField()
+
+    def __str__(self):
+        return self.text[:50]
+
+
+class ResultingCommitment(BaseModel):
+    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='resulting_commitments')
+    text = models.TextField()
+
+    def __str__(self):
+        return self.text[:50]
+
+
+class Commitment(BaseModel):
+    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='commitments')
+    text = models.TextField()
+    commitment_class = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.commitment_class}: {self.text[:50]}"
+
+
+class AgreementType(BaseModel):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class BeneficiaryGroup(BaseModel):
+    category = models.CharField(max_length=100)
+    label = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.category} – {self.label}"
+
+
+class Country(BaseModel):
+    iso = models.CharField(max_length=3, unique=True)
+
+    def __str__(self):
+        return self.iso
+
+
+class SdgGoal(BaseModel):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class KPITarget(BaseModel):
+    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='kpis')
+    kpi = models.CharField(max_length=255)
+    target_value = models.FloatField()
+    unit = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.kpi} ({self.unit})"

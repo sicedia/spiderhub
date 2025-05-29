@@ -1,7 +1,10 @@
 from django.contrib import admin
-
-from django.contrib import admin
-from .models import Actor, Theme, Tag, Document, Location, DocumentFile
+from .models import (
+    Actor, Location, Theme, Tag, Document, DocumentFile,
+    Characteristic, PracticalApplication, ResultingCommitment,
+    Commitment, KPITarget, AgreementType, BeneficiaryGroup,
+    Country, SdgGoal
+)
 
 @admin.register(Actor)
 class ActorAdmin(admin.ModelAdmin):
@@ -37,29 +40,84 @@ class TagAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     autocomplete_fields = ('theme',)
 
+class CharacteristicInline(admin.TabularInline):
+    model = Characteristic
+    extra = 1
+
+class PracticalApplicationInline(admin.TabularInline):
+    model = PracticalApplication
+    extra = 1
+
+class ResultingCommitmentInline(admin.TabularInline):
+    model = ResultingCommitment
+    extra = 1
+
+class CommitmentInline(admin.TabularInline):
+    model = Commitment
+    extra = 1
+
+class KPITargetInline(admin.TabularInline):
+    model = KPITarget
+    extra = 1
+
 class DocumentFileInline(admin.TabularInline):
     model = DocumentFile
-    extra = 1  # Number of empty forms to display
+    extra = 1
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ('title', 'location', 'date', 'created_by', 'created_at', 'is_ai_generated')
-    list_filter = ('date', 'location', 'is_ai_generated', 'actors', 'themes', 'tags')
-    search_fields = ('title', 'location', 'characteristics', 'practical_applications', 'resulting_commitments')
+    list_display = (
+        'title', 'location', 'date',
+        'status', 'score',
+        'created_by', 'created_at', 'is_ai_generated'
+    )
+    list_filter = (
+        'date', 'location', 'status',
+        'is_ai_generated',
+        'actors', 'themes', 'tags',
+        'agreement_types', 'beneficiary_groups',
+        'countries', 'sdg_alignments'
+    )
+    search_fields = (
+        'title', 'executive_summary',
+        'characteristics__text',
+        'practical_applications__text',
+        'resulting_commitments__text',
+        'commitments__text',
+        'kpis__kpi'
+    )
     date_hierarchy = 'date'
-    filter_horizontal = ('actors', 'themes', 'tags')
+    filter_horizontal = (
+        'actors', 'themes', 'tags',
+        'agreement_types', 'beneficiary_groups',
+        'countries', 'sdg_alignments'
+    )
     readonly_fields = ('created_at', 'updated_at')
-    inlines = [DocumentFileInline]
-    
+    inlines = [
+        DocumentFileInline,
+        CharacteristicInline,
+        PracticalApplicationInline,
+        ResultingCommitmentInline,
+        CommitmentInline,
+        KPITargetInline
+    ]
+
     fieldsets = (
         ('Basic Information', {
-            'fields': ('title', 'location', 'date')
+            'fields': ('title', 'location', 'date', 'status', 'score')
         }),
         ('Content', {
-            'fields': ('characteristics', 'practical_applications', 'resulting_commitments')
+            'fields': (
+                'executive_summary',
+                # hiding raw lists in favor of inlines
+            )
         }),
         ('Relationships', {
-            'fields': ('actors', 'themes', 'tags')
+            'fields': (
+                'actors', 'themes', 'tags',
+                'agreement_types', 'beneficiary_groups',
+                'countries', 'sdg_alignments'
+            )
         }),
         ('Analysis and AI', {
             'fields': ('is_ai_generated', 'confidence_level'),
@@ -68,30 +126,27 @@ class DocumentAdmin(admin.ModelAdmin):
         ('Admin Only', {
             'fields': ('admin_notes',),
             'classes': ('collapse',),
-            'description': 'These fields are only visible to administrators.'
+            'description': 'Visible solo para administradores'
         }),
         ('Metadata', {
             'fields': ('created_by', 'created_at', 'updated_at'),
             'classes': ('collapse',)
         }),
     )
-    
+
     def get_fieldsets(self, request, obj=None):
-        fieldsets = super().get_fieldsets(request, obj)
+        fsets = super().get_fieldsets(request, obj)
         if not request.user.is_superuser:
-            # Remove the Admin Only fieldset for non-superusers
-            return [fs for fs in fieldsets if fs[0] != 'Admin Only']
-        return fieldsets
-    
+            return [fs for fs in fsets if fs[0] != 'Admin Only']
+        return fsets
+
     def get_readonly_fields(self, request, obj=None):
-        readonly_fields = list(super().get_readonly_fields(request, obj))
+        r = list(super().get_readonly_fields(request, obj))
         if not request.user.is_superuser:
-            # Make confidence_level readonly for non-superusers
-            readonly_fields.append('confidence_level')
-        return readonly_fields
-    
+            r.append('confidence_level')
+        return r
+
     def save_model(self, request, obj, form, change):
-        # Auto-assign the current user as the creator if not set
         if not change and not obj.created_by:
             obj.created_by = request.user
         super().save_model(request, obj, form, change)

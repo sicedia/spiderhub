@@ -1,0 +1,163 @@
+{
+  "title": "EU-LAC Digital Alliance Days: Key Collaborations and Future Initiatives for 2025 Summit",
+  "date": "2023-11-27",
+  "location": "Cartagena de Indias, Colombia",
+  "executive_summary": "The EU-LAC Digital Alliance Days, held from November 27-29, 2023, in Cartagena de Indias, Colombia, gathered over 150 senior representatives from Latin America, the Caribbean, and the European Union to enhance digital cooperation. Key discussions focused on five thematic areas: Artificial Intelligence, data governance, digital government, inclusive connectivity, and cybersecurity. Participants identified collaborative initiatives, including aligning cybersecurity frameworks, developing interoperable digital identity mechanisms, and promoting secure data flows. The event underscored a commitment to a human-centric digital transformation and marked a significant step towards the 2025 EU-CELAC Summit. Follow-up dialogues on cybersecurity and other digital issues are scheduled for 2024, reinforcing the partnership's objectives under the Global Gateway initiative.",
+  "characteristics": [
+    "The EU-LAC Digital Alliance Days took place from November 27-29, 2023, in Cartagena de Indias, Colombia, gathering over 150 representatives from various sectors.",
+    "Key discussions focused on digital cooperation, including AI, data governance, digital government, inclusive connectivity, and cybersecurity.",
+    "Participants identified joint collaboration areas, such as cybersecurity frameworks, inclusive connectivity strategies, and interoperable digital identity mechanisms.",
+    "The event emphasized a human-centric approach to digital transformation and marked a milestone in strengthening bi-regional partnerships.",
+    "Follow-up dialogues on cybersecurity and other digital topics are scheduled for 2024, reinforcing ongoing collaboration efforts."
+  ],
+  "themes": {
+    "Regional & International Cooperation": [
+      "EU-LAC Digital Alliance"
+    ],
+    "Data & Governance": [
+      "Data Governance",
+      "Digital Governance",
+      "Cybersecurity",
+      "E-Governance"
+    ],
+    "Digital Transformation & Strategy": [
+      "Digital Platforms",
+      "Digital Infrastructure"
+    ]
+  },
+  "actors": {
+    "Political Actors": [
+      "European Commission",
+      "Spanish Agency for International Development",
+      "Félix Fernández-Shaw",
+      "Saul Kattan",
+      "Miguel González Gullón"
+    ],
+    "Economic Actors": [
+      "German Federal Ministry for Economic Cooperation and Development"
+    ],
+    "Research and Innovation Actors": [
+      "Digital for Development Hub",
+      "EU-LAC Digital Alliance"
+    ]
+  },
+  "practical_applications": [
+    "Co-leading partnerships established between the EU, EU Member States, and LAC countries in five thematic areas: cybersecurity frameworks, inclusive and secure connectivity, interoperable digital identity mechanisms, free and safe data flows, and AI risk mitigation strategies.",
+    "A follow-up dialogue on cybersecurity scheduled for February 2024 in the Dominican Republic, with additional dialogues on connectivity, digital inclusion, data governance, and e-governance planned for later in the year.",
+    "The policy dialogue component of the TEI (Transformative Engagement Initiative) is co-financed by the German Federal Ministry for Economic Cooperation and Development (BMZ)."
+  ],
+  "commitments": [
+    "A follow-up dialogue on cybersecurity will be hosted by the Dominican Republic in February 2024.",
+    "Follow-up dialogues on connectivity and digital inclusion, data governance, and e-governance will take place later in 2024.",
+    "The next EU-CELAC Summit is scheduled to be held in Colombia in 2025.",
+    "No specific commitments identified regarding numerical targets, pledged funding amounts, specific percentage increases or reductions, or measurable goals with clear metrics."
+  ],
+  "score": 69,
+  "extra_data": {
+    "lead_country_iso": "COL",
+    "agreement_type": "MoU",
+    "legal_bindingness": "Politically-binding",
+    "coverage_scope": "Regional",
+    "eu_policy_alignment": [
+      "Global Gateway"
+    ],
+    "review_schedule": "Biennial",
+    "beneficiary_group_raw": [
+      "government",
+      "civil society",
+      "academia",
+      "private sector",
+      "communities"
+    ],
+    "beneficiary_group": [
+      {
+        "category": "Public Sector / Governments",
+        "label": "Government"
+      },
+      {
+        "category": "Civil Society / NGOs",
+        "label": "Civil Society Organizations"
+      },
+      {
+        "category": "Researchers & Academia",
+        "label": "Academic Institutions"
+      },
+      {
+        "category": "SMEs / Businesses",
+        "label": "Private Sector Organizations"
+      },
+      {
+        "category": "Rural & Remote Communities",
+        "label": "Underserved Communities"
+      }
+    ],
+    "start_date": "2023-11-27",
+    "end_date": "2023-11-29",
+    "commitment_details": [
+      {
+        "text": "A follow-up dialogue on cybersecurity will be hosted by the Dominican Republic in February 2024.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "Follow-up dialogues on connectivity and digital inclusion, data governance, and e-governance will take place later in 2024.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "The next EU-CELAC Summit is scheduled to be held in Colombia in 2025.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "No specific commitments identified regarding numerical targets, pledged funding amounts, specific percentage increases or reductions, or measurable goals with clear metrics.",
+        "commitment_class": "Declarative"
+      }
+    ],
+    "kpi_list": [
+      {
+        "kpi": "Number of senior government representatives participating in the event",
+        "target_value": 150.0,
+        "unit": "participants"
+      },
+      {
+        "kpi": "Number of high-level policy dialogues held",
+        "target_value": 5.0,
+        "unit": "dialogues"
+      },
+      {
+        "kpi": "Political determination to collaborate on digital matters",
+        "target_value": 1.0,
+        "unit": "qualitative"
+      },
+      {
+        "kpi": "Follow-up dialogues scheduled for 2024",
+        "target_value": 3.0,
+        "unit": "dialogues"
+      },
+      {
+        "kpi": "Joint areas for further collaboration identified",
+        "target_value": 5.0,
+        "unit": "areas"
+      }
+    ],
+    "country_list_iso": [
+      "COL",
+      "DOM",
+      "ESP",
+      "LAC",
+      "UE"
+    ],
+    "sdg_alignment": [
+      "SDG 9: Industry, Innovation and Infrastructure",
+      "SDG 10: Reduced Inequalities",
+      "SDG 17: Partnerships for the Goals"
+    ]
+  },
+  "quality_breakdown": {
+    "faithfulness": 100,
+    "consistency": 85,
+    "completeness": 85,
+    "accuracy": 10,
+    "issues": [
+      "Potential factual errors"
+    ]
+  }
+}
