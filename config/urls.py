@@ -8,6 +8,7 @@ urlpatterns = [
     path('', include('apps.core.urls', namespace='core')),
     path('admin/', admin.site.urls),
     path('admin-panel/', include('apps.admin_panel.urls', namespace='admin-panel')),
+    path('api/search/', include('apps.search.urls', namespace='search')),
 ]
 
 if settings.DEBUG:

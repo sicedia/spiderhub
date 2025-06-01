@@ -1,9 +1,12 @@
-from django.db import models
-
 # Create your models here.
 from django.db import models
 from django.contrib.auth.models import User
 from apps.core.models import BaseModel
+
+# Importing necessary fields and indexes for full-text search
+from django.contrib.postgres.search import SearchVectorField
+from django.db.models import Func, F, Value, TextField
+from django.contrib.postgres.indexes import GinIndex
 
 class Location(BaseModel):
     name = models.CharField(max_length=100, unique=True)
@@ -87,8 +90,27 @@ class Document(BaseModel):
         loc = self.location.name if self.location else "No location"
         return f"{self.title} ({loc}, {self.date})"
 
+    # Normalized title for autocompletion and fuzzy search
+    title_normalized = models.TextField(
+        editable=False,
+        null=True,
+        blank=True,
+        db_index=False
+    )
+
+    # Full-text search vector field
+    search_vector = SearchVectorField(null=True, editable=False)
+
     class Meta:
         ordering = ['-date', 'title']
+        indexes = [
+            # GIN index for full-text search index
+            GinIndex(fields=['search_vector'], name='doc_search_vector_gin'),
+
+            # GIN Trigram index for title_normalized search (autocompletion and fuzzy search)
+            GinIndex(fields=['title_normalized'], opclasses=['gin_trgm_ops'], name='doc_title_norm_trgm_gin'),
+        ]
+
 
 class DocumentFile(BaseModel):
     document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='files')
