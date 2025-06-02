@@ -182,6 +182,26 @@ python manage.py test
 python manage.py makemigrations
 ```
 
+## Seeding initial documents
+
+
+1. Apply migrations:
+
+    ```bash
+    python manage.py makemigrations
+    python manage.py migrate
+    ```
+
+2. Run the seed command:
+
+    ```bash
+    python manage.py seed
+    ```
+
+This will read all `.json` files from  
+`apps/documents/data/` and populate your `Document` models  
+and related in the database.
+
 ## License
 
 MTI
