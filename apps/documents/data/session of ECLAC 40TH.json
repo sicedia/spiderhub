@@ -1,0 +1,84 @@
+{
+  "title": "ECLAC 40th Session: Folder Contents Overview",
+  "date": "No information available.",
+  "location": "Santiago, Chile",
+  "executive_summary": "The folder titled 'session of ECLAC 40TH' contains files related to the 40th session of the Economic Commission for Latin America and the Caribbean (ECLAC). These documents likely include session agendas, reports, resolutions, and supporting materials that detail the discussions and outcomes of the meeting. The content is expected to cover key regional economic and social development issues, policy recommendations, and collaborative initiatives among member states. The materials serve as a comprehensive record of the session’s proceedings and decisions, providing valuable insights for policymakers, researchers, and stakeholders interested in Latin American and Caribbean development.",
+  "characteristics": [
+    "Refers to the 40th session of ECLAC (Economic Commission for Latin America and the Caribbean).",
+    "Likely contains official documents, reports, and session materials.",
+    "Focuses on regional economic and social development issues.",
+    "Materials may include agendas, resolutions, and participant lists."
+  ],
+  "themes": {},
+  "actors": {
+    "Political Actors": [
+      "Community of Latin American and Caribbean States"
+    ]
+  },
+  "practical_applications": [
+    "No practical applications identified."
+  ],
+  "commitments": [
+    "No specific commitments identified."
+  ],
+  "score": null,
+  "extra_metadata": {
+    "lead_country_iso": null,
+    "agreement_type": "Ministerial Communiqué",
+    "legal_bindingness": null,
+    "coverage_scope": "Regional",
+    "eu_policy_alignment": [],
+    "review_schedule": "None",
+    "beneficiary_group_raw": [
+      "SME",
+      "woman",
+      "rural community"
+    ],
+    "beneficiary_group": [
+      {
+        "category": "SMEs / Businesses",
+        "label": "Small and Medium Enterprises"
+      },
+      {
+        "category": "Women & Girls",
+        "label": "Women in Tech"
+      },
+      {
+        "category": "Rural & Remote Communities",
+        "label": "Rural Populations"
+      }
+    ],
+    "start_date": null,
+    "end_date": null,
+    "commitment_details": [
+      {
+        "text": "No specific commitments identified.",
+        "commitment_class": "Declarative"
+      }
+    ],
+    "kpi_list": [
+      {
+        "kpi": "Number of sessions held during the 40th session of ECLAC",
+        "target_value": 1.0,
+        "unit": "sessions"
+      },
+      {
+        "kpi": "Adoption of key resolutions or agreements",
+        "target_value": 1.0,
+        "unit": "qualitative"
+      },
+      {
+        "kpi": "Level of participation from member states",
+        "target_value": 1.0,
+        "unit": "qualitative"
+      },
+      {
+        "kpi": "Publication of official session documents",
+        "target_value": 1.0,
+        "unit": "qualitative"
+      }
+    ],
+    "country_list_iso": [],
+    "sdg_alignment": []
+  }
+}

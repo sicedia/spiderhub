@@ -6,10 +6,15 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': get_env_variable('POSTGRES_DB'),
+        'USER': get_env_variable('POSTGRES_USER'),
+        'PASSWORD': get_env_variable('POSTGRES_PASSWORD'),
+        'HOST': get_env_variable('POSTGRES_HOST'),
+        'PORT': get_env_variable('POSTGRES_PORT'),
     }
 }
+
 
 # Email: Redirigir envíos a la consola
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

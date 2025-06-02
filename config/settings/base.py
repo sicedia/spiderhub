@@ -35,6 +35,7 @@ LOCAL_APPS = [
     'apps.core.apps.CoreConfig',
     'apps.documents.apps.DocumentsConfig', 
     'apps.admin_panel.apps.AdminPanelConfig',
+    'apps.search.apps.SearchConfig',
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

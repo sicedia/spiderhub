@@ -1,0 +1,380 @@
+{
+  "title": "Development Traps in Latin America and the Caribbean: Strategies for Productive Transformation, Inclusion, and Sustainability",
+  "date": "2024",
+  "location": "Santiago, Chile",
+  "executive_summary": "Latin America and the Caribbean face a development crisis marked by three interlinked traps: low growth capacity, high inequality with low social mobility and cohesion, and weak institutional capacities and governance. These challenges are compounded by climate change and a shifting global context characterized by slower trade and investment flows, renewed industrial policies, and evolving international tax and financial rules. ECLAC proposes three vital transformations: (1) a productive transformation for stronger, sustained, inclusive, and sustainable growth; (2) a transformation to reduce inequality and foster inclusion and social mobility; and (3) a transformation to advance sustainability and address climate change. Achieving these requires enhanced governance, strengthened technical, operational, political, and prospective (TOPP) institutional capabilities, and robust social dialogue. Mobilizing domestic and international financing, improving policy coordination, and fostering public-private collaboration are essential to manage these transformations and overcome the region’s development traps.",
+  "characteristics": [
+    "Latin America and the Caribbean face three interlinked development traps: low growth capacity, high inequality with low social mobility, and weak institutional capacities and governance.",
+    "The region’s development crisis is compounded by climate change, environmental unsustainability, and a shifting global context with new trade, investment, and technological rules.",
+    "ECLAC proposes three vital transformations: productive transformation for sustained, inclusive, and sustainable growth; reducing inequality and fostering social mobility; and advancing sustainability and climate action.",
+    "Effective management of these transformations requires improved governance, strengthened technical, operational, political, and prospective (TOPP) institutional capabilities, and robust social dialogue.",
+    "Key policy areas include productive development, progressive tax systems, social protection, education, care economy, urban planning, energy transition, critical minerals, water management, sustainable tourism, bioeconomy, and circular economy.",
+    "Mobilizing domestic and international financing, reforming fiscal and financial systems, and enhancing institutional coordination are essential to support these transformations."
+  ],
+  "themes": {
+    "Digital Transformation & Strategy": [
+      "Digital Agenda",
+      "Digital Acceleration",
+      "Digital Platforms",
+      "Digital Infrastructure",
+      "Digital Policy",
+      "Digital Ecosystem",
+      "Digital Investment",
+      "Digital Regulation",
+      "Digital Transitions",
+      "Digital Research",
+      "Digital Economy",
+      "Digital Skills Development"
+    ],
+    "Technology & Innovation": [
+      "Artificial Intelligence",
+      "Tech-Driven Solutions",
+      "ICT Innovation",
+      "Technology Regulations",
+      "High-Performance Computing",
+      "Sustainable Tech",
+      "Cloud Computing",
+      "Innovation in Computing",
+      "Blockchain",
+      "5G"
+    ],
+    "Data & Governance": [
+      "Data Governance",
+      "Digital Rights",
+      "Digital Governance",
+      "Data Protection",
+      "Cybersecurity",
+      "Cyber Risk Management",
+      "Data Privacy",
+      "Digital Access",
+      "Digital Identity Management",
+      "Internet Governance",
+      "Digital Ethics",
+      "E-Governance"
+    ],
+    "Inclusion & Social Development": [
+      "Digital Inclusion",
+      "Social Cohesion",
+      "Gender Equality in Tech",
+      "Digital Education",
+      "Connectivity",
+      "Sustainable Digital Development"
+    ],
+    "Regional & International Cooperation": [
+      "EU-LAC Digital Alliance",
+      "Bi-regional Cooperation",
+      "Global Digital Cooperation",
+      "Multilateralism",
+      "EU-CELAC Digital Partnership",
+      "Digital & Technological Partnerships"
+    ]
+  },
+  "actors": {
+    "Political Actors": [
+      "Governments",
+      "Government Officials",
+      "Policy Level Representatives",
+      "European Union",
+      "EU Member States",
+      "European Council",
+      "European Commission",
+      "United Nations",
+      "United Nations Officials",
+      "Community of Latin American and Caribbean States"
+    ],
+    "Research and Innovation Actors": [
+      "Universities",
+      "Academic Institutions",
+      "Researchers",
+      "Innovators",
+      "Research Performing Organisations",
+      "Technology Organisations",
+      "Knowledge and Innovation Communities"
+    ],
+    "Economic Actors": [
+      "Organisation for Economic Cooperation and Development",
+      "Private Sector Representatives",
+      "Industry Actors",
+      "Private Sector Intermediaries",
+      "Inter-American Development Bank",
+      "Development Bank of Latin America and the Caribbean",
+      "Central American Bank for Economic Integration",
+      "World Bank",
+      "Research Funding Organisations",
+      "Digital Companies",
+      "ICT Companies",
+      "Telecommunication Companies"
+    ],
+    "Civil Society Actors": [
+      "Non-governmental Institutions",
+      "Civil Society Organisations",
+      "Digital Training and Education Providers",
+      "Digital Transformation Consultants",
+      "Digital Skills Development Platforms",
+      "Digital Cooperation Organization",
+      "Digital Literacy Initiatives",
+      "Technology Providers"
+    ]
+  },
+  "practical_applications": [
+    "Argentina: Provincial governments spent about half as much as the national government on productive development policies in 2022, with significant spending in agriculture and commerce, tourism, and other services, demonstrating active subnational engagement in productive development.",
+    "Brazil: The National Bank for Economic and Social Development (BNDES) and Banco do Nordeste do Brasil play a major role in productive development through financial instruments, accounting for 38% of total spending on productive development policy instruments in 2021 and 34.8% in 2022.",
+    "Chile: Regional governments, through the National Regional Development Fund, allocated funding to productive development policies, and the country has implemented cluster initiatives and territorial productive coordination mechanisms.",
+    "Colombia: The Departmental Competitiveness and Innovation Agendas and the Committee for Territorialization of the National System of Competitiveness and Innovation are active multilevel governance mechanisms for productive development. The Coordination for Competitiveness Methodology is used as a platform to align productive development support.",
+    "Mexico: The country has implemented national and subnational productive development policies, including cluster initiatives and support for entrepreneurship, and has a national digital government platform for government procedures.",
+    "Uruguay: The country has developed a Sustainable Bioeconomy Strategy and is implementing bioeconomy innovation clusters, such as HubBio in the province of Santa Fe, and is preparing a Sustainable Bioeconomy Strategy.",
+    "Brazil, Chile, Colombia, and Uruguay: These countries have led the development of technological ecosystems and cluster initiatives in sectors such as software, electronics, biotechnology, automotive, and renewable energies.",
+    "Chile: The Production Development Corporation (CORFO) has implemented a value-added initiative in the lithium industry, awarding lithium carbonate quotas at preferential prices to companies establishing local manufacturing of battery components.",
+    "Costa Rica: The National Bioeconomy Strategy 2020–2030 is being implemented, and the country has developed the CR Biomed biotechnology and medical devices cluster.",
+    "Brazil: The Action Plan for Neoindustrialization 2024–2026 includes a mission on the bioeconomy, decarbonization, energy transition, and energy security, with goals for sustainable forest management and bioeconomy industries.",
+    "Colombia: The National Reindustrialization Policy includes the bioeconomy as a strategic area, with measures for sustainable and regenerative agricultural and livestock production, and the use of new technologies for ecological restoration.",
+    "Argentina: The province of Santa Fe has established the HubBio innovation cluster to promote the bioeconomy.",
+    "Chile and Colombia: Local governments have implemented economic development plans with a focus on entrepreneurship and training, and have established secretariats or departments of economic development to strengthen local productive development.",
+    "Chile: The Committee on Future Challenges, Science, Technology and Innovation of the Senate has adopted anticipatory governance and strategic foresight methods, involving broad stakeholder participation and technical commissions.",
+    "Uruguay: The Committee of the Future of the House of Representatives is engaged in legislative foresight to anticipate strategic options and coordinate public agendas.",
+    "H2LAC Platform: At least 16 countries in Latin America and the Caribbean have public policies or national mechanisms for the development of green hydrogen, with more than 1,000 projects at different stages of development as of 2022.",
+    "Chile, Colombia, Costa Rica, and Mexico: These countries have implemented digital government platforms and are working to close the digital divide, with national strategies to expand connectivity and digital transformation.",
+    "Chile and Colombia: Subsidies for public transportation and electromobility are being implemented, with Chile providing over US$1.7 billion in subsidies in 2023 and Bogotá increasing the share of subsidies in public transport financing.",
+    "Brazil: BYD is building an electric car factory with a US$600 million investment, repurposing facilities previously used by Ford.",
+    "Argentina, Brazil, and Colombia: These countries are developing industrial strategies for the local manufacturing of electric buses.",
+    "Chile: The Regulation on Energy Management of Large Consumers and the Official Standards for Non-residential Buildings in Mexico, as well as the Support Programme for MSMEs for Energy Efficiency Measures in Uruguay and the National Energy Efficiency Programme in Brazil, are examples of implemented energy efficiency policies.",
+    "Panama: The Panama Canal Authority is actively managing water scarcity and climate change impacts on canal operations, including adjustments to vessel cargo and waiting times.",
+    "Regional: The Escazú Agreement, a legally binding regional treaty on access to information, public participation, and justice in environmental matters, entered into force in April 2021 and is being implemented by 16 States parties.",
+    "Regional: The Regional Platform for Tax Cooperation in Latin America and the Caribbean (PTLAC) was established in July 2023 to facilitate knowledge sharing and technical guidance on tax policy challenges among finance ministries.",
+    "Regional: The Latin American Energy Organization (OLADE) and the International Energy Agency (IEA) are supporting regional energy integration and planning, with active projects such as the Electricity Interconnection System for the Countries of Central America (SIEPAC).",
+    "Regional: The Platform for cluster and other territorial productive articulation initiatives, developed by ECLAC, maps and supports approximately 300 territorial productive coordination initiatives in 12 countries.",
+    "Regional: The implementation of national circular economy strategies, action plans, and road maps is underway in several countries, including Uruguay, which launched its National Circular Economy Strategy in 2024.",
+    "Regional: Thematic bond issues (green, social, and sustainable bonds) have increased, with Latin America and the Caribbean issuing US$81.2 billion in such bonds between 2014 and 2022.",
+    "Regional: The use of revolving investment funds for water and sanitation infrastructure is being promoted, with successful models in the Philippines and the United States being considered for adaptation.",
+    "Regional: The H2LAC collaborative platform is supporting the development of green hydrogen and its derivatives in Latin America and the Caribbean.",
+    "Regional: The Regional Comparative and Explanatory Study (ERCE) and the Programme for International Student Assessment (PISA) are being used to monitor and improve educational outcomes.",
+    "Regional: The implementation of non-contributory pension systems has expanded, with coverage reaching 31% of persons aged 65 and over in 2022.",
+    "Regional: The use of digital government platforms for social protection and public service delivery is being expanded, with single window models being implemented in several countries.",
+    "Regional: The Regional Agenda for Inclusive Social Development and the Buenos Aires Commitment are guiding the strengthening of social protection systems and the care society.",
+    "Regional: The Regional Conference on Women in Latin America and the Caribbean and the Montevideo Strategy are being implemented to advance gender equality and care policies.",
+    "Regional: The use of macroprudential policy tools, such as capital conservation buffers and countercyclical capital buffers, has been implemented to support credit flows and financial stability during economic shocks.",
+    "Regional: The Debt Service Suspension Initiative and the Common Framework for Debt Treatments have been applied to eligible countries, providing temporary debt relief.",
+    "Regional: The use of special drawing rights (SDRs) from the International Monetary Fund has been implemented, with developed countries committing to recycle SDRs to support developing countries.",
+    "Regional: The establishment of independent fiscal councils and the adoption of fiscal rules are being implemented to strengthen fiscal sustainability frameworks.",
+    "Regional: The implementation of guarantee systems by development banks is being used to increase credit supply to firms lacking sufficient collateral.",
+    "Regional: The use of automatic electronic invoicing and digital tax administration tools is being implemented to reduce tax evasion and improve compliance.",
+    "Regional: The implementation of public-private dialogue platforms and collaboration mechanisms is being promoted to align private financing and investment with development priorities."
+  ],
+  "commitments": [
+    "The United States Inflation Reduction Act (2022) authorizes the allocation of US$39.7 billion to fund innovative projects in energy, manufacturing, environment, electromobility, agriculture, and water, and US$367 billion in tax incentives and subsidies to stimulate investment in clean energy and climate change measures, over the course of 10 years.",
+    "The United States CHIPS and Science Act (2022) authorizes US$280 billion in spending over 10 years, including US$200 billion for research, development and commercialization; roughly US$52.7 billion for semiconductor manufacturing, labour force development, and research and development; US$24 billion in tax credits for chip manufacturing; and US$3 billion for technology and wireless supply chains.",
+    "The United States Bipartisan Infrastructure Law (2021) allocates US$1.2 trillion over 10 years, including US$550 billion in spending in the five years after its enactment, comprising US$284 billion for transportation infrastructure and US$266 billion for basic infrastructure projects.",
+    "The European Union’s European Green Deal and Green Deal Industrial Plan plan 300 billion euros in investments from various funds, aiming for net zero economy by 2050.",
+    "The European Critical Raw Materials Act sets benchmarks for the European Union’s consumption of raw materials: 10% from local extraction; 40% to be processed in the European Union; 25% to come from recycled materials; and not more than 65% for each strategic raw material to come from a single third country.",
+    "The global minimum tax (OECD/G20) establishes a 15% effective tax rate on the profits of large multinational corporations with annual revenues of over 750 million euros, entering into force in several countries in 2024.",
+    "In Latin America and the Caribbean, achieving universal access to safely managed drinking water and sanitation requires investments equivalent to 1.38% of regional GDP over 10 years.",
+    "To carry out water-related adaptation measures by 2030, a total of 1.1% of the region’s annual GDP should be invested, breaking down as 0.7% to enhance existing water and sanitation infrastructure, 0.3% to improve riverine and coastal flood control, and 0.1% for anti-flooding measures and protection of irrigation infrastructure.",
+    "The annual investment required to achieve the plans for satisfying electricity demand in South America (2025–2050), including generation and transmission, is equivalent to 1.71% of the region’s annual GDP under current policies and expansion plans.",
+    "The region’s tax revenue as a percentage of GDP stood at 21.5% in 2022, compared with 34.0% for OECD countries; tax evasion and avoidance in Latin America is estimated at US$433 billion in 2023, equivalent to 6.7% of regional GDP.",
+    "The annual gap in financing and investment required worldwide to achieve the Sustainable Development Goals (SDGs) is between US$2.5 and US$4 trillion, with the Inter-American Development Bank estimating the development financing gap in Latin America and the Caribbean at around US$650 billion per year.",
+    "The global demand for lithium could grow by more than tenfold by 2050, and demand for cobalt could triple, in a net-zero emissions scenario.",
+    "The Circularity Gap Report estimates that implementing circular economy strategies could reduce materials use and the carbon footprint by approximately 30% each, with an estimated investment of US$474 billion over the next few years in four key sectors in Latin America and the Caribbean, potentially generating up to 8.8 million formal jobs.",
+    "In 2022, only eight countries in Latin America and the Caribbean received concessional financing from the World Bank through the International Development Association (IDA), accounting for 14% of the total received by the region.",
+    "The World Bank’s global minimum tax (pillar 2) is expected to increase corporate tax revenues by an annual average of between US$155 billion and US$192 billion, which is between 6.5% and 8.1% of global tax revenue.",
+    "A 2% minimum tax on the world’s multimillionaires could raise up to US$250 billion per year globally (Global Tax Evasion Report 2024).",
+    "The loss and damage fund approved at COP28 had received pledges equivalent to US$662 million as of April 2024.",
+    "The United States, the European Union, China, and Japan have set targets for domestic content or sourcing of critical minerals for energy transition technologies, e.g., the European Union requires by 2030 at least 10% of minerals, 40% of components, and 15% of recycled materials to be produced or processed within the bloc, and no third country to supply more than 65% of the annual consumption of any raw material.",
+    "In the region, the annual investment in renewables averaged US$11 billion in the last 15 years, representing just 0.23% of regional GDP, which is below the estimated need of 0.8% of GDP just to universalize access, and well above 1% for all renewability scenarios.",
+    "In 2023, FDI inflows to Latin America and the Caribbean reached US$184.2 billion, 9.9% lower than in 2022.",
+    "In 2023, the level of international tourist arrivals in the Americas recovered to 90% of pre-pandemic levels, while levels in Central America (+5%) and the Caribbean (+1%) were higher than in 2019.",
+    "In 2021, public spending on health in Latin America and the Caribbean averaged 4.4% of GDP, below the 6.0% recommended by the World Health Organization.",
+    "In 2021, non-contributory pension systems in Latin America and the Caribbean covered 31.0% of persons aged 65 years and over, with investment in these systems representing 0.42% of GDP.",
+    "In 2022, the coverage of conditional transfer programmes in Latin America and the Caribbean reached 25.9% of the population, with spending representing 0.26% of GDP.",
+    "In 2022, the effective pension coverage in Latin America was 47.9% of the economically active population.",
+    "In 2022, the region’s tax expenditure averaged 3.7% of GDP, representing 19% of central government budget spending.",
+    "The annual investment needed to close gaps in access to drinking water and sanitation in selected countries ranges from 0.46% to 4.44% of GDP, with associated increases in value added ranging from 0.59% to 5.35% of GDP and annual employment growth from 14,018 to 1,411,509 people, depending on the country."
+  ],
+  "score": null,
+  "extra_metadata": {
+    "lead_country_iso": null,
+    "agreement_type": "Declaration",
+    "legal_bindingness": "Non-binding",
+    "coverage_scope": "Regional",
+    "eu_policy_alignment": [],
+    "review_schedule": "None",
+    "beneficiary_group_raw": [
+      "country",
+      "government",
+      "institution",
+      "community",
+      "sector"
+    ],
+    "beneficiary_group": [
+      {
+        "category": "General Citizens / Consumers",
+        "label": "Citizens"
+      },
+      {
+        "category": "Public Sector / Governments",
+        "label": "Public Institutions"
+      },
+      {
+        "category": "Public Sector / Governments",
+        "label": "Public Institutions"
+      },
+      {
+        "category": "Civil Society / NGOs",
+        "label": "Community Organizations"
+      },
+      {
+        "category": "Large Corporations",
+        "label": "Industry Leaders"
+      }
+    ],
+    "start_date": "2024-01-01",
+    "end_date": null,
+    "commitment_details": [
+      {
+        "text": "The United States Inflation Reduction Act (2022) authorizes the allocation of US$39.7 billion to fund innovative projects in energy, manufacturing, environment, electromobility, agriculture, and water, and US$367 billion in tax incentives and subsidies to stimulate investment in clean energy and climate change measures, over the course of 10 years.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "The United States CHIPS and Science Act (2022) authorizes US$280 billion in spending over 10 years, including US$200 billion for research, development and commercialization; roughly US$52.7 billion for semiconductor manufacturing, labour force development, and research and development; US$24 billion in tax credits for chip manufacturing; and US$3 billion for technology and wireless supply chains.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "The United States Bipartisan Infrastructure Law (2021) allocates US$1.2 trillion over 10 years, including US$550 billion in spending in the five years after its enactment, comprising US$284 billion for transportation infrastructure and US$266 billion for basic infrastructure projects.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "The European Union’s European Green Deal and Green Deal Industrial Plan plan 300 billion euros in investments from various funds, aiming for net zero economy by 2050.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The European Critical Raw Materials Act sets benchmarks for the European Union’s consumption of raw materials: 10% from local extraction; 40% to be processed in the European Union; 25% to come from recycled materials; and not more than 65% for each strategic raw material to come from a single third country.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The global minimum tax (OECD/G20) establishes a 15% effective tax rate on the profits of large multinational corporations with annual revenues of over 750 million euros, entering into force in several countries in 2024.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "In Latin America and the Caribbean, achieving universal access to safely managed drinking water and sanitation requires investments equivalent to 1.38% of regional GDP over 10 years.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "To carry out water-related adaptation measures by 2030, a total of 1.1% of the region’s annual GDP should be invested, breaking down as 0.7% to enhance existing water and sanitation infrastructure, 0.3% to improve riverine and coastal flood control, and 0.1% for anti-flooding measures and protection of irrigation infrastructure.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The annual investment required to achieve the plans for satisfying electricity demand in South America (2025–2050), including generation and transmission, is equivalent to 1.71% of the region’s annual GDP under current policies and expansion plans.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The region’s tax revenue as a percentage of GDP stood at 21.5% in 2022, compared with 34.0% for OECD countries; tax evasion and avoidance in Latin America is estimated at US$433 billion in 2023, equivalent to 6.7% of regional GDP.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "The annual gap in financing and investment required worldwide to achieve the Sustainable Development Goals (SDGs) is between US$2.5 and US$4 trillion, with the Inter-American Development Bank estimating the development financing gap in Latin America and the Caribbean at around US$650 billion per year.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "The global demand for lithium could grow by more than tenfold by 2050, and demand for cobalt could triple, in a net-zero emissions scenario.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "The Circularity Gap Report estimates that implementing circular economy strategies could reduce materials use and the carbon footprint by approximately 30% each, with an estimated investment of US$474 billion over the next few years in four key sectors in Latin America and the Caribbean, potentially generating up to 8.8 million formal jobs.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "In 2022, only eight countries in Latin America and the Caribbean received concessional financing from the World Bank through the International Development Association (IDA), accounting for 14% of the total received by the region.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "The World Bank’s global minimum tax (pillar 2) is expected to increase corporate tax revenues by an annual average of between US$155 billion and US$192 billion, which is between 6.5% and 8.1% of global tax revenue.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "A 2% minimum tax on the world’s multimillionaires could raise up to US$250 billion per year globally (Global Tax Evasion Report 2024).",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "The loss and damage fund approved at COP28 had received pledges equivalent to US$662 million as of April 2024.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "The United States, the European Union, China, and Japan have set targets for domestic content or sourcing of critical minerals for energy transition technologies, e.g., the European Union requires by 2030 at least 10% of minerals, 40% of components, and 15% of recycled materials to be produced or processed within the bloc, and no third country to supply more than 65% of the annual consumption of any raw material.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "In the region, the annual investment in renewables averaged US$11 billion in the last 15 years, representing just 0.23% of regional GDP, which is below the estimated need of 0.8% of GDP just to universalize access, and well above 1% for all renewability scenarios.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "In 2023, FDI inflows to Latin America and the Caribbean reached US$184.2 billion, 9.9% lower than in 2022.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "In 2023, the level of international tourist arrivals in the Americas recovered to 90% of pre-pandemic levels, while levels in Central America (+5%) and the Caribbean (+1%) were higher than in 2019.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "In 2021, public spending on health in Latin America and the Caribbean averaged 4.4% of GDP, below the 6.0% recommended by the World Health Organization.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "In 2021, non-contributory pension systems in Latin America and the Caribbean covered 31.0% of persons aged 65 years and over, with investment in these systems representing 0.42% of GDP.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "In 2022, the coverage of conditional transfer programmes in Latin America and the Caribbean reached 25.9% of the population, with spending representing 0.26% of GDP.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "In 2022, the effective pension coverage in Latin America was 47.9% of the economically active population.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "In 2022, the region’s tax expenditure averaged 3.7% of GDP, representing 19% of central government budget spending.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "The annual investment needed to close gaps in access to drinking water and sanitation in selected countries ranges from 0.46% to 4.44% of GDP, with associated increases in value added ranging from 0.59% to 5.35% of GDP and annual employment growth from 14,018 to 1,411,509 people, depending on the country.",
+        "commitment_class": "Programmatic"
+      }
+    ],
+    "kpi_list": [
+      {
+        "kpi": "Reduction of high inequality and improvement of social mobility and cohesion",
+        "target_value": 1.0,
+        "unit": "qualitative"
+      },
+      {
+        "kpi": "Increase in State capacity and effectiveness of governance",
+        "target_value": 1.0,
+        "unit": "qualitative"
+      },
+      {
+        "kpi": "Increase in agricultural yields",
+        "target_value": 1.0,
+        "unit": "qualitative"
+      },
+      {
+        "kpi": "Reduction of economic and social vulnerabilities to climate impacts",
+        "target_value": 1.0,
+        "unit": "qualitative"
+      },
+      {
+        "kpi": "Increase in foreign direct investment flows",
+        "target_value": 1.0,
+        "unit": "qualitative"
+      }
+    ],
+    "country_list_iso": [
+      "CHN",
+      "USA"
+    ],
+    "sdg_alignment": [
+      "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
+      "SDG 10: Reduced Inequalities",
+      "SDG 13: Climate Action",
+      "SDG 16: Peace, Justice and Strong Institutions"
+    ]
+  }
+}
