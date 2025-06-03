@@ -1,159 +1,81 @@
 {
-  "title": "Regulatory Roadmap for Advancing Digital Trade Integration in Mercosur",
-  "date": "2018-10-01",
-  "location": "The principal location is Buenos Aires, Argentina.",
-  "executive_summary": "Mercosur has rapidly emerged as a digital leader in Latin America, with significant growth in ecommerce and digital startups. However, most digital trade remains domestic due to fragmented regulations across member countries. Key barriers include inconsistent rules on data privacy, intermediary liability, OTT services, taxation, and customs procedures, which particularly hinder SMEs’ ability to scale and export. Surveyed firms estimate that improving digital regulations could boost revenues and exports by nearly 30% annually. The report recommends harmonizing digital regulations, modernizing customs, fostering mutual recognition of online service providers, supporting SME skills and finance, and establishing a regional Digital Dialogue. By creating a coherent regional digital market, Mercosur can unlock substantial trade, investment, and job creation, ensuring its competitiveness in the global digital economy. Immediate, coordinated action is essential to fully realize these opportunities.",
+  "title": "Fueling Digital Trade in Mercosur: A Regulatory Roadmap for Regional Integration and Growth",
+  "date": "2018-10",
+  "location": "Buenos Aires, Argentina",
+  "executive_summary": "Mercosur has emerged as a digital leader in Latin America, with significant growth in e-commerce, particularly in Brazil and Argentina. However, the region's digital trade remains largely domestic due to regulatory inconsistencies across member countries. This report outlines a regulatory roadmap aimed at enhancing regional integration and facilitating cross-border e-commerce. Key findings indicate that online sellers are more likely to export and grow faster than their offline counterparts. Challenges include access to finance, logistics, and complex digital regulations, particularly concerning data privacy, taxation, and intellectual property. The report recommends creating coherent digital regulations, improving customs procedures, and fostering public-private partnerships to support SMEs in developing digital skills and accessing finance. Establishing a regional Digital Dialogue is also proposed to align regulatory frameworks and enhance cooperation among Mercosur countries, ultimately unlocking the region's economic potential through digital trade.",
   "characteristics": [
-    "Mercosur is a regional digital leader, with rapid growth in ecommerce and digital startups, but most digital trade remains domestic due to regulatory fragmentation.",
-    "Online sellers in Mercosur are more likely to export, export to multiple markets, and experience faster growth than offline firms; digital trade boosts SME participation in regional/global value chains.",
-    "Key barriers include inconsistent digital regulations (data privacy, OTT, liability, taxes), logistics/customs challenges, and limited access to finance, especially for SMEs.",
-    "Harmonizing digital regulations, modernizing customs, and fostering regional interoperability (e.g., payments, mutual recognition) could increase revenues/exports by ~30% annually.",
-    "Policy recommendations: adopt smart, interoperable digital regulations; create safe harbors; modernize copyright; avoid excessive digital taxes; improve logistics; and establish public-private digital dialogues and skills/finance programs for SMEs."
+    "Mercosur has rapidly transformed into a digital economy, with significant growth in e-commerce, particularly in Brazil and Argentina, which are home to major online platforms and startups.",
+    "The region's digital trade is still primarily domestic, highlighting the need for regulatory coherence to facilitate cross-border e-commerce among member countries.",
+    "Key challenges for small businesses include access to finance, logistics, customs procedures, and complex digital regulations, which hinder their ability to engage in e-commerce.",
+    "Improving the regulatory environment could potentially increase revenues and exports for Mercosur companies by nearly 30% annually, emphasizing the importance of coherent digital regulations.",
+    "Recommendations include creating smart digital regulations, modernizing customs procedures, and fostering public-private partnerships to enhance SMEs' capabilities in digital trade."
   ],
   "themes": {
     "Digital Transformation & Strategy": [
-      "Digital Trade",
-      "Digital Policy",
-      "Digital Regulation",
-      "Digital Infrastructure",
-      "Digital Platforms",
-      "Digital Skills Development",
-      "Digital Economy",
-      "Digital Acceleration",
-      "Digital Agenda",
-      "Digital Investment",
-      "Digital Ecosystem",
-      "Digital Transitions"
-    ],
-    "Technology & Innovation": [
-      "Tech-Driven Solutions",
-      "ICT Innovation",
-      "Cloud Computing",
-      "Blockchain"
-    ],
-    "Data & Governance": [
-      "Data Governance",
-      "Data Protection",
-      "Data Privacy",
-      "Digital Governance",
-      "Digital Rights",
-      "Cybersecurity",
-      "Cyber Risk Management",
-      "Digital Access",
-      "Digital Identity Management",
-      "Internet Governance",
-      "Digital Ethics",
-      "E-Governance"
-    ],
-    "Inclusion & Social Development": [
-      "Digital Inclusion",
-      "Digital Education",
-      "Connectivity",
-      "Sustainable Digital Development"
-    ],
-    "Regional & International Cooperation": [
-      "Digital & Technological Partnerships",
-      "Bi-regional Cooperation",
-      "Global Digital Cooperation",
-      "Multilateralism",
-      "EU-LAC Digital Alliance",
-      "EU-CELAC Digital Partnership"
+      "Digital Trade"
     ]
   },
   "actors": {
     "Political Actors": [
-      "Governments",
-      "Government Officials",
-      "Policy Level Representatives",
       "Southern Common Market",
-      "Pacific Alliance",
-      "European Union",
-      "EU Member States",
-      "European Commission",
-      "Information and Communication Technologies and Digital Dialogue Leaders",
-      "United Nations"
+      "Community of Latin American and Caribbean States",
+      "Inter-American Development Bank"
+    ],
+    "Economic Actors": [
+      "Digital Companies",
+      "Private Sector Representatives",
+      "Telecommunication Companies"
     ],
     "Research and Innovation Actors": [
       "Universities",
-      "Technology Organisations",
-      "Research Performing Organisations",
-      "Academic Institutions",
-      "Knowledge and Innovation Communities",
-      "Researchers",
-      "Innovators",
-      "Digital for Development Hub",
-      "EU-LAC Digital Alliance",
-      "Pan-European Research and Education Network",
-      "National Research and Education Networks"
-    ],
-    "Economic Actors": [
-      "Private Sector Representatives",
-      "Industry Actors",
-      "Private Sector Intermediaries",
-      "Inter-American Development Bank",
-      "Development Bank of Latin America and the Caribbean",
-      "World Bank",
-      "Digital Companies",
-      "ICT Companies",
-      "Telecommunication Companies"
-    ],
-    "Civil Society Actors": [
-      "Non-governmental Institutions",
-      "Civil Society Organisations",
-      "Digital Training and Education Providers",
-      "Digital Transformation Consultants",
-      "Digital Skills Development Platforms",
-      "Digital Cooperation Organization",
-      "Digital Literacy Initiatives",
-      "Technology Providers"
+      "Technology Organisations"
     ]
   },
   "practical_applications": [
-    "Brazil’s Marco Civil da Internet (2014) includes a “safe harbor” provision that limits the responsibility of internet service providers for hosting or transferring third-party content.",
-    "Brazil’s data protection law, Lei Geral de Proteção de Dados (LGPD), passed in 2018 and effective from 2020, requires companies to comply with strict requirements related to the processing of personal data, similar to the EU’s GDPR.",
-    "Uruguay’s free trade agreement with Chile includes a robust ecommerce chapter that respects free flow of data across borders and bars data localization requirements.",
-    "Argentina is in the process of concluding a similar free trade agreement with Chile, aiming for provisions that facilitate digital trade and data flows.",
-    "Uruguay has a data protection law (2008) and a 2013 resolution defining personal data and its treatment, requiring companies with .uy websites to register data and provide privacy policies.",
-    "Argentina’s Data Protection Law (2000) prohibits the transfer of personal data to countries lacking adequate protections, with ongoing updates to clarify international data transfer regimes.",
-    "Argentina introduced a 21 percent tax on domestic and offshore internet services in March 2018.",
-    "Uruguay implemented a 22 percent tax on online services such as Airbnb and Uber in January 2018.",
-    "Brazil’s National Cinema Agency has proposed regulations to tax audiovisual OTT platforms and require a minimum quota of Brazilian content, as well as investment in co-production of original content.",
-    "Brazil’s Apex export promotion agency has created training programs for SMEs to use ecommerce to export.",
-    "Chile’s export promotion agency ProChile offers comprehensive “Digital Exports” seminars on ecommerce, digital marketing, and international promotional campaigns.",
-    "Mexico’s export promotion agency Proméxico has organized seminars and training for SMEs, created a B2B platform for Mexican SMEs selling to overseas markets, and offers consulting services for digital marketing and online payments.",
-    "Costa Rica’s export promotion agency Procomer provides a one-stop access for B2C and B2B merchants to global platforms like I.Gourmet, Alibaba, and Amazon.",
-    "Latin America’s Exporta Fácil program has simplified customs clearance for SMEs for shipments typically weighing less than 30 kilograms and valued under US$5,000, though it is limited to postal systems.",
-    "Uruguay XXI’s Proexport+ program supports new and existing exporters with up to $40,000 for product development, market research, and trade show participation.",
-    "The Chile-Uruguay FTA (2016) includes provisions for interoperable electronic signatures, acceptance of electronically filed trade documents, cooperation on consumer protection online, and prohibits forced data localization except for legitimate public policy reasons.",
-    "The Pacific Alliance (Chile, Colombia, Mexico, Peru) has a cooperation agreement on ecommerce, a Digital Agenda for regional digital market integration, and public-private dialogues on the digital economy.",
-    "The European Union’s Digital Single Market initiative aims to harmonize digital regulations and enable online content portability across member states.",
-    "ASEAN’s ICT Masterplan 2020 focuses on digital transformation and building a single integrated market for the digital economy, with legislation on electronic transactions, cybercrime, consumer protection, and data privacy.",
-    "APEC’s Electronic Commerce Steering Group (ECSG) and Paperless Trading Subgroup promote legal, regulatory, and policy environments for ecommerce, and are implementing strategies for cross-border paperless trading by 2020.",
-    "APEC’s Data Privacy Pathfinder and Subgroup support cross-border flow of personal information and promote common data privacy approaches, including the Cross-Border Privacy Rules (CBPR) system.",
-    "The Air Cargo Advanced Screening program in the United States, piloted with major shippers, provides customs authorities with air cargo data prior to loading at foreign ports, serving as a model for data-driven customs risk management."
+    "Brazil's data protection law, Lei Geral de Proteção de Dados (LGPD), which passed in 2018 and will go into effect in 2020, requires companies to comply with strict requirements related to the processing of personal data.",
+    "Argentina is finalizing a data protection draft bill that has been open to public consultation, aiming to establish a good international data transfer regime.",
+    "Brazil's Marco Civil da Internet, approved in 2014, defines Internet users’ rights and includes a \"safe harbor\" provision that limits the responsibility of Internet service providers for third-party content.",
+    "Uruguay has a data protection law in place since 2008, which requires companies with Uruguayan websites to register databases and provide privacy policies.",
+    "The Chile-Uruguay Free Trade Agreement includes provisions for interoperable electronic signatures, acceptance of electronically filed trade documents, and cooperation on consumer protection in online transactions.",
+    "Brazil's Apex has created training programs for SMEs to use ecommerce to export, while Chile's ProChile offers comprehensive seminars on ecommerce and digital marketing.",
+    "The Exporta Fácil program in Latin America simplifies customs clearance for SMEs for shipments typically weighing less than 30 kilograms and valued under US$5,000.",
+    "The proposed \"Trusted eTrader\" program aims to facilitate and secure trade by fast-tracking shipments for SMEs that consistently comply with trade regulations.",
+    "The establishment of a Digital Dialogue (Dialogo Digital) is proposed to bring together government officials and businesses quarterly to discuss regulatory frameworks and digital trade issues.",
+    "The use of social impact bonds is suggested to fund ecommerce training programs, where private investors are compensated by the government based on performance indicators like job creation and online exports."
   ],
-  "commitments": [
-    "No specific commitments identified."
-  ],
-  "score": null,
-  "extra_metadata": {
-    "lead_country_iso": null,
-    "agreement_type": "Roadmap",
-    "legal_bindingness": "Non-binding",
+  "commitments": [],
+  "score": 95,
+  "quality_breakdown": {
+    "faithfulness": 100,
+    "consistency": 95,
+    "completeness": 95,
+    "accuracy": 100,
+    "issues": []
+  },
+  "extra_data": {
+    "lead_country_iso": "ARG",
+    "agreement_type": [
+      "Roadmap"
+    ],
+    "legal_bindingness": "Politically-binding",
     "coverage_scope": "Sub-regional",
     "eu_policy_alignment": [],
-    "review_schedule": "None",
+    "review_schedule": null,
     "beneficiary_group_raw": [
       "SME",
+      "entrepreneur",
       "company",
       "startup",
-      "entrepreneur",
-      "policymaker"
+      "market"
     ],
     "beneficiary_group": [
       {
         "category": "SMEs / Businesses",
         "label": "Small and Medium Enterprises"
+      },
+      {
+        "category": "SMEs / Businesses",
+        "label": "Entrepreneurs"
       },
       {
         "category": "SMEs / Businesses",
@@ -164,59 +86,143 @@
         "label": "Start-ups"
       },
       {
-        "category": "SMEs / Businesses",
-        "label": "Entrepreneurs"
-      },
-      {
-        "category": "Public Sector / Governments",
-        "label": "Policymakers"
+        "category": "General Citizens / Consumers",
+        "label": "Consumers"
       }
     ],
     "start_date": "2018-10-01",
-    "end_date": "2018-10-01",
-    "commitment_details": [
-      {
-        "text": "No specific commitments identified.",
-        "commitment_class": "Declarative"
-      }
-    ],
+    "end_date": "2018-10-31",
+    "commitment_details": [],
     "kpi_list": [
       {
-        "kpi": "Increase in company revenues and exports enabled by improved digital regulations",
+        "kpi_text": "Improve digital regulations in the Mercosur region to enable companies to increase their revenues and exports by almost 30 percent annually.",
+        "kpi_type": "quantitative",
+        "metric_name": "Revenue and Export Increase",
         "target_value": 30.0,
-        "unit": "percent annually"
+        "target_description": "Increase revenues and exports by improving digital regulations.",
+        "unit": "percentage",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Survey data from companies on revenue and export changes post-regulation improvement.",
+        "responsible_entity": "Mercosur governments",
+        "sector": "Digital Trade"
       },
       {
-        "kpi": "Annual revenue gains in domestic markets if top-3 ecommerce constraints are removed",
+        "kpi_text": "Create new instruments to fund SME skills development.",
+        "kpi_type": "qualitative",
+        "metric_name": "SME Skills Development Funding",
+        "target_value": null,
+        "target_description": "Develop funding mechanisms for SME skills development in ecommerce.",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Implementation of funding programs and tracking participation.",
+        "responsible_entity": "Mercosur governments",
+        "sector": "SME Development"
+      },
+      {
+        "kpi_text": "Increase customs clearance times to 24 hours per day.",
+        "kpi_type": "quantitative",
+        "metric_name": "Customs Clearance Time",
+        "target_value": 24.0,
+        "target_description": "Achieve 24-hour customs clearance for ecommerce shipments.",
+        "unit": "hours",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Monitoring customs clearance times.",
+        "responsible_entity": "Mercosur governments",
+        "sector": "Trade Facilitation"
+      },
+      {
+        "kpi_text": "Establish systematic 'Regional Digital Dialogues' to discuss regulatory issues.",
+        "kpi_type": "qualitative",
+        "metric_name": "Regional Digital Dialogues",
+        "target_value": null,
+        "target_description": "Institutionalize quarterly dialogues among government officials, businesses, and consumer groups.",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Frequency and outcomes of dialogues held.",
+        "responsible_entity": "Mercosur governments",
+        "sector": "Digital Trade Regulation"
+      },
+      {
+        "kpi_text": "Enable the collection and remittance of value-added and other taxes for goods above the de minimis level away from the border.",
+        "kpi_type": "qualitative",
+        "metric_name": "Tax Collection Improvement",
+        "target_value": null,
+        "target_description": "Facilitate tax collection for ecommerce goods to streamline trade.",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Implementation of tax collection mechanisms.",
+        "responsible_entity": "Mercosur governments",
+        "sector": "Taxation"
+      },
+      {
+        "kpi_text": "Remove top-3 constraints to ecommerce to achieve annual revenue gains of 34 percent in domestic markets and 35 percent in international markets.",
+        "kpi_type": "quantitative",
+        "metric_name": "Revenue Gains from Constraint Removal",
         "target_value": 34.0,
-        "unit": "percent annually"
+        "target_description": "Achieve revenue gains by addressing key constraints to ecommerce.",
+        "unit": "percentage",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Survey data on revenue changes post-constraint removal.",
+        "responsible_entity": "Mercosur governments",
+        "sector": "Ecommerce"
       },
       {
-        "kpi": "Annual revenue gains in international markets if top-3 ecommerce constraints are removed",
-        "target_value": 35.0,
-        "unit": "percent annually"
+        "kpi_text": "Achieve 60 percent of Argentine online sellers selling to Brazil and vice versa.",
+        "kpi_type": "quantitative",
+        "metric_name": "Cross-Border Sales",
+        "target_value": 60.0,
+        "target_description": "Increase cross-border sales between Argentina and Brazil.",
+        "unit": "percentage",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Sales data analysis.",
+        "responsible_entity": "Mercosur governments",
+        "sector": "Digital Trade"
       },
       {
-        "kpi": "Share of companies with their own websites (Argentina)",
-        "target_value": 68.0,
-        "unit": "percent"
+        "kpi_text": "Facilitate the establishment of mutual recognition of online service providers across Mercosur countries.",
+        "kpi_type": "qualitative",
+        "metric_name": "Mutual Recognition of Service Providers",
+        "target_value": null,
+        "target_description": "Enable mutual recognition of business licenses and digital signatures.",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Implementation of mutual recognition agreements.",
+        "responsible_entity": "Mercosur governments",
+        "sector": "Digital Services"
       },
       {
-        "kpi": "Achieve regulatory coherence to enable seamless operation of digital companies across Mercosur markets",
-        "target_value": 1.0,
-        "unit": "qualitative"
+        "kpi_text": "Increase the percentage of small companies engaged in online sales that export to multiple markets.",
+        "kpi_type": "quantitative",
+        "metric_name": "Export Diversification of Online Sellers",
+        "target_value": 60.0,
+        "target_description": "Increase the percentage of small online sellers exporting to multiple markets.",
+        "unit": "percentage",
+        "baseline_value": 17.0,
+        "timeframe": null,
+        "measurement_method": "Export data analysis.",
+        "responsible_entity": "Mercosur governments",
+        "sector": "Ecommerce"
       }
     ],
     "country_list_iso": [
       "ARG",
-      "CHN",
-      "URY",
-      "USA"
+      "BRA",
+      "PRY",
+      "URY"
     ],
     "sdg_alignment": [
       "SDG 8: Decent Work and Economic Growth",
       "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
+      "SDG 12: Responsible Consumption and Production",
       "SDG 17: Partnerships for the Goals"
     ]
   }

@@ -1,14 +1,14 @@
 {
-  "title": "EU-LAC Digital Alliance Days: Key Collaborations and Future Initiatives for 2025 Summit",
+  "title": "EU-LAC Digital Alliance Days: Collaborative Initiatives for Digital Transformation Towards 2025 Summit",
   "date": "2023-11-27",
   "location": "Cartagena de Indias, Colombia",
-  "executive_summary": "The EU-LAC Digital Alliance Days, held from November 27-29, 2023, in Cartagena de Indias, Colombia, gathered over 150 senior representatives from Latin America, the Caribbean, and the European Union to enhance digital cooperation. Key discussions focused on five thematic areas: Artificial Intelligence, data governance, digital government, inclusive connectivity, and cybersecurity. Participants identified collaborative initiatives, including aligning cybersecurity frameworks, developing interoperable digital identity mechanisms, and promoting secure data flows. The event underscored a commitment to a human-centric digital transformation and marked a significant step towards the 2025 EU-CELAC Summit. Follow-up dialogues on cybersecurity and other digital issues are scheduled for 2024, reinforcing the partnership's objectives under the Global Gateway initiative.",
+  "executive_summary": "The EU-LAC Digital Alliance Days, held from November 27-29, 2023, in Cartagena de Indias, Colombia, gathered over 150 senior representatives from Latin America, the Caribbean, and the European Union to enhance digital cooperation. Key discussions focused on Artificial Intelligence, data governance, digital government, inclusive connectivity, and cybersecurity. Participants identified joint collaboration areas, including aligning cybersecurity frameworks, developing interoperable digital identity mechanisms, and promoting safe data flows. The event underscored a commitment to a human-centric digital transformation and marked a significant step towards the 2025 EU-CELAC Summit. Follow-up dialogues on cybersecurity and digital inclusion are scheduled for 2024, reinforcing the partnership's objectives under the Global Gateway initiative.",
   "characteristics": [
-    "The EU-LAC Digital Alliance Days took place from November 27-29, 2023, in Cartagena de Indias, Colombia, gathering over 150 representatives from various sectors.",
-    "Key discussions focused on digital cooperation, including AI, data governance, digital government, inclusive connectivity, and cybersecurity.",
-    "Participants identified joint collaboration areas, such as cybersecurity frameworks, inclusive connectivity strategies, and interoperable digital identity mechanisms.",
-    "The event emphasized a human-centric approach to digital transformation and marked a milestone in strengthening bi-regional partnerships.",
-    "Follow-up dialogues on cybersecurity and other digital topics are scheduled for 2024, reinforcing ongoing collaboration efforts."
+    "The EU-LAC Digital Alliance Days took place from November 27-29, 2023, in Cartagena de Indias, Colombia, gathering over 150 representatives from various sectors to enhance digital cooperation.",
+    "Key discussions focused on five thematic areas: AI, data governance, digital government, inclusive connectivity, and cybersecurity, identifying joint collaboration opportunities.",
+    "The event emphasized a human-centric approach to technology, aiming to ensure that technology serves people.",
+    "A Joint Declaration was endorsed to strengthen bi-regional digital partnerships, with follow-up dialogues planned for 2024.",
+    "The initiative is part of the EU's Global Gateway strategy to foster sustainable connections in Latin America and the Caribbean."
   ],
   "themes": {
     "Regional & International Cooperation": [
@@ -49,48 +49,33 @@
   "commitments": [
     "A follow-up dialogue on cybersecurity will be hosted by the Dominican Republic in February 2024.",
     "Follow-up dialogues on connectivity and digital inclusion, data governance, and e-governance will take place later in 2024.",
-    "The next EU-CELAC Summit is scheduled to be held in Colombia in 2025.",
-    "No specific commitments identified regarding numerical targets, pledged funding amounts, specific percentage increases or reductions, or measurable goals with clear metrics."
+    "The next EU-CELAC Summit is scheduled to be held in Colombia in 2025."
   ],
-  "score": 69,
+  "score": 91,
+  "quality_breakdown": {
+    "faithfulness": 100,
+    "consistency": 91,
+    "completeness": 91,
+    "accuracy": 80,
+    "issues": []
+  },
   "extra_data": {
     "lead_country_iso": "COL",
-    "agreement_type": "MoU",
+    "agreement_type": [],
     "legal_bindingness": "Politically-binding",
     "coverage_scope": "Regional",
     "eu_policy_alignment": [
       "Global Gateway"
     ],
-    "review_schedule": "Biennial",
+    "review_schedule": null,
     "beneficiary_group_raw": [
       "government",
       "civil society",
       "academia",
       "private sector",
-      "communities"
+      "countries"
     ],
-    "beneficiary_group": [
-      {
-        "category": "Public Sector / Governments",
-        "label": "Government"
-      },
-      {
-        "category": "Civil Society / NGOs",
-        "label": "Civil Society Organizations"
-      },
-      {
-        "category": "Researchers & Academia",
-        "label": "Academic Institutions"
-      },
-      {
-        "category": "SMEs / Businesses",
-        "label": "Private Sector Organizations"
-      },
-      {
-        "category": "Rural & Remote Communities",
-        "label": "Underserved Communities"
-      }
-    ],
+    "beneficiary_group": [],
     "start_date": "2023-11-27",
     "end_date": "2023-11-29",
     "commitment_details": [
@@ -105,41 +90,102 @@
       {
         "text": "The next EU-CELAC Summit is scheduled to be held in Colombia in 2025.",
         "commitment_class": "Declarative"
-      },
-      {
-        "text": "No specific commitments identified regarding numerical targets, pledged funding amounts, specific percentage increases or reductions, or measurable goals with clear metrics.",
-        "commitment_class": "Declarative"
       }
     ],
     "kpi_list": [
       {
-        "kpi": "Number of senior government representatives participating in the event",
-        "target_value": 150.0,
-        "unit": "participants"
+        "kpi_text": "Establish a robust cybersecurity framework for critical infrastructure protection",
+        "kpi_type": "qualitative",
+        "metric_name": "Cybersecurity Framework Establishment",
+        "target_value": null,
+        "target_description": "Establish robust cybersecurity framework for critical infrastructure",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Framework establishment and implementation",
+        "responsible_entity": null,
+        "sector": "Cybersecurity"
       },
       {
-        "kpi": "Number of high-level policy dialogues held",
-        "target_value": 5.0,
-        "unit": "dialogues"
+        "kpi_text": "Implement innovative policies and strategies to achieve inclusive and secure connectivity",
+        "kpi_type": "qualitative",
+        "metric_name": "Inclusive and Secure Connectivity Strategies",
+        "target_value": null,
+        "target_description": "Implement innovative policies and strategies for connectivity",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Policy implementation and evaluation",
+        "responsible_entity": null,
+        "sector": "Digital Connectivity"
       },
       {
-        "kpi": "Political determination to collaborate on digital matters",
-        "target_value": 1.0,
-        "unit": "qualitative"
+        "kpi_text": "Develop interoperable digital identity mechanisms",
+        "kpi_type": "qualitative",
+        "metric_name": "Interoperable Digital Identity Development",
+        "target_value": null,
+        "target_description": "Develop mechanisms for interoperable digital identity",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Mechanism development and assessment",
+        "responsible_entity": null,
+        "sector": "Digital Identity"
       },
       {
-        "kpi": "Follow-up dialogues scheduled for 2024",
-        "target_value": 3.0,
-        "unit": "dialogues"
+        "kpi_text": "Improve free and safe flows of data",
+        "kpi_type": "qualitative",
+        "metric_name": "Data Flow Improvement",
+        "target_value": null,
+        "target_description": "Enhance the safety and freedom of data flows",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Data flow assessment and monitoring",
+        "responsible_entity": null,
+        "sector": "Data Governance"
       },
       {
-        "kpi": "Joint areas for further collaboration identified",
-        "target_value": 5.0,
-        "unit": "areas"
+        "kpi_text": "Adopt strategies and policies to mitigate the risks of AI while seizing its potential opportunities",
+        "kpi_type": "qualitative",
+        "metric_name": "AI Risk Mitigation and Opportunity Seizing",
+        "target_value": null,
+        "target_description": "Adopt strategies for AI risk management and opportunity utilization",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Strategy adoption and evaluation",
+        "responsible_entity": null,
+        "sector": "Artificial Intelligence"
+      },
+      {
+        "kpi_text": "Follow-up dialogue on cybersecurity in February 2024",
+        "kpi_type": "qualitative",
+        "metric_name": "Cybersecurity Follow-up Dialogue",
+        "target_value": null,
+        "target_description": "Conduct follow-up dialogue on cybersecurity",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": "February 2024",
+        "measurement_method": "Dialogue execution and feedback collection",
+        "responsible_entity": "Dominican Republic",
+        "sector": "Cybersecurity"
+      },
+      {
+        "kpi_text": "Follow-up dialogues on connectivity and digital inclusion, data governance and e-governance later in the year",
+        "kpi_type": "qualitative",
+        "metric_name": "Follow-up Dialogues on Digital Topics",
+        "target_value": null,
+        "target_description": "Conduct follow-up dialogues on various digital topics",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": "Later in 2024",
+        "measurement_method": "Dialogue execution and feedback collection",
+        "responsible_entity": null,
+        "sector": "Digital Governance"
       }
     ],
     "country_list_iso": [
-      "COL",
       "DOM",
       "ESP",
       "LAC",
@@ -149,15 +195,6 @@
       "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
       "SDG 17: Partnerships for the Goals"
-    ]
-  },
-  "quality_breakdown": {
-    "faithfulness": 100,
-    "consistency": 85,
-    "completeness": 85,
-    "accuracy": 10,
-    "issues": [
-      "Potential factual errors"
     ]
   }
 }

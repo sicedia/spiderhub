@@ -1,15 +1,14 @@
 {
-  "title": "EU-Latin America and Caribbean Joint Declaration on a Digital Alliance: A Framework for Enhanced Digital Cooperation",
+  "title": "EU-Latin America and Caribbean Joint Declaration on a Digital Alliance",
   "date": "2023-07-17",
   "location": "Brussels, Belgium",
-  "executive_summary": "On July 17, 2023, the European Union (EU) and various Latin American and Caribbean (LAC) nations established the EU-LAC Digital Alliance, a cooperative framework aimed at enhancing digital collaboration. This informal alliance promotes dialogue on digital policy, internet governance, cybersecurity, and emerging technologies, while emphasizing human rights and inclusivity. It seeks to close digital divides, foster innovation, and develop digital skills, particularly among women and youth. Key initiatives include extending the BELLA fibre-optic cable, implementing a regional Copernicus Strategy, and launching an EU-LAC Digital Accelerator to stimulate joint ventures. The alliance will regularly review priorities and progress, ensuring alignment with evolving digital needs and opportunities.",
+  "executive_summary": "On July 17, 2023, the EU and several Latin American and Caribbean (LAC) countries established the EU-LAC Digital Alliance, a cooperative framework aimed at enhancing digital collaboration. This informal alliance promotes dialogue on various digital issues, including internet governance, cybersecurity, and digital skills development, while emphasizing human rights and inclusivity. It seeks to close digital divides and foster a sustainable digital economy, particularly focusing on empowering women and youth. The alliance will support projects like the BELLA fibre-optic cable and regional Copernicus data centers, with regular meetings to assess progress and adapt priorities. The initiative aligns with the Global Gateway and aims to create a bi-regional Investment Agenda in the digital sector.",
   "characteristics": [
-    "**Informal Framework**: The EU-LAC Digital Alliance is a values-based, informal cooperation framework for digital matters involving EU and Latin American and Caribbean countries.",
-    "**Broad Cooperation Areas**: It addresses diverse digital issues, including policy dialogue, cybersecurity, data governance, AI, digital skills, and infrastructure development.",
-    "**Human-Centric Vision**: The alliance emphasizes a human-centric approach to digitalization, prioritizing universal rights, privacy, and inclusivity in the digital economy.",
-    "**Regular Dialogue**: Partners will engage in periodic high-level dialogues to share information, identify priorities, and align digital policies and regulatory frameworks.",
-    "**Investment Agenda**: The alliance aims to develop a bi-regional investment agenda to support digital projects, enhancing connectivity and innovation through initiatives like the BELLA programme.",
-    "**Focus on Inclusion**: It seeks to close digital gaps, promote social cohesion, and empower marginalized groups, particularly women and youth, in accessing digital technologies."
+    "The EU-LAC Digital Alliance is an informal, values-based framework for cooperation between the EU and Latin American and Caribbean countries, focusing on digital issues.",
+    "It promotes a human-centric digital economy, emphasizing universal human rights, privacy, and inclusion, particularly for women and marginalized groups.",
+    "The Alliance aims to enhance digital skills, connectivity, and innovation, fostering a responsible digital economy and local industry.",
+    "Regular dialogues will facilitate the exchange of best practices and convergence of digital policies, addressing issues like cybersecurity and data protection.",
+    "Key initiatives include extending digital infrastructure, implementing Copernicus strategies, and establishing a Digital Accelerator for joint ventures in innovation."
   ],
   "themes": {
     "Regional & International Cooperation": [
@@ -32,7 +31,7 @@
     "Inclusion & Social Development": [
       "Digital Inclusion",
       "Gender Equality in Tech",
-      "Social Cohesion"
+      "Digital Education"
     ],
     "Technology & Innovation": [
       "Artificial Intelligence",
@@ -49,70 +48,56 @@
     "Research and Innovation Actors": [
       "EU-LAC Digital Alliance",
       "Digital4Development Hub",
-      "LAC Space Agencies"
+      "Latin American and Caribbean Space Agency (ALCE)"
     ],
     "Economic Actors": [
       "Inter-American Development Bank",
-      "World Bank"
-    ],
-    "Civil Society Actors": [
-      "Digital Literacy Initiatives"
+      "World Bank",
+      "Development Bank of Latin America and the Caribbean"
     ]
   },
   "practical_applications": [
-    "Establishment of the EU-LAC Digital Alliance as a framework for cooperation on digital matters among EU and LAC countries.",
-    "Ongoing cooperation through the BELLA programme, which includes the extension of the BELLA fibre-optic cable to enhance digital connectivity.",
+    "Establishment of the EU-LAC Digital Alliance as a framework for cooperation on digital matters between the EU and Latin American and Caribbean countries.",
+    "Ongoing support for the BELLA programme, which includes the extension of the BELLA fibre-optic cable to enhance digital connectivity.",
     "Implementation of a regional Copernicus Strategy, including the establishment of two regional Copernicus data centres in Panama and Chile.",
     "Creation of the EU-LAC Digital Accelerator to foster collaboration between EU and LAC corporations, SMEs, and innovative start-ups, with a goal of facilitating at least 40 joint ventures for bi-regional innovation and digital transformation.",
-    "Regular periodic dialogues to exchange information and best practices on digital policy, focusing on data protection, cybersecurity, interoperability, and emerging technologies.",
+    "Regular periodic dialogue to exchange information and best practices on digital policy, focusing on areas such as data protection, cybersecurity, and artificial intelligence.",
     "Development of a bi-regional Investment Agenda in the digital domain underpinned by the Global Gateway initiative."
   ],
   "commitments": [
     "Facilitate and accelerate at least 40 joint ventures for bi-regional innovation and digital transformation by the establishment of an EU-LAC Digital Accelerator.",
-    "Review progress on the commitments on an annual basis.",
     "Implement a regional Copernicus Strategy including two regional Copernicus data centres in Panama and Chile.",
-    "Extend the BELLA fibre-optic cable to interested countries to enhance digital connectivity."
+    "Extend the BELLA fibre-optic cable to interested countries to build secure digital backbone connectivity.",
+    "Review progress on the commitments on an annual basis."
   ],
-  "score": 75,
+  "score": 91,
+  "quality_breakdown": {
+    "faithfulness": 100,
+    "consistency": 91,
+    "completeness": 91,
+    "accuracy": 81,
+    "issues": []
+  },
   "extra_data": {
-    "lead_country_iso": "EUU",
-    "agreement_type": "Declaration",
-    "legal_bindingness": "Non-binding",
+    "lead_country_iso": "BEL",
+    "agreement_type": [
+      "Declaration"
+    ],
+    "legal_bindingness": "Politically-binding",
     "coverage_scope": "Regional",
     "eu_policy_alignment": [
       "Global Gateway",
       "Digital Decade"
     ],
-    "review_schedule": "None",
+    "review_schedule": null,
     "beneficiary_group_raw": [
       "citizen",
       "woman",
+      "girl",
       "youth",
-      "business",
-      "community"
+      "business"
     ],
-    "beneficiary_group": [
-      {
-        "category": "General Citizens / Consumers",
-        "label": "Citizens"
-      },
-      {
-        "category": "Women & Girls",
-        "label": "Women in Tech"
-      },
-      {
-        "category": "Students & Youth",
-        "label": "Youth"
-      },
-      {
-        "category": "SMEs / Businesses",
-        "label": "Companies"
-      },
-      {
-        "category": "Civil Society / NGOs",
-        "label": "Community Organizations"
-      }
-    ],
+    "beneficiary_group": [],
     "start_date": "2023-07-17",
     "end_date": "2024-01-01",
     "commitment_details": [
@@ -121,49 +106,101 @@
         "commitment_class": "Programmatic"
       },
       {
-        "text": "Review progress on the commitments on an annual basis.",
-        "commitment_class": "Declarative"
-      },
-      {
         "text": "Implement a regional Copernicus Strategy including two regional Copernicus data centres in Panama and Chile.",
         "commitment_class": "Implemented"
       },
       {
-        "text": "Extend the BELLA fibre-optic cable to interested countries to enhance digital connectivity.",
-        "commitment_class": "Programmatic"
+        "text": "Extend the BELLA fibre-optic cable to interested countries to build secure digital backbone connectivity.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "Review progress on the commitments on an annual basis.",
+        "commitment_class": "Declarative"
       }
     ],
     "kpi_list": [
       {
-        "kpi": "Number of joint ventures facilitated for bi-regional innovation and digital transformation",
+        "kpi_text": "Facilitate and accelerate at least 40 joint ventures for bi-regional innovation and digital transformation.",
+        "kpi_type": "quantitative",
+        "metric_name": "Joint Ventures for Innovation",
         "target_value": 40.0,
-        "unit": "ventures"
+        "target_description": "Facilitate and accelerate joint ventures between EU and LAC for innovation.",
+        "unit": "joint ventures",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Count of joint ventures established",
+        "responsible_entity": "EU-LAC Digital Alliance",
+        "sector": "Digital Innovation"
       },
       {
-        "kpi": "Percentage of citizens with access to secure and meaningful digital connectivity",
-        "target_value": 1.0,
-        "unit": "qualitative"
+        "kpi_text": "Establish an EU-LAC Digital Accelerator aiming to foster multi-stakeholder collaboration.",
+        "kpi_type": "qualitative",
+        "metric_name": "Digital Accelerator Establishment",
+        "target_value": null,
+        "target_description": "Establish a Digital Accelerator to enhance collaboration between stakeholders.",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Completion of the Digital Accelerator establishment",
+        "responsible_entity": "EU-LAC Digital Alliance",
+        "sector": "Digital Innovation"
       },
       {
-        "kpi": "Number of countries participating in the BELLA fibre-optic cable extension",
-        "target_value": 1.0,
-        "unit": "qualitative"
+        "kpi_text": "Implement a regional Copernicus Strategy including two regional Copernicus data centres in Panama and Chile.",
+        "kpi_type": "qualitative",
+        "metric_name": "Copernicus Data Centres Implementation",
+        "target_value": null,
+        "target_description": "Implement two regional Copernicus data centres in Panama and Chile.",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Completion of data centres establishment",
+        "responsible_entity": "EU-LAC Digital Alliance",
+        "sector": "Space and Data Governance"
       },
       {
-        "kpi": "Establishment of regional Copernicus data centres",
-        "target_value": 2.0,
-        "unit": "centres"
+        "kpi_text": "Support the digital projects of our Investment Agenda, which are to be agreed upon by the two regions.",
+        "kpi_type": "qualitative",
+        "metric_name": "Investment Agenda Support",
+        "target_value": null,
+        "target_description": "Support digital projects as part of the Investment Agenda.",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Number of projects supported",
+        "responsible_entity": "EU-LAC Digital Alliance",
+        "sector": "Digital Investment"
       },
       {
-        "kpi": "Commitment to closing digital gaps and promoting social cohesion",
-        "target_value": 1.0,
-        "unit": "qualitative"
+        "kpi_text": "Provide secure, universal, and meaningful digital connectivity to every citizen.",
+        "kpi_type": "qualitative",
+        "metric_name": "Digital Connectivity Provision",
+        "target_value": null,
+        "target_description": "Ensure every citizen has access to secure and meaningful digital connectivity.",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": null,
+        "measurement_method": "Assessment of connectivity access",
+        "responsible_entity": "EU-LAC Digital Alliance",
+        "sector": "Digital Connectivity"
+      },
+      {
+        "kpi_text": "Review progress on an annual basis.",
+        "kpi_type": "qualitative",
+        "metric_name": "Annual Progress Review",
+        "target_value": null,
+        "target_description": "Conduct annual reviews of progress on the Digital Alliance initiatives.",
+        "unit": "qualitative milestone",
+        "baseline_value": null,
+        "timeframe": "annually",
+        "measurement_method": "Documentation of review outcomes",
+        "responsible_entity": "EU-LAC Digital Alliance",
+        "sector": "Policy Implementation"
       }
     ],
     "country_list_iso": [
       "ARG",
       "BHS",
-      "BRB",
       "BLZ",
       "BRA",
       "CHL",
@@ -189,17 +226,9 @@
       "SDG 4: Quality Education",
       "SDG 5: Gender Equality",
       "SDG 10: Reduced Inequalities",
-      "SDG 9: Industry, Innovation and Infrastructure",
+      "SDG 11: Sustainable Cities and Communities",
+      "SDG 12: Responsible Consumption and Production",
       "SDG 17: Partnerships for the Goals"
-    ]
-  },
-  "quality_breakdown": {
-    "faithfulness": 100,
-    "consistency": 85,
-    "completeness": 80,
-    "accuracy": 30,
-    "issues": [
-      "Potential factual errors"
     ]
   }
 }
