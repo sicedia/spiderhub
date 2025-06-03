@@ -1,152 +1,238 @@
 from django.contrib import admin
 from .models import (
-    Actor, Location, Theme, Tag, Document, DocumentFile,
-    Characteristic, PracticalApplication, ResultingCommitment,
-    Commitment, KPITarget, AgreementType, BeneficiaryGroup,
-    Country, SdgGoal
+    Location, ThemeCategory, Theme, ActorCategory, Actor, AgreementType, 
+    BeneficiaryCategory, BeneficiaryGroup, Country, SdgGoal, Document, DocumentFile,
+    Characteristic, PracticalApplication, Commitment, KPI
 )
-
-@admin.register(Actor)
-class ActorAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
 
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
-    model = Location
-    extra = 1
-    max_num = 10  # Maximum number of forms
-    min_num = 0   # Minimum number of forms
-    show_change_link = True  # Provides a link to edit the related object
+    list_display = ('name', 'created_at')
+    search_fields = ('name',)
+    ordering = ('name',)
 
-class TagInline(admin.TabularInline):
-    model = Tag
-    extra = 1
-    max_num = 10  # Maximum number of forms
-    min_num = 0   # Minimum number of forms
-    autocomplete_fields = ('theme',)  # Use autocomplete for foreign keys
-    show_change_link = True  # Provides a link to edit the related object
+@admin.register(ThemeCategory)
+class ThemeCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created_at')
+    search_fields = ('name',)
+    ordering = ('name',)
 
 @admin.register(Theme)
 class ThemeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')
-    search_fields = ('name', 'description')
-    inlines = [TagInline]
+    list_display = ('name', 'category', 'created_at')
+    list_filter = ('category',)
+    search_fields = ('name', 'category__name')
+    autocomplete_fields = ('category',)
+    ordering = ('category__name', 'name')
 
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
-    list_display = ('name', 'theme')
-    list_filter = ('theme',)
+@admin.register(ActorCategory)
+class ActorCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created_at')
     search_fields = ('name',)
-    autocomplete_fields = ('theme',)
+    ordering = ('name',)
 
-class CharacteristicInline(admin.TabularInline):
-    model = Characteristic
-    extra = 1
+@admin.register(Actor)
+class ActorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'created_at')
+    list_filter = ('category',)
+    search_fields = ('name', 'category__name')
+    autocomplete_fields = ('category',)
+    ordering = ('category__name', 'name')
 
-class PracticalApplicationInline(admin.TabularInline):
-    model = PracticalApplication
-    extra = 1
+@admin.register(AgreementType)
+class AgreementTypeAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created_at')
+    search_fields = ('name',)
+    ordering = ('name',)
 
-class ResultingCommitmentInline(admin.TabularInline):
-    model = ResultingCommitment
-    extra = 1
+@admin.register(BeneficiaryCategory)
+class BeneficiaryCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created_at')
+    search_fields = ('name',)
+    ordering = ('name',)
 
-class CommitmentInline(admin.TabularInline):
-    model = Commitment
-    extra = 1
+@admin.register(BeneficiaryGroup)
+class BeneficiaryGroupAdmin(admin.ModelAdmin):
+    list_display = ('label', 'category', 'created_at')
+    list_filter = ('category',)
+    search_fields = ('label', 'category__name')
+    autocomplete_fields = ('category',)
+    ordering = ('category__name', 'label')
 
-class KPITargetInline(admin.TabularInline):
-    model = KPITarget
-    extra = 1
+@admin.register(Country)
+class CountryAdmin(admin.ModelAdmin):
+    list_display = ('iso', 'created_at')
+    search_fields = ('iso',)
+    ordering = ('iso',)
 
+@admin.register(SdgGoal)
+class SdgGoalAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created_at')
+    search_fields = ('name',)
+    ordering = ('name',)
+
+# Inline classes for Document
 class DocumentFileInline(admin.TabularInline):
     model = DocumentFile
     extra = 1
+    fields = ('name', 'file', 'url')
+
+class CharacteristicInline(admin.TabularInline):
+    model = Characteristic
+    extra = 0
+    fields = ('text',)
+
+class PracticalApplicationInline(admin.TabularInline):
+    model = PracticalApplication
+    extra = 0
+    fields = ('text',)
+
+class CommitmentInline(admin.TabularInline):
+    model = Commitment
+    extra = 0
+    fields = ('text', 'commitment_class')
+
+class KPIInline(admin.TabularInline):
+    model = KPI
+    extra = 0
+    fields = ('kpi_text', 'kpi_type', 'metric_name', 'target_value', 'unit')
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
     list_display = (
-        'title', 'location', 'date',
-        'status', 'score',
-        'created_by', 'created_at', 'is_ai_generated'
+        'title', 'location', 'date', 'status', 'document_type', 'score', 
+        'legal_bindingness', 'coverage_scope', 'created_by', 'created_at'
     )
     list_filter = (
-        'date', 'location', 'status',
-        'is_ai_generated',
-        'actors', 'themes', 'tags',
-        'agreement_types', 'beneficiary_groups',
+        'status', 'date', 'location', 'document_type', 'legal_bindingness', 'coverage_scope',
+        'actors__category', 'themes__category', 'agreement_types',
         'countries', 'sdg_alignments'
     )
     search_fields = (
-        'title', 'executive_summary',
-        'characteristics__text',
-        'practical_applications__text',
-        'resulting_commitments__text',
-        'commitments__text',
-        'kpis__kpi'
+        'title', 'executive_summary', 'lead_country_iso',
+        'actors__name', 'themes__name', 'characteristics__text',
+        'practical_applications__text', 'commitments__text'
     )
     date_hierarchy = 'date'
     filter_horizontal = (
-        'actors', 'themes', 'tags',
-        'agreement_types', 'beneficiary_groups',
-        'countries', 'sdg_alignments'
+        'actors', 'themes', 'agreement_types', 
+        'beneficiary_groups', 'countries', 'sdg_alignments'
     )
     readonly_fields = ('created_at', 'updated_at')
+    autocomplete_fields = ('location', 'created_by')
+    
     inlines = [
         DocumentFileInline,
         CharacteristicInline,
         PracticalApplicationInline,
-        ResultingCommitmentInline,
         CommitmentInline,
-        KPITargetInline
+        KPIInline
     ]
 
     fieldsets = (
         ('Basic Information', {
-            'fields': ('title', 'location', 'date', 'status', 'score')
+            'fields': ('title', 'executive_summary', 'location', 'date', 'status', 'document_type')
         }),
-        ('Content', {
+        ('Document Details', {
             'fields': (
-                'executive_summary',
-                # hiding raw lists in favor of inlines
+                'score', 'lead_country_iso', 'legal_bindingness', 
+                'coverage_scope', 'review_schedule', 'start_date', 'end_date'
             )
+        }),
+        ('Quality Metrics', {
+            'fields': ('faithfulness', 'consistency', 'completeness', 'accuracy'),
+            'classes': ('collapse',)
         }),
         ('Relationships', {
             'fields': (
-                'actors', 'themes', 'tags',
-                'agreement_types', 'beneficiary_groups',
-                'countries', 'sdg_alignments'
+                'actors', 'themes', 'agreement_types', 
+                'beneficiary_groups', 'countries', 'sdg_alignments'
             )
         }),
-        ('Analysis and AI', {
-            'fields': ('is_ai_generated', 'confidence_level'),
+        ('Admin Fields', {
+            'fields': ('created_by', 'admin_notes'),
             'classes': ('collapse',)
         }),
-        ('Admin Only', {
-            'fields': ('admin_notes',),
-            'classes': ('collapse',),
-            'description': 'Visible solo para administradores'
-        }),
         ('Metadata', {
-            'fields': ('created_by', 'created_at', 'updated_at'),
+            'fields': ('created_at', 'updated_at'),
             'classes': ('collapse',)
         }),
     )
 
     def get_fieldsets(self, request, obj=None):
-        fsets = super().get_fieldsets(request, obj)
+        fieldsets = super().get_fieldsets(request, obj)
         if not request.user.is_superuser:
-            return [fs for fs in fsets if fs[0] != 'Admin Only']
-        return fsets
+            # Remove admin-only fieldsets for non-superusers
+            return [fs for fs in fieldsets if fs[0] not in ['Admin Fields', 'Quality Metrics']]
+        return fieldsets
 
     def get_readonly_fields(self, request, obj=None):
-        r = list(super().get_readonly_fields(request, obj))
+        readonly = list(super().get_readonly_fields(request, obj))
         if not request.user.is_superuser:
-            r.append('confidence_level')
-        return r
+            readonly.extend(['score', 'faithfulness', 'consistency', 'completeness', 'accuracy'])
+        return readonly
 
     def save_model(self, request, obj, form, change):
         if not change and not obj.created_by:
             obj.created_by = request.user
         super().save_model(request, obj, form, change)
+
+# Register individual models for the related objects
+@admin.register(DocumentFile)
+class DocumentFileAdmin(admin.ModelAdmin):
+    list_display = ('name', 'document', 'created_at')
+    list_filter = ('document',)
+    search_fields = ('name', 'document__title')
+    autocomplete_fields = ('document',)
+
+@admin.register(Characteristic)
+class CharacteristicAdmin(admin.ModelAdmin):
+    list_display = ('text_short', 'document', 'created_at')
+    list_filter = ('document',)
+    search_fields = ('text', 'document__title')
+    autocomplete_fields = ('document',)
+    
+    def text_short(self, obj):
+        return obj.text[:50] + "..." if len(obj.text) > 50 else obj.text
+    text_short.short_description = 'Text'
+
+@admin.register(PracticalApplication)
+class PracticalApplicationAdmin(admin.ModelAdmin):
+    list_display = ('text_short', 'document', 'created_at')
+    list_filter = ('document',)
+    search_fields = ('text', 'document__title')
+    autocomplete_fields = ('document',)
+    
+    def text_short(self, obj):
+        return obj.text[:50] + "..." if len(obj.text) > 50 else obj.text
+    text_short.short_description = 'Text'
+
+@admin.register(Commitment)
+class CommitmentAdmin(admin.ModelAdmin):
+    list_display = ('text_short', 'commitment_class', 'document', 'created_at')
+    list_filter = ('commitment_class', 'document')
+    search_fields = ('text', 'commitment_class', 'document__title')
+    autocomplete_fields = ('document',)
+    
+    def text_short(self, obj):
+        return obj.text[:50] + "..." if len(obj.text) > 50 else obj.text
+    text_short.short_description = 'Text'
+
+@admin.register(KPI)
+class KPIAdmin(admin.ModelAdmin):
+    list_display = ('metric_name', 'kpi_type', 'target_value', 'unit', 'sector', 'document', 'created_at')
+    list_filter = ('kpi_type', 'sector', 'document')
+    search_fields = ('metric_name', 'kpi_text', 'sector', 'document__title')
+    autocomplete_fields = ('document',)
+    
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('document', 'kpi_text', 'kpi_type', 'metric_name')
+        }),
+        ('Target & Measurement', {
+            'fields': ('target_value', 'unit', 'target_description', 'baseline_value')
+        }),
+        ('Implementation', {
+            'fields': ('timeframe', 'measurement_method', 'responsible_entity', 'sector')
+        }),
+    )
