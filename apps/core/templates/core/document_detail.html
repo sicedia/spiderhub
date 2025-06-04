@@ -1,25 +1,27 @@
 {% extends "core/base.html" %}
 {% load static %}
 {% block title %}SPIDERHUB: Detalle de Documento - Transformación Digital UE - AL{% endblock %}
-
+{% block extra_head %}  
+<link rel="stylesheet" href="{% static 'core/css/document-detail.css' %}">
+{% endblock %}
 {% block content %}
 <!-- Document Detail Content -->
   <div class="document-detail-container">
     <div class="document-detail-header">
       <div class="back-link">
-        <a href="{% url 'core:explore' %}">
+        <a href="explore.html">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="currentColor"/>
           </svg>
-          Volver a Resultados
+          Back to Results
         </a>
       </div>
       <div class="document-title-container">
-        <h1 id="document-title">EU-Latin America and Caribbean: Joint Declaration on a Digital Alliance</h1>
+        <h1 id="document-title">EuroLat Resolution on International Cooperation and Multilateralism in the Context of COVID-19</h1>
         <div class="document-meta-header">
-          <span id="document-location">Brussels, Belgium</span> • 
-          <span id="document-date">09 Diciembre 2024</span> • 
-          <span id="document-type">Declaration</span>
+          <span id="document-location">Madrid, Spain</span> • 
+          <span id="document-date">27 July 2023</span> • 
+          <span id="document-type">Resolution</span>
         </div>
       </div>
       <div class="document-actions">
@@ -27,7 +29,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="white"/>
           </svg>
-          Descargar Documento
+          Download Document
         </a>
       </div>
     </div>
@@ -35,377 +37,417 @@
     <div class="document-detail-content">
       <div class="document-main-content">
         <section class="document-section executive-summary">
-          <h2>Resumen Ejecutivo</h2>
+          <h2>Executive Summary</h2>
           <div class="summary-content">
-            <p>The European Union and participating Latin American and Caribbean (LAC) countries have established the EU-LAC Digital Alliance, an informal, values-based framework to deepen partnership and cooperation. Based on a human-centric vision guided by universal human rights and democratic principles, the Alliance provides a strategic forum for regular dialogue and collaboration on a wide range of digital issues.</p>
-            <p>The Alliance aims to promote an inclusive digital society and economy that benefits people, closes digital gaps, and fosters innovation. It supports a bi-regional Investment Agenda under the Global Gateway initiative, funding projects such as the BELLA fibre-optic cable extension, regional Copernicus data centres, and an EU-LAC Digital Accelerator. Priorities will be regularly reviewed, and partners will meet periodically at various levels.</p>
+            <p>The Euro-Latin American Parliamentary Assembly's resolution, adopted on July 27, 2023, emphasizes the need for enhanced international cooperation and multilateralism in response to the COVID-19 pandemic. It highlights the pandemic's impact on global interdependence, revealing the necessity for coordinated global solutions to address health, economic, and social challenges.</p>
+            <p>The resolution calls for a renewed commitment to multilateralism, advocating for equitable access to vaccines, strengthening public health systems, and promoting sustainable development. It urges the EU and Latin American countries to deepen their cooperation, particularly in health, environmental protection, and addressing poverty and inequality exacerbated by the pandemic. The document also stresses the importance of ratifying association agreements and enhancing South-South cooperation to foster resilience and recovery in the region.</p>
           </div>
         </section>
 
         <section class="document-section characteristics">
-          <h2>Características</h2>
+          <h2>Characteristics</h2>
           <ul class="characteristics-list">
-            <li>Informal, values-based framework for bi-regional cooperation.</li>
-            <li>Open to EU/LAC countries, Team Europe, and other stakeholders.</li>
-            <li>Covers a wide range of digital issues and policy dialogue.</li>
-            <li>Supports a bi-regional Investment Agenda via Global Gateway.</li>
-            <li>Based on a human-centric vision and shared values.</li>
-            <li>Aims to close digital gaps and promote an inclusive digital society.</li>
+            <li>Emphasizes the need for renewed commitment to multilateralism in response to global challenges exacerbated by COVID-19.</li>
+            <li>Highlights the importance of international cooperation in addressing health, economic, and social issues, particularly in the context of vaccine distribution and pandemic preparedness.</li>
+            <li>Calls for enhanced collaboration between the EU and Latin America to tackle shared challenges and promote sustainable development.</li>
+            <li>Recognizes the rise of nationalism and its impact on global cooperation, advocating for a balance between national interests and multilateral efforts.</li>
+            <li>Stresses the significance of addressing poverty and inequality as part of the recovery process from the pandemic.</li>
           </ul>
         </section>
 
         <section class="document-section tags-section">
-          <h2>Temas</h2>
+          <h2>Themes</h2>
           <div class="themes-container">
             <div class="theme-group">
-              <h3>Digital Transformation & Strategy</h3>
+              <h3>Regional & International Cooperation</h3>
               <div class="tags-container">
-                <span class="doc-tag theme">Digital Agenda</span>
-                <span class="doc-tag theme">Digital Acceleration</span>
-                <span class="doc-tag theme">Digital Infrastructure</span>
-                <span class="doc-tag theme">Digital Trade</span>
-                <span class="doc-tag theme">Digital Policy</span>
-                <span class="doc-tag theme">Digital Investment</span>
-                <span class="doc-tag theme">Digital Regulation</span>
-                <span class="doc-tag theme">Digital Sustainability</span>
-                <span class="doc-tag theme">Digital Economy</span>
-                <span class="doc-tag theme">Digital Skills Development</span>
-                <span class="doc-tag theme">Digital Decade</span>
-              </div>
-            </div>
-            
-            <div class="theme-group">
-              <h3>Technology & Innovation</h3>
-              <div class="tags-container">
-                <span class="doc-tag theme">Artificial Intelligence</span>
-                <span class="doc-tag theme">Technology Regulations</span>
-                <span class="doc-tag theme">Sustainable Tech</span>
+                <span class="doc-tag theme">Global Digital Cooperation</span>
+                <span class="doc-tag theme">Multilateralism</span>
+                <span class="doc-tag theme">Digital & Technological Partnerships</span>
               </div>
             </div>
             
             <div class="theme-group">
               <h3>Data & Governance</h3>
               <div class="tags-container">
-                <span class="doc-tag theme">Data Governance</span>
-                <span class="doc-tag theme">Digital Rights</span>
                 <span class="doc-tag theme">Digital Governance</span>
-                <span class="doc-tag theme">Data Protection</span>
-                <span class="doc-tag theme">Cybersecurity</span>
-                <span class="doc-tag theme">Data Privacy</span>
-                <span class="doc-tag theme">Digital Access</span>
-                <span class="doc-tag theme">Digital Identity Management</span>
-                <span class="doc-tag theme">Internet Governance</span>
-                <span class="doc-tag theme">E-Governance</span>
-              </div>
-            </div>
-            
-            <div class="theme-group">
-              <h3>Inclusion & Social Development</h3>
-              <div class="tags-container">
-                <span class="doc-tag theme">Digital Inclusion</span>
-                <span class="doc-tag theme">Social Cohesion</span>
-                <span class="doc-tag theme">Gender Equality in Tech</span>
-                <span class="doc-tag theme">Digital Education</span>
-                <span class="doc-tag theme">Connectivity</span>
-                <span class="doc-tag theme">Sustainable Digital Development</span>
-              </div>
-            </div>
-            
-            <div class="theme-group">
-              <h3>Regional & International Cooperation</h3>
-              <div class="tags-container">
-                <span class="doc-tag theme">EU-LAC Digital Alliance</span>
-                <span class="doc-tag theme">Bi-regional Cooperation</span>
-                <span class="doc-tag theme">Digital & Technological Partnerships</span>
+                <span class="doc-tag theme">Data Governance</span>
               </div>
             </div>
           </div>
         </section>
 
         <section class="document-section actors-section">
-          <h2>Actores</h2>
+          <h2>Actors</h2>
           <div class="actors-container">
             <div class="actor-group">
               <h3>Political Actors</h3>
               <div class="tags-container">
-                <span class="doc-tag actor">Governments</span>
+                <span class="doc-tag actor">Fernando Arce (Parlatino, Panama)</span>
+                <span class="doc-tag actor">Leopoldo López Gil (European Parliament)</span>
                 <span class="doc-tag actor">European Union</span>
                 <span class="doc-tag actor">EU Member States</span>
-                <span class="doc-tag actor">Community of Latin American and Caribbean States</span>
-                <span class="doc-tag actor">Government Officials</span>
-              </div>
-            </div>
-            
-            <div class="actor-group">
-              <h3>Research and Innovation Actors</h3>
-              <div class="tags-container">
-                <span class="doc-tag actor">Digital for Development Hub</span>
-                <span class="doc-tag actor">Academic Institutions</span>
-                <span class="doc-tag actor">Research Performing Organisations</span>
-                <span class="doc-tag actor">LAC Space Agencies</span>
+                <span class="doc-tag actor">European Parliament</span>
+                <span class="doc-tag actor">European Commission</span>
+                <span class="doc-tag actor">United Nations</span>
+                <span class="doc-tag actor">Organisation of American States</span>
               </div>
             </div>
             
             <div class="actor-group">
               <h3>Economic Actors</h3>
               <div class="tags-container">
-                <span class="doc-tag actor">Private Sector Representatives</span>
-                <span class="doc-tag actor">Industry Actors</span>
-              </div>
-            </div>
-            
-            <div class="actor-group">
-              <h3>Civil Society Actors</h3>
-              <div class="tags-container">
-                <span class="doc-tag actor">Civil Society Organisations</span>
+                <span class="doc-tag actor">Organisation for Economic Cooperation and Development</span>
+                <span class="doc-tag actor">Inter-American Development Bank</span>
+                <span class="doc-tag actor">World Bank</span>
               </div>
             </div>
           </div>
         </section>
 
         <section class="document-section applications">
-          <h2>Aplicaciones Prácticas</h2>
+          <h2>Practical Applications</h2>
           <ul class="document-list">
-            <li>The BELLA programme, an EU-supported infrastructure providing secure digital backbone connectivity.</li>
-            <li>Copernicus Centres, including two regional data centres being implemented in Panama and Chile.</li>
-            <li>The LAC Cyber Competence Centre, an EU-supported infrastructure.</li>
-            <li>Specific projects on cybercrime under the EL PAcCTO programme.</li>
-            <li>Extension of the BELLA fibre-optic cable to interested countries.</li>
-            <li>Implementation of a regional Copernicus Strategy.</li>
-            <li>Establishment of an EU-LAC Digital Accelerator to foster multi-stakeholder collaboration and facilitate joint ventures.</li>
+            <li>Established the EIC Accelerator and COVAX mechanism to ensure fair and equitable access to COVID-19 treatments and vaccines.</li>
+            <li>Ongoing negotiations at the WHO to establish a Pandemic Treaty for better preparedness for future pandemics.</li>
+            <li>Support for the immediate ratification of association agreements between the EU and Mercosur, Chile, and Mexico to promote bi-regional alliances.</li>
+            <li>Initiatives for regional health cooperation, including the establishment of a transnational institute for infectious diseases.</li>
+            <li>Urging governments and the OAS to consider special drawing rights as a funding source for social and economic recovery post-COVID-19.</li>
+            <li>Commitment to adapt EU development aid policy to address the new health, economic, and social challenges created by the COVID-19 pandemic.</li>
           </ul>
         </section>
 
         <section class="document-section commitments">
-          <h2>Compromisos Resultantes</h2>
-          <ul class="document-list numbered">
-            <li>Facilitate and accelerate at least 40 joint ventures for bi-regional innovation and digital transformation (in 2023).</li>
-            <li>Implement a regional Copernicus Strategy including two regional Copernicus data centres in Panama and Chile (in 2023).</li>
-            <li>Review progress on an annual basis.</li>
-          </ul>
+          <h2>Resulting Commitments</h2>
+          <p class="no-commitments">No specific commitments were identified in this document.</p>
         </section>
 
         <section class="document-section technical-details">
-          <h2>Detalles Técnicos</h2>
+          <h2>Technical Details</h2>
           <div class="technical-grid">
             <div class="technical-item">
-              <div class="technical-label">Tipo de Acuerdo</div>
-              <div class="technical-value">Declaration</div>
+              <div class="technical-label">Agreement Type</div>
+              <div class="technical-value">Resolution</div>
             </div>
             <div class="technical-item">
-              <div class="technical-label">Carácter Legal</div>
+              <div class="technical-label">Legal Character</div>
               <div class="technical-value">Politically-binding</div>
             </div>
             <div class="technical-item">
-              <div class="technical-label">Alcance</div>
-              <div class="technical-value">Regional</div>
+              <div class="technical-label">Scope</div>
+              <div class="technical-value">Multilateral</div>
             </div>
             <div class="technical-item">
-              <div class="technical-label">Fecha de Inicio</div>
-              <div class="technical-value">17 Julio 2023</div>
+              <div class="technical-label">Start Date</div>
+              <div class="technical-value">27 July 2023</div>
             </div>
             <div class="technical-item">
-              <div class="technical-label">Fecha de Finalización</div>
-              <div class="technical-value">21 Julio 2023</div>
+              <div class="technical-label">End Date</div>
+              <div class="technical-value">27 July 2023</div>
             </div>
             <div class="technical-item">
-              <div class="technical-label">País Coordinador</div>
-              <div class="technical-value">Colombia (COL)</div>
+              <div class="technical-label">Lead Country</div>
+              <div class="technical-value">Spain (ESP)</div>
+            </div>
+            <div class="technical-item">
+              <div class="technical-label">Responsible Entity</div>
+              <div class="technical-value">European Union</div>
+            </div>
+            <div class="technical-item">
+              <div class="technical-label">Quality Score</div>
+              <div class="technical-value">93%</div>
             </div>
           </div>
         </section>
 
         <section class="document-section alignment-section">
-          <div class="alignment-row">
-            <div class="alignment-col">
-              <h3>Alineación con Políticas UE</h3>
-              <div class="tags-container">
-                <span class="doc-tag">Global Gateway</span>
-                <span class="doc-tag">Digital Decade</span>
+          <h2>Policy & Strategic Alignment</h2>
+          <div class="alignment-container">
+            <div class="alignment-card eu-policies">
+              <div class="alignment-header">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" fill="#094EB2" opacity="0.1"/>
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#094EB2"/>
+                </svg>
+                <h3>EU Policy Alignment</h3>
+              </div>
+              <div class="alignment-content">
+                <div class="policy-tag">NDICI-Global Europe</div>
               </div>
             </div>
-            <div class="alignment-col">
-              <h3>Alineación con ODS</h3>
-              <div class="tags-container">
-                <span class="doc-tag">SDG 8</span>
-                <span class="doc-tag">SDG 9</span>
-                <span class="doc-tag">SDG 17</span>
+            
+            <div class="alignment-card sdg-alignment">
+              <div class="alignment-header">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" fill="#34A853" opacity="0.1"/>
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#34A853"/>
+                </svg>
+                <h3>SDG Alignment</h3>
+              </div>
+              <div class="alignment-content">
+                <div class="sdg-tags-grid">
+                  <div class="sdg-tag">SDG 1: No Poverty</div>
+                  <div class="sdg-tag">SDG 3: Good Health and Well-being</div>
+                  <div class="sdg-tag">SDG 10: Reduced Inequalities</div>
+                  <div class="sdg-tag">SDG 13: Climate Action</div>
+                  <div class="sdg-tag">SDG 16: Peace, Justice and Strong Institutions</div>
+                  <div class="sdg-tag">SDG 17: Partnerships for the Goals</div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         <section class="document-section beneficiaries">
-          <h2>Grupos Beneficiarios</h2>
-          <div class="beneficiaries-grid">
-            <div class="beneficiary-item">
-              <div class="beneficiary-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <h2>Beneficiary Groups</h2>
+          <div class="beneficiaries-enhanced-grid">
+            <div class="beneficiary-card">
+              <div class="beneficiary-icon-wrapper">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#094EB2"/>
                 </svg>
               </div>
-              <div class="beneficiary-label">Citizens</div>
-              <div class="beneficiary-category">General Citizens / Consumers</div>
+              <div class="beneficiary-info">
+                <div class="beneficiary-title">Citizens</div>
+                <div class="beneficiary-category">General Citizens / Consumers</div>
+              </div>
             </div>
-            <div class="beneficiary-item">
-              <div class="beneficiary-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 13.75c-2.34 0-7 1.17-7 3.5V19h14v-1.75c0-2.33-4.66-3.5-7-3.5zM4.34 17c.84-.58 2.87-1.25 4.66-1.25s3.82.67 4.66 1.25H4.34zM9 12c1.93 0 3.5-1.57 3.5-3.5S10.93 5 9 5 5.5 6.57 5.5 8.5 7.07 12 9 12zm0-5c.83 0 1.5.67 1.5 1.5S9.83 10 9 10s-1.5-.67-1.5-1.5S8.17 7 9 7zm7.04 6.81c1.16.84 1.96 1.96 1.96 3.44V19h4v-1.75c0-2.02-3.5-3.17-5.96-3.44zM15 12c1.93 0 3.5-1.57 3.5-3.5S16.93 5 15 5c-.54 0-1.04.13-1.5.35.63.89 1 1.98 1 3.15s-.37 2.26-1 3.15c.46.22.96.35 1.5.35z" fill="#34A853"/>
+            
+            <div class="beneficiary-card">
+              <div class="beneficiary-icon-wrapper">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="#34A853"/>
                 </svg>
               </div>
-              <div class="beneficiary-label">Youth</div>
-              <div class="beneficiary-category">Students & Youth</div>
+              <div class="beneficiary-info">
+                <div class="beneficiary-title">Gender Equality Initiatives</div>
+                <div class="beneficiary-category">Women & Girls</div>
+              </div>
             </div>
-            <div class="beneficiary-item">
-              <div class="beneficiary-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z" fill="#FBBC04"/>
+            
+            <div class="beneficiary-card">
+              <div class="beneficiary-icon-wrapper">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FBBC04"/>
                 </svg>
               </div>
-              <div class="beneficiary-label">Small and Medium Enterprises</div>
-              <div class="beneficiary-category">SMEs / Businesses</div>
+              <div class="beneficiary-info">
+                <div class="beneficiary-title">Migrants</div>
+                <div class="beneficiary-category">Migrants & Refugees</div>
+              </div>
             </div>
-            <div class="beneficiary-item">
-              <div class="beneficiary-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z" fill="#EA4335"/>
+            
+            <div class="beneficiary-card">
+              <div class="beneficiary-icon-wrapper">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FBBC04"/>
                 </svg>
               </div>
-              <div class="beneficiary-label">Scientific Community</div>
-              <div class="beneficiary-category">Researchers & Academia</div>
+              <div class="beneficiary-info">
+                <div class="beneficiary-title">Refugees</div>
+                <div class="beneficiary-category">Migrants & Refugees</div>
+              </div>
             </div>
-            <div class="beneficiary-item">
-              <div class="beneficiary-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="#555"/>
+            
+            <div class="beneficiary-card">
+              <div class="beneficiary-icon-wrapper">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#EA4335"/>
                 </svg>
               </div>
-              <div class="beneficiary-label">Other</div>
-              <div class="beneficiary-category">Other</div>
+              <div class="beneficiary-info">
+                <div class="beneficiary-title">Underserved Communities</div>
+                <div class="beneficiary-category">Rural & Remote Communities</div>
+              </div>
             </div>
           </div>
         </section>
 
         <section class="document-section kpi-section">
-          <h2>Indicadores Clave de Rendimiento (KPIs)</h2>
-          <div class="kpi-table">
-            <div class="kpi-row kpi-header">
-              <div class="kpi-cell">Indicador</div>
-              <div class="kpi-cell">Objetivo</div>
-              <div class="kpi-cell">Unidad</div>
+          <h2>Key Performance Indicators (KPIs)</h2>
+          <div class="kpi-enhanced-container">
+            <div class="kpi-card">
+              <div class="kpi-indicator">Research and Production Capacity</div>
+              <div class="kpi-details">
+                <div class="kpi-responsible">Governments and public administrations</div>
+                <div class="kpi-sector health">Health</div>
+              </div>
             </div>
-            <div class="kpi-row">
-              <div class="kpi-cell">Facilitate and accelerate joint ventures for bi-regional innovation and digital transformation</div>
-              <div class="kpi-cell">40</div>
-              <div class="kpi-cell">joint ventures</div>
+            
+            <div class="kpi-card">
+              <div class="kpi-indicator">Trade Barriers Reduction</div>
+              <div class="kpi-details">
+                <div class="kpi-responsible">Governments and trade organizations</div>
+                <div class="kpi-sector trade">Trade/Health</div>
+              </div>
             </div>
-            <div class="kpi-row">
-              <div class="kpi-cell">Implement regional Copernicus data centres</div>
-              <div class="kpi-cell">2</div>
-              <div class="kpi-cell">centres</div>
+            
+            <div class="kpi-card">
+              <div class="kpi-indicator">Pandemic Treaty Support</div>
+              <div class="kpi-details">
+                <div class="kpi-responsible">EU and Latin American and Caribbean countries</div>
+                <div class="kpi-sector cooperation">Health/International Cooperation</div>
+              </div>
+            </div>
+            
+            <div class="kpi-card">
+              <div class="kpi-indicator">Decarbonisation Efforts</div>
+              <div class="kpi-details">
+                <div class="kpi-responsible">Governments and international organizations</div>
+                <div class="kpi-sector environment">Environment</div>
+              </div>
+            </div>
+            
+            <div class="kpi-card">
+              <div class="kpi-indicator">Sustainable Development Goals Achievement</div>
+              <div class="kpi-details">
+                <div class="kpi-responsible">All public and private stakeholders</div>
+                <div class="kpi-sector development">Sustainable Development</div>
+              </div>
+            </div>
+            
+            <div class="kpi-card">
+              <div class="kpi-indicator">International Cooperation on Peace</div>
+              <div class="kpi-details">
+                <div class="kpi-responsible">Governments</div>
+                <div class="kpi-sector relations">International Relations</div>
+              </div>
+            </div>
+            
+            <div class="kpi-card">
+              <div class="kpi-indicator">Poverty and Debt Reduction</div>
+              <div class="kpi-details">
+                <div class="kpi-responsible">Governments and international organizations</div>
+                <div class="kpi-sector economy">Economic Development</div>
+              </div>
+            </div>
+            
+            <div class="kpi-card">
+              <div class="kpi-indicator">Health Plan Adaptation</div>
+              <div class="kpi-details">
+                <div class="kpi-responsible">National governments</div>
+                <div class="kpi-sector health">Health</div>
+              </div>
+            </div>
+            
+            <div class="kpi-card">
+              <div class="kpi-indicator">Gender Equality Integration</div>
+              <div class="kpi-details">
+                <div class="kpi-responsible">Governments and organizations involved in partnerships</div>
+                <div class="kpi-sector equality">Gender Equality</div>
+              </div>
             </div>
           </div>
         </section>
 
         <section class="document-section countries-section">
-          <h2>Países Participantes</h2>
-          <div class="countries-grid">
-            <div class="country-tag">Argentina (ARG)</div>
-            <div class="country-tag">Bahamas (BHS)</div>
-            <div class="country-tag">Belice (BLZ)</div>
-            <div class="country-tag">Brasil (BRA)</div>
-            <div class="country-tag">Barbados (BRB)</div>
-            <div class="country-tag">Chile (CHL)</div>
-            <div class="country-tag">Costa Rica (CRI)</div>
-            <div class="country-tag">República Dominicana (DOM)</div>
-            <div class="country-tag">Ecuador (ECU)</div>
-            <div class="country-tag">Granada (GRD)</div>
-            <div class="country-tag">Guatemala (GTM)</div>
-            <div class="country-tag">Guyana (GUY)</div>
-            <div class="country-tag">Honduras (HND)</div>
-            <div class="country-tag">Jamaica (JAM)</div>
-            <div class="country-tag">México (MEX)</div>
-            <div class="country-tag">Panamá (PAN)</div>
-            <div class="country-tag">Perú (PER)</div>
-            <div class="country-tag">Paraguay (PRY)</div>
-            <div class="country-tag">El Salvador (SLV)</div>
-            <div class="country-tag">Surinam (SUR)</div>
-            <div class="country-tag">Trinidad y Tobago (TTO)</div>
-            <div class="country-tag">Uruguay (URY)</div>
+          <h2>Participating Countries</h2>
+          <div class="countries-enhanced-container">
+            <div class="country-card">
+              <div class="country-flag">🇵🇦</div>
+              <div class="country-info">
+                <div class="country-name">Panama</div>
+                <div class="country-code">PAN</div>
+              </div>
+            </div>
+            
+            <div class="country-card">
+              <div class="country-flag">🇪🇸</div>
+              <div class="country-info">
+                <div class="country-name">Spain</div>
+                <div class="country-code">ESP</div>
+              </div>
+            </div>
+            
+            <div class="country-card">
+              <div class="country-flag">🇲🇽</div>
+              <div class="country-info">
+                <div class="country-name">Mexico</div>
+                <div class="country-code">MEX</div>
+              </div>
+            </div>
+            
+            <div class="country-card">
+              <div class="country-flag">🇨🇱</div>
+              <div class="country-info">
+                <div class="country-name">Chile</div>
+                <div class="country-code">CHL</div>
+              </div>
+            </div>
           </div>
         </section>
       </div>
 
       <div class="document-sidebar">
         <div class="document-info-card">
-          <h3>Información Básica</h3>
+          <h3>Basic Information</h3>
           <div class="info-item">
-            <div class="info-label">Título</div>
-            <div class="info-value">EU-Latin America and Caribbean: Joint Declaration on a Digital Alliance</div>
+            <div class="info-label">Title</div>
+            <div class="info-value">EuroLat Resolution on International Cooperation and Multilateralism in the Context of COVID-19</div>
           </div>
           <div class="info-item">
-            <div class="info-label">Fecha</div>
-            <div class="info-value">09 Diciembre 2024</div>
+            <div class="info-label">Date</div>
+            <div class="info-value">27 July 2023</div>
           </div>
           <div class="info-item">
-            <div class="info-label">Ubicación</div>
-            <div class="info-value">Brussels, Belgium</div>
+            <div class="info-label">Location</div>
+            <div class="info-value">Madrid, Spain</div>
           </div>
           <div class="info-item">
-            <div class="info-label">Tipo</div>
-            <div class="info-value">Declaration</div>
+            <div class="info-label">Type</div>
+            <div class="info-value">Resolution</div>
           </div>
           <div class="info-item">
-            <div class="info-label">Carácter Legal</div>
+            <div class="info-label">Legal Character</div>
             <div class="info-value">Politically-binding</div>
           </div>
         </div>
 
         <div class="related-documents">
-          <h3>Documentos Relacionados</h3>
+          <h3>Related Documents</h3>
           <div class="related-document">
-            <div class="related-title">Global Gateway Europe-Latin America and Caribbean Digital Alliance</div>
-            <div class="related-meta">Comisión Europea • 2023</div>
-            <a href="#" class="btn btn-secondary btn-sm">Ver Detalles</a>
+            <div class="related-title">EU-LAC Partnership: The next phase</div>
+            <div class="related-meta">European Commission • 2023</div>
+            <a href="#" class="btn btn-secondary btn-sm">View Details</a>
           </div>
           <div class="related-document">
-            <div class="related-title">Plan de Acción Digital EU-LATAM</div>
-            <div class="related-meta">Comisión Europea • 2023</div>
-            <a href="#" class="btn btn-secondary btn-sm">Ver Detalles</a>
+            <div class="related-title">NDICI-Global Europe Strategy</div>
+            <div class="related-meta">European Commission • 2022</div>
+            <a href="#" class="btn btn-secondary btn-sm">View Details</a>
           </div>
           <div class="related-document">
-            <div class="related-title">BELLA Programme Framework</div>
-            <div class="related-meta">EU-LAC • 2022</div>
-            <a href="#" class="btn btn-secondary btn-sm">Ver Detalles</a>
+            <div class="related-title">WHO Pandemic Preparedness Framework</div>
+            <div class="related-meta">World Health Organization • 2023</div>
+            <a href="#" class="btn btn-secondary btn-sm">View Details</a>
           </div>
         </div>
 
         <div class="social-sharing">
-          <h3>Compartir</h3>
+          <h3>Share</h3>
           <div class="share-buttons">
             <a href="#" class="share-button">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z" fill="#3b5998"/>
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#555"/>
               </svg>
-              <span>Facebook</span>
+              <span>Email</span>
             </a>
             <a href="#" class="share-button">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" fill="#1DA1F2"/>
+                <path d="M20.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79C2.63 5.42 2.42 6.16 2.42 6.94C2.42 8.43 3.17 9.75 4.33 10.5C3.62 10.5 2.96 10.3 2.38 10V10.03C2.38 12.11 3.86 13.85 5.82 14.24C5.46 14.34 5.08 14.39 4.69 14.39C4.42 14.39 4.15 14.36 3.89 14.31C4.43 16 6 17.26 7.89 17.29C6.43 18.45 4.58 19.13 2.56 19.13C2.22 19.13 1.88 19.11 1.54 19.07C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79C20.33 8.6 20.33 8.42 20.32 8.23C21.16 7.63 21.88 6.87 22.46 6Z" fill="#1DA1F2"/>
               </svg>
               <span>Twitter</span>
             </a>
             <a href="#" class="share-button">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-5 14h-2v-6h2v6zm0-8h-2V7h2v2z" fill="#0077B5"/>
+                <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM8.5 6.5C9.33 6.5 10 7.17 10 8C10 8.83 9.33 9.5 8.5 9.5C7.67 9.5 7 8.83 7 8C7 7.17 7.67 6.5 8.5 6.5ZM11 14H6V12.5C6 11.12 7.12 10 8.5 10C9.88 10 11 11.12 11 12.5V14ZM18 14H13V12.5C13 11.12 14.12 10 15.5 10C16.88 10 18 11.12 18 12.5V14ZM15.5 9.5C14.67 9.5 14 8.83 14 8C14 7.17 14.67 6.5 15.5 6.5C16.33 6.5 17 7.17 17 8C17 8.83 16.33 9.5 15.5 9.5Z" fill="#3b5998"/>
+              </svg>
+              <span>Facebook</span>
+            </a>
+            <a href="https://www.linkedin.com/company/spider-network-eu/" class="share-button">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM8.5 6.5C9.33 6.5 10 7.17 10 8C10 8.83 9.33 9.5 8.5 9.5C7.67 9.5 7 8.83 7 8C7 7.17 7.67 6.5 8.5 6.5ZM11 14H6V12.5C6 11.12 7.12 10 8.5 10C9.88 10 11 11.12 11 12.5V14ZM18 14H13V12.5C13 11.12 14.12 10 15.5 10C16.88 10 18 11.12 18 12.5V14ZM15.5 9.5C14.67 9.5 14 8.83 14 8C14 7.17 14.67 6.5 15.5 6.5C16.33 6.5 17 7.17 17 8C17 8.83 16.33 9.5 15.5 9.5Z" fill="white"/>
               </svg>
               <span>LinkedIn</span>
-            </a>
-            <a href="#" class="share-button">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1v4c0 .55-.45 1-1 1zm1-8h-2V7h2v2z" fill="#555"/>
-              </svg>
-              <span>Correo</span>
             </a>
           </div>
         </div>

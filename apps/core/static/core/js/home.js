@@ -1,123 +1,12 @@
-// Global utilities and reusable functions
-const Utils = {
-  // Animation and interaction constants
-  ANIMATION_DURATION: 2000,
-  RESIZE_DEBOUNCE_DELAY: 250,
-  CAROUSEL_CARDS_PER_VIEW: {
-    mobile: 1,
-    tablet: 2,
-    desktop: 3
-  },
-  BREAKPOINTS: {
-    mobile: 768,
-    tablet: 992
-  },
-
-  // Optimized intersection observer for animations
-  createIntersectionObserver(callback, options = {}) {
-    const defaultOptions = { threshold: 0.5, ...options };
-    return new IntersectionObserver(callback, defaultOptions);
-  },
-
-  // Debounced resize handler
-  debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
-  },
-
-  // Animate counter with modern syntax
-  animateCounter(target, duration = 2000) {
-    const targetValue = parseInt(target.getAttribute('data-target'));
-    const suffix = target.getAttribute('data-suffix') || '';
-    const increment = targetValue / (duration / 16);
-    let count = 0;
-    
-    const updateCounter = () => {
-      count = Math.min(count + increment, targetValue);
-      target.textContent = Math.floor(count) + suffix;
-      
-      if (count < targetValue) {
-        requestAnimationFrame(updateCounter);
-      }
-    };
-    
-    updateCounter();
-  },
-
-  // Get responsive cards per view for carousel
-  getCardsPerView() {
-    const width = window.innerWidth;
-    if (width < this.BREAKPOINTS.mobile) return this.CAROUSEL_CARDS_PER_VIEW.mobile;
-    if (width < this.BREAKPOINTS.tablet) return this.CAROUSEL_CARDS_PER_VIEW.tablet;
-    return this.CAROUSEL_CARDS_PER_VIEW.desktop;
-  },
-
-  // Mobile navigation handler - shared across pages
-  initializeMobileNavigation(toggleSelector = '.mobile-menu-toggle', overlaySelector = '.mobile-nav-overlay') {
-    const toggleButton = document.querySelector(toggleSelector);
-    const overlay = document.querySelector(overlaySelector);
-    
-    if (!toggleButton || !overlay) return;
-    
-    let isMenuOpen = false;
-    
-    toggleButton.addEventListener('click', () => {
-      isMenuOpen = !isMenuOpen;
-      toggleButton.classList.toggle('active', isMenuOpen);
-      overlay.classList.toggle('active', isMenuOpen);
-      
-      // Prevent body scroll when menu is open
-      document.body.style.overflow = isMenuOpen ? 'hidden' : '';
-    });
-    
-    // Close menu when clicking on a link
-    const mobileNavLinks = overlay.querySelectorAll('.mobile-nav-links a');
-    mobileNavLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        isMenuOpen = false;
-        toggleButton.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-    
-    // Close menu when clicking outside
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        isMenuOpen = false;
-        toggleButton.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-    
-    // Close menu on window resize if it becomes too wide
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 992 && isMenuOpen) {
-        isMenuOpen = false;
-        toggleButton.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-  }
-};
+// Home page specific functionality
+import { Utils } from './main.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize all components using modern approach
+  // Initialize all home page components
   const components = {
     statNumbers: document.querySelectorAll('.stat-number'),
     nodeWeb: document.getElementById('node-web'),
-    carouselTrack: document.querySelector('.carousel-track'),
-    mobileMenuToggle: document.querySelector('.mobile-menu-toggle'),
-    mobileNavOverlay: document.querySelector('.mobile-nav-overlay')
+    carouselTrack: document.querySelector('.carousel-track')
   };
 
   // Initialize stat counters if present
@@ -134,9 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (components.carouselTrack) {
     initializeCarousel();
   }
-  
-  // Initialize mobile navigation using shared utility
-  Utils.initializeMobileNavigation();
 });
 
 // Modular stat counter initialization
