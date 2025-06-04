@@ -10,11 +10,16 @@ def home_page(request):
     document_count = Document.objects.count()
     # Count unique countries from the documents
     country_count = Document.objects.values('country').distinct().count()
+    
+    # Count unique actors from the documents (assuming there's an 'actors' field)
+    actors_count = Document.objects.values('actors').distinct().count()
+
 
     context = {
         'recent_documents': recent_documents,
         'document_count': document_count,
         'country_count': country_count,
+        'actors_count': actors_count,
     }
 
     return render(request, template_name, context)

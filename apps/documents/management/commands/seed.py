@@ -24,6 +24,7 @@ from pathlib import Path
 
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
+from django.apps import apps
 
 from apps.documents.models import (
     Actor,
@@ -513,8 +514,51 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("--dry-run", action="store_true", help="Parse files without saving to the DB.")
         parser.add_argument("--limit", type=int, default=None, help="Process only the first N files.")
+        parser.add_argument("--no-truncate", action="store_true", help="Skip truncating existing data before import.")
+
+    def _truncate_data(self):
+        """Remove all existing documents and related data."""
+        self.stdout.write(self.style.WARNING("Truncating existing data..."))
+        
+        # Get the documents app models
+        documents_app = apps.get_app_config('documents')
+        models_to_clear = []
+        
+        # Order matters for FK constraints - clear in reverse dependency order
+        model_names_ordered = [
+            'DocumentBeneficiaryGroupRaw',
+            'DocumentTheme', 
+            'DocumentActor',
+            'CommitmentDetail',
+            'Commitment',
+            'KPI',
+            'PracticalApplication',
+            'Document',  # Clear documents after all related objects
+            'BeneficiaryGroupRaw',
+            'BeneficiaryGroup',
+            'Theme',
+            'Actor',
+            'SDG',
+        ]
+        
+        for model_name in model_names_ordered:
+            try:
+                model = documents_app.get_model(model_name)
+                count = model.objects.count()
+                if count > 0:
+                    model.objects.all().delete()
+                    self.stdout.write(f"  Cleared {count} {model_name} records")
+            except LookupError:
+                # Model doesn't exist, skip
+                continue
+        
+        self.stdout.write(self.style.SUCCESS("Data truncation completed."))
 
     def handle(self, *args, **options):
+        # Truncate existing data unless --no-truncate is specified
+        if not options.get('no_truncate', False):
+            self._truncate_data()
+        
         # Use the same data directory structure as the original
         data_dir = Path(__file__).resolve().parents[4] / 'data'
         if not data_dir.exists():
@@ -538,6 +582,7 @@ class Command(BaseCommand):
             try:
                 with open(path, "r", encoding="utf-8") as fp:
                     data = json.load(fp)
+                
                 Loader(data, dry_run=dry_run).run()
                 ok += 1
                 if dry_run:
