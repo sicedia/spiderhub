@@ -1,213 +1,394 @@
-# SPIDER_WEB Django Project
+# SPIDERHUB - Digital Transformation Documentation Platform
 
-A Django-based web application for [brief description of your project purpose].
+A Django-based web application for analyzing and visualizing documents and agreements related to digital transformation between the European Union and Latin America.
 
-## Installation
+## 🚀 Features
 
-### Prerequisites
-- Python 3.8+ installed
+- **Document Analysis**: AI-powered extraction of metadata from PDF documents
+- **Intelligent Search**: Advanced filtering by location, date, actors, themes, and confidence levels
+- **Relationship Mapping**: Visualization of connections between documents and entities
+- **Admin Panel**: Comprehensive document management and metadata editing
+- **Multilingual Support**: Built with internationalization in mind
+- **Responsive Design**: Modern UI optimized for all devices
+
+## 📋 Prerequisites
+
+- Python 3.8+ 
 - pip (Python package manager)
+- Git
+- PostgreSQL (for production) or SQLite (for development)
 
-### Setup Environment
+## 🛠️ Installation
 
-1. Clone the repository
-```bash
-git clone [your-repository-url]
-cd SPIDER_WEB
+### Development Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone [your-repository-url]
+   cd spider-web
+   ```
+
+2. **Create and activate virtual environment**
+   ```bash
+   # Create virtual environment
+   python -m venv pyspider
+   
+   # Activate virtual environment
+   # On Windows
+   pyspider\Scripts\activate
+   
+   # On macOS/Linux
+   source pyspider/bin/activate
+   ```
+
+3. **Install dependencies**
+   ```bash
+   # Upgrade pip
+   python -m pip install --upgrade pip
+   
+   # Install development dependencies
+   pip install -r requirements/development.txt
+   ```
+
+4. **Environment configuration**
+   ```bash
+   # Copy environment template
+   cp .env.example .env
+   
+   # Edit .env file with your configuration
+   # Set DEBUG=True for development
+   ```
+
+5. **Database setup**
+   ```bash
+   # Run migrations
+   python manage.py makemigrations
+   python manage.py migrate
+   
+   # Create superuser
+   python manage.py createsuperuser
+   
+   # Load initial data (optional)
+   python manage.py seed
+   ```
+
+6. **Run development server**
+   ```bash
+   python manage.py runserver
+   ```
+
+   Access the application at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+## 📁 Project Structure
+
+```
+spider-web/
+├── apps/                           # Django applications
+│   ├── __init__.py
+│   ├── admin_panel/               # Administration interface
+│   │   ├── static/               # Admin-specific assets
+│   │   ├── templates/            # Admin templates
+│   │   ├── views.py              # Admin views
+│   │   └── urls.py               # Admin URL patterns
+│   ├── core/                     # Core application logic
+│   │   ├── static/               # Core static files
+│   │   ├── templates/            # Core templates
+│   │   ├── management/           # Custom management commands
+│   │   ├── models.py             # Core data models
+│   │   ├── views.py              # Core views
+│   │   └── urls.py               # Core URL patterns
+│   ├── documents/                # Document management
+│   │   ├── data/                 # Seed data files
+│   │   ├── models.py             # Document models
+│   │   ├── serializers.py        # API serializers
+│   │   └── views.py              # Document views
+│   └── search/                   # Search functionality
+│       ├── filters.py            # Search filters
+│       ├── indexes.py            # Search indexes
+│       └── views.py              # Search views
+├── config/                       # Django project settings
+│   ├── __init__.py
+│   ├── settings/                 # Environment-specific settings
+│   │   ├── __init__.py
+│   │   ├── base.py              # Base settings
+│   │   ├── development.py       # Development settings
+│   │   ├── production.py        # Production settings
+│   │   └── testing.py           # Test settings
+│   ├── asgi.py                  # ASGI configuration
+│   ├── urls.py                  # Root URL configuration
+│   └── wsgi.py                  # WSGI configuration
+├── data/                        # Document storage
+├── media/                       # User-uploaded files
+├── static/                      # Collected static files
+├── staticfiles/                 # Static files for deployment
+├── templates/                   # Global templates
+│   └── includes/                # Reusable template components
+├── requirements/                # Dependencies
+│   ├── base.txt                # Core dependencies
+│   ├── development.txt         # Development dependencies
+│   └── production.txt          # Production dependencies
+├── scripts/                    # Utility scripts
+├── docker/                     # Docker configuration
+├── .env.example               # Environment variables template
+├── .gitignore                 # Git ignore rules
+├── docker-compose.yml         # Docker Compose configuration
+├── Dockerfile                 # Docker image definition
+├── manage.py                  # Django management script
+└── README.md                  # This file
 ```
 
-2. Create a virtual environment named "pyspider"
-```bash
-# On Windows
-python -m venv pyspider
+## 🔧 Configuration
 
-# On macOS/Linux
-python3 -m venv pyspider
+### Environment Variables
+
+Create a `.env` file based on `.env.example`:
+
+```bash
+# Django Settings
+DEBUG=True
+SECRET_KEY=your-secret-key-here
+ALLOWED_HOSTS=localhost,127.0.0.1
+
+# Database Configuration
+DATABASE_URL=sqlite:///db.sqlite3  # For development
+# DATABASE_URL=postgresql://user:password@localhost:5432/spiderhub  # For production
+
+# Static/Media Files
+STATIC_URL=/static/
+MEDIA_URL=/media/
+
+# API Keys (if needed)
+OPENAI_API_KEY=your-openai-key
+GEMINI_API_KEY=your-gemini-key
 ```
 
-3. Activate the virtual environment
+## 🗄️ Database Management
+
+### Migrations
 ```bash
-# On Windows
-pyspider\Scripts\activate
-
-# On macOS/Linux
-source pyspider/bin/activate
-```
-
-4. Install core dependencies (base requirements)
-```bash
-python -m pip install --upgrade pip
-pip install -r requirements/base.txt
-```
-
-## Database Setup
-
-1. Create and apply migrations
-```bash
+# Create new migrations
 python manage.py makemigrations
+
+# Apply migrations
 python manage.py migrate
+
+# Show migration status
+python manage.py showmigrations
 ```
 
-2. Create a superuser (admin)
+### Data Seeding
 ```bash
-python manage.py createsuperuser
+# Load initial documents (default: truncate and load new data)
+python manage.py seed
+
+# Preserve existing data and add new only
+python manage.py seed --no-truncate
+
+# Dry run (preview changes without applying)
+python manage.py seed --dry-run
+
+# Load limited number of documents
+python manage.py seed --limit 10
 ```
 
-## Running the Project
+## 🧪 Testing
 
-1. Start the development server
 ```bash
-python manage.py runserver
-```
-
-2. Access the application at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-
-## Project Structure
-
-```
-SPIDER_WEB/
-├── pyspider/                # Virtual environment folder
-├── apps/                    # Django applications
-│   ├── admin_panel/         # Admin panel module
-│   ├── core/                # Core application (views, models, etc.)
-│   └── documents/           # Document management and processing app
-├── config/                  # Django project configuration
-│   ├── asgi.py              # ASGI entrypoint
-│   ├── settings.py          # Main settings file
-│   ├── urls.py              # Global URL mappings
-│   └── wsgi.py              # WSGI entrypoint
-├── db.sqlite3               # SQLite database (development only)
-├── manage.py                # Django management script
-├── requirements/            # Dependency files
-│   ├── base.txt             # Minimal dependencies
-│   ├── development.txt      # Development dependencies
-│   └── production.txt       # Production dependencies
-├── static/                 # Custom static assets (CSS, JS, images)
-├── media/                  # User-uploaded media files
-└── README.md                # This file
-```
-
-## Deployment
-
-Follow these step-by-step instructions to deploy your project:
-
-1. **Prepare the Environment**
-   - Ensure you have a production-ready server (virtual machine or container).
-   - Install Python 3.8+ and pip.
-   - Clone your repository:
-     ```bash
-     git clone [your-repository-url]
-     cd SPIDER_WEB
-     ```
-
-2. **Set Up Virtual Environment and Install Dependencies**
-   - Create and activate a virtual environment:
-     ```bash
-     python -m venv pyspider
-     # On Windows
-     pyspider\Scripts\activate
-     # On macOS/Linux
-     source pyspider/bin/activate
-     ```
-   - Install production requirements:
-     ```bash
-     pip install -r requirements/production.txt
-     ```
-
-3. **Configure Environment Variables**
-   - Create a `.env` file (or configure your environment) with required variables (e.g., `DEBUG=FALSE`, `ALLOWED_HOSTS`, database credentials, secret key, etc.).
-
-4. **Database Migrations**
-   - Run migrations to update the database schema:
-     ```bash
-     python manage.py makemigrations
-     python manage.py migrate
-     ```
-
-5. **Collect Static Files**
-   - Run the collectstatic command to gather static assets:
-     ```bash
-     python manage.py collectstatic --noinput
-     ```
-
-6. **Configure the Application Server**
-   - Install a WSGI server such as Gunicorn:
-     ```bash
-     pip install gunicorn
-     ```
-   - Test running your project with Gunicorn:
-     ```bash
-     gunicorn config.wsgi:application --bind 0.0.0.0:8000
-     ```
-
-7. **Set Up a Reverse Proxy**
-   - Configure a reverse proxy like Nginx to forward requests to Gunicorn.
-   - Create an Nginx configuration similar to:
-     ```nginx
-     server {
-         listen 80;
-         server_name your_domain.com;
-
-         location / {
-             proxy_pass http://127.0.0.1:8000;
-             proxy_set_header Host $host;
-             proxy_set_header X-Real-IP $remote_addr;
-             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-         }
-
-         location /static/ {
-             alias /path/to/SPIDER_WEB/static/;
-         }
-
-         location /media/ {
-             alias /path/to/SPIDER_WEB/media/;
-         }
-     }
-     ```
-   - Reload Nginx after configuring.
-
-8. **Launch and Monitor**
-   - Use a process supervisor (such as systemd, Supervisor, or Docker) to keep your Gunicorn process running.
-   - Monitor logs and verify the deployment.
-
-## Development
-
-### Running Tests
-```bash
+# Run all tests
 python manage.py test
+
+# Run tests with coverage
+coverage run --source='.' manage.py test
+coverage report
+coverage html  # Generate HTML coverage report
+
+# Run specific app tests
+python manage.py test apps.core
+python manage.py test apps.documents
 ```
 
-### Making Migrations
+## 🚀 Deployment
+
+### Production Setup
+
+1. **Server Preparation**
+   ```bash
+   # Clone repository
+   git clone [your-repository-url]
+   cd spider-web
+   
+   # Create production virtual environment
+   python -m venv pyspider
+   source pyspider/bin/activate  # Linux/macOS
+   # pyspider\Scripts\activate   # Windows
+   ```
+
+2. **Install Production Dependencies**
+   ```bash
+   pip install --upgrade pip
+   pip install -r requirements/production.txt
+   ```
+
+3. **Environment Configuration**
+   ```bash
+   # Create production .env file
+   cp .env.example .env
+   
+   # Configure production settings
+   # Set DEBUG=False
+   # Set proper ALLOWED_HOSTS
+   # Configure production database
+   # Set secure SECRET_KEY
+   ```
+
+4. **Database Setup**
+   ```bash
+   python manage.py migrate
+   python manage.py collectstatic --noinput
+   python manage.py createsuperuser
+   ```
+
+5. **Application Server (Gunicorn)**
+   ```bash
+   # Install Gunicorn
+   pip install gunicorn
+   
+   # Test Gunicorn
+   gunicorn config.wsgi:application --bind 0.0.0.0:8000
+   ```
+
+6. **Reverse Proxy (Nginx)**
+   ```nginx
+   server {
+       listen 80;
+       server_name your-domain.com;
+       
+       client_max_body_size 50M;
+       
+       location / {
+           proxy_pass http://127.0.0.1:8000;
+           proxy_set_header Host $host;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+           proxy_set_header X-Forwarded-Proto $scheme;
+       }
+       
+       location /static/ {
+           alias /path/to/spider-web/staticfiles/;
+           expires 1y;
+           add_header Cache-Control "public, immutable";
+       }
+       
+       location /media/ {
+           alias /path/to/spider-web/media/;
+           expires 1y;
+           add_header Cache-Control "public";
+       }
+   }
+   ```
+
+7. **Process Management**
+   ```bash
+   # Create systemd service file
+   sudo nano /etc/systemd/system/spiderhub.service
+   ```
+   
+   ```ini
+   [Unit]
+   Description=SPIDERHUB Django Application
+   After=network.target
+   
+   [Service]
+   User=www-data
+   Group=www-data
+   WorkingDirectory=/path/to/spider-web
+   Environment=PATH=/path/to/spider-web/pyspider/bin
+   ExecStart=/path/to/spider-web/pyspider/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 config.wsgi:application
+   Restart=always
+   
+   [Install]
+   WantedBy=multi-user.target
+   ```
+
+### Docker Deployment
+
 ```bash
-python manage.py makemigrations
+# Build and run with Docker Compose
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Run migrations in container
+docker-compose exec web python manage.py migrate
+
+# Create superuser in container
+docker-compose exec web python manage.py createsuperuser
 ```
 
-## Seeding initial documents
+## 🔍 API Documentation
 
+The application provides RESTful APIs for document management and search functionality:
 
-1. Apply migrations:
+- **Documents API**: `/api/documents/`
+- **Search API**: `/api/search/`
+- **Admin API**: `/api/admin/`
 
-    ```bash
-    python manage.py makemigrations
-    python manage.py migrate
-    ```
+Visit `/api/docs/` for interactive API documentation.
 
-2. Run the seed command:
+## 🌐 Internationalization
 
-    ```bash
-    python manage.py seed --dry-run    # Para probar sin escribir a la DB
-    python manage.py seed --limit 5    # Para procesar solo 5 archivos
-    python manage.py seed              # Para importar todos los archivos
-    ```
+The application is prepared for multiple languages:
 
-This will read all `.json` files from  
-`apps/documents/data/` and populate your `Document` models  
-and related in the database.
+```bash
+# Generate translation files
+python manage.py makemessages -l es
+python manage.py makemessages -l en
 
-## License
+# Compile translations
+python manage.py compilemessages
+```
 
-MTI
+## 🤝 Contributing
 
-## Contact
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-felipe.mendieta@cedia.org.ec
+### Code Quality
+
+```bash
+# Run linting
+flake8 .
+
+# Format code
+black .
+
+# Sort imports
+isort .
+
+# Type checking
+mypy .
+```
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📞 Contact
+
+- **Project Maintainer**: Felipe Mendieta
+- **Email**: felipe.mendieta@cedia.org.ec
+- **Organization**: CEDIA
+
+## 🙏 Acknowledgments
+
+- European Union and Latin America digital transformation initiative
+- Contributors and collaborators
+- Open source community
+
+---
+
+For more detailed information about specific components, please refer to the documentation in each app's directory.
