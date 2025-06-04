@@ -157,9 +157,6 @@ DATABASE_URL=sqlite:///db.sqlite3  # For development
 STATIC_URL=/static/
 MEDIA_URL=/media/
 
-# API Keys (if needed)
-OPENAI_API_KEY=your-openai-key
-GEMINI_API_KEY=your-gemini-key
 ```
 
 ## 🗄️ Database Management
