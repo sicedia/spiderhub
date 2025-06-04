@@ -20,11 +20,10 @@ class DocumentSearchAPIView(ListAPIView):
     """
     queryset = (
         Document.objects.all()
-        .select_related('location', 'created_by')
+        .select_related('created_by')  # Removed 'location' as it doesn't exist
         .prefetch_related(
-            'actors', 'themes', 'tags',
-            'agreement_types', 'beneficiary_groups',
-            'countries', 'sdg_alignments'
+            'actors', 'themes', 'sdgs',  # Removed non-existent fields
+            # 'tags', 'agreement_types', 'beneficiary_groups', 'countries', 'sdg_alignments'
         )
     )
     serializer_class = DocumentListSerializer

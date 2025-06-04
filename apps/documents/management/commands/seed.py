@@ -1,461 +1,506 @@
-import os
-import json
-import re
-from pathlib import Path
-from datetime import datetime, date
+"""Management command ``seed``: bulk‑import all JSON documents found in
+<project_root>/data into the Django DB using the models defined in
+``models.py``.
 
-from django.conf import settings
-from django.core.management.base import BaseCommand
-from django.core.exceptions import ValidationError
-from django.db import transaction, IntegrityError
+Run with:
+    python manage.py seed                # normal import
+    python manage.py seed --dry-run      # parse & validate only, no DB writes
+    python manage.py seed --limit 20     # import first 20 files
+
+Assumptions
+~~~~~~~~~~
+* The app containing the models is called ``documents`` (adjust the import if
+  your app has a different name).
+* The JSON structure matches the examples shared in the conversation.  Missing,
+  null, or empty fields are handled gracefully.
+* Taxonomies (Theme, Actor, BeneficiaryGroup, SDG) are pre‑seeded *or* created
+  on‑the‑fly.
+"""
+
+import json
+import os
+from datetime import datetime
+from pathlib import Path
+
+from django.core.management.base import BaseCommand, CommandError
+from django.db import transaction
 
 from apps.documents.models import (
-    Location, ThemeCategory, Theme, ActorCategory, Actor, AgreementType, 
-    BeneficiaryCategory, BeneficiaryGroup, Country, SdgGoal, Document, DocumentFile, 
-    Characteristic, PracticalApplication, Commitment, KPI
+    Actor,
+    BeneficiaryGroup,
+    BeneficiaryGroupRaw,
+    Commitment,
+    CommitmentDetail,
+    Document,
+    DocumentActor,
+    DocumentBeneficiaryGroupRaw,
+    DocumentTheme,
+    KPI,
+    PracticalApplication,
+    SDG,
+    Theme,
 )
 
+DATE_INPUT_FORMATS = ["%Y-%m-%d", "%d/%m/%Y", "%m/%d/%Y", "%d-%m-%Y"]
+
+
+# ---------------------------------------------------------------------------
+# Helper functions
+# ---------------------------------------------------------------------------
+
+def parse_date(value):
+    """Try several date formats; return None if parsing fails."""
+    if not value:
+        return None
+    if isinstance(value, (int, float)):
+        # Epoch timestamp support (seconds)
+        try:
+            return datetime.utcfromtimestamp(value).date()
+        except Exception:
+            return None
+    for fmt in DATE_INPUT_FORMATS:
+        try:
+            return datetime.strptime(value, fmt).date()
+        except (ValueError, TypeError):
+            continue
+    return None
+
+
+def split_location(loc):
+    """Return (city, country) from "City, Country" string; both may be None."""
+    if not loc or loc.lower() in {"n/a", "unknown"}:
+        return None, None
+    if "," in loc:
+        city, country = [p.strip() or None for p in loc.split(",", 1)]
+        return city, country
+    # If only one token, assume country
+    return None, loc.strip()
+
+
+def norm(label):
+    """Simple normaliser to compare labels case‑insensitively."""
+    return (label or "").strip().lower()
+
+
+# ---------------------------------------------------------------------------
+# Loader core
+# ---------------------------------------------------------------------------
+
+class Loader:
+    """Encapsulates JSON‑>DB import for one file."""
+
+    def __init__(self, data: dict, dry_run: bool = False):
+        self.data = data
+        self.dry_run = dry_run
+        self.doc = None  # type: Document | None
+
+    # ---------------------------- public API ----------------------------
+
+    def run(self):
+        with transaction.atomic():
+            self._create_document()
+            self._load_taxonomies()
+            self._load_practical_applications()
+            self._load_commitments()
+            self._load_kpis()
+            if self.dry_run:
+                transaction.set_rollback(True)
+                return
+
+    # --------------------------- internal steps -------------------------
+
+    def _create_document(self):
+        title = self.data.get("title") or self.data.get("Name of the Event")
+        if not title:
+            raise ValueError("Missing title in JSON")
+
+        event_date = parse_date(self.data.get("date") or self.data.get("Date"))
+        city, country = split_location(self.data.get("location"))
+
+        summary = (
+            self.data.get("executive_summary")
+            or self.data.get("Summary")
+            or self.data.get("summary")
+        )
+
+        extra = {k: v for k, v in self.data.items() if k not in {
+            "title",
+            "date",
+            "location",
+            "executive_summary",
+            "summary",
+            "themes",
+            "actors",
+            "beneficiary_groups",
+            "beneficiary_group_raw",
+            "sdg_alignment",
+            "practical_applications",
+            "commitments",
+            "kpis",
+            "top_themes",
+            "top_actors",
+            "extra_data",
+        }}
+
+        self.doc, _ = Document.objects.get_or_create(
+            title=title,
+            event_date=event_date,
+            defaults={
+                "city": city,
+                "country": country,
+                "executive_summary": summary,
+                "extra": extra,
+            },
+        )
+
+    # --------------------------- taxonomies -----------------------------
+
+    def _load_taxonomies(self):
+        # Handle themes - support both dict and string formats
+        themes_data = self.data.get("themes", [])
+        
+        if isinstance(themes_data, dict):
+            # Handle categorized themes like {"Digital Transformation": ["AI", "ML"]}
+            for category, theme_list in themes_data.items():
+                if isinstance(theme_list, list):
+                    for theme_label in theme_list:
+                        if theme_label:
+                            theme, _ = Theme.objects.get_or_create(
+                                label=theme_label,
+                                defaults={"category": category or "Uncategorised", "description": ""}
+                            )
+                            DocumentTheme.objects.get_or_create(document=self.doc, theme=theme)
+        elif isinstance(themes_data, list):
+            # Handle flat list of themes
+            for theme_item in themes_data:
+                if isinstance(theme_item, dict):
+                    label = theme_item.get("label")
+                    category = theme_item.get("category", "Uncategorised")
+                else:
+                    label = theme_item
+                    category = "Uncategorised"
+                
+                if label:
+                    theme, _ = Theme.objects.get_or_create(
+                        label=label,
+                        defaults={"category": category, "description": ""}
+                    )
+                    DocumentTheme.objects.get_or_create(document=self.doc, theme=theme)
+
+        # Handle actors - support both dict and string formats
+        actors_data = self.data.get("actors", [])
+        
+        if isinstance(actors_data, dict):
+            # Handle categorized actors like {"Political Actors": ["Government", "Parliament"]}
+            for category, actor_list in actors_data.items():
+                if isinstance(actor_list, list):
+                    for actor_label in actor_list:
+                        if actor_label:
+                            actor, _ = Actor.objects.get_or_create(
+                                label=actor_label,
+                                defaults={"category": category or "Uncategorised", "description": ""}
+                            )
+                            DocumentActor.objects.get_or_create(document=self.doc, actor=actor)
+        elif isinstance(actors_data, list):
+            # Handle flat list of actors
+            for actor_item in actors_data:
+                if isinstance(actor_item, dict):
+                    label = actor_item.get("label")
+                    category = actor_item.get("category", "Uncategorised")
+                else:
+                    label = actor_item
+                    category = "Uncategorised"
+                
+                if label:
+                    actor, _ = Actor.objects.get_or_create(
+                        label=label,
+                        defaults={"category": category, "description": ""}
+                    )
+                    DocumentActor.objects.get_or_create(document=self.doc, actor=actor)
+
+        # Handle beneficiary groups - support both root level and extra_data
+        extra_data = self.data.get("extra_data", {})
+        
+        # Regular beneficiary groups from root level
+        for bg_dict in self.data.get("beneficiary_groups", []):
+            if isinstance(bg_dict, dict):
+                label = bg_dict.get("label")
+                category = bg_dict.get("category", "Uncategorised")
+            else:
+                label = bg_dict
+                category = "Uncategorised"
+            
+            if label:
+                bg, _ = BeneficiaryGroup.objects.get_or_create(
+                    label=label,
+                    defaults={"category": category, "description": ""}
+                )
+                self.doc.beneficiary_groups.add(bg)
+        
+        # Regular beneficiary groups from extra_data
+        for bg_dict in extra_data.get("beneficiary_group", []):
+            if isinstance(bg_dict, dict):
+                label = bg_dict.get("label")
+                category = bg_dict.get("category", "Uncategorised")
+            else:
+                label = bg_dict
+                category = "Uncategorised"
+            
+            if label:
+                bg, _ = BeneficiaryGroup.objects.get_or_create(
+                    label=label,
+                    defaults={"category": category, "description": ""}
+                )
+                self.doc.beneficiary_groups.add(bg)
+
+        # Raw beneficiary groups from root level
+        for raw in self.data.get("beneficiary_group_raw", []):
+            if raw:
+                raw_bg, _ = BeneficiaryGroupRaw.objects.get_or_create(name=raw)
+                DocumentBeneficiaryGroupRaw.objects.get_or_create(document=self.doc, raw_group=raw_bg)
+
+        # Raw beneficiary groups from extra_data
+        for raw in extra_data.get("beneficiary_group_raw", []):
+            if raw:
+                raw_bg, _ = BeneficiaryGroupRaw.objects.get_or_create(name=raw)
+                DocumentBeneficiaryGroupRaw.objects.get_or_create(document=self.doc, raw_group=raw_bg)
+
+        # SDGs from root level
+        for sdg_label in self.data.get("sdg_alignment", []):
+            if sdg_label:
+                # Try to extract number from label if it starts with "SDG X:"
+                number = None
+                if sdg_label.lower().startswith("sdg "):
+                    try:
+                        number = int(sdg_label.split()[1].rstrip(":"))
+                    except (IndexError, ValueError):
+                        pass
+                
+                sdg, _ = SDG.objects.get_or_create(
+                    label=sdg_label,
+                    defaults={"number": number}
+                )
+                self.doc.sdgs.add(sdg)
+
+        # SDGs from extra_data
+        for sdg_label in extra_data.get("sdg_alignment", []):
+            if sdg_label:
+                # Try to extract number from label if it starts with "SDG X:"
+                number = None
+                if sdg_label.lower().startswith("sdg "):
+                    try:
+                        number = int(sdg_label.split()[1].rstrip(":"))
+                    except (IndexError, ValueError):
+                        pass
+                
+                sdg, _ = SDG.objects.get_or_create(
+                    label=sdg_label,
+                    defaults={"number": number}
+                )
+                self.doc.sdgs.add(sdg)
+
+        # Top themes with metadata
+        for top in self.data.get("top_themes", []):
+            if isinstance(top, dict):
+                label = top.get("name") or top.get("label")
+                if label:
+                    theme, _ = Theme.objects.get_or_create(
+                        label=label,
+                        defaults={"category": "Uncategorised", "description": ""}
+                    )
+                    DocumentTheme.objects.update_or_create(
+                        document=self.doc,
+                        theme=theme,
+                        defaults={
+                            "is_top": True,
+                            "relevance_score": top.get("relevance_score"),
+                            "justification": top.get("justification"),
+                        },
+                    )
+
+        # Top actors with metadata
+        for top in self.data.get("top_actors", []):
+            if isinstance(top, dict):
+                label = top.get("name") or top.get("label")
+                if label:
+                    actor, _ = Actor.objects.get_or_create(
+                        label=label,
+                        defaults={"category": "Uncategorised", "description": ""}
+                    )
+                    DocumentActor.objects.update_or_create(
+                        document=self.doc,
+                        actor=actor,
+                        defaults={
+                            "is_top": True,
+                            "relevance_score": top.get("relevance_score"),
+                            "justification": top.get("justification"),
+                        },
+                    )
+
+    # ---------------------- practical applications ----------------------
+
+    def _load_practical_applications(self):
+        # From root level
+        for desc in self.data.get("practical_applications", []):
+            if desc:
+                PracticalApplication.objects.get_or_create(
+                    document=self.doc,
+                    description=desc
+                )
+        
+        # From extra_data
+        extra_data = self.data.get("extra_data", {})
+        for desc in extra_data.get("practical_applications", []):
+            if desc:
+                PracticalApplication.objects.get_or_create(
+                    document=self.doc,
+                    description=desc
+                )
+
+    # ---------------------------- commitments ---------------------------
+
+    def _load_commitments(self):
+        # Handle commitments from main level
+        commit_objs = {}
+        for com in self.data.get("commitments", []):
+            if com:
+                commit_obj, _ = Commitment.objects.get_or_create(document=self.doc, text=com)
+                commit_objs[com[:100]] = commit_obj
+
+        # Handle commitment details from extra_data
+        extra_data = self.data.get("extra_data", {})
+        
+        # Add commitment details from extra_data
+        for det in extra_data.get("commitment_details", []):
+            if isinstance(det, dict):
+                text = det.get("text")
+                commitment_class = det.get("commitment_class")
+            else:
+                text = det
+                commitment_class = None
+            
+            if text:
+                # Find matching commitment or create new one
+                key = text[:100]
+                commit_obj = commit_objs.get(key)
+                if not commit_obj:
+                    commit_obj, _ = Commitment.objects.get_or_create(document=self.doc, text=text)
+                    commit_objs[key] = commit_obj
+                
+                CommitmentDetail.objects.get_or_create(
+                    commitment=commit_obj,
+                    text=text,
+                    defaults={"commitment_class": commitment_class},
+                )
+
+    # -------------------------------- KPIs ------------------------------
+
+    def _load_kpis(self):
+        # From root level
+        for kpi in self.data.get("kpis", []):
+            if not kpi or not isinstance(kpi, dict):
+                continue
+            
+            metric_name = kpi.get("metric_name") or kpi.get("metric")
+            if not metric_name:
+                continue  # Skip KPIs without metric_name
+            
+            # Support both kpi_text and description fields
+            kpi_text = kpi.get("kpi_text") or kpi.get("description")
+            
+            KPI.objects.get_or_create(
+                document=self.doc,
+                metric_name=metric_name,
+                defaults={
+                    "kpi_text": kpi_text,
+                    "kpi_type": kpi.get("kpi_type"),
+                    "target_value": kpi.get("target_value"),
+                    "target_description": kpi.get("target_description"),
+                    "unit": kpi.get("unit"),
+                    "timeframe": kpi.get("timeframe"),
+                    "measurement_method": kpi.get("measurement_method"),
+                    "responsible_entity": kpi.get("responsible_entity"),
+                    "sector": kpi.get("sector"),
+                },
+            )
+
+        # From extra_data
+        extra_data = self.data.get("extra_data", {})
+        for kpi in extra_data.get("kpi_list", []):
+            if not kpi or not isinstance(kpi, dict):
+                continue
+            
+            metric_name = kpi.get("metric_name") or kpi.get("metric")
+            if not metric_name:
+                continue  # Skip KPIs without metric_name
+            
+            # Support both kpi_text and description fields
+            kpi_text = kpi.get("kpi_text") or kpi.get("description")
+            
+            KPI.objects.get_or_create(
+                document=self.doc,
+                metric_name=metric_name,
+                defaults={
+                    "kpi_text": kpi_text,
+                    "kpi_type": kpi.get("kpi_type"),
+                    "target_value": kpi.get("target_value"),
+                    "target_description": kpi.get("target_description"),
+                    "unit": kpi.get("unit"),
+                    "timeframe": kpi.get("timeframe"),
+                    "measurement_method": kpi.get("measurement_method"),
+                    "responsible_entity": kpi.get("responsible_entity"),
+                    "sector": kpi.get("sector"),
+                },
+            )
+
+
+# ---------------------------------------------------------------------------
+# Management command
+# ---------------------------------------------------------------------------
 
 class Command(BaseCommand):
-    help = 'Load documents from JSON files in apps/documents/data'
+    help = "Seed the database with JSON documents located in <project_root>/data."
+
+    def add_arguments(self, parser):
+        parser.add_argument("--dry-run", action="store_true", help="Parse files without saving to the DB.")
+        parser.add_argument("--limit", type=int, default=None, help="Process only the first N files.")
 
     def handle(self, *args, **options):
-        data_dir = Path(__file__).resolve().parents[2] / 'data'
-        files = sorted(f for f in os.listdir(data_dir) if f.lower().endswith('.json'))
+        # Use the same data directory structure as the original
+        data_dir = Path(__file__).resolve().parents[4] / 'data'
+        if not data_dir.exists():
+            raise CommandError(f"Data directory not found: {data_dir}")
 
-        for fname in files:
-            path = data_dir / fname
-            try:
-                with open(path, encoding='utf-8') as f:
-                    data = json.load(f)
-            except json.JSONDecodeError as e:
-                self.stderr.write(f"[JSON Error] {fname}: {e}")
-                continue
+        files = sorted(p for p in data_dir.glob("*.json"))
+        limit = options.get("limit")
+        if limit is not None:
+            files = files[:limit]
 
-            title = data.get('title')
-            if not title:
-                self.stderr.write(f"[Skip] No title found in: {fname}")
-                continue
-
-            self.stdout.write(f'➡️  Processing: {title}')
-            
-            try:
-                with transaction.atomic():
-                    doc = self._get_or_create_document(data, fname)
-                    if not doc:
-                        self.stderr.write(f"[Skip] Could not create document: {title}")
-                        continue
-                    self._attach_relations(doc, data)
-                self.stdout.write(self.style.SUCCESS(f'✔️  Loaded: {title}\n'))
-            except Exception as e:
-                self.stderr.write(f"[Error] Processing {fname}: {e}")
-
-    def _is_valid_data(self, value):
-        """Check if data is valid (not null, empty, or placeholder text)"""
-        if not value:
-            return False
-        
-        if isinstance(value, str):
-            # Check for common placeholder texts
-            placeholders = [
-                'no information available',
-                'unknown',
-                'not specified',
-                'n/a',
-                'null',
-                'none',
-                ''
-            ]
-            return value.lower().strip() not in placeholders
-        
-        if isinstance(value, (list, dict)):
-            return len(value) > 0
-            
-        return True
-
-    def _determine_document_type(self, filename):
-        """Determine document type based on folder structure/filename"""
-        fn = filename.lower().replace('–', '-').replace('—', '-').replace(' _', '-')
-        if 'dialogue' in fn and 'eu-lac' in fn:
-            return 'dialogue_eu_lac'
-        elif 'dialogue' in fn and 'bilateral' in fn:
-            return 'dialogue_bilateral'
-        elif 'dialogue' in fn and 'multilateral' in fn:
-            return 'dialogue_multilateral'
-        elif 'agreement' in fn and 'eu-lac' in fn:
-            return 'agreement_eu_lac'
-        elif 'agreement' in fn and 'bilateral' in fn:
-            return 'agreement_bilateral'
-        elif 'agreement' in fn and 'multilateral' in fn:
-            return 'agreement_multilateral'
-        
-        return 'other'
-
-    def _get_or_create_document(self, data, filename):
-        """Create or update document with validation"""
-        # Normalize and validate date
-        raw_date = data.get('date')
-        if not self._is_valid_data(raw_date):
-            return None
-
-        date_str = self._normalize_date(raw_date)
-        if not date_str:
-            return None
-
-        # Location
-        location = None
-        loc_name = data.get('location')
-        if self._is_valid_data(loc_name):
-            location, _ = Location.objects.get_or_create(name=loc_name.strip())
-
-        # Extract extra data
-        extra = data.get('extra_data', {}) or {}
-        quality = data.get('quality_breakdown', {}) or {}
-
-        # Determine document type from filename
-        document_type = self._determine_document_type(filename)
-
-        # Prepare document data
-        defaults = {
-            'executive_summary': data.get('executive_summary', '') if self._is_valid_data(data.get('executive_summary')) else '',
-            'location': location,
-            'date': date_str,
-            'document_type': document_type,
-            'score': data.get('score') if self._is_valid_data(data.get('score')) else None,
-            'lead_country_iso': extra.get('lead_country_iso') if self._is_valid_data(extra.get('lead_country_iso')) else None,
-            'legal_bindingness': extra.get('legal_bindingness', '') if self._is_valid_data(extra.get('legal_bindingness')) else '',
-            'coverage_scope': extra.get('coverage_scope', '') if self._is_valid_data(extra.get('coverage_scope')) else '',
-            'review_schedule': extra.get('review_schedule', '') if self._is_valid_data(extra.get('review_schedule')) else '',
-            'start_date': self._normalize_date(extra.get('start_date')),
-            'end_date': self._normalize_date(extra.get('end_date')),
-            'faithfulness': quality.get('faithfulness') if self._is_valid_data(quality.get('faithfulness')) else None,
-            'consistency': quality.get('consistency') if self._is_valid_data(quality.get('consistency')) else None,
-            'completeness': quality.get('completeness') if self._is_valid_data(quality.get('completeness')) else None,
-            'accuracy': quality.get('accuracy') if self._is_valid_data(quality.get('accuracy')) else None,
-        }
-
-        try:
-            doc, created = Document.objects.update_or_create(
-                title=data.get('title').strip(),
-                defaults=defaults
-            )
-            return doc
-        except (IntegrityError, ValidationError) as e:
-            self.stderr.write(f"[Document] Error creating/updating: {e}")
-            return None
-
-    def _normalize_date(self, raw):
-        """Normalize date to YYYY-MM-DD format"""
-        if not self._is_valid_data(raw):
-            return None
-
-        s = str(raw)
-        try:
-            if isinstance(raw, int) or re.fullmatch(r'\d{4}', s):
-                # Handle YYYY format
-                return f"{s}-01-01"
-            elif re.fullmatch(r'\d{4}-\d{2}', s):
-                # Handle YYYY-MM format
-                return f"{s}-01"
-            elif re.fullmatch(r'\d{4}-\d{2}-\d{2}', s):
-                y,m,d = map(int, s.split('-'))
-                return date(y,m,d)
-            else:
-                # Try to parse YYYY-MM-DD format
-                datetime.strptime(s, "%Y-%m-%d")
-                return s
-        except (ValueError, TypeError):
-            self.stderr.write(f"[Date Normalize Error] Could not parse date: {raw}")
-            return None
-
-    def _attach_relations(self, doc, data):
-        """Attach all relationships to document"""
-        # Clear existing relationships to avoid duplicates
-        doc.actors.clear()
-        doc.themes.clear()
-        doc.agreement_types.clear()
-        doc.beneficiary_groups.clear()
-        doc.countries.clear()
-        doc.sdg_alignments.clear()
-
-        # Delete existing related objects
-        doc.characteristics.all().delete()
-        doc.practical_applications.all().delete()
-        doc.commitments.all().delete()
-        doc.kpis.all().delete()
-
-        self._attach_themes_and_actors(doc, data)
-        self._attach_basic_relations(doc, data)
-        self._attach_text_relations(doc, data)
-        self._attach_commitments(doc, data)
-        self._attach_kpis(doc, data)
-
-    def _attach_themes_and_actors(self, doc, data):
-        """Attach themes with categories and actors with categories"""
-        # Themes
-        themes_data = data.get('themes', {}) or {}
-        if self._is_valid_data(themes_data):
-            for category_name, theme_list in themes_data.items():
-                if not self._is_valid_data(theme_list):
-                    continue
-                
-                try:
-                    theme_category, _ = ThemeCategory.objects.get_or_create(name=category_name.strip())
-                    for theme_name in theme_list:
-                        if self._is_valid_data(theme_name):
-                            theme, _ = Theme.objects.get_or_create(
-                                name=theme_name.strip(),
-                                category=theme_category
-                            )
-                            doc.themes.add(theme)
-                except Exception as e:
-                    self.stderr.write(f"[Themes] Error: {e}")
-
-        # Actors
-        actors_data = data.get('actors', {}) or {}
-        if self._is_valid_data(actors_data):
-            for category_name, actor_list in actors_data.items():
-                if not self._is_valid_data(actor_list):
-                    continue
-                
-                try:
-                    actor_category, _ = ActorCategory.objects.get_or_create(name=category_name.strip())
-                    for actor_name in actor_list:
-                        if self._is_valid_data(actor_name):
-                            actor, _ = Actor.objects.get_or_create(
-                                name=actor_name.strip(),
-                                category=actor_category
-                            )
-                            doc.actors.add(actor)
-                except Exception as e:
-                    self.stderr.write(f"[Actors] Error: {e}")
-
-    def _attach_basic_relations(self, doc, data):
-        """Attach basic many-to-many relationships"""
-        extra = data.get('extra_data', {}) or {}
-
-        # Agreement Types
-        agreement_types = extra.get('agreement_type', []) or []
-        if self._is_valid_data(agreement_types):
-            for agr_type in agreement_types:
-                if self._is_valid_data(agr_type):
-                    try:
-                        at, _ = AgreementType.objects.get_or_create(name=agr_type.strip())
-                        doc.agreement_types.add(at)
-                    except Exception as e:
-                        self.stderr.write(f"[AgreementType] Error: {e}")
-
-        # Beneficiary Groups (now with categories like themes/actors)
-        beneficiary_groups = extra.get('beneficiary_group', [])  # misses raw list
-        if self._is_valid_data(beneficiary_groups):
-            for bg_data in beneficiary_groups:
-                if not isinstance(bg_data, dict):
-                    continue
-                
-                category_name = bg_data.get('category')
-                label_name = bg_data.get('label')
-                
-                if self._is_valid_data(category_name) and self._is_valid_data(label_name):
-                    try:
-                        # Create or get the beneficiary category
-                        beneficiary_category, _ = BeneficiaryCategory.objects.get_or_create(
-                            name=category_name.strip()
-                        )
-                        
-                        # Create or get the beneficiary group
-                        beneficiary_group, _ = BeneficiaryGroup.objects.get_or_create(
-                            label=label_name.strip(),
-                            category=beneficiary_category
-                        )
-                        
-                        doc.beneficiary_groups.add(beneficiary_group)
-                    except Exception as e:
-                        self.stderr.write(f"[BeneficiaryGroup] Error: {e}")
-
-        # Countries
-        country_list = extra.get('country_list_iso', []) or []
-        if self._is_valid_data(country_list):
-            for iso in country_list:
-                if self._is_valid_data(iso):
-                    try:
-                        country, _ = Country.objects.get_or_create(iso=iso.strip().upper())
-                        doc.countries.add(country)
-                    except Exception as e:
-                        self.stderr.write(f"[Countries] Error: {e}")
-
-        # SDG Alignments
-        sdg_alignments = extra.get('sdg_alignment', []) or []
-        if self._is_valid_data(sdg_alignments):
-            for sdg_name in sdg_alignments:
-                if self._is_valid_data(sdg_name):
-                    try:
-                        goal, _ = SdgGoal.objects.get_or_create(name=sdg_name.strip())
-                        doc.sdg_alignments.add(goal)
-                    except Exception as e:
-                        self.stderr.write(f"[SDG Alignments] Error: {e}")
-
-    def _attach_text_relations(self, doc, data):
-        """Attach text-based relations (characteristics, practical applications)"""
-        # Characteristics
-        characteristics = data.get('characteristics', []) or []
-        if self._is_valid_data(characteristics):
-            for text in characteristics:
-                if self._is_valid_data(text):
-                    try:
-                        Characteristic.objects.get_or_create(
-                            document=doc,
-                            text=text.strip()
-                        )
-                    except Exception as e:
-                        self.stderr.write(f"[Characteristics] Error: {e}")
-
-        # Practical Applications
-        practical_apps = data.get('practical_applications', []) or []
-        if self._is_valid_data(practical_apps):
-            for text in practical_apps:
-                if self._is_valid_data(text):
-                    try:
-                        PracticalApplication.objects.get_or_create(
-                            document=doc,
-                            text=text.strip()
-                        )
-                    except Exception as e:
-                        self.stderr.write(f"[PracticalApplications] Error: {e}")
-
-    def _attach_commitments(self, doc, data):
-        """Attach commitments with string comparison to avoid duplicates"""
-        extra = data.get('extra_data', {}) or {}
-        
-        # Track processed commitments by first 50 characters to avoid duplicates
-        processed_commitments = set()
-
-        # Simple commitments (from main level)
-        commitments = data.get('commitments', []) or []
-        if self._is_valid_data(commitments):
-            for text in commitments:
-                if self._is_valid_data(text):
-                    text_clean = text.strip()
-                    text_key = text_clean[:50].lower()
-                    
-                    if text_key not in processed_commitments:
-                        try:
-                            Commitment.objects.get_or_create(
-                                document=doc,
-                                text=text_clean,
-                                defaults={'commitment_class': ''}
-                            )
-                            processed_commitments.add(text_key)
-                        except Exception as e:
-                            self.stderr.write(f"[Simple Commitments] Error: {e}")
-
-        # Detailed commitments (from extra_data)
-        commitment_details = extra.get('commitment_details', []) or []
-        if self._is_valid_data(commitment_details):
-            for detail in commitment_details:
-                if not isinstance(detail, dict):
-                    continue
-                
-                text = detail.get('text')
-                commitment_class = detail.get('commitment_class', '')
-                
-                if self._is_valid_data(text):
-                    text_clean = text.strip()
-                    text_key = text_clean[:50].lower()
-                    
-                    if text_key not in processed_commitments:
-                        try:
-                            Commitment.objects.get_or_create(
-                                document=doc,
-                                text=text_clean,
-                                defaults={
-                                    'commitment_class': commitment_class.strip() if self._is_valid_data(commitment_class) else ''
-                                }
-                            )
-                            processed_commitments.add(text_key)
-                        except Exception as e:
-                            self.stderr.write(f"[Detailed Commitments] Error: {e}")
-
-    def _attach_kpis(self, doc, data):
-        """Attach KPIs from kpi_list"""
-        extra = data.get('extra_data', {}) or {}
-        kpi_list = extra.get('kpi_list', [])  # misses root‐level
-        
-        if not self._is_valid_data(kpi_list):
+        dry_run = options.get("dry_run", False)
+        total = len(files)
+        if not total:
+            self.stdout.write(self.style.WARNING("No JSON files found."))
             return
 
-        for kpi_data in kpi_list:
-            if not isinstance(kpi_data, dict):
-                continue
+        self.stdout.write(f"Processing {total} file(s)… (dry_run={dry_run})")
 
-            kpi_text = kpi_data.get('kpi_text')
-            if not self._is_valid_data(kpi_text):
-                continue
-
+        ok, failed = 0, 0
+        for idx, path in enumerate(files, start=1):
             try:
-                KPI.objects.get_or_create(
-                    document=doc,
-                    kpi_text=kpi_text.strip(),
-                    defaults={
-                        'kpi_type': kpi_data.get('kpi_type', '') if self._is_valid_data(kpi_data.get('kpi_type')) else '',
-                        'metric_name': kpi_data.get('metric_name', '') if self._is_valid_data(kpi_data.get('metric_name')) else '',
-                        'target_value': kpi_data.get('target_value') if self._is_valid_data(kpi_data.get('target_value')) else None,
-                        'target_description': kpi_data.get('target_description', '') if self._is_valid_data(kpi_data.get('target_description')) else '',
-                        'unit': kpi_data.get('unit', '') if self._is_valid_data(kpi_data.get('unit')) else '',
-                        'baseline_value': kpi_data.get('baseline_value') if self._is_valid_data(kpi_data.get('baseline_value')) else None,
-                        'timeframe': kpi_data.get('timeframe', '') if self._is_valid_data(kpi_data.get('timeframe')) else '',
-                        'measurement_method': kpi_data.get('measurement_method', '') if self._is_valid_data(kpi_data.get('measurement_method')) else '',
-                        'responsible_entity': kpi_data.get('responsible_entity', '') if self._is_valid_data(kpi_data.get('responsible_entity')) else '',
-                        'sector': kpi_data.get('sector', '') if self._is_valid_data(kpi_data.get('sector')) else '',
-                    }
+                with open(path, "r", encoding="utf-8") as fp:
+                    data = json.load(fp)
+                Loader(data, dry_run=dry_run).run()
+                ok += 1
+                if dry_run:
+                    self.stdout.write(self.style.NOTICE(f"[{idx}/{total}] DRY‑RUN ok → {path.name}"))
+                else:
+                    self.stdout.write(self.style.SUCCESS(f"[{idx}/{total}] Imported → {path.name}"))
+            except Exception as exc:
+                failed += 1
+                self.stderr.write(
+                    self.style.ERROR(f"[{idx}/{total}] Failed {path.name}: {exc.__class__.__name__}: {exc}")
                 )
-            except Exception as e:
-                self.stderr.write(f"[KPIs] Error: {e}")
 
-        # Beneficiary Groups (now with categories like themes/actors)
-        beneficiary_groups = extra.get('beneficiary_group', [])  # misses raw list
-        if self._is_valid_data(beneficiary_groups):
-            for bg_data in beneficiary_groups:
-                if not isinstance(bg_data, dict):
-                    continue
-                
-                category_name = bg_data.get('category')
-                label_name = bg_data.get('label')
-                
-                if self._is_valid_data(category_name) and self._is_valid_data(label_name):
-                    try:
-                        # Create or get the beneficiary category
-                        beneficiary_category, _ = BeneficiaryCategory.objects.get_or_create(
-                            name=category_name.strip()
-                        )
-                        
-                        # Create or get the beneficiary group
-                        beneficiary_group, _ = BeneficiaryGroup.objects.get_or_create(
-                            label=label_name.strip(),
-                            category=beneficiary_category
-                        )
-                        
-                        doc.beneficiary_groups.add(beneficiary_group)
-                    except Exception as e:
-                        self.stderr.write(f"[BeneficiaryGroup] Error: {e}")
-
-        # Countries
-        country_list = extra.get('country_list_iso', []) or []
-        if self._is_valid_data(country_list):
-            for iso in country_list:
-                if self._is_valid_data(iso):
-                    try:
-                        country, _ = Country.objects.get_or_create(iso=iso.strip().upper())
-                        doc.countries.add(country)
-                    except Exception as e:
-                        self.stderr.write(f"[Countries] Error: {e}")
-
-        # SDG Alignments
-        sdg_alignments = extra.get('sdg_alignment', []) or []
-        if self._is_valid_data(sdg_alignments):
-            for sdg_name in sdg_alignments:
-                if self._is_valid_data(sdg_name):
-                    try:
-                        goal, _ = SdgGoal.objects.get_or_create(name=sdg_name.strip())
-                        doc.sdg_alignments.add(goal)
-                    except Exception as e:
-                        self.stderr.write(f"[SDG Alignments] Error: {e}")
+        self.stdout.write(
+            self.style.SUCCESS(f"Completed. Success: {ok}, Failed: {failed}, Dry‑run: {dry_run}")
+        )

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from apps.documents.models import Document, Location
+from apps.documents.models import Document
 # Create your views here.
 
 def home_page(request):
@@ -8,7 +8,8 @@ def home_page(request):
     # Fetch the latest 8 documents from the database
     recent_documents = Document.objects.all().order_by('-created_at')[:8]
     document_count = Document.objects.count()
-    country_count = Location.objects.count()
+    # Count unique countries from the documents
+    country_count = Document.objects.values('country').distinct().count()
 
     context = {
         'recent_documents': recent_documents,

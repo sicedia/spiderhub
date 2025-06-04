@@ -108,7 +108,6 @@ function renderSearchResults(data) {
   // Total results count
   resultsCount.innerHTML = `${count} documento(s) encontrado(s)`;
 
-
   // Display mode: grid of cards. Adjust classes según tu estructura
   let cardsHtml = '<div class="documents-grid">';
   results.forEach(doc => {
@@ -117,13 +116,13 @@ function renderSearchResults(data) {
         <div class="document-header">
           <div class="document-title">${doc.title}</div>
           <div class="document-meta">
-            <span class="document-date">${doc.date}</span>
-            <span class="document-organization">${doc.location_name}</span>
+            <span class="document-date">${doc.event_date}</span>
+            <span class="document-organization">${doc.country || ''}</span>
           </div>
         </div>
         <div class="document-body">
           <div class="document-tags">
-            <span class="doc-tag location">Colombia</span>
+            <span class="doc-tag location">${doc.country || 'N/A'}</span>
     `;
     for (const actor of doc.actors) {
       cardsHtml += `<span class="doc-tag actor">${actor}</span>`;
@@ -163,11 +162,10 @@ function renderSearchResults(data) {
         <div class="document-list-content">
           <div class="document-list-title">${doc.title}</div>
           <div class="document-list-meta">
-            <span>${doc.date}</span>
+            <span>${doc.event_date}</span>
           </div>
           <div class="document-list-tags">
-            <span class="doc-tag location">${doc.location_name}</span>
-
+            <span class="doc-tag location">${doc.country || 'N/A'}</span>
     `;
     for (const actor of doc.actors) {
       listHtml += `<span class="doc-tag actor">${actor}</span>`;
