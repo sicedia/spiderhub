@@ -195,7 +195,9 @@ python manage.py makemigrations
 2. Run the seed command:
 
     ```bash
-    python manage.py seed
+    python manage.py seed --dry-run    # Para probar sin escribir a la DB
+    python manage.py seed --limit 5    # Para procesar solo 5 archivos
+    python manage.py seed              # Para importar todos los archivos
     ```
 
 This will read all `.json` files from  

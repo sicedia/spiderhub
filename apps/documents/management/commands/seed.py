@@ -110,18 +110,61 @@ class Loader:
     # --------------------------- internal steps -------------------------
 
     def _create_document(self):
-        title = self.data.get("title") or self.data.get("Name of the Event")
+        # Expanded title field searching with more fallback options
+        title = (
+            self.data.get("title") or 
+            self.data.get("Name of the Event") or
+            self.data.get("name") or
+            self.data.get("document_title") or
+            self.data.get("event_name") or
+            self.data.get("Title") or
+            self.data.get("NAME") or
+            ""
+        ).strip()
+        
+        # If still no title, try to extract from filename or create a default
         if not title:
-            raise ValueError("Missing title in JSON")
+            # Try to get a title from other fields
+            title = (
+                self.data.get("description", "")[:100] or
+                self.data.get("summary", "")[:100] or
+                self.data.get("executive_summary", "")[:100] or
+                f"Document {datetime.now().strftime('%Y%m%d_%H%M%S')}"
+            ).strip()
+            
+        if not title or title is None:
+            title = f"Untitled Document {datetime.now().strftime('%Y%m%d_%H%M%S')}"
+
+        # Truncate title if it's too long (assuming 120 char limit based on error)
+        if len(title) > 120:
+            title = title[:117] + "..."
+        
+        if not title:
+            raise ValueError(f"Unable to determine title from JSON data. Available keys: {list(self.data.keys())}")
 
         event_date = parse_date(self.data.get("date") or self.data.get("Date"))
-        city, country = split_location(self.data.get("location"))
+        
+        # Handle location with length limits
+        location = self.data.get("location", "")
+        city, country = split_location(location)
+        
+        # Truncate city and country if they're too long
+        if city and len(city) > 100:  # Assuming reasonable limit
+            city = city[:97] + "..."
+        if country and len(country) > 100:
+            country = country[:97] + "..."
 
         summary = (
             self.data.get("executive_summary")
             or self.data.get("Summary")
             or self.data.get("summary")
+            or self.data.get("description")
+            or ""
         )
+
+        # Truncate summary if needed (check your model's field length)
+        if summary and len(summary) > 5000:  # Adjust based on your model
+            summary = summary[:4997] + "..."
 
         extra = {k: v for k, v in self.data.items() if k not in {
             "title",
@@ -140,6 +183,12 @@ class Loader:
             "top_themes",
             "top_actors",
             "extra_data",
+            "name",
+            "document_title",
+            "event_name",
+            "Title",
+            "NAME",
+            "description",
         }}
 
         self.doc, _ = Document.objects.get_or_create(
