@@ -1,37 +1,70 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Add animation for the pulse effect on connection points
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize about page components
+  initializePulseAnimation();
+  initializeContactForm();
+});
+
+// Modular pulse animation with staggered delays
+function initializePulseAnimation() {
   const pulseCircles = document.querySelectorAll('.pulse-circle');
-  let delay = 0;
   
-  pulseCircles.forEach(circle => {
-    // Add staggered animation delay
-    circle.style.animationDelay = `${delay}s`;
-    delay += 0.5;
+  pulseCircles.forEach((circle, index) => {
+    circle.style.animationDelay = `${index * 0.5}s`;
   });
-  
-  // Form submission handler
+}
+
+// Enhanced form handling with validation
+function initializeContactForm() {
   const contactForm = document.querySelector('.contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
+  if (!contactForm) return;
+  
+  const formFields = {
+    name: document.getElementById('name'),
+    email: document.getElementById('email'),
+    message: document.getElementById('message')
+  };
+  
+  // Form validation utilities
+  const validation = {
+    isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    },
+    
+    validateForm(fields) {
+      const errors = [];
       
-      // Get form values
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      
-      // Validate form (simple validation)
-      if (!name || !email || !message) {
-        alert('Por favor, complete todos los campos del formulario.');
-        return;
+      if (!fields.name.value.trim()) {
+        errors.push('Name is required');
       }
       
-      // In a real application, this would send the data to a server
-      // For now, we'll just show a success message
-      alert('Gracias por tu mensaje. Te responderemos a la brevedad.');
+      if (!fields.email.value.trim()) {
+        errors.push('Email is required');
+      } else if (!this.isValidEmail(fields.email.value)) {
+        errors.push('Please enter a valid email address');
+      }
       
-      // Reset form
-      contactForm.reset();
-    });
-  }
-});
+      if (!fields.message.value.trim()) {
+        errors.push('Message is required');
+      }
+      
+      return errors;
+    }
+  };
+  
+  // Form submission handler
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const errors = validation.validateForm(formFields);
+    
+    if (errors.length > 0) {
+      alert(`Please correct the following errors:\n• ${errors.join('\n• ')}`);
+      return;
+    }
+    
+    // Success feedback
+    alert('Thank you for your message. We will respond to you shortly.');
+    contactForm.reset();
+  });
+}

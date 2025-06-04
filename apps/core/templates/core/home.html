@@ -7,9 +7,9 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1>SPIDERHUB: Fomentando la Transformación Digital UE - AL</h1>
-      <p>Descubre los acuerdos y compromisos que impulsan la transformación digital en Europa y América Latina.</p>
-      <a href="{% url 'core:explore' %}" class="btn btn-primary">Explorar Base de Datos</a>
+      <h1>SPIDERHUB: Fostering EU - LAC Digital Transformation</h1>
+      <p>Discover the agreements and commitments driving digital transformation in Europe and Latin America. Mapping of digital dialogues and identified EU-LAC agreements.</p>
+      <a href="{% url 'core:explore' %}" class="btn btn-primary">Explore Data</a>
     </div>
     <div class="hero-graphic" id="node-web">
       <!-- Canvas for node web animation will be added by JS -->
@@ -18,33 +18,33 @@
 
   <!-- Stats Section -->
   <section class="stats-section">
-    <h2 class="section-title">Impacto del Proyecto</h2>
+    <h2 class="section-title">Project Impact</h2>
     <div class="stats-container">
       <div class="stat-card">
         <div class="stat-number" data-target="{{ document_count }}" data-suffix="+">0+</div>
-        <div class="stat-label">Documentos Analizados</div>
+        <div class="stat-label">Documents Analysed</div>
       </div>
       <div class="stat-card">
         <div class="stat-number" data-target="{{ country_count }}">0</div>
-        <div class="stat-label">Países Involucrados</div>
+        <div class="stat-label">Countries Involved</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" data-target="{{ actors_count}}"">0</div>
-        <div class="stat-label">Actores Involucrados</div>
+        <div class="stat-number" data-target="{{ themes_count }}">0</div>
+        <div class="stat-label">Themes Involved</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" data-target="{{ actors_count }}">0</div>
-        <div class="stat-label">Proyectos Conjuntos</div>
+        <div class="stat-number" data-target="{{ beneficiary_group_count }}">0</div>
+        <div class="stat-label">Beneficiary Groups</div>
       </div>
     </div>
   </section>
 
   <!-- Recent Documents Section -->
   <section class="documents-section">
-    <h2 class="section-title">Documentos Recientes</h2>
+    <h2 class="section-title">Recent Documents</h2>
     
     <div class="carousel-container">
-      <button class="carousel-nav carousel-prev" aria-label="Anterior">
+      <button class="carousel-nav carousel-prev" aria-label="Previous">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
         </svg>
@@ -52,121 +52,43 @@
       
       <div class="carousel-wrapper">
         <div class="documents-container carousel-track">
-          <div class="document-card">
-            <div class="document-header">
-              <div class="document-title">Agenda Digital para América Latina y el Caribe</div>
-              <div class="document-meta">
-                <span>CEPAL</span>
-                <span>2022</span>
+          {% for document in recent_documents %}
+            <div class="document-card">
+              <div class="document-header">
+                <div class="document-title">{{ document.title }}</div>
+                <div class="document-meta">
+                  <span>{{ document.country|default:"Unknown" }}</span>
+                  <span>{{ document.event_date.year|default:"N/A" }}</span>
+                </div>
+              </div>
+              <div class="document-body">
+                <p>{{ document.executive_summary|truncatewords:25|default:"No summary available." }}</p>
+              </div>
+              <div class="document-footer">
+                <a href="{% url 'core:document_detail' %}?id={{ document.id }}" class="btn btn-secondary">View Details</a>
               </div>
             </div>
-            <div class="document-body">
-              <p>Iniciativa regional para el desarrollo digital en América Latina y su vinculación con políticas europeas, enfocada en reducir la brecha digital.</p>
-            </div>
-            <div class="document-footer">
-              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
-            </div>
-          </div>
-
-          <div class="document-card">
-            <div class="document-header">
-              <div class="document-title">Plan de Acción Digital EU-LATAM</div>
-              <div class="document-meta">
-                <span>Comisión Europea</span>
-                <span>2023</span>
+          {% empty %}
+            <div class="document-card">
+              <div class="document-header">
+                <div class="document-title">No documents available</div>
+                <div class="document-meta">
+                  <span>-</span>
+                  <span>-</span>
+                </div>
+              </div>
+              <div class="document-body">
+                <p>No documents have been uploaded yet.</p>
+              </div>
+              <div class="document-footer">
+                <a href="#" class="btn btn-secondary disabled">View Details</a>
               </div>
             </div>
-            <div class="document-body">
-              <p>Estrategia conjunta para el desarrollo de infraestructuras digitales y marcos regulatorios comunes entre la Unión Europea y América Latina.</p>
-            </div>
-            <div class="document-footer">
-              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
-            </div>
-          </div>
-
-          <div class="document-card">
-            <div class="document-header">
-              <div class="document-title">Declaración de Montevideo</div>
-              <div class="document-meta">
-                <span>Uruguay</span>
-                <span>2021</span>
-              </div>
-            </div>
-            <div class="document-body">
-              <p>Acuerdo sobre estándares de protección de datos y ciberseguridad con enfoque transnacional entre varios países de la región.</p>
-            </div>
-            <div class="document-footer">
-              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
-            </div>
-          </div>
-          
-          <div class="document-card">
-            <div class="document-header">
-              <div class="document-title">EU-LAC Digital Alliance Joint Declaration</div>
-              <div class="document-meta">
-                <span>Unión Europea</span>
-                <span>2023</span>
-              </div>
-            </div>
-            <div class="document-body">
-              <p>Marco informal basado en valores para profundizar la asociación y cooperación entre la UE y América Latina en materia de transformación digital.</p>
-            </div>
-            <div class="document-footer">
-              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
-            </div>
-          </div>
-          
-          <div class="document-card">
-            <div class="document-header">
-              <div class="document-title">Acuerdo de Cooperación Digital España-Brasil</div>
-              <div class="document-meta">
-                <span>España/Brasil</span>
-                <span>2023</span>
-              </div>
-            </div>
-            <div class="document-body">
-              <p>Acuerdo bilateral para impulsar iniciativas tecnológicas y compartir conocimientos en IA y desarrollo de talento digital entre ambos países.</p>
-            </div>
-            <div class="document-footer">
-              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
-            </div>
-          </div>
-          
-          <div class="document-card">
-            <div class="document-header">
-              <div class="document-title">Estrategia Digital Colombia 2025</div>
-              <div class="document-meta">
-                <span>Colombia</span>
-                <span>2023</span>
-              </div>
-            </div>
-            <div class="document-body">
-              <p>Plan nacional para la transformación digital de Colombia, con énfasis en infraestructura, inclusión digital y desarrollo de habilidades técnicas.</p>
-            </div>
-            <div class="document-footer">
-              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
-            </div>
-          </div>
-          
-          <div class="document-card">
-            <div class="document-header">
-              <div class="document-title">Plan Nacional de IA México</div>
-              <div class="document-meta">
-                <span>México</span>
-                <span>2023</span>
-              </div>
-            </div>
-            <div class="document-body">
-              <p>Estrategia mexicana para el desarrollo e implementación de Inteligencia Artificial con enfoque en ética, gobernanza y aplicaciones sociales.</p>
-            </div>
-            <div class="document-footer">
-              <a href="{% url 'core:document_detail' %}" class="btn btn-secondary">Ver Detalles</a>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
       
-      <button class="carousel-nav carousel-next" aria-label="Siguiente">
+      <button class="carousel-nav carousel-next" aria-label="Next">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12l-4.58 4.59z" fill="currentColor"/>
         </svg>
@@ -180,13 +102,14 @@
 
   <!-- CTA Section -->
   <section class="cta-section">
-    <h2>Descubre las conexiones que impulsan la transformación digital</h2>
-    <p>Explora la red de acuerdos, políticas y compromisos que están definiendo el futuro digital entre Europa y América Latina. Visualiza relaciones complejas de manera intuitiva.</p>
-    <a href="{% url 'core:explore' %}" class="btn btn-secondary">Ver Relaciones en Red</a>
+    <h2>Discover the connections driving digital transformation</h2>
+    <p>Explore the network of agreements, policies and commitments defining the digital future between Europe and Latin America. Visualise complex relationships intuitively.</p>
+    <a href="{% url 'core:explore' %}" class="btn btn-secondary">View Network Relations</a>
   </section>
 
 {% endblock %}
 
 {% block extra_scripts %}
   <script src="{% static 'core/js/main.js' %}"></script>
+  <script src="{% static 'core/js/home.js' %}"></script>
 {% endblock %}
