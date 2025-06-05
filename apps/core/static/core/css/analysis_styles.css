@@ -1,0 +1,338 @@
+/* Analysis Page Specific Styles */
+.analysis-container {
+  margin-top: 60px;
+  min-height: calc(100vh - 60px);
+}
+
+.analysis-hero {
+  background: linear-gradient(135deg, rgba(9,78,178,0.1) 0%, rgba(52,168,83,0.1) 100%);
+  padding: 4rem 5% 3rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-lightest);
+}
+
+.analysis-hero-content h1 {
+  font-size: 2.5rem;
+  color: var(--primary-blue);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.analysis-hero-content p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.analysis-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 5%;
+}
+
+.analysis-block {
+  margin-bottom: 3rem;
+  background: var(--bg-white);
+  border-radius: var(--border-radius-large);
+  padding: 2rem;
+  box-shadow: var(--shadow-light);
+  border: 1px solid var(--border-lightest);
+}
+
+.block-title {
+  font-size: 1.6rem;
+  color: var(--primary-blue);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-lightest);
+  font-weight: 600;
+}
+
+/* Summary Cards - use base card classes */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 0;
+}
+
+.summary-card {
+  background: linear-gradient(135deg, rgba(9,78,178,0.05) 0%, rgba(52,168,83,0.05) 100%);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all var(--transition-medium);
+  border: 1px solid var(--border-lightest);
+  position: relative;
+  overflow: hidden;
+}
+
+.summary-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--primary-blue);
+}
+
+.summary-card:nth-child(2)::before {
+  background: var(--accent-yellow);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(9,78,178,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  line-height: 1;
+}
+
+.card-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+/* Chart Containers - use base card classes */
+.chart-container {
+  background: var(--bg-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  border: 1px solid var(--border-lightest);
+  padding: 1.5rem;
+  margin-bottom: 0;
+  transition: all var(--transition-medium);
+  position: relative;
+}
+
+.chart-container h3 {
+  margin: 0 0 1.5rem 0;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-lightest);
+}
+
+.chart-placeholder {
+  height: 300px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f4 100%);
+  border-radius: var(--border-radius-small);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-weight: 500;
+  border: 2px dashed var(--border-light);
+  position: relative;
+  transition: all var(--transition-medium);
+}
+
+.chart-placeholder:hover {
+  background: linear-gradient(135deg, #f0f2f5 0%, #e8eaed 100%);
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  cursor: pointer;
+}
+
+.timeline-chart {
+  height: 350px;
+}
+
+.placeholder-content {
+  text-align: center;
+}
+
+/* Grid Layouts */
+.full-width {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.full-width:last-child {
+  margin-bottom: 0;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 0;
+}
+
+.chart-left,
+.chart-right {
+  grid-column: auto;
+}
+
+/* Data Grid Container - use base card classes */
+.data-grid-container {
+  background: var(--bg-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-medium);
+  border: 1px solid var(--border-lightest);
+  padding: 1.5rem;
+  transition: all var(--transition-medium);
+}
+
+.data-grid-container:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.data-grid-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.grid-search {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.grid-filter {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  min-width: 150px;
+}
+
+.data-grid {
+  overflow-x: auto;
+}
+
+.data-grid table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-grid th {
+  background: #f8f9fa;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.data-grid td {
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.data-grid tr:hover {
+  background: #f8f9fa;
+}
+
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 4px;
+  background: #094EB2;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-sm:hover {
+  background: #083e8f;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .chart-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .analysis-content {
+    padding: 1.5rem 3%;
+  }
+  
+  .analysis-block {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .analysis-hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .analysis-hero {
+    padding: 3rem 3% 2rem;
+  }
+  
+  .analysis-content {
+    padding: 1rem 3%;
+  }
+  
+  .block-title {
+    font-size: 1.4rem;
+  }
+  
+  .chart-container {
+    padding: 1rem;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  
+  .chart-placeholder {
+    height: 250px;
+    font-size: 0.9rem;
+    min-height: 200px;
+    max-width: 100%;
+  }
+  
+  .chart-placeholder canvas {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .analysis-block {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-container {
+    padding: 0.75rem;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+  
+  .chart-placeholder {
+    height: 220px;
+    min-height: 180px;
+  }
+}
