@@ -161,6 +161,21 @@ class Document(BaseModel):
     title = models.CharField(max_length=300)
     event_date = models.DateField(null=True, blank=True)
 
+    document_type = models.CharField(
+        max_length=150,
+        choices=[
+            ("agreement_eu-lac", "Agreement EU-LAC"),
+            ("agreement_eu-lac", "Agreement EU-LAC"),
+            ("dialogues_eu-lac", "Dialogues EU-LAC"),
+            ("dialogues_bilateral", "Dialogues Bilateral"),
+            ("dialogues_multilateral", "Dialogues Multilateral"),
+            ("agreements_eu-lac", "Agreements EU-LAC"),
+            ("agreements_bilateral", "Agreements Bilateral"),
+            ("agreements_multilateral", "Agreements Multilateral"),
+            ("agreements_country_specific", "Agreements Country Specific"),
+        ],
+        blank=True, null=True
+    )
     
     city = models.CharField(max_length=150, null=True, blank=True)
     country = models.CharField(max_length=150, null=True, blank=True)
