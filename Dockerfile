@@ -1,77 +1,66 @@
-FROM python:3.9-slim
+# syntax=docker/dockerfile:1
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+#########################
+#  ===== Builder =====  #
+#########################
+FROM python:3.13-slim AS builder
 
-# Set work directory
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
 WORKDIR /app
 
-# Install system dependencies
+# Dependencias de compilación y libpq-dev solo en la etapa builder
 RUN apt-get update && apt-get install -y --no-install-recommends \
-      build-essential \
-      libpq-dev \
-      && rm -rf /var/lib/apt/lists/*
+        build-essential libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install pipenv or upgrade pip if needed
-RUN pip install --upgrade pip
+COPY requirements/production.txt ./requirements.txt
 
-# Copy production requirements and install dependencies
-COPY requirements/production.txt /app/requirements.txt
-RUN pip install -r requirements.txt
+# Cache de pip con BuildKit
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --upgrade pip && \
+    pip install --prefix=/install -r requirements.txt
 
-# Copy project
-COPY . /app/
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
+#########################
+#  ===== Runner  =====  #
+#########################
+FROM python:3.13-slim AS runner
 
-# Apply database migrations
-RUN python manage.py migrate
+LABEL maintainer="felipe.mendieta@cedia.og.ec" \
+      org.opencontainers.image.title="spider" \
+      org.opencontainers.image.version="1.0.0"
 
-# Expose the port that gunicorn will run on
-EXPOSE 8000
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    DJANGO_SETTINGS_MODULE=config.settings.production \
+    GUNICORN_CMD_ARGS="--workers 3 --log-level info -b 0.0.0.0:8000"
 
-# Run gunicorn server in production mode
-CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
-
-# This Dockerfile builds your project by installing dependencies and then starting Gunicorn to serve the Django app. Be sure to adjust any specific paths or configuration if needed.// filepath: c:\Projects\spider-web\Dockerfile
-FROM python:3.9-slim
-
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# Set work directory
 WORKDIR /app
 
-# Install system dependencies
+# Solo librerías de runtime
 RUN apt-get update && apt-get install -y --no-install-recommends \
-      build-essential \
-      libpq-dev \
-      && rm -rf /var/lib/apt/lists/*
+        curl libpq5 \
+    && apt-get purge -y --auto-remove \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install pipenv or upgrade pip if needed
-RUN pip install --upgrade pip
+# Usuario sin privilegios antes de copiar para poder usar --chown
+RUN groupadd --system appuser && \
+    useradd --system --gid appuser --home-dir /app appuser
 
-# Copy production requirements and install dependencies
-COPY requirements/production.txt /app/requirements.txt
-RUN pip install -r requirements.txt
+# Dependencias Python compiladas en /install (builder) → /usr/local (runner)
+COPY --from=builder /install /usr/local
 
-# Copy project
-COPY . /app/
+# Código de la aplicación con la propiedad correcta
+COPY --chown=appuser:appuser . .
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
+USER appuser
 
-# Apply database migrations
-RUN python manage.py migrate
+# Recolectar estáticos
+RUN python manage.py collectstatic --no-input
 
-# Expose the port that gunicorn will run on
 EXPOSE 8000
+HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost:8000/health/ || exit 1
 
-# Run gunicorn server in production mode
-CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
-
-
-#This Dockerfile builds your project by installing dependencies and then starting Gunicorn to serve the Django app. Be sure to adjust any specific paths or configuration if needed.
+CMD ["gunicorn", "config.wsgi:application"]
