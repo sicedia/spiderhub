@@ -198,6 +198,27 @@ class Document(BaseModel):
         blank=True,
     )
 
+    #legal characteristics 
+    coverage_scope = models.CharField(
+        max_length=150, null=True, blank=True,
+        choices=[
+            ("Regional", "Regional"),
+            ("Bilateral", "Bilateral"),
+            ("Multilateral", "Multilateral"),
+            ("National", "Country Specific"),
+            ("Uncategorised", "Uncategorised"),
+        ]
+    )
+    lega_biningness = models.CharField(
+        max_length=150, null=True, blank=True,
+        choices=[
+            ("politically-binding", "Politically Binding"),
+            ("legally-binding", "Legally Binding"),
+            ("non-binding", "Non-Binding"),
+            ("nncategorised", "Uncategorised"),
+        ]
+    )
+
     sdgs = models.ManyToManyField(SDG, related_name="documents", blank=True)
 
     # Admin fields
