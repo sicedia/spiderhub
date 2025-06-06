@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from apps.documents.models import Document
+from django.http import JsonResponse
 # Create your views here.
 
+def health_check(request):
+    """Health check endpoint"""
+    return JsonResponse({'status': 'healthy'})
 def home_page(request):
     template_name = 'core/home.html'
     """Home page view"""

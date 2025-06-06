@@ -323,6 +323,27 @@ docker-compose exec web python manage.py migrate
 docker-compose exec web python manage.py createsuperuser
 ```
 
+### Docker Build image
+```bash
+# Semantic versioning (recommended)
+docker build -t spider:1.0.0 -t spider:latest .
+
+# With date for daily builds
+docker build -t spider:2025-06-05 -t spider:latest .
+
+# With Git commit hash
+docker build -t spider:$(git rev-parse --short HEAD) -t spider:latest .
+
+# Combining version and environment
+docker build -t spider:1.0.0-prod -t spider:prod .
+
+# User BuildKit
+docker buildx build -t spider:latest .
+```
+## Docker Run Image
+
+docker run -d -p 8000:8000 --env-file .env spider:latest
+
 ## 🔍 API Documentation
 
 The application provides RESTful APIs for document management and search functionality:

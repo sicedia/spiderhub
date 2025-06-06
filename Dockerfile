@@ -57,8 +57,10 @@ COPY --chown=appuser:appuser . .
 
 USER appuser
 
-# Recolectar estáticos
-RUN python manage.py collectstatic --no-input
+# Recolectar estáticos con variables dummy (solo para build)
+RUN DJANGO_SECRET_KEY=dummy-key-for-collectstatic \
+    DATABASE_URL=sqlite:///dummy.db \
+    python manage.py collectstatic --no-input
 
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost:8000/health/ || exit 1
