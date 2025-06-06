@@ -813,3 +813,7 @@ $RECYCLE.BIN/
 .env
 /staticfiles
 .env.production
+
+*.key
+*.pem
+*.crt

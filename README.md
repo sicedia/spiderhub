@@ -149,10 +149,6 @@ DEBUG=True
 SECRET_KEY=your-secret-key-here
 ALLOWED_HOSTS=localhost,127.0.0.1
 
-# Database Configuration
-DATABASE_URL=sqlite:///db.sqlite3  # For development
-# DATABASE_URL=postgresql://user:password@localhost:5432/spiderhub  # For production
-
 # Static/Media Files
 STATIC_URL=/static/
 MEDIA_URL=/media/

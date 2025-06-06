@@ -15,6 +15,3 @@ DATABASES = {
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.MD5PasswordHasher',
 ]
-
-# Email: Utiliza un backend en memoria para pruebas
-EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'

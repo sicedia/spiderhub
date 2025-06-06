@@ -95,6 +95,7 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 # Archivos Estáticos y Medios
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+# Directorios adicionales de archivos estáticos (solo se usan cuando DEBUG=True)
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = '/media/'
