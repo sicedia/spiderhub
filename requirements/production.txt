@@ -1,4 +1,23 @@
+# Core Django packages
+django
+djangorestframework
+django-filter
+django-cors-headers
+
+# Database adapters
 dj-database-url
 psycopg2-binary
-django-environ  # for secure environment variable handling
-whitenoise  # for efficient static file serving
+
+# Environment and configuration
+django-environ
+python-dotenv
+
+# Static file serving
+whitenoise
+
+# Production server
+gunicorn
+
+# Utilities
+str2bool
+unidecode

@@ -4,11 +4,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
+from apps.core.views import health_check
+
 urlpatterns = [
     path('', include('apps.core.urls', namespace='core')),
     path('admin/', admin.site.urls),
     path('admin-panel/', include('apps.admin_panel.urls', namespace='admin-panel')),
     path('api/search/', include('apps.search.urls', namespace='search')),
+    path('health/', health_check, name='health_check'),
 ]
 
 if settings.DEBUG:

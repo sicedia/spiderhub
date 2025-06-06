@@ -5,7 +5,7 @@ from .base import *
 DEBUG = False
 
 # Se espera que la variable ALLOWED_HOSTS contenga una cadena separada por comas
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'example.com').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 
 DATABASES = {
     'default': dj_database_url.config(
@@ -14,10 +14,14 @@ DATABASES = {
     )
 }
 
-# Configuraciones de Seguridad
+# Configuraciones de Seguridad - Solo si tienes HTTPS
+# Comentar estas líneas para desarrollo local
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+
+# Static files configuration
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Email: Configuración SMTP
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
