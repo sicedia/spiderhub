@@ -1,6 +1,16 @@
-# SPIDERHUB - Digital Transformation Documentation Platform
+# SPIDERHUB
 
-A Django-based web application for analyzing and visualizing documents and agreements related to digital transformation between the European Union and Latin America.
+## About
+SPIDERHUB is a Django-based web application for analyzing and visualizing documents and agreements that drive digital transformation between the European Union and Latin America. It automates metadata extraction, maps relationships between entities, and offers advanced search and filtering by location, date, actors, themes.
+
+## Relation with This Project
+This repository implements SPIDERHUB’s core functionality:
+- apps/ — Django apps (`core`, `documents`, `search`, `admin_panel`)
+- config/ — project settings and URL/WGI/ASGI definitions
+- data/ — seed data Markdown files
+- static/, templates/ — UI assets and reusable components
+- manage.py — Django CLI entry point
+
 
 ## 🚀 Features
 
@@ -13,10 +23,10 @@ A Django-based web application for analyzing and visualizing documents and agree
 
 ## 📋 Prerequisites
 
-- Python 3.8+ 
+- Python 3.12+ 
 - pip (Python package manager)
 - Git
-- PostgreSQL (for production) or SQLite (for development)
+- PostgreSQL
 
 ## 🛠️ Installation
 
@@ -55,8 +65,12 @@ A Django-based web application for analyzing and visualizing documents and agree
    # Copy environment template
    cp .env.example .env
    
-   # Edit .env file with your configuration
+   # Edit .env file with your configuration for development
    # Set DEBUG=True for development
+   # Set SECURE_SSL_REDIRECT=False
+   # Set SECURE_SSL_REDIRECT=False
+   # Set SESSION_COOKIE_SECURE=False
+   # Set CSRF_COOKIE_SECURE=False
    ```
 
 5. **Database setup**
@@ -132,6 +146,7 @@ spider-web/
 ├── .env.example               # Environment variables template
 ├── .gitignore                 # Git ignore rules
 ├── docker-compose.yml         # Docker Compose configuration
+├── entrypoint.sh              # Initializing the application
 ├── Dockerfile                 # Docker image definition
 ├── manage.py                  # Django management script
 └── README.md                  # This file
@@ -145,13 +160,20 @@ Create a `.env` file based on `.env.example`:
 
 ```bash
 # Django Settings
-DEBUG=True
-SECRET_KEY=your-secret-key-here
-ALLOWED_HOSTS=localhost,127.0.0.1
+DJANGO_SECRET_KEY=django-insecure-4*&8f
+DJANGO_DEBUG=True
+DJANGO_SETTINGS_MODULE=config.settings.development
+ALLOWED_HOSTS=spiderhub.cedia.edu.ec,localhost
 
-# Static/Media Files
-STATIC_URL=/static/
-MEDIA_URL=/media/
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER=spider_user
+POSTGRES_PASSWORD=spider_password
+POSTGRES_DB=spider
+
+SECURE_SSL_REDIRECT=False
+SESSION_COOKIE_SECURE=False
+CSRF_COOKIE_SECURE=False
 
 ```
 
@@ -184,139 +206,12 @@ python manage.py seed --dry-run
 python manage.py seed --limit 10
 ```
 
-## 🧪 Testing
+## Docker Deployment
 
+## Run image in local
 ```bash
-# Run all tests
-python manage.py test
-
-# Run tests with coverage
-coverage run --source='.' manage.py test
-coverage report
-coverage html  # Generate HTML coverage report
-
-# Run specific app tests
-python manage.py test apps.core
-python manage.py test apps.documents
-```
-
-## 🚀 Deployment
-
-### Production Setup
-
-1. **Server Preparation**
-   ```bash
-   # Clone repository
-   git clone [your-repository-url]
-   cd spider-web
-   
-   # Create production virtual environment
-   python -m venv pyspider
-   source pyspider/bin/activate  # Linux/macOS
-   # pyspider\Scripts\activate   # Windows
-   ```
-
-2. **Install Production Dependencies**
-   ```bash
-   pip install --upgrade pip
-   pip install -r requirements/production.txt
-   ```
-
-3. **Environment Configuration**
-   ```bash
-   # Create production .env file
-   cp .env.example .env
-   
-   # Configure production settings
-   # Set DEBUG=False
-   # Set proper ALLOWED_HOSTS
-   # Configure production database
-   # Set secure SECRET_KEY
-   ```
-
-4. **Database Setup**
-   ```bash
-   python manage.py migrate
-   python manage.py collectstatic --noinput
-   python manage.py createsuperuser
-   ```
-
-5. **Application Server (Gunicorn)**
-   ```bash
-   # Install Gunicorn
-   pip install gunicorn
-   
-   # Test Gunicorn
-   gunicorn config.wsgi:application --bind 0.0.0.0:8000
-   ```
-
-6. **Reverse Proxy (Nginx)**
-   ```nginx
-   server {
-       listen 80;
-       server_name your-domain.com;
-       
-       client_max_body_size 50M;
-       
-       location / {
-           proxy_pass http://127.0.0.1:8000;
-           proxy_set_header Host $host;
-           proxy_set_header X-Real-IP $remote_addr;
-           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-           proxy_set_header X-Forwarded-Proto $scheme;
-       }
-       
-       location /static/ {
-           alias /path/to/spider-web/staticfiles/;
-           expires 1y;
-           add_header Cache-Control "public, immutable";
-       }
-       
-       location /media/ {
-           alias /path/to/spider-web/media/;
-           expires 1y;
-           add_header Cache-Control "public";
-       }
-   }
-   ```
-
-7. **Process Management**
-   ```bash
-   # Create systemd service file
-   sudo nano /etc/systemd/system/spiderhub.service
-   ```
-   
-   ```ini
-   [Unit]
-   Description=SPIDERHUB Django Application
-   After=network.target
-   
-   [Service]
-   User=www-data
-   Group=www-data
-   WorkingDirectory=/path/to/spider-web
-   Environment=PATH=/path/to/spider-web/pyspider/bin
-   ExecStart=/path/to/spider-web/pyspider/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 config.wsgi:application
-   Restart=always
-   
-   [Install]
-   WantedBy=multi-user.target
-   ```
-
-### Docker Deployment
-
-```bash
-# Build and run with Docker Compose
-docker-compose up -d
-
-# View logs
-docker-compose logs -f
-
-# Run migrations in container
-docker-compose exec web python manage.py migrate
-
-# Create superuser in container
-docker-compose exec web python manage.py createsuperuser
+docker compose up -d --build
+# Open your browser in https://localhost/
 ```
 
 ### Docker Build image
@@ -324,43 +219,17 @@ docker-compose exec web python manage.py createsuperuser
 # Semantic versioning (recommended)
 docker build -t spider:1.0.0 -t spider:latest .
 
-# With date for daily builds
-docker build -t spider:2025-06-05 -t spider:latest .
-
-# With Git commit hash
-docker build -t spider:$(git rev-parse --short HEAD) -t spider:latest .
-
-# Combining version and environment
-docker build -t spider:1.0.0-prod -t spider:prod .
-
-# User BuildKit
-docker buildx build -t spider:latest .
 ```
 ## Docker Run Image
-
-docker run -d -p 8000:8000 --env-file .env spider:latest
-
-## 🔍 API Documentation
-
-The application provides RESTful APIs for document management and search functionality:
-
-- **Documents API**: `/api/documents/`
-- **Search API**: `/api/search/`
-- **Admin API**: `/api/admin/`
-
-Visit `/api/docs/` for interactive API documentation.
-
-## 🌐 Internationalization
-
-The application is prepared for multiple languages:
-
 ```bash
-# Generate translation files
-python manage.py makemessages -l es
-python manage.py makemessages -l en
+docker run -d -p 8000:8000 --env-file .env.production spider:latest
+```
+## Architecture
+1. Install Plant UML Extension
+2. To preview in VS Code (with PlantUML extension) press Alt + D or run in the terminal:
+```bash
 
-# Compile translations
-python manage.py compilemessages
+plantuml -preview architecture.puml
 ```
 
 ## 🤝 Contributing
@@ -389,7 +258,9 @@ mypy .
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [MIT License](https://opensource.org/license/mit) file for details.
+
+
 
 ## 📞 Contact
 
@@ -400,9 +271,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - European Union and Latin America digital transformation initiative
+- [Spider Network](https://spidernetwork.org/)
 - Contributors and collaborators
 - Open source community
-
+- [CEDIA](https://cedia.edu.ec/)
 ---
 
 For more detailed information about specific components, please refer to the documentation in each app's directory.

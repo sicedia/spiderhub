@@ -1,0 +1,42 @@
+@startuml
+!define AWSICONURL https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v14.0/Dist
+skinparam componentStyle rectangle
+
+rectangle "Docker Compose" {
+  component "Web Service" as Web
+  database "PostgreSQL DB" as DB
+}
+
+Web --> DB : JDBC/psycopg2
+
+package "Django Project" {
+  component "manage.py\n(Django CLI)" as CLI
+  Web ..> CLI : invokes
+
+  package config {
+    component "settings/*.py" as Settings
+    component "urls.py" as URLs
+  }
+  Web --> Settings
+  Web --> URLs
+
+  package apps {
+    component core
+    component documents
+    component search
+    component admin_panel
+  }
+  Web --> core
+  Web --> documents
+  Web --> search
+  Web --> admin_panel
+
+  folder "data/ (seed files)" as Data
+  Web --> Data
+
+  folder "static/" as Static
+  folder "templates/" as Tmpl
+  Web --> Static
+  Web --> Tmpl
+}
+@enduml
