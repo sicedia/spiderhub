@@ -16,5 +16,3 @@ DATABASES = {
 }
 
 
-# Email: Redirigir envíos a la consola
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -3,7 +3,7 @@
 #########################
 #  ===== Builder =====  #
 #########################
-FROM python:3.13-slim AS builder
+FROM python:3.12-slim AS builder
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
@@ -26,7 +26,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 #########################
 #  ===== Runner  =====  #
 #########################
-FROM python:3.13-slim AS runner
+FROM python:3.12-slim AS runner
 
 LABEL maintainer="felipe.mendieta@cedia.og.ec" \
       org.opencontainers.image.title="spider" \
@@ -35,7 +35,7 @@ LABEL maintainer="felipe.mendieta@cedia.og.ec" \
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     DJANGO_SETTINGS_MODULE=config.settings.production \
-    GUNICORN_CMD_ARGS="--workers 3 --log-level info -b 0.0.0.0:8000"
+    GUNICORN_CMD_ARGS="--workers 2 --threads 4 --timeout 60 -b 0.0.0.0:8000"
 
 WORKDIR /app
 
@@ -55,14 +55,20 @@ COPY --from=builder /install /usr/local
 # Código de la aplicación con la propiedad correcta
 COPY --chown=appuser:appuser . .
 
-USER appuser
+# Create staticfiles directory and set ownership for appuser
+RUN mkdir -p /app/staticfiles && chown -R appuser:appuser /app/staticfiles
 
-# Recolectar estáticos con variables dummy (solo para build)
-RUN DJANGO_SECRET_KEY=dummy-key-for-collectstatic \
-    DATABASE_URL=sqlite:///dummy.db \
-    python manage.py collectstatic --no-input
+# Copiar el entrypoint y darle permisos
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+# Definir ENTRYPOINT
+ENTRYPOINT ["/app/entrypoint.sh"]
+
+USER appuser
 
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost:8000/health/ || exit 1
 
-CMD ["gunicorn", "config.wsgi:application"]
+# Por defecto, arrancar Gunicorn
+CMD ["gunicorn", "--timeout", "60", "config.wsgi:application"]
