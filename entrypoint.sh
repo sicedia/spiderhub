@@ -1,11 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env sh
 set -e
 
-# Migraciones Django (no repetirá si ya están aplicadas)
-python manage.py migrate --noinput
+echo "Waiting for PostgreSQL Database..."
+until pg_isready -h "$POSTGRES_HOST" -p "$POSTGRES_PORT"; do
+  sleep 2
+done
 
-# Recolectar estáticos (idempotente)
-python manage.py collectstatic --noinput
+echo "Aplicando migraciones…"
+python manage.py migrate --no-input
 
-# Ejecutar el comando que se pase como argumento
+echo "Recolectando estáticos…"
+python manage.py collectstatic --no-input --clear
+
 exec "$@"
