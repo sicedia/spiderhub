@@ -4,3 +4,4 @@ __pycache__/
 .git
 /tests
 .DS_Store
+data/
