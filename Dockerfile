@@ -41,7 +41,7 @@ WORKDIR /app
 
 # Solo librerías de runtime
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        curl libpq5 \
+        curl libpq5 postgresql-client \
     && apt-get purge -y --auto-remove \
     && rm -rf /var/lib/apt/lists/*
 
