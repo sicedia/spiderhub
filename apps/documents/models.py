@@ -165,7 +165,6 @@ class Document(BaseModel):
         max_length=150,
         choices=[
             ("agreement_eu-lac", "Agreement EU-LAC"),
-            ("agreement_eu-lac", "Agreement EU-LAC"),
             ("dialogues_eu-lac", "Dialogues EU-LAC"),
             ("dialogues_bilateral", "Dialogues Bilateral"),
             ("dialogues_multilateral", "Dialogues Multilateral"),
