@@ -203,77 +203,179 @@
   }
 
   function cardTpl(doc) {
+    // Helper: format "2022-03-15" → "March 2022"
+    const formatDate = dateStr => {
+      const d = new Date(dateStr);
+      return d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    };
+
+    // Build the meta string: "ORG • Month YYYY"
+    const org      = doc.organization || '';
+    const date     = doc.event_date ? formatDate(doc.event_date) : '';
+    const metaText = [org, date].filter(Boolean).join(' • ');
+
+    // Build tags: location + actors + themes
+    const tags = [
+      doc.country ? `<span class="doc-tag location">${doc.country}</span>` : '',
+      ...(doc.actors || []).map(a => `<span class="doc-tag actor">${a}</span>`),
+      ...(doc.themes || []).map(t => `<span class="doc-tag theme">${t}</span>`)
+    ].join('');
+
+    // Excerpt
+    const excerpt = doc.executive_summary || '';
+
     return `
-      <article class="document-card">
-        <header class="document-header">
-          <div class="document-title">${doc.title}</div>
-          <div class="document-meta">
-            ${doc.country} · ${new Date(doc.event_date).getFullYear()}
-          </div>
-        </header>
-        <div class="document-body">
-          <p>${doc.executive_summary || ''}</p>
-          <div class="doc-tags">
-            ${doc.actors.map(a => `<span class="tag actor">${a}</span>`).join('')}
-            ${doc.themes.map(t => `<span class="tag theme">${t}</span>`).join('')}
-          </div>
+      <div class="document-list-item">
+        <div class="document-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6C4.9 2 4.01 2.9 4.01 4L4 
+                    20C4 21.1 4.89 22 5.99 22H18C19.1 
+                    22 20 21.1 20 20V8L14 2ZM16 18H8V16H16V18ZM16 
+                    14H8V12H16V14ZM13 9V3.5L18.5 9H13Z"
+                  fill="currentColor"/>
+          </svg>
         </div>
-        <footer class="document-footer">
-          <a href="/documents/${doc.id}/" class="btn btn-secondary">Details</a>
-        </footer>
-      </article>
+        <div class="document-list-content">
+          <div class="document-list-title">${doc.title}</div>
+          <div class="document-list-meta">
+            <span>${metaText}</span>
+          </div>
+          <div class="document-list-tags">
+            ${tags}
+          </div>
+          <p class="document-excerpt">${excerpt}</p>
+        </div>
+        <div class="document-list-actions">
+          <a href="/document_detail/${doc.id}/" class="btn btn-secondary btn-sm">
+            View Details
+          </a>
+        </div>
+      </div>
     `;
   }
 
-  function renderResults(data) {
-    resultsCount.textContent = `${data.count} documents found`;
-    resultsBox.innerHTML = data.results.length
-      ? data.results.map(cardTpl).join('')
-      : '<p class="no-results">No documents match your criteria.</p>';
+  const PAGINATION_WINDOW = 1;
+
+  const SVG_PREV = `
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+            fill="currentColor"/>
+    </svg>`;
+
+  const SVG_NEXT = `
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+            fill="currentColor"/>
+    </svg>`;
+
+  function createBtn({ text = '', html = '', cls = '', disabled = false, onClick }) {
+    const btn = document.createElement('button');
+    btn.className = `pagination-btn ${cls}`.trim();
+    if (html) btn.innerHTML = html;
+    else btn.textContent = text;
+    btn.disabled = disabled;
+    btn.addEventListener('click', onClick);
+    pager.appendChild(btn);
+    return btn;
   }
 
+  function createEllipsis() {
+    const span = document.createElement('span');
+    span.className = 'pagination-ellipsis';
+    span.textContent = '...';
+    pager.appendChild(span);
+    return span;
+  }
+
+  // 8.1) Render results with “Showing X–Y of Z documents”
+  function renderResults(data) {
+    const { count, page_size: pageSize, results } = data;
+    const curr  = currentState.page;
+    const start = (curr - 1) * pageSize + 1;
+    const end   = Math.min(curr * pageSize, count);
+
+    resultsCount.textContent = `Showing ${start}–${end} of ${count} documents`;
+    resultsBox.innerHTML     = results.length
+      ? results.map(cardTpl).join('')
+      : '<p class="no-results">No documents match your criteria.</p>';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // 8.2) Render pagination with Prev, Next, ellipses & window
   function renderPager(data) {
     pager.innerHTML = '';
-    const makeBtn = (label, pg, disabled=false) => {
-      const btn = document.createElement('button');
-      btn.textContent   = label;
-      btn.disabled      = disabled;
-      btn.className     = 'page-btn';
-      btn.dataset.page  = pg;
-      return btn;
-    };
 
-    // Prev button
-    const prevPg = data.previous
-      ? new URL(data.previous).searchParams.get('page')
-      : null;
-    pager.appendChild(makeBtn('« Prev', prevPg, !prevPg));
+    const { count, page_size: pageSize } = data;
+    const totalPages = Math.max(1, Math.ceil(count / pageSize));
+    const curr       = currentState.page;
 
-    // pages around current
-    const total = Math.ceil(data.count / (data.results.length || 1));
-    const curr  = currentState.page;
-    const start = Math.max(1, curr - 1);
-    const end   = Math.min(total, curr + 1);
-    for (let i = start; i <= end; i++) {
-      const btn = makeBtn(i, i);
-      if (i === curr) btn.classList.add('active');
-      pager.appendChild(btn);
+    // Prev
+    if (curr > 1) {
+      createBtn({
+        html: SVG_PREV,
+        cls: 'prev-page',
+        onClick: () => {
+          currentState.page = curr - 1;
+          requestData();
+        }
+      });
     }
 
-    // Next button
-    const nextPg = data.next
-      ? new URL(data.next).searchParams.get('page')
-      : null;
-    pager.appendChild(makeBtn('Next »', nextPg, !nextPg));
+    // First page + leading ellipsis
+    const start = Math.max(1, curr - PAGINATION_WINDOW);
+    const end   = Math.min(totalPages, curr + PAGINATION_WINDOW);
+
+    if (start > 1) {
+      createBtn({
+        text: '1',
+        onClick: () => {
+          currentState.page = 1; requestData();
+        }
+      });
+      if (start > 2) createEllipsis();
+    }
+
+    // Window of page numbers
+    for (let i = start; i <= end; i++) {
+      createBtn({
+        text: i,
+        cls: i === curr ? 'active' : '',
+        disabled: i === curr,
+        onClick: () => {
+          currentState.page = i;
+          requestData();
+        }
+      });
+    }
+
+    // Trailing ellipsis + last page
+    if (end < totalPages) {
+      if (end < totalPages - 1) createEllipsis();
+      createBtn({
+        text: totalPages,
+        onClick: () => {
+          currentState.page = totalPages; requestData();
+        }
+      });
+    }
+
+    // Next
+    if (curr < totalPages) {
+      createBtn({
+        html: SVG_NEXT,
+        cls: 'next-page',
+        onClick: () => {
+          currentState.page = curr + 1;
+          requestData();
+        }
+      });
+    }
   }
 
-  pager.addEventListener('click', e => {
-    const btn = e.target.closest('.page-btn');
-    if (btn && !btn.disabled) {
-      currentState.page = Number(btn.dataset.page);
-      requestData();
-    }
-  });
 
   // ──────────────────────────────────────────────────────────
   // 9) Fetch data from API

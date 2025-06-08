@@ -208,7 +208,7 @@ class Document(BaseModel):
             ("Uncategorised", "Uncategorised"),
         ]
     )
-    lega_biningness = models.CharField(
+    legal_bindingness = models.CharField(
         max_length=150, null=True, blank=True,
         choices=[
             ("politically-binding", "Politically Binding"),

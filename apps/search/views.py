@@ -1,3 +1,4 @@
+from apps.core.pagination import StandardResultsSetPagination
 from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -8,27 +9,33 @@ from .filters import DocumentFilter
 from .serializers import DocumentListSerializer
 from unidecode import unidecode
 
-class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 20
-    page_size_query_param = 'page_size'
-    max_page_size = 100
 
 class DocumentSearchAPIView(ListAPIView):
     """
-    Endpoint: GET /api/search/documents/?<filters>
-    Returns paginated list of Document based on DocumentFilter.
+    GET /api/search/documents/?<filters>
+
+    Returns a paginated, filtered list of Document instances.
+    Optimizes database access by selecting the FK and prefetching
+    all M2M and reverse FK relations used in serialization or filtering.
     """
     queryset = (
         Document.objects.all()
-        .select_related('created_by')  # Removed 'location' as it doesn't exist
+        # ForeignKey to the user who created the document
+        .select_related('created_by')
+        # Many-to-many and reverse FK relations
         .prefetch_related(
-            'actors', 'themes', 'sdgs',  # Removed non-existent fields
-            # 'tags', 'agreement_types', 'beneficiary_groups', 'countries', 'sdg_alignments'
+            'actors',               # DocumentActor through-table
+            'themes',               # DocumentTheme through-table
+            'beneficiary_groups',   # BeneficiaryGroup M2M
+            'sdgs',                 # SDG M2M
+            'commitments',          # Commitment reverse FK
+            'practical_applications',  # PracticalApplication reverse FK
+            'kpis',                 # KPI reverse FK
         )
     )
-    serializer_class = DocumentListSerializer
-    filterset_class = DocumentFilter
-    pagination_class = StandardResultsSetPagination
+    serializer_class   = DocumentListSerializer
+    filterset_class    = DocumentFilter
+    pagination_class   = StandardResultsSetPagination
 
 class SuggestAPIView(APIView):
     """

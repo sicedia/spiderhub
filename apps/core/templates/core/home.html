@@ -64,9 +64,10 @@
               <div class="document-body">
                 <p>{{ document.executive_summary|truncatewords:25|default:"No summary available." }}</p>
               </div>
-              <div class="document-footer">
-                <a href="{% url 'core:document_detail' %}?id={{ document.id }}" class="btn btn-secondary">View Details</a>
-              </div>
+              <a href="{% url 'core:document_detail' document.id %}" class="btn btn-secondary">
+                View Details
+              </a>
+
             </div>
           {% empty %}
             <div class="document-card">
