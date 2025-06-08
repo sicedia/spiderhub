@@ -1,71 +1,86 @@
 from django_filters import FilterSet, CharFilter, DateFromToRangeFilter, ModelMultipleChoiceFilter
 from django.contrib.postgres.search import SearchQuery, SearchRank
+from django.db.models import Q
 from apps.documents.models import Document, Actor, Theme, BeneficiaryGroup, SDG
 
 class DocumentFilter(FilterSet):
-    # Full-text search param “search”
+    """
+    Provides:
+      - Full-text search across title & executive_summary
+      - Date range filtering on event_date
+      - Multi-select filters for actors, themes, beneficiaries & SDGs
+      - Exact-match “in” filtering for document_type, coverage_scope,
+        legal_bindingness, agreement_type, country & city
+    """
+
+    # 1) Full-text search
     search = CharFilter(method='filter_search')
 
-    # Date range params “event_date_after” y “event_date_before”
+    # 2) Date range on event_date
     event_date = DateFromToRangeFilter(field_name='event_date')
 
-    # Taxonomy filters, usando los mismos param names que el JS
-    document_type      = CharFilter(field_name='document_type', lookup_expr='exact')
-    legal_bindingness  = CharFilter(field_name='legal_bindingness', lookup_expr='exact')
-    coverage_scope     = CharFilter(field_name='coverage_scope', lookup_expr='exact')
-    agreement_type     = CharFilter(field_name='agreement_type', lookup_expr='exact')
-
-    # Relaciones ManyToMany
-    actor               = ModelMultipleChoiceFilter(
+    # 3) M2M taxonomies
+    actor = ModelMultipleChoiceFilter(
         queryset=Actor.objects.all(),
         field_name='actors',
         to_field_name='id'
     )
-    theme               = ModelMultipleChoiceFilter(
+    theme = ModelMultipleChoiceFilter(
         queryset=Theme.objects.all(),
         field_name='themes',
         to_field_name='id'
     )
-    beneficiary         = ModelMultipleChoiceFilter(
+    # beneficiary_groups   = ModelMultipleChoiceFilter(queryset=BeneficiaryGroup.objects.all())
+    # sdgs                 = ModelMultipleChoiceFilter(queryset=SDG.objects.all())
+    beneficiary = ModelMultipleChoiceFilter(
         queryset=BeneficiaryGroup.objects.all(),
         field_name='beneficiary_groups',
         to_field_name='id'
     )
-    sdg                 = ModelMultipleChoiceFilter(
+    sdg = ModelMultipleChoiceFilter(
         queryset=SDG.objects.all(),
         field_name='sdgs',
         to_field_name='id'
     )
 
-    # Campo simple
-    country             = CharFilter(field_name='country', lookup_expr='icontains')
+    # 4) Exact-match “in” filters on CharFields
+    document_type        = CharFilter(field_name='document_type', lookup_expr='in')
+    coverage_scope       = CharFilter(field_name='coverage_scope',  lookup_expr='in')
+    legal_bindingness    = CharFilter(field_name='legal_bindingness', lookup_expr='in')
+    agreement_type       = CharFilter(field_name='agreement_type', lookup_expr='in')
+    country              = CharFilter(method='filter_country')
+    city                 = CharFilter(field_name='city', lookup_expr='in')
 
     class Meta:
         model = Document
         fields = [
-            'search',
-            'event_date',
-            'document_type',
-            'legal_bindingness',
-            'coverage_scope',
-            'agreement_type',
-            'country',
-            'actor',
-            'theme',
-            'beneficiary',
-            'sdg',
+            'search', 'event_date',
+            'actor', 'theme', 'beneficiary', 'sdg',
+            'document_type', 'coverage_scope', 'legal_bindingness',
+            'agreement_type', 'country', 'city',
         ]
 
     def filter_search(self, queryset, name, value):
         """
-        Full-text search usando el campo `search_vector`
+        Full-text search using PostgreSQL search_vector,
+        ordering by relevance.
         """
-        if value:
-            sq = SearchQuery(value)
-            return (
-                queryset
-                .filter(search_vector=sq)
-                .annotate(rank=SearchRank('search_vector', sq))
-                .order_by('-rank')
-            )
-        return queryset
+        if not value:
+            return queryset
+        q = SearchQuery(value)
+        return (
+            queryset
+            .filter(search_vector=q)
+            .annotate(rank=SearchRank('search_vector', q))
+            .order_by('-rank')
+        )
+
+    def filter_country(self, queryset, name, value):
+        """
+        Exact “in” filter on country.
+        Supports multiple params: ?country=Belgium&country=France
+        """
+        values = self.request.GET.getlist(name)
+        if not values:
+            return queryset
+        return queryset.filter(country__in=values)
