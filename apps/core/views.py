@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.db.models import Count
 from apps.documents.models import (
-    Document, Actor, Theme, BeneficiaryGroup, SDG
+    Document, Actor, Theme, BeneficiaryGroup, SDG, CommitmentDetail
 )
 # Create your views here.
 
@@ -58,7 +58,48 @@ def explore_page(request):
         for slug, label in raw_doc_type_choices[0: top_N]
     ]
 
-    # 2) Countries
+    # 2) Legal Characteristics
+    # 2.1) Legal Bindingness
+    raw_legal_bindingness_choices = Document.legal_bindingness.field.choices
+    legal_bindingness_qs = (
+        Document.objects
+                .values('legal_bindingness')
+                .annotate(count=Count('id'))
+    )
+    legal_bindingness_counts = {entry['legal_bindingness']: entry['count'] for entry in legal_bindingness_qs}
+    available_legal_bindingness = [
+        (slug, label, legal_bindingness_counts.get(slug, 0))
+        for slug, label in raw_legal_bindingness_choices[0: top_N]
+    ]
+
+    # 2.2) Coverage Scope
+    raw_coverage_scope_choices = Document.coverage_scope.field.choices
+    coverage_scope_qs = (
+        Document.objects
+                .values('coverage_scope')
+                .annotate(count=Count('id'))
+    )
+    coverage_scope_counts = {entry['coverage_scope']: entry['count'] for entry in coverage_scope_qs}
+    available_coverage_scope = [
+        (slug, label, coverage_scope_counts.get(slug, 0))
+        for slug, label in raw_coverage_scope_choices[0: top_N]
+    ]
+
+    # 2.3) Agreement Types
+    agreement_qs = (
+        CommitmentDetail.objects
+        .values('commitment_class')
+        .annotate(count=Count('id'))
+        .filter(commitment_class__isnull=False)
+        .exclude(commitment_class='')
+        .order_by('-count')
+    )
+    available_agreement_types = [(
+            entry['commitment_class'],  # slug
+            entry['commitment_class'].replace('_', ' ').title(),  # label
+            entry['count']) for entry in agreement_qs[0: top_N]
+    ]
+    # 3) Countries
     countries_qs = (
         Document.objects
                 .exclude(country__isnull=True)
@@ -72,7 +113,7 @@ def explore_page(request):
         for entry in countries_qs[0: top_N]
     ]
 
-    # 3) Actors: M2M → Actor with document count
+    # 4) Actors: M2M → Actor with document count
     actors_qs = (
         Actor.objects
              .annotate(count=Count('documents'))
@@ -83,7 +124,7 @@ def explore_page(request):
         for actor in actors_qs[0: top_N]
     ]
 
-    # 4) Themes: M2M → Theme with document count
+    # 5) Themes: M2M → Theme with document count
     themes_qs = (
         Theme.objects
              .annotate(count=Count('documents'))
@@ -94,7 +135,7 @@ def explore_page(request):
         for theme in themes_qs[0: top_N]
     ]
 
-    # 5) Beneficiary Groups: M2M → BeneficiaryGroup with document count
+    # 6) Beneficiary Groups: M2M → BeneficiaryGroup with document count
     beneficiaries_qs = (
         BeneficiaryGroup.objects
                         .annotate(count=Count('documents'))
@@ -105,7 +146,7 @@ def explore_page(request):
         for b in beneficiaries_qs[0: top_N]
     ]
 
-    # 6) SDGs: M2M → SDG with document count
+    # 7) SDGs: M2M → SDG with document count
     sdgs_qs = (
         SDG.objects
            .annotate(count=Count('documents'))
@@ -118,6 +159,9 @@ def explore_page(request):
 
     context = {
         'available_doc_types':     available_doc_types,
+        'available_legal_bindingness': available_legal_bindingness,
+        'available_coverage_scope': available_coverage_scope,
+        'available_agreement_types': available_agreement_types,
         'available_countries':     available_countries,
         'available_actors':        available_actors,
         'available_themes':        available_themes,
@@ -126,10 +170,15 @@ def explore_page(request):
     }
     return render(request, template_name, context)
 
-def document_detail_page(request):
+def document_detail_page(request, pk):
+    template_name = 'core/document_detail.html'
     """Document Detail page view"""
-    return render(request, 'core/document_detail.html')
+    document = get_object_or_404(Document, pk=pk)
 
+    context = {
+        'document': document
+    }
+    return render(request, template_name, context)
 def test_page(request):
     """Test page view"""
     return render(request, 'core/test.html')
