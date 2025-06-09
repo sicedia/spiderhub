@@ -1,245 +1,399 @@
-/**
- * debounce:
- *   Returns a debounced version of a function, so it only executes
- *   after `delay` ms have passed since the last call.
- */
-function debounce(fn, delay) {
-  let timer = null;
-  return function(...args) {
-    clearTimeout(timer);
-    timer = setTimeout(() => fn.apply(this, args), delay);
-  }
-}
+(() => {
+  'use strict';
 
-// Cache DOM elements for performance
-const searchBox       = document.getElementById('searchbox');
-const suggestionsList = document.getElementById('suggestions-list');
-const searchForm      = document.getElementById('search-form');
-const searchResultsList   = document.getElementById('search-results-list');
-const searchResultsCard   = document.getElementById('search-results-card');
-const resultsCount   = document.getElementById('results-count');
+  // ──────────────────────────────────────────────────────────
+  // 1) DOM References
+  // ──────────────────────────────────────────────────────────
+  const searchBox       = document.getElementById('searchbox');
+  const searchButton    = document.getElementById('search-button');
+  const suggestionsList = document.getElementById('suggestions-list');
+  const applyBtn        = document.getElementById('apply-filters');
+  const resetBtn        = document.getElementById('reset-filters');
+  const resultsBox      = document.getElementById('search-results-list');
+  const resultsCount    = document.getElementById('results-count');
+  const pager           = document.getElementById('pagination');
+  const dateFromInput   = document.getElementById('date-from');
+  const dateToInput     = document.getElementById('date-to');
 
-/**
- * fetchSuggestions:
- *   Fetch autocomplete suggestions from /api/search/suggest/?q=<term>
- *   and populate the #suggestions-list <ul> with <li> items.
- */
-async function fetchSuggestions(query) {
-  // Hide suggestions if fewer than 2 characters
-  if (!query || query.trim().length < 2) {
-    suggestionsList.innerHTML = '';
+  // ──────────────────────────────────────────────────────────
+  // 2) In-memory state
+  // ──────────────────────────────────────────────────────────
+  let currentState = {
+    q: '',
+    document_type: [],
+    legal_bindingness: [],
+    coverage_scope: [],
+    agreement_type: [],
+    country: [],
+    actor: [],
+    beneficiary: [],
+    theme: [],
+    sdg: [],
+    date_from: '',
+    date_to: '',
+    page: 1
+  };
+
+  // debounce timer for autocomplete
+  let debounceTimer = null;
+
+  // ──────────────────────────────────────────────────────────
+  // 3) AUTOCOMPLETE logic
+  // ──────────────────────────────────────────────────────────
+  function hideSuggestions() {
     suggestionsList.classList.add('hidden');
-    return;
+    suggestionsList.innerHTML = '';
   }
 
-  try {
-    const response = await fetch(`/api/search/suggest/?q=${encodeURIComponent(query)}`);
-    if (!response.ok) {
-      throw new Error('Network response was not OK');
-    }
-    const titles = await response.json();
-
-    // Clear existing suggestions
+  function renderSuggestions(items) {
     suggestionsList.innerHTML = '';
-
-    // If no suggestions, hide the list and return
-    if (!titles.length) {
-      suggestionsList.classList.add('hidden');
+    if (!items || items.length === 0) {
+      hideSuggestions();
       return;
     }
-
-    // Build <li> for each suggestion
-    titles.forEach(title => {
+    suggestionsList.classList.remove('hidden');
+    items.forEach(text => {
       const li = document.createElement('li');
-      li.textContent = title;
-      li.className = 'px-4 py-2 hover:bg-gray-100';
-      // On click, fill input and trigger search
+      li.className = 'suggestion-item';
+      li.textContent = text;
       li.addEventListener('click', () => {
-        searchBox.value = title;
-        suggestionsList.innerHTML = '';
-        suggestionsList.classList.add('hidden');
-        performSearch();  // Auto-submit form
+        searchBox.value = text;
+        hideSuggestions();
+        currentState.q = text;
+        currentState.page = 1;
+        requestData();
       });
       suggestionsList.appendChild(li);
     });
-    // Show the dropdown
-    suggestionsList.classList.remove('hidden');
-  } catch (error) {
-    console.error('Error fetching suggestions:', error);
-  }
-}
-
-/**
- * performSearch:
- *   Serialize form inputs, call /api/search/documents/?... via AJAX,
- *   and render results in #search-results.
- */
-async function performSearch() {
-  const formData = new FormData(searchForm);
-  const params = new URLSearchParams();
-
-  // Append only non-empty values
-  for (const [key, value] of formData.entries()) {
-    if (value && value.trim().length) {
-      params.append(key, value.trim());
-    }
   }
 
-  try {
-    const response = await fetch(`/api/search/documents/?${params.toString()}`);
-    if (!response.ok) {
-      throw new Error('Network response was not OK');
-    }
-    const data = await response.json();
-    renderSearchResults(data);
-  } catch (error) {
-    console.error('Error performing search:', error);
+  function fetchSuggestions(term) {
+    fetch(`/api/search/suggest/?q=${encodeURIComponent(term)}`)
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(renderSuggestions)
+      .catch(hideSuggestions);
   }
-}
 
-/**
- * renderSearchResults:
- *   Given { count, next, previous, results: [...] }, build HTML
- *   and inject into #search-results, including pagination controls.
- */
-function renderSearchResults(data) {
-  const { count, next, previous, results } = data;
-
-  // Total results count
-  resultsCount.innerHTML = `${count} documento(s) encontrado(s)`;
-
-  // Display mode: grid of cards. Adjust classes según tu estructura
-  let cardsHtml = '<div class="documents-grid">';
-  results.forEach(doc => {
-    cardsHtml += `
-      <div class="document-card">
-        <div class="document-header">
-          <div class="document-title">${doc.title}</div>
-          <div class="document-meta">
-            <span class="document-date">${doc.event_date}</span>
-            <span class="document-organization">${doc.country || ''}</span>
-          </div>
-        </div>
-        <div class="document-body">
-          <div class="document-tags">
-            <span class="doc-tag location">${doc.country || 'N/A'}</span>
-    `;
-    for (const actor of doc.actors) {
-      cardsHtml += `<span class="doc-tag actor">${actor}</span>`;
+  searchBox.addEventListener('input', e => {
+    const term = e.target.value.trim();
+    if (term.length < 2) {
+      hideSuggestions();
+      return;
     }
-    for (const theme of doc.themes) {
-      cardsHtml += `<span class="doc-tag theme">${theme}</span>`;
-    }
-    cardsHtml += `
-           </div>
-             <p class="document-excerpt">${doc.executive_summary || ''}</p>
-        </div>
-        <div class="document-footer">
-          <a onClick=showDetails(${doc.id}) class="btn btn-secondary">Ver Detalles</a>
-          <button class="document-action">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="currentColor"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    `;
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => fetchSuggestions(term), 300);
   });
-  cardsHtml += '</div>';
 
-  // Inject into DOM
-  searchResultsCard.innerHTML = cardsHtml;
+  document.addEventListener('click', e => {
+    if (e.target !== searchBox && !suggestionsList.contains(e.target)) {
+      hideSuggestions();
+    }
+  });
 
-  let listHtml = '<div class="documents-list"">';
-  results.forEach(doc => {
-    listHtml += `
+  // ──────────────────────────────────────────────────────────
+  // 4) SEARCH by text (Enter / Search button)
+  // ──────────────────────────────────────────────────────────
+  function commitSearch() {
+    currentState.q = searchBox.value.trim();
+    currentState.page = 1;
+    hideSuggestions();
+    requestData();
+  }
+
+  searchBox.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      commitSearch();
+    }
+  });
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();
+    commitSearch();
+  });
+
+  // ──────────────────────────────────────────────────────────
+  // 5) GATHER filter values from DOM
+  // ──────────────────────────────────────────────────────────
+  function gatherFilters() {
+    const multiKeys = [
+      'document_type','legal_bindingness','coverage_scope','agreement_type',
+      'country','actor','beneficiary','theme','sdg'
+    ];
+    multiKeys.forEach(key => {
+      currentState[key] = Array.from(
+        document.querySelectorAll(`input[name="${key}"]:checked`)
+      ).map(cb => cb.value);
+    });
+    currentState.date_from = dateFromInput.value;
+    currentState.date_to   = dateToInput.value;
+    // page is managed separately
+  }
+
+  // ──────────────────────────────────────────────────────────
+  // 6) APPLY & RESET buttons
+  // ──────────────────────────────────────────────────────────
+  applyBtn.addEventListener('click', e => {
+    e.preventDefault();
+    currentState.page = 1;
+    gatherFilters();
+    requestData();
+  });
+
+  resetBtn.addEventListener('click', e => {
+    e.preventDefault();
+    // reset in-memory state
+    currentState = {
+      q: '',
+      document_type: [],
+      legal_bindingness: [],
+      coverage_scope: [],
+      agreement_type: [],
+      country: [],
+      actor: [],
+      beneficiary: [],
+      theme: [],
+      sdg: [],
+      date_from: '',
+      date_to: '',
+      page: 1
+    };
+    // reset DOM controls
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    searchBox.value       = '';
+    dateFromInput.value   = '';
+    dateToInput.value     = '';
+    hideSuggestions();
+    requestData();
+  });
+
+  // ──────────────────────────────────────────────────────────
+  // 7) Build query string from state
+  // ──────────────────────────────────────────────────────────
+  function buildParams(state) {
+    const p = new URLSearchParams();
+    if (state.q) p.append('search', state.q);
+
+    const multiKeys = [
+      'document_type','legal_bindingness', 'coverage_scope', 'agreement_type',
+      'country','actor','beneficiary','theme','sdg'
+    ];
+    multiKeys.forEach(key => state[key].forEach(v => p.append(key, v)));
+
+    if (state.date_from) p.append('event_date_after',  state.date_from);
+    if (state.date_to)   p.append('event_date_before', state.date_to);
+
+    p.append('page', state.page);
+    return p.toString();
+  }
+
+  // ──────────────────────────────────────────────────────────
+  // 8) Render Results & Pagination
+  // ──────────────────────────────────────────────────────────
+  function showLoading() {
+    resultsBox.innerHTML   = '<p class="loading">Loading…</p>';
+    pager.innerHTML        = '';
+    resultsCount.textContent = '';
+  }
+
+  function showError() {
+    resultsBox.innerHTML   = '<p class="error">Error loading results.</p>';
+    pager.innerHTML        = '';
+    resultsCount.textContent = '';
+  }
+
+  function cardTpl(doc) {
+    // Helper: format "2022-03-15" → "March 2022"
+    const formatDate = dateStr => {
+      const d = new Date(dateStr);
+      return d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    };
+
+    // Build the meta string: "ORG • Month YYYY"
+    const org      = doc.organization || '';
+    const date     = doc.event_date ? formatDate(doc.event_date) : '';
+    const metaText = [org, date].filter(Boolean).join(' • ');
+
+    // Build tags: location + actors + themes
+    const tags = [
+      doc.country ? `<span class="doc-tag location">${doc.country}</span>` : '',
+      ...(doc.actors || []).map(a => `<span class="doc-tag actor">${a}</span>`),
+      ...(doc.themes || []).map(t => `<span class="doc-tag theme">${t}</span>`)
+    ].join('');
+
+    // Excerpt
+    const excerpt = doc.executive_summary || '';
+
+    return `
       <div class="document-list-item">
         <div class="document-icon">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 2H6C4.9 2 4.01 2.9 4.01 4L4 20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8L14 2ZM16 18H8V16H16V18ZM16 14H8V12H16V14ZM13 9V3.5L18.5 9H13Z" fill="currentColor"/>
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6C4.9 2 4.01 2.9 4.01 4L4 
+                    20C4 21.1 4.89 22 5.99 22H18C19.1 
+                    22 20 21.1 20 20V8L14 2ZM16 18H8V16H16V18ZM16 
+                    14H8V12H16V14ZM13 9V3.5L18.5 9H13Z"
+                  fill="currentColor"/>
           </svg>
         </div>
         <div class="document-list-content">
           <div class="document-list-title">${doc.title}</div>
           <div class="document-list-meta">
-            <span>${doc.event_date}</span>
+            <span>${metaText}</span>
           </div>
           <div class="document-list-tags">
-            <span class="doc-tag location">${doc.country || 'N/A'}</span>
-    `;
-    for (const actor of doc.actors) {
-      listHtml += `<span class="doc-tag actor">${actor}</span>`;
-    }
-    for (const theme of doc.themes) {
-      listHtml += `<span class="doc-tag theme">${theme}</span>`;
-    }
-    listHtml += `
+            ${tags}
           </div>
-          <p class="document-excerpt">${doc.executive_summary || ''}</p>
+          <p class="document-excerpt">${excerpt}</p>
         </div>
-        <div class="document-list-actions" >
-          <a onClick=showDetails(${doc.id}) class="btn btn-secondary btn-sm">Ver Detalles</a>
+        <div class="document-list-actions">
+          <a href="/document_detail/${doc.id}/" class="btn btn-secondary btn-sm">
+            View Details
+          </a>
         </div>
       </div>
-        `;
-  });
-  listHtml += '</div>';
-  searchResultsList.innerHTML = listHtml;
+    `;
+  }
 
+  const PAGINATION_WINDOW = 1;
 
-}
+  const SVG_PREV = `
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+            fill="currentColor"/>
+    </svg>`;
 
-/**
- * fetchPage:
- *   Given a paginated URL (next/previous), fetch JSON and re-render.
- */
-async function fetchPage(url) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Network response was not OK');
+  const SVG_NEXT = `
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+            fill="currentColor"/>
+    </svg>`;
+
+  function createBtn({ text = '', html = '', cls = '', disabled = false, onClick }) {
+    const btn = document.createElement('button');
+    btn.className = `pagination-btn ${cls}`.trim();
+    if (html) btn.innerHTML = html;
+    else btn.textContent = text;
+    btn.disabled = disabled;
+    btn.addEventListener('click', onClick);
+    pager.appendChild(btn);
+    return btn;
+  }
+
+  function createEllipsis() {
+    const span = document.createElement('span');
+    span.className = 'pagination-ellipsis';
+    span.textContent = '...';
+    pager.appendChild(span);
+    return span;
+  }
+
+  // 8.1) Render results with “Showing X–Y of Z documents”
+  function renderResults(data) {
+    const { count, page_size: pageSize, results } = data;
+    const curr  = currentState.page;
+    const start = (curr - 1) * pageSize + 1;
+    const end   = Math.min(curr * pageSize, count);
+
+    resultsCount.textContent = `Showing ${start}–${end} of ${count} documents`;
+    resultsBox.innerHTML     = results.length
+      ? results.map(cardTpl).join('')
+      : '<p class="no-results">No documents match your criteria.</p>';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // 8.2) Render pagination with Prev, Next, ellipses & window
+  function renderPager(data) {
+    pager.innerHTML = '';
+
+    const { count, page_size: pageSize } = data;
+    const totalPages = Math.max(1, Math.ceil(count / pageSize));
+    const curr       = currentState.page;
+
+    // Prev
+    if (curr > 1) {
+      createBtn({
+        html: SVG_PREV,
+        cls: 'prev-page',
+        onClick: () => {
+          currentState.page = curr - 1;
+          requestData();
+        }
+      });
     }
-    const data = await response.json();
-    renderSearchResults(data);
-  } catch (error) {
-    console.error('Error fetching page:', error);
+
+    // First page + leading ellipsis
+    const start = Math.max(1, curr - PAGINATION_WINDOW);
+    const end   = Math.min(totalPages, curr + PAGINATION_WINDOW);
+
+    if (start > 1) {
+      createBtn({
+        text: '1',
+        onClick: () => {
+          currentState.page = 1; requestData();
+        }
+      });
+      if (start > 2) createEllipsis();
+    }
+
+    // Window of page numbers
+    for (let i = start; i <= end; i++) {
+      createBtn({
+        text: i,
+        cls: i === curr ? 'active' : '',
+        disabled: i === curr,
+        onClick: () => {
+          currentState.page = i;
+          requestData();
+        }
+      });
+    }
+
+    // Trailing ellipsis + last page
+    if (end < totalPages) {
+      if (end < totalPages - 1) createEllipsis();
+      createBtn({
+        text: totalPages,
+        onClick: () => {
+          currentState.page = totalPages; requestData();
+        }
+      });
+    }
+
+    // Next
+    if (curr < totalPages) {
+      createBtn({
+        html: SVG_NEXT,
+        cls: 'next-page',
+        onClick: () => {
+          currentState.page = curr + 1;
+          requestData();
+        }
+      });
+    }
   }
-}
 
-// Debounce fetchSuggestions by 250ms
-const debouncedFetch = debounce(() => {
-  fetchSuggestions(searchBox.value);
-}, 250);
 
-// 1) Autocomplete: listen to input events
-searchBox.addEventListener('input', debouncedFetch);
-
-// 2) Hide suggestions if click outside
-document.addEventListener('click', event => {
-  if (!searchBox.contains(event.target) && !suggestionsList.contains(event.target)) {
-    suggestionsList.innerHTML = '';
-    suggestionsList.classList.add('hidden');
+  // ──────────────────────────────────────────────────────────
+  // 9) Fetch data from API
+  // ──────────────────────────────────────────────────────────
+  function requestData() {
+    showLoading();
+    fetch(`/api/search/documents/?${buildParams(currentState)}`)
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(data => {
+        renderResults(data);
+        renderPager(data);
+      })
+      .catch(showError);
   }
-});
 
-// 3) Intercept form submit to do AJAX search
-searchForm.addEventListener('submit', event => {
-  event.preventDefault();
-  suggestionsList.innerHTML = '';
-  suggestionsList.classList.add('hidden');
-  performSearch();
-});
+  // ──────────────────────────────────────────────────────────
+  // 10) Initial load
+  // ──────────────────────────────────────────────────────────
+  requestData();
 
-// 4) On page load, if URL tiene parámetros, ejecutar búsqueda inicial
-document.addEventListener('DOMContentLoaded', () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.has('q') || urlParams.has('date_after')) {
-    performSearch();
-  }
-});
-
-function showDetails(docId) {
-  // Redirect to the document details page
-  // TODO: Implement the logic to pass the document ID if needed
-  window.location.href = `/document_detail/`;
-}
+})();
