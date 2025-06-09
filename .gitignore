@@ -817,3 +817,4 @@ $RECYCLE.BIN/
 *.key
 *.pem
 *.crt
+.env.production

@@ -1,6 +1,9 @@
-from django.shortcuts import render
-from apps.documents.models import Document
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
+from django.db.models import Count
+from apps.documents.models import (
+    Document, Actor, Theme, BeneficiaryGroup, SDG, CommitmentDetail
+)
 # Create your views here.
 
 def health_check(request):
@@ -38,13 +41,144 @@ def about_page(request):
     return render(request, 'core/about.html')
 
 def explore_page(request):
+    template_name = 'core/explore.html'
     """Explore page view"""
-    return render(request, 'core/explore.html')
+    top_N = 7  # Number of top entries to display
 
-def document_detail_page(request):
+    # 1) Document Type
+    raw_doc_type_choices = Document.document_type.field.choices
+    doc_type_counts_qs = (
+        Document.objects
+                .values('document_type')
+                .annotate(count=Count('id'))
+    )
+    doc_type_counts = {entry['document_type']: entry['count'] for entry in doc_type_counts_qs}
+    available_doc_types = [
+        (slug, label, doc_type_counts.get(slug, 0))
+        for slug, label in raw_doc_type_choices[0: top_N]
+    ]
+
+    # 2) Legal Characteristics
+    # 2.1) Legal Bindingness
+    raw_legal_bindingness_choices = Document.legal_bindingness.field.choices
+    legal_bindingness_qs = (
+        Document.objects
+                .values('legal_bindingness')
+                .annotate(count=Count('id'))
+    )
+    legal_bindingness_counts = {entry['legal_bindingness']: entry['count'] for entry in legal_bindingness_qs}
+    available_legal_bindingness = [
+        (slug, label, legal_bindingness_counts.get(slug, 0))
+        for slug, label in raw_legal_bindingness_choices[0: top_N]
+    ]
+
+    # 2.2) Coverage Scope
+    raw_coverage_scope_choices = Document.coverage_scope.field.choices
+    coverage_scope_qs = (
+        Document.objects
+                .values('coverage_scope')
+                .annotate(count=Count('id'))
+    )
+    coverage_scope_counts = {entry['coverage_scope']: entry['count'] for entry in coverage_scope_qs}
+    available_coverage_scope = [
+        (slug, label, coverage_scope_counts.get(slug, 0))
+        for slug, label in raw_coverage_scope_choices[0: top_N]
+    ]
+
+    # 2.3) Agreement Types
+    agreement_qs = (
+        CommitmentDetail.objects
+        .values('commitment_class')
+        .annotate(count=Count('id'))
+        .filter(commitment_class__isnull=False)
+        .exclude(commitment_class='')
+        .order_by('-count')
+    )
+    available_agreement_types = [(
+            entry['commitment_class'],  # slug
+            entry['commitment_class'].replace('_', ' ').title(),  # label
+            entry['count']) for entry in agreement_qs[0: top_N]
+    ]
+    # 3) Countries
+    countries_qs = (
+        Document.objects
+                .exclude(country__isnull=True)
+                .exclude(country__exact='')
+                .values('country')
+                .annotate(count=Count('id'))
+                .order_by('-count')
+    )
+    available_countries = [
+        (entry['country'], entry['country'], entry['count'])
+        for entry in countries_qs[0: top_N]
+    ]
+
+    # 4) Actors: M2M → Actor with document count
+    actors_qs = (
+        Actor.objects
+             .annotate(count=Count('documents'))
+             .order_by('-count')
+    )
+    available_actors = [
+        (actor.id, actor.label, actor.count)
+        for actor in actors_qs[0: top_N]
+    ]
+
+    # 5) Themes: M2M → Theme with document count
+    themes_qs = (
+        Theme.objects
+             .annotate(count=Count('documents'))
+             .order_by('-count')
+    )
+    available_themes = [
+        (theme.id, theme.label, theme.count)
+        for theme in themes_qs[0: top_N]
+    ]
+
+    # 6) Beneficiary Groups: M2M → BeneficiaryGroup with document count
+    beneficiaries_qs = (
+        BeneficiaryGroup.objects
+                        .annotate(count=Count('documents'))
+                        .order_by('-count')
+    )
+    available_beneficiaries = [
+        (b.id, b.label, b.count)
+        for b in beneficiaries_qs[0: top_N]
+    ]
+
+    # 7) SDGs: M2M → SDG with document count
+    sdgs_qs = (
+        SDG.objects
+           .annotate(count=Count('documents'))
+           .order_by('number')
+    )
+    available_sdgs = [
+        (s.number, s.label, s.count)
+        for s in sdgs_qs
+    ]
+
+    context = {
+        'available_doc_types':     available_doc_types,
+        'available_legal_bindingness': available_legal_bindingness,
+        'available_coverage_scope': available_coverage_scope,
+        'available_agreement_types': available_agreement_types,
+        'available_countries':     available_countries,
+        'available_actors':        available_actors,
+        'available_themes':        available_themes,
+        'available_beneficiaries': available_beneficiaries,
+        'available_sdgs':          available_sdgs,
+    }
+    return render(request, template_name, context)
+
+def document_detail_page(request, pk):
+    template_name = 'core/document_detail.html'
     """Document Detail page view"""
-    return render(request, 'core/document_detail.html')
+    document = get_object_or_404(Document, pk=pk)
 
+    context = {
+        'document': document
+    }
+    return render(request, template_name, context)
 def test_page(request):
     """Test page view"""
     return render(request, 'core/test.html')
