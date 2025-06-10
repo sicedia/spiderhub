@@ -164,10 +164,10 @@ class Document(BaseModel):
     document_type = models.CharField(
         max_length=150,
         choices=[
-            ("agreement_eu-lac", "Agreement EU-LAC"),
             ("dialogues_eu-lac", "Dialogues EU-LAC"),
             ("dialogues_bilateral", "Dialogues Bilateral"),
-            ("dialogues_multilateral", "Dialogues Multilateral"),
+            ("dialogues_eu-country","Dialogues EU-Country"),
+            ("dialogues_multilateral", "Dialogues multilateral"),
             ("agreements_eu-lac", "Agreements EU-LAC"),
             ("agreements_bilateral", "Agreements Bilateral"),
             ("agreements_multilateral", "Agreements Multilateral"),
@@ -211,10 +211,10 @@ class Document(BaseModel):
     legal_bindingness = models.CharField(
         max_length=150, null=True, blank=True,
         choices=[
-            ("politically-binding", "Politically Binding"),
-            ("legally-binding", "Legally Binding"),
+            ("politically-binding", "Politically-binding"),
+            ("legally-binding", "Legally-binding"),
             ("non-binding", "Non-Binding"),
-            ("nncategorised", "Uncategorised"),
+            ("uncategorised", "Uncategorised"),
         ]
     )
 
