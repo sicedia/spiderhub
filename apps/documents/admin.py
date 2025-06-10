@@ -229,8 +229,8 @@ class KPIInline(admin.TabularInline):
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
     list_display = (
-        'title_display', 'document_type_badge', 'location_info', 'event_date', 
-        'score_display', 'created_by', 'created_at'
+        'title_display', 'document_type_badge', 'location_info', 'event_date',
+        'summary_file_link', 'score_display', 'created_by', 'created_at'
     )
     list_display_links = ('title_display',)
     list_filter = (
@@ -259,7 +259,7 @@ class DocumentAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('📄 Basic Information', {
-            'fields': ('title', 'executive_summary', 'event_date'),
+            'fields': ('title', 'executive_summary', 'event_date', 'summary_file'),
             'classes': ('wide',)
         }),
         ('📋 Document Classification', {
@@ -334,6 +334,12 @@ class DocumentAdmin(admin.ModelAdmin):
             )
         return '-'
     score_display.short_description = 'Score'
+
+    def summary_file_link(self, obj):
+        if obj.summary_file:
+            return format_html('<a href="{}" target="_blank">Download</a>', obj.summary_file.url)
+        return '-'
+    summary_file_link.short_description = 'Summary File'
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj)
