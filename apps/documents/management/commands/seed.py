@@ -21,6 +21,7 @@ import json
 import os
 from datetime import datetime
 from pathlib import Path
+from typing import Dict, List, Union, Optional, Tuple, Any
 
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -42,19 +43,39 @@ from apps.documents.models import (
     Theme,
 )
 
+# Constants
 DATE_INPUT_FORMATS = ["%Y-%m-%d", "%d/%m/%Y", "%m/%d/%Y", "%d-%m-%Y"]
+TITLE_FIELDS = ["title", "Name of the Event", "name", "document_title", "event_name", "Title", "NAME"]
+SUMMARY_FIELDS = ["executive_summary", "Summary", "summary", "description"]
+FALLBACK_CONTENT_FIELDS = ["description", "summary", "executive_summary"]
 
+TYPE_MAPPING = {
+    "Agreement EU-LAC": "agreement_eu-lac",
+    "Agreements EU-LAC": "agreements_eu-lac", 
+    "Dialogues EU-LAC": "dialogues_eu-lac",
+    "Dialogues Bilateral": "dialogues_bilateral",
+    "Dialogues Multilateral": "dialogues_multilateral",
+    "Agreements Bilateral": "agreements_bilateral",
+    "Agreements Multilateral": "agreements_multilateral",
+    "Agreements Country Specific": "agreements_country_specific",
+}
+
+EXCLUDED_FIELDS = {
+    "title", "date", "location", "executive_summary", "summary", "themes", "actors", 
+    "beneficiary_groups", "beneficiary_group_raw", "sdg_alignment", "practical_applications", 
+    "commitments", "kpis", "top_themes", "top_actors", "extra_data", "name", "document_title", 
+    "event_name", "Title", "NAME", "description", "legal_bindingness", "coverage_scope",
+}
 
 # ---------------------------------------------------------------------------
 # Helper functions
 # ---------------------------------------------------------------------------
 
-def parse_date(value):
+def parse_date(value: Any) -> Optional[datetime]:
     """Try several date formats; return None if parsing fails."""
     if not value:
         return None
     if isinstance(value, (int, float)):
-        # Epoch timestamp support (seconds)
         try:
             return datetime.utcfromtimestamp(value).date()
         except Exception:
@@ -67,20 +88,39 @@ def parse_date(value):
     return None
 
 
-def split_location(loc):
+def split_location(loc: str) -> Tuple[Optional[str], Optional[str]]:
     """Return (city, country) from "City, Country" string; both may be None."""
     if not loc or loc.lower() in {"n/a", "unknown"}:
         return None, None
     if "," in loc:
         city, country = [p.strip() or None for p in loc.split(",", 1)]
         return city, country
-    # If only one token, assume country
     return None, loc.strip()
 
 
-def norm(label):
-    """Simple normaliser to compare labels case‑insensitively."""
-    return (label or "").strip().lower()
+def truncate_text(text: str, max_length: int) -> str:
+    """Truncate text to max_length with ellipsis if needed."""
+    if not text or len(text) <= max_length:
+        return text
+    return text[:max_length - 3] + "..."
+
+
+def get_first_available_value(data: Dict, fields: List[str]) -> str:
+    """Get the first non-empty value from the given fields."""
+    for field in fields:
+        # guard against None so strip() never fails
+        value = (data.get(field) or "").strip()
+        if value:
+            return value
+    return ""
+
+
+def normalize_string(value: Any) -> Optional[str]:
+    """Convert value to string and normalize, return None for empty."""
+    if value is None:
+        return None
+    normalized = str(value).strip()
+    return normalized if normalized else None
 
 
 # ---------------------------------------------------------------------------
@@ -90,15 +130,15 @@ def norm(label):
 class Loader:
     """Encapsulates JSON‑>DB import for one file."""
 
-    def __init__(self, data: dict, dry_run: bool = False, filename: str = None):
+    def __init__(self, data: Dict, dry_run: bool = False, filename: str = None):
         self.data = data
         self.dry_run = dry_run
-        self.filename = filename  # Store the filename
-        self.doc = None  # type: Document | None
+        self.filename = filename
+        self.doc: Optional[Document] = None
+        self.extra_data = data.get("extra_data", {})
 
-    # ---------------------------- public API ----------------------------
-
-    def run(self):
+    def run(self) -> None:
+        """Main entry point for loading a document."""
         with transaction.atomic():
             self._create_document()
             self._load_taxonomies()
@@ -107,125 +147,56 @@ class Loader:
             self._load_kpis()
             if self.dry_run:
                 transaction.set_rollback(True)
-                return
 
-    # --------------------------- internal steps -------------------------
-
-    def _extract_document_type_from_filename(self):
+    def _extract_document_type_from_filename(self) -> Optional[str]:
         """Extract document_type from filename prefix before first underscore."""
         if not self.filename:
             return None
-        
-        # Extract the part before the first underscore
         prefix = self.filename.split('_')[0].strip()
-        
-        # Map filename prefixes to document_type choices
-        type_mapping = {
-            "Agreement EU-LAC": "agreement_eu-lac",
-            "Agreements EU-LAC": "agreements_eu-lac", 
-            "Dialogues EU-LAC": "dialogues_eu-lac",
-            "Dialogues Bilateral": "dialogues_bilateral",
-            "Dialogues Multilateral": "dialogues_multilateral",
-            "Agreements Bilateral": "agreements_bilateral",
-            "Agreements Multilateral": "agreements_multilateral",
-            "Agreements Country Specific": "agreements_country_specific",
-        }
-        
-        return type_mapping.get(prefix)
+        return TYPE_MAPPING.get(prefix)
 
-    def _create_document(self):
-        # Expanded title field searching with more fallback options
-        title = (
-            self.data.get("title") or 
-            self.data.get("Name of the Event") or
-            self.data.get("name") or
-            self.data.get("document_title") or
-            self.data.get("event_name") or
-            self.data.get("Title") or
-            self.data.get("NAME") or
-            ""
-        ).strip()
+    def _get_document_title(self) -> str:
+        """Extract and validate document title from various sources."""
+        title = get_first_available_value(self.data, TITLE_FIELDS)
         
-        # If still no title, try to extract from filename or create a default
         if not title:
-            # Try to get a title from other fields
-            title = (
-                self.data.get("description", "")[:100] or
-                self.data.get("summary", "")[:100] or
-                self.data.get("executive_summary", "")[:100] or
-                f"Document {datetime.now().strftime('%Y%m%d_%H%M%S')}"
-            ).strip()
-            
-        if not title or title is None:
+            # Try fallback content fields
+            title = get_first_available_value(self.data, FALLBACK_CONTENT_FIELDS)
+            if title:
+                title = title[:100]  # Truncate fallback content
+        
+        if not title:
             title = f"Untitled Document {datetime.now().strftime('%Y%m%d_%H%M%S')}"
-
-        # Truncate title if it's too long (assuming 120 char limit based on error)
-        if len(title) > 120:
-            title = title[:117] + "..."
         
-        if not title:
-            raise ValueError(f"Unable to determine title from JSON data. Available keys: {list(self.data.keys())}")
+        return truncate_text(title, 120)
 
-        event_date = parse_date(self.data.get("date") or self.data.get("Date"))
-        
-        # Handle location with length limits
+    def _get_location_data(self) -> Tuple[Optional[str], Optional[str]]:
+        """Extract and validate location data."""
         location = self.data.get("location", "")
         city, country = split_location(location)
-        
-        # Truncate city and country if they're too long
-        if city and len(city) > 100:  # Assuming reasonable limit
-            city = city[:97] + "..."
-        if country and len(country) > 100:
-            country = country[:97] + "..."
+        return (truncate_text(city, 100) if city else None,
+                truncate_text(country, 100) if country else None)
 
-        summary = (
-            self.data.get("executive_summary")
-            or self.data.get("Summary")
-            or self.data.get("summary")
-            or self.data.get("description")
-            or ""
+    def _get_legal_bindingness(self) -> Optional[str]:
+        """Extract legal_bindingness from main data or extra_data."""
+        return normalize_string(
+            self.data.get("legal_bindingness") or 
+            self.extra_data.get("legal_bindingness")
         )
 
-        # Truncate summary if needed (check your model's field length)
-        if summary and len(summary) > 5000:  # Adjust based on your model
-            summary = summary[:4997] + "..."
-
-        # Extract document_type from filename
+    def _create_document(self) -> None:
+        """Create the main Document instance."""
+        title = self._get_document_title()
+        event_date = parse_date(self.data.get("date") or self.data.get("Date"))
+        city, country = self._get_location_data()
+        summary = get_first_available_value(self.data, SUMMARY_FIELDS)
+        summary = truncate_text(summary, 5000) if summary else ""
+        
         document_type = self._extract_document_type_from_filename()
-
-        # Handle legal_bindingness - allow null/empty values
-        legal_bindingness = self.data.get("legal_bindingness")
-        if legal_bindingness is not None:
-            legal_bindingness = str(legal_bindingness).strip()
-            # Convert empty string to None for database
-            if not legal_bindingness:
-                legal_bindingness = None
-
-        extra = {k: v for k, v in self.data.items() if k not in {
-            "title",
-            "date",
-            "location",
-            "executive_summary",
-            "summary",
-            "themes",
-            "actors",
-            "beneficiary_groups",
-            "beneficiary_group_raw",
-            "sdg_alignment",
-            "practical_applications",
-            "commitments",
-            "kpis",
-            "top_themes",
-            "top_actors",
-            "extra_data",
-            "name",
-            "document_title",
-            "event_name",
-            "Title",
-            "NAME",
-            "description",
-            "legal_bindingness",  # Add this to excluded fields
-        }}
+        coverage_scope = self.extra_data.get("coverage_scope")
+        legal_bindingness = self._get_legal_bindingness()
+        
+        extra = {k: v for k, v in self.data.items() if k not in EXCLUDED_FIELDS}
 
         self.doc, _ = Document.objects.get_or_create(
             title=title,
@@ -235,310 +206,232 @@ class Loader:
                 "country": country,
                 "executive_summary": summary,
                 "document_type": document_type,
-                "legal_bindingness": legal_bindingness,  # Add legal_bindingness here
+                "coverage_scope": coverage_scope,
+                "legal_bindingness": legal_bindingness,
                 "extra": extra,
             },
         )
 
-    # --------------------------- taxonomies -----------------------------
+    def _create_or_get_taxonomy_item(self, model_class, label: str, category: str = "Uncategorised"):
+        """Generic method to create or get taxonomy items (Theme, Actor, etc.)."""
+        return model_class.objects.get_or_create(
+            label=label,
+            defaults={"category": category, "description": ""}
+        )
 
-    def _load_taxonomies(self):
-        # Handle themes - support both dict and string formats
-        themes_data = self.data.get("themes", [])
-        
-        if isinstance(themes_data, dict):
-            # Handle categorized themes like {"Digital Transformation": ["AI", "ML"]}
-            for category, theme_list in themes_data.items():
-                if isinstance(theme_list, list):
-                    for theme_label in theme_list:
-                        if theme_label:
-                            theme, _ = Theme.objects.get_or_create(
-                                label=theme_label,
-                                defaults={"category": category or "Uncategorised", "description": ""}
-                            )
-                            DocumentTheme.objects.get_or_create(document=self.doc, theme=theme)
-        elif isinstance(themes_data, list):
-            # Handle flat list of themes
-            for theme_item in themes_data:
-                if isinstance(theme_item, dict):
-                    label = theme_item.get("label")
-                    category = theme_item.get("category", "Uncategorised")
-                else:
-                    label = theme_item
-                    category = "Uncategorised"
-                
-                if label:
-                    theme, _ = Theme.objects.get_or_create(
-                        label=label,
-                        defaults={"category": category, "description": ""}
-                    )
-                    DocumentTheme.objects.get_or_create(document=self.doc, theme=theme)
+    def _process_taxonomy_data(self, model_class, relation_model, data: Union[Dict, List], 
+                              relation_field: str = "document") -> None:
+        """Process taxonomy data in both dict and list formats."""
+        if isinstance(data, dict):
+            self._process_categorized_taxonomy(model_class, relation_model, data, relation_field)
+        elif isinstance(data, list):
+            self._process_flat_taxonomy(model_class, relation_model, data, relation_field)
 
-        # Handle actors - support both dict and string formats
-        actors_data = self.data.get("actors", [])
-        
-        if isinstance(actors_data, dict):
-            # Handle categorized actors like {"Political Actors": ["Government", "Parliament"]}
-            for category, actor_list in actors_data.items():
-                if isinstance(actor_list, list):
-                    for actor_label in actor_list:
-                        if actor_label:
-                            actor, _ = Actor.objects.get_or_create(
-                                label=actor_label,
-                                defaults={"category": category or "Uncategorised", "description": ""}
-                            )
-                            DocumentActor.objects.get_or_create(document=self.doc, actor=actor)
-        elif isinstance(actors_data, list):
-            # Handle flat list of actors
-            for actor_item in actors_data:
-                if isinstance(actor_item, dict):
-                    label = actor_item.get("label")
-                    category = actor_item.get("category", "Uncategorised")
-                else:
-                    label = actor_item
-                    category = "Uncategorised"
-                
-                if label:
-                    actor, _ = Actor.objects.get_or_create(
-                        label=label,
-                        defaults={"category": category, "description": ""}
-                    )
-                    DocumentActor.objects.get_or_create(document=self.doc, actor=actor)
+    def _process_categorized_taxonomy(self, model_class, relation_model, data: Dict, 
+                                    relation_field: str) -> None:
+        """Process categorized taxonomy data like {"Category": ["item1", "item2"]}."""
+        for category, item_list in data.items():
+            if isinstance(item_list, list):
+                for item_label in item_list:
+                    if item_label:
+                        taxonomy_item, _ = self._create_or_get_taxonomy_item(
+                            model_class, item_label, category
+                        )
+                        relation_model.objects.get_or_create(
+                            **{relation_field: self.doc, 
+                               model_class.__name__.lower(): taxonomy_item}
+                        )
 
-        # Handle beneficiary groups - support both root level and extra_data
-        extra_data = self.data.get("extra_data", {})
-        
-        # Regular beneficiary groups from root level
-        for bg_dict in self.data.get("beneficiary_groups", []):
-            if isinstance(bg_dict, dict):
-                label = bg_dict.get("label")
-                category = bg_dict.get("category", "Uncategorised")
+    def _process_flat_taxonomy(self, model_class, relation_model, data: List, 
+                             relation_field: str) -> None:
+        """Process flat taxonomy data as a list."""
+        for item in data:
+            if isinstance(item, dict):
+                label = item.get("label")
+                category = item.get("category", "Uncategorised")
             else:
-                label = bg_dict
+                label = item
                 category = "Uncategorised"
             
             if label:
-                bg, _ = BeneficiaryGroup.objects.get_or_create(
-                    label=label,
-                    defaults={"category": category, "description": ""}
+                taxonomy_item, _ = self._create_or_get_taxonomy_item(
+                    model_class, label, category
                 )
-                self.doc.beneficiary_groups.add(bg)
-        
-        # Regular beneficiary groups from extra_data
-        for bg_dict in extra_data.get("beneficiary_group", []):
-            if isinstance(bg_dict, dict):
-                label = bg_dict.get("label")
-                category = bg_dict.get("category", "Uncategorised")
-            else:
-                label = bg_dict
-                category = "Uncategorised"
-            
-            if label:
-                bg, _ = BeneficiaryGroup.objects.get_or_create(
-                    label=label,
-                    defaults={"category": category, "description": ""}
+                relation_model.objects.get_or_create(
+                    **{relation_field: self.doc, 
+                       model_class.__name__.lower(): taxonomy_item}
                 )
-                self.doc.beneficiary_groups.add(bg)
 
-        # Raw beneficiary groups from root level
-        for raw in self.data.get("beneficiary_group_raw", []):
-            if raw:
-                raw_bg, _ = BeneficiaryGroupRaw.objects.get_or_create(name=raw)
-                DocumentBeneficiaryGroupRaw.objects.get_or_create(document=self.doc, raw_group=raw_bg)
-
-        # Raw beneficiary groups from extra_data
-        for raw in extra_data.get("beneficiary_group_raw", []):
-            if raw:
-                raw_bg, _ = BeneficiaryGroupRaw.objects.get_or_create(name=raw)
-                DocumentBeneficiaryGroupRaw.objects.get_or_create(document=self.doc, raw_group=raw_bg)
-
-        # SDGs from root level
-        for sdg_label in self.data.get("sdg_alignment", []):
-            if sdg_label:
-                # Try to extract number from label if it starts with "SDG X:"
-                number = None
-                if sdg_label.lower().startswith("sdg "):
-                    try:
-                        number = int(sdg_label.split()[1].rstrip(":"))
-                    except (IndexError, ValueError):
-                        pass
-                
-                sdg, _ = SDG.objects.get_or_create(
-                    label=sdg_label,
-                    defaults={"number": number}
-                )
-                self.doc.sdgs.add(sdg)
-
-        # SDGs from extra_data
-        for sdg_label in extra_data.get("sdg_alignment", []):
-            if sdg_label:
-                # Try to extract number from label if it starts with "SDG X:"
-                number = None
-                if sdg_label.lower().startswith("sdg "):
-                    try:
-                        number = int(sdg_label.split()[1].rstrip(":"))
-                    except (IndexError, ValueError):
-                        pass
-                
-                sdg, _ = SDG.objects.get_or_create(
-                    label=sdg_label,
-                    defaults={"number": number}
-                )
-                self.doc.sdgs.add(sdg)
-
-        # Top themes with metadata
-        for top in self.data.get("top_themes", []):
-            if isinstance(top, dict):
-                label = top.get("name") or top.get("label")
+    def _process_top_items(self, model_class, relation_model, data: List, 
+                          relation_field: str) -> None:
+        """Process top items with metadata (relevance_score, justification)."""
+        for item in data:
+            if isinstance(item, dict):
+                label = item.get("name") or item.get("label")
                 if label:
-                    theme, _ = Theme.objects.get_or_create(
-                        label=label,
-                        defaults={"category": "Uncategorised", "description": ""}
+                    taxonomy_item, _ = self._create_or_get_taxonomy_item(
+                        model_class, label
                     )
-                    DocumentTheme.objects.update_or_create(
-                        document=self.doc,
-                        theme=theme,
+                    relation_model.objects.update_or_create(
+                        **{relation_field: self.doc, 
+                           model_class.__name__.lower(): taxonomy_item},
                         defaults={
                             "is_top": True,
-                            "relevance_score": top.get("relevance_score"),
-                            "justification": top.get("justification"),
+                            "relevance_score": item.get("relevance_score"),
+                            "justification": item.get("justification"),
                         },
                     )
 
-        # Top actors with metadata
-        for top in self.data.get("top_actors", []):
-            if isinstance(top, dict):
-                label = top.get("name") or top.get("label")
-                if label:
-                    actor, _ = Actor.objects.get_or_create(
-                        label=label,
-                        defaults={"category": "Uncategorised", "description": ""}
-                    )
-                    DocumentActor.objects.update_or_create(
-                        document=self.doc,
-                        actor=actor,
-                        defaults={
-                            "is_top": True,
-                            "relevance_score": top.get("relevance_score"),
-                            "justification": top.get("justification"),
-                        },
-                    )
-
-    # ---------------------- practical applications ----------------------
-
-    def _load_practical_applications(self):
-        # From root level
-        for desc in self.data.get("practical_applications", []):
-            if desc:
-                PracticalApplication.objects.get_or_create(
-                    document=self.doc,
-                    description=desc
-                )
+    def _load_taxonomies(self) -> None:
+        """Load all taxonomy data."""
+        # Themes
+        self._process_taxonomy_data(Theme, DocumentTheme, self.data.get("themes", []))
         
-        # From extra_data
-        extra_data = self.data.get("extra_data", {})
-        for desc in extra_data.get("practical_applications", []):
-            if desc:
-                PracticalApplication.objects.get_or_create(
-                    document=self.doc,
-                    description=desc
-                )
+        # Actors
+        self._process_taxonomy_data(Actor, DocumentActor, self.data.get("actors", []))
+        
+        # Beneficiary groups from multiple sources
+        self._load_beneficiary_groups()
+        
+        # SDGs from multiple sources
+        self._load_sdgs()
+        
+        # Top themes and actors with metadata
+        self._process_top_items(Theme, DocumentTheme, self.data.get("top_themes", []), "document")
+        self._process_top_items(Actor, DocumentActor, self.data.get("top_actors", []), "document")
 
-    # ---------------------------- commitments ---------------------------
+    def _load_beneficiary_groups(self) -> None:
+        """Load beneficiary groups from multiple sources."""
+        # Regular beneficiary groups from root and extra_data
+        for bg_data in [self.data.get("beneficiary_groups", []), 
+                       self.extra_data.get("beneficiary_group", [])]:
+            for bg_item in bg_data:
+                label = bg_item.get("label") if isinstance(bg_item, dict) else bg_item
+                category = bg_item.get("category", "Uncategorised") if isinstance(bg_item, dict) else "Uncategorised"
+                
+                if label:
+                    bg, _ = BeneficiaryGroup.objects.get_or_create(
+                        label=label,
+                        defaults={"category": category, "description": ""}
+                    )
+                    self.doc.beneficiary_groups.add(bg)
+        
+        # Raw beneficiary groups from root and extra_data
+        for raw_data in [self.data.get("beneficiary_group_raw", []), 
+                        self.extra_data.get("beneficiary_group_raw", [])]:
+            for raw in raw_data:
+                if raw:
+                    raw_bg, _ = BeneficiaryGroupRaw.objects.get_or_create(name=raw)
+                    DocumentBeneficiaryGroupRaw.objects.get_or_create(
+                        document=self.doc, raw_group=raw_bg
+                    )
 
-    def _load_commitments(self):
-        # Handle commitments from main level
+    def _load_sdgs(self) -> None:
+        """Load SDGs from multiple sources."""
+        for sdg_data in [self.data.get("sdg_alignment", []), 
+                        self.extra_data.get("sdg_alignment", [])]:
+            for sdg_label in sdg_data:
+                if sdg_label:
+                    number = self._extract_sdg_number(sdg_label)
+                    sdg, _ = SDG.objects.get_or_create(
+                        label=sdg_label,
+                        defaults={"number": number}
+                    )
+                    self.doc.sdgs.add(sdg)
+
+    def _extract_sdg_number(self, sdg_label: str) -> Optional[int]:
+        """Extract SDG number from label like 'SDG X:'."""
+        if sdg_label.lower().startswith("sdg "):
+            try:
+                return int(sdg_label.split()[1].rstrip(":"))
+            except (IndexError, ValueError):
+                pass
+        return None
+
+    def _load_practical_applications(self) -> None:
+        """Load practical applications from multiple sources."""
+        for app_data in [self.data.get("practical_applications", []), 
+                        self.extra_data.get("practical_applications", [])]:
+            for desc in app_data:
+                if desc:
+                    PracticalApplication.objects.get_or_create(
+                        document=self.doc,
+                        description=desc
+                    )
+
+    def _load_commitments(self) -> None:
+        """Load commitments and their details."""
         commit_objs = {}
+        
+        # Load main commitments
         for com in self.data.get("commitments", []):
             if com:
-                commit_obj, _ = Commitment.objects.get_or_create(document=self.doc, text=com)
+                commit_obj, _ = Commitment.objects.get_or_create(
+                    document=self.doc, text=com
+                )
                 commit_objs[com[:100]] = commit_obj
 
-        # Handle commitment details from extra_data
-        extra_data = self.data.get("extra_data", {})
-        
-        # Add commitment details from extra_data
-        for det in extra_data.get("commitment_details", []):
-            if isinstance(det, dict):
-                text = det.get("text")
-                commitment_class = det.get("commitment_class")
-            else:
-                text = det
-                commitment_class = None
-            
+        # Load commitment details from extra_data
+        for det in self.extra_data.get("commitment_details", []):
+            text, commitment_class = self._parse_commitment_detail(det)
             if text:
-                # Find matching commitment or create new one
-                key = text[:100]
-                commit_obj = commit_objs.get(key)
-                if not commit_obj:
-                    commit_obj, _ = Commitment.objects.get_or_create(document=self.doc, text=text)
-                    commit_objs[key] = commit_obj
-                
+                commit_obj = self._get_or_create_commitment(text, commit_objs)
                 CommitmentDetail.objects.get_or_create(
                     commitment=commit_obj,
                     text=text,
                     defaults={"commitment_class": commitment_class},
                 )
 
-    # -------------------------------- KPIs ------------------------------
+    def _parse_commitment_detail(self, det: Union[Dict, str]) -> Tuple[Optional[str], Optional[str]]:
+        """Parse commitment detail data."""
+        if isinstance(det, dict):
+            return det.get("text"), det.get("commitment_class")
+        return det, None
 
-    def _load_kpis(self):
-        # From root level
-        for kpi in self.data.get("kpis", []):
-            if not kpi or not isinstance(kpi, dict):
-                continue
-            
-            metric_name = kpi.get("metric_name") or kpi.get("metric")
-            if not metric_name:
-                continue  # Skip KPIs without metric_name
-            
-            # Support both kpi_text and description fields
-            kpi_text = kpi.get("kpi_text") or kpi.get("description")
-            
-            KPI.objects.get_or_create(
-                document=self.doc,
-                metric_name=metric_name,
-                defaults={
-                    "kpi_text": kpi_text,
-                    "kpi_type": kpi.get("kpi_type"),
-                    "target_value": kpi.get("target_value"),
-                    "target_description": kpi.get("target_description"),
-                    "unit": kpi.get("unit"),
-                    "timeframe": kpi.get("timeframe"),
-                    "measurement_method": kpi.get("measurement_method"),
-                    "responsible_entity": kpi.get("responsible_entity"),
-                    "sector": kpi.get("sector"),
-                },
+    def _get_or_create_commitment(self, text: str, commit_objs: Dict) -> Commitment:
+        """Get existing commitment or create new one."""
+        key = text[:100]
+        commit_obj = commit_objs.get(key)
+        if not commit_obj:
+            commit_obj, _ = Commitment.objects.get_or_create(
+                document=self.doc, text=text
             )
+            commit_objs[key] = commit_obj
+        return commit_obj
 
-        # From extra_data
-        extra_data = self.data.get("extra_data", {})
-        for kpi in extra_data.get("kpi_list", []):
-            if not kpi or not isinstance(kpi, dict):
-                continue
-            
-            metric_name = kpi.get("metric_name") or kpi.get("metric")
-            if not metric_name:
-                continue  # Skip KPIs without metric_name
-            
-            # Support both kpi_text and description fields
-            kpi_text = kpi.get("kpi_text") or kpi.get("description")
-            
-            KPI.objects.get_or_create(
-                document=self.doc,
-                metric_name=metric_name,
-                defaults={
-                    "kpi_text": kpi_text,
-                    "kpi_type": kpi.get("kpi_type"),
-                    "target_value": kpi.get("target_value"),
-                    "target_description": kpi.get("target_description"),
-                    "unit": kpi.get("unit"),
-                    "timeframe": kpi.get("timeframe"),
-                    "measurement_method": kpi.get("measurement_method"),
-                    "responsible_entity": kpi.get("responsible_entity"),
-                    "sector": kpi.get("sector"),
-                },
-            )
+    def _load_kpis(self) -> None:
+        """Load KPIs from multiple sources."""
+        for kpi_data in [self.data.get("kpis", []), 
+                        self.extra_data.get("kpi_list", [])]:
+            for kpi in kpi_data:
+                if self._is_valid_kpi(kpi):
+                    self._create_kpi(kpi)
+
+    def _is_valid_kpi(self, kpi: Any) -> bool:
+        """Check if KPI data is valid."""
+        return (kpi and isinstance(kpi, dict) and 
+                (kpi.get("metric_name") or kpi.get("metric")))
+
+    def _create_kpi(self, kpi: Dict) -> None:
+        """Create a KPI instance."""
+        metric_name = kpi.get("metric_name") or kpi.get("metric")
+        kpi_text = kpi.get("kpi_text") or kpi.get("description")
+        
+        KPI.objects.get_or_create(
+            document=self.doc,
+            metric_name=metric_name,
+            defaults={
+                "kpi_text": kpi_text,
+                "kpi_type": kpi.get("kpi_type"),
+                "target_value": kpi.get("target_value"),
+                "target_description": kpi.get("target_description"),
+                "unit": kpi.get("unit"),
+                "timeframe": kpi.get("timeframe"),
+                "measurement_method": kpi.get("measurement_method"),
+                "responsible_entity": kpi.get("responsible_entity"),
+                "sector": kpi.get("sector"),
+            },
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -549,36 +442,29 @@ class Command(BaseCommand):
     help = "Seed the database with JSON documents located in <project_root>/data."
 
     def add_arguments(self, parser):
-        parser.add_argument("--dry-run", action="store_true", help="Parse files without saving to the DB.")
-        parser.add_argument("--limit", type=int, default=None, help="Process only the first N files.")
-        parser.add_argument("--no-truncate", action="store_true", help="Skip truncating existing data before import.")
+        parser.add_argument("--dry-run", action="store_true", 
+                          help="Parse files without saving to the DB.")
+        parser.add_argument("--limit", type=int, default=None, 
+                          help="Process only the first N files.")
+        parser.add_argument("--no-truncate", action="store_true", 
+                          help="Skip truncating existing data before import.")
 
-    def _truncate_data(self):
+    def _get_models_to_clear(self) -> List[str]:
+        """Get ordered list of model names for truncation."""
+        return [
+            'DocumentBeneficiaryGroupRaw', 'DocumentTheme', 'DocumentActor',
+            'CommitmentDetail', 'Commitment', 'KPI', 'PracticalApplication',
+            'Document', 'BeneficiaryGroupRaw', 'BeneficiaryGroup', 
+            'Theme', 'Actor', 'SDG',
+        ]
+
+    def _truncate_data(self) -> None:
         """Remove all existing documents and related data."""
         self.stdout.write(self.style.WARNING("Truncating existing data..."))
         
-        # Get the documents app models
         documents_app = apps.get_app_config('documents')
-        models_to_clear = []
         
-        # Order matters for FK constraints - clear in reverse dependency order
-        model_names_ordered = [
-            'DocumentBeneficiaryGroupRaw',
-            'DocumentTheme', 
-            'DocumentActor',
-            'CommitmentDetail',
-            'Commitment',
-            'KPI',
-            'PracticalApplication',
-            'Document',  # Clear documents after all related objects
-            'BeneficiaryGroupRaw',
-            'BeneficiaryGroup',
-            'Theme',
-            'Actor',
-            'SDG',
-        ]
-        
-        for model_name in model_names_ordered:
+        for model_name in self._get_models_to_clear():
             try:
                 model = documents_app.get_model(model_name)
                 count = model.objects.count()
@@ -586,53 +472,58 @@ class Command(BaseCommand):
                     model.objects.all().delete()
                     self.stdout.write(f"  Cleared {count} {model_name} records")
             except LookupError:
-                # Model doesn't exist, skip
                 continue
         
         self.stdout.write(self.style.SUCCESS("Data truncation completed."))
 
-    def handle(self, *args, **options):
-        # Truncate existing data unless --no-truncate is specified
-        if not options.get('no_truncate', False):
-            self._truncate_data()
-        
-        # Use the same data directory structure as the original
+    def _get_json_files(self, limit: Optional[int]) -> List[Path]:
+        """Get list of JSON files to process."""
         data_dir = Path(__file__).resolve().parents[4] / 'data'
         if not data_dir.exists():
             raise CommandError(f"Data directory not found: {data_dir}")
 
         files = sorted(p for p in data_dir.glob("*.json"))
-        limit = options.get("limit")
-        if limit is not None:
-            files = files[:limit]
+        return files[:limit] if limit else files
 
+    def _process_file(self, path: Path, idx: int, total: int, dry_run: bool) -> bool:
+        """Process a single JSON file. Returns True if successful."""
+        try:
+            with open(path, "r", encoding="utf-8") as fp:
+                data = json.load(fp)
+            
+            Loader(data, dry_run=dry_run, filename=path.stem).run()
+            
+            status = "DRY‑RUN ok" if dry_run else "Imported"
+            style = self.style.NOTICE if dry_run else self.style.SUCCESS
+            self.stdout.write(style(f"[{idx}/{total}] {status} → {path.name}"))
+            return True
+            
+        except Exception as exc:
+            self.stderr.write(
+                self.style.ERROR(f"[{idx}/{total}] Failed {path.name}: {exc.__class__.__name__}: {exc}")
+            )
+            return False
+
+    def handle(self, *args, **options):
+        if not options.get('no_truncate', False):
+            self._truncate_data()
+        
+        files = self._get_json_files(options.get("limit"))
         dry_run = options.get("dry_run", False)
         total = len(files)
+        
         if not total:
             self.stdout.write(self.style.WARNING("No JSON files found."))
             return
 
         self.stdout.write(f"Processing {total} file(s)… (dry_run={dry_run})")
 
-        ok, failed = 0, 0
+        ok = failed = 0
         for idx, path in enumerate(files, start=1):
-            try:
-                with open(path, "r", encoding="utf-8") as fp:
-                    data = json.load(fp)
-                
-                # Pass the filename (without .json extension) to the Loader
-                filename = path.stem  # This gets filename without extension
-                Loader(data, dry_run=dry_run, filename=filename).run()
+            if self._process_file(path, idx, total, dry_run):
                 ok += 1
-                if dry_run:
-                    self.stdout.write(self.style.NOTICE(f"[{idx}/{total}] DRY‑RUN ok → {path.name}"))
-                else:
-                    self.stdout.write(self.style.SUCCESS(f"[{idx}/{total}] Imported → {path.name}"))
-            except Exception as exc:
+            else:
                 failed += 1
-                self.stderr.write(
-                    self.style.ERROR(f"[{idx}/{total}] Failed {path.name}: {exc.__class__.__name__}: {exc}")
-                )
 
         self.stdout.write(
             self.style.SUCCESS(f"Completed. Success: {ok}, Failed: {failed}, Dry‑run: {dry_run}")
