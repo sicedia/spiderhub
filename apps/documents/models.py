@@ -156,93 +156,101 @@ class SDG(BaseModel):
 
 
 class Document(BaseModel):
-    """AI‑extracted synopsis generated from one or more source documents."""
+     """AI-extracted synopsis generated from one or more source documents."""
+ 
+     title = models.CharField(max_length=300)
+     event_date = models.DateField(null=True, blank=True)
+ 
+     # Fichero de resumen asociado
+     summary_file = models.FileField(
+         upload_to='summaries/',  # carpeta en MEDIA_ROOT
+         null=True,
+         blank=True,
+         help_text="Word with summary of the document (if available)."
+     )
+ 
+     document_type = models.CharField(
+         max_length=200,
+         choices=[
+             ("dialogues_eu-lac", "Dialogues EU-LAC"),
+             ("dialogues_bilateral", "Dialogues Bilateral"),
+             ("dialogues_eu-country","Dialogues EU-Country"),
+             ("dialogues_multilateral", "Dialogues multilateral"),
+             ("agreements_eu-lac", "Agreements EU-LAC"),
+             ("agreements_bilateral", "Agreements Bilateral"),
+             ("agreements_multilateral", "Agreements Multilateral"),
+             ("agreements_country_specific", "Agreements Country Specific"),
+         ],
+         blank=True, null=True
+     )
+     
+     city = models.CharField(max_length=200, null=True, blank=True)
+     country = models.CharField(max_length=200, null=True, blank=True)
 
-    title = models.CharField(max_length=300)
-    event_date = models.DateField(null=True, blank=True)
+     executive_summary = models.TextField(null=True, blank=True)
+     score = models.PositiveSmallIntegerField(null=True, blank=True)
+     extra = models.JSONField(default=dict, blank=True)
 
-    document_type = models.CharField(
-        max_length=200,
-        choices=[
-            ("dialogues_eu-lac", "Dialogues EU-LAC"),
-            ("dialogues_bilateral", "Dialogues Bilateral"),
-            ("dialogues_eu-country","Dialogues EU-Country"),
-            ("dialogues_multilateral", "Dialogues multilateral"),
-            ("agreements_eu-lac", "Agreements EU-LAC"),
-            ("agreements_bilateral", "Agreements Bilateral"),
-            ("agreements_multilateral", "Agreements Multilateral"),
-            ("agreements_country_specific", "Agreements Country Specific"),
-        ],
-        blank=True, null=True
-    )
-    
-    city = models.CharField(max_length=200, null=True, blank=True)
-    country = models.CharField(max_length=200, null=True, blank=True)
+     # --- Many‑to‑many taxonomies ------------------------------------------------
+     themes = models.ManyToManyField(Theme, through="DocumentTheme", related_name="documents")
+     actors = models.ManyToManyField(Actor, through="DocumentActor", related_name="documents")
 
-    executive_summary = models.TextField(null=True, blank=True)
-    score = models.PositiveSmallIntegerField(null=True, blank=True)
-    extra = models.JSONField(default=dict, blank=True)
+     beneficiary_groups = models.ManyToManyField(
+         BeneficiaryGroup, related_name="documents", blank=True
+     )
+     beneficiary_groups_raw = models.ManyToManyField(
+         BeneficiaryGroupRaw,
+         through="DocumentBeneficiaryGroupRaw",
+         related_name="documents",
+         blank=True,
+     )
 
-    # --- Many‑to‑many taxonomies ------------------------------------------------
-    themes = models.ManyToManyField(Theme, through="DocumentTheme", related_name="documents")
-    actors = models.ManyToManyField(Actor, through="DocumentActor", related_name="documents")
+     #legal characteristics 
+     coverage_scope = models.CharField(
+         max_length=200, null=True, blank=True,
+         choices=[
+             ("Regional", "Regional"),
+             ("Bilateral", "Bilateral"),
+             ("Multilateral", "Multilateral"),
+             ("National", "Country Specific"),
+             ("Uncategorised", "Uncategorised"),
+         ]
+     )
+     legal_bindingness = models.CharField(
+         max_length=200, null=True, blank=True,
+         choices=[
+             ("politically-binding", "Politically-binding"),
+             ("legally-binding", "Legally-binding"),
+             ("non-binding", "Non-Binding"),
+             ("uncategorised", "Uncategorised"),
+         ]
+     )
 
-    beneficiary_groups = models.ManyToManyField(
-        BeneficiaryGroup, related_name="documents", blank=True
-    )
-    beneficiary_groups_raw = models.ManyToManyField(
-        BeneficiaryGroupRaw,
-        through="DocumentBeneficiaryGroupRaw",
-        related_name="documents",
-        blank=True,
-    )
+     sdgs = models.ManyToManyField(SDG, related_name="documents", blank=True)
 
-    #legal characteristics 
-    coverage_scope = models.CharField(
-        max_length=200, null=True, blank=True,
-        choices=[
-            ("Regional", "Regional"),
-            ("Bilateral", "Bilateral"),
-            ("Multilateral", "Multilateral"),
-            ("National", "Country Specific"),
-            ("Uncategorised", "Uncategorised"),
-        ]
-    )
-    legal_bindingness = models.CharField(
-        max_length=200, null=True, blank=True,
-        choices=[
-            ("politically-binding", "Politically-binding"),
-            ("legally-binding", "Legally-binding"),
-            ("non-binding", "Non-Binding"),
-            ("uncategorised", "Uncategorised"),
-        ]
-    )
+     # Admin fields
+     created_by = models.ForeignKey(
+         User, on_delete=models.SET_NULL, null=True, related_name='uploaded_documents'
+     )
+     admin_notes = models.TextField(blank=True)
 
-    sdgs = models.ManyToManyField(SDG, related_name="documents", blank=True)
+     # Search fields
+     title_normalized = models.TextField(editable=False, null=True, blank=True)
+     executive_summary_normalized = models.TextField(editable=False, null=True, blank=True)
+     search_vector = SearchVectorField(null=True, editable=False)
 
-    # Admin fields
-    created_by = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, related_name='uploaded_documents'
-    )
-    admin_notes = models.TextField(blank=True)
+     class Meta:
+         unique_together = ("title", "event_date")
+         ordering = ["-event_date", "title"]
+         indexes = [
+             models.Index(fields=["event_date"], name="doc_date_idx"),
+             GinIndex(fields=['search_vector'], name='doc_search_vector_gin'),
+             GinIndex(fields=['title_normalized'], opclasses=['gin_trgm_ops'], name='doc_title_norm_trgm_gin'),
+             GinIndex(fields=['executive_summary_normalized'], opclasses=['gin_trgm_ops'], name='doc_exec_summary_norm_gin'),
+         ]
 
-    # Search fields
-    title_normalized = models.TextField(editable=False, null=True, blank=True)
-    executive_summary_normalized = models.TextField(editable=False, null=True, blank=True)
-    search_vector = SearchVectorField(null=True, editable=False)
-
-    class Meta:
-        unique_together = ("title", "event_date")
-        ordering = ["-event_date", "title"]
-        indexes = [
-            models.Index(fields=["event_date"], name="doc_date_idx"),
-            GinIndex(fields=['search_vector'], name='doc_search_vector_gin'),
-            GinIndex(fields=['title_normalized'], opclasses=['gin_trgm_ops'], name='doc_title_norm_trgm_gin'),
-            GinIndex(fields=['executive_summary_normalized'], opclasses=['gin_trgm_ops'], name='doc_exec_summary_norm_gin'),
-        ]
-
-    def __str__(self):
-        return self.title
+     def __str__(self):
+         return self.title
 
 
 # ---------------------------------------------------------------------------

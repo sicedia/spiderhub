@@ -23,6 +23,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Union, Optional, Tuple, Any
 
+from django.core.files import File
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 from django.apps import apps
@@ -179,10 +180,10 @@ class Loader:
 
     def _get_legal_bindingness(self) -> Optional[str]:
         """Extract legal_bindingness from main data or extra_data."""
-        return normalize_string(
-            self.data.get("legal_bindingness") or 
-            self.extra_data.get("legal_bindingness")
-        )
+        raw = self.data.get("legal_bindingness") or self.extra_data.get("legal_bindingness")
+        normalized = normalize_string(raw)
+        # Las keys del choice en el modelo están en minúsculas
+        return normalized.lower() if normalized else None
 
     def _create_document(self) -> None:
         """Create the main Document instance."""
@@ -198,7 +199,8 @@ class Loader:
         
         extra = {k: v for k, v in self.data.items() if k not in EXCLUDED_FIELDS}
 
-        self.doc, _ = Document.objects.get_or_create(
+        # capture created flag so we can attach file whether it's new or existing
+        self.doc, _created = Document.objects.get_or_create(
             title=title,
             event_date=event_date,
             defaults={
@@ -211,6 +213,22 @@ class Loader:
                 "extra": extra,
             },
         )
+
+        # now attach any matching .docx summary
+        self._attach_summary_file()
+
+    def _attach_summary_file(self) -> None:
+        """If a same-named .docx lives in data/, attach it to summary_file."""
+        if self.dry_run or not self.filename:
+            return
+
+        data_dir = Path(__file__).resolve().parents[4] / "data"
+        docx_path = data_dir / f"{self.filename}.docx"
+        if docx_path.exists() and not self.doc.summary_file:
+            with open(docx_path, "rb") as fp:
+                self.doc.summary_file.save(docx_path.name, File(fp), save=False)
+            # persist just the file field
+            self.doc.save(update_fields=["summary_file"])
 
     def _create_or_get_taxonomy_item(self, model_class, label: str, category: str = "Uncategorised"):
         """Generic method to create or get taxonomy items (Theme, Actor, etc.)."""
