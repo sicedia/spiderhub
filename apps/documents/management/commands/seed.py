@@ -90,9 +90,10 @@ def norm(label):
 class Loader:
     """Encapsulates JSON‑>DB import for one file."""
 
-    def __init__(self, data: dict, dry_run: bool = False):
+    def __init__(self, data: dict, dry_run: bool = False, filename: str = None):
         self.data = data
         self.dry_run = dry_run
+        self.filename = filename  # Store the filename
         self.doc = None  # type: Document | None
 
     # ---------------------------- public API ----------------------------
@@ -109,6 +110,28 @@ class Loader:
                 return
 
     # --------------------------- internal steps -------------------------
+
+    def _extract_document_type_from_filename(self):
+        """Extract document_type from filename prefix before first underscore."""
+        if not self.filename:
+            return None
+        
+        # Extract the part before the first underscore
+        prefix = self.filename.split('_')[0].strip()
+        
+        # Map filename prefixes to document_type choices
+        type_mapping = {
+            "Agreement EU-LAC": "agreement_eu-lac",
+            "Agreements EU-LAC": "agreements_eu-lac", 
+            "Dialogues EU-LAC": "dialogues_eu-lac",
+            "Dialogues Bilateral": "dialogues_bilateral",
+            "Dialogues Multilateral": "dialogues_multilateral",
+            "Agreements Bilateral": "agreements_bilateral",
+            "Agreements Multilateral": "agreements_multilateral",
+            "Agreements Country Specific": "agreements_country_specific",
+        }
+        
+        return type_mapping.get(prefix)
 
     def _create_document(self):
         # Expanded title field searching with more fallback options
@@ -167,6 +190,17 @@ class Loader:
         if summary and len(summary) > 5000:  # Adjust based on your model
             summary = summary[:4997] + "..."
 
+        # Extract document_type from filename
+        document_type = self._extract_document_type_from_filename()
+
+        # Handle legal_bindingness - allow null/empty values
+        legal_bindingness = self.data.get("legal_bindingness")
+        if legal_bindingness is not None:
+            legal_bindingness = str(legal_bindingness).strip()
+            # Convert empty string to None for database
+            if not legal_bindingness:
+                legal_bindingness = None
+
         extra = {k: v for k, v in self.data.items() if k not in {
             "title",
             "date",
@@ -190,6 +224,7 @@ class Loader:
             "Title",
             "NAME",
             "description",
+            "legal_bindingness",  # Add this to excluded fields
         }}
 
         self.doc, _ = Document.objects.get_or_create(
@@ -199,6 +234,8 @@ class Loader:
                 "city": city,
                 "country": country,
                 "executive_summary": summary,
+                "document_type": document_type,
+                "legal_bindingness": legal_bindingness,  # Add legal_bindingness here
                 "extra": extra,
             },
         )
@@ -583,7 +620,9 @@ class Command(BaseCommand):
                 with open(path, "r", encoding="utf-8") as fp:
                     data = json.load(fp)
                 
-                Loader(data, dry_run=dry_run).run()
+                # Pass the filename (without .json extension) to the Loader
+                filename = path.stem  # This gets filename without extension
+                Loader(data, dry_run=dry_run, filename=filename).run()
                 ok += 1
                 if dry_run:
                     self.stdout.write(self.style.NOTICE(f"[{idx}/{total}] DRY‑RUN ok → {path.name}"))
