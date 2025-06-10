@@ -30,8 +30,8 @@ class Theme(BaseModel):
         ("Uncategorised", "Uncategorised"),
     ]
 
-    label = models.CharField(max_length=150, unique=True)
-    category = models.CharField(max_length=150, choices=CATEGORY_CHOICES, blank=True)
+    label = models.CharField(max_length=200, unique=True)
+    category = models.CharField(max_length=200, choices=CATEGORY_CHOICES, blank=True)
     description = models.TextField(blank=True)
 
     # Search fields
@@ -60,8 +60,8 @@ class Actor(BaseModel):
         ("Uncategorised", "Uncategorised"),
     ]
 
-    label = models.CharField(max_length=150, unique=True)
-    category = models.CharField(max_length=150, choices=CATEGORY_CHOICES, blank=True)
+    label = models.CharField(max_length=200, unique=True)
+    category = models.CharField(max_length=200, choices=CATEGORY_CHOICES, blank=True)
     description = models.TextField(blank=True)
 
     # Search fields
@@ -131,7 +131,7 @@ class BeneficiaryGroupRaw(BaseModel):
 class SDG(BaseModel):
     """UN Sustainable Development Goal (1‑17)."""
     number = models.PositiveSmallIntegerField(unique=True, null=True, blank=True)
-    label = models.CharField(max_length=150, unique=True)
+    label = models.CharField(max_length=200, unique=True)
 
     # Search fields
     label_normalized = models.TextField(editable=False, null=True, blank=True)
@@ -162,7 +162,7 @@ class Document(BaseModel):
     event_date = models.DateField(null=True, blank=True)
 
     document_type = models.CharField(
-        max_length=150,
+        max_length=200,
         choices=[
             ("dialogues_eu-lac", "Dialogues EU-LAC"),
             ("dialogues_bilateral", "Dialogues Bilateral"),
@@ -176,8 +176,8 @@ class Document(BaseModel):
         blank=True, null=True
     )
     
-    city = models.CharField(max_length=150, null=True, blank=True)
-    country = models.CharField(max_length=150, null=True, blank=True)
+    city = models.CharField(max_length=200, null=True, blank=True)
+    country = models.CharField(max_length=200, null=True, blank=True)
 
     executive_summary = models.TextField(null=True, blank=True)
     score = models.PositiveSmallIntegerField(null=True, blank=True)
@@ -199,7 +199,7 @@ class Document(BaseModel):
 
     #legal characteristics 
     coverage_scope = models.CharField(
-        max_length=150, null=True, blank=True,
+        max_length=200, null=True, blank=True,
         choices=[
             ("Regional", "Regional"),
             ("Bilateral", "Bilateral"),
@@ -209,7 +209,7 @@ class Document(BaseModel):
         ]
     )
     legal_bindingness = models.CharField(
-        max_length=150, null=True, blank=True,
+        max_length=200, null=True, blank=True,
         choices=[
             ("politically-binding", "Politically-binding"),
             ("legally-binding", "Legally-binding"),
@@ -346,7 +346,7 @@ class Commitment(BaseModel):
 class CommitmentDetail(BaseModel):
     commitment = models.ForeignKey(Commitment, on_delete=models.CASCADE, related_name="details")
     text = models.TextField()
-    commitment_class = models.CharField(max_length=150, null=True, blank=True)
+    commitment_class = models.CharField(max_length=200, null=True, blank=True)
 
     # Search fields
     text_normalized = models.TextField(editable=False, null=True, blank=True)
@@ -367,14 +367,14 @@ class KPI(BaseModel):
     document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name="kpis")
     metric_name = models.CharField(max_length=200)
     kpi_text = models.TextField(null=True, blank=True)
-    kpi_type = models.CharField(max_length=150, null=True, blank=True)
-    target_value = models.CharField(max_length=150, null=True, blank=True)
+    kpi_type = models.CharField(max_length=200, null=True, blank=True)
+    target_value = models.CharField(max_length=200, null=True, blank=True)
     target_description = models.CharField(max_length=255, null=True, blank=True)
     unit = models.CharField(max_length=60, null=True, blank=True)
-    timeframe = models.CharField(max_length=150, null=True, blank=True)
+    timeframe = models.CharField(max_length=200, null=True, blank=True)
     measurement_method = models.CharField(max_length=255, null=True, blank=True)
     responsible_entity = models.CharField(max_length=255, null=True, blank=True)
-    sector = models.CharField(max_length=150, null=True, blank=True)
+    sector = models.CharField(max_length=200, null=True, blank=True)
 
     # Search fields
     metric_name_normalized = models.TextField(editable=False, null=True, blank=True)
