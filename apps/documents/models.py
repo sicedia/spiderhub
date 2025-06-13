@@ -9,6 +9,8 @@ are normalised into child tables.  Through‑tables allow extra metadata such as
 from django.db import models
 from django.contrib.auth.models import User
 from apps.core.models import BaseModel
+from django.db.models import Q, Count, F, IntegerField
+from django.db.models.functions import Coalesce
 
 # Importing necessary fields and indexes for full-text search
 from django.contrib.postgres.search import SearchVectorField
@@ -251,7 +253,69 @@ class Document(BaseModel):
 
      def __str__(self):
          return self.title
+     
+     def get_related_documents(self, top_n=3):
+        """
+        Return up to top_n documents other than this one
+        sorted by how many taxonomy items they share
+        """
+        # IDs used by this document
+        theme_ids = self.themes.values_list('id', flat=True)
+        actor_ids = self.actors.values_list('id', flat=True)
+        ben_ids   = self.beneficiary_groups.values_list('id', flat=True)
+        sdg_ids   = self.sdgs.values_list('number', flat=True)
 
+        # base queryset excludes this document
+        qs = Document.objects.exclude(pk=self.pk)
+
+        # keep those that share at least one theme actor beneficiary or SDG
+        qs = qs.filter(
+            Q(themes__in=theme_ids)
+            | Q(actors__in=actor_ids)
+            | Q(beneficiary_groups__in=ben_ids)
+            | Q(sdgs__number__in=sdg_ids)
+        )
+
+        # count how many of each taxonomy they share
+        qs = qs.annotate(
+            same_themes=Count('themes',
+                              filter=Q(themes__in=theme_ids),
+                              distinct=True),
+            same_actors=Count('actors',
+                              filter=Q(actors__in=actor_ids),
+                              distinct=True),
+            same_bens=Count('beneficiary_groups',
+                            filter=Q(beneficiary_groups__in=ben_ids),
+                            distinct=True),
+            same_sdgs=Count('sdgs',
+                            filter=Q(sdgs__number__in=sdg_ids),
+                            distinct=True)
+        )
+
+        # add up those counts into a single relevance score
+        qs = qs.annotate(
+            relevance=Coalesce(F('same_themes'), 0, output_field=IntegerField())
+                      + Coalesce(F('same_actors'), 0, output_field=IntegerField())
+                      + Coalesce(F('same_bens'),   0, output_field=IntegerField())
+                      + Coalesce(F('same_sdgs'),   0, output_field=IntegerField())
+        )
+
+        # sort by relevance first then by newest event_date
+        return qs.order_by('-relevance', '-event_date')[:top_n]
+
+
+     def get_agreement_types(self):
+        """
+        Return a list of distinct agreement_type values
+        (i.e. commitment_class) linked to this document
+        """
+
+        return (
+            CommitmentDetail.objects
+            .filter(commitment__document=self)
+            .values_list('commitment_class', flat=True)
+            .distinct()
+        )
 
 # ---------------------------------------------------------------------------
 # THROUGH / LINK TABLES WITH EXTRA METADATA
