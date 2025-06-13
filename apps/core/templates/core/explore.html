@@ -35,12 +35,13 @@
         </form>
         <ul 
           id="suggestions-list" 
-          class="absolute z-10 w-full bg-white border rounded mt-1 max-h-60 overflow-y-auto hidden"
+          class="suggestions-list"
           >
+          <!-- Suggestions will be populated by JavaScript -->
         </ul>
       </div>
       
-      <div class="active-filters">
+      <div id = "active-filters" class="active-filters">
         <!-- Here active filter chips will be shown -->
       </div>
     </div>
@@ -53,12 +54,12 @@
         </svg>
         List
       </button>
-      <button class="view-tab" data-view="map">
+      <!-- <button class="view-tab" data-view="map">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z" fill="currentColor"/>
         </svg>
         Map
-      </button>
+      </button> -->
     </div>
 
     <!-- Main Content Area with Sidebar and Results -->
@@ -72,7 +73,7 @@
               <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor"/>
             </svg>
           </button>
-          <button class="clear-filters">Clear all</button>
+          <button id="clear-filters" class="clear-filters">Clear all</button>
         </div>
         
         <div class="filter-groups">
@@ -87,7 +88,7 @@
                 </svg>
               </div>
               <div class="accordion-content">
-                <div class="filter-options">
+                <div class="filter-options scrollable">
                   
                   {% for slug, label, count in available_doc_types %}
                     <label class="filter-checkbox">
@@ -217,12 +218,12 @@
               <div class="accordion-content">
                 <div class="date-range">
                   <div class="date-field">
-                    <label for="date-from">From:</label>
-                    <input type="date" id="date-from" name="date-from">
+                    <label for="date_from">From:</label>
+                    <input type="date" id="date_from" name="date-from">
                   </div>
                   <div class="date-field">
-                    <label for="date-to">Until:</label>
-                    <input type="date" id="date-to" name="date-to">
+                    <label for="date_to">Until:</label>
+                    <input type="date" id="date_to" name="date-to">
                   </div>
                   
                   <div class="date-presets">
@@ -247,7 +248,7 @@
                   <input type="text" placeholder="Search actor...">
                 </div>
                 
-                <div class="filter-options">
+                <div class="filter-options scrollable">
 
                   {% for id, label, count in available_actors %}
                     <label class="filter-checkbox">
@@ -275,7 +276,7 @@
                 </svg>
               </div>
               <div class="accordion-content">
-                <div class="filter-options">
+                <div class="filter-options scrollable">
 
                   {% for id, label, count in available_beneficiaries %}
                     <label class="filter-checkbox">
@@ -307,7 +308,7 @@
                   <input type="text" placeholder="Search topic...">
                 </div>
                 
-                <div class="filter-options">
+                <div class="filter-options scrollable">
 
                   {% for id, label, count in available_themes %}
                     <label class="filter-checkbox">
@@ -428,6 +429,8 @@
             </div>
           </div>
         </div>
+
+        
       </div>
     </div>
   </main>
