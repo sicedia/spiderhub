@@ -1,7 +1,7 @@
 # SPIDERHUB
 
 ## About
-SPIDERHUB is a Django-based web application for analyzing and visualizing documents and agreements that drive digital transformation between the European Union and Latin America. It automates metadata extraction, maps relationships between entities, and offers advanced search and filtering by location, date, actors, themes.
+SPIDERHUB is a Django-based web application for analyzing and visualizing documents and agreements that drive digital transformation between the European Union and Latin America. Offers advanced search and filtering by location, date, actors, themes.
 
 ## Relation with This Project
 This repository implements SPIDERHUB’s core functionality:
@@ -213,6 +213,67 @@ python manage.py seed --limit 10
 docker compose up -d --build
 # Open your browser in https://localhost/
 ```
+### Docker Labeling Strategy
+
+Proper Docker image labeling from the start is an excellent practice that provides clear version control, facilitates deployments, and allows easy rollbacks when necessary.
+
+For SPIDERHUB, we recommend using Semantic Versioning (SemVer), a simple and universal standard that effectively communicates changes. The format is MAJOR.MINOR.PATCH.
+
+- **PATCH**: For backward-compatible bug fixes
+- **MINOR**: For backward-compatible new functionality  
+- **MAJOR**: For breaking changes (not backward compatible)
+
+#### Pre-release Versions (Testing Phase)
+
+Since you have a testing version and want to show initial results, start with version 0 to indicate the software isn't stable yet. Use pre-release tags like alpha or beta.
+
+**Initial Testing Version (Alpha)**: For early internal testing and initial previews
+```bash
+# Build and tag alpha version
+docker build -t sicedia/spiderhub:0.1.0-alpha.1 .
+docker push sicedia/spiderhub:0.1.0-alpha.1
+
+# For bug fixes, increment: 0.1.0-alpha.2, 0.1.0-alpha.3, etc.
+```
+
+**Feature-Complete Version (Beta)**: When software has main features and needs broader user testing
+```bash
+docker build -t sicedia/spiderhub:0.1.0-beta.1 .
+docker push sicedia/spiderhub:0.1.0-beta.1
+```
+
+**Release Candidate**: When version is considered stable and needs final testing before production
+```bash
+docker build -t sicedia/spiderhub:0.1.0-rc.1 .
+docker push sicedia/spiderhub:0.1.0-rc.1
+```
+
+#### Stable Release 🎉
+
+Once your release candidate has been tested and is considered stable, it's time for your first production version!
+
+**First Stable Version**: The first official and stable release
+```bash
+# Build and tag stable version
+docker build -t sicedia/spiderhub:1.0.0 .
+
+# Additional recommended tags for flexible updates
+docker tag sicedia/spiderhub:1.0.0 sicedia/spiderhub:1.0
+docker tag sicedia/spiderhub:1.0.0 sicedia/spiderhub:1
+docker tag sicedia/spiderhub:1.0.0 sicedia/spiderhub:latest
+
+# Push all tags
+docker push sicedia/spiderhub:1.0.0
+docker push sicedia/spiderhub:1.0
+docker push sicedia/spiderhub:1
+docker push sicedia/spiderhub:latest
+```
+
+This tagging strategy allows users to:
+- Pin to specific versions (`1.0.0`)
+- Receive patch updates automatically (`1.0`)
+- Receive minor updates automatically (`1`)
+- Always get the latest stable version (`latest`)
 
 ### Docker Build image
 ```bash
@@ -230,6 +291,7 @@ docker run -d -p 8000:8000 --env-file .env.production spider:latest
 ```bash
 
 plantuml -preview architecture.puml
+
 ```
 
 ## 🤝 Contributing
