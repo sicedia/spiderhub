@@ -1,7 +1,7 @@
 # SPIDERHUB
 
 ## About
-SPIDERHUB is a Django-based web application for analyzing and visualizing documents and agreements that drive digital transformation between the European Union and Latin America. It automates metadata extraction, maps relationships between entities, and offers advanced search and filtering by location, date, actors, themes.
+SPIDERHUB is a Django-based web application for analyzing and visualizing documents and agreements that drive digital transformation between the European Union and Latin America. Offers advanced search and filtering by location, date, actors, themes.
 
 ## Relation with This Project
 This repository implements SPIDERHUB’s core functionality:
