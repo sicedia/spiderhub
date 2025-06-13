@@ -22,7 +22,8 @@ class ExplorePageManager {
       clearFiltersBtn: document.querySelector('.clear-filters'),
       searchForm: document.querySelector('.search-bar'),
       searchInput: document.querySelector('.search-bar input'),
-      activeFiltersContainer: document.querySelector('.active-filters'),
+      searchButton: document.getElementById('search-button'),
+      activeFiltersContainer: document.getElementById('active-filters'),
       viewTabs: document.querySelectorAll('.view-tab'),
       listView: document.querySelector('.list-view'),
       mapView: document.querySelector('.map-view'),
@@ -37,9 +38,10 @@ class ExplorePageManager {
       datePresets: document.querySelectorAll('.date-preset'),
       resetFiltersBtn: document.querySelector('.btn-reset-filters'),
       applyFiltersBtn:  document.querySelector('.apply-filters'),
-      dateFromInput: document.getElementById('date-from'),
-      dateToInput: document.getElementById('date-to'),
+      dateFromInput: document.getElementById('date_from'),
+      dateToInput: document.getElementById('date_to'),
       filterCheckboxes: document.querySelectorAll('.filter-checkbox input'),
+      searchBoxMain: document.getElementById('searchbox'),
       searchBoxInputs: document.querySelectorAll('.search-box input'),
       mobileMenuToggle: document.querySelector('.mobile-menu-toggle'),
       mobileNavOverlay: document.querySelector('.mobile-nav-overlay')
@@ -75,30 +77,6 @@ class ExplorePageManager {
     // Clear filters
     this.elements.clearFiltersBtn?.addEventListener('click', () => this.resetAllFilters());
 
-    // Use event delegation for filter checkboxes
-    document.addEventListener('change', (e) => {
-      if (e.target.matches('.filter-checkbox input')) {
-        const { name, value, checked } = e.target;
-        // Handle label for checkbox
-        let label_checkbox = e.target.getAttribute('label');
-        checked ? this.addFilter(name, value, label_checkbox) : this.removeFilter(name, value);
-      }
-      // Date inputs
-      if (e.target.matches('input[name="date-from"]') || e.target.matches('#date-from')) {
-        const value = e.target.value;
-        var group = '';
-        if (e.target.id === 'date-from') group = 'date-from';
-        else group = 'date-from';
-        if (value) {
-          const label_date = `${value}`;
-          this.addFilter(group, value, label_date);
-        } else {
-          this.removeFilter(group);
-        }
-        return;
-      }
-    });
-
     // Pagination
     this.setupPagination();
     
@@ -113,9 +91,18 @@ class ExplorePageManager {
     
     // Search functionality
     this.setupSearchBoxes();
-    
+
+    // Search button
+    this.setupSearchButton();
+
+    // Apply filters
+    this.setupApplyFilters();
+
     // Reset filters
     this.elements.resetFiltersBtn?.addEventListener('click', () => this.resetAllFilters());
+
+    // Clear filters
+    this.elements.clearFiltersBtn?.addEventListener('click', () => this.resetAllFilters());
 
     // Apply filters
     this.elements.activeFiltersContainer.addEventListener( 'click', this.onChipClick.bind(this))
@@ -192,9 +179,75 @@ class ExplorePageManager {
       });
     });
   }
+
+  // Search button setup
+  setupSearchButton() {
+    this.elements.searchButton?.addEventListener('click', (e) => {
+      e.preventDefault();
+      const searchTerm = this.elements.searchInput.value.trim();
+      if (searchTerm) {
+        this.addFilter('search', searchTerm);
+        this.elements.searchInput.value = '';
+        this.updateActiveFiltersDisplay();
+        this.elements.activeFiltersContainer.dispatchEvent(new Event('commitSearch')); // Trigger search event
+      }
+      this.elements.searchBoxMain.value = '';
+    }
+    );
+  }
   
+  // Apply filters setup
+  setupApplyFilters() {
+    this.elements.applyFiltersBtn?.addEventListener('click', () => {
+      // Handle filter checkboxes
+      this.elements.filterCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          const { name, value } = checkbox;
+          // Handle label for checkbox
+          let label_checkbox = checkbox.getAttribute('label');
+          this.addFilter(name, value, label_checkbox);
+        } else {
+          const { name, value } = checkbox;
+          this.removeFilter(name, value);
+        }
+      });
+      // Date inputs
+      this.removeFilter('date_from', null, false);
+      this.removeFilter('date_to', null, false);
+
+      const dateFromValue = this.elements.dateFromInput.value;
+      const dateToValue = this.elements.dateToInput.value;
+      if (dateFromValue) {
+        const label_date_from = `${dateFromValue}`;
+        this.addFilter('date_from', dateFromValue, label_date_from);
+      }
+      if (dateToValue) {
+        const label_date_to = `${dateToValue}`;
+        this.addFilter('date_to', dateToValue, label_date_to);
+      }
+
+      this.updateActiveFiltersDisplay();
+      this.elements.activeFiltersContainer.dispatchEvent(new Event('commitSearch')); // Trigger search event
+
+    });
+  }
+
   // Search boxes setup
   setupSearchBoxes() {
+    this.elements.searchBoxMain.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const searchTerm = this.elements.searchBoxMain.value.toLowerCase().trim();
+        if (searchTerm) {
+          this.addFilter('search', searchTerm);
+          this.elements.searchBoxInputs.forEach(input => input.value = '');
+          this.updateActiveFiltersDisplay();
+          this.elements.activeFiltersContainer.dispatchEvent(new Event('commitSearch')); // Trigger search event
+        }
+        this.elements.searchBoxMain.value = '';
+      }
+    });
+
     this.elements.searchBoxInputs.forEach(input => {
       input.addEventListener('input', () => {
         const searchTerm = input.value.toLowerCase().trim();
@@ -226,13 +279,13 @@ class ExplorePageManager {
       toDate: formatDate(today)
     };
   }
+
   
   // Filter management
   addFilter(type, value, label) {
     const existingIndex = this.state.activeFilters.findIndex(
       filter => filter.type === type && filter.value === value
     );
-    
     if (existingIndex === -1) {
       this.state.activeFilters.push({
         type,
@@ -240,15 +293,19 @@ class ExplorePageManager {
         label: label || value,
         id: Date.now()
       });
-      this.updateActiveFiltersDisplay();
     }
   }
   
-  removeFilter(type, value) {
-    const existingIndex = this.state.activeFilters.findIndex(
-      filter => filter.type === type && filter.value === value
-    );
-    
+  removeFilter(type, value, commitSearch = true) {
+
+    var existingIndex = -1;
+    // Find the index of the filter to remove (if value is null or undefined, remove all filters of that type)
+    if (value === null || value === undefined) {
+       existingIndex = this.state.activeFilters.findIndex( filter => filter.type === type);
+    } else {
+        existingIndex = this.state.activeFilters.findIndex( filter => filter.type === type && filter.value === value  );
+    }
+
     if (existingIndex !== -1) {
       this.state.activeFilters.splice(existingIndex, 1);
       document
@@ -256,11 +313,12 @@ class ExplorePageManager {
         .forEach(cb => (cb.checked = false));
 
       this.updateActiveFiltersDisplay();
+      if (commitSearch) {
+        this.elements.activeFiltersContainer.dispatchEvent(new Event('commitSearch')); // Trigger search event
+      }
     }
   }
 
-
-  
   updateActiveFiltersDisplay() {
     if (!this.elements.activeFiltersContainer) return;
     
@@ -274,18 +332,17 @@ class ExplorePageManager {
       sdg: 'SDG',
       legal_bindingness: 'Binding',
       agreement_type: 'Agreement',
-      'date-from': 'From',
-      'date-to': 'Until'
+      'date_from': 'From',
+      'date_to': 'Until'
     };
     
     this.elements.activeFiltersContainer.innerHTML = this.state.activeFilters.map(filter => `
-      <div class="filter-chip">
+      <div class="filter-chip" data-id="${filter.id}" data-type="${filter.type}" data-value="${filter.value}">
         <span class="filter-type">${filterTypeNames[filter.type] || filter.type}:</span>
         <span class="filter-value">${filter.label}</span>
         <span class="remove-filter" data-id="${filter.id}">×</span>
       </div>
     `).join('');
-    
   }
   onChipClick(e) {
     if (e.target.classList.contains('remove-filter')) {
@@ -339,11 +396,10 @@ class ExplorePageManager {
       checkbox.checked = false;
     });
     
-    ['date-from', 'date-to'].forEach(id => {
+    ['date_from', 'date_to'].forEach(id => {
       const input = document.getElementById(id);
       if (input) {
         input.value = '';
-        input.dispatchEvent(new Event('change'));
       }
     });
 
@@ -370,7 +426,7 @@ class ExplorePageManager {
     }
     
     this.updateActiveFiltersDisplay();
-    // this.simulateSearch();
+    this.elements.activeFiltersContainer.dispatchEvent(new Event('commitSearch')); // Trigger search event
   }
   
   // Infinite scroll

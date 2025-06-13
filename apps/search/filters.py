@@ -1,6 +1,7 @@
 from django_filters import FilterSet, CharFilter, DateFromToRangeFilter, ModelMultipleChoiceFilter
 from django.contrib.postgres.search import SearchQuery, SearchRank
-from django.db.models import Q
+from django.db.models import Q, IntegerField
+from django.db.models.functions import Cast
 from apps.documents.models import Document, Actor, Theme, BeneficiaryGroup, SDG
 
 class DocumentFilter(FilterSet):
@@ -13,43 +14,18 @@ class DocumentFilter(FilterSet):
         legal_bindingness, agreement_type, country & city
     """
 
-    # 1) Full-text search
-    search = CharFilter(method='filter_search')
-
-    # 2) Date range on event_date
+    search = CharFilter(method='noop')
     event_date = DateFromToRangeFilter(field_name='event_date')
-
-    # 3) M2M taxonomies
-    actor = ModelMultipleChoiceFilter(
-        queryset=Actor.objects.all(),
-        field_name='actors',
-        to_field_name='id'
-    )
-    theme = ModelMultipleChoiceFilter(
-        queryset=Theme.objects.all(),
-        field_name='themes',
-        to_field_name='id'
-    )
-    # beneficiary_groups   = ModelMultipleChoiceFilter(queryset=BeneficiaryGroup.objects.all())
-    # sdgs                 = ModelMultipleChoiceFilter(queryset=SDG.objects.all())
-    beneficiary = ModelMultipleChoiceFilter(
-        queryset=BeneficiaryGroup.objects.all(),
-        field_name='beneficiary_groups',
-        to_field_name='id'
-    )
-    sdg = ModelMultipleChoiceFilter(
-        queryset=SDG.objects.all(),
-        field_name='sdgs',
-        to_field_name='id'
-    )
-
-    # 4) Exact-match “in” filters on CharFields
-    document_type        = CharFilter(field_name='document_type', lookup_expr='in')
-    coverage_scope       = CharFilter(field_name='coverage_scope',  lookup_expr='in')
-    legal_bindingness    = CharFilter(field_name='legal_bindingness', lookup_expr='in')
-    agreement_type       = CharFilter(field_name='agreement_type', lookup_expr='in')
-    country              = CharFilter(method='filter_country')
-    city                 = CharFilter(field_name='city', lookup_expr='in')
+    actor = ModelMultipleChoiceFilter(queryset=Actor.objects.all(), field_name='actors', to_field_name='id')
+    theme = ModelMultipleChoiceFilter(queryset=Theme.objects.all(), field_name='themes', to_field_name='id')
+    beneficiary = ModelMultipleChoiceFilter(queryset=BeneficiaryGroup.objects.all(), field_name='beneficiary_groups', to_field_name='id')
+    sdg = ModelMultipleChoiceFilter(queryset=SDG.objects.all(), field_name='sdgs__number', to_field_name='number')
+    document_type     = CharFilter(method='noop')
+    coverage_scope    = CharFilter(method='noop')
+    legal_bindingness = CharFilter(method='noop')
+    agreement_type    = CharFilter(method='noop')
+    country           = CharFilter(method='noop')
+    city              = CharFilter(method='noop')
 
     class Meta:
         model = Document
@@ -60,27 +36,70 @@ class DocumentFilter(FilterSet):
             'agreement_type', 'country', 'city',
         ]
 
-    def filter_search(self, queryset, name, value):
+    def filter_queryset(self, queryset):
         """
-        Full-text search using PostgreSQL search_vector,
-        ordering by relevance.
+        Sobreescribe la selección para aplicar OR across all provided filters.
         """
-        if not value:
-            return queryset
-        q = SearchQuery(value)
-        return (
-            queryset
-            .filter(search_vector=q)
-            .annotate(rank=SearchRank('search_vector', q))
-            .order_by('-rank')
-        )
+        qs = queryset
+        params = self.request.GET
+        q_or = Q()
 
-    def filter_country(self, queryset, name, value):
-        """
-        Exact “in” filter on country.
-        Supports multiple params: ?country=Belgium&country=France
-        """
-        values = self.request.GET.getlist(name)
-        if not values:
-            return queryset
-        return queryset.filter(country__in=values)
+        # 1) Full-text search
+        terms = params.getlist('search')
+        if terms:
+            combined_sq = None
+            for term in terms:
+                sq = SearchQuery(term)
+                combined_sq = sq if combined_sq is None else combined_sq | sq
+            # Annotate the queryset with search rank
+            qs = qs.annotate(rank=SearchRank('search_vector', combined_sq))
+            q_or |= Q(search_vector=combined_sq)
+
+        # 2) Date range on event_date
+        start = params.get('event_date_after')
+        end   = params.get('event_date_before')
+        if start and end:
+            q_or &= Q(event_date__range=(start, end))
+        elif start:
+            q_or &= Q(event_date__gte=start)
+        elif end:
+            q_or &= Q(event_date__lte=end)
+
+        # 3) M2M Taxonomies
+        actors = params.getlist('actor')
+        if actors:
+            q_or |= Q(actors__in=actors)
+        themes = params.getlist('theme')
+        if themes:
+            q_or |= Q(themes__in=themes)
+        bens = params.getlist('beneficiary')
+        if bens:
+            q_or |= Q(beneficiary_groups__in=bens)
+        sdgs = params.getlist('sdg')
+        if sdgs:
+            q_or |= Q(sdgs__number__in=sdgs)
+
+        # 4) Text filters by exact match
+        for field in ['document_type','coverage_scope','legal_bindingness','agreement_type','country','city']:
+            vals = params.getlist(field)
+            if vals:
+                if field == 'agreement_type':
+                    q_or |= Q(commitments__details__commitment_class__in=vals)
+                else:
+                    q_or |= Q(**{f"{field}__in": vals})
+
+        if q_or:
+            qs = qs.filter(q_or).distinct()
+
+
+        # 5) Order by search rank if applicable, otherwise by score
+        if terms:
+            qs = qs.order_by('-rank')
+        elif not terms and 'event_date_after' not in params and 'event_date_before' not in params:
+            qs = qs.annotate(
+                score_value=Cast('extra__score', IntegerField())
+            )
+            qs = qs.order_by('-score_value', '-event_date')
+        else:
+            qs = qs.order_by('-event_date')
+        return qs
