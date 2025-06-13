@@ -7,19 +7,19 @@
   const searchBox       = document.getElementById('searchbox');
   const searchButton    = document.getElementById('search-button');
   const suggestionsList = document.getElementById('suggestions-list');
-  const applyBtn        = document.getElementById('apply-filters');
-  const resetBtn        = document.getElementById('reset-filters');
   const resultsBox      = document.getElementById('search-results-list');
   const resultsCount    = document.getElementById('results-count');
   const pager           = document.getElementById('pagination');
-  const dateFromInput   = document.getElementById('date-from');
-  const dateToInput     = document.getElementById('date-to');
+  const dateFromInput   = document.getElementById('date_from');
+  const dateToInput     = document.getElementById('date_to');
+  const activeFilters   = document.getElementById('active-filters');
 
   // ──────────────────────────────────────────────────────────
   // 2) In-memory state
   // ──────────────────────────────────────────────────────────
   let currentState = {
     q: '',
+    search: [],
     document_type: [],
     legal_bindingness: [],
     coverage_scope: [],
@@ -41,7 +41,7 @@
   // 3) AUTOCOMPLETE logic
   // ──────────────────────────────────────────────────────────
   function hideSuggestions() {
-    suggestionsList.classList.add('hidden');
+    suggestionsList.classList.remove('visible');
     suggestionsList.innerHTML = '';
   }
 
@@ -51,7 +51,7 @@
       hideSuggestions();
       return;
     }
-    suggestionsList.classList.remove('hidden');
+    suggestionsList.classList.add('visible');
     items.forEach(text => {
       const li = document.createElement('li');
       li.className = 'suggestion-item';
@@ -59,9 +59,6 @@
       li.addEventListener('click', () => {
         searchBox.value = text;
         hideSuggestions();
-        currentState.q = text;
-        currentState.page = 1;
-        requestData();
       });
       suggestionsList.appendChild(li);
     });
@@ -91,24 +88,17 @@
   });
 
   // ──────────────────────────────────────────────────────────
-  // 4) SEARCH by text (Enter / Search button)
+  // 4) Commit search on 'commitSearch' event
   // ──────────────────────────────────────────────────────────
   function commitSearch() {
     currentState.q = searchBox.value.trim();
     currentState.page = 1;
     hideSuggestions();
+    gatherFilters();
     requestData();
   }
 
-  searchBox.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      commitSearch();
-    }
-  });
-
-  searchButton.addEventListener('click', e => {
-    e.preventDefault();
+  activeFilters.addEventListener('commitSearch', () => {
     commitSearch();
   });
 
@@ -116,36 +106,11 @@
   // 5) GATHER filter values from DOM
   // ──────────────────────────────────────────────────────────
   function gatherFilters() {
-    const multiKeys = [
-      'document_type','legal_bindingness','coverage_scope','agreement_type',
-      'country','actor','beneficiary','theme','sdg'
-    ];
-    multiKeys.forEach(key => {
-      currentState[key] = Array.from(
-        document.querySelectorAll(`input[name="${key}"]:checked`)
-      ).map(cb => cb.value);
-    });
-    currentState.date_from = dateFromInput.value;
-    currentState.date_to   = dateToInput.value;
-    // page is managed separately
-  }
 
-  // ──────────────────────────────────────────────────────────
-  // 6) APPLY & RESET buttons
-  // ──────────────────────────────────────────────────────────
-  applyBtn.addEventListener('click', e => {
-    e.preventDefault();
-    currentState.page = 1;
-    gatherFilters();
-    requestData();
-  });
-
-  resetBtn.addEventListener('click', e => {
-    e.preventDefault();
-    // reset in-memory state
+    // Reset currentState to default values
     currentState = {
-      q: '',
       document_type: [],
+      search: [],
       legal_bindingness: [],
       coverage_scope: [],
       agreement_type: [],
@@ -158,25 +123,40 @@
       date_to: '',
       page: 1
     };
-    // reset DOM controls
-    document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-    searchBox.value       = '';
-    dateFromInput.value   = '';
-    dateToInput.value     = '';
-    hideSuggestions();
-    requestData();
-  });
+
+    // 1) All filter chips in the active filters container
+    const filterChips = activeFilters.querySelectorAll('.filter-chip');
+    const activeFilterValues = Array.from(filterChips).map(chip => ({
+      name:  chip.dataset.type,
+      value: chip.dataset.value
+    }));
+
+    // 2) Group active filters by their type
+    const grouped = activeFilterValues.reduce((acc, {name, value}) => {
+      if (!acc[name]) acc[name] = [];
+      acc[name].push(value);
+      return acc;
+    }, {});
+
+    // 3) Assign grouped values to currentState
+    Object.entries(grouped).forEach(([key, values]) => {
+      currentState[key] = values;
+      if (key.startsWith('date_')) {
+        currentState[key] = values[0]; // One value per date
+      }
+    });
+    console.log('Gathered filters:', currentState);
+  }
 
   // ──────────────────────────────────────────────────────────
   // 7) Build query string from state
   // ──────────────────────────────────────────────────────────
   function buildParams(state) {
     const p = new URLSearchParams();
-    if (state.q) p.append('search', state.q);
 
     const multiKeys = [
       'document_type','legal_bindingness', 'coverage_scope', 'agreement_type',
-      'country','actor','beneficiary','theme','sdg'
+      'country','actor','beneficiary','theme','sdg', 'search'
     ];
     multiKeys.forEach(key => state[key].forEach(v => p.append(key, v)));
 

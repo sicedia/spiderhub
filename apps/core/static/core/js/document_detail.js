@@ -17,6 +17,15 @@ function initializeRelatedDocuments() {
       
       // Enhanced user feedback
       showNotification(`Navigating to document: ${documentTitle}`);
+
+      // Get the URL from the link
+      const documentUrl = link.getAttribute('href');
+      if (!documentUrl) {
+        showNotification('Document link is not available', 'error');
+        return;
+      }
+      // Navigate to the document URL
+      window.location.href = documentUrl;
     });
   });
 }
@@ -29,6 +38,7 @@ function initializeDownloadButton() {
   downloadButton.addEventListener('click', (e) => {
     e.preventDefault();
     
+    
     // Simulate download process
     const originalText = downloadButton.innerHTML;
     downloadButton.innerHTML = `
@@ -39,20 +49,30 @@ function initializeDownloadButton() {
       Downloading...
     `;
     downloadButton.disabled = true;
-    
-    // Simulate download delay
-    setTimeout(() => {
+
+    // Get href for download
+    const downloadUrl = downloadButton.getAttribute('href');
+    if (!downloadUrl) {
+      showNotification('Download link is not available', 'error');
       downloadButton.innerHTML = originalText;
       downloadButton.disabled = false;
-      showNotification('Document download initiated');
-      
-      // Analytics tracking
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'download', {
-          event_category: 'document',
-          event_label: document.querySelector('#document-title')?.textContent || 'Unknown'
-        });
-      }
+      return;
+    }
+    // Start download
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = downloadUrl.split('/').pop(); // Extract filename from URL
+    document.body.appendChild(link);
+    showNotification('Preparing your download...', 'info', 2000);
+    link.click();
+    showNotification('Document download started', 'info', 2000);
+    link.remove();
+
+    setTimeout(() => {
+      // Reset button state after download
+      downloadButton.innerHTML = originalText;
+      downloadButton.disabled = false;
+      showNotification('Download completed successfully', 'success');
     }, 1500);
   });
 }
