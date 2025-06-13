@@ -35,7 +35,8 @@
         </div>
       </div>
       <div class="document-actions">
-        <a href="#" class="btn btn-primary document-download">
+        <a href="{{ document.summary_file.url }}"
+            class="btn btn-primary document-download">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="white"/>
           </svg>
@@ -146,13 +147,15 @@
             <div class="technical-item">
               <div class="technical-label">Agreement Type</div>
               <div class="technical-value">
-                {% if document.commitments.exists %}
-                  {% for cm in document.commitments.all %}
-                    {{ cm.get_commitment_class_display }}{% if not forloop.last %}, {% endif %}
-                  {% endfor %}
-                {% else %}
-                  N/A
-                {% endif %}
+                {% with agreement_types=document.get_agreement_types %}
+                  {% if agreement_types %}
+                    {% for type in agreement_types %}
+                      <span class="agreement-type">{{ type }}</span>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                  {% else %}
+                    N/A
+                  {% endif %}
+                {% endwith %}
               </div>
             </div>
 
@@ -398,22 +401,26 @@
     </div>
   </div>
 
-
-  <div class="related-documents">
-    <h3>Related Documents</h3>
-    {% for rd in related_docs %}
-    <div class="related-document">
-      <div class="related-title">{{ rd.title }}</div>
-      <div class="related-meta">
-        {% if rd.created_by %}{{ rd.created_by.get_full_name }}{% endif %}
-        {% if rd.event_date %} • {{ rd.event_date|date:"Y" }}{% endif %}
+  
+  {% with related_docs=document.get_related_documents %}
+  {% if related_docs %}
+    <div class="related-documents">
+      <h3>Related Documents</h3>
+      {% for rd in related_docs %}
+      <div class="related-document">
+        <div class="related-title">{{ rd.title }}</div>
+        <div class="related-meta">
+          {% if rd.created_by %}{{ rd.created_by.get_full_name }}{% endif %}
+          {% if rd.event_date %} • {{ rd.event_date|date:"Y" }}{% endif %}
+        </div>
+        <a href="{% url 'core:document_detail' rd.pk %}" class="btn btn-secondary btn-sm">
+          View Details
+        </a>
       </div>
-      <a href="{% url 'core:document_detail' rd.pk %}" class="btn btn-secondary btn-sm">
-        View Details
-      </a>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
+  {% endif %}
+  {% endwith %}
 
 
   <div class="social-sharing">
