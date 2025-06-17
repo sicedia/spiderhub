@@ -215,6 +215,8 @@ class Document(BaseModel):
              ("Bilateral", "Bilateral"),
              ("Multilateral", "Multilateral"),
              ("National", "Country Specific"),
+             ("Global", "Global"),
+             ("Sub-regional", "Sub-regional"),
              ("Uncategorised", "Uncategorised"),
          ]
      )
@@ -227,7 +229,6 @@ class Document(BaseModel):
              ("uncategorised", "Uncategorised"),
          ]
      )
-
      sdgs = models.ManyToManyField(SDG, related_name="documents", blank=True)
 
      # Admin fields
