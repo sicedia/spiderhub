@@ -1,4 +1,6 @@
 import os
+
+import psycopg2.extensions 
 from .base import *
 
 DEBUG = False
