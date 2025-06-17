@@ -30,7 +30,7 @@ def health_check(request):
     return JsonResponse({
         'status': 'healthy',
         'database': db_status,
-        'version': '0.1.0-alpha.1'
+        "service": "spiderhub"
     })
 
 def home_page(request):

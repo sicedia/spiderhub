@@ -235,7 +235,7 @@ docker build -t sicedia/spiderhub:0.1.0-alpha.1 .
 #or without cache
 docker build --no-cache -t sicedia/spiderhub:0.1.0-alpha.1 .
 
-
+docker push sicedia/spiderhub:0.1.0-beta.1
 
 # For bug fixes, increment: 0.1.0-alpha.2, 0.1.0-alpha.3, etc.
 ```
