@@ -10,65 +10,83 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-# Dependencias de compilación y libpq-dev solo en la etapa builder
+# Install build dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        build-essential libpq-dev \
+        build-essential \
+        libpq-dev \
+        pkg-config \
+        git \
     && rm -rf /var/lib/apt/lists/*
 
+# Copy requirements first for better caching
 COPY requirements/production.txt ./requirements.txt
 
-# Cache de pip con BuildKit
+# Install Python dependencies
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip install --upgrade pip && \
     pip install --prefix=/install -r requirements.txt
-
 
 #########################
 #  ===== Runner  =====  #
 #########################
 FROM python:3.12-slim AS runner
 
-LABEL maintainer="felipe.mendieta@cedia.og.ec" \
-      org.opencontainers.image.title="spider" \
-      org.opencontainers.image.version="1.0.0"
+LABEL maintainer="felipe.mendieta@cedia.org.ec" \
+      org.opencontainers.image.title="spiderhub" \
+      org.opencontainers.image.version="0.1.0-alpha.1" \
+      org.opencontainers.image.description="SpiderHub Document Management System" \
+      org.opencontainers.image.source="https://github.com/sicedia/spiderhub"
 
+# Production environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     DJANGO_SETTINGS_MODULE=config.settings.production \
-    GUNICORN_CMD_ARGS="--workers 2 --threads 4 --timeout 60 -b 0.0.0.0:8000"
+    PYTHONPATH=/app \
+    PATH="/app/.local/bin:$PATH"
 
 WORKDIR /app
 
-# Solo librerías de runtime
+# Install runtime dependencies only
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        curl libpq5 postgresql-client \
+        curl \
+        libpq5 \
+        postgresql-client \
+        gettext \
     && apt-get purge -y --auto-remove \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
-# Usuario sin privilegios antes de copiar para poder usar --chown
-RUN groupadd --system appuser && \
-    useradd --system --gid appuser --home-dir /app appuser
+# Create non-root user with specific UID/GID
+RUN groupadd --system --gid 1001 appuser && \
+    useradd --system --uid 1001 --gid appuser --home-dir /app --shell /bin/bash appuser
 
-# Dependencias Python compiladas en /install (builder) → /usr/local (runner)
+# Copy Python dependencies from builder
 COPY --from=builder /install /usr/local
 
-# Código de la aplicación con la propiedad correcta
-COPY --chown=appuser:appuser . .
+# Create necessary directories with correct permissions
+RUN mkdir -p /app/staticfiles /app/media /app/logs /app/tmp && \
+    chown -R appuser:appuser /app && \
+    chmod -R 755 /app
 
-# Create staticfiles directory and set ownership for appuser
-RUN mkdir -p /app/staticfiles && chown -R appuser:appuser /app/staticfiles
+# Copy application code (exclude unnecessary files)
+COPY --chown=appuser:appuser requirements/ ./requirements/
+COPY --chown=appuser:appuser manage.py ./
+COPY --chown=appuser:appuser config/ ./config/
+COPY --chown=appuser:appuser apps/ ./apps/
+COPY --chown=appuser:appuser templates/ ./templates/
+COPY --chown=appuser:appuser static/ ./static/
+COPY --chown=appuser:appuser entrypoint.sh ./
 
-# Copiar el entrypoint y darle permisos
-COPY entrypoint.sh /app/entrypoint.sh
+# Make entrypoint executable
 RUN chmod +x /app/entrypoint.sh
 
-# Definir ENTRYPOINT
-ENTRYPOINT ["/app/entrypoint.sh"]
-
+# Switch to non-root user
 USER appuser
 
 EXPOSE 8000
-HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost:8000/health/ || exit 1
 
-# Por defecto, arrancar Gunicorn
-CMD ["gunicorn", "--timeout", "60", "config.wsgi:application"]
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8000/health/ || exit 1
+
+ENTRYPOINT ["/app/entrypoint.sh"]
+CMD ["gunicorn", "--config", "python:config.gunicorn", "config.wsgi:application"]
