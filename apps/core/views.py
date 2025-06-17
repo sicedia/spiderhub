@@ -4,11 +4,35 @@ from django.db.models import Count
 from apps.documents.models import (
     Document, Actor, Theme, BeneficiaryGroup, SDG, CommitmentDetail
 )
+import logging
+from django.db import connection
 # Create your views here.
 
+logger = logging.getLogger(__name__)
+
 def health_check(request):
-    """Health check endpoint"""
-    return JsonResponse({'status': 'healthy'})
+    """Comprehensive health check endpoint for production"""
+    try:
+        # Database connectivity check
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+            db_status = "healthy"
+    except Exception as e:
+        logger.error(f"Database health check failed: {e}")
+        db_status = "unhealthy"
+        return JsonResponse({
+            'status': 'unhealthy',
+            'database': db_status,
+            'error': str(e)
+        }, status=503)
+    
+    # Additional checks can be added here
+    return JsonResponse({
+        'status': 'healthy',
+        'database': db_status,
+        "service": "spiderhub"
+    })
+
 def home_page(request):
     template_name = 'core/home.html'
     """Home page view"""

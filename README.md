@@ -231,13 +231,18 @@ Since you have a testing version and want to show initial results, start with ve
 ```bash
 # Build and tag alpha version
 docker build -t sicedia/spiderhub:0.1.0-alpha.1 .
-docker push sicedia/spiderhub:0.1.0-alpha.1
+
+#or without cache
+docker build --no-cache -t sicedia/spiderhub:0.1.0-alpha.1 .
+
+docker push sicedia/spiderhub:0.1.0-beta.1
 
 # For bug fixes, increment: 0.1.0-alpha.2, 0.1.0-alpha.3, etc.
 ```
 
 **Feature-Complete Version (Beta)**: When software has main features and needs broader user testing
 ```bash
+
 docker build -t sicedia/spiderhub:0.1.0-beta.1 .
 docker push sicedia/spiderhub:0.1.0-beta.1
 ```
@@ -339,4 +344,4 @@ This project is licensed under the MIT License - see the [MIT License](https://o
 - [CEDIA](https://cedia.edu.ec/)
 ---
 
-For more detailed information about specific components, please refer to the documentation in each app's directory.
+For more detailed information about specific components, please refer to the documentation in each app's directory.docker push sicedia/spiderhub:0.1.0-alpha.1
