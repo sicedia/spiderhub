@@ -1,2 +1,17 @@
+# Core Django packages
+django>=5.0,<6.0
+djangorestframework
+django-filter
+django-cors-headers
+
+# Database adapters
 dj-database-url
 psycopg2-binary
+
+# Environment and configuration
+django-environ
+python-dotenv
+
+# Utilities
+str2bool
+unidecode
