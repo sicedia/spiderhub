@@ -64,7 +64,7 @@
               <div class="document-body">
                 <p>{{ document.executive_summary|truncatewords:25|default:"No summary available." }}</p>
               </div>
-              <a href="{% url 'core:document_detail' document.id %}" class="btn btn-secondary">
+              <a href="{% url 'core:document_detail' document.id %}" class="btn btn-secondary btn-sm">
                 View Details
               </a>
 
