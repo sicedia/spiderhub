@@ -68,6 +68,8 @@ EXCLUDED_FIELDS = {
     "event_name", "Title", "NAME", "description", "legal_bindingness", "coverage_scope",
 }
 
+BENEFICIARY_CATEGORY_CHOICES = dict(BeneficiaryGroup.CATEGORY_CHOICES)
+
 # ---------------------------------------------------------------------------
 # Helper functions
 # ---------------------------------------------------------------------------
@@ -325,10 +327,13 @@ class Loader:
         """Load beneficiary groups from multiple sources."""
         # Regular beneficiary groups from root and extra_data
         for bg_data in [self.data.get("beneficiary_groups", []), 
-                       self.extra_data.get("beneficiary_group", [])]:
+                        self.extra_data.get("beneficiary_group", [])]:
             for bg_item in bg_data:
                 label = bg_item.get("label") if isinstance(bg_item, dict) else bg_item
                 category = bg_item.get("category", "Uncategorised") if isinstance(bg_item, dict) else "Uncategorised"
+                
+                # Validate category against predefined choices
+                category = BENEFICIARY_CATEGORY_CHOICES.get(category, "Uncategorised")
                 
                 if label:
                     bg, _ = BeneficiaryGroup.objects.get_or_create(
@@ -339,7 +344,7 @@ class Loader:
         
         # Raw beneficiary groups from root and extra_data
         for raw_data in [self.data.get("beneficiary_group_raw", []), 
-                        self.extra_data.get("beneficiary_group_raw", [])]:
+                         self.extra_data.get("beneficiary_group_raw", [])]:
             for raw in raw_data:
                 if raw:
                     raw_bg, _ = BeneficiaryGroupRaw.objects.get_or_create(name=raw)

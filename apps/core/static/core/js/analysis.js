@@ -23,6 +23,10 @@ class AnalysisPageManager {
     this.initializeLegalBindingPie();
     this.initializeCountryChoropleth();
     this.initializeCoverageBar();
+    this.initializeThemeBar();
+    this.initializeThemeBeneficiaryHeatmap();
+    this.initializeActorBar();
+    this.initializeBeneficiaryBar();
   }
 
   // Retrieve data from context
@@ -459,6 +463,52 @@ class AnalysisPageManager {
       setTimeout(() => this.initializeCoverageBar(), this.CHART_RETRY_DELAY);
     }
   }
+    async initializeThemeBar() {
+  if (window.Chart) {
+      await this.initializeChart(
+        'Theme Bar',
+        window.renderThemeBar,
+        () => this.analysisData.theme_counts
+      );
+    } else {
+      setTimeout(() => this.initializeThemeBar(), this.CHART_RETRY_DELAY);
+    }
+  }
+  async initializeThemeBeneficiaryHeatmap() {
+  if (window.Chart) {
+    await this.initializeChart(
+      'Theme × Beneficiary',
+      window.renderThemeBeneficiaryHeatmap,
+      () => this.analysisData.theme_ben_matrix
+    );
+  } else {
+    setTimeout(() => this.initializeThemeBeneficiaryHeatmap(), this.CHART_RETRY_DELAY);
+  }
+}
+async initializeActorBar() {
+  if (window.Chart) {
+    await this.initializeChart(
+      'Actor Bar',
+      window.renderActorBar,
+      () => this.analysisData.actor_counts
+    );
+  } else {
+    setTimeout(() => this.initializeActorBar(), this.CHART_RETRY_DELAY);
+  }
+}
+  async initializeBeneficiaryBar() {
+  if (window.Chart) {
+    await this.initializeChart(
+      'Beneficiary Bar',
+      window.renderBeneficiaryBar,
+      () => this.analysisData.beneficiary_counts
+    );
+  } else {
+    setTimeout(() => this.initializeBeneficiaryBar(), this.CHART_RETRY_DELAY);
+  }
+}
+
+
 
   /**
    * Mock coverage scope data - in production this would fetch from API
@@ -467,6 +517,11 @@ class AnalysisPageManager {
   fetchScopeCounts() {
     return this.analysisData.scope_counts;
   }
+  /**
+   * Initialize theme bar chart
+   */
+
+    
 }
 
 // Add modal animations

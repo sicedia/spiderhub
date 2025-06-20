@@ -85,10 +85,22 @@ class Actor(BaseModel):
 class BeneficiaryGroup(BaseModel):
     """Beneficiary taxonomy element (e.g. SMEs, Youth)."""
     CATEGORY_CHOICES = [
-        ("General", "General"),
-        ("Age Groups", "Age Groups"),
-        ("Economic Groups", "Economic Groups"),
-        ("Social Groups", "Social Groups"),
+        ("SMEs / Businesses", "SMEs / Businesses"),
+        ("Start-ups / Innovators", "Start-ups / Innovators"),
+        ("Large Corporations", "Large Corporations"),
+        ("Researchers & Academia", "Researchers & Academia"),
+        ("Students & Youth", "Students & Youth"),
+        ("Migrants & Refugees", "Migrants & Refugees"),
+        ("Women & Girls", "Women & Girls"),
+        ("Rural & Remote Communities", "Rural & Remote Communities"),
+        ("Indigenous Peoples & Ethnic Groups", "Indigenous Peoples & Ethnic Groups"),
+        ("Persons with Disabilities", "Persons with Disabilities"),
+        ("General Citizens / Consumers", "General Citizens / Consumers"),
+        ("Public Sector / Governments", "Public Sector / Governments"),
+        ("Civil Society / NGOs", "Civil Society / NGOs"),
+        ("Farmers & Primary Producers", "Farmers & Primary Producers"),
+        ("Health Sector", "Health Sector"),
+        ("Investors & Financial Actors", "Investors & Financial Actors"),
         ("Uncategorised", "Uncategorised"),
     ]
     
@@ -214,7 +226,6 @@ class Document(BaseModel):
              ("Regional", "Regional"),
              ("Bilateral", "Bilateral"),
              ("Multilateral", "Multilateral"),
-             ("National", "Country Specific"),
              ("Global", "Global"),
              ("Sub-regional", "Sub-regional"),
              ("Uncategorised", "Uncategorised"),

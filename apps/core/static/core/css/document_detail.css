@@ -415,6 +415,8 @@
 
 /* Utility class for random color background (JS required to assign) */
 .kpi-sector.random {
+  background-color: #061828; /* fallback color */
+  color: #185a99; /* fallback color */
   background-color: hsl(var(--random-hue, 200), 60%, 85%);
   color: hsl(var(--random-hue, 200), 80%, 30%);
 }
