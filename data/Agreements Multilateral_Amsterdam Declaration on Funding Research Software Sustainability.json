@@ -1,52 +1,64 @@
 {
-  "title": "Amsterdam Declaration on Funding Research Software Sustainability",
+  "title": "Amsterdam Declaration on Funding Research Software Sustainability (Draft v0.3, March 2023)",
   "date": "2023-03-17",
   "location": "Amsterdam, Netherlands",
-  "executive_summary": "The Amsterdam Declaration on Funding Research Software Sustainability emphasizes the critical role of research software in advancing scientific inquiry across disciplines. It highlights the need for sustainable practices in developing and maintaining research software, which is essential for reliable and reproducible research outcomes. The declaration calls for funders to enhance their support for research software through improved funding policies, documentation, and community engagement. It advocates for long-term funding strategies that recognize the value of research software as a key research output. The document outlines specific recommendations for funders, including incentivizing software reuse, ensuring responsible citation practices, and fostering diversity and inclusion within the research software ecosystem. This initiative aims to raise awareness and improve funding practices to sustain research software globally, ultimately enhancing the overall research landscape.",
+  "executive_summary": "The Amsterdam Declaration on Funding Research Software Sustainability (March 2023, draft v0.3) highlights the critical role of research software and its developers in enabling reliable, reproducible, and impactful research across disciplines. It calls for global, coordinated action by funders to ensure the long-term sustainability of research software through improved funding policies, recognition, and support for the people and infrastructure involved. The Declaration outlines 12 key recommendations for funders, including promoting open-source practices, incentivizing reuse, integrating software into open science policies, supporting training and career progression, and considering ethical, environmental, and social impacts. The aim is to foster a healthy research software ecosystem by aligning funding instruments with both sustainability and innovation, and by encouraging collaboration across institutional and national boundaries. The Declaration is a first step toward formalizing global principles and best practices for funding research software sustainability.",
   "characteristics": [
-    "The Amsterdam Declaration emphasizes the critical role of research software in ensuring reproducibility and reliability in academic research across various disciplines.",
-    "It advocates for the integration of research software sustainability into the overall research process, highlighting the need for skilled personnel to maintain software quality.",
-    "The Declaration calls for funders to improve funding practices, including long-term support for research software and recognition of its value as a research output.",
-    "It stresses the importance of collaboration among diverse stakeholders, including researchers, developers, and funders, to create a sustainable research software ecosystem.",
-    "The document outlines specific recommendations for funders to enhance documentation, incentivize software reuse, and ensure responsible citation practices."
+    "Emphasises the critical role of research software and its developers in ensuring reliable, accessible, and reproducible research outcomes across all disciplines.",
+    "Advocates for the sustainability of research software through integration into the research process, long-term funding, and recognition of the people involved.",
+    "Recommends funders stimulate documentation, licensing, open-source distribution, reuse, and improvement of research software, and include it in open science policies.",
+    "Calls for coordinated, global efforts among funders (public, private, philanthropic) to support research software ecosystems, including infrastructure, communities, and personnel.",
+    "Stresses the importance of training, hiring, and rewarding research software professionals, and recognising software as a research output in its own right.",
+    "Encourages ethical considerations, including responsible indicators for software impact, environmental and social impacts, and diversity, equity, and inclusion in research software sustainability."
   ],
   "themes": {
+    "Digital Transformation & Strategy": [
+      "Digital Infrastructure",
+      "Digital Investment",
+      "Digital Ecosystem",
+      "Digital Policy",
+      "Digital Sustainability",
+      "Digital Skills Development",
+      "Digital Research"
+    ],
     "Technology & Innovation": [
-      "Research Software",
-      "AI Ethics"
+      "Tech-Driven Solutions",
+      "ICT Innovation",
+      "Innovation in Computing"
     ],
     "Data & Governance": [
       "Data Governance",
-      "Digital Governance"
+      "Digital Governance",
+      "Digital Ethics"
     ],
-    "Digital Transformation & Strategy": [
-      "Digital Research",
-      "Digital Sustainability"
+    "Regional & International Cooperation": [
+      "Global Digital Cooperation",
+      "Digital & Technological Partnerships"
+    ],
+    "Inclusion & Social Development": [
+      "Digital Inclusion",
+      "Sustainable Digital Development"
     ]
   },
   "actors": {
     "Research and Innovation Actors": [
-      "Research Software Alliance"
+      "Research Software Alliance",
+      "Universities",
+      "Research Performing Organisations",
+      "Academic Institutions",
+      "Researchers"
     ],
     "Economic Actors": [
       "Research Funding Organisations"
     ]
   },
-  "practical_applications": [
-    "The Amsterdam Declaration on Funding Research Software Sustainability was initiated during an international workshop in Amsterdam on November 8-9, 2022, aimed at raising awareness about the role of funding practices in sustaining research software.",
-    "The Declaration includes recommendations for funders to improve the research software ecosystem, such as stimulating documentation, licensing, open-source distribution, and accessibility of research software.",
-    "Funders are encouraged to incentivize the reuse and improvement of existing research software and to include research software in open science policies.",
-    "The Declaration promotes the development and maintenance of a research software ecosystem, including people, communities, and infrastructure, to ensure research software sustainability.",
-    "Funders are advised to coordinate their investments and work in a manner that acknowledges the interconnected nature of the research software ecosystem, which transcends institutional and national boundaries.",
-    "The Declaration emphasizes the need for long-term funding mechanisms that support both sustainability and innovation in research software.",
-    "The ADORE software toolkit is mentioned as a resource that will be further developed in future versions of the Declaration text."
-  ],
+  "practical_applications": [],
   "commitments": [],
-  "score": 96,
+  "score": 95,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 96,
-    "completeness": 96,
+    "consistency": 75,
+    "completeness": 95,
     "accuracy": 100,
     "issues": []
   },
@@ -55,166 +67,216 @@
     "agreement_type": [
       "Declaration"
     ],
-    "legal_bindingness": "Politically-binding",
+    "legal_bindingness": "Non-binding",
     "coverage_scope": "Global",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [
-      "community",
       "researcher",
-      "developer",
-      "funders",
-      "institution"
+      "community",
+      "institution",
+      "funder",
+      "staff"
     ],
     "beneficiary_group": [
+      {
+        "category": "Researchers & Academia",
+        "label": "Researchers"
+      },
       {
         "category": "Civil Society / NGOs",
         "label": "Community Organizations"
       },
       {
         "category": "Researchers & Academia",
-        "label": "Researchers"
+        "label": "Academic Institutions"
       },
       {
-        "category": "Large Corporations",
-        "label": "Tech Giants"
+        "category": "Investors & Financial Actors",
+        "label": "Investors"
       },
       {
         "category": "Public Sector / Governments",
-        "label": "Public Institutions"
+        "label": "Public Servants"
       }
     ],
     "start_date": "2022-11-08",
-    "end_date": "2023-03-17",
+    "end_date": "2022-11-09",
     "commitment_details": [],
     "kpi_list": [
       {
-        "kpi_text": "Funders should stimulate the documentation, licensing, open-sourced distribution and accessibility of research software to enable the reproducibility of research outcomes.",
+        "kpi_text": "Funders should stimulate the documentation, licensing, open-source distribution and accessibility of research software to enable the reproducibility of research outcomes.",
         "kpi_type": "qualitative",
         "metric_name": "Research Software Documentation and Accessibility",
         "target_value": null,
-        "target_description": "Stimulate documentation, licensing, and accessibility of research software.",
+        "target_description": "Stimulate documentation, licensing, open-source distribution, and accessibility of research software to enable reproducibility",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Evaluation of documentation and accessibility practices",
-        "responsible_entity": "Funding organizations",
-        "sector": "Research Software"
+        "measurement_method": "Assessment of policies and funding requirements supporting documentation, licensing, open-source distribution, and accessibility",
+        "responsible_entity": "Research funders",
+        "sector": "Research software"
       },
       {
         "kpi_text": "Funders should incentivize the reuse and improvement of existing research software.",
         "kpi_type": "qualitative",
-        "metric_name": "Incentivization of Software Reuse",
+        "metric_name": "Research Software Reuse and Improvement",
         "target_value": null,
-        "target_description": "Encourage the reuse and enhancement of existing research software.",
+        "target_description": "Incentivize reuse and improvement of existing research software",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Assessment of funding policies and incentives",
-        "responsible_entity": "Funding organizations",
-        "sector": "Research Software"
+        "measurement_method": "Review of funding calls and project outcomes for evidence of reuse and improvement",
+        "responsible_entity": "Research funders",
+        "sector": "Research software"
       },
       {
-        "kpi_text": "Funders should ensure that funding instruments are fit for purpose for both sustainability and innovation, so that research software is both maintained and developed for the longer term.",
+        "kpi_text": "Funders should include research software in open science policies, following the principle ‘as open as possible, as closed as necessary’.",
         "kpi_type": "qualitative",
-        "metric_name": "Funding Instrument Effectiveness",
+        "metric_name": "Inclusion of Research Software in Open Science Policies",
         "target_value": null,
-        "target_description": "Ensure funding instruments support sustainability and innovation in research software.",
+        "target_description": "Include research software in open science policies according to openness principle",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Review of funding instruments and their impact",
-        "responsible_entity": "Funding organizations",
-        "sector": "Research Software"
+        "measurement_method": "Policy review and compliance checks",
+        "responsible_entity": "Research funders",
+        "sector": "Open science / Research software"
+      },
+      {
+        "kpi_text": "Funders should stimulate the development and maintenance of a research software ecosystem, including people, communities, and infrastructure, to ensure research software sustainability.",
+        "kpi_type": "qualitative",
+        "metric_name": "Research Software Ecosystem Development and Maintenance",
+        "target_value": null,
+        "target_description": "Stimulate development and maintenance of a research software ecosystem (people, communities, infrastructure)",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Evaluation of funded projects and ecosystem support initiatives",
+        "responsible_entity": "Research funders",
+        "sector": "Research software"
+      },
+      {
+        "kpi_text": "Funders (including public, private, and philanthropic) should be aware of each others' investments and work in a coordinated manner, as the research software ecosystem exceeds institutional and national boundaries.",
+        "kpi_type": "qualitative",
+        "metric_name": "Coordination of Research Software Funding",
+        "target_value": null,
+        "target_description": "Coordinate investments and activities across funders to support the research software ecosystem",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Evidence of joint initiatives, shared reporting, or collaborative funding mechanisms",
+        "responsible_entity": "Research funders (public, private, philanthropic)",
+        "sector": "Research software"
+      },
+      {
+        "kpi_text": "Funders should ensure that funding instruments are fit for purpose for both sustainability and innovation, so that research software is both maintained and developed for the longer term, to encourage a healthy research software ecosystem.",
+        "kpi_type": "qualitative",
+        "metric_name": "Fit-for-Purpose Funding Instruments for Research Software",
+        "target_value": null,
+        "target_description": "Ensure funding instruments support both sustainability and innovation in research software",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Review of funding instrument design and outcomes",
+        "responsible_entity": "Research funders",
+        "sector": "Research software"
       },
       {
         "kpi_text": "Funders should stimulate the training, hiring, and funding of both professional research and technical staff able to reuse, develop, and maintain sustainable research software.",
         "kpi_type": "qualitative",
-        "metric_name": "Training and Hiring of Research Software Personnel",
+        "metric_name": "Research Software Personnel Training and Support",
         "target_value": null,
-        "target_description": "Enhance training and hiring practices for sustainable research software development.",
+        "target_description": "Stimulate training, hiring, and funding of staff for sustainable research software",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Monitoring training and hiring initiatives",
-        "responsible_entity": "Funding organizations",
-        "sector": "Research Software"
+        "measurement_method": "Tracking of funded training programs, hiring initiatives, and personnel support",
+        "responsible_entity": "Research funders",
+        "sector": "Research software / Human resources"
       },
       {
-        "kpi_text": "Funders should require responsible citation practices for research software that recognize all contributors.",
+        "kpi_text": "Funders should consider the value and impact of research software as a research output in its own right, to facilitate appropriate reward and recognition measures that enable career progression for all people involved.",
         "kpi_type": "qualitative",
-        "metric_name": "Responsible Citation Practices",
+        "metric_name": "Recognition of Research Software as Research Output",
         "target_value": null,
-        "target_description": "Implement citation practices that acknowledge all contributors to research software.",
+        "target_description": "Facilitate reward and recognition of research software as a research output for career progression",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Evaluation of citation practices in research outputs",
-        "responsible_entity": "Funding organizations",
-        "sector": "Research Software"
+        "measurement_method": "Inclusion of research software in evaluation and reward systems",
+        "responsible_entity": "Research funders",
+        "sector": "Research software / Academic careers"
+      },
+      {
+        "kpi_text": "Funders should require responsible citation practices for research software that recognise all contributors.",
+        "kpi_type": "qualitative",
+        "metric_name": "Responsible Citation of Research Software",
+        "target_value": null,
+        "target_description": "Require responsible citation practices for research software recognizing all contributors",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Review of citation policies and compliance in funded projects",
+        "responsible_entity": "Research funders",
+        "sector": "Research software / Research integrity"
       },
       {
         "kpi_text": "Funders should encourage the responsible use of appropriate indicators to assess the degree of permanence, reusability, and impact of research software.",
         "kpi_type": "qualitative",
-        "metric_name": "Assessment of Software Impact",
+        "metric_name": "Assessment of Research Software Permanence, Reusability, and Impact",
         "target_value": null,
-        "target_description": "Utilize indicators to evaluate permanence, reusability, and impact of research software.",
+        "target_description": "Encourage use of indicators to assess permanence, reusability, and impact of research software",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Analysis of impact assessment methodologies",
-        "responsible_entity": "Funding organizations",
-        "sector": "Research Software"
-      },
-      {
-        "kpi_text": "Funders should explicitly recognize that diversity, equity and inclusivity are significant factors in making research software sustainable.",
-        "kpi_type": "qualitative",
-        "metric_name": "Diversity and Inclusivity in Research Software",
-        "target_value": null,
-        "target_description": "Acknowledge the importance of diversity, equity, and inclusivity in research software sustainability.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Review of diversity and inclusivity initiatives",
-        "responsible_entity": "Funding organizations",
-        "sector": "Research Software"
+        "measurement_method": "Monitoring of indicator adoption and reporting in funded projects",
+        "responsible_entity": "Research funders",
+        "sector": "Research software / Evaluation"
       }
     ],
     "country_list_iso": [],
-    "responsible_entity": "Research Software Alliance (ReSA)",
+    "responsible_entity": "funders",
     "sdg_alignment": [
       "SDG 4: Quality Education",
       "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
+      "SDG 10: Reduced Inequalities",
+      "SDG 11: Sustainable Cities and Communities",
       "SDG 12: Responsible Consumption and Production",
       "SDG 13: Climate Action",
+      "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
   },
   "top_actors": [
     {
-      "name": "Research Software Alliance",
-      "category": "Research and Innovation Actors",
-      "relevance_score": 0.9,
-      "justification": "The Research Software Alliance (ReSA) is prominently mentioned as a key player in the development of the Amsterdam Declaration, indicating its central role in advocating for research software sustainability and coordinating efforts among various stakeholders."
-    },
-    {
       "name": "Research Funding Organisations",
       "category": "Economic Actors",
-      "relevance_score": 0.8,
-      "justification": "Research Funding Organisations are crucial in the context of the declaration as they are responsible for funding research software initiatives. Their influence on funding policies directly impacts the sustainability of research software, making them vital actors in this ecosystem."
+      "relevance_score": 1.0,
+      "justification": "Research funding organisations are the primary focus of the Declaration, which is addressed to them and calls for their action. They are repeatedly mentioned as the key actors responsible for enabling, sustaining, and coordinating research software sustainability through funding policies, instruments, and practices. Their influence is central to all recommendations and the main topics discussed."
+    },
+    {
+      "name": "Research Software Alliance",
+      "category": "Research and Innovation Actors",
+      "relevance_score": 0.85,
+      "justification": "The Research Software Alliance (ReSA) is highlighted as a key initiator and organiser of the Declaration and related workshops. It plays a leading role in developing awareness, convening stakeholders, and shaping the global agenda for research software sustainability. Its participation in key initiatives and decisions is explicitly mentioned."
+    },
+    {
+      "name": "Researchers",
+      "category": "Research and Innovation Actors",
+      "relevance_score": 0.75,
+      "justification": "Researchers, including those who develop and maintain research software, are repeatedly referenced as essential to the research software ecosystem. Their work is central to the sustainability and quality of research software, and they are the main beneficiaries of the recommended changes. Their recognition, training, and career progression are key topics in the document."
     }
   ],
   "top_themes": [
     {
-      "name": "Research Software",
-      "category": "Technology & Innovation",
-      "relevance_score": 1.0,
-      "justification": "Research software is the central theme of the document, as it discusses its critical role in academic research, the need for sustainability, and the importance of funding practices to support it."
-    },
-    {
       "name": "Digital Sustainability",
       "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.8,
-      "justification": "Digital sustainability is crucial as it relates to the long-term viability of research software and the integration of sustainable practices in research processes, which is a key focus of the declaration."
+      "relevance_score": 1.0,
+      "justification": "The entire document is centered on the sustainability of research software, emphasizing the need for long-term maintenance, funding, and support. The concept of sustainability is repeatedly discussed as the core objective, with recommendations and commitments directly addressing how to achieve it. It is the main message and strategic focus of the declaration."
     },
     {
-      "name": "Data Governance",
-      "category": "Data & Governance",
-      "relevance_score": 0.7,
-      "justification": "Data governance is important as it underpins the reliability and reproducibility of research outcomes, which are essential for the credibility of research software and its outputs."
+      "name": "Digital Ecosystem",
+      "category": "Digital Transformation & Strategy",
+      "relevance_score": 0.95,
+      "justification": "The document frames research software sustainability within the context of a 'research software ecosystem,' highlighting the interdependence of software, people, institutions, and funders. Much content is dedicated to ecosystem-level thinking, including recommendations for coordinated action, infrastructure, and community support, making this theme central to the document's approach and commitments."
+    },
+    {
+      "name": "Digital Policy",
+      "category": "Digital Transformation & Strategy",
+      "relevance_score": 0.9,
+      "justification": "A significant portion of the document is devoted to the role of funders and the need for policy changes to support research software sustainability. The declaration itself is a policy instrument, and the recommendations focus on funding practices, open science policies, and recognition of software as a research output, making digital policy a key lever for achieving the document's objectives."
     }
   ]
 }

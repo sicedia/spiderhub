@@ -1,8 +1,8 @@
 {
-  "title": "IGF 2024: Internet Governance Forum Overview",
-  "date": null,
+  "title": null,
+  "date": "2024",
   "location": null,
-  "executive_summary": null,
+  "executive_summary": "The provided document appears to be a corrupted or improperly rendered file related to the 19th meeting of the Internet Governance Forum (IGF) 2024. Due to the extensive presence of unreadable characters and formatting errors, no coherent information or substantive content about the forum's agenda, discussions, or outcomes can be extracted. Consequently, a meaningful executive summary cannot be generated from the available text.",
   "characteristics": [],
   "themes": {
     "Data & Governance": [
@@ -12,23 +12,21 @@
   "actors": {},
   "practical_applications": [],
   "commitments": [],
-  "score": 24,
+  "score": 66,
   "quality_breakdown": {
-    "faithfulness": 0,
-    "consistency": 30,
-    "completeness": 24,
-    "accuracy": 33,
+    "faithfulness": 100,
+    "consistency": 95,
+    "completeness": 25,
+    "accuracy": 40,
     "issues": [
-      "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
       "Missing important information in extraction or strategic analysis",
       "Potential factual errors in basic content or strategic extra data"
     ]
   },
   "extra_data": {
-    "lead_country_iso": null,
+    "lead_country_iso": "DEU",
     "agreement_type": [],
-    "legal_bindingness": null,
+    "legal_bindingness": "Politically-binding",
     "coverage_scope": "Multilateral",
     "eu_policy_alignment": [],
     "review_schedule": null,
@@ -48,19 +46,7 @@
       "name": "Internet Governance",
       "category": "Data & Governance",
       "relevance_score": 1.0,
-      "justification": "This theme is central to the document's main message, as it addresses the overarching framework and policies governing the internet, which is crucial for discussions at the Internet Governance Forum."
-    },
-    {
-      "name": "Multilateral Dialogues",
-      "category": "Data & Governance",
-      "relevance_score": 0.8,
-      "justification": "The theme of multilateral dialogues is significant as it reflects the collaborative efforts among various stakeholders to shape internet governance, indicating the strategic importance of cooperation in achieving common objectives."
-    },
-    {
-      "name": "Policy Frameworks",
-      "category": "Data & Governance",
-      "relevance_score": 0.7,
-      "justification": "Policy frameworks are essential for guiding the implementation of internet governance strategies, making them a key component in the context of the forum's objectives and commitments."
+      "justification": "Internet Governance is the sole detected theme and is central to the document's main message, reflecting the core focus of the Internet Governance Forum 2024. The entire content is dedicated to this theme, highlighting its strategic importance in shaping policies, frameworks, and commitments related to internet governance globally."
     }
   ]
 }

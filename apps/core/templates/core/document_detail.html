@@ -219,17 +219,6 @@
               </div>
             </div>
 
-            <!-- Quality Score -->
-            <div class="technical-item">
-              <div class="technical-label">Quality Score</div>
-              <div class="technical-value">
-                {% if document.extra.score is not None %}
-                  {{ document.extra.score }}%
-                {% else %}
-                  N/A
-                {% endif %}
-              </div>
-            </div>
 
           </div>
         </section>
@@ -302,11 +291,11 @@
               {% for group in ben_groups %}
                 {% for ben in group.list %}
                   <div class="beneficiary-card">
-
                     <div class="beneficiary-icon-wrapper">
                       <img
                         src="{% static 'core/icons/beneficiaries/' %}{{ group.grouper|slugify }}.svg"
                         alt="{{ group.grouper }} icon"
+                        
                       />
                     </div>
                     <div class="beneficiary-info">
@@ -334,7 +323,7 @@
                     {% endif %}
                     {% if kpi.sector %}
                       {# slugify sector for a CSS class, e.g. “health” → “health” #}
-                      <div class="kpi-sector {{ kpi.sector|slugify }}">
+                      <div class="kpi-sector trade">
                         {{ kpi.sector }}
                       </div>
                     {% endif %}
@@ -358,7 +347,7 @@
                   {% if document.extra.country_code %}
                       <div class="country-code">{{ document.extra.country_code }}</div>
                   {% else %}
-                      <div class="country-code">N/A</div>
+                      <div class="country-code"></div>
                   {% endif %}
                 </div>
               </div>
@@ -423,53 +412,7 @@
   {% endwith %}
 
 
-  <div class="social-sharing">
-    <h3>Share</h3>
-    <div class="share-buttons">
-      <a
-        href="mailto:?subject={{ document.title|urlencode }}&body={{ request.build_absolute_uri|urlencode }}"
-        class="share-button"
-      >
-         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#555"/>
-          </svg>
-        <span>Email</span>
-      </a>
-      <a
-        href="https://twitter.com/intent/tweet?text={{ document.title|urlencode }}&url={{ request.build_absolute_uri|urlencode }}"
-        target="_blank"
-        rel="noopener"
-        class="share-button"
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79C2.63 5.42 2.42 6.16 2.42 6.94C2.42 8.43 3.17 9.75 4.33 10.5C3.62 10.5 2.96 10.3 2.38 10V10.03C2.38 12.11 3.86 13.85 5.82 14.24C5.46 14.34 5.08 14.39 4.69 14.39C4.42 14.39 4.15 14.36 3.89 14.31C4.43 16 6 17.26 7.89 17.29C6.43 18.45 4.58 19.13 2.56 19.13C2.22 19.13 1.88 19.11 1.54 19.07C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79C20.33 8.6 20.33 8.42 20.32 8.23C21.16 7.63 21.88 6.87 22.46 6Z" fill="#1DA1F2"/>
-        </svg>
-        <span>Twitter</span>
-      </a>
-      <a
-        href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"
-        target="_blank"
-        rel="noopener"
-        class="share-button"
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM8.5 6.5C9.33 6.5 10 7.17 10 8C10 8.83 9.33 9.5 8.5 9.5C7.67 9.5 7 8.83 7 8C7 7.17 7.67 6.5 8.5 6.5ZM11 14H6V12.5C6 11.12 7.12 10 8.5 10C9.88 10 11 11.12 11 12.5V14ZM18 14H13V12.5C13 11.12 14.12 10 15.5 10C16.88 10 18 11.12 18 12.5V14ZM15.5 9.5C14.67 9.5 14 8.83 14 8C14 7.17 14.67 6.5 15.5 6.5C16.33 6.5 17 7.17 17 8C17 8.83 16.33 9.5 15.5 9.5Z" fill="#3b5998"/>
-        </svg>
-        <span>Facebook</span>
-      </a>
-      <a
-        href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri|urlencode }}&title={{ document.title|urlencode }}"
-        target="_blank"
-        rel="noopener"
-        class="share-button"
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM8.5 6.5C9.33 6.5 10 7.17 10 8C10 8.83 9.33 9.5 8.5 9.5C7.67 9.5 7 8.83 7 8C7 7.17 7.67 6.5 8.5 6.5ZM11 14H6V12.5C6 11.12 7.12 10 8.5 10C9.88 10 11 11.12 11 12.5V14ZM18 14H13V12.5C13 11.12 14.12 10 15.5 10C16.88 10 18 11.12 18 12.5V14ZM15.5 9.5C14.67 9.5 14 8.83 14 8C14 7.17 14.67 6.5 15.5 6.5C16.33 6.5 17 7.17 17 8C17 8.83 16.33 9.5 15.5 9.5Z" fill="white"/>
-        </svg>
-        <span>LinkedIn</span>
-      </a>
-    </div>
-  </div>
+
 </div>
 
 
@@ -478,6 +421,6 @@
 {% endblock %}
 
 {% block extra_scripts %}
-  <script src="{% static 'core/js/main.js' %}"></script>
-  <script src="{% static 'core/js/document_detail.js' %}"></script>
-{% endblock %}s
+  <script type="module" src="{% static 'core/js/main.js' %}"></script>
+  <script type="module" src="{% static 'core/js/document_detail.js' %}"></script>
+{% endblock %}

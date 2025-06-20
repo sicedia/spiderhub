@@ -1,4 +1,4 @@
-# Strengthening Digital Policy and Regulatory Frameworks for AI: EU-LAC Alliance Statement
+# EU-LAC Statement on Converging Digital Policy and Regulatory Frameworks for AI
 
 **Date**: 2023-11-16
 
@@ -6,38 +6,43 @@
 
 ## Executive Summary
 
-On November 16, 2023, during the AI Alliance Assembly in Madrid, EU and Latin American and Caribbean (LAC) countries reaffirmed their commitment to a Digital Alliance aimed at enhancing cooperation on digital policy and regulatory frameworks for artificial intelligence (AI). Following a joint declaration in July 2023, participating nations, including Argentina, Colombia, and Mexico, proposed initiatives to promote convergence in AI regulation, emphasizing the need for best practice exchanges and the establishment of regulatory sandboxes. The upcoming EU Regulation on AI will set safety and rights-based requirements for AI systems, while fostering an environment for innovation across linguistic diversities. The statement highlights the importance of regular dialogue to ensure that AI development respects human rights and adapts to local contexts, ultimately supporting responsible and inclusive AI practices.
+On November 16, 2023, during the AI Alliance Assembly in Madrid, representatives from select EU and Latin American and Caribbean (LAC) countries reaffirmed their commitment to the EU-LAC Digital Alliance, aiming to reinforce and converge digital policy and regulatory frameworks on artificial intelligence (AI). The statement highlights the importance of exchanging best practices, fostering innovation across linguistic and cultural contexts, and aligning with ethical guidelines such as those from UNESCO. The group supports the development of regulatory sandboxes and regular dialogue to ensure AI regulation promotes innovation, human capital, and infrastructure while safeguarding human rights. A bi-regional investment package will support these initiatives, with flexibility to address local needs. The participating states commit to acting as forerunners in sharing regulatory experiences and supporting the responsible, inclusive, and trustworthy development of AI, particularly benefiting startups and SMEs.
 
 ## Characteristics
 
-- The statement emphasizes the establishment of a Digital Alliance between the EU and LAC countries to enhance human-centric digital cooperation and regulatory convergence on AI.
-- It highlights the upcoming EU Regulation on AI, which will set safety and rights-based requirements for AI system providers, including regulatory sandboxes for innovation.
-- The document calls for the exchange of best practices in AI regulation and governance, focusing on inclusivity across linguistic diversities.
-- It proposes a bi-regional investment package to support the Digital Alliance's objectives, considering local contexts and needs.
-- Regular dialogues among member states are encouraged to foster innovation, human capital, and infrastructure while ensuring human rights are respected in AI development.
+- Promotes exchange of best practices and operational regulatory measures on AI, including governance mechanisms, among EU and LAC countries.
+- Supports convergence of digital policy and regulatory frameworks on AI, with regular dialogue to foster innovation, human capital, infrastructure, and respect for human rights.
+- Encourages development and use of regulatory sandboxes and accelerators to support innovative and trustworthy AI, especially for startups and SMEs.
+- Emphasizes inclusivity by fostering AI development across linguistic diversities, particularly in Spanish, Portuguese, and other official EU languages.
+- Recommends considering UNESCO’s ethical guidelines for responsible and inclusive AI, especially in Latin America and the Caribbean.
+- Provides for a bi-regional investment package, with allocation tailored to local contexts, needs, and opportunities.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | EU; Argentina; The Bahamas; Barbados; Brazil; Chile; Colombia; Costa Rica; Dominican Republic; Ecuador; El Salvador; Guatemala; Honduras; Jamaica; Mexico; Panama; Paraguay; Peru; Suriname; Trinidad and Tobago; Uruguay; Belgium; Estonia; Germany; Slovenia; Spain; European Commission |
-| Research and Innovation Actors | EU-LAC Digital Alliance; UNESCO |
+| Political Actors | Governments; European Union; EU Member States; European Commission; Council of the EU |
+| Research and Innovation Actors | EU-LAC Digital Alliance |
+| Civil Society Actors | UNESCO |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Digital Transformation & Strategy | Digital Policy |
-| Technology & Innovation | Artificial Intelligence; AI Ethics |
-| Regional & International Cooperation | EU-LAC Digital Alliance; Bi-regional Cooperation |
+| Regional & International Cooperation | EU-LAC Digital Alliance; Bi-regional Cooperation; Digital & Technological Partnerships |
+| Digital Transformation & Strategy | Digital Policy; Digital Regulation; Digital Investment |
+| Technology & Innovation | Artificial Intelligence; AI Ethics; Tech-Driven Solutions |
+| Data & Governance | Digital Governance |
 
 ## Practical Applications
 
-- Establishment of the Digital Alliance EU-LAC, a framework for cooperation among EU and Latin American and Caribbean countries to promote human-centric digital cooperation and convergence of digital policy and regulatory frameworks.
-- Commitment by Argentina, Colombia, Chile, Dominican Republic, Mexico, Panama, and Uruguay, along with Belgium, Estonia, Germany, Slovenia, and Spain, to exchange best practices on AI regulation and implement measures through guidelines, recommendations, and regulatory sandboxes.
-- Creation of regulatory sandboxes as part of the upcoming Regulation on AI in the EU, allowing for the development and testing of innovative AI systems under the supervision of competent authorities.
-- Implementation of a bi-regional investment package for the Digital Alliance to support the initiatives outlined in the statement, considering local contexts and needs.
-- Regular dialogues among participating states to exchange information and foster the development of AI regulation that promotes innovation, human capital, and infrastructure while ensuring safety and human rights.
+- The EU-LAC Digital Alliance has been established as a framework for human-centric digital cooperation, including the reinforcement and promotion of convergence of digital policy and regulatory frameworks, particularly in AI.
+- A bi-regional investment package exists for the implementation of the Digital Alliance, with states jointly defining the allocation of Digital Alliance investment for activities related to AI policy and regulatory convergence.
+- Participating states are actively exchanging best practices and sharing operational regulatory measures and guidelines on AI, including governance mechanisms for implementing and monitoring AI regulation.
+- Regular dialogue is being maintained among participating states to exchange information and promote convergence of digital policy and regulatory frameworks on AI, with a focus on fostering innovation, human capital, infrastructure, and the protection of human rights.
+- The EU Regulation on AI, which includes the creation of regulatory sandboxes for the development and testing of innovative AI systems under competent authority supervision, is being implemented and shared as a model within the Alliance.
+- States are fostering an environment for AI development across linguistic diversities, particularly in Spanish, Portuguese, and other official EU languages, to ensure inclusivity and innovation tailored to different communities.
+- States are considering the implementation of sandboxes for innovative and trustworthy AI, as well as accelerators, and are sharing good practices and lessons learned to support innovative startups and SMEs in creating trustworthy AI.
 
 ## Commitments
 

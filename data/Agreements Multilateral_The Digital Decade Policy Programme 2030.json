@@ -1,28 +1,18 @@
 {
-  "title": "Europe's Digital Decade Policy Programme 2030: Goals and Framework for Digital Transformation",
+  "title": "Europe's Digital Decade Policy Programme 2030",
   "date": "2025-05-20",
   "location": "Brussels, Belgium",
-  "executive_summary": "The Digital Decade Policy Programme 2030 aims to harness digital technologies to enhance societal engagement and economic opportunities across Europe. It emphasizes inclusivity, ensuring that all citizens, including those in remote areas, can access digital services and skills. The framework sets measurable targets in four key areas: connectivity, digital skills, digital business, and digital public services, with annual progress reports from the European Commission. Member States are encouraged to collaborate on large-scale projects and adhere to the Digital Decade rights and principles, reflecting EU values. This initiative seeks to create a digital society where no one is left behind, promoting fairness and protection for all.",
+  "executive_summary": "The Digital Decade Policy Programme 2030 aims to advance Europe's digital transformation by ensuring inclusive access to technology, digital skills, and services aligned with European values of freedom, protection, and fairness. It sets measurable targets across four key areas: connectivity, digital skills, digital business, and digital public services. The programme fosters collaboration between the EU and Member States through annual progress reports, multi-country projects pooling investments for large-scale initiatives, and adherence to digital rights and principles outlined in the Declaration on Digital Rights and Principles. The initiative prioritizes bridging digital divides, enabling small businesses to leverage technology, and making public services accessible online, ensuring no one is left behind in the digital society.",
   "characteristics": [
-    "**Inclusive Digital Society**: Aims to ensure that all EU citizens can access and benefit from digital technologies, promoting freedom, protection, and fairness.",
-    "**Measurable Targets**: Establishes specific goals in connectivity, digital skills, digital business, and digital public services to track progress towards 2030.",
-    "**Collaborative Framework**: Encourages cooperation between the EU and Member States to achieve Digital Decade objectives and monitor advancements annually.",
-    "**Multi-Country Projects**: Facilitates investment pooling for large-scale, cross-border digital initiatives among Member States.",
-    "**Digital Rights and Principles**: Upholds EU values in the digital realm, as outlined in the Declaration on Digital Rights and Principles."
+    "Focuses on inclusive digital transformation based on European values of freedom, protection, and fairness, ensuring no one is left behind.",
+    "Sets measurable targets for 2030 in four key areas: connectivity, digital skills, digital business, and digital public services.",
+    "Encourages collaboration between the EU and Member States through a policy programme with annual progress monitoring and reporting.",
+    "Supports multi-country projects to pool investments and implement large-scale, cross-border digital initiatives.",
+    "Upholds digital rights and principles aligned with EU values, as outlined in the Declaration on Digital Rights and Principles."
   ],
   "themes": {
     "Digital Transformation & Strategy": [
-      "Digital Decade",
-      "Digital Skills Development",
-      "Digital Infrastructure"
-    ],
-    "Data & Governance": [
-      "Digital Governance",
-      "E-Governance"
-    ],
-    "Inclusion & Social Development": [
-      "Digital Inclusion",
-      "Connectivity"
+      "Digital Decade"
     ]
   },
   "actors": {
@@ -30,24 +20,24 @@
       "European Union",
       "EU Member States",
       "European Commission"
-    ],
-    "Civil Society Actors": [
-      "European Digital Rights"
     ]
   },
   "practical_applications": [
-    "The Digital Decade Policy Programme establishes a framework for the EU and Member States to collaborate on achieving measurable targets in connectivity, digital skills, digital business, and digital public services by 2030.",
-    "Annual reports are published by the Commission to monitor and assess progress towards the Digital Decade targets.",
-    "Multi-country projects enable Member States to pool investments and initiate large-scale, cross-border digital initiatives.",
-    "The Digital Decade rights and principles, as outlined in the Declaration on Digital Rights and Principles, guide the respect for EU values in the digital realm."
+    "The Digital Decade policy programme enables the EU and Member States to collaborate on achieving Digital Decade targets and objectives, with an established mechanism to monitor progress towards 2030 and annual progress reports published by the Commission.",
+    "Multi-country projects allow Member States to pool investments and launch large-scale, cross-border digital initiatives.",
+    "The Digital Decade rights and principles, as signed in the Declaration on Digital Rights and Principles, establish a framework ensuring EU values are respected in the digital world."
   ],
-  "commitments": [],
-  "score": 80,
+  "commitments": [
+    "Achieve the Digital Decade targets by 2030, which include measurable goals in four areas: connectivity, digital skills, digital business, and digital public services.",
+    "Publish an annual report by the European Commission to monitor progress towards the 2030 Digital Decade targets.",
+    "Launch multi-country projects pooling investments for large-scale, cross-border digital initiatives before 2030."
+  ],
+  "score": 84,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 70,
-    "completeness": 80,
-    "accuracy": 57,
+    "consistency": 95,
+    "completeness": 100,
+    "accuracy": 50,
     "issues": [
       "Potential factual errors in basic content or strategic extra data"
     ]
@@ -55,7 +45,7 @@
   "extra_data": {
     "lead_country_iso": "EUU",
     "agreement_type": [
-      "Roadmap"
+      "Policy Programme"
     ],
     "legal_bindingness": "Politically-binding",
     "coverage_scope": "Regional",
@@ -66,9 +56,9 @@
     "beneficiary_group_raw": [
       "citizen",
       "business",
-      "community",
-      "women",
-      "SME"
+      "small business",
+      "person",
+      "community"
     ],
     "beneficiary_group": [
       {
@@ -80,79 +70,141 @@
         "label": "Companies"
       },
       {
-        "category": "Civil Society / NGOs",
-        "label": "Community Organizations"
-      },
-      {
-        "category": "Women & Girls",
-        "label": "Gender Equality Initiatives"
-      },
-      {
         "category": "SMEs / Businesses",
         "label": "Small and Medium Enterprises"
+      },
+      {
+        "category": "General Citizens / Consumers",
+        "label": "Citizens"
+      },
+      {
+        "category": "Civil Society / NGOs",
+        "label": "Community Organizations"
       }
     ],
-    "start_date": "2030-01-01",
-    "end_date": "2025-05-20",
-    "commitment_details": [],
+    "start_date": "2025-01-01",
+    "end_date": "2030-01-01",
+    "commitment_details": [
+      {
+        "text": "Achieve the Digital Decade targets by 2030, which include measurable goals in four areas: connectivity, digital skills, digital business, and digital public services.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "Publish an annual report by the European Commission to monitor progress towards the 2030 Digital Decade targets.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Launch multi-country projects pooling investments for large-scale, cross-border digital initiatives before 2030.",
+        "commitment_class": "Financed"
+      }
+    ],
     "kpi_list": [
       {
         "kpi_text": "The Digital Decade targets are measurable goals for each of the four areas: connectivity, digital skills, digital business, and digital public services.",
         "kpi_type": "qualitative",
-        "metric_name": "Digital Decade Targets",
+        "metric_name": "Digital Decade Targets Implementation",
         "target_value": null,
-        "target_description": "Achieve measurable goals in connectivity, digital skills, digital business, and digital public services.",
+        "target_description": "Achieve measurable goals in connectivity, digital skills, digital business, and digital public services",
         "unit": "qualitative milestone",
         "timeframe": "by 2030",
-        "measurement_method": "Annual report on progress made",
-        "responsible_entity": "European Commission",
-        "sector": "Digital Transformation"
+        "measurement_method": "Annual progress reports published by the Commission monitoring Member States' progress",
+        "responsible_entity": "European Commission and EU Member States",
+        "sector": "Digital Society and Economy"
       },
       {
         "kpi_text": "Every year, the Commission publishes a report to take stock of the progress made.",
         "kpi_type": "qualitative",
         "metric_name": "Annual Progress Reporting",
         "target_value": null,
-        "target_description": "Publish annual reports on the progress of the Digital Decade targets.",
+        "target_description": "Publish an annual report assessing progress towards Digital Decade targets",
         "unit": "qualitative milestone",
-        "timeframe": "annually",
-        "measurement_method": "Review of published reports",
+        "timeframe": "annually until 2030",
+        "measurement_method": "Publication and dissemination of annual progress reports",
         "responsible_entity": "European Commission",
-        "sector": "Digital Transformation"
+        "sector": "Digital Policy Monitoring"
       },
       {
-        "kpi_text": "The framework for the Digital Decade includes a mechanism to monitor progress towards 2030.",
+        "kpi_text": "The multi-country projects allows Member States to pool investments and launch large-scale, cross-border projects.",
         "kpi_type": "qualitative",
-        "metric_name": "Monitoring Framework Establishment",
+        "metric_name": "Multi-country Project Implementation",
         "target_value": null,
-        "target_description": "Establish a mechanism to monitor progress towards the Digital Decade goals.",
+        "target_description": "Launch and implement large-scale, cross-border digital projects through pooled investments",
         "unit": "qualitative milestone",
         "timeframe": "by 2030",
-        "measurement_method": "Framework establishment and implementation",
-        "responsible_entity": "European Commission",
-        "sector": "Digital Transformation"
+        "measurement_method": "Number and scale of multi-country projects launched and operational",
+        "responsible_entity": "EU Member States and European Commission",
+        "sector": "Digital Infrastructure and Cooperation"
       },
       {
-        "kpi_text": "The multi-country projects allow Member States to pool investments and launch large-scale, cross-border projects.",
+        "kpi_text": "Everyone has the skills to use everyday technology.",
         "kpi_type": "qualitative",
-        "metric_name": "Cross-Border Project Initiatives",
+        "metric_name": "Digital Skills for All",
         "target_value": null,
-        "target_description": "Launch large-scale, cross-border digital projects through pooled investments.",
+        "target_description": "Ensure all citizens have the skills to use everyday digital technology",
         "unit": "qualitative milestone",
         "timeframe": "by 2030",
-        "measurement_method": "Evaluation of launched projects",
-        "responsible_entity": "Member States",
-        "sector": "Digital Transformation"
+        "measurement_method": "Assessment of digital skills levels across populations",
+        "responsible_entity": "EU Member States",
+        "sector": "Digital Skills and Education"
+      },
+      {
+        "kpi_text": "Connectivity reaches people living in villages, mountains and remote areas, so everyone can reach online opportunities and participate in the benefits of the digital society.",
+        "kpi_type": "qualitative",
+        "metric_name": "Universal Connectivity Access",
+        "target_value": null,
+        "target_description": "Provide digital connectivity to all citizens including those in remote and rural areas",
+        "unit": "qualitative milestone",
+        "timeframe": "by 2030",
+        "measurement_method": "Coverage statistics and connectivity availability reports",
+        "responsible_entity": "EU Member States and telecommunications providers",
+        "sector": "Digital Connectivity"
+      },
+      {
+        "kpi_text": "Key public services and administrative procedures are online for the convenience of citizens and businesses.",
+        "kpi_type": "qualitative",
+        "metric_name": "Digital Public Services Availability",
+        "target_value": null,
+        "target_description": "Ensure key public services and administrative procedures are accessible online",
+        "unit": "qualitative milestone",
+        "timeframe": "by 2030",
+        "measurement_method": "Evaluation of online availability and usage of public services",
+        "responsible_entity": "EU Member States",
+        "sector": "Digital Public Services"
+      },
+      {
+        "kpi_text": "The Digital Decade policy programme allows the EU and the Member States to work together to reach the Digital Decade targets and its objectives.",
+        "kpi_type": "qualitative",
+        "metric_name": "EU and Member States Cooperation Framework",
+        "target_value": null,
+        "target_description": "Establish and maintain cooperation mechanisms between EU and Member States to achieve Digital Decade targets",
+        "unit": "qualitative milestone",
+        "timeframe": "ongoing until 2030",
+        "measurement_method": "Existence and effectiveness of cooperation frameworks and joint initiatives",
+        "responsible_entity": "European Commission and EU Member States",
+        "sector": "Governance and Policy Coordination"
+      },
+      {
+        "kpi_text": "The Digital Decade rights and principles reflect EU values, which have to be respected in the digital world, as signed in the Declaration on Digital Rights and Principles.",
+        "kpi_type": "qualitative",
+        "metric_name": "Digital Rights and Principles Implementation",
+        "target_value": null,
+        "target_description": "Respect and implement EU digital rights and principles in all digital policies and actions",
+        "unit": "qualitative milestone",
+        "timeframe": "by 2030",
+        "measurement_method": "Monitoring adherence to the Declaration on Digital Rights and Principles",
+        "responsible_entity": "EU Member States and European Commission",
+        "sector": "Digital Rights and Ethics"
       }
     ],
     "country_list_iso": [],
-    "responsible_entity": "European Commission",
+    "responsible_entity": "the Commission",
     "sdg_alignment": [
       "SDG 4: Quality Education",
       "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
       "SDG 11: Sustainable Cities and Communities",
-      "SDG 17: Partnerships for the Goals"
+      "SDG 16: Peace, Justice and Strong Institutions"
     ]
   },
   "top_actors": [
@@ -160,39 +212,39 @@
       "name": "European Union",
       "category": "Political Actors",
       "relevance_score": 1.0,
-      "justification": "The European Union is the primary entity driving the Digital Decade initiative, setting the framework and objectives for digital transformation across member states."
+      "justification": "The European Union is the overarching entity driving the Digital Decade Policy Programme, setting the framework, values, and goals for the digital transformation across Europe. It is prominently mentioned as the source and owner of the policy and digital strategy."
     },
     {
       "name": "European Commission",
       "category": "Political Actors",
       "relevance_score": 0.9,
-      "justification": "The European Commission plays a crucial role in monitoring progress, publishing reports, and informing member states about actions related to the Digital Decade, making it a key player in the implementation of the policy."
+      "justification": "The European Commission plays a key role in implementing the Digital Decade policy programme by publishing annual progress reports, informing about Member States' actions, and facilitating multi-country projects. It acts as the executive body ensuring the programme's monitoring and coordination."
     },
     {
       "name": "EU Member States",
       "category": "Political Actors",
       "relevance_score": 0.8,
-      "justification": "Member States are essential for executing the Digital Decade objectives and targets, as they are responsible for local implementation and investment in digital initiatives."
+      "justification": "EU Member States are essential actors as they collaborate with the EU and Commission to achieve the Digital Decade targets, pool investments for cross-border projects, and implement actions guided by the programme's objectives."
     }
   ],
   "top_themes": [
     {
-      "name": "Digital Decade",
+      "name": "Digital Decade (Digital Transformation & Strategy)",
       "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.9,
-      "justification": "The Digital Decade is the central theme of the document, outlining the overarching goals and framework for Europe's digital transformation by 2030. It encapsulates the vision and strategic direction for digital initiatives across the EU."
+      "relevance_score": 1.0,
+      "justification": "This theme is the core focus of the document, outlining the EU's strategic framework, targets, and objectives for digital transformation by 2030. The entire text revolves around the Digital Decade policy programme, its goals, mechanisms, and values, making it central and highly relevant."
     },
     {
-      "name": "Digital Skills Development",
-      "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.85,
-      "justification": "Digital skills development is crucial for ensuring that all citizens can effectively engage with technology. The document emphasizes the importance of equipping individuals with the necessary skills to thrive in a digital society, making it a key objective."
+      "name": "Digital Rights and Principles",
+      "category": "Digital Governance & Ethics",
+      "relevance_score": 0.75,
+      "justification": "The document emphasizes that the digital transformation must be based on European values, including freedom, protection, and fairness. The Declaration on Digital Rights and Principles is a key commitment ensuring that digital progress respects fundamental rights, making this theme strategically important."
     },
     {
-      "name": "Digital Infrastructure",
-      "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.8,
-      "justification": "Digital infrastructure is essential for connectivity and access to digital services. The document highlights the need for robust infrastructure to support the digital economy and ensure that all regions, including remote areas, can participate in the digital transformation."
+      "name": "Digital Inclusion and Connectivity",
+      "category": "Digital Infrastructure & Inclusion",
+      "relevance_score": 0.7,
+      "justification": "The text highlights the importance of connectivity reaching remote areas and ensuring no one is left behind, which is essential for equitable access to digital opportunities. This theme supports the strategic objective of inclusive digital society and is a major component of the Digital Decade targets."
     }
   ]
 }

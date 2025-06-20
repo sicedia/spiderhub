@@ -16,13 +16,13 @@ No key characteristics identified in the document.
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Union; EU Member States; European Council; European Parliament; European Commission |
+| Political Actors | Meeting of the European Political Community |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Regional & International Cooperation | EU-LAC Digital Alliance; Global Digital Cooperation; Multilateralism; EU-CELAC Digital Partnership |
+| Regional & International Cooperation | Multilateralism |
 
 ## Practical Applications
 

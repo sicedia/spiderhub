@@ -1,4 +1,4 @@
-# High Level Dialogue between the EU and Bolivia: Key Outcomes and Future Cooperation
+# Ninth High Level Dialogue between the European Union and Bolivia – 30 January 2025
 
 **Date**: 2025-01-30
 
@@ -6,41 +6,42 @@
 
 ## Executive Summary
 
-On January 30, 2025, the ninth High Level Dialogue between the European Union (EU) and Bolivia was held in Brussels, focusing on enhancing bilateral relations. The EU reaffirmed its commitment to support Bolivia in areas such as environmental sustainability, governance, and human rights, with a financial allocation of €134 million under the EU-Bolivia Multiannual Indicative Programme (2021-2027). Both parties agreed to collaborate on trade diversification and investment, particularly following Bolivia's accession to MERCOSUR. They acknowledged the growing threat of cocaine trafficking and organized crime, emphasizing the need for cooperative measures. The dialogue also addressed international issues, including support for Ukraine and humanitarian concerns in Gaza. Both sides committed to ongoing dialogue and cooperation, aiming to strengthen democratic institutions and improve living conditions in Bolivia.
+The ninth High Level Dialogue between the EU and Bolivia, held in Brussels on 30 January 2025, focused on strengthening bilateral relations, cooperation on environment, climate change, governance, human rights, and renewable energy development, particularly lithium. The EU supports Bolivia through the EU-Bolivia Multiannual Indicative Programme (€134 million) and the EU-LAC Global Gateway Investment Agenda. Both parties agreed to diversify trade, enhance investments, and address cocaine trafficking and organized crime, with plans to deepen cooperation between EUROPOL and Bolivia. The EU reaffirmed support for Ukraine amid Russia’s aggression and called for humanitarian improvements in Gaza. They emphasized regional cooperation via the EU-CELAC dialogue and welcomed Bolivia’s accession to MERCOSUR and the EU-LAC Digital Alliance. The dialogue underscored commitments to multilateralism, human rights, and sustainable development, with ongoing high-level exchanges between delegations to promote democratic institutions and better living conditions in Bolivia.
 
 ## Characteristics
 
-- The ninth High Level Dialogue between the EU and Bolivia occurred on January 30, 2025, focusing on diplomatic relations and cooperation.
-- The EU expressed commitment to support Bolivia in environmental initiatives, governance, and human rights, with a €134 million allocation for renewable energy and critical raw materials.
-- Both parties agreed to enhance bilateral trade and investment, celebrating Bolivia's accession to MERCOSUR.
-- They acknowledged the growing threat of cocaine trafficking and organized crime, emphasizing the need for cooperation to address these issues.
-- The dialogue reaffirmed support for Ukraine amidst the ongoing conflict and highlighted the importance of humanitarian efforts in Gaza.
-- Both sides committed to ongoing dialogue and collaboration to tackle 21st-century challenges, promoting green and inclusive societies.
+- The ninth High Level Dialogue between the EU and Bolivia was held in Brussels on 30 January 2025, focusing on diplomatic relations, sectoral cooperation, and international issues.
+- The EU reaffirmed support for Bolivia in environment, climate change, governance, human rights, renewable energy, and responsible investments in lithium, backed by a €134 million Multiannual Indicative Programme (2021-2027).
+- Both parties agreed to enhance bilateral trade, investment, and cooperation against cocaine trafficking and organized crime, including operational exchanges between EUROPOL and Bolivia.
+- The EU reiterated support for Ukraine amid Russia’s war and called for humanitarian improvements in Gaza, emphasizing multilateralism and human rights.
+- Bolivia’s accession to MERCOSUR and the EU-LAC Digital Alliance was welcomed, with a focus on cooperation through the EU-CELAC dialogue and the 2025 EU-CELAC Summit in Colombia.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Union; Bolivia; European External Action Service; Community of Latin American and Caribbean States; Southern Common Market |
-| Government Officials | Pelayo Castro; Celinda Sosa; Joseph Síkela; Belén Martinez Carbonell |
+| Political Actors | European Union; EU Delegations; Governments; Government Officials; Community of Latin American and Caribbean States; Southern Common Market; European Commission |
+| Research and Innovation Actors | EU-LAC Digital Alliance |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Regional & International Cooperation | EU-LAC Digital Alliance; Bi-regional Cooperation; Global Digital Cooperation; EU-CELAC Digital Partnership |
-| Data & Governance | Digital Governance; Data Protection |
+| Regional & International Cooperation | EU-LAC Digital Alliance; Bi-regional Cooperation; Digital & Technological Partnerships |
+| Digital Transformation & Strategy | Digital Investment |
 | Inclusion & Social Development | Sustainable Digital Development |
+| Data & Governance | Digital Governance |
 
 ## Practical Applications
 
-- The EU-Bolivia Multiannual Indicative Programme (2021-2027) with an allocation of €134 million to support activities related to the environment, climate change, governance, and human rights.
-- Ongoing cooperation to tackle cocaine trafficking and organized crime, including plans to consolidate a bi-regional response during the Ministerial meeting on 6 March.
-- Efforts to deepen operational exchanges between EUROPOL and Bolivia through the conclusion of negotiations for a related international agreement.
-- Bolivia's accession to the EU-LAC Digital Alliance, promoting digital cooperation.
-- Commitment to work towards the 2025 EU-CELAC Summit in Colombia to produce concrete results, including investments under the Global Gateway Investment Agenda.
+- Implementation of the EU-Bolivia Multiannual Indicative Programme (2021-2027) with an allocation of €134 million to support activities related to environment, climate change, governance, human rights, development of renewable energy resources, and socially and environmentally responsible investments in critical raw materials, mainly lithium.
+- Promotion of Bolivia’s incorporation into MERCOSUR by the EU to diversify bilateral trade and enhance investment flows.
+- Ongoing cooperation to tackle cocaine trafficking and organized crime, including efforts to consolidate the bi-regional response during the upcoming Ministerial meeting between the EU and the Latin American Committee on Internal Security (CLASI).
+- Negotiations to conclude an international agreement to deepen operational exchanges between EUROPOL and Bolivia.
+- Bolivia’s accession to the EU-LAC Digital Alliance, facilitating digital cooperation.
+- Cooperation at the regional level through the dialogue between the EU and the Community of Latin American and Caribbean States (CELAC), aiming for concrete results and investments under the Global Gateway Investment Agenda, including preparations for the 2025 EU-CELAC Summit in Colombia.
 
 ## Commitments
 
-- The EU-Bolivia Multiannual Indicative Programme (2021-2027) has an allocation of €134 million for supporting activities related to the environment, climate change, governance, and human rights.
-- Both parties aim to produce concrete results, including investments under the Global Gateway Investment Agenda, for the 2025 EU-CELAC Summit in Colombia.
+- EU-Bolivia Multiannual Indicative Programme (2021-2027) with an allocation of €134 million to support activities related to environment, climate change, governance, human rights, renewable energy development, and socially and environmentally responsible investments in critical raw materials, mainly lithium.
+- Commitment to work for the 2025 EU-CELAC Summit in Colombia to produce concrete results, including investments under the Global Gateway Investment Agenda.

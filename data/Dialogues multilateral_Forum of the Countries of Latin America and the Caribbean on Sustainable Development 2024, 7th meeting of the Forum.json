@@ -1,27 +1,27 @@
 {
-  "title": "Forum of the Countries of Latin America and the Caribbean on Sustainable Development 2024: 7th Meeting Summary",
-  "date": "2024-04-15",
+  "title": "Forum of the Countries of Latin America and the Caribbean on Sustainable Development 2024 – 7th Meeting Summary (Santiago, 15-18 April)",
+  "date": "2024-04",
   "location": "Santiago, Chile",
   "executive_summary": null,
   "characteristics": [],
-  "themes": {
-    "Regional & International Cooperation": [
-      "EU-LAC Digital Alliance"
+  "themes": {},
+  "actors": {
+    "Political Actors": [
+      "Forum of the Countries of Latin America and the Caribbean on Sustainable Development",
+      "Community of Latin American and Caribbean States"
     ]
   },
-  "actors": {},
   "practical_applications": [],
   "commitments": [],
-  "score": 49,
+  "score": 75,
   "quality_breakdown": {
-    "faithfulness": 0,
-    "consistency": 50,
-    "completeness": 49,
-    "accuracy": 100,
+    "faithfulness": 100,
+    "consistency": 90,
+    "completeness": 35,
+    "accuracy": 66,
     "issues": [
-      "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
-      "Missing important information in extraction or strategic analysis"
+      "Missing important information in extraction or strategic analysis",
+      "Potential factual errors in basic content or strategic extra data"
     ]
   },
   "extra_data": {
@@ -41,13 +41,19 @@
     "responsible_entity": null,
     "sdg_alignment": []
   },
-  "top_actors": [],
-  "top_themes": [
+  "top_actors": [
     {
-      "name": "EU-LAC Digital Alliance",
-      "category": "Regional & International Cooperation",
-      "relevance_score": 0.9,
-      "justification": "The EU-LAC Digital Alliance is central to the document's main message, emphasizing the importance of digital cooperation between Europe and Latin America. It aligns with key objectives of enhancing connectivity and fostering sustainable development in the region."
+      "name": "Forum of the Countries of Latin America and the Caribbean on Sustainable Development",
+      "category": "Political Actors",
+      "relevance_score": 1.0,
+      "justification": "This Forum is the central subject of the document, as indicated by the title and repeated references. It plays a key role in coordinating sustainable development efforts in Latin America and the Caribbean, hosting the 7th meeting in Santiago, and is the main platform for discussions and decisions."
+    },
+    {
+      "name": "Community of Latin American and Caribbean States",
+      "category": "Political Actors",
+      "relevance_score": 0.7,
+      "justification": "The Community of Latin American and Caribbean States is a significant regional political actor that influences the Forum's agenda and initiatives. While less prominent than the Forum itself, it is important due to its role in regional integration and cooperation on sustainable development."
     }
-  ]
+  ],
+  "top_themes": []
 }

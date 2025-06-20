@@ -1,269 +1,372 @@
 {
-  "title": "Ministerial Declaration on Reinforcing the 2030 Agenda for Sustainable Development and Eradicating Poverty in Times of Crisis",
+  "title": "Ministerial Declaration of the 2024 High-Level Segment on Reinforcing the 2030 Agenda for Sustainable Development and Eradicating Poverty",
   "date": "2024-07-11",
   "location": "New York, United States",
-  "executive_summary": "The 2024 Ministerial Declaration from the Economic and Social Council emphasizes urgent action to reinforce the 2030 Agenda for Sustainable Development amid multiple global crises. It reaffirms commitments to eradicate poverty, address climate change, and promote peace and security as integral to sustainable development. The declaration highlights the need for innovative solutions, increased financing, and international cooperation to achieve the Sustainable Development Goals (SDGs) by 2030. It calls for enhanced support for vulnerable populations, including women, children, and marginalized communities, and stresses the importance of integrated policy planning and partnerships. The document also outlines specific actions to combat hunger, improve food security, and promote sustainable agriculture, while addressing the financing gap for developing countries. Overall, it underscores a collective commitment to a sustainable, inclusive, and resilient future, urging all stakeholders to collaborate effectively in this endeavor.",
+  "executive_summary": "The 2024 ministerial declaration from the UN Economic and Social Council and High-Level Political Forum reaffirms global commitment to the 2030 Agenda and its 17 Sustainable Development Goals (SDGs), emphasizing urgent action to eradicate poverty amid multiple crises. It highlights challenges including climate change, conflicts, inequalities, and the COVID-19 aftermath, stressing the need for peace, inclusive societies, and sustainable economic growth. The declaration calls for enhanced international cooperation, increased financing, and support for vulnerable groups and developing countries. Key priorities include climate action aligned with the Paris Agreement, biodiversity conservation, sustainable agriculture, and strengthening governance and institutions. It underscores the importance of gender equality, digital inclusion, and data-driven policymaking. The declaration supports reforming international financial systems, scaling up development finance, and improving debt mechanisms. It encourages voluntary national reviews to monitor progress and stresses multi-stakeholder engagement to accelerate SDG implementation, aiming for a just, resilient, and inclusive world by 2030.",
   "characteristics": [
-    "The declaration emphasizes urgent action to achieve the 2030 Agenda for Sustainable Development, focusing on eradicating poverty and addressing multiple global crises.",
-    "It reaffirms the interconnectedness of sustainable development and peace, highlighting the need for inclusive societies and respect for human rights.",
-    "The document calls for enhanced international cooperation, financing, and innovative solutions to support developing countries in achieving the Sustainable Development Goals (SDGs).",
-    "It stresses the importance of gender equality and the empowerment of women as crucial for sustainable development.",
-    "The declaration recognizes the need for integrated approaches to address climate change, biodiversity loss, and disaster risk reduction, promoting resilience and sustainability."
+    "The declaration reaffirms commitment to the 2030 Agenda and its 17 Sustainable Development Goals (SDGs), emphasizing urgency, inclusivity, and leaving no one behind, especially the most vulnerable.",
+    "It highlights multiple global crises including climate change, conflicts, pandemics, and inequalities as major challenges to sustainable development and poverty eradication.",
+    "The declaration stresses the importance of peace, good governance, human rights, gender equality, and inclusive institutions as foundations for sustainable development.",
+    "It calls for enhanced international cooperation, increased financing, technology transfer, and capacity-building to support developing countries and address financing gaps.",
+    "Specific goals addressed include ending poverty and hunger, combating climate change, promoting peaceful societies, and strengthening global partnerships for sustainable development.",
+    "The declaration encourages the use of science, technology, innovation, and data to accelerate progress and calls for strengthened voluntary national reviews and stakeholder participation in SDG implementation."
   ],
   "themes": {
-    "Inclusion & Social Development": [
-      "Digital Inclusion",
-      "Sustainable Digital Development"
+    "Digital Transformation & Strategy": [
+      "Digital Agenda",
+      "Digital Acceleration",
+      "Digital Infrastructure",
+      "Digital Platforms",
+      "Digital Investment",
+      "Digital Ecosystem"
+    ],
+    "Technology & Innovation": [
+      "Tech-Driven Solutions",
+      "ICT Innovation"
     ],
     "Data & Governance": [
       "Digital Governance",
       "Data Governance",
-      "Data Protection"
+      "Digital Ethics"
     ],
-    "Digital Transformation & Strategy": [
-      "Digital Agenda",
-      "Digital Policy"
+    "Inclusion & Social Development": [
+      "Digital Inclusion"
     ],
     "Regional & International Cooperation": [
+      "Multilateralism",
       "Global Digital Cooperation",
-      "Multilateralism"
+      "Digital & Technological Partnerships"
     ]
   },
   "actors": {
     "Political Actors": [
       "United Nations",
       "United Nations Officials",
-      "Economic and Social Council",
-      "Paula Narváez (Chile)"
+      "Governments",
+      "Government Officials",
+      "Policy Level Representatives"
+    ],
+    "Economic Actors": [
+      "World Bank"
+    ],
+    "Civil Society Actors": [
+      "Civil Society Organisations"
     ]
   },
   "practical_applications": [
-    "Commitment to the full implementation of the Sendai Framework for Disaster Risk Reduction 2015–2030, promoting a disaster risk-informed approach to sustainable development.",
-    "Support for the global efforts to address plastic pollution, including the development of an international legally binding instrument on plastic pollution by the end of 2024.",
-    "Implementation of the Global Accelerator on Jobs and Social Protection for Just Transitions to foster sustainable, inclusive economic growth and decent work for all.",
-    "Commitment to the timely and full implementation of the Doha Programme of Action for the Least Developed Countries for the decade 2022–2031.",
-    "Support for the Agenda 2063 of the African Union and the New Partnership for Africa’s Development as integral to the 2030 Agenda.",
-    "Operationalization of funding arrangements to address loss and damage associated with climate change, including a pledge of 792 million USD to support these efforts.",
-    "Commitment to enhance access to and leverage science, technology, and innovation for sustainable development, including the development of STI for SDGs road maps.",
-    "Support for the implementation of integrated national financing frameworks aligned with sustainable development strategies to further implement the Addis Ababa Action Agenda.",
-    "Commitment to strengthen international, national, and local data systems for better monitoring and policymaking to accelerate the achievement of the 2030 Agenda, including the fifth United Nations World Data Forum in November 2024."
+    "Full implementation of the Sendai Framework for Disaster Risk Reduction 2015–2030, including capacity-building and technical and financial assistance for developing countries, promotion of disaster risk-informed sustainable development, and multi-hazard early warning mechanisms.",
+    "Mobilization of financial resources to close the biodiversity financing gap and support the implementation of the Convention on Biological Diversity and the Kunming-Montreal Global Biodiversity Framework.",
+    "Support for the global efforts to address plastic pollution, including the work of the intergovernmental negotiating committee to develop an international legally binding instrument on plastic pollution by the end of 2024.",
+    "Strengthening social protection systems and expanding coverage of social protection programs to reduce poverty and hunger.",
+    "Implementation of the Global Accelerator on Jobs and Social Protection for Just Transitions.",
+    "Promotion of sustainable, efficient, inclusive, and resilient agrifood systems, including support for family farming, reduction of food loss and waste, integrated water resources management, and safe, nutritious school feeding programs.",
+    "Development and application of science, technology, and innovation in agriculture, including use of advanced information technologies to support smallholder and family farmers.",
+    "Operationalization of funding arrangements for loss and damage associated with climate change, including the Fund established under UNFCCC decisions 1/CP.28 and 5/CMA.5, with pledges of financial support.",
+    "Support for the Santiago network for averting, minimizing, and addressing loss and damage from climate change.",
+    "Scaling up international public finance and improved access to concessional finance for developing countries to address financing gaps for the Sustainable Development Goals.",
+    "Promotion of reform of the international financial architecture and international financial institutions to better address global challenges and support SDG investments.",
+    "Improved international debt mechanisms, including debt review, debt payment suspensions, debt restructuring, and scaling up debt swaps for SDGs, climate, nature, and food security.",
+    "Voluntary rechanneling of special drawing rights (SDRs) to countries most in need through multilateral development banks.",
+    "Preparations for the Fourth International Conference on Financing for Development in 2025 to assess progress and address financing challenges.",
+    "Implementation of integrated national financing frameworks aligned with nationally owned sustainable development strategies.",
+    "Strengthening international tax cooperation, including support for the UN Framework Convention on International Tax Cooperation.",
+    "Promotion of investment and development of project pipelines and bankable projects, with technical assistance and capacity-building support.",
+    "Advancement of innovative solutions to unlock SDG investments, including the Sustainable Development Goals Investment Fair, Global Pilot Programme on Science, Technology and Innovation for the SDGs Road Maps, and the United Nations Global Compact.",
+    "Expansion of digital infrastructure connectivity, capacity building, and access to technological innovations to bridge digital divides and enhance participation in the digital economy.",
+    "Strengthening data systems to collect high-quality, timely, relevant, disaggregated, and reliable data on SDG progress, including financing and capacity-building support for developing countries.",
+    "Encouragement of countries to develop national road maps for voluntary national reviews (VNRs) and support local authorities in preparing voluntary local reviews.",
+    "Strengthening the quality of voluntary national reviews through evidence-based participatory processes, use of accurate and comparable data, anticipatory models, and inclusion of statistical annexes."
   ],
   "commitments": [
-    "Commit to reducing global carbon dioxide emissions by 43% by 2030 relative to the 2019 level.",
-    "Pledge to mobilize 792 million United States dollars to the funding arrangements for loss and damage, including 661 million dollars to the Fund.",
-    "Reaffirm the commitment to achieve a new collective quantified goal from a floor of 100 billion dollars per year at the twenty-ninth session of the Conference of the Parties to the United Nations Framework Convention on Climate Change.",
-    "Commit to the urgent voluntary rechannelling of additional special drawing rights for countries most in need.",
-    "Look forward to the Fourth International Conference on Financing for Development, to be held in Spain from 30 June to 3 July 2025.",
-    "Commit to increasing the availability of Sustainable Development Goal data and closing Goal data gaps at all levels.",
-    "Look forward to the fifth United Nations World Data Forum, to be held from 12 to 15 November 2024, in Medellin, Colombia."
+    "Achieve the vision of a sustainable, resilient, prosperous, peaceful, just and inclusive world by 2030, as envisioned in the 2030 Agenda for Sustainable Development and its 17 Sustainable Development Goals.",
+    "Full implementation of the Sendai Framework for Disaster Risk Reduction 2015–2030.",
+    "Mobilize financial resources to close the biodiversity financing gap for the effective implementation of the Kunming-Montreal Global Biodiversity Framework.",
+    "Support the development and adoption of an international legally binding instrument on plastic pollution, including in the marine environment, by the end of 2024.",
+    "Implement the 2030 Agenda and the Sustainable Development Goals with bold, ambitious, accelerated, just and transformative action in the six years leading up to 2030.",
+    "Strengthen social protection systems and expand coverage of social protection programmes to reduce poverty and hunger.",
+    "Eradicate forced labour, human trafficking, and end child labour in all its forms.",
+    "End hunger, food insecurity and all forms of malnutrition by 2030 through sustainable, efficient, inclusive and resilient agrifood systems.",
+    "Reduce global carbon dioxide emissions by 43% by 2030 relative to the 2019 level and achieve net zero emissions by or around mid-century.",
+    "Set a new collective quantified climate finance goal from a floor of 100 billion US dollars per year at the 29th session of the Conference of the Parties to the UNFCCC.",
+    "Developed countries to fulfill official development assistance commitments, including 0.7% of gross national income (GNI) for ODA to developing countries and 0.15 to 0.20% of ODA/GNI to least developed countries.",
+    "Support the Fourth International Conference on Financing for Development to be held from 30 June to 3 July 2025.",
+    "Strengthen data and statistical capacities in developing countries, increase financing for data and statistics, and enhance capacity-building support to close Sustainable Development Goal data gaps.",
+    "Encourage countries to develop national road maps of voluntary national reviews for presentation until 2030 and support local authorities in preparing voluntary local reviews."
   ],
-  "score": 54,
+  "score": 95,
   "quality_breakdown": {
-    "faithfulness": 0,
-    "consistency": 70,
-    "completeness": 70,
-    "accuracy": 80,
-    "issues": [
-      "Low faithfulness - check for hallucinations in basic or strategic extra data"
-    ]
+    "faithfulness": 100,
+    "consistency": 95,
+    "completeness": 98,
+    "accuracy": 90,
+    "issues": []
   },
   "extra_data": {
     "lead_country_iso": "CHL",
-    "agreement_type": [],
-    "legal_bindingness": null,
+    "agreement_type": [
+      "Ministerial Declaration"
+    ],
+    "legal_bindingness": "Politically-binding",
     "coverage_scope": "Global",
     "eu_policy_alignment": [],
-    "review_schedule": null,
+    "review_schedule": "Biennial",
     "beneficiary_group_raw": [
       "woman",
       "child",
-      "youth",
-      "person",
-      "community"
+      "migrant",
+      "indigenous person",
+      "small and medium-sized enterprise"
     ],
     "beneficiary_group": [
       {
         "category": "Women & Girls",
-        "label": "Women"
-      },
-      {
-        "category": "Students & Youth",
-        "label": "Youth"
+        "label": "Women in Tech"
       },
       {
         "category": "Students & Youth",
         "label": "Children"
       },
       {
-        "category": "General Citizens / Consumers",
-        "label": "Citizens"
+        "category": "Migrants & Refugees",
+        "label": "Migrants"
       },
       {
-        "category": "Civil Society / NGOs",
-        "label": "Community Organizations"
+        "category": "Indigenous Peoples & Ethnic Groups",
+        "label": "Indigenous Communities"
+      },
+      {
+        "category": "SMEs / Businesses",
+        "label": "Small and Medium Enterprises"
       }
     ],
-    "start_date": "2024-07-11",
-    "end_date": "2024-07-24",
+    "start_date": "2024-07-08",
+    "end_date": "2024-07-18",
     "commitment_details": [
       {
-        "text": "Commit to reducing global carbon dioxide emissions by 43% by 2030 relative to the 2019 level.",
+        "text": "Achieve the vision of a sustainable, resilient, prosperous, peaceful, just and inclusive world by 2030, as envisioned in the 2030 Agenda for Sustainable Development and its 17 Sustainable Development Goals.",
         "commitment_class": "Declarative"
       },
       {
-        "text": "Pledge to mobilize 792 million United States dollars to the funding arrangements for loss and damage, including 661 million dollars to the Fund.",
+        "text": "Full implementation of the Sendai Framework for Disaster Risk Reduction 2015–2030.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "Mobilize financial resources to close the biodiversity financing gap for the effective implementation of the Kunming-Montreal Global Biodiversity Framework.",
         "commitment_class": "Financed"
       },
       {
-        "text": "Reaffirm the commitment to achieve a new collective quantified goal from a floor of 100 billion dollars per year at the twenty-ninth session of the Conference of the Parties to the United Nations Framework Convention on Climate Change.",
+        "text": "Support the development and adoption of an international legally binding instrument on plastic pollution, including in the marine environment, by the end of 2024.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Implement the 2030 Agenda and the Sustainable Development Goals with bold, ambitious, accelerated, just and transformative action in the six years leading up to 2030.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "Strengthen social protection systems and expand coverage of social protection programmes to reduce poverty and hunger.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Eradicate forced labour, human trafficking, and end child labour in all its forms.",
         "commitment_class": "Declarative"
       },
       {
-        "text": "Commit to the urgent voluntary rechannelling of additional special drawing rights for countries most in need.",
+        "text": "End hunger, food insecurity and all forms of malnutrition by 2030 through sustainable, efficient, inclusive and resilient agrifood systems.",
         "commitment_class": "Declarative"
       },
       {
-        "text": "Commit to increasing the availability of Sustainable Development Goal data and closing Goal data gaps at all levels.",
-        "commitment_class": "Declarative"
+        "text": "Reduce global carbon dioxide emissions by 43% by 2030 relative to the 2019 level and achieve net zero emissions by or around mid-century.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "Set a new collective quantified climate finance goal from a floor of 100 billion US dollars per year at the 29th session of the Conference of the Parties to the UNFCCC.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "Developed countries to fulfill official development assistance commitments, including 0.7% of gross national income (GNI) for ODA to developing countries and 0.15 to 0.20% of ODA/GNI to least developed countries.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "Support the Fourth International Conference on Financing for Development to be held from 30 June to 3 July 2025.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Strengthen data and statistical capacities in developing countries, increase financing for data and statistics, and enhance capacity-building support to close Sustainable Development Goal data gaps.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Encourage countries to develop national road maps of voluntary national reviews for presentation until 2030 and support local authorities in preparing voluntary local reviews.",
+        "commitment_class": "Programmatic"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "We will act with urgency to realize its vision as a plan of action for people, planet, prosperity, peace and partnership, leaving no one behind.",
+        "kpi_text": "We strongly reaffirm our commitment to building a sustainable, resilient, prosperous, peaceful, just and inclusive world by 2030, as envisioned in the 2030 Agenda for Sustainable Development and its 17 Sustainable Development Goals.",
         "kpi_type": "qualitative",
-        "metric_name": "Urgent Action for 2030 Agenda",
+        "metric_name": "Achievement of Sustainable Development Goals",
         "target_value": null,
-        "target_description": "Act with urgency to realize the vision of the 2030 Agenda.",
+        "target_description": "Build a sustainable, resilient, prosperous, peaceful, just and inclusive world by 2030",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Assessment of actions taken towards the 2030 Agenda",
-        "responsible_entity": "Member States",
+        "timeframe": "by 2030",
+        "measurement_method": "Assessment of progress on the 17 SDGs through national and global monitoring frameworks",
+        "responsible_entity": "United Nations Member States",
         "sector": "Sustainable Development"
       },
       {
-        "kpi_text": "We will support the global efforts to address plastic pollution, and the work of the intergovernmental negotiating committee to develop an international legally binding instrument on plastic pollution, including in the marine environment, by the end of 2024.",
-        "kpi_type": "quantitative",
-        "metric_name": "Plastic Pollution Instrument Development",
+        "kpi_text": "We recommit to the full implementation of the Sendai Framework for Disaster Risk Reduction 2015–2030, and recall its midterm review, as disasters have become more frequent and intense.",
+        "kpi_type": "qualitative",
+        "metric_name": "Sendai Framework Implementation",
         "target_value": null,
-        "target_description": "Develop an international legally binding instrument on plastic pollution.",
+        "target_description": "Full implementation of the Sendai Framework for Disaster Risk Reduction",
         "unit": "qualitative milestone",
-        "timeframe": "by the end of 2024",
-        "measurement_method": "Progress reports on the development of the instrument",
-        "responsible_entity": "Intergovernmental negotiating committee",
+        "timeframe": "by 2030",
+        "measurement_method": "Monitoring of disaster risk reduction policies and integration into national and local development plans",
+        "responsible_entity": "Member States and relevant disaster risk reduction bodies",
+        "sector": "Disaster Risk Reduction"
+      },
+      {
+        "kpi_text": "We will support the global efforts to address plastic pollution, and the work of the intergovernmental negotiating committee to develop an international legally binding instrument on plastic pollution, including in the marine environment, by the end of 2024.",
+        "kpi_type": "qualitative",
+        "metric_name": "International Plastic Pollution Instrument Development",
+        "target_value": null,
+        "target_description": "Develop an international legally binding instrument on plastic pollution",
+        "unit": "qualitative milestone",
+        "timeframe": "by end of 2024",
+        "measurement_method": "Adoption of the legally binding instrument by the intergovernmental negotiating committee",
+        "responsible_entity": "Intergovernmental Negotiating Committee",
         "sector": "Environmental Protection"
       },
       {
-        "kpi_text": "We will strengthen social protections systems and expand coverage of social protection programmes, to reduce poverty and hunger.",
-        "kpi_type": "qualitative",
-        "metric_name": "Strengthening Social Protection Systems",
-        "target_value": null,
-        "target_description": "Strengthen and expand social protection systems to reduce poverty and hunger.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluation of social protection system coverage and effectiveness",
-        "responsible_entity": "Member States",
-        "sector": "Social Development"
-      },
-      {
-        "kpi_text": "We commit to ensuring that persons with disabilities actively participate in and equally benefit from sustainable development efforts.",
-        "kpi_type": "qualitative",
-        "metric_name": "Inclusion of Persons with Disabilities",
-        "target_value": null,
-        "target_description": "Ensure active participation and benefits for persons with disabilities in sustainable development.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Monitoring participation and benefits received by persons with disabilities",
-        "responsible_entity": "Member States",
-        "sector": "Social Development"
-      },
-      {
-        "kpi_text": "We will support the implementation of integrated national financing frameworks, in alignment with nationally owned sustainable development strategies.",
-        "kpi_type": "qualitative",
-        "metric_name": "Implementation of National Financing Frameworks",
-        "target_value": null,
-        "target_description": "Support the implementation of integrated national financing frameworks.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Assessment of financing frameworks and their alignment with sustainable development strategies",
-        "responsible_entity": "Member States",
-        "sector": "Finance"
-      },
-      {
-        "kpi_text": "We commit to enhancing global, regional, national and local partnerships for sustainable development.",
-        "kpi_type": "qualitative",
-        "metric_name": "Enhancement of Partnerships for Sustainable Development",
-        "target_value": null,
-        "target_description": "Enhance partnerships at all levels for sustainable development.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluation of partnership initiatives and collaborations",
-        "responsible_entity": "Member States and stakeholders",
-        "sector": "Partnerships"
-      },
-      {
-        "kpi_text": "We will take actions to bridge the digital divides and spread the benefits of digitalization.",
-        "kpi_type": "qualitative",
-        "metric_name": "Bridging Digital Divides",
-        "target_value": null,
-        "target_description": "Take actions to bridge digital divides and enhance digitalization benefits.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Assessment of digital access and usage statistics",
-        "responsible_entity": "Member States",
-        "sector": "Digital Development"
-      },
-      {
-        "kpi_text": "We will work for a significant increase in investments to close the gender gap and strengthen support for institutions in relation to gender equality.",
-        "kpi_type": "qualitative",
-        "metric_name": "Investment in Gender Equality",
-        "target_value": null,
-        "target_description": "Increase investments to close the gender gap and support gender equality institutions.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Monitoring investment levels and gender equality outcomes",
-        "responsible_entity": "Member States",
-        "sector": "Gender Equality"
-      },
-      {
-        "kpi_text": "We will support the timely and full implementation of the Doha Programme of Action for the Least Developed Countries for the decade 2022–2031.",
+        "kpi_text": "We reaffirm the Paris Agreement temperature goal of holding the increase in the global average temperature to well below 2 degrees Celsius above pre-industrial levels and pursuing efforts to limit the temperature increase to 1.5 degrees Celsius above pre-industrial levels... including reducing global carbon dioxide emissions, by 43 per cent by 2030 relative to the 2019 level, and to net zero by or around mid-century.",
         "kpi_type": "quantitative",
-        "metric_name": "Implementation of Doha Programme of Action",
-        "target_value": null,
-        "target_description": "Support the implementation of the Doha Programme of Action.",
-        "unit": "qualitative milestone",
-        "timeframe": "2022–2031",
-        "measurement_method": "Progress reports on the implementation of the programme",
-        "responsible_entity": "Member States",
-        "sector": "Development"
+        "metric_name": "Global Carbon Dioxide Emissions Reduction",
+        "target_value": 43.0,
+        "target_description": "Reduce global carbon dioxide emissions by 43% relative to 2019 levels",
+        "unit": "percentage",
+        "timeframe": "by 2030",
+        "measurement_method": "Global greenhouse gas emissions inventories and reporting under UNFCCC",
+        "responsible_entity": "United Nations Framework Convention on Climate Change Parties",
+        "sector": "Climate Change Mitigation"
       },
       {
-        "kpi_text": "We will support the global efforts to address the Sustainable Development Goal financing gap to between 2.5 trillion and 4 trillion dollars annually for developing countries.",
+        "kpi_text": "We reaffirm our resolve to set, at the twenty-ninth session of the Conference of the Parties to the United Nations Framework Convention on Climate Change, a new collective quantified goal from a floor of 100 billion dollars per year, taking into account the needs and priorities of developing countries.",
         "kpi_type": "quantitative",
-        "metric_name": "Addressing SDG Financing Gap",
-        "target_value": 4.0,
-        "target_description": null,
-        "unit": "trillion USD",
-        "timeframe": "annually",
-        "measurement_method": "Assessment of financing provided to developing countries",
-        "responsible_entity": "Developed countries",
-        "sector": "Finance"
+        "metric_name": "Climate Finance Mobilization",
+        "target_value": 100.0,
+        "target_description": "Mobilize at least 100 billion USD per year for climate finance",
+        "unit": "billion USD per year",
+        "timeframe": "starting at 29th COP session (2024)",
+        "measurement_method": "Financial reporting and pledges tracking under UNFCCC mechanisms",
+        "responsible_entity": "Developed country Parties to UNFCCC",
+        "sector": "Climate Finance"
+      },
+      {
+        "kpi_text": "We urge developed countries to scale up and fulfil their respective official development assistance commitments, including the commitment by many developed countries to achieve the target of 0.7 per cent of gross national income for official development assistance (ODA/GNI) to developing countries and 0.15 to 0.20 per cent of ODA/GNI to the least developed countries.",
+        "kpi_type": "quantitative",
+        "metric_name": "Official Development Assistance (ODA) to GNI Ratio",
+        "target_value": 0.7,
+        "target_description": "Achieve 0.7% of GNI as ODA to developing countries",
+        "unit": "percentage of GNI",
+        "timeframe": "no specific deadline stated",
+        "measurement_method": "Monitoring of ODA contributions reported by donor countries",
+        "responsible_entity": "Developed Countries",
+        "sector": "International Development Finance"
+      },
+      {
+        "kpi_text": "We commit to strengthen social protection systems and expand coverage of social protection programmes, to reduce poverty and hunger.",
+        "kpi_type": "qualitative",
+        "metric_name": "Social Protection Systems Strengthening",
+        "target_value": null,
+        "target_description": "Strengthen and expand social protection systems to reduce poverty and hunger",
+        "unit": "qualitative milestone",
+        "timeframe": "by 2030",
+        "measurement_method": "National social protection coverage and impact assessments",
+        "responsible_entity": "Member States",
+        "sector": "Social Protection and Poverty Reduction"
+      },
+      {
+        "kpi_text": "We commit to eradicate forced labour and human trafficking and end child labour in all its forms.",
+        "kpi_type": "qualitative",
+        "metric_name": "Eradication of Forced Labour, Human Trafficking and Child Labour",
+        "target_value": null,
+        "target_description": "Eradicate forced labour, human trafficking and child labour in all forms",
+        "unit": "qualitative milestone",
+        "timeframe": "by 2030",
+        "measurement_method": "National and international reporting on labour standards and trafficking",
+        "responsible_entity": "Member States and International Labour Organization",
+        "sector": "Labour Rights and Human Rights"
+      },
+      {
+        "kpi_text": "We will continue to take action to bridge the digital divides and spread the benefits of digitalization. We will expand participation of all countries, in particular developing countries, in the digital economy, including by enhancing their digital infrastructure connectivity, building their capacities and access to technological innovations through stronger partnerships and improving digital literacy.",
+        "kpi_type": "qualitative",
+        "metric_name": "Digital Divide Reduction and Digital Economy Participation",
+        "target_value": null,
+        "target_description": "Bridge digital divides and expand participation in the digital economy, especially for developing countries",
+        "unit": "qualitative milestone",
+        "timeframe": "by 2030",
+        "measurement_method": "Monitoring digital infrastructure, connectivity, literacy and participation rates",
+        "responsible_entity": "Member States, International Organizations, Private Sector",
+        "sector": "Digital Economy and Technology"
+      },
+      {
+        "kpi_text": "We commit to take action to strengthen international, national and local data systems efforts to collect high-quality, timely, relevant, disaggregated and reliable data on Sustainable Development Goals progress and to intensify efforts to strengthen data and statistical capacities in developing countries.",
+        "kpi_type": "qualitative",
+        "metric_name": "Strengthening Data Systems for SDG Monitoring",
+        "target_value": null,
+        "target_description": "Enhance data collection and statistical capacities for SDG progress monitoring",
+        "unit": "qualitative milestone",
+        "timeframe": "by 2030",
+        "measurement_method": "Assessment of data quality, availability, and use in SDG reporting",
+        "responsible_entity": "Member States, National Statistical Offices, UN Statistical Commission",
+        "sector": "Data and Statistics"
       }
     ],
     "country_list_iso": [
-      "CHL",
+      "ARM",
+      "ATG",
+      "AZE",
+      "BEL",
+      "BRA",
+      "CHN",
       "COL",
-      "DEU",
+      "COD",
+      "CRI",
+      "ECU",
+      "GNQ",
+      "ERI",
+      "GEO",
+      "GIN",
+      "HND",
+      "KEN",
+      "LAO",
+      "LBY",
+      "MRT",
+      "MUS",
+      "MEX",
+      "NAM",
+      "NPL",
+      "OMN",
+      "PLW",
+      "PER",
+      "WSM",
+      "SLE",
+      "SLB",
+      "SSD",
       "ESP",
-      "USA"
+      "SYR",
+      "UGA",
+      "VUT",
+      "YEM",
+      "ZWE",
+      "ARE"
     ],
-    "responsible_entity": "Economic and Social Council",
+    "responsible_entity": null,
     "sdg_alignment": [
       "SDG 1: No Poverty",
       "SDG 2: Zero Hunger",
-      "SDG 3: Good Health and Well-being",
       "SDG 5: Gender Equality",
-      "SDG 10: Reduced Inequalities",
       "SDG 13: Climate Action",
+      "SDG 15: Life on Land",
       "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
@@ -273,19 +376,19 @@
       "name": "United Nations",
       "category": "Political Actors",
       "relevance_score": 1.0,
-      "justification": "The United Nations is the overarching body responsible for the 2030 Agenda and Sustainable Development Goals, making it central to the discussions and initiatives outlined in the document."
+      "justification": "The United Nations is the primary actor convening the high-level political forum and Economic and Social Council session, setting the agenda, and driving the implementation of the 2030 Agenda and Sustainable Development Goals. The text repeatedly references UN frameworks, resolutions, and initiatives, highlighting its central role in global governance, coordination, and financing."
     },
     {
-      "name": "Economic and Social Council",
+      "name": "Governments",
       "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "The Economic and Social Council is a key UN body that convenes the high-level political forum and plays a significant role in the implementation and monitoring of the 2030 Agenda."
+      "relevance_score": 0.85,
+      "justification": "Governments are the main implementers of the 2030 Agenda and Sustainable Development Goals at the national level. The text emphasizes the role of ministers, high representatives, and national policies, including voluntary national reviews, highlighting governments' responsibility and influence in achieving sustainable development targets."
     },
     {
-      "name": "Paula Narváez (Chile)",
-      "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "As the President of the Economic and Social Council, Paula Narváez is instrumental in leading the discussions and decisions related to the high-level segment and the ministerial declaration."
+      "name": "World Bank",
+      "category": "Economic Actors",
+      "relevance_score": 0.65,
+      "justification": "The World Bank is explicitly mentioned as a key multilateral development bank involved in financing, capacity-building, and supporting infrastructure investments critical to achieving the Sustainable Development Goals. Its participation in the high-level political forum and role in addressing financing gaps and innovative solutions underscores its importance."
     }
   ],
   "top_themes": [
@@ -293,19 +396,19 @@
       "name": "Digital Inclusion",
       "category": "Inclusion & Social Development",
       "relevance_score": 0.9,
-      "justification": "Digital inclusion is central to achieving the 2030 Agenda as it addresses the need for equitable access to technology and information, which is crucial for empowering marginalized communities and ensuring no one is left behind."
+      "justification": "Digital inclusion is central to the document's emphasis on leaving no one behind, empowering vulnerable groups, and ensuring equitable access to technology and services. It is repeatedly linked to social protection, gender equality, and bridging divides, making it strategically crucial for achieving the 2030 Agenda."
     },
     {
-      "name": "Sustainable Digital Development",
-      "category": "Inclusion & Social Development",
-      "relevance_score": 0.85,
-      "justification": "Sustainable digital development is vital for fostering economic growth and innovation while ensuring environmental sustainability, aligning with the overarching goals of the 2030 Agenda."
-    },
-    {
-      "name": "Global Digital Cooperation",
-      "category": "Regional & International Cooperation",
+      "name": "Digital Infrastructure",
+      "category": "Digital Transformation & Strategy",
       "relevance_score": 0.8,
-      "justification": "Global digital cooperation is essential for addressing transnational challenges and fostering partnerships that enhance the implementation of the Sustainable Development Goals, particularly in the context of digital transformation."
+      "justification": "The document highlights the need to expand digital infrastructure connectivity, especially in developing countries, as a foundation for digital transformation, economic growth, and social inclusion. It is a key enabler for leveraging technology and innovation to accelerate sustainable development."
+    },
+    {
+      "name": "Digital & Technological Partnerships",
+      "category": "Regional & International Cooperation",
+      "relevance_score": 0.75,
+      "justification": "International cooperation and partnerships are emphasized as essential for mobilizing resources, sharing technology, and bridging digital divides. The document stresses multilateralism and global digital cooperation as strategic mechanisms to support digital transformation and sustainable development goals."
     }
   ]
 }

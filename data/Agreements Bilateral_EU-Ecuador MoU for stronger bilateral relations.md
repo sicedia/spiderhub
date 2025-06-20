@@ -1,4 +1,4 @@
-# EU-Ecuador Memorandum of Understanding for Enhanced Bilateral Relations
+# EU-Ecuador Memorandum of Understanding for Stronger Bilateral Relations
 
 **Date**: Date not specified
 
@@ -16,13 +16,14 @@ No key characteristics identified in the document.
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Union; EU-Ecuador |
+| Political Actors | European Union; Governments |
+| Economic Actors | Bilateral Projects |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Regional & International Cooperation | EU-CELAC Digital Partnership |
+| Regional & International Cooperation | Digital & Technological Partnerships |
 
 ## Practical Applications
 

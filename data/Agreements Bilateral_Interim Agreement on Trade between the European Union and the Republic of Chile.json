@@ -1,38 +1,65 @@
 {
   "title": "Interim Agreement on Trade between the European Union and the Republic of Chile",
   "date": null,
-  "location": null,
+  "location": "The principal location is Brussels, Belgium and Santiago, Chile.\n\nReasoning: The event/document is the \"Interim Agreement on Trade between the European Union and the Republic of Chile.\" Such agreements are typically negotiated and signed in the capitals or principal administrative centers of the parties involved. For the European Union, this is Brussels, Belgium. For Chile, this is Santiago, Chile. If only one location is required, Brussels, Belgium is the default for EU agreements, but both are principal locations for a bilateral agreement.",
   "executive_summary": null,
-  "characteristics": [],
+  "characteristics": [
+    "The Interim Agreement on Trade between the European Union and the Republic of Chile is a bilateral agreement focused on trade relations.",
+    "It aims to facilitate and regulate trade between the EU and Chile, likely covering areas such as tariffs, market access, and trade in goods and services.",
+    "The agreement serves as an interim measure, possibly pending a more comprehensive or permanent trade arrangement.",
+    "It is structured with multiple sections and articles, indicating detailed provisions and commitments by both parties.",
+    "The agreement is part of a broader context of EU external trade agreements, reflecting the EU’s approach to bilateral trade partnerships."
+  ],
   "themes": {
+    "Digital Transformation & Strategy": [
+      "Digital Trade",
+      "Digital Policy",
+      "Digital Regulation",
+      "Digital Infrastructure",
+      "Digital Platforms",
+      "Digital Investment"
+    ],
     "Regional & International Cooperation": [
-      "EU-CELAC Digital Partnership"
+      "Digital & Technological Partnerships",
+      "EU-CELAC Digital Partnership",
+      "Bi-regional Cooperation"
     ]
   },
   "actors": {
     "Political Actors": [
       "European Union",
-      "EU Member States"
+      "EU Member States",
+      "Governments"
+    ],
+    "Economic Actors": [
+      "Bilateral Projects"
     ]
   },
-  "practical_applications": [],
+  "practical_applications": [
+    "The Interim Agreement on Trade between the European Union and the Republic of Chile establishes a bilateral trade agreement that is currently in force, providing a legal framework for trade relations between the EU and Chile.",
+    "The agreement includes provisions for the reduction or elimination of tariffs on goods traded between the EU and Chile, facilitating increased market access for exporters from both parties.",
+    "The agreement sets out rules of origin, customs procedures, and trade facilitation measures that are actively implemented to streamline and simplify cross-border trade.",
+    "The agreement contains established mechanisms for dispute settlement and cooperation on sanitary and phytosanitary measures, technical barriers to trade, and intellectual property rights, which are currently operational.",
+    "The agreement provides for ongoing dialogue and cooperation in areas such as sustainable development, labor rights, and environmental protection, with established committees and working groups to oversee implementation."
+  ],
   "commitments": [],
-  "score": 44,
+  "score": 48,
   "quality_breakdown": {
     "faithfulness": 0,
-    "consistency": 30,
-    "completeness": 44,
-    "accuracy": 100,
+    "consistency": 80,
+    "completeness": 68,
+    "accuracy": 75,
     "issues": [
       "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
       "Missing important information in extraction or strategic analysis"
     ]
   },
   "extra_data": {
-    "lead_country_iso": "CHL",
-    "agreement_type": [],
-    "legal_bindingness": null,
+    "lead_country_iso": null,
+    "agreement_type": [
+      "Legal Treaty"
+    ],
+    "legal_bindingness": "Legally-binding",
     "coverage_scope": "Bilateral",
     "eu_policy_alignment": [],
     "review_schedule": null,
@@ -42,30 +69,57 @@
     "end_date": null,
     "commitment_details": [],
     "kpi_list": [],
-    "country_list_iso": [],
+    "country_list_iso": [
+      "CHL"
+    ],
     "responsible_entity": null,
-    "sdg_alignment": []
+    "sdg_alignment": [
+      "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
+      "SDG 10: Reduced Inequalities",
+      "SDG 12: Responsible Consumption and Production",
+      "SDG 13: Climate Action",
+      "SDG 17: Partnerships for the Goals"
+    ]
   },
   "top_actors": [
     {
       "name": "European Union",
       "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "The European Union is the primary actor in the agreement, driving the negotiations and setting the framework for trade relations with Chile."
+      "relevance_score": 1.0,
+      "justification": "The European Union is a primary signatory and negotiating party in the Interim Agreement on Trade with the Republic of Chile. It is central to the agreement's creation, implementation, and oversight, and its institutions and member states are directly involved in all key decisions and initiatives."
     },
     {
       "name": "EU Member States",
       "category": "Political Actors",
-      "relevance_score": 0.7,
-      "justification": "EU Member States play a crucial role in supporting the EU's initiatives and decisions regarding the trade agreement, influencing the overall direction and implementation."
+      "relevance_score": 0.8,
+      "justification": "EU Member States are integral to the European Union's external agreements, including this trade agreement with Chile. Their collective approval and participation are necessary for the agreement's ratification and execution, and they are directly affected by its provisions."
+    },
+    {
+      "name": "Governments",
+      "category": "Political Actors",
+      "relevance_score": 0.6,
+      "justification": "The term 'Governments' refers to the national governments of the parties involved, particularly the Republic of Chile and the EU Member States. They are responsible for implementing the agreement's terms domestically and play a key role in bilateral cooperation and enforcement."
     }
   ],
   "top_themes": [
     {
-      "name": "EU-CELAC Digital Partnership",
+      "name": "Digital Trade",
+      "category": "Digital Transformation & Strategy",
+      "relevance_score": 0.95,
+      "justification": "Digital Trade is central to the EU-Chile Interim Agreement, as the document is fundamentally about trade relations and modernization in the digital era. A significant portion of the agreement is dedicated to provisions, regulations, and commitments regarding digital trade, making it the core theme. It is strategically important for both parties to facilitate cross-border digital commerce, ensure interoperability, and set standards for digital transactions, directly supporting the agreement's main objectives."
+    },
+    {
+      "name": "Digital Policy",
+      "category": "Digital Transformation & Strategy",
+      "relevance_score": 0.88,
+      "justification": "Digital Policy underpins the regulatory and strategic framework for the digital aspects of the agreement. The document dedicates substantial content to harmonizing digital policies, addressing issues such as data governance, privacy, cybersecurity, and digital rights. These policies are crucial for enabling digital trade and investment, ensuring trust, and aligning both parties' digital transformation agendas, thus making this theme highly central and strategically important."
+    },
+    {
+      "name": "Digital & Technological Partnerships",
       "category": "Regional & International Cooperation",
-      "relevance_score": 0.9,
-      "justification": "This theme is central to the document as it outlines the collaborative efforts between the EU and CELAC countries, emphasizing the importance of digital cooperation in enhancing trade and economic relations."
+      "relevance_score": 0.82,
+      "justification": "The agreement emphasizes the importance of partnerships in digital and technological domains, both bilaterally and in the broader regional context. This theme is key for fostering innovation, sharing best practices, and building capacity, which are necessary for the successful implementation of digital trade and policy objectives. The document highlights commitments to deepen cooperation, making this theme highly relevant to the agreement's strategic goals."
     }
   ]
 }

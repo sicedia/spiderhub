@@ -1,30 +1,41 @@
 {
-  "title": null,
+  "title": "4th EU-Colombia Forum Transcript and Data",
   "date": null,
   "location": null,
   "executive_summary": null,
   "characteristics": [],
   "themes": {},
-  "actors": {},
+  "actors": {
+    "Political Actors": [
+      "European Union",
+      "EU Member States",
+      "European Council",
+      "European Parliament",
+      "European Commission",
+      "EU Delegations",
+      "Community of Latin American and Caribbean States",
+      "Ibero-American General Secretariat",
+      "Organisation of Ibero-American States",
+      "United Nations"
+    ]
+  },
   "practical_applications": [],
   "commitments": [],
-  "score": 27,
+  "score": 83,
   "quality_breakdown": {
-    "faithfulness": 0,
-    "consistency": 0,
-    "completeness": 27,
-    "accuracy": 85,
+    "faithfulness": 100,
+    "consistency": 90,
+    "completeness": 25,
+    "accuracy": 100,
     "issues": [
-      "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
       "Missing important information in extraction or strategic analysis"
     ]
   },
   "extra_data": {
-    "lead_country_iso": null,
+    "lead_country_iso": "COL",
     "agreement_type": [],
     "legal_bindingness": null,
-    "coverage_scope": null,
+    "coverage_scope": "Bilateral",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [],
@@ -37,6 +48,25 @@
     "responsible_entity": null,
     "sdg_alignment": []
   },
-  "top_actors": [],
+  "top_actors": [
+    {
+      "name": "European Union",
+      "category": "Political Actors",
+      "relevance_score": 1.0,
+      "justification": "The European Union is the central actor in the 4th EU-Colombia Forum, representing the collective interests of its member states and institutions. It is prominently mentioned and plays a key role in shaping policies, initiatives, and decisions discussed in the forum, especially in the context of EU-Colombia relations."
+    },
+    {
+      "name": "European Commission",
+      "category": "Political Actors",
+      "relevance_score": 0.85,
+      "justification": "The European Commission is a major EU institution responsible for proposing legislation, implementing decisions, and managing the day-to-day business of the EU. It is highly relevant due to its active role in the EU-Colombia dialogue, influencing key initiatives and policy frameworks discussed in the forum."
+    },
+    {
+      "name": "EU Member States",
+      "category": "Political Actors",
+      "relevance_score": 0.75,
+      "justification": "EU Member States collectively contribute to the EU's external policies and have significant influence on the outcomes of the EU-Colombia Forum. Their participation and individual interests shape the political and economic cooperation discussed, making them a crucial actor in the document's context."
+    }
+  ],
   "top_themes": []
 }

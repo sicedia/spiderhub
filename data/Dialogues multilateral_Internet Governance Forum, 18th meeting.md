@@ -1,4 +1,4 @@
-# Internet Governance Forum: 18th Meeting Summary
+# Internet Governance Forum 18th Meeting Transcript
 
 **Date**: Date not specified
 
@@ -16,7 +16,7 @@ No key characteristics identified in the document.
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | United Nations |
+| Political Actors | Internet Governance Forum; United Nations |
 
 ## Main Themes
 

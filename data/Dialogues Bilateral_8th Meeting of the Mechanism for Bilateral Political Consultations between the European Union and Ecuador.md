@@ -2,7 +2,7 @@
 
 **Date**: Date not specified
 
-**Location**: Ecuador
+**Location**: Location not specified
 
 ## Executive Summary
 
@@ -20,9 +20,7 @@ No key characteristics identified in the document.
 
 ## Main Themes
 
-| Category | Subcategory |
-| --- | --- |
-| Regional & International Cooperation | EU-LAC Digital Alliance |
+No themes identified.
 
 ## Practical Applications
 

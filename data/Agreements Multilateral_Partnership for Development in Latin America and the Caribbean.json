@@ -1,303 +1,395 @@
 {
-  "title": "IDB and UNDP Renew Partnership for Sustainable Development in Latin America and the Caribbean",
-  "date": "2024-04-22",
+  "title": "Enhanced Collaboration Framework Agreement between IDB and UNDP (2024) and CAF-PNUD Cooperation Agreement on Climate Vulnerability Reduction Project in Latin America",
+  "date": "The exact date found in the documents is \"2024-04-22\" from the IDB_UNDP_Enhanced_Collaboration_Report_2024.pdf and \"2019-07-04\" from the Partnership for Development in Latin America and the Caribbean.pdf.\n\nSince the instruction is to prioritize the most recent document, the date to output is:\n\n2024-04-22",
   "location": "Washington D.C., United States",
-  "executive_summary": "The IDB and UNDP have renewed their 25-year partnership with a new framework agreement aimed at enhancing sustainable development in Latin America and the Caribbean. This agreement focuses on key areas such as poverty reduction, climate action, productivity, and institutional capacity building. It aims to streamline operational processes, enabling more efficient joint actions and resource mobilization. The expected impact includes improved development outcomes through reduced duplication and enhanced collaboration. Additionally, a separate cooperation agreement between CAF and UNDP targets climate vulnerability and flood risk reduction in coastal urban areas of Chile and Ecuador, with a budget of approximately $12.88 million. This project emphasizes risk adaptation and knowledge sharing among stakeholders.",
+  "executive_summary": "The IDB and UNDP renewed their 25-year partnership with a new 2024 framework agreement to accelerate sustainable development in Latin America and the Caribbean, focusing on poverty reduction, climate action, innovation, and institutional capacity building. This agreement streamlines joint operations and resource mobilization. Separately, the Andean Development Corporation (CAF) and UNDP signed a cooperation agreement for a regional project reducing climate vulnerability and flood risk in coastal urban areas of Chile and Ecuador. Funded by the UN Adaptation Fund with $12.88 million, the project targets hydrometeorological hazards in specific cities, emphasizing risk-based adaptation, knowledge networks, and resilience culture. The agreement details roles, financial management, reporting, intellectual property, confidentiality, and dispute resolution, ensuring compliance with UNDP and Adaptation Fund policies. Both agreements highlight enhanced multilateral collaboration to address climate risks and sustainable development challenges in Latin America and the Caribbean.",
   "characteristics": [
-    "**Enhanced Collaboration Framework**: The IDB and UNDP renewed their partnership with a new agreement to accelerate sustainable development in Latin America and the Caribbean, streamlining operational processes for joint action.",
-    "**Priority Areas**: Focus on poverty reduction, climate action, productivity and innovation, and institutional capacity building, with joint programs targeting vulnerable populations.",
-    "**Implementation Modalities**: Involves joint analysis, co-financed projects, and shared knowledge products to enhance development impact.",
-    "**Specific Project Agreement**: The CAF-PNUD agreement targets climate vulnerability and flood risk reduction in urban coastal areas of Chile and Ecuador, emphasizing collaboration and knowledge sharing.",
-    "**Financial Commitment**: The project is funded with $12.88 million from the Adaptation Fund, with strict guidelines on resource allocation and reporting.",
-    "**Monitoring and Reporting**: Regular progress reports and audits are mandated to ensure compliance and effective use of resources throughout the project lifecycle."
+    "The IDB and UNDP renewed a 25-year partnership with a new framework agreement in 2024 to accelerate sustainable development in Latin America and the Caribbean, focusing on poverty reduction, climate action, innovation, and institutional capacity building.",
+    "The CAF and UNDP cooperation agreement targets reducing climate vulnerability and flood risk in coastal urban and semi-urban areas in Chile and Ecuador, with a $12.88 million budget funded by the Adaptation Fund.",
+    "The CAF-PNUD project emphasizes risk-based adaptation, collaboration, knowledge networks, and culture of adaptation to address hydrometeorological hazards in specific cities.",
+    "The agreements include detailed governance structures, financial management, reporting, auditing, intellectual property rights, confidentiality, and dispute resolution mechanisms.",
+    "Both agreements prioritize compliance with environmental, social, and gender policies, ensuring transparent use of funds and accountability through regular progress and financial reports."
   ],
   "themes": {
-    "Regional & International Cooperation": [
-      "Bi-regional Cooperation",
-      "Global Digital Cooperation"
-    ],
-    "Data & Governance": [
-      "Digital Governance",
-      "Data Governance"
-    ],
     "Inclusion & Social Development": [
-      "Sustainable Digital Development",
-      "Digital Inclusion"
+      "Sustainable Digital Development"
+    ],
+    "Regional & International Cooperation": [
+      "Multilateralism",
+      "Digital & Technological Partnerships"
     ]
   },
   "actors": {
     "Political Actors": [
-      "Inter-American Development Bank (IDB)",
-      "United Nations Development Programme (UNDP)",
-      "Ilan Goldfajn",
-      "Achim Steiner",
-      "Juan Bernardo Requena Blanco",
-      "Matilde Mordt"
+      "Governments",
+      "Government Officials",
+      "United Nations Officials"
     ],
     "Economic Actors": [
-      "Inter-American Development Bank (IDB)",
-      "Development Bank of Latin America and the Caribbean (CAF)",
+      "Inter-American Development Bank",
+      "Development Bank of Latin America and the Caribbean",
       "World Bank"
+    ],
+    "Civil Society Actors": [
+      "Non-governmental Institutions",
+      "Civil Society Organisations"
     ]
   },
   "practical_applications": [
-    "**IDB & UNDP Enhanced Collaboration Framework Agreement**: A renewed partnership agreement signed on April 22, 2024, aimed at accelerating sustainable development in Latin America and the Caribbean, focusing on poverty reduction, climate action, productivity, innovation, and institutional capacity building.",
-    "**Joint Programmes for Poverty & Inequality Reduction**: Initiatives targeting vulnerable populations as part of the collaboration between IDB and UNDP.",
-    "**Climate Action Projects**: Coordinated support for mitigation, adaptation, and resilience projects under the IDB and UNDP partnership.",
-    "**Productivity & Innovation Initiatives**: Programs to foster sustainable growth and digitalization as part of the IDB and UNDP collaboration.",
-    "**Project on Climate Vulnerability Reduction**: A cooperation agreement between CAF and UNDP for a regional project in Chile and Ecuador aimed at reducing climate vulnerability and flood risk in urban and semi-urban coastal areas.",
-    "**Funding from the Adaptation Fund**: The project between CAF and UNDP is funded by the Adaptation Fund, with a total budget of $12,880,000 allocated for its execution.",
-    "**Project Management by UNDP**: The UNDP is responsible for executing the project aimed at reducing climate vulnerability in coastal cities, ensuring compliance with environmental, social, and gender policies.",
-    "**Establishment of a Steering Committee**: A committee formed by representatives from CAF, the Ministries of Environment of Chile and Ecuador, and UNDP to oversee the project's implementation.",
-    "**Regular Progress Reports**: The project requires the submission of semi-annual progress reports to ensure accountability and track the project's advancement.",
-    "**Capacity-Building Workshops**: Shared knowledge products and workshops are part of the implementation modalities under the IDB and UNDP collaboration framework."
+    "The Inter-American Development Bank (IDB) and the United Nations Development Programme (UNDP) have signed a new enhanced collaboration framework agreement (2024) to accelerate sustainable development in Latin America and the Caribbean, focusing on poverty and inequality reduction, climate action, productivity and innovation, and institutional capacity building. This includes joint analysis, co-financed projects, blended-finance instruments, shared knowledge products, and capacity-building workshops.",
+    "The Corporación Andina de Fomento (CAF) and the United Nations Development Programme (UNDP) have an active cooperation agreement for the Regional Project \"Reduction of climate vulnerability and flood risk in urban and semi-urban coastal areas of cities in Latin America\" (Chile-Ecuador). This project is financed by the Adaptation Fund with a budget of USD 12.88 million and aims to reduce vulnerability to floods, mudslides, and landslides in specific coastal cities (Antofagasta and Taltal in Chile, Esmeraldas in Ecuador).",
+    "The CAF-UNDP project includes a governance structure with a Steering Committee and Advisory Committee involving national environment ministries and cooperation agencies from Chile and Ecuador.",
+    "The project implementation modalities include semi-annual acquisition plans, financial disbursements based on progress reports, strict compliance with Adaptation Fund operational policies, environmental and social safeguards, and gender policies.",
+    "UNDP acts as the executing agency responsible for technical, operational, and administrative management, including procurement, contracting, monitoring contractors, maintaining financial records, and reporting to CAF and the Adaptation Fund.",
+    "The project requires periodic reporting including start-up workshop reports, semi-annual progress reports, mid-term and final independent evaluations, and audited financial statements.",
+    "The project includes intellectual property provisions granting UNDP ownership of outputs with perpetual royalty-free licenses to CAF, the Adaptation Fund, Chile, and Ecuador.",
+    "The agreement establishes mechanisms for confidentiality, suspension, termination, dispute resolution by arbitration, and adherence to immunities and privileges of CAF and UNDP.",
+    "Financial management includes maintaining a dedicated USD bank account, advance payments, and reimbursement procedures, with provisions for recovery of misused funds.",
+    "The project mandates visibility and communication protocols crediting the Adaptation Fund and CAF in all publications and materials."
   ],
   "commitments": [
-    "IDB and UNDP will co-finance projects and blended-finance instruments to support sustainable development in Latin America and the Caribbean, with specific targets to be defined in joint programmes.",
-    "The Adaptation Fund will provide up to **$12,880,000** for the execution of the project aimed at reducing climate vulnerability and flood risk in coastal urban and semi-urban areas of Latin America.",
-    "The project will focus on three cities, specifically targeting hydrometeorological hazards, with a commitment to implement the project within the timeframe established in the agreement, which will not exceed the duration of the CAF-FA agreement.",
-    "The project will deliver a **mid-term evaluation report** within **90 days** after the fifth semi-annual report.",
-    "The project will submit a **final evaluation report** within **90 days** of project completion.",
-    "The project will provide a **semi-annual progress report** to CAF within **30 days** after the commitment of **80%** of the semi-annual acquisition plan is executed."
+    "IDB and UNDP signed a new framework agreement on 22 April 2024 to accelerate sustainable development in Latin America and the Caribbean, focusing on poverty & inequality reduction, climate action, productivity & innovation, and institutional capacity building. (No specific numerical targets or deadlines provided)",
+    "The Adaptation Fund (FA) will provide up to USD 12,880,000 through CAF for the execution of the regional project \"Reduction of climate vulnerability and flood risk in coastal urban and semi-urban areas of cities in Latin America\" (Chile and Ecuador).",
+    "The project focuses on reducing vulnerability to floods, mudslides, and landslides in three coastal cities: Antofagasta and Taltal (Chile), and Esmeraldas (Ecuador).",
+    "Project funding disbursement schedule (total USD 12,880,000):",
+    "15 days after signing the agreement: USD 472,595",
+    "15 days after delivery of the PNUD workshop report and approval of the semiannual procurement plan: USD 708,892",
+    "15 February 2020: USD 1,312,821",
+    "15 August 2020: USD 1,312,820",
+    "15 February 2021: USD 3,969,577",
+    "15 August 2021: USD 3,969,577",
+    "15 February 2022: USD 259,345",
+    "15 August 2022: USD 259,345",
+    "15 February 2023: USD 307,514",
+    "15 August 2023: USD 307,514",
+    "The project duration is effective from the date of the last signature (4 July 2019) and will remain in force until all project activities are completed, not exceeding the term of the CAF-FA agreement.",
+    "The PNUD as executor will receive 8% of the executed project budget as General Management Support Service fee.",
+    "The project requires semiannual progress reports (Project Performance Reports) to be submitted within 30 days after 80% of the semiannual procurement plan is executed, with the first report no later than 30 days after six months from the project start workshop.",
+    "Mid-term evaluation report to be delivered within 90 days after the fifth semiannual report.",
+    "Final evaluation report to be delivered within 90 days after project completion.",
+    "Financial audit reports to be delivered within 90 days after the fiscal year-end.",
+    "Unused funds after project completion must be returned to CAF within two months.",
+    "The project includes a 5% authorized budget variation limit per product without prior approval; variations above 5% require approval by the Steering Committee.",
+    "The project must comply with gender policy and environmental and social safeguards as described in the project document."
   ],
-  "score": 85,
+  "score": 96,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 70,
-    "completeness": 85,
-    "accuracy": 72,
+    "consistency": 85,
+    "completeness": 95,
+    "accuracy": 100,
     "issues": []
   },
   "extra_data": {
     "lead_country_iso": "ECU",
     "agreement_type": [
-      "MoU",
-      "MoU"
+      "Framework Agreement",
+      "Cooperation Agreement"
     ],
     "legal_bindingness": "Legally-binding",
-    "coverage_scope": "Sub-regional",
+    "coverage_scope": "Regional",
     "eu_policy_alignment": [],
-    "review_schedule": null,
+    "review_schedule": "Biennial",
     "beneficiary_group_raw": [
       "population",
-      "community",
-      "institution",
       "country",
-      "project"
+      "consultant",
+      "government",
+      "institution"
     ],
     "beneficiary_group": [
       {
         "category": "General Citizens / Consumers",
-        "label": "Community"
+        "label": "General Public"
       },
       {
         "category": "General Citizens / Consumers",
-        "label": "Population"
+        "label": "Citizens"
+      },
+      {
+        "category": "SMEs / Businesses",
+        "label": "Consultants"
       },
       {
         "category": "Public Sector / Governments",
-        "label": "Institution"
+        "label": "Public Institutions"
       },
       {
-        "category": "General Citizens / Consumers",
-        "label": "Country"
-      },
-      {
-        "category": "Civil Society / NGOs",
-        "label": "Project"
+        "category": "Public Sector / Governments",
+        "label": "Public Institutions"
       }
     ],
-    "start_date": "2024-04-22",
-    "end_date": "2018-12-11",
+    "start_date": "2019-07-04",
+    "end_date": "2024-04-22",
     "commitment_details": [
       {
-        "text": "IDB and UNDP will co-finance projects and blended-finance instruments to support sustainable development in Latin America and the Caribbean, with specific targets to be defined in joint programmes.",
+        "text": "IDB and UNDP signed a new framework agreement on 22 April 2024 to accelerate sustainable development in Latin America and the Caribbean, focusing on poverty & inequality reduction, climate action, productivity & innovation, and institutional capacity building. (No specific numerical targets or deadlines provided)",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "The Adaptation Fund (FA) will provide up to USD 12,880,000 through CAF for the execution of the regional project \"Reduction of climate vulnerability and flood risk in coastal urban and semi-urban areas of cities in Latin America\" (Chile and Ecuador).",
         "commitment_class": "Financed"
       },
       {
-        "text": "The Adaptation Fund will provide up to **$12,880,000** for the execution of the project aimed at reducing climate vulnerability and flood risk in coastal urban and semi-urban areas of Latin America.",
-        "commitment_class": "Financed"
-      },
-      {
-        "text": "The project will focus on three cities, specifically targeting hydrometeorological hazards, with a commitment to implement the project within the timeframe established in the agreement, which will not exceed the duration of the CAF-FA agreement.",
+        "text": "The project focuses on reducing vulnerability to floods, mudslides, and landslides in three coastal cities: Antofagasta and Taltal (Chile), and Esmeraldas (Ecuador).",
         "commitment_class": "Programmatic"
       },
       {
-        "text": "The project will deliver a **mid-term evaluation report** within **90 days** after the fifth semi-annual report.",
+        "text": "Project funding disbursement schedule (total USD 12,880,000):",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "15 days after signing the agreement: USD 472,595",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "15 days after delivery of the PNUD workshop report and approval of the semiannual procurement plan: USD 708,892",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "15 February 2020: USD 1,312,821",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "15 August 2020: USD 1,312,820",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "15 February 2021: USD 3,969,577",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "15 August 2021: USD 3,969,577",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "15 February 2022: USD 259,345",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "15 August 2022: USD 259,345",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "15 February 2023: USD 307,514",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "15 August 2023: USD 307,514",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "The project duration is effective from the date of the last signature (4 July 2019) and will remain in force until all project activities are completed, not exceeding the term of the CAF-FA agreement.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The PNUD as executor will receive 8% of the executed project budget as General Management Support Service fee.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "The project requires semiannual progress reports (Project Performance Reports) to be submitted within 30 days after 80% of the semiannual procurement plan is executed, with the first report no later than 30 days after six months from the project start workshop.",
         "commitment_class": "Implemented"
       },
       {
-        "text": "The project will submit a **final evaluation report** within **90 days** of project completion.",
+        "text": "Mid-term evaluation report to be delivered within 90 days after the fifth semiannual report.",
         "commitment_class": "Implemented"
       },
       {
-        "text": "The project will provide a **semi-annual progress report** to CAF within **30 days** after the commitment of **80%** of the semi-annual acquisition plan is executed.",
+        "text": "Final evaluation report to be delivered within 90 days after project completion.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "Financial audit reports to be delivered within 90 days after the fiscal year-end.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "Unused funds after project completion must be returned to CAF within two months.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "The project includes a 5% authorized budget variation limit per product without prior approval; variations above 5% require approval by the Steering Committee.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "The project must comply with gender policy and environmental and social safeguards as described in the project document.",
         "commitment_class": "Implemented"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "reduce the vulnerability to flooding, mudslides, and climate-related landslides in three coastal cities",
+        "kpi_text": "The Inter-American Development Bank (IDB) and the United Nations Development Programme (UNDP) renewed their 25-year partnership by signing a new framework agreement aimed at accelerating sustainable development in Latin America and the Caribbean.",
         "kpi_type": "qualitative",
-        "metric_name": "Vulnerability Reduction",
+        "metric_name": "Partnership Duration and Framework Establishment",
         "target_value": null,
-        "target_description": "Reduce vulnerability to flooding and landslides in three coastal cities",
+        "target_description": "Maintain and implement a 25-year partnership framework to accelerate sustainable development in Latin America and the Caribbean",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Assessment of vulnerability reduction in targeted cities",
-        "responsible_entity": "CAF and PNUD",
+        "timeframe": "25 years from 2024",
+        "measurement_method": "Existence and active implementation of the signed framework agreement",
+        "responsible_entity": "IDB and UNDP",
+        "sector": "Sustainable Development"
+      },
+      {
+        "kpi_text": "Joint programmes targeting vulnerable populations for Poverty & Inequality Reduction.",
+        "kpi_type": "qualitative",
+        "metric_name": "Poverty and Inequality Reduction Programmes",
+        "target_value": null,
+        "target_description": "Implement joint programmes focused on reducing poverty and inequality among vulnerable populations",
+        "unit": "qualitative milestone",
+        "timeframe": "Ongoing under the framework agreement",
+        "measurement_method": "Number and impact assessment of joint programmes implemented",
+        "responsible_entity": "IDB and UNDP",
+        "sector": "Social Development"
+      },
+      {
+        "kpi_text": "Coordinated support for mitigation, adaptation and resilience projects under Climate Action.",
+        "kpi_type": "qualitative",
+        "metric_name": "Climate Action Project Support",
+        "target_value": null,
+        "target_description": "Provide coordinated support for climate mitigation, adaptation, and resilience projects in the region",
+        "unit": "qualitative milestone",
+        "timeframe": "Ongoing under the framework agreement",
+        "measurement_method": "Number and effectiveness of supported climate projects",
+        "responsible_entity": "IDB and UNDP",
+        "sector": "Climate Change"
+      },
+      {
+        "kpi_text": "Initiatives to foster sustainable growth and digitalisation under Productivity & Innovation.",
+        "kpi_type": "qualitative",
+        "metric_name": "Sustainable Growth and Digitalisation Initiatives",
+        "target_value": null,
+        "target_description": "Develop and implement initiatives that promote sustainable economic growth and digital transformation",
+        "unit": "qualitative milestone",
+        "timeframe": "Ongoing under the framework agreement",
+        "measurement_method": "Number and impact of initiatives launched",
+        "responsible_entity": "IDB and UNDP",
+        "sector": "Economic Development"
+      },
+      {
+        "kpi_text": "SDG-aligned tools, policy support and knowledge products for Institutional Capacity Building.",
+        "kpi_type": "qualitative",
+        "metric_name": "Institutional Capacity Building",
+        "target_value": null,
+        "target_description": "Develop and deploy SDG-aligned tools, provide policy support, and produce knowledge products to strengthen institutional capacity",
+        "unit": "qualitative milestone",
+        "timeframe": "Ongoing under the framework agreement",
+        "measurement_method": "Number of tools, policies, and knowledge products developed and adopted",
+        "responsible_entity": "IDB and UNDP",
+        "sector": "Institutional Development"
+      },
+      {
+        "kpi_text": "The FA aportará a través de CAF para la ejecución del Proyecto, hasta la cantidad de doce millones ochocientos ochenta mil dólares de los Estados Unidos de América (USO 12.880.000,00) (en lo sucesivo los \"Recursos\"), a ser utilizados según lo establecido en el Proyecto y sus Anexos.",
+        "kpi_type": "quantitative",
+        "metric_name": "Project Funding Allocation",
+        "target_value": 12880000.0,
+        "target_description": "Allocate and disburse up to USD 12,880,000 for the execution of the climate vulnerability and flood risk reduction project",
+        "unit": "USD",
+        "timeframe": "During project duration (2019 - max duration per CAF-FA agreement)",
+        "measurement_method": "Financial disbursement records and budget execution reports",
+        "responsible_entity": "Adaptation Fund (FA) through CAF",
         "sector": "Climate Adaptation"
       },
       {
-        "kpi_text": "mobilize up to $12.88 million for the project",
+        "kpi_text": "El objetivo principal del Proyecto es reducir la vulnerabilidad a las inundaciones, aludes de lodo y derrumbes relacionados con el clima en tres (3) ciudades costeras incorporando un enfoque de adaptación basado en el riesgo, creando colaboración y establecimiento de redes de conocimiento, y desarrollando una cultura de adaptación.",
+        "kpi_type": "qualitative",
+        "metric_name": "Reduction of Climate-Related Vulnerability in Coastal Cities",
+        "target_value": null,
+        "target_description": "Reduce vulnerability to floods, mudslides, and landslides in 3 coastal cities through risk-based adaptation, collaboration, knowledge networks, and fostering adaptation culture",
+        "unit": "qualitative milestone",
+        "timeframe": "Project duration (starting 2019, end date per CAF-FA agreement)",
+        "measurement_method": "Risk assessments, vulnerability reduction indicators, establishment of networks, and cultural adaptation measures",
+        "responsible_entity": "CAF and PNUD (UNDP) as Executor",
+        "sector": "Disaster Risk Reduction / Climate Adaptation"
+      },
+      {
+        "kpi_text": "Calendario de pagos Monto USO ... Total 12.880.000,00 ... Los desembolsos se realizarán por semestres adelantados de acuerdo al Plan de Adquisición del Proyecto semestral actualizado y aprobado por el Comité Directivo.",
         "kpi_type": "quantitative",
-        "metric_name": "Project Funding",
-        "target_value": 12.88,
-        "target_description": null,
-        "unit": "million USD",
-        "timeframe": null,
-        "measurement_method": "Financial reports and funding agreements",
+        "metric_name": "Scheduled Project Disbursements",
+        "target_value": 12880000.0,
+        "target_description": "Disburse total project funds of USD 12,880,000 in advance semiannual payments according to approved acquisition plans",
+        "unit": "USD",
+        "timeframe": "From July 2019 through August 2023 (per payment schedule)",
+        "measurement_method": "Payment records and approval of acquisition plans by Steering Committee",
         "responsible_entity": "CAF",
-        "sector": "Finance"
+        "sector": "Project Finance / Climate Adaptation"
       },
       {
-        "kpi_text": "submit the Project Performance Report (PPR) within 30 days after the commitment of 80% of the Plan Semestral de Adquisiciones",
+        "kpi_text": "El Ejecutor deberá preparar a CAF los informes referidos a continuación: Informe de taller de arranque, dentro de los quince (15) días posteriores al taller; Plan Semestral de Adquisiciones; Informe Semestral de Progreso del Proyecto o Project Performance Report -PPR ... Informe de medio término ... Informe de finalización del Proyecto ... Estados financieros ...",
         "kpi_type": "qualitative",
-        "metric_name": "Timely Reporting",
+        "metric_name": "Project Reporting and Monitoring",
         "target_value": null,
-        "target_description": "Submit PPR within specified timeframe",
+        "target_description": "Prepare and submit timely project reports including start-up workshop report (within 15 days), semiannual acquisition plans, semiannual progress reports, mid-term and final independent evaluations, and audited financial statements",
         "unit": "qualitative milestone",
-        "timeframe": "within 30 days after 80% commitment",
-        "measurement_method": "Review of submitted reports",
-        "responsible_entity": "PNUD",
-        "sector": "Project Management"
+        "timeframe": "Throughout project duration and up to 90 days post-project",
+        "measurement_method": "Receipt and approval of reports by CAF and Steering Committee",
+        "responsible_entity": "PNUD (Executor)",
+        "sector": "Project Management / Accountability"
       },
       {
-        "kpi_text": "conduct a mid-term evaluation within 90 days after the fifth PPR",
+        "kpi_text": "El Ejecutor deberá mantener registros en digital, separados, precisos y actualizados, y documentos en relación con todos los gastos efectuados con los Recursos ... A la conclusión operacional del Proyecto o a la terminación de este Acuerdo, mantener todos los registros pertinentes al Proyecto por un período de al menos siete (7) años.",
         "kpi_type": "qualitative",
-        "metric_name": "Mid-term Evaluation",
+        "metric_name": "Financial and Operational Record Keeping",
         "target_value": null,
-        "target_description": "Conduct mid-term evaluation of project progress",
+        "target_description": "Maintain accurate, updated digital records of all project expenses and related documents, and retain all pertinent records for at least 7 years after project completion or termination",
         "unit": "qualitative milestone",
-        "timeframe": "within 90 days after fifth PPR",
-        "measurement_method": "Evaluation report",
-        "responsible_entity": "PNUD",
-        "sector": "Evaluation"
-      },
-      {
-        "kpi_text": "ensure that 80% of the previous disbursement is committed before the next disbursement",
-        "kpi_type": "quantitative",
-        "metric_name": "Disbursement Commitment",
-        "target_value": 80.0,
-        "target_description": null,
-        "unit": "percentage",
-        "timeframe": null,
-        "measurement_method": "Financial tracking and reporting",
-        "responsible_entity": "CAF",
-        "sector": "Finance"
-      },
-      {
-        "kpi_text": "update the Project Performance Report every six months",
-        "kpi_type": "qualitative",
-        "metric_name": "Regular Reporting",
-        "target_value": null,
-        "target_description": "Update PPR every six months",
-        "unit": "qualitative milestone",
-        "timeframe": "every six months",
-        "measurement_method": "Review of updated reports",
-        "responsible_entity": "PNUD",
-        "sector": "Project Management"
-      },
-      {
-        "kpi_text": "provide training and capacity-building workshops",
-        "kpi_type": "qualitative",
-        "metric_name": "Capacity Building",
-        "target_value": null,
-        "target_description": "Conduct training and workshops for stakeholders",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Feedback from participants and training reports",
-        "responsible_entity": "PNUD",
-        "sector": "Capacity Building"
-      },
-      {
-        "kpi_text": "submit the final project report within 90 days after project completion",
-        "kpi_type": "qualitative",
-        "metric_name": "Final Reporting",
-        "target_value": null,
-        "target_description": "Submit final project report post-completion",
-        "unit": "qualitative milestone",
-        "timeframe": "within 90 days after project completion",
-        "measurement_method": "Review of final report",
-        "responsible_entity": "PNUD",
-        "sector": "Project Management"
-      },
-      {
-        "kpi_text": "establish a knowledge-sharing network among participating cities",
-        "kpi_type": "qualitative",
-        "metric_name": "Knowledge Sharing Network",
-        "target_value": null,
-        "target_description": "Create a network for knowledge sharing among cities",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Network establishment and participation metrics",
-        "responsible_entity": "CAF and PNUD",
-        "sector": "Knowledge Management"
+        "timeframe": "During project and 7 years post-completion",
+        "measurement_method": "Audit and review of records by CAF and auditors",
+        "responsible_entity": "PNUD (Executor)",
+        "sector": "Financial Management / Compliance"
       }
     ],
     "country_list_iso": [
       "BOL",
-      "CHE",
+      "CHL",
       "COL",
-      "ECU"
+      "PER",
+      "USA"
     ],
-    "responsible_entity": "CAF",
+    "responsible_entity": "Programa de las Naciones Unidas para el Desarrollo (PNUD)",
     "sdg_alignment": [
       "SDG 1: No Poverty",
       "SDG 10: Reduced Inequalities",
       "SDG 13: Climate Action",
-      "SDG 8: Decent Work and Economic Growth",
       "SDG 16: Peace, Justice and Strong Institutions"
     ]
   },
   "top_actors": [
     {
+      "name": "Programa de las Naciones Unidas para el Desarrollo (PNUD)",
+      "category": "United Nations Officials (Political Actors)",
+      "relevance_score": 1.0,
+      "justification": "PNUD is a central actor in both documents, serving as the executor of key projects, partner in multilateral agreements, and a major implementer of development initiatives focused on climate vulnerability reduction and sustainable development in Latin America and the Caribbean. It is repeatedly mentioned with detailed roles, responsibilities, and leadership presence."
+    },
+    {
+      "name": "Corporación Andina de Fomento (CAF)",
+      "category": "Development Bank of Latin America and the Caribbean (Economic Actors)",
+      "relevance_score": 0.9,
+      "justification": "CAF is a primary regional development bank involved in the cooperation agreement with PNUD for climate vulnerability and flood risk reduction projects. It acts as the regional implementing entity for the Adaptation Fund, supervises project execution, manages funds, and participates actively in governance and decision-making."
+    },
+    {
       "name": "Inter-American Development Bank (IDB)",
-      "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "The IDB is a key player in the agreements discussed, being a primary signatory of the Enhanced Collaboration Framework Agreement with UNDP, which aims to accelerate sustainable development in Latin America and the Caribbean."
-    },
-    {
-      "name": "United Nations Development Programme (UNDP)",
-      "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "As a co-signatory of the framework agreement with IDB, the UNDP plays a crucial role in implementing joint initiatives for sustainable development, making it highly relevant in the context of the documents."
-    },
-    {
-      "name": "Ilan Goldfajn",
-      "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "As the President of the IDB, Goldfajn's statements highlight the importance of the agreement and its expected impact, positioning him as a significant figure in the discussions surrounding the collaboration."
+      "category": "Economic Actors",
+      "relevance_score": 0.7,
+      "justification": "IDB is prominently featured in the first document as a key partner with UNDP in a renewed 25-year collaboration framework aimed at accelerating sustainable development in the region. It is represented by its president and plays a strategic role in joint initiatives on poverty reduction, climate action, and institutional capacity building."
     }
   ],
   "top_themes": [
     {
-      "name": "Bi-regional Cooperation",
-      "category": "Regional & International Cooperation",
-      "relevance_score": 0.9,
-      "justification": "This theme is central to the documents as they focus on the collaboration between IDB and UNDP to address regional challenges in Latin America and the Caribbean, emphasizing the importance of partnerships for sustainable development."
+      "name": "Multilateralism (Regional & International Cooperation)",
+      "category": "Multilateralism",
+      "relevance_score": 0.95,
+      "justification": "The documents center on cooperation agreements between major multilateral organizations (IDB, UNDP, CAF) and countries in Latin America and the Caribbean. The core purpose is to establish frameworks for joint action on development and climate adaptation, making multilateralism the foundational and most emphasized theme."
     },
     {
-      "name": "Sustainable Digital Development",
-      "category": "Inclusion & Social Development",
-      "relevance_score": 0.8,
-      "justification": "This theme is significant as it aligns with the objectives of fostering innovation and productivity through digitalization, which is a key focus in the agreements aimed at enhancing development outcomes."
+      "name": "Sustainable Digital Development (Inclusion & Social Development)",
+      "category": "Sustainable Development",
+      "relevance_score": 0.75,
+      "justification": "The IDB-UNDP agreement highlights poverty and inequality reduction, productivity, innovation, and institutional capacity building aligned with SDGs, which includes digital and social inclusion aspects. While important, this theme is less detailed than multilateral cooperation but remains strategically significant."
     },
     {
-      "name": "Digital Inclusion",
-      "category": "Inclusion & Social Development",
-      "relevance_score": 0.7,
-      "justification": "Digital inclusion is crucial for ensuring that vulnerable populations benefit from digital advancements, which is a priority in the context of reducing poverty and inequality in the region."
+      "name": "Digital & Technological Partnerships (Regional & International Cooperation)",
+      "category": "Digital & Technological Partnerships",
+      "relevance_score": 0.55,
+      "justification": "Digitalization and innovation are mentioned as priority areas in the IDB-UNDP framework, but the second document focuses more on climate vulnerability and risk reduction rather than digital or technological partnerships. Thus, this theme is present but less central and less elaborated."
     }
   ]
 }

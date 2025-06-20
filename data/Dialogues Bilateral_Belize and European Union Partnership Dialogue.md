@@ -1,8 +1,8 @@
-# Belize and European Union Partnership Dialogue Summary
+# Belize and European Union Partnership Dialogue
 
 **Date**: Date not specified
 
-**Location**: Belize
+**Location**: Location not specified
 
 ## Executive Summary
 
@@ -20,9 +20,7 @@ No key characteristics identified in the document.
 
 ## Main Themes
 
-| Category | Subcategory |
-| --- | --- |
-| Regional & International Cooperation | EU-CELAC Digital Partnership |
+No themes identified.
 
 ## Practical Applications
 

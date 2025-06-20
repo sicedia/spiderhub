@@ -1,22 +1,39 @@
 {
-  "title": "EU 5G Action Plan: Strategic Initiative for Digital Transformation and Connectivity",
+  "title": "EU 5G Action Plan: Strategy for 5G Deployment and Digital Transformation",
   "date": "2024-10-29",
   "location": "Brussels, Belgium",
-  "executive_summary": "The 5G Action Plan is a strategic initiative by the EU aimed at deploying 5G infrastructure and services to enhance competitiveness in the global market, with projected revenues of €225 billion annually by 2025. Launched in September 2016, the plan outlines measures for coordinated 5G deployment across member states, including early network introduction, spectrum availability, and urban deployment. It emphasizes the importance of public-private partnerships and research to drive innovation. The plan supports various applications, such as the Internet of Things and advanced mobile services, facilitating industrial transformation and new business models. Recent funding announcements, including €128 million for 5G projects and €104 million for 6G research, reflect ongoing EU commitment to digital connectivity and leadership in mobile technologies.",
+  "executive_summary": "The EU’s 5G Action Plan is a strategic initiative to ensure widespread deployment of 5G networks across Europe, enhancing competitiveness and supporting digital transformation. Launched in 2016, the plan outlines coordinated measures for early and large-scale 5G rollout, spectrum allocation, urban and transport corridor coverage, pan-European trials, and industry-led innovation funding. The plan is closely linked to the European Electronic Communications Code, aiming to create favorable regulatory conditions for investment and deployment. 5G is expected to drive industrial transformation, enable gigabit-speed wireless broadband, support the Internet of Things, and foster new business models across sectors such as transport, health, and manufacturing. Recent updates highlight significant EU funding for 5G and 6G research and infrastructure, reinforcing Europe’s leadership in next-generation connectivity. The plan leverages public-private partnerships and research successes to position Europe at the forefront of global 5G development.",
   "characteristics": [
-    "The 5G Action Plan aims to establish 5G networks across the EU, enhancing competitiveness and enabling significant economic growth, with projected revenues of €225 billion by 2025.",
-    "It outlines measures for coordinated deployment, including early network introduction, spectrum availability, and urban deployment.",
-    "The plan supports innovation through multi-stakeholder trials and an industry-led venture fund.",
-    "5G will facilitate industrial transformation, IoT applications, and new business models across various sectors.",
-    "The initiative is closely linked to the European Electronic Communications Code, promoting favorable conditions for 5G deployment."
+    "Strategic EU initiative to deploy 5G: The 5G Action Plan aims for coordinated deployment of 5G infrastructure and services across all EU Member States, targeting early introduction by 2018 and large-scale commercial rollout by 2020.",
+    "Focus on investment and spectrum: The plan sets a roadmap for public/private investment, early spectrum allocation (including bands above 6GHz), and harmonized authorization approaches.",
+    "Support for innovation and trials: Promotes pan-European multi-stakeholder trials, industry-led venture funds, and global standards development to accelerate 5G-based innovation.",
+    "Regulatory alignment: Closely linked with the European Electronic Communications Code to ensure timely spectrum assignment, favorable deployment conditions, and legal certainty for 5G applications.",
+    "Broad application scope: 5G will enable gigabit-speed wireless broadband, ultra-low latency (<5ms), massive device connectivity (IoT), and support for new business models across sectors like transport, health, manufacturing, and media.",
+    "Ongoing funding and leadership: The EU continues to invest heavily in 5G and next-generation (6G) research and infrastructure, with recent funding calls totaling hundreds of millions of euros to maintain European leadership in digital connectivity."
   ],
   "themes": {
     "Technology & Innovation": [
-      "5G"
+      "5G",
+      "Artificial Intelligence",
+      "Tech-Driven Solutions",
+      "ICT Innovation"
     ],
     "Digital Transformation & Strategy": [
       "Digital Infrastructure",
+      "Digital Acceleration",
+      "Digital Investment",
+      "Digital Policy",
+      "Digital Agenda",
       "Digital Economy"
+    ],
+    "Regional & International Cooperation": [
+      "Digital & Technological Partnerships",
+      "Global Digital Cooperation",
+      "Multilateralism"
+    ],
+    "Data & Governance": [
+      "Internet Governance",
+      "Digital Governance"
     ]
   },
   "actors": {
@@ -26,49 +43,61 @@
       "European Commission"
     ],
     "Research and Innovation Actors": [
-      "EU-LAC Digital Alliance",
-      "Digital Innovation Hubs"
+      "Technology Organisations",
+      "Research Performing Organisations",
+      "Knowledge and Innovation Communities"
     ],
     "Economic Actors": [
-      "Telecommunication Companies"
+      "Private Sector Representatives",
+      "Industry Actors",
+      "Telecommunication Companies",
+      "Digital Companies",
+      "ICT Companies",
+      "Research Funding Organisations"
     ]
   },
   "practical_applications": [
-    "The 5G Action Plan, launched in September 2016, aims to boost EU efforts for the deployment of 5G infrastructures and services across Europe.",
-    "The EU 5G public-private partnership (5G-PPP) is actively involved in research and development, feeding results into the global standardization process and preparing for large-scale trials and demonstrators in cooperation with key sectors.",
-    "The European Electronic Communications Code supports the deployment and take-up of 5G networks, focusing on timely assignment and availability of radio spectrum and investment incentives.",
-    "A total of €128 million in funding has been announced to support 31 new 5G infrastructure projects through the Connecting Europe Facility (CEF Digital).",
-    "The Commission has opened calls worth €323 million under the digital strand of the Connecting Europe Facility programme (CEF Digital) to support advanced digital connectivity infrastructures."
+    "The EU 5G public-private partnership (5G-PPP) is actively conducting research, feeding global standardisation processes, and preparing large-scale 5G trials and demonstrators in Europe in cooperation with key sectors.",
+    "The European Commission has announced grant agreements totalling €128 million to support 31 new 5G infrastructure projects, following the third call for proposals of the Connecting Europe Facility (CEF Digital).",
+    "The Commission has opened the fourth set of calls for proposals worth €323 million under the digital strand of the Connecting Europe Facility programme (CEF Digital) to support advanced digital connectivity infrastructures.",
+    "The EU and Japan are advancing joint work on digital identity, semiconductors, and artificial intelligence through their Digital Partnership Council.",
+    "The European Electronic Communications Code is implemented as a regulatory framework to support the deployment and take-up of 5G networks, including spectrum assignment, small cell deployment, investment incentives, and legal certainty for 5G applications.",
+    "The Commission is facilitating the implementation of an industry-led venture fund to support 5G-based innovation.",
+    "Pan-European multi-stakeholder 5G trials are being promoted as catalysts to turn technological innovation into business solutions.",
+    "Provisional spectrum bands for 5G have been made available ahead of the 2019 World Radio Communication Conference (WRC-19), with additional bands being added as quickly as possible."
   ],
   "commitments": [
-    "Targeting early network introduction of 5G by 2018, with commercial large scale introduction by the end of 2020 at the latest.",
-    "€128 million in funding announced to support 31 new 5G infrastructure projects by December 2024.",
-    "Opening of calls worth €323 million to support advanced digital connectivity infrastructures under the Connecting Europe Facility by October 2024.",
-    "Launch of a €104 million call to support research and innovation in mobile networks for 6G by April 2025."
+    "Align roadmaps and priorities for a coordinated 5G deployment across all EU Member states, targeting early network introduction by 2018, and moving towards commercial large scale introduction by the end of 2020 at the latest.",
+    "Make provisional spectrum bands available for 5G ahead of the 2019 World Radio Communication Conference (WRC-19).",
+    "The Commission has announced grant agreements totalling €128 million to support 31 new 5G infrastructure projects, following the third call for proposals of the Connecting Europe Facility (CEF Digital) (announced 19 December 2024).",
+    "The Commission has opened the fourth set of calls for proposals worth €323 million under the digital strand of the Connecting Europe Facility programme (CEF Digital) (announced 22 October 2024).",
+    "EU launches €104 million call to support cutting-edge research and innovation in mobile networks for 6G (announced 14 April 2025)."
   ],
-  "score": 91,
+  "score": 89,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 91,
-    "completeness": 91,
+    "consistency": 75,
+    "completeness": 95,
     "accuracy": 80,
     "issues": []
   },
   "extra_data": {
-    "lead_country_iso": "EUU",
+    "lead_country_iso": null,
     "agreement_type": [
       "Roadmap"
     ],
-    "legal_bindingness": "Politically-binding",
+    "legal_bindingness": "Non-binding",
     "coverage_scope": "Regional",
-    "eu_policy_alignment": [],
+    "eu_policy_alignment": [
+      "Digital Decade"
+    ],
     "review_schedule": null,
     "beneficiary_group_raw": [
       "citizen",
       "business",
+      "operator",
       "industry",
-      "sector",
-      "community"
+      "sector"
     ],
     "beneficiary_group": [
       {
@@ -80,137 +109,172 @@
         "label": "Companies"
       },
       {
-        "category": "Large Corporations",
-        "label": "Industry"
+        "category": "SMEs / Businesses",
+        "label": "Entrepreneurs"
       },
       {
-        "category": "Civil Society / NGOs",
-        "label": "Community"
+        "category": "Large Corporations",
+        "label": "Industry Leaders"
+      },
+      {
+        "category": "SMEs / Businesses",
+        "label": "Private Sector Organizations"
       }
     ],
     "start_date": "2016-09-01",
     "end_date": "2020-12-31",
     "commitment_details": [
       {
-        "text": "Targeting early network introduction of 5G by 2018, with commercial large scale introduction by the end of 2020 at the latest.",
-        "commitment_class": "Declarative"
+        "text": "Align roadmaps and priorities for a coordinated 5G deployment across all EU Member states, targeting early network introduction by 2018, and moving towards commercial large scale introduction by the end of 2020 at the latest.",
+        "commitment_class": "Programmatic"
       },
       {
-        "text": "€128 million in funding announced to support 31 new 5G infrastructure projects by December 2024.",
+        "text": "Make provisional spectrum bands available for 5G ahead of the 2019 World Radio Communication Conference (WRC-19).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "The Commission has announced grant agreements totalling €128 million to support 31 new 5G infrastructure projects, following the third call for proposals of the Connecting Europe Facility (CEF Digital) (announced 19 December 2024).",
         "commitment_class": "Financed"
       },
       {
-        "text": "Opening of calls worth €323 million to support advanced digital connectivity infrastructures under the Connecting Europe Facility by October 2024.",
-        "commitment_class": "Programmatic"
+        "text": "The Commission has opened the fourth set of calls for proposals worth €323 million under the digital strand of the Connecting Europe Facility programme (CEF Digital) (announced 22 October 2024).",
+        "commitment_class": "Financed"
       },
       {
-        "text": "Launch of a €104 million call to support research and innovation in mobile networks for 6G by April 2025.",
-        "commitment_class": "Programmatic"
+        "text": "EU launches €104 million call to support cutting-edge research and innovation in mobile networks for 6G (announced 14 April 2025).",
+        "commitment_class": "Financed"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "Very high-capacity networks like 5G will be a key asset for Europe to compete in the Global market, with worldwide 5G revenues for mobile operators expected to reach €225 billion annually by 2025.",
+        "kpi_text": "align roadmaps and priorities for a coordinated 5G deployment across all EU Member states, targeting early network introduction by 2018, and moving towards commercial large scale introduction by the end of 2020 at the latest;",
+        "kpi_type": "qualitative",
+        "metric_name": "Coordinated 5G Deployment Roadmaps",
+        "target_value": null,
+        "target_description": "All EU Member States align roadmaps and priorities for 5G deployment, with early network introduction by 2018 and commercial large scale introduction by end of 2020",
+        "unit": "qualitative milestone",
+        "timeframe": "early network introduction by 2018; commercial large scale introduction by end of 2020",
+        "measurement_method": "Assessment of roadmap alignment and deployment status across Member States",
+        "responsible_entity": "European Commission and EU Member States",
+        "sector": "Telecommunications"
+      },
+      {
+        "kpi_text": "make provisional spectrum bands available for 5G ahead of the 2019 World Radio Communication Conference (WRC-19), to be complemented by additional bands as quickly as possible, and work towards a recommended approach for the authorisation of the specific 5G spectrum bands above 6GHz;",
+        "kpi_type": "qualitative",
+        "metric_name": "5G Spectrum Availability and Authorisation",
+        "target_value": null,
+        "target_description": "Provisional spectrum bands for 5G made available ahead of WRC-19 and recommended approach for authorisation of 5G spectrum bands above 6GHz developed",
+        "unit": "qualitative milestone",
+        "timeframe": "ahead of WRC-19 (2019)",
+        "measurement_method": "Verification of spectrum band availability and authorisation approach adoption",
+        "responsible_entity": "European Commission, National Spectrum Authorities",
+        "sector": "Telecommunications"
+      },
+      {
+        "kpi_text": "promote early deployment in major urban areas and along major transport paths;",
+        "kpi_type": "qualitative",
+        "metric_name": "Early 5G Deployment in Urban Areas and Transport Paths",
+        "target_value": null,
+        "target_description": "Early deployment of 5G networks in major urban areas and along major transport corridors",
+        "unit": "qualitative milestone",
+        "timeframe": "initial phase (by 2020)",
+        "measurement_method": "Deployment reports and coverage maps in targeted areas",
+        "responsible_entity": "European Commission, National Governments, Telecom Operators",
+        "sector": "Telecommunications, Transport"
+      },
+      {
+        "kpi_text": "promote pan-European multi-stakeholder trials as catalysts to turn technological innovation into full business solutions;",
+        "kpi_type": "qualitative",
+        "metric_name": "Pan-European 5G Multi-Stakeholder Trials",
+        "target_value": null,
+        "target_description": "Conduct pan-European multi-stakeholder 5G trials to catalyze business solutions",
+        "unit": "qualitative milestone",
+        "timeframe": "2016-2020",
+        "measurement_method": "Number and scope of trials conducted; evaluation of trial outcomes",
+        "responsible_entity": "European Commission, 5G-PPP, Industry Stakeholders",
+        "sector": "Telecommunications, Innovation"
+      },
+      {
+        "kpi_text": "facilitate the implementation of an industry-led venture fund in support of 5G-based innovation;",
+        "kpi_type": "qualitative",
+        "metric_name": "5G Innovation Venture Fund Implementation",
+        "target_value": null,
+        "target_description": "Implementation of an industry-led venture fund to support 5G-based innovation",
+        "unit": "qualitative milestone",
+        "timeframe": "by 2020",
+        "measurement_method": "Establishment and operationalization of the venture fund",
+        "responsible_entity": "Industry Stakeholders, European Commission",
+        "sector": "Telecommunications, Innovation, Finance"
+      },
+      {
+        "kpi_text": "unite leading actors in working towards the promotion of global standards.",
+        "kpi_type": "qualitative",
+        "metric_name": "Promotion of Global 5G Standards",
+        "target_value": null,
+        "target_description": "Leading actors collaborate to promote global 5G standards",
+        "unit": "qualitative milestone",
+        "timeframe": "2016-2020",
+        "measurement_method": "Participation in standardization bodies and adoption of global standards",
+        "responsible_entity": "European Commission, 5G-PPP, Industry Stakeholders",
+        "sector": "Telecommunications, Standards"
+      },
+      {
+        "kpi_text": "5G should offer data connections well above 10 Gigabits per second, latency below 5 milliseconds and the capability to exploit any available wireless resources (from Wi-Fi to 4G) and to handle millions of connected devices simultaneously",
         "kpi_type": "quantitative",
-        "metric_name": "Worldwide 5G Revenues",
-        "target_value": 225.0,
-        "target_description": "Achieve annual worldwide 5G revenues for mobile operators",
-        "unit": "billion EUR",
+        "metric_name": "5G Network Performance Targets",
+        "target_value": 10.0,
+        "target_description": "5G networks provide data connections well above 10 Gbps, latency below 5 ms, and support for millions of devices",
+        "unit": "Gbps (for speed), ms (for latency), number of devices",
         "timeframe": "by 2025",
-        "measurement_method": "Revenue tracking and reporting",
-        "responsible_entity": "Mobile operators",
+        "measurement_method": "Network performance testing and benchmarking",
+        "responsible_entity": "Telecom Operators, National Regulators",
         "sector": "Telecommunications"
       },
       {
-        "kpi_text": "Targeting early network introduction by 2018, and moving towards commercial large scale introduction by the end of 2020 at the latest.",
+        "kpi_text": "The Commission has announced grant agreements totalling €128 million to support 31 new 5G infrastructure projects, following the third call for proposals of the Connecting Europe Facility (CEF Digital).",
         "kpi_type": "quantitative",
-        "metric_name": "5G Network Introduction",
-        "target_value": null,
-        "target_description": "Achieve early network introduction and commercial large scale introduction of 5G",
-        "unit": "qualitative milestone",
-        "timeframe": "by the end of 2020",
-        "measurement_method": "Monitoring deployment progress",
-        "responsible_entity": "EU Member States",
-        "sector": "Telecommunications"
+        "metric_name": "5G Infrastructure Project Funding",
+        "target_value": 128.0,
+        "target_description": "€128 million in grants awarded to support 31 new 5G infrastructure projects",
+        "unit": "million EUR",
+        "timeframe": "as of December 2024",
+        "measurement_method": "Grant agreements and project implementation reports",
+        "responsible_entity": "European Commission (CEF Digital)",
+        "sector": "Telecommunications, Infrastructure"
       },
       {
-        "kpi_text": "Make provisional spectrum bands available for 5G ahead of the 2019 World Radio Communication Conference (WRC-19).",
-        "kpi_type": "qualitative",
-        "metric_name": "5G Spectrum Availability",
-        "target_value": null,
-        "target_description": "Ensure provisional spectrum bands for 5G are available",
-        "unit": "qualitative milestone",
-        "timeframe": "before WRC-19 in 2019",
-        "measurement_method": "Spectrum allocation reports",
-        "responsible_entity": "EU Regulatory Authorities",
-        "sector": "Telecommunications"
+        "kpi_text": "The Commission has opened the fourth set of calls for proposals worth €323 million under the digital strand of the Connecting Europe Facility programme (CEF Digital).",
+        "kpi_type": "quantitative",
+        "metric_name": "Advanced Digital Connectivity Funding",
+        "target_value": 323.0,
+        "target_description": "€323 million in funding available for advanced digital connectivity infrastructures",
+        "unit": "million EUR",
+        "timeframe": "as of October 2024",
+        "measurement_method": "Call for proposals and funding allocation records",
+        "responsible_entity": "European Commission (CEF Digital)",
+        "sector": "Telecommunications, Digital Infrastructure"
       },
       {
-        "kpi_text": "Promote early deployment in major urban areas and along major transport paths.",
-        "kpi_type": "qualitative",
-        "metric_name": "5G Deployment Promotion",
-        "target_value": null,
-        "target_description": "Encourage early 5G deployment in key areas",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Deployment tracking in urban and transport areas",
-        "responsible_entity": "EU Member States",
-        "sector": "Telecommunications"
-      },
-      {
-        "kpi_text": "Facilitate the implementation of an industry-led venture fund in support of 5G-based innovation.",
-        "kpi_type": "qualitative",
-        "metric_name": "5G Innovation Fund Implementation",
-        "target_value": null,
-        "target_description": "Establish an industry-led venture fund for 5G innovation",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Fund establishment and operational reports",
-        "responsible_entity": "Industry stakeholders",
-        "sector": "Telecommunications"
-      },
-      {
-        "kpi_text": "Support of new types of applications connecting devices and objects (the Internet of Things) and versatility.",
-        "kpi_type": "qualitative",
-        "metric_name": "IoT Application Support",
-        "target_value": null,
-        "target_description": "Facilitate the development of IoT applications using 5G",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Monitoring IoT application development",
-        "responsible_entity": "Technology developers",
-        "sector": "Telecommunications"
-      },
-      {
-        "kpi_text": "Promote pan-European multi-stakeholder trials as catalysts to turn technological innovation into full business solutions.",
-        "kpi_type": "qualitative",
-        "metric_name": "Multi-Stakeholder Trials Promotion",
-        "target_value": null,
-        "target_description": "Encourage trials that convert technology into business solutions",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Trial participation and outcomes assessment",
-        "responsible_entity": "EU Commission and stakeholders",
-        "sector": "Telecommunications"
-      },
-      {
-        "kpi_text": "Unite leading actors in working towards the promotion of global standards.",
-        "kpi_type": "qualitative",
-        "metric_name": "Global Standards Promotion",
-        "target_value": null,
-        "target_description": "Collaborate to promote global standards for 5G",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Collaboration agreements and standardization outcomes",
-        "responsible_entity": "Industry leaders and regulators",
-        "sector": "Telecommunications"
+        "kpi_text": "EU Launches €104 Million Call to Boost Europe’s Leadership in 6G",
+        "kpi_type": "quantitative",
+        "metric_name": "6G Research and Innovation Funding",
+        "target_value": 104.0,
+        "target_description": "€104 million call launched to support research and innovation in 6G mobile technologies",
+        "unit": "million EUR",
+        "timeframe": "as of April 2025",
+        "measurement_method": "Call for proposals and grant allocation",
+        "responsible_entity": "European Commission",
+        "sector": "Telecommunications, Research and Innovation"
       }
     ],
-    "country_list_iso": [],
+    "country_list_iso": [
+      "JPN"
+    ],
     "responsible_entity": "The Commission",
     "sdg_alignment": [
-      "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
+      "SDG 11: Sustainable Cities and Communities",
       "SDG 17: Partnerships for the Goals"
     ]
   },
@@ -218,40 +282,40 @@
     {
       "name": "European Commission",
       "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "The European Commission is central to the 5G Action Plan, as it launched the initiative and proposed key measures for its implementation, making it the most prominent actor in the text."
+      "relevance_score": 1.0,
+      "justification": "The European Commission is the central actor in the document, having launched the 5G Action Plan, proposed key measures, and made major funding announcements. It is directly responsible for coordinating and driving the EU's 5G strategy, regulatory framework, and investment, making it the most influential and prominent actor."
     },
     {
       "name": "European Union",
       "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "The European Union encompasses the broader context of the 5G Action Plan, representing the collective interests of all member states and providing the regulatory framework necessary for 5G deployment."
+      "relevance_score": 0.9,
+      "justification": "The European Union is the overarching political entity under which the 5G Action Plan is developed and implemented. The plan aims to benefit all EU citizens and businesses, and the EU is referenced as the main context for policy, funding, and regulatory action. Its role is foundational to the entire initiative."
     },
     {
       "name": "EU Member States",
       "category": "Political Actors",
-      "relevance_score": 0.7,
-      "justification": "EU Member States are crucial for the coordinated deployment of 5G networks, as the plan targets their collaboration and alignment in achieving the set goals."
+      "relevance_score": 0.8,
+      "justification": "EU Member States are critical for the coordinated deployment of 5G, as the Action Plan specifically targets alignment of national roadmaps and priorities. Their participation is essential for implementation, spectrum allocation, and achieving the plan's objectives across Europe."
     }
   ],
   "top_themes": [
     {
-      "name": "5G",
+      "name": "5G (Technology & Innovation)",
       "category": "Technology & Innovation",
       "relevance_score": 1.0,
-      "justification": "5G is the central theme of the document, as the entire action plan revolves around its deployment and the strategic initiatives to make it a reality for all citizens and businesses in the EU."
+      "justification": "The entire document is centered on the 5G Action Plan, detailing its deployment, strategic importance, and impact on Europe's digital future. 5G is the main subject, with the majority of the content dedicated to its rollout, applications, and the measures required to achieve EU-wide adoption. It is the core enabler for the digital transformation and competitiveness objectives outlined."
     },
     {
-      "name": "Digital Infrastructure",
+      "name": "Digital Infrastructure (Digital Transformation & Strategy)",
       "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.85,
-      "justification": "Digital infrastructure is crucial for the successful implementation of 5G technology, as it outlines the necessary investments and regulatory frameworks needed to support the deployment of 5G networks across Europe."
+      "relevance_score": 0.9,
+      "justification": "A significant portion of the document discusses the deployment of high-capacity networks, investment in 5G infrastructure, spectrum allocation, and regulatory frameworks. These are all aspects of digital infrastructure, which is presented as the foundation for achieving the Action Plan's goals and for enabling new digital services and economic growth."
     },
     {
-      "name": "Digital Economy",
+      "name": "Digital Policy (Digital Transformation & Strategy)",
       "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.75,
-      "justification": "The digital economy is significantly impacted by the advancements in 5G technology, as it enables new business models and applications that drive economic growth and innovation across various sectors."
+      "relevance_score": 0.8,
+      "justification": "The document emphasizes the importance of coordinated EU policy, regulatory frameworks (such as the European Electronic Communications Code), and strategic planning to ensure the successful deployment and uptake of 5G. Policy alignment and governance are highlighted as critical to achieving the plan's objectives and fostering innovation and investment."
     }
   ]
 }

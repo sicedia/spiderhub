@@ -1,67 +1,90 @@
 {
-  "title": "3rd Meeting of the Conference of the Parties to the Escazú Agreement and Regional Agreement on Access to Environmental Information in Latin America and the Caribbean",
+  "title": "Regional Agreement on Access to Information, Public Participation and Justice in Environmental Matters in Latin America and the Caribbean (Escazú Agreement)",
   "date": "2018-03-04",
   "location": "Escazú, Costa Rica",
-  "executive_summary": "The 3rd Meeting of the Conference of the Parties to the Escazú Agreement focused on advancing the Regional Agreement on Access to Information, Public Participation, and Justice in Environmental Matters in Latin America and the Caribbean, adopted in Escazú, Costa Rica, on March 4, 2018. This landmark treaty, which entered into force on April 22, 2021, aims to enhance environmental rights and protections, particularly for vulnerable groups. It emphasizes the importance of public participation in environmental decision-making and the need for transparency and accountability in governance. The agreement is a significant step towards achieving the 2030 Agenda for Sustainable Development, promoting equality, and ensuring a healthy environment for present and future generations. The meeting underscored the commitment of member states to implement the agreement effectively and foster regional cooperation in environmental governance.",
+  "executive_summary": "The Regional Agreement on Access to Information, Public Participation and Justice in Environmental Matters in Latin America and the Caribbean, adopted in Escazú, Costa Rica, in 2018 and effective since 2021, is the first legally binding environmental treaty in the region. It guarantees rights to environmental information, public participation in environmental decision-making, and access to justice, emphasizing transparency, equality, and protection of vulnerable groups. The treaty uniquely includes provisions safeguarding human rights defenders in environmental matters. It promotes regional cooperation, capacity-building, and the use of new technologies to enhance environmental governance. The Agreement aligns with global sustainable development goals, aiming to combat inequality and foster sustainable development by integrating environmental protection with economic and social progress. The Economic Commission for Latin America and the Caribbean (ECLAC) serves as the Secretariat, supporting implementation and cooperation among the 33 member countries. This landmark treaty strengthens environmental democracy and accountability, setting a regional standard for sustainable development and human rights protection.",
   "characteristics": [
-    "The Regional Agreement on Access to Information, Public Participation, and Justice in Environmental Matters was adopted in Escazú, Costa Rica, on March 4, 2018, and emphasizes the rights of access to environmental information and participation in decision-making.",
-    "It is the first legally binding treaty on environmental matters in Latin America and the Caribbean, incorporating provisions for human rights defenders.",
-    "The agreement aims to combat inequality and discrimination, ensuring that vulnerable groups have access to environmental rights and justice.",
-    "It promotes transparency, accountability, and public participation in environmental governance, linking global and national frameworks for sustainable development.",
-    "The treaty establishes mechanisms for cooperation, capacity-building, and the sharing of best practices among member states to enhance environmental democracy."
+    "The Escazú Agreement is a legally binding regional treaty for Latin America and the Caribbean, adopted in 2018 and effective from 2021, focusing on access to environmental information, public participation, and justice in environmental matters.",
+    "It emphasizes human rights, particularly for vulnerable groups and environmental human rights defenders, ensuring their protection and enabling their participation in environmental decision-making.",
+    "The Agreement establishes principles such as equality, transparency, non-discrimination, precaution, and intergenerational equity, promoting sustainable development and environmental democracy.",
+    "It mandates States to provide timely access to environmental information, facilitate public participation from early stages, and guarantee access to justice with effective legal mechanisms.",
+    "The treaty includes provisions for capacity-building, regional cooperation, a clearing house for information, and a Conference of the Parties to oversee implementation and compliance.",
+    "It is the first regional environmental agreement to include binding provisions on the protection of environmental human rights defenders and aims to combat inequality and promote sustainable development in the region."
   ],
   "themes": {
-    "Inclusion & Social Development": [
-      "Public Participation",
-      "Access to Information"
-    ],
     "Data & Governance": [
-      "Digital Governance",
-      "Data Protection"
+      "Digital Governance"
+    ],
+    "Regional & International Cooperation": [
+      "Multilateralism"
     ]
   },
   "actors": {
     "Political Actors": [
       "United Nations",
       "United Nations Officials",
-      "Economic Commission for Latin America and the Caribbean (ECLAC)"
+      "Community of Latin American and Caribbean States",
+      "Governments",
+      "Government Officials",
+      "Policy Level Representatives"
+    ],
+    "Civil Society Actors": [
+      "Civil Society Organisations",
+      "Non-governmental Institutions"
     ]
   },
   "practical_applications": [
-    "The Regional Agreement on Access to Information, Public Participation and Justice in Environmental Matters in Latin America and the Caribbean was adopted on March 4, 2018, and entered into force on April 22, 2021. This legally binding agreement aims to guarantee the rights of access to environmental information, public participation in environmental decision-making, and access to justice in environmental matters.",
-    "The agreement includes provisions for the establishment of a Voluntary Fund to support the financing of its implementation, allowing Parties to make voluntary contributions.",
-    "A Conference of the Parties has been established to promote the implementation and effectiveness of the agreement, with regular meetings to discuss and adopt necessary rules and financial provisions.",
-    "The agreement emphasizes the need for capacity-building and cooperation among Parties, particularly focusing on least developed countries, landlocked developing countries, and small island developing states in the region.",
-    "Each Party is required to create and strengthen national capacities to implement the provisions of the agreement, including training authorities and civil servants on environmental access rights and developing awareness-raising programs.",
-    "The agreement mandates the establishment of independent oversight mechanisms to promote transparency in access to environmental information and to monitor compliance with the rules.",
-    "Each Party is encouraged to promote public participation in environmental decision-making processes and to ensure that the public is informed and able to participate effectively.",
-    "The agreement recognizes the rights of human rights defenders in environmental matters and commits Parties to create a safe environment for their work."
+    "Establishment of a Voluntary Fund to support financing for the implementation of the Escazú Agreement, with contributions from Parties and other sources as defined by the Conference of the Parties.",
+    "Creation of a Conference of the Parties (COP) to oversee the implementation and effectiveness of the Agreement, including regular and extraordinary meetings, adoption of rules of procedure, financial provisions, and subsidiary bodies.",
+    "Designation of the Executive Secretary of the Economic Commission for Latin America and the Caribbean (ECLAC) as the Secretariat to organize COP meetings, provide capacity-building assistance, and manage administrative arrangements.",
+    "Establishment of a Committee to Support Implementation and Compliance as a subsidiary body of the COP to promote implementation, review compliance, and formulate recommendations with public participation.",
+    "Development and maintenance of a virtual and universally accessible clearing house on access rights operated by ECLAC as Secretariat, including legislative, administrative, policy measures, codes of conduct, and good practices.",
+    "Implementation of national measures by Parties, including legislative, regulatory, and administrative actions, to guarantee the rights of access to environmental information, public participation, and access to justice.",
+    "Provision of guidance and assistance to the public, especially persons or groups in vulnerable situations, to facilitate the exercise of access rights.",
+    "Guarantee of an enabling environment for persons, groups, and organizations promoting environmental protection, including recognition and protection of human rights defenders in environmental matters.",
+    "Establishment or designation of impartial, autonomous entities or institutions to promote transparency, oversee compliance, and monitor the right of access to environmental information, with possible sanctioning powers.",
+    "Development of environmental information systems by Parties, including public access to environmental laws, reports, pollutant registers, impact assessments, and other relevant data, updated regularly and accessible through information technology.",
+    "Creation and implementation of early warning systems for imminent threats to public health or the environment, with immediate disclosure of pertinent information.",
+    "Adoption of mechanisms for public participation in environmental decision-making processes, including early-stage participation, timely and clear information dissemination, and consideration of public observations.",
+    "Guarantee of access to judicial and administrative mechanisms to challenge decisions or actions related to environmental information, participation, and environmental harm, including provisions for precautionary measures, evidence facilitation, and redress.",
+    "Promotion of capacity-building measures such as training authorities and civil servants, awareness programs for the public and officials, education modules on access rights, and support for vulnerable groups.",
+    "Encouragement of regional cooperation and South-South cooperation through workshops, expert exchanges, technical assistance, educational programs, and sharing of good practices.",
+    "Encouragement of partnerships with other States, intergovernmental, non-governmental, academic, private organizations, and civil society to implement the Agreement.",
+    "Promotion of alternative dispute resolution mechanisms in environmental matters, such as mediation and conciliation.",
+    "Parties commit to provide resources for national activities needed to fulfill obligations under the Agreement according to their abilities and priorities."
   ],
-  "commitments": [],
-  "score": 91,
+  "commitments": [
+    "The Executive Secretary of the Economic Commission for Latin America and the Caribbean shall convene the first meeting of the Conference of the Parties no later than one year after the entry into force of the Agreement.",
+    "The Agreement shall enter into force on the ninetieth day after the date of deposit of the eleventh instrument of ratification, acceptance, approval, or accession.",
+    "For each State that ratifies, accepts, approves, or accedes after the eleventh instrument, the Agreement shall enter into effect on the ninetieth day after the date of deposit of its instrument.",
+    "The Agreement shall be open for signature from 27 September 2018 to 26 September 2020.",
+    "Each Party shall respond to requests for environmental information within a period not longer than 30 business days from receipt of the request, with a possible extension of up to 10 business days in exceptional circumstances.",
+    "Each Party shall publish and disseminate a national report on the state of the environment at regular intervals not exceeding five years.",
+    "After three years from the date the Agreement has entered into force for a Party, that Party may withdraw by giving written notification, with withdrawal taking effect one year after receipt of notification."
+  ],
+  "score": 98,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 91,
-    "completeness": 91,
-    "accuracy": 83,
+    "consistency": 95,
+    "completeness": 95,
+    "accuracy": 100,
     "issues": []
   },
   "extra_data": {
-    "lead_country_iso": null,
+    "lead_country_iso": "CRI",
     "agreement_type": [
-      "Ministerial Communiqué",
       "Legal Treaty"
     ],
     "legal_bindingness": "Legally-binding",
-    "coverage_scope": null,
+    "coverage_scope": "Regional",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [
       "person",
       "group",
-      "community",
-      "citizen",
-      "defender"
+      "human rights defender",
+      "indigenous people",
+      "community"
     ],
     "beneficiary_group": [
       {
@@ -71,135 +94,193 @@
       {
         "category": "Civil Society / NGOs",
         "label": "Community Organizations"
+      },
+      {
+        "category": "Women & Girls",
+        "label": "Gender Equality Initiatives"
+      },
+      {
+        "category": "Indigenous Peoples & Ethnic Groups",
+        "label": "Indigenous Communities"
+      },
+      {
+        "category": "Civil Society / NGOs",
+        "label": "Community Organizations"
       }
     ],
     "start_date": "2018-03-04",
     "end_date": "2021-04-22",
-    "commitment_details": [],
+    "commitment_details": [
+      {
+        "text": "The Executive Secretary of the Economic Commission for Latin America and the Caribbean shall convene the first meeting of the Conference of the Parties no later than one year after the entry into force of the Agreement.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Agreement shall enter into force on the ninetieth day after the date of deposit of the eleventh instrument of ratification, acceptance, approval, or accession.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "For each State that ratifies, accepts, approves, or accedes after the eleventh instrument, the Agreement shall enter into effect on the ninetieth day after the date of deposit of its instrument.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "The Agreement shall be open for signature from 27 September 2018 to 26 September 2020.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "Each Party shall respond to requests for environmental information within a period not longer than 30 business days from receipt of the request, with a possible extension of up to 10 business days in exceptional circumstances.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "Each Party shall publish and disseminate a national report on the state of the environment at regular intervals not exceeding five years.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "After three years from the date the Agreement has entered into force for a Party, that Party may withdraw by giving written notification, with withdrawal taking effect one year after receipt of notification.",
+        "commitment_class": "Declarative"
+      }
+    ],
     "kpi_list": [
       {
-        "kpi_text": "Adopted at Escazú, Costa Rica, on 4 March 2018 and entered into force on 22 April 2021.",
+        "kpi_text": "Each Party shall respond to requests for environmental information as quickly as possible and within a period not longer than 30 business days from the date of receipt of the request, or less if so stipulated in domestic legislation.",
         "kpi_type": "quantitative",
-        "metric_name": "Agreement Adoption and Entry into Force",
+        "metric_name": "Response Time to Environmental Information Requests",
+        "target_value": 30.0,
+        "target_description": "Respond to environmental information requests within 30 business days or less",
+        "unit": "business days",
+        "timeframe": "ongoing",
+        "measurement_method": "Tracking response times to information requests",
+        "responsible_entity": "Competent authorities of each Party",
+        "sector": "Environmental Information Access"
+      },
+      {
+        "kpi_text": "Each Party shall take steps to establish a pollutant release and transfer register covering air, water, soil and subsoil pollutants, as well as materials and waste in its jurisdiction. This register will be established progressively and updated periodically.",
+        "kpi_type": "qualitative",
+        "metric_name": "Pollutant Release and Transfer Register Establishment",
         "target_value": null,
-        "target_description": "The agreement was adopted and entered into force.",
+        "target_description": "Establish and periodically update a pollutant release and transfer register covering key environmental pollutants and waste",
         "unit": "qualitative milestone",
-        "timeframe": "by 22 April 2021",
-        "measurement_method": "Official records of adoption and entry into force",
-        "responsible_entity": "Member States of the United Nations",
-        "sector": "Environmental Governance"
+        "timeframe": "progressive and periodic updates",
+        "measurement_method": "Existence and periodic updating of pollutant registers",
+        "responsible_entity": "Competent authorities of each Party",
+        "sector": "Environmental Monitoring and Reporting"
+      },
+      {
+        "kpi_text": "Each Party shall publish and disseminate at regular intervals, not exceeding five years, a national report on the state of the environment.",
+        "kpi_type": "quantitative",
+        "metric_name": "Frequency of National Environmental Reports",
+        "target_value": 5.0,
+        "target_description": "Publish and disseminate a national environmental report at least every 5 years",
+        "unit": "years",
+        "timeframe": "every 5 years",
+        "measurement_method": "Publication and dissemination records of environmental reports",
+        "responsible_entity": "Competent authorities of each Party",
+        "sector": "Environmental Reporting"
+      },
+      {
+        "kpi_text": "Each Party shall ensure that the competent authorities respond to requests for environmental information within a period not longer than 30 business days, with a possible extension of up to 10 business days in exceptional circumstances.",
+        "kpi_type": "quantitative",
+        "metric_name": "Maximum Extension Period for Environmental Information Requests",
+        "target_value": 10.0,
+        "target_description": "Allow extension of response time by up to 10 business days in exceptional cases",
+        "unit": "business days",
+        "timeframe": "ongoing",
+        "measurement_method": "Monitoring extension notifications and compliance",
+        "responsible_entity": "Competent authorities of each Party",
+        "sector": "Environmental Information Access"
+      },
+      {
+        "kpi_text": "Each Party shall guarantee an enabling environment for the work of persons, associations, organizations or groups that promote environmental protection, by recognizing and protecting them.",
+        "kpi_type": "qualitative",
+        "metric_name": "Enabling Environment for Environmental Protection Actors",
+        "target_value": null,
+        "target_description": "Recognize and protect persons and groups promoting environmental protection",
+        "unit": "qualitative milestone",
+        "timeframe": "ongoing",
+        "measurement_method": "Legal and policy frameworks supporting environmental defenders",
+        "responsible_entity": "Each Party (national governments)",
+        "sector": "Environmental Governance and Human Rights"
+      },
+      {
+        "kpi_text": "Each Party shall create and strengthen national capacities, based on its priorities and needs, including training authorities and civil servants on environmental access rights and raising public awareness.",
+        "kpi_type": "qualitative",
+        "metric_name": "Capacity Building for Environmental Access Rights",
+        "target_value": null,
+        "target_description": "Create and strengthen national capacities through training and awareness programs",
+        "unit": "qualitative milestone",
+        "timeframe": "ongoing",
+        "measurement_method": "Number and quality of training and awareness programs implemented",
+        "responsible_entity": "Each Party (national governments)",
+        "sector": "Capacity Building / Environmental Governance"
+      },
+      {
+        "kpi_text": "The Executive Secretary of the Economic Commission for Latin America and the Caribbean shall convene the first meeting of the Conference of the Parties no later than one year after the entry into force of the present Agreement.",
+        "kpi_type": "quantitative",
+        "metric_name": "Timing of First Conference of the Parties Meeting",
+        "target_value": 1.0,
+        "target_description": "Convene first Conference of the Parties meeting within one year after Agreement enters into force",
+        "unit": "year",
+        "timeframe": "within 1 year after entry into force",
+        "measurement_method": "Date of first meeting relative to entry into force date",
+        "responsible_entity": "Executive Secretary of ECLAC",
+        "sector": "Governance / Institutional Implementation"
       },
       {
         "kpi_text": "Each Party shall ensure that the rights recognized in the present Agreement are freely exercised.",
         "kpi_type": "qualitative",
-        "metric_name": "Rights Exercise Assurance",
+        "metric_name": "Guarantee of Free Exercise of Access Rights",
         "target_value": null,
-        "target_description": "Guarantee the exercise of rights recognized in the Agreement.",
+        "target_description": "Ensure free exercise of rights to access information, public participation, and justice in environmental matters",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Monitoring and reporting by Parties",
-        "responsible_entity": "Each Party",
-        "sector": "Human Rights and Environmental Governance"
+        "timeframe": "ongoing",
+        "measurement_method": "Legal and practical assessments of rights exercise",
+        "responsible_entity": "Each Party (national governments)",
+        "sector": "Environmental Rights and Governance"
       },
       {
-        "kpi_text": "Each Party shall ensure that the public’s right of access to environmental information is guaranteed.",
+        "kpi_text": "Each Party shall establish or designate one or more impartial entities or institutions with autonomy and independence to promote transparency in access to environmental information, to oversee compliance with rules, and monitor, report on and guarantee the right of access to information.",
         "kpi_type": "qualitative",
-        "metric_name": "Access to Environmental Information",
+        "metric_name": "Establishment of Independent Oversight Mechanisms",
         "target_value": null,
-        "target_description": "Guarantee public access to environmental information.",
+        "target_description": "Establish or designate autonomous entities to oversee transparency and compliance in environmental information access",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Compliance assessments and public feedback",
-        "responsible_entity": "Each Party",
-        "sector": "Environmental Governance"
+        "timeframe": "ongoing",
+        "measurement_method": "Existence and functioning of oversight institutions",
+        "responsible_entity": "Each Party (national governments)",
+        "sector": "Environmental Governance / Transparency"
       },
       {
-        "kpi_text": "Each Party shall promote the participation of the public in decision-making processes.",
+        "kpi_text": "Each Party shall promote, where appropriate, alternative dispute resolution mechanisms in environmental matters, such as mediation, conciliation or other means that allow such disputes to be prevented or resolved.",
         "kpi_type": "qualitative",
-        "metric_name": "Public Participation Promotion",
+        "metric_name": "Promotion of Alternative Dispute Resolution Mechanisms",
         "target_value": null,
-        "target_description": "Promote public participation in environmental decision-making.",
+        "target_description": "Promote mediation, conciliation, and other alternative dispute resolution methods in environmental matters",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluation of public participation mechanisms",
-        "responsible_entity": "Each Party",
-        "sector": "Environmental Governance"
-      },
-      {
-        "kpi_text": "Each Party shall ensure that the public is informed in a timely manner of decisions made.",
-        "kpi_type": "qualitative",
-        "metric_name": "Timely Public Information",
-        "target_value": null,
-        "target_description": "Ensure timely information dissemination to the public regarding decisions.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Public communication audits",
-        "responsible_entity": "Each Party",
-        "sector": "Environmental Governance"
-      },
-      {
-        "kpi_text": "Each Party shall promote access to environmental information contained in concessions, contracts, agreements or authorizations.",
-        "kpi_type": "qualitative",
-        "metric_name": "Access to Environmental Information in Contracts",
-        "target_value": null,
-        "target_description": "Promote access to environmental information in relevant documents.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Review of access mechanisms",
-        "responsible_entity": "Each Party",
-        "sector": "Environmental Governance"
-      },
-      {
-        "kpi_text": "Each Party shall ensure that consumers and users have official, relevant and clear information on the environmental qualities of goods and services.",
-        "kpi_type": "qualitative",
-        "metric_name": "Consumer Information on Environmental Qualities",
-        "target_value": null,
-        "target_description": "Ensure consumers receive clear information on environmental impacts.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Consumer surveys and information audits",
-        "responsible_entity": "Each Party",
-        "sector": "Consumer Protection and Environmental Governance"
-      },
-      {
-        "kpi_text": "Each Party shall create and keep regularly updated its archiving and document management systems in environmental matters.",
-        "kpi_type": "qualitative",
-        "metric_name": "Document Management System Updates",
-        "target_value": null,
-        "target_description": "Maintain and update environmental document management systems.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "System audits and updates",
-        "responsible_entity": "Each Party",
-        "sector": "Environmental Governance"
-      },
-      {
-        "kpi_text": "Each Party shall establish measures to minimize or eliminate barriers to the exercise of the right of access to justice.",
-        "kpi_type": "qualitative",
-        "metric_name": "Barriers to Access to Justice",
-        "target_value": null,
-        "target_description": "Minimize barriers to accessing justice in environmental matters.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Barrier assessments and public feedback",
-        "responsible_entity": "Each Party",
-        "sector": "Environmental Justice"
+        "timeframe": "ongoing",
+        "measurement_method": "Availability and use of alternative dispute resolution mechanisms",
+        "responsible_entity": "Each Party (national governments)",
+        "sector": "Environmental Justice / Dispute Resolution"
       }
     ],
     "country_list_iso": [
+      "ATG",
       "ARG",
+      "BHS",
+      "BRB",
+      "BLZ",
       "BOL",
       "BRA",
       "CHL",
       "COL",
-      "CRI",
       "CUB",
-      "DOM",
+      "DMA",
       "DOM",
       "ECU",
       "SLV",
+      "GRD",
       "GTM",
       "GUY",
+      "HTI",
       "HND",
       "JAM",
       "MEX",
@@ -207,16 +288,18 @@
       "PAN",
       "PRY",
       "PER",
-      "STK",
-      "STL",
+      "KNA",
+      "LCA",
       "VCT",
+      "SUR",
       "TTO",
       "URY",
       "VEN"
     ],
-    "responsible_entity": "Economic Commission for Latin America and the Caribbean (ECLAC)",
+    "responsible_entity": "Executive Secretary of the Economic Commission for Latin America and the Caribbean",
     "sdg_alignment": [
       "SDG 10: Reduced Inequalities",
+      "SDG 13: Climate Action",
       "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
@@ -226,39 +309,39 @@
       "name": "Economic Commission for Latin America and the Caribbean (ECLAC)",
       "category": "Political Actors",
       "relevance_score": 1.0,
-      "justification": "ECLAC is central to the document as it is the organization that published the Regional Agreement and is responsible for its implementation. It plays a crucial role in promoting access to information, public participation, and justice in environmental matters in Latin America and the Caribbean."
+      "justification": "ECLAC is the primary institutional actor responsible for the Secretariat functions of the Escazú Agreement, organizing meetings, providing assistance, and publishing the Regional Agreement. It is prominently mentioned throughout the document as the key regional UN body facilitating the treaty's implementation and cooperation."
     },
     {
       "name": "United Nations",
       "category": "Political Actors",
       "relevance_score": 0.9,
-      "justification": "The United Nations is mentioned frequently as the overarching body under which the Regional Agreement was adopted. Its role in facilitating international cooperation and setting global standards for environmental governance is significant."
+      "justification": "The United Nations is the overarching international organization under whose auspices the Escazú Agreement was adopted and deposited. The Secretary-General acts as Depositary of the treaty, and the UN framework and principles (e.g., Rio Declaration, Sustainable Development Goals) are foundational to the Agreement."
     },
     {
-      "name": "United Nations Officials",
+      "name": "Governments of Latin America and the Caribbean",
       "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "United Nations officials, including the Secretary-General, are highlighted for their endorsements and support of the Regional Agreement. Their influence in promoting human rights and environmental protection is critical to the agreement's success."
+      "relevance_score": 0.85,
+      "justification": "The governments of the 33 countries in Latin America and the Caribbean are the Parties to the Agreement, responsible for ratification, implementation, and compliance. They negotiated, adopted, and are expected to enforce the treaty provisions, making them central actors in the document."
     }
   ],
   "top_themes": [
     {
-      "name": "Public Participation",
-      "category": "Inclusion & Social Development",
-      "relevance_score": 0.9,
-      "justification": "Public participation is central to the document's main message, emphasizing the importance of inclusive decision-making processes in environmental matters. The document dedicates significant content to mechanisms for public involvement, reflecting its strategic importance in achieving sustainable development goals."
+      "name": "Multilateralism (Regional & International Cooperation)",
+      "category": "Multilateralism",
+      "relevance_score": 0.95,
+      "justification": "The document centers on the Regional Agreement on Access to Information, Public Participation and Justice in Environmental Matters in Latin America and the Caribbean, a legally binding multilateral treaty adopted by multiple countries. It emphasizes regional cooperation, collective action, and the role of multilateral institutions like ECLAC and the UN, making multilateralism the core theme both in content and strategic importance."
     },
     {
-      "name": "Access to Information",
-      "category": "Inclusion & Social Development",
+      "name": "Environmental Rights and Access to Justice",
+      "category": "Human Rights & Environmental Governance",
       "relevance_score": 0.85,
-      "justification": "Access to information is a critical theme that underpins the rights of individuals to be informed about environmental issues. The document outlines extensive provisions for ensuring transparency and accountability, making it essential for fostering public trust and engagement."
+      "justification": "A major focus of the document is guaranteeing environmental rights, including access to information, public participation, and justice in environmental matters. This theme is central to the treaty’s objectives and commitments, addressing vulnerable groups, human rights defenders, and sustainable development, thus strategically critical for the region."
     },
     {
-      "name": "Digital Governance",
-      "category": "Data & Governance",
-      "relevance_score": 0.7,
-      "justification": "Digital governance is increasingly relevant in the context of environmental information dissemination and public participation. The document highlights the use of technology to enhance access to information and facilitate participation, indicating its strategic importance in modern governance frameworks."
+      "name": "Digital Governance (Data & Governance)",
+      "category": "Digital Governance",
+      "relevance_score": 0.65,
+      "justification": "The Agreement highlights the use of new information and communication technologies, open data, and environmental information systems to facilitate transparency and access to environmental information. While important, this theme is more a tool or enabler within the broader multilateral and environmental governance framework, with less content dedicated compared to multilateralism and environmental rights."
     }
   ]
 }

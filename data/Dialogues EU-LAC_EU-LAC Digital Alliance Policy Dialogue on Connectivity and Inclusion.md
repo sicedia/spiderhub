@@ -1,4 +1,4 @@
-# EU-LAC Digital Alliance Policy Dialogue: Advancing Connectivity and Inclusion in 2024
+# EU-LAC Digital Alliance Policy Dialogue on Connectivity and Inclusion – November 2024
 
 **Date**: 2024-11-05
 
@@ -6,45 +6,51 @@
 
 ## Executive Summary
 
-The EU-LAC Digital Alliance Policy Dialogue on Connectivity and Inclusion, held in Santiago, Chile from November 5-6, 2024, gathered over 35 countries to address digital transformation challenges and opportunities. Co-hosted by the European Commission and the Chilean government, the event launched the EU-LAC Female Digital Policy-Makers Network to enhance women's representation in digital policy-making. Key outcomes included actionable strategies for cross-border, secure, and meaningful connectivity, alongside infrastructure investments. The dialogues aimed to align digital policies ahead of the EU-CELAC Summit in 2025, reinforcing synergies with the Digital Agenda for Latin America and the Caribbean (eLAC). The discussions emphasized the importance of inclusive digital transformation, addressing issues like cybersecurity, AI governance, and equitable access to technology.
+The EU-LAC Digital Alliance Policy Dialogue on Connectivity and Inclusion, held in Santiago de Chile in November 2024, gathered over 35 countries from Latin America, the Caribbean, and the EU to discuss digital transformation, AI, and connectivity. Co-hosted by the European Commission, Chile, and ECLAC, the event focused on enhancing digital cooperation through secure, resilient, and inclusive connectivity, infrastructure investments, and cross-border collaboration. Key outcomes included launching the EU-LAC Female Digital Policy-Makers Network to promote gender equality in digital policy and advancing initiatives under the EU Global Gateway investment agenda. The dialogue emphasized human-centric AI governance, data protection, and leveraging high-speed infrastructure like the BELLA II submarine cable to boost research, education, and eTrade. These efforts align with the Digital Agenda for LAC and prepare for the EU-CELAC Summit 2025, aiming to foster socio-economic growth, digital inclusion, and sustainable development across both regions.
 
 ## Characteristics
 
-- The EU-LAC Digital Alliance focuses on enhancing digital transformation through cooperation in connectivity, AI, and cybersecurity, involving over 35 countries.
-- The initiative promotes meaningful and inclusive connectivity, emphasizing gender equality and the establishment of the EU-LAC Female Digital Policy-Makers Network.
-- Key discussions include infrastructure investments, cross-border connectivity, and the development of regulatory frameworks for AI and data governance.
-- The alliance aims to address global challenges and foster socio-economic growth while ensuring human rights and inclusivity in digital policies.
-- The BELLA II cable project exemplifies significant advancements in connectivity, enhancing data transfer capabilities for scientific and commercial purposes.
+- The EU-LAC Digital Alliance Policy Dialogue on Connectivity and Inclusion (Nov 5-6, 2024, Santiago) gathered 35+ countries from Latin America, the Caribbean, and the EU to discuss digital transformation, AI, connectivity, and inclusion.
+- Key focus areas included secure, resilient, and meaningful connectivity, infrastructure investments, cross-border connectivity, and gender equality in digital policy.
+- The event launched the EU-LAC Female Digital Policy-Makers Network to promote women's leadership in digital policy formulation.
+- The dialogue emphasized public-private partnerships, last-mile connectivity, and inclusive digital transformation for rural and remote communities.
+- The EU's Global Gateway supports large-scale digital projects like the BELLA II submarine cable, enhancing high-speed data transfer and regional connectivity.
+- Cooperation on AI governance, HPC infrastructure, and regulatory frameworks aims for human-centric AI protecting rights and fostering innovation in both regions.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Union; EU Member States; European Commission; Government of Chile; Government of Ecuador; Government of Mexico; Community of Latin American and Caribbean States; United Nations |
-| Research and Innovation Actors | EU-LAC Digital Alliance; Digital for Development Hub; Universities; Research Performing Organisations |
-| Civil Society Actors | Civil Society Organisations; Digital Training and Education Providers |
+| Political Actors | European Union; EU Member States; European Commission; EU Delegations; Government of Chile; Government of Ecuador; Government of Mexico; Vice Minister of Information and Communication Technologies of Ecuador; Ambassador of Germany in Chile; Community of Latin American and Caribbean States; United Nations |
+| Research and Innovation Actors | EU-LAC Digital Alliance; Digital for Development Hub; Spanish Agency for International Development; Spanish Agency for the Supervision of AI; Vega Supercomputer; Brazil’s National Laboratory for Scientific Computing; European Southern Observatory; Universities; Researchers; Academic Institutions |
+| Economic Actors | Private Sector Representatives; Industry Actors; Digital Companies; ICT Companies; Telecommunication Companies; Bilateral Projects |
+| Civil Society Actors | Civil Society Organisations |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Digital Transformation & Strategy | Digital Agenda; Digital Infrastructure; Digital Platforms |
+| Digital Transformation & Strategy | Digital Infrastructure; Digital Acceleration; Digital Platforms; Digital Policy |
 | Technology & Innovation | Artificial Intelligence; High-Performance Computing |
-| Data & Governance | Data Governance; Cybersecurity; E-Governance |
-| Inclusion & Social Development | Digital Inclusion; Gender Equality in Tech |
-| Regional & International Cooperation | EU-LAC Digital Alliance; Global Digital Cooperation |
+| Data & Governance | Digital Governance; Data Governance; Cybersecurity; E-Governance |
+| Inclusion & Social Development | Digital Inclusion |
+| Regional & International Cooperation | EU-LAC Digital Alliance; Digital & Technological Partnerships |
 
 ## Practical Applications
 
-- Launch of the **EU-LAC Female Digital Policy-Makers Network**, aimed at strengthening women's leadership and representation in digital policy formulation to promote gender equality.
-- Ongoing **EU-LAC Digital Alliance Policy Dialogues**, which focus on actionable conclusions to support connectivity cooperation in areas such as cross-border connectivity, secure and resilient connectivity, infrastructure investments, and meaningful connectivity.
-- Implementation of the **Digital Agenda for LAC 2022-2024 (eLAC2024)**, with plans to move forward with the agenda eLAC2026, evaluated during the 9th Ministerial Conference on the Information Society in Latin America and the Caribbean.
-- Deployment of the **BELLA II high-speed cable**, which enhances connectivity between the EU and LAC, significantly improving data transfer speeds for emergency services and scientific research.
-- Engagement in the **EU-Brazil digital industry sounding board**, facilitating exchanges between EU companies and Brazilian government representatives to inform AI policy development.
-- Co-funding of the **EU-LAC Digital Alliance Policy Dialogues** by the German Federal Ministry for Economic Cooperation and Development (BMZ).
+- Launch of the EU-LAC Female Digital Policy-Makers Network to strengthen women’s leadership and representation in digital policy formulation, promoting gender equality in the digital realm.
+- Deployment of large-scale digital projects under the EU Global Gateway Investment Agenda with Latin America and the Caribbean (LAC) to support digital transformation aligned with shared values and interests.
+- Operation and expansion of the BELLA II high-speed submarine fibre-optic cable connecting the EU and LAC countries, providing faster, secure, and trustworthy data transfers to support scientific research, education, and eTrade.
+- EU support and engagement in legislative processes on Artificial Intelligence (AI) in LAC countries, including outreach to the Brazilian Senate on AI regulation and the establishment of the “EU-Brazil digital industry sounding board” for policy exchange.
+- Bilateral cooperation on High Performance Computing (HPC), exemplified by the Memorandum of Understanding between the Spanish Supercomputing Center and Brazil’s National Laboratory for Scientific Computing.
+- Organization of technical workshops on AI and data governance focusing on Large Language Models and linguistic diversity, including indigenous languages, within the EU-LAC Digital Alliance framework.
+- Regular exchange visits between LAC public institutions and European AI agencies and supercomputing centers to share best practices on algorithmic transparency, research, and innovation.
+- Co-funding and facilitation of the EU-LAC Digital Alliance Policy Dialogues on Connectivity & Inclusion and Artificial Intelligence by the German Federal Ministry for Economic Cooperation and Development (BMZ).
+- Formulation of actionable conclusions from the EU-LAC Digital Alliance Policy Dialogue on Connectivity & Inclusion focusing on cross-border connectivity, secure and resilient connectivity, infrastructure investments, and meaningful connectivity ahead of the EU-CELAC Summit 2025.
 
 ## Commitments
 
-- Mobilise up to €300 billion in public and private investments from 2021 to 2027 to address global investment disparities and strengthen connections in digital, energy, and transport sectors.
-- Launch the EU-LAC Female Digital Policy-Makers Network to promote gender equality in digital policies, initiated on November 5-6, 2024.
-- Formulate actionable conclusions to support concrete activities ahead of the EU-CELAC Summit in 2025, focusing on four key connectivity cooperation areas: cross-border connectivity, secure and resilient connectivity, infrastructure investments, and meaningful connectivity.
+- The EU aims to mobilise up to €300 billion in public and private investments from 2021 to 2027 under the Global Gateway strategy.
+- The BELLA II submarine fibre-optic cable has connected 65 million people so far and plans to expand to Peru, Costa Rica, Guatemala, El Salvador, and Honduras.
+- The EU-LAC Digital Alliance Policy Dialogues held in 2024 concluded with a set of concrete initiatives to be deployed in 2025.
+- The EU-LAC Digital Alliance focuses on four key connectivity cooperation areas ahead of the EU-CELAC Summit in 2025: cross-border connectivity, secure and resilient connectivity, infrastructure investments, and meaningful connectivity.

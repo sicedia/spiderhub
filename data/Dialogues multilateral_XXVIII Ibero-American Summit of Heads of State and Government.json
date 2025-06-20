@@ -1,34 +1,34 @@
 {
-  "title": "XXVIII Ibero-American Summit of Heads of State and Government Summary",
+  "title": null,
   "date": null,
   "location": null,
   "executive_summary": null,
   "characteristics": [],
-  "themes": {
-    "Regional & International Cooperation": [
-      "EU-LAC Digital Alliance"
+  "themes": {},
+  "actors": {
+    "Political Actors": [
+      "Community of Latin American and Caribbean States",
+      "Ibero-American General Secretariat"
     ]
   },
-  "actors": {},
   "practical_applications": [],
   "commitments": [],
-  "score": 44,
+  "score": 65,
   "quality_breakdown": {
-    "faithfulness": 0,
-    "consistency": 30,
-    "completeness": 44,
-    "accuracy": 100,
+    "faithfulness": 100,
+    "consistency": 90,
+    "completeness": 10,
+    "accuracy": 50,
     "issues": [
-      "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
-      "Missing important information in extraction or strategic analysis"
+      "Missing important information in extraction or strategic analysis",
+      "Potential factual errors in basic content or strategic extra data"
     ]
   },
   "extra_data": {
-    "lead_country_iso": null,
+    "lead_country_iso": "ARG",
     "agreement_type": [],
     "legal_bindingness": null,
-    "coverage_scope": "Regional",
+    "coverage_scope": "Multilateral",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [],
@@ -41,25 +41,19 @@
     "responsible_entity": null,
     "sdg_alignment": []
   },
-  "top_actors": [],
-  "top_themes": [
+  "top_actors": [
     {
-      "name": "EU-LAC Digital Alliance",
-      "category": "Regional & International Cooperation",
+      "name": "Ibero-American General Secretariat",
+      "category": "Political Actors",
       "relevance_score": 0.9,
-      "justification": "The EU-LAC Digital Alliance is central to the document's main message, emphasizing the importance of digital cooperation between Europe and Latin America. It aligns with key objectives of enhancing connectivity and fostering innovation, making it a strategic priority."
+      "justification": "The Ibero-American General Secretariat is central to the XXVIII Ibero-American Summit, serving as the main coordinating body for the summit's initiatives, decisions, and political dialogue among member states. Its prominence and role in organizing and facilitating the summit make it highly relevant."
     },
     {
-      "name": "Sustainable Development Goals",
-      "category": "Global Development",
-      "relevance_score": 0.8,
-      "justification": "The commitment to the Sustainable Development Goals (SDGs) is crucial as it reflects the broader agenda of the summit, focusing on social, economic, and environmental sustainability. This theme is significant due to its alignment with global commitments and the need for collaborative efforts."
-    },
-    {
-      "name": "Climate Change Mitigation",
-      "category": "Environmental Policy",
-      "relevance_score": 0.75,
-      "justification": "Climate change mitigation is a vital theme as it addresses urgent global challenges. The document dedicates substantial content to this issue, highlighting the strategic importance of cooperation in environmental policies and the commitment to sustainable practices."
+      "name": "Community of Latin American and Caribbean States",
+      "category": "Political Actors",
+      "relevance_score": 0.7,
+      "justification": "The Community of Latin American and Caribbean States is an important regional political actor with influence in multilateral dialogues in the region. While relevant, its direct role in the Ibero-American Summit context is less prominent compared to the Ibero-American General Secretariat."
     }
-  ]
+  ],
+  "top_themes": []
 }
