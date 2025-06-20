@@ -1,4 +1,4 @@
-# Special Declaration on Culture by MERCOSUR Member States and Associated States
+# Special Declaration on Culture by the Member States of MERCOSUR and Associated States (2022)
 
 **Date**: 2022-12-06
 
@@ -6,37 +6,42 @@
 
 ## Executive Summary
 
-On December 6, 2022, leaders from Argentina, Paraguay, Uruguay, and Brazil convened in Montevideo to address the cultural sector's challenges post-COVID-19. They expressed concerns over the pandemic's negative impacts, including structural weaknesses and unequal access to culture. The declaration emphasizes the need for effective policies to revitalize the cultural sector, protect heritage, and improve conditions for artists. It highlights the importance of international cooperation and a strengthened multilateral information system to measure the cultural sector's relevance. The leaders reaffirmed their commitment to regional integration, cultural rights, and the promotion of technology in cultural initiatives. They called for the decentralization of culture, support for creative industries, and measures against illicit trafficking of cultural goods, aiming to ensure cultural access for all citizens and foster sustainable cultural development in the region.
+The Special Declaration on Culture by MERCOSUR Member and Associated States, adopted in December 2022, addresses the COVID-19 pandemic's severe impact on the cultural sector, highlighting structural weaknesses and inequalities. The leaders emphasized the importance of cultural industries for social cohesion and sustainable development, committing to policies for sector reactivation, artist formalization, and heritage protection. They underscored international cooperation, technological innovation, and the strengthening of MERCOSUR Cultural as vital tools. The declaration promotes cultural rights, mobility of artists, and the inclusion of indigenous and ethnic communities. It calls for decentralizing culture to ensure broad access, enhancing trade in cultural goods and services, and combating illicit trafficking of cultural assets. The agreement reaffirms culture's transversal role in public policy and the bloc's potential as a platform for joint solutions to challenges faced by the cultural sector.
 
 ## Characteristics
 
-- The declaration addresses the negative impacts of COVID-19 on the cultural sector, highlighting structural weaknesses and inequalities in access to culture.
-- It emphasizes the importance of international cooperation and regional efforts to support cultural industries and creative sectors post-pandemic.
-- The document calls for policies to protect cultural heritage, improve working conditions for artists, and promote the use of technology in cultural initiatives.
-- It stresses the need for cultural integration and the recognition of artists' rights to enhance educational and job opportunities.
-- The declaration advocates for the decentralization of culture to ensure equitable access to cultural rights for all citizens.
+- The declaration addresses the negative impacts of COVID-19 on the cultural sector, highlighting structural weaknesses, social, gender, and digital gaps, and challenges in artists' mobility and informal work.
+- It emphasizes the importance of regional cooperation, international exchange of knowledge, and strengthening multilateral information systems for cultural sector recovery.
+- The document commits to policies for reactivating the cultural sector, protecting cultural heritage, formalizing cultural workers, and improving their professional and economic conditions.
+- It promotes the use of technology to support culture, arts, and creative industries, and stresses the role of culture in social cohesion and sustainable development.
+- The declaration supports cultural internationalization, decentralization of culture, and combating illicit trafficking of cultural goods, while fostering public-private-civil society collaboration.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | MERCOSUR |
+| Political Actors | Governments; Government Officials; Southern Common Market |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Inclusion & Social Development | Digital Inclusion; Gender Equality in Tech; Digital Education |
-| Regional & International Cooperation | Global Digital Cooperation; Digital & Technological Partnerships |
+| Inclusion & Social Development | Digital Inclusion |
+| Regional & International Cooperation | Multilateralism |
 
 ## Practical Applications
 
-- Established commitment to design and implement effective policies for the reactivation of the cultural sector, protection of cultural heritage, and formalization of artists and cultural workers.
-- Ongoing efforts to strengthen the multilateral information system to develop joint actions for measuring the economic, social, and environmental relevance of the cultural sector.
-- Initiatives to utilize technology as a tool for promoting culture, arts, knowledge, and creative industries, including cultural, collective, or community enterprises.
-- Commitment to work on existing regulations to promote common spaces and facilitate the exchange of cultural goods and services, as well as the mobility of artists and cultural workers, especially from ethnic, indigenous, and rural communities.
-- Agreement to promote the decentralization of culture in national territories to ensure access to cultural rights for all citizens.
-- Initiatives to enhance the trade of goods and services within cultural and creative enterprises, including popular economies and community cultural enterprises.
+- Designing and establishing effective policies to reactivate the cultural sector, protect cultural heritage and knowledge, formalize artists and cultural workers, and improve their professional, social, and economic conditions.
+- Strengthening international and regional cooperation for knowledge exchange and sharing of best practices to address pandemic impacts on the cultural sector.
+- Enhancing the multilateral information system to measure the economic, social, and environmental relevance of the cultural sector and to design reactivation strategies.
+- Continuing the design, implementation, promotion, and monitoring of cultural policies that deepen collaboration between the public sector, private sector, and civil society.
+- Developing initiatives that use technology to promote culture, arts, knowledge, and cultural and creative industries, including cultural, collective, or community enterprises.
+- Strengthening the institutional framework of MERCOSUR Cultural as a platform for dialogue and exchange of best practices.
+- Working on regional regulations to promote common spaces and facilitate the exchange of cultural goods and services, as well as the mobility of artists, cultural managers, agents, creators, and workers, especially from ethnic, indigenous, and peasant communities.
+- Promoting cultural internationalization processes to safeguard and promote cultural diversity.
+- Promoting decentralization of culture within national territories to guarantee access to cultural rights for all citizens.
+- Dynamizing trade in cultural goods and services within cultural and creative enterprises, popular economies, including cultural, collective, or community enterprises, and creating or strengthening networking.
+- Creating appropriate frameworks to preserve tangible and intangible cultural heritage and combat illicit trafficking of cultural goods in the region.
 
 ## Commitments
 

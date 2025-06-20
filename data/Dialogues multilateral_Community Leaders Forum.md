@@ -1,4 +1,4 @@
-# Community Leaders Forum Meeting Summary - November 2023
+# Community Leaders Forum Meeting Summary – November 15, 2023
 
 **Date**: 2023-11-15
 
@@ -6,43 +6,41 @@
 
 ## Executive Summary
 
-The Community Leaders Forum (CLF) held on November 15, 2023, focused on updates and discussions regarding research software initiatives. Key topics included the European Virtual Institute for Research Software Excellence (EVERSE), which aims to enhance research software quality, and the Australian Research Data Commons (ARDC) report on research software visibility. The meeting also highlighted the publication of a guide on Research Software Engineers (RSEs) and the establishment of the Helmholtz Incubator Software Award in Germany. The forum emphasized the importance of community engagement and strategic investments in research software, with plans for future meetings in 2024. Participants were encouraged to share their organizational updates and contribute to ongoing discussions about research software policies and practices.
+The Community Leaders Forum (CLF) held on November 15, 2023, focused on updates and initiatives in the research software ecosystem. Key highlights include the launch of the European Virtual Institute for Research Software Excellence (EVERSE) in March 2024, aiming to establish a European network for research software quality. The Australian Research Data Commons (ARDC) released a report on research software visibility supporting national strategies, alongside a draft National Digital Research Infrastructure strategy emphasizing research software. The US-RSE and IEEE Computer Society published a guide on Research Software Engineer (RSE) career paths. Other updates include the Helmholtz Association’s new software award, discussions on sustainable research software development, and the ongoing ReSA-RDA Working Group on Policies in Research Organisations for Research Software (PRO4RS). Upcoming events and resources were also shared to foster community engagement and collaboration globally.
 
 ## Characteristics
 
-- The Community Leaders Forum (CLF) is a collaborative meeting focused on research software, held on November 15, 2023, via Zoom.
-- The agenda includes sector news updates, discussions on research software policies, and the introduction of new initiatives and awards in the field.
-- Key topics include the European Virtual Institute for Research Software Excellence and the Australian Research Data Commons' report on research software visibility.
-- The forum emphasizes community engagement and aims to accommodate diverse time zones for future meetings.
-- Resources such as slides and notes are provided for participants to enhance understanding and collaboration.
+- The Community Leaders Forum (CLF) is a monthly meeting focused on research software, chaired by Michelle Barker from the Research Software Alliance (ReSA).
+- It includes sector news updates, discussions on policies, initiatives, and community engagement related to research software globally.
+- Key topics include the European Virtual Institute for Research Software Excellence (EVERSE), national research software strategies, and career paths for Research Software Engineers (RSEs).
+- The forum shares resources such as slides, notes, and recordings, and promotes collaboration through working groups like PRO4RS.
+- Upcoming events and awards related to research software, such as the Helmholtz Incubator Software Award and international RSE meetups, are highlighted.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Research and Innovation Actors | Research Software Alliance; Australian Research Data Commons; University of Manchester; University of Illinois Urbana-Champaign; Imperial College London; Argonne National Laboratory |
+| Research and Innovation Actors | Research Software Alliance; European Virtual Institute for Research Software Excellence; Australian Research Data Commons; US-RSE; IEEE Computer Society; University of Manchester; University of Illinois Urbana-Champaign; Imperial College London; Argonne National Laboratory; Helmholtz Association; OpenScienceSE; Netherlands eScience Center |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Data & Governance | Digital Governance; Data Governance |
-| Technology & Innovation | ICT Innovation; Cloud Computing |
+| Digital Transformation & Strategy | Digital Agenda; Digital Acceleration; Digital Infrastructure; Digital Investment |
+| Technology & Innovation | ICT Innovation |
+| Data & Governance | Digital Governance |
 
 ## Practical Applications
 
-- The European Virtual Institute for Research Software Excellence (EVERSE) aims to create a framework for research software and code excellence, with a kickoff planned for March 2024.
-- The Australian Research Data Commons (ARDC) has released a report on research software visibility, supporting the national research software agenda, and is funded by the Australian Federal Department of Education through the National Collaborative Research Infrastructure Strategy (NCRIS).
-- A draft strategy for National Digital Research Infrastructure has been put out for consultation by ARDC, which includes a focus on Research Software.
-- The US-RSE and the IEEE Computer Society published "Research Software Engineers: Creating a Career Path—and a Career," providing guidance on skills and career development for Research Software Engineers.
-- The Helmholtz Association initiated the “Helmholtz Incubator Software Award,” which will be awarded in 2024.
-- The PRO4RS Working Group on Policies in Research Organisations for Research Software has been proposed, with resources available for joining and participating in the group.
-- The Software authorship Task Force has a GitHub repository for collaboration on software authorship contributions.
-- An International RSE meetup is scheduled, providing a platform for community engagement.
-- The OpenForum Academy Symposium 2023 on Open Source Software is set for November 28, 2023.
+- European Virtual Institute for Research Software Excellence (EVERSE) is being established to create a framework for research software and code excellence, with a kickoff planned for March 2024. (https://everse.software/)
+- Australian Research Data Commons (ARDC) has released a report on research software visibility to support the national research software agenda and is funded through the National Collaborative Research Infrastructure Strategy (NCRIS). A draft strategy for National Digital Research Infrastructure, including research software, is open for consultation.
+- US-RSE and IEEE Computer Society published "Research Software Engineers: Creating a Career Path—and a Career," providing guidance on RSE skills and career development. (https://zenodo.org/doi/10.5281/zenodo.10073232)
+- Helmholtz Association in Germany initiated the “Helmholtz Incubator Software Award,” a new prize to be awarded in 2024 for research software.
+- Research Software Alliance (ReSA) is developing the ReSA-RDA Working Group on Policies in Research Organisations for Research Software (PRO4RS) to address policy frameworks for research software in organizations. (https://www.rd-alliance.org/groups/rda-resa-policies-research-organisations-research-software-pro4rs)
+- Software authorship task force has a GitHub repository to work on software authorship and contribution policies. (https://github.com/researchsoft/software-authorship-contribution)
+- International Research Software Engineering Research (IRSER) community meetup and other events such as OpenForum Academy Symposium 2023 and ICSE 2024 Research Track are active platforms for engagement and knowledge sharing.
+- Netherlands eScience Center published a blog post defining roles of research software to clarify responsibilities and contributions in research software development. (https://blog.esciencecenter.nl/defining-the-roles-of-research-software-21535a43f23)
 
 ## Commitments
 
-- Kick off for the European Virtual Institute for Research Software Excellence (EVERSE) is scheduled for March 2024.
-- Submissions for the draft strategy for National Digital Research Infrastructure consultation close on November 20, 2023.
-- The Helmholtz Incubator Software Award will be given out in 2024.
+No specific quantifiable commitments or targets identified.

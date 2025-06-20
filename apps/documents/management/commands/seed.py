@@ -183,7 +183,7 @@ class Loader:
         raw = self.data.get("legal_bindingness") or self.extra_data.get("legal_bindingness")
         normalized = normalize_string(raw)
         # Las keys del choice en el modelo están en minúsculas
-        return normalized.lower() if normalized else None
+        return normalized.lower() if normalized else 'uncategorised'
 
     def _create_document(self) -> None:
         """Create the main Document instance."""
@@ -194,10 +194,12 @@ class Loader:
         summary = truncate_text(summary, 5000) if summary else ""
         
         document_type = self._extract_document_type_from_filename()
-        coverage_scope = self.extra_data.get("coverage_scope")
+        coverage_scope = self.extra_data.get("coverage_scope") if self.extra_data.get("coverage_scope") else 'Uncategorised'
         legal_bindingness = self._get_legal_bindingness()
-        
+
         extra = {k: v for k, v in self.data.items() if k not in EXCLUDED_FIELDS}
+
+        score = extra.get("score", None)
 
         # capture created flag so we can attach file whether it's new or existing
         self.doc, _created = Document.objects.get_or_create(
@@ -211,6 +213,7 @@ class Loader:
                 "coverage_scope": coverage_scope,
                 "legal_bindingness": legal_bindingness,
                 "extra": extra,
+                "score": score
             },
         )
 

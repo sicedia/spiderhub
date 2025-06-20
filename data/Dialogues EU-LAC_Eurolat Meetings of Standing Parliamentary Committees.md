@@ -1,4 +1,4 @@
-# Euro-Latin American Parliamentary Assembly's Declaration on Ukraine and Global Challenges
+# Declaration of the Euro-Latin American Parliamentary Assembly on Addressing the Consequences of Russia’s Invasion of Ukraine and Strengthening EU-Latin America Relations (Brussels, 30 November 2022)
 
 **Date**: 2022-11-30
 
@@ -6,42 +6,48 @@
 
 ## Executive Summary
 
-The Euro-Latin American Parliamentary Assembly (EuroLat) condemned Russia's invasion of Ukraine and called for an immediate cessation of military activities, emphasizing the need for humanitarian aid and respect for Ukraine's sovereignty. The assembly highlighted the economic and social repercussions of the conflict, particularly in the context of post-COVID recovery. It welcomed the EU's 'Road to 2023' strategy to strengthen ties with Latin America and called for renewed high-level political dialogue. The assembly urged the finalization of trade agreements with Mexico and Mercosur, and stressed the importance of sustainable development, energy diversification, and social inclusion. It also addressed issues of gender equality, media freedom, and food security, advocating for cooperative initiatives to tackle global challenges and enhance multilateralism.
+The Euro-Latin American Parliamentary Assembly (EuroLat) strongly condemns Russia's invasion of Ukraine, demanding immediate withdrawal and respect for Ukraine's sovereignty. It highlights Latin America's support for Ukraine and expresses concern over the economic and social fallout exacerbated by the COVID-19 pandemic. EuroLat calls for strengthened EU-Latin America partnerships, including trade agreements and political dialogue, to address global challenges such as climate change, energy security, and social inequality. Emphasis is placed on protecting vulnerable groups, promoting gender equality, and combating hate speech. The Assembly advocates for sustainable development, fair tax systems, media freedom, and resilient food systems. It urges multilateral cooperation to enhance peace, democracy, and human rights, and calls for reform of the UN system and international financial architecture to better address global crises.
 
 ## Characteristics
 
-- The Euro-Latin American Parliamentary Assembly (EuroLat) condemns Russia's invasion of Ukraine and calls for immediate cessation of military activities and respect for Ukraine's sovereignty.
-- Emphasizes the need for revitalizing EU-Latin America relations through strategic partnerships to address global challenges, including economic recovery post-COVID-19.
-- Advocates for sustainable development, energy diversification, and social inclusion, particularly for vulnerable populations affected by rising costs and inequalities.
-- Stresses the importance of gender equality, protection of human rights, and combating hate speech against marginalized groups, including LGBTQIA+ individuals.
-- Calls for enhanced cooperation in food security and sustainable supply chains to mitigate the impacts of global crises on vulnerable populations.
+- Strong condemnation of Russia's invasion of Ukraine, calling for immediate withdrawal and respect for Ukraine's sovereignty.
+- Emphasis on strengthening EU-Latin America strategic partnership to address global challenges, including post-pandemic recovery and multilateralism.
+- Calls for enhanced cooperation on trade agreements, visa facilitation, and sustainable development with high human rights standards.
+- Focus on mitigating economic and social impacts of crises, protecting vulnerable groups, and promoting gender equality and LGBTQIA+ rights.
+- Advocacy for energy diversification, climate action, food security, and reforming international institutions for better global governance.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | Óscar Darío Pérez; Javi López; European Union; Community of Latin American and Caribbean States; Southern Common Market; Pacific Alliance; United Nations |
+| Political Actors | Euro-Latin American Parliamentary Assembly (EuroLat); Colombian House of Representatives; Andean Parliament; European Parliament; Russian Federation; Belarus; Latin American countries; European Union; EU-CELAC Ministerial Meeting; Community of Latin American and Caribbean States; EU Member States; Southern Common Market; United Nations; UN Security Council |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Regional & International Cooperation | EU-CELAC Digital Partnership; Bi-regional Cooperation; Global Digital Cooperation |
-| Inclusion & Social Development | Gender Equality in Tech; Digital Inclusion; Digital Education |
-| Data & Governance | Digital Governance; Data Protection; Cybersecurity |
+| Regional & International Cooperation | EU-CELAC Digital Partnership; Bi-regional Cooperation |
 
 ## Practical Applications
 
-- Adoption of the ‘Road to 2023’ strategy by the EU to revitalize the strategic partnership between the EU and Latin America and the Caribbean.
-- Holding of the EU-CELAC Ministerial Meeting on 27 October in Buenos Aires to resume high-level political dialogue and prepare for a Bi-regional EU-CELAC Summit in 2023.
-- Ongoing negotiations for the EU-Mexico Global Agreement to enhance political and trade relations, with a focus on simplifying administrative procedures and protecting sensitive products.
-- Call for the finalization of the EU-Mercosur agreement and the swift renewal of the EU-Chile agreement to ensure high standards of human rights and sustainable development.
-- Initiatives to harmonize rules on tourist visas and visa waivers, including priority negotiations for a Schengen visa waiver for Ecuadorian citizens.
-- Policies aimed at avoiding energy dependence and promoting diversification of energy resources, including public and private investment in energy efficiency and renewable energy transition.
-- Emphasis on strengthening universal education systems to enhance social inclusion and labor market participation.
-- Promotion of multilateral cooperation to implement international humanitarian law provisions, particularly regarding women's participation in leadership positions in strategic sectors.
-- Initiatives to foster a free and safe environment for journalists and media workers to strengthen democracy and sustainable development.
-- Joint initiatives in international fora to address food security and ensure access to food for vulnerable populations.
+- Adoption and implementation of the EU’s ‘Road to 2023’ strategy to revitalize the strategic partnership between the EU and Latin America and the Caribbean, focusing on multilateralism, democracy, human rights, and trade in energy, food, and raw materials sectors.
+- Holding of the EU-CELAC Ministerial Meeting (27 October 2022) and plans for a Bi-regional EU-CELAC Summit in 2023 to set objectives, priorities, and a concrete action plan addressing common challenges, including safeguarding democracy and human rights.
+- Ongoing negotiations and efforts to finalize and ratify trade and cooperation agreements such as the EU-Mexico Global Agreement, EU-Mercosur agreement, EU-Chile agreement renewal, and the political dialogue and cooperation pillar of the EU-Central America Association Agreement.
+- Initiatives to harmonize rules on tourist visas and visa waivers between the EU and Latin America, including prioritizing negotiations towards a Schengen visa waiver for Ecuadorian citizens.
+- Adoption of policies and programs to diversify energy resources, technologies, and supply routes, including public and private investment in energy efficiency and renewable energy transition to ensure energy sovereignty and meet climate commitments.
+- Measures at various government levels to ensure access to sustainable, efficient, and affordable energy and electricity markets for citizens and businesses.
+- Promotion of employment protection, labor rights, and creation of stable, high-quality jobs, with special attention to vulnerable groups such as women, youth, indigenous peoples, elderly, persons with disabilities, and those living alone or in institutions.
+- Strengthening universal education systems to enhance social inclusion and labor market participation.
+- Continued work and initiatives promoting gender equality, women’s rights (including sexual and reproductive rights), LGBTQIA+ rights, and combating gender-based violence, trafficking, and sexual exploitation.
+- Promotion of multilateral cooperation to implement international humanitarian law provisions related to women, peace, and security, including fostering women’s participation in leadership positions in strategic economic sectors.
+- Adoption of measures against hate speech targeting LGBTQIA+ people.
+- Efforts to maintain fiscal responsibility and develop fairer, more sustainable, and progressive tax systems.
+- Initiatives and investments by public and private stakeholders to reconstruct economic, social, healthcare, and food systems, ensuring equitable and inclusive sustainable development and green and digital transitions.
+- Establishment of frameworks and mechanisms to address unsustainable public debt situations and explore debt forgiveness mechanisms for environmental care and conservation in Latin American countries.
+- Concrete measures by governments to foster a free and safe environment for journalists and media workers, strengthening media freedom, pluralism, and independence.
+- Sharing experiences and regulatory frameworks between Latin America, the Caribbean, and the EU to promote the social economy, supporting just transitions, reducing inequalities, and fostering rural development.
+- Joint initiatives in international fora by Latin America, the Caribbean, and the EU to address global food security challenges, stabilize food prices, and ensure inclusive and sustainable supply chains and markets.
+- Calls for reforming the UN system to be more representative and inclusive, improving its capacity to address global challenges effectively while respecting sovereignty and equality among states, alongside rethinking the international financial architecture.
 
 ## Commitments
 

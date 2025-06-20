@@ -1,86 +1,113 @@
 {
-  "title": "EuroLat Resolution on International Cooperation and Multilateralism in the Context of COVID-19",
+  "title": "EuroLat Resolution on International Cooperation and Multilateralism in a COVID-19 Context (27 July 2023)",
   "date": "2023-07-27",
   "location": "Madrid, Spain",
-  "executive_summary": "The Euro-Latin American Parliamentary Assembly's resolution, adopted on July 27, 2023, emphasizes the need for enhanced international cooperation and multilateralism in response to the COVID-19 pandemic. It highlights the pandemic's impact on global interdependence, revealing the necessity for coordinated global solutions to address health, economic, and social challenges. The resolution calls for a renewed commitment to multilateralism, advocating for equitable access to vaccines, strengthening public health systems, and promoting sustainable development. It urges the EU and Latin American countries to deepen their cooperation, particularly in health, environmental protection, and addressing poverty and inequality exacerbated by the pandemic. The document also stresses the importance of ratifying association agreements and enhancing South-South cooperation to foster resilience and recovery in the region.",
+  "executive_summary": "The Euro-Latin American Parliamentary Assembly’s July 2023 resolution underscores the critical importance of international cooperation and multilateralism in addressing global challenges highlighted by the COVID-19 pandemic. The resolution reaffirms commitment to the UN Charter and Sustainable Development Goals, noting that the pandemic exposed both the necessity and complexity of global collaboration, especially amid rising nationalism and geopolitical competition. Key recommendations include strengthening global health systems, supporting equitable vaccine access, enhancing research and production capacities, and advancing a Pandemic Treaty. The Assembly calls for deeper EU-Latin America and Caribbean cooperation, integration of health and environmental policies, and prioritization of poverty reduction, gender equality, and sustainable development. It advocates for innovative funding mechanisms, such as Special Drawing Rights, and urges ratification of association agreements to foster inclusive recovery and resilience against future crises.",
   "characteristics": [
-    "Emphasizes the need for renewed commitment to multilateralism in response to global challenges exacerbated by COVID-19.",
-    "Highlights the importance of international cooperation in addressing health, economic, and social issues, particularly in the context of vaccine distribution and pandemic preparedness.",
-    "Calls for enhanced collaboration between the EU and Latin America to tackle shared challenges and promote sustainable development.",
-    "Recognizes the rise of nationalism and its impact on global cooperation, advocating for a balance between national interests and multilateral efforts.",
-    "Stresses the significance of addressing poverty and inequality as part of the recovery process from the pandemic."
+    "Emphasises the need for renewed, effective international cooperation and multilateralism to address global challenges highlighted by COVID-19, including health, economic recovery, and climate change.",
+    "Recognises the importance of strengthening public administrations, involving civil society and private enterprise, and adapting national health systems for future pandemic preparedness.",
+    "Calls for fair and equitable access to vaccines and medical supplies, reduction of trade barriers, and increased research and production capacity, especially in developing regions.",
+    "Stresses the value of bi-regional EU-Latin America/Caribbean cooperation, including trade, association agreements, and parliamentary diplomacy, to drive recovery and address shared challenges.",
+    "Highlights the need to address rising nationalism, poverty, and inequality exacerbated by the pandemic, and to integrate gender equality and support for vulnerable groups in recovery efforts.",
+    "Urges ratification of association agreements, promotion of South-South and triangular cooperation, and adaptation of EU development aid to the new post-pandemic context."
   ],
   "themes": {
     "Regional & International Cooperation": [
-      "Global Digital Cooperation",
       "Multilateralism",
+      "Bi-regional Cooperation",
+      "EU-LAC Digital Alliance",
       "Digital & Technological Partnerships"
     ],
-    "Data & Governance": [
-      "Digital Governance",
-      "Data Governance"
+    "Digital Transformation & Strategy": [
+      "Digital Acceleration",
+      "Digital Policy",
+      "Digital Ecosystem"
+    ],
+    "Technology & Innovation": [
+      "Tech-Driven Solutions"
+    ],
+    "Inclusion & Social Development": [
+      "Digital Inclusion",
+      "Sustainable Digital Development",
+      "Gender Equality in Tech"
     ]
   },
   "actors": {
     "Political Actors": [
-      "Fernando Arce (Parlatino, Panama)",
-      "Leopoldo López Gil (European Parliament)",
+      "Governments",
+      "Government Officials",
+      "Policy Level Representatives",
+      "Community of Latin American and Caribbean States",
+      "Southern Common Market",
       "European Union",
       "EU Member States",
       "European Parliament",
       "European Commission",
       "United Nations",
-      "Organisation of American States"
+      "United Nations Officials",
+      "Organisation of Ibero-American States"
+    ],
+    "Research and Innovation Actors": [
+      "Researchers",
+      "Research Performing Organisations",
+      "Academic Institutions"
     ],
     "Economic Actors": [
       "Organisation for Economic Cooperation and Development",
+      "Private Sector Representatives",
+      "Industry Actors",
       "Inter-American Development Bank",
+      "Development Bank of Latin America and the Caribbean",
+      "Central American Bank for Economic Integration",
       "World Bank"
+    ],
+    "Civil Society Actors": [
+      "Civil Society Organisations",
+      "Non-governmental Institutions"
     ]
   },
   "practical_applications": [
-    "Established the EIC Accelerator and COVAX mechanism to ensure fair and equitable access to COVID-19 treatments and vaccines.",
-    "Ongoing negotiations at the WHO to establish a Pandemic Treaty for better preparedness for future pandemics.",
-    "Support for the immediate ratification of association agreements between the EU and Mercosur, Chile, and Mexico to promote bi-regional alliances.",
-    "Initiatives for regional health cooperation, including the establishment of a transnational institute for infectious diseases.",
-    "Urging governments and the OAS to consider special drawing rights as a funding source for social and economic recovery post-COVID-19.",
-    "Commitment to adapt EU development aid policy to address the new health, economic, and social challenges created by the COVID-19 pandemic."
+    "The European Union participated in and supported the COVAX mechanism, a multilateral initiative to ensure fair and equitable access to COVID-19 treatments and vaccines.",
+    "The EU implemented the Team Europe initiative, a coordinated response involving EU institutions, Member States, and European financial institutions to address the health, economic, and social challenges created by the COVID-19 pandemic in partner countries.",
+    "Ongoing negotiations at the World Health Organization (WHO) to establish a Pandemic Treaty, with EU and Latin American and Caribbean countries supporting the process to better prepare for future pandemics and define strong cooperation mechanisms.",
+    "The EU has established the Neighbourhood, Development and International Cooperation Instrument – Global Europe (Regulation (EU) 2021/947), which provides a funding mechanism for international cooperation, including pandemic response and recovery.",
+    "The EU and Latin American and Caribbean countries are actively working on the ratification and implementation of association agreements with Mercosur, Chile, and Mexico to promote bi-regional alliances and cooperation.",
+    "There are new initiatives for regional health cooperation, such as the establishment of a transnational institute for infectious diseases.",
+    "The use of Special Drawing Rights (SDRs) is being considered by governments and the Organization of American States (OAS) as an innovative funding source to foster social and economic recovery post-COVID-19 and to support climate change adaptation and resilience in Latin America.",
+    "The Alliance for Multilateralism, established in 2019, continues to function as a platform for international cooperation on strategic issues, including pandemic response.",
+    "The European Commission and the Pan American Health Organization have played key roles in planning, adopting, and implementing global coordinated responses to COVID-19 and other health threats."
   ],
   "commitments": [],
-  "score": 93,
+  "score": 98,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 93,
-    "completeness": 93,
-    "accuracy": 87,
+    "consistency": 95,
+    "completeness": 97,
+    "accuracy": 100,
     "issues": []
   },
   "extra_data": {
     "lead_country_iso": "ESP",
     "agreement_type": [
-      "Declaration"
+      "Resolution"
     ],
-    "legal_bindingness": "Politically-binding",
-    "coverage_scope": "Multilateral",
+    "legal_bindingness": "Non-binding",
+    "coverage_scope": "Regional",
     "eu_policy_alignment": [
       "NDICI-Global Europe"
     ],
     "review_schedule": null,
     "beneficiary_group_raw": [
-      "citizens",
-      "women",
-      "migrants",
-      "refugees",
-      "communities"
+      "woman",
+      "migrant",
+      "refugee",
+      "country",
+      "population"
     ],
     "beneficiary_group": [
       {
-        "category": "General Citizens / Consumers",
-        "label": "Citizens"
-      },
-      {
         "category": "Women & Girls",
-        "label": "Gender Equality Initiatives"
+        "label": "Women in Tech"
       },
       {
         "category": "Migrants & Refugees",
@@ -91,8 +118,12 @@
         "label": "Refugees"
       },
       {
-        "category": "Rural & Remote Communities",
-        "label": "Underserved Communities"
+        "category": "General Citizens / Consumers",
+        "label": "Citizens"
+      },
+      {
+        "category": "General Citizens / Consumers",
+        "label": "General Public"
       }
     ],
     "start_date": "2023-07-27",
@@ -100,126 +131,145 @@
     "commitment_details": [],
     "kpi_list": [
       {
-        "kpi_text": "increase research and production capacity and diversifying production sites for medical equipment, medicines and vaccines",
+        "kpi_text": "calls for complying with the 2015 Paris Agreement and the decisions taken at successive Conferences of the Parties, promoting the technological and energy transitions with a view to progressive decarbonisation, and harmonising the classification systems used to assess sustainable economic activities",
         "kpi_type": "qualitative",
-        "metric_name": "Research and Production Capacity",
+        "metric_name": "Paris Agreement Compliance and Decarbonisation",
         "target_value": null,
-        "target_description": "Increase research and production capacity and diversify production sites for medical equipment, medicines, and vaccines.",
+        "target_description": "Comply with the 2015 Paris Agreement, promote technological and energy transitions for progressive decarbonisation, and harmonise classification systems for sustainable economic activities",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Assessment of production capacity and site diversification",
-        "responsible_entity": "Governments and public administrations",
-        "sector": "Health"
+        "measurement_method": "Assessment of compliance with Paris Agreement, progress in decarbonisation, and harmonisation of classification systems",
+        "responsible_entity": "Governments and international organisations",
+        "sector": "Environment/Climate"
       },
       {
-        "kpi_text": "reduce barriers to trade in essential health care products, including vaccines and their ingredients",
+        "kpi_text": "calls on the EU and Latin American and Caribbean countries to support the ongoing negotiations at the WHO to establish a Pandemic Treaty in order to better prepare for next pandemics, and define strong cooperation mechanisms based on common but differentiated responsibilities, ensuring access and sharing of pathogens and with a strong emphasis on benefits sharing",
         "kpi_type": "qualitative",
-        "metric_name": "Trade Barriers Reduction",
+        "metric_name": "Pandemic Treaty Negotiation and Cooperation Mechanisms",
         "target_value": null,
-        "target_description": "Reduce barriers to trade in essential health care products.",
+        "target_description": "Support negotiations to establish a Pandemic Treaty and define strong cooperation mechanisms for pandemic preparedness and response",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluation of trade policies and regulations",
-        "responsible_entity": "Governments and trade organizations",
-        "sector": "Trade/Health"
-      },
-      {
-        "kpi_text": "support the ongoing negotiations at the WHO to establish a Pandemic Treaty",
-        "kpi_type": "qualitative",
-        "metric_name": "Pandemic Treaty Support",
-        "target_value": null,
-        "target_description": "Support negotiations for a Pandemic Treaty to prepare for future pandemics.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Monitoring of negotiation progress and outcomes",
-        "responsible_entity": "EU and Latin American and Caribbean countries",
+        "timeframe": "during ongoing WHO negotiations",
+        "measurement_method": "Participation in and support for WHO Pandemic Treaty negotiations and establishment of cooperation mechanisms",
+        "responsible_entity": "EU, Latin American and Caribbean countries, WHO",
         "sector": "Health/International Cooperation"
       },
       {
-        "kpi_text": "promote the technological and energy transitions with a view to progressive decarbonisation",
+        "kpi_text": "calls for specific support to countries facing large migratory flows, as well as those acting as transit points, thus ensuring their capacity to address the needs and vulnerabilities of migrants and refugees",
         "kpi_type": "qualitative",
-        "metric_name": "Decarbonisation Efforts",
+        "metric_name": "Support for Countries Facing Migratory Flows",
         "target_value": null,
-        "target_description": "Promote technological and energy transitions for decarbonisation.",
+        "target_description": "Provide specific support to countries with large migratory flows and transit points to address needs and vulnerabilities of migrants and refugees",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Assessment of technological and energy transition initiatives",
-        "responsible_entity": "Governments and international organizations",
-        "sector": "Environment"
+        "measurement_method": "Provision and effectiveness of support measures for affected countries",
+        "responsible_entity": "EU, Latin American and Caribbean countries, regional organisations",
+        "sector": "Migration/Humanitarian"
       },
       {
-        "kpi_text": "achieve the 17 Sustainable Development Goals by the planned deadline",
+        "kpi_text": "calls for cooperation between all public and private stakeholders in order to meet those goals by the planned deadline",
         "kpi_type": "qualitative",
-        "metric_name": "Sustainable Development Goals Achievement",
+        "metric_name": "Achievement of Sustainable Development Goals (SDGs)",
         "target_value": null,
-        "target_description": "Cooperate to meet the 17 Sustainable Development Goals.",
+        "target_description": "Cooperate to achieve the 17 Sustainable Development Goals by the planned deadline",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluation of progress towards the SDGs",
+        "timeframe": "by 2030",
+        "measurement_method": "Progress towards SDG indicators and targets",
         "responsible_entity": "All public and private stakeholders",
         "sector": "Sustainable Development"
       },
       {
-        "kpi_text": "increase international cooperation on defending peace and global security",
+        "kpi_text": "recommends, at a more global level, increasing research and production capacity and diversifying production sites for medical equipment, medicines and vaccines, as well as seeking to reduce barriers to trade in essential health care products, including vaccines and their ingredients, and fostering technical knowledge transfer and training",
         "kpi_type": "qualitative",
-        "metric_name": "International Cooperation on Peace",
+        "metric_name": "Increase and Diversify Medical Production Capacity",
         "target_value": null,
-        "target_description": "Strengthen international cooperation on peace and global security.",
+        "target_description": "Increase research and production capacity, diversify production sites for medical equipment, medicines, and vaccines, reduce trade barriers, and foster knowledge transfer and training",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Assessment of international cooperation initiatives",
-        "responsible_entity": "Governments",
-        "sector": "International Relations"
+        "measurement_method": "Assessment of increased capacity, diversification, reduced barriers, and knowledge transfer activities",
+        "responsible_entity": "Governments, international organisations",
+        "sector": "Health/Trade"
       },
       {
-        "kpi_text": "reduce poverty and sovereign debt as key elements of the global recovery",
+        "kpi_text": "calls on all stakeholders to actively support and contribute to these efforts to ensure a green and inclusive recovery",
         "kpi_type": "qualitative",
-        "metric_name": "Poverty and Debt Reduction",
+        "metric_name": "Support for Green and Inclusive Recovery",
         "target_value": null,
-        "target_description": "Focus on reducing poverty and sovereign debt for global recovery.",
+        "target_description": "All stakeholders actively support and contribute to green and inclusive recovery efforts",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Monitoring of poverty and debt levels",
-        "responsible_entity": "Governments and international organizations",
-        "sector": "Economic Development"
+        "measurement_method": "Stakeholder participation and contribution to recovery initiatives",
+        "responsible_entity": "All stakeholders",
+        "sector": "Environment/Economic Recovery"
       },
       {
-        "kpi_text": "adapt national health plans and support primary health care systems",
+        "kpi_text": "calls for complying with the 2015 Paris Agreement and the decisions taken at successive Conferences of the Parties, promoting the technological and energy transitions with a view to progressive decarbonisation, and harmonising the classification systems used to assess sustainable economic activities; affirms the commitment of governments and international organisations to harnessing the potential of green bonds as key climate finance mechanisms with which to achieve progress in sustainable recovery efforts",
         "kpi_type": "qualitative",
-        "metric_name": "Health Plan Adaptation",
+        "metric_name": "Green Bond Utilisation for Climate Finance",
         "target_value": null,
-        "target_description": "Adapt national health plans to support primary health care systems.",
+        "target_description": "Harness the potential of green bonds as key climate finance mechanisms for sustainable recovery",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Evaluation of health plan adaptations",
-        "responsible_entity": "National governments",
-        "sector": "Health"
+        "measurement_method": "Issuance and use of green bonds for climate finance",
+        "responsible_entity": "Governments, international organisations",
+        "sector": "Finance/Climate"
       },
       {
-        "kpi_text": "integrate gender equality in the negotiation, implementation and monitoring of partnership agreements",
+        "kpi_text": "stresses that reducing poverty and sovereign debt will be key elements of the global recovery, and this can be achieved with more and better international cooperation",
         "kpi_type": "qualitative",
-        "metric_name": "Gender Equality Integration",
+        "metric_name": "Poverty and Sovereign Debt Reduction",
         "target_value": null,
-        "target_description": "Ensure gender equality is integrated into partnership agreements.",
+        "target_description": "Reduce poverty and sovereign debt as key elements of global recovery through enhanced international cooperation",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Assessment of partnership agreements for gender equality",
-        "responsible_entity": "Governments and organizations involved in partnerships",
-        "sector": "Gender Equality"
+        "measurement_method": "Assessment of poverty and debt reduction progress",
+        "responsible_entity": "Governments, international organisations",
+        "sector": "Economic Recovery/Social Policy"
+      },
+      {
+        "kpi_text": "urges governments and the OAS to consider special drawing rights as an innovative funding source with which to foster social and economic recovery in the wake of COVID-19, preparedness for possible new pandemics, greater resilience and adaptation measures to help countries in the Latin American region to cope with climate change and natural disasters",
+        "kpi_type": "qualitative",
+        "metric_name": "Use of Special Drawing Rights for Recovery and Resilience",
+        "target_value": null,
+        "target_description": "Consider and use special drawing rights as a funding source for social and economic recovery, pandemic preparedness, resilience, and climate adaptation",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Adoption and allocation of special drawing rights for specified purposes",
+        "responsible_entity": "Governments, OAS",
+        "sector": "Finance/Economic Recovery/Climate"
+      },
+      {
+        "kpi_text": "welcomes new initiatives for regional health cooperation, such as setting up a transnational institute for infectious diseases",
+        "kpi_type": "qualitative",
+        "metric_name": "Establishment of Transnational Institute for Infectious Diseases",
+        "target_value": null,
+        "target_description": "Set up a transnational institute for infectious diseases as part of regional health cooperation initiatives",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Establishment and operationalisation of the institute",
+        "responsible_entity": "Regional governments, health organisations",
+        "sector": "Health/Research"
       }
     ],
     "country_list_iso": [
-      "PAN",
-      "ESP",
+      "CHL",
       "MEX",
-      "CHL"
+      "PAN"
     ],
-    "responsible_entity": "European Union",
+    "responsible_entity": "Euro-Latin American Parliamentary Assembly",
     "sdg_alignment": [
       "SDG 1: No Poverty",
+      "SDG 2: Zero Hunger",
       "SDG 3: Good Health and Well-being",
+      "SDG 4: Quality Education",
+      "SDG 5: Gender Equality",
+      "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
+      "SDG 11: Sustainable Cities and Communities",
+      "SDG 12: Responsible Consumption and Production",
       "SDG 13: Climate Action",
+      "SDG 15: Life on Land",
       "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
@@ -229,39 +279,39 @@
       "name": "European Union",
       "category": "Political Actors",
       "relevance_score": 1.0,
-      "justification": "The European Union is central to the resolution, being a key actor in international cooperation and multilateralism, particularly in the context of the COVID-19 pandemic. It is mentioned multiple times and plays a significant role in the initiatives discussed."
+      "justification": "The European Union is central to the resolution, being repeatedly referenced as a key actor in international cooperation, vaccine distribution, and multilateralism. The EU is called upon to take action, support agreements, and lead initiatives with Latin America and the Caribbean. Its institutions (European Parliament, European Commission, EU Member States) are also directly addressed, highlighting its influence and decision-making role."
+    },
+    {
+      "name": "Latin American and Caribbean countries",
+      "category": "Political Actors",
+      "relevance_score": 0.95,
+      "justification": "Latin American and Caribbean countries are core to the document's bi-regional focus. The resolution is issued by the Euro-Latin American Parliamentary Assembly and repeatedly calls for cooperation, agreements, and joint action between the EU and these countries. Their participation is essential in all key initiatives, including pandemic response, trade, and sustainable development."
     },
     {
       "name": "United Nations",
       "category": "Political Actors",
       "relevance_score": 0.9,
-      "justification": "The United Nations is frequently referenced in relation to global cooperation and health responses during the pandemic. Its reports and frameworks are foundational to the resolution's arguments, highlighting its importance in international governance."
-    },
-    {
-      "name": "Leopoldo López Gil",
-      "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "As a co-rapporteur of the resolution, Leopoldo López Gil represents the European Parliament and is directly involved in the political discourse surrounding international cooperation and multilateralism, making him a significant figure in the document."
+      "justification": "The United Nations is frequently cited as the foundation for the principles of multilateralism and international cooperation. The Charter of the United Nations, UN reports, and the Sustainable Development Goals are referenced as guiding frameworks. The UN and its agencies (notably the WHO) are recognized as key actors in pandemic response and global governance."
     }
   ],
   "top_themes": [
     {
-      "name": "Multilateralism",
+      "name": "Multilateralism (Regional & International Cooperation)",
       "category": "Regional & International Cooperation",
-      "relevance_score": 0.9,
-      "justification": "Multilateralism is central to the document's main message, emphasizing the need for coordinated global responses to challenges like COVID-19. The resolution repeatedly highlights the importance of multilateral frameworks for addressing international issues."
+      "relevance_score": 1.0,
+      "justification": "The document's central message is the reaffirmation and strengthening of multilateralism and international cooperation, especially in the context of the COVID-19 pandemic. The majority of the content is dedicated to the need for coordinated global responses, the importance of multilateral institutions, and the call for renewed commitment to multilateralism as a strategic imperative for addressing global challenges."
     },
     {
-      "name": "Global Digital Cooperation",
+      "name": "Bi-regional Cooperation (Regional & International Cooperation)",
+      "category": "Regional & International Cooperation",
+      "relevance_score": 0.92,
+      "justification": "A significant portion of the resolution focuses on the relationship between the EU and Latin America/Caribbean, emphasizing the need for deeper bi-regional cooperation. This includes calls for joint action, association agreements, and shared strategies for recovery and future resilience, making it highly central to the document's objectives and commitments."
+    },
+    {
+      "name": "Digital & Technological Partnerships (Regional & International Cooperation)",
       "category": "Regional & International Cooperation",
       "relevance_score": 0.75,
-      "justification": "Global Digital Cooperation is significant as it relates to the digital transformations accelerated by the pandemic. The document discusses the role of technology in international cooperation, making it a key theme in the context of post-pandemic recovery."
-    },
-    {
-      "name": "Digital & Technological Partnerships",
-      "category": "Regional & International Cooperation",
-      "relevance_score": 0.65,
-      "justification": "Digital & Technological Partnerships are important for fostering collaboration in technological development and innovation, which are crucial for addressing global challenges. The document emphasizes the need for partnerships to enhance resilience and recovery efforts."
+      "justification": "While not the primary focus, the document repeatedly references the acceleration of digitization, the importance of technological development, and the need for digital and technological partnerships as part of the broader strategy for recovery and resilience. These are positioned as key enablers for achieving the main goals of cooperation and sustainable development."
     }
   ]
 }

@@ -1,14 +1,10 @@
 {
-  "title": "Belize and European Union Partnership Dialogue Summary",
+  "title": "Belize and European Union Partnership Dialogue",
   "date": null,
-  "location": "Belize",
+  "location": null,
   "executive_summary": null,
   "characteristics": [],
-  "themes": {
-    "Regional & International Cooperation": [
-      "EU-CELAC Digital Partnership"
-    ]
-  },
+  "themes": {},
   "actors": {
     "Political Actors": [
       "Belize",
@@ -17,25 +13,22 @@
   },
   "practical_applications": [],
   "commitments": [],
-  "score": 36,
+  "score": 51,
   "quality_breakdown": {
-    "faithfulness": 0,
-    "consistency": 50,
-    "completeness": 36,
-    "accuracy": 75,
+    "faithfulness": 100,
+    "consistency": 95,
+    "completeness": 10,
+    "accuracy": 0,
     "issues": [
-      "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
-      "Missing important information in extraction or strategic analysis"
+      "Missing important information in extraction or strategic analysis",
+      "Potential factual errors in basic content or strategic extra data"
     ]
   },
   "extra_data": {
-    "lead_country_iso": "BLZ",
-    "agreement_type": [
-      "Ministerial Communiqué"
-    ],
+    "lead_country_iso": null,
+    "agreement_type": [],
     "legal_bindingness": null,
-    "coverage_scope": "Bilateral",
+    "coverage_scope": null,
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [],
@@ -44,7 +37,9 @@
     "end_date": null,
     "commitment_details": [],
     "kpi_list": [],
-    "country_list_iso": [],
+    "country_list_iso": [
+      "BLZ"
+    ],
     "responsible_entity": null,
     "sdg_alignment": []
   },
@@ -52,34 +47,15 @@
     {
       "name": "Belize",
       "category": "Political Actors",
-      "relevance_score": 0.7,
-      "justification": "Belize is a key participant in the partnership dialogue, representing its interests and engaging in discussions with the European Union."
+      "relevance_score": 0.9,
+      "justification": "Belize is a primary participant in the partnership dialogue, playing a key role in bilateral discussions and decisions with the European Union."
     },
     {
       "name": "European Union",
       "category": "Political Actors",
-      "relevance_score": 0.7,
-      "justification": "The European Union is a significant actor in the dialogue, providing a platform for cooperation and influencing policies that affect Belize."
+      "relevance_score": 0.9,
+      "justification": "The European Union is the other main actor in the partnership dialogue, significantly influencing the agenda and outcomes of the bilateral cooperation with Belize."
     }
   ],
-  "top_themes": [
-    {
-      "name": "EU-CELAC Digital Partnership",
-      "category": "Regional & International Cooperation",
-      "relevance_score": 0.9,
-      "justification": "This theme is central to the document as it highlights the collaborative efforts between Belize and the European Union, focusing on digital partnerships which are crucial for enhancing regional cooperation and addressing shared challenges."
-    },
-    {
-      "name": "Partnership Dialogue",
-      "category": "Diplomatic Engagement",
-      "relevance_score": 0.8,
-      "justification": "The concept of partnership dialogue is fundamental to the document, as it represents the framework within which Belize and the EU engage in discussions, making it a key element of their diplomatic relations."
-    },
-    {
-      "name": "Bilateral Relations",
-      "category": "International Relations",
-      "relevance_score": 0.7,
-      "justification": "Bilateral relations are significant in the context of the document as they underline the importance of direct cooperation between Belize and the EU, which is essential for achieving mutual goals and commitments."
-    }
-  ]
+  "top_themes": []
 }

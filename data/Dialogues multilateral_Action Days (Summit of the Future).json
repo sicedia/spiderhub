@@ -1,26 +1,20 @@
 {
-  "title": "Action Days at the Summit of the Future",
+  "title": null,
   "date": null,
   "location": null,
   "executive_summary": null,
   "characteristics": [],
-  "themes": {
-    "Regional & International Cooperation": [
-      "Global Digital Cooperation"
-    ]
-  },
+  "themes": {},
   "actors": {},
   "practical_applications": [],
   "commitments": [],
-  "score": 40,
+  "score": 80,
   "quality_breakdown": {
-    "faithfulness": 0,
-    "consistency": 30,
-    "completeness": 40,
+    "faithfulness": 100,
+    "consistency": 100,
+    "completeness": 0,
     "accuracy": 100,
     "issues": [
-      "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
       "Missing important information in extraction or strategic analysis"
     ]
   },
@@ -42,12 +36,5 @@
     "sdg_alignment": []
   },
   "top_actors": [],
-  "top_themes": [
-    {
-      "name": "Global Digital Cooperation",
-      "category": "Regional & International Cooperation",
-      "relevance_score": 1.0,
-      "justification": "This theme is central to the document's main message, emphasizing the importance of collaboration in the digital realm to address global challenges. It likely aligns with key objectives of fostering international partnerships and commitments to enhance digital governance."
-    }
-  ]
+  "top_themes": []
 }

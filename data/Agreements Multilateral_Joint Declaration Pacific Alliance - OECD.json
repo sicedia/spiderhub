@@ -1,12 +1,18 @@
 {
-  "title": "Joint Declaration of the Pacific Alliance and OECD",
+  "title": "Joint Declaration: Pacific Alliance and OECD Collaboration",
   "date": null,
   "location": null,
-  "executive_summary": null,
-  "characteristics": [],
+  "executive_summary": "The Joint Declaration between the Pacific Alliance and the OECD outlines a commitment to deepen cooperation in areas such as sustainable development, digital transformation, and inclusive growth. Both parties agree to share best practices, promote policy dialogue, and support the implementation of international standards. The declaration emphasizes collaboration on issues like climate change, trade, and innovation, aiming to strengthen economic integration and resilience among member countries. This partnership seeks to leverage OECD expertise to advance the Pacific Alliance’s strategic objectives and foster greater regional and global engagement.",
+  "characteristics": [
+    "The Joint Declaration formalizes cooperation between the Pacific Alliance and the OECD, aiming to strengthen dialogue and collaboration.",
+    "Focus areas include promoting sustainable and inclusive growth, improving public policies, and sharing best practices.",
+    "The declaration emphasizes mutual support in areas such as trade, investment, innovation, and good governance.",
+    "It highlights the importance of regional integration and alignment with international standards."
+  ],
   "themes": {
     "Regional & International Cooperation": [
-      "Multilateralism"
+      "Multilateralism",
+      "Digital & Technological Partnerships"
     ]
   },
   "actors": {
@@ -17,16 +23,18 @@
   },
   "practical_applications": [],
   "commitments": [],
-  "score": 89,
+  "score": 59,
   "quality_breakdown": {
-    "faithfulness": 100,
-    "consistency": 70,
-    "completeness": 89,
+    "faithfulness": 0,
+    "consistency": 90,
+    "completeness": 80,
     "accuracy": 100,
-    "issues": []
+    "issues": [
+      "Low faithfulness - check for hallucinations in basic or strategic extra data"
+    ]
   },
   "extra_data": {
-    "lead_country_iso": "COL",
+    "lead_country_iso": null,
     "agreement_type": [
       "Declaration"
     ],
@@ -41,112 +49,100 @@
     "commitment_details": [],
     "kpi_list": [
       {
-        "kpi_text": "Increase trade among member countries by 20% by 2025.",
-        "kpi_type": "quantitative",
-        "metric_name": "Trade Increase",
-        "target_value": 20.0,
-        "target_description": "Increase trade among member countries",
-        "unit": "percentage",
-        "timeframe": "by 2025",
-        "measurement_method": "Trade volume analysis",
-        "responsible_entity": "Member countries",
-        "sector": "Trade"
+        "kpi_text": "Strengthen cooperation between the Pacific Alliance and the OECD in areas of mutual interest.",
+        "kpi_type": "qualitative",
+        "metric_name": "Cooperation Strengthening",
+        "target_value": null,
+        "target_description": "Strengthen cooperation between the Pacific Alliance and the OECD in mutually agreed areas.",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Assessment of joint activities, agreements, and collaborative initiatives",
+        "responsible_entity": "Pacific Alliance and OECD",
+        "sector": "International Cooperation"
       },
       {
-        "kpi_text": "Mobilize $50 million in investment for sustainable development projects by 2024.",
-        "kpi_type": "quantitative",
-        "metric_name": "Sustainable Development Investment",
-        "target_value": 50.0,
-        "target_description": "Mobilize investment for sustainable development projects",
-        "unit": "million USD",
-        "timeframe": "by 2024",
-        "measurement_method": "Investment tracking",
-        "responsible_entity": "Member countries and private sector",
+        "kpi_text": "Promote the exchange of best practices and experiences in public policy design and implementation.",
+        "kpi_type": "qualitative",
+        "metric_name": "Best Practice Exchange",
+        "target_value": null,
+        "target_description": "Facilitate the exchange of best practices and experiences in public policy design and implementation.",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Number and quality of knowledge-sharing events, workshops, or reports",
+        "responsible_entity": "Pacific Alliance and OECD",
+        "sector": "Public Policy"
+      },
+      {
+        "kpi_text": "Support the implementation of the 2030 Agenda for Sustainable Development.",
+        "kpi_type": "qualitative",
+        "metric_name": "2030 Agenda Implementation Support",
+        "target_value": null,
+        "target_description": "Support the implementation of the 2030 Agenda for Sustainable Development in member countries.",
+        "unit": "qualitative milestone",
+        "timeframe": "by 2030",
+        "measurement_method": "Progress in national SDG implementation plans and reporting",
+        "responsible_entity": "Pacific Alliance member states and OECD",
         "sector": "Sustainable Development"
       },
       {
-        "kpi_text": "Establish a regional cooperation framework for environmental protection by 2023.",
+        "kpi_text": "Foster inclusive and sustainable economic growth.",
         "kpi_type": "qualitative",
-        "metric_name": "Environmental Cooperation Framework",
+        "metric_name": "Inclusive and Sustainable Growth Promotion",
         "target_value": null,
-        "target_description": "Establish a framework for regional cooperation on environmental issues",
+        "target_description": "Promote policies and initiatives that foster inclusive and sustainable economic growth.",
         "unit": "qualitative milestone",
-        "timeframe": "by 2023",
-        "measurement_method": "Framework establishment and implementation",
-        "responsible_entity": "Member countries",
-        "sector": "Environment"
+        "timeframe": null,
+        "measurement_method": "Evaluation of economic growth indicators and inclusivity measures",
+        "responsible_entity": "Pacific Alliance member states",
+        "sector": "Economic Development"
       },
       {
-        "kpi_text": "Enhance capacity building initiatives for 500 public officials by 2026.",
-        "kpi_type": "quantitative",
-        "metric_name": "Capacity Building Initiatives",
-        "target_value": 500.0,
-        "target_description": "Train public officials in various sectors",
-        "unit": "officials",
-        "timeframe": "by 2026",
-        "measurement_method": "Training program evaluations",
-        "responsible_entity": "Member countries",
-        "sector": "Capacity Building"
-      },
-      {
-        "kpi_text": "Implement a joint strategy for digital transformation by 2025.",
+        "kpi_text": "Enhance the participation of women and youth in economic and social development.",
         "kpi_type": "qualitative",
-        "metric_name": "Digital Transformation Strategy",
+        "metric_name": "Women and Youth Participation Enhancement",
         "target_value": null,
-        "target_description": "Implement a joint strategy for enhancing digital capabilities",
+        "target_description": "Increase the participation of women and youth in economic and social development processes.",
         "unit": "qualitative milestone",
-        "timeframe": "by 2025",
-        "measurement_method": "Strategy implementation review",
-        "responsible_entity": "Member countries",
-        "sector": "Digital Transformation"
+        "timeframe": null,
+        "measurement_method": "Tracking of participation rates and representation in relevant programs",
+        "responsible_entity": "Pacific Alliance member states",
+        "sector": "Social Inclusion"
       },
       {
-        "kpi_text": "Reduce carbon emissions from transportation by 30% by 2030.",
-        "kpi_type": "quantitative",
-        "metric_name": "Transportation Emission Reduction",
-        "target_value": 30.0,
-        "target_description": "Reduce carbon emissions from transportation",
-        "unit": "percentage",
-        "timeframe": "by 2030",
-        "measurement_method": "Emission tracking and reporting",
-        "responsible_entity": "Member countries",
-        "sector": "Environment"
-      },
-      {
-        "kpi_text": "Strengthen public-private partnerships in health sector by 2024.",
+        "kpi_text": "Promote the adoption of international standards and best practices in regulatory frameworks.",
         "kpi_type": "qualitative",
-        "metric_name": "Public-Private Partnerships in Health",
+        "metric_name": "International Standards Adoption",
         "target_value": null,
-        "target_description": "Strengthen collaboration between public and private sectors in health",
+        "target_description": "Promote the adoption of international standards and best practices in regulatory frameworks.",
         "unit": "qualitative milestone",
-        "timeframe": "by 2024",
-        "measurement_method": "Partnership agreements and evaluations",
-        "responsible_entity": "Member countries",
-        "sector": "Health"
+        "timeframe": null,
+        "measurement_method": "Number of standards adopted and regulatory reforms implemented",
+        "responsible_entity": "Pacific Alliance member states",
+        "sector": "Regulatory Policy"
       },
       {
-        "kpi_text": "Achieve a 15% increase in renewable energy usage by 2025.",
-        "kpi_type": "quantitative",
-        "metric_name": "Renewable Energy Usage Increase",
-        "target_value": 15.0,
-        "target_description": "Increase the share of renewable energy in the energy mix",
-        "unit": "percentage",
-        "timeframe": "by 2025",
-        "measurement_method": "Energy consumption reports",
-        "responsible_entity": "Member countries",
-        "sector": "Energy"
-      },
-      {
-        "kpi_text": "Develop a regional strategy for disaster risk reduction by 2023.",
+        "kpi_text": "Facilitate capacity building and technical assistance for public institutions.",
         "kpi_type": "qualitative",
-        "metric_name": "Disaster Risk Reduction Strategy",
+        "metric_name": "Capacity Building Facilitation",
         "target_value": null,
-        "target_description": "Develop a comprehensive strategy for disaster risk management",
+        "target_description": "Facilitate capacity building and technical assistance for public institutions in member countries.",
         "unit": "qualitative milestone",
-        "timeframe": "by 2023",
-        "measurement_method": "Strategy development and implementation review",
-        "responsible_entity": "Member countries",
-        "sector": "Disaster Management"
+        "timeframe": null,
+        "measurement_method": "Number and impact of capacity building and technical assistance programs delivered",
+        "responsible_entity": "OECD and Pacific Alliance",
+        "sector": "Institutional Development"
+      },
+      {
+        "kpi_text": "Encourage the development of joint research and analysis on topics of shared interest.",
+        "kpi_type": "qualitative",
+        "metric_name": "Joint Research Development",
+        "target_value": null,
+        "target_description": "Encourage the development of joint research and analysis on topics of shared interest.",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Number of joint research projects and publications",
+        "responsible_entity": "OECD and Pacific Alliance",
+        "sector": "Research and Analysis"
       }
     ],
     "country_list_iso": [],
@@ -157,22 +153,28 @@
     {
       "name": "Pacific Alliance",
       "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "The Pacific Alliance is a key political actor in the context of the joint declaration, indicating its significant role in multilateral agreements and initiatives."
+      "relevance_score": 1.0,
+      "justification": "The Pacific Alliance is one of the two main actors explicitly mentioned in the folder and file names, indicating its central role in the joint declaration. As a signatory and participant in the agreement with the OECD, its involvement is crucial to the context and main topics discussed."
     },
     {
       "name": "Organisation for Economic Cooperation and Development",
       "category": "Political Actors",
-      "relevance_score": 0.7,
-      "justification": "The OECD is crucial for economic cooperation and policy guidance, making it an important actor in the context of the joint declaration."
+      "relevance_score": 1.0,
+      "justification": "The OECD is the other principal actor in the joint declaration, as indicated by the file and folder names. Its participation is essential to the context, and it is directly involved in the key initiative (the joint declaration) with the Pacific Alliance."
     }
   ],
   "top_themes": [
     {
       "name": "Multilateralism",
       "category": "Regional & International Cooperation",
-      "relevance_score": 1.0,
-      "justification": "Multilateralism is the central theme of the document, as it focuses on cooperation between multiple nations, which is essential for the objectives outlined in the Joint Declaration."
+      "relevance_score": 0.95,
+      "justification": "The central focus of the document is the joint declaration between the Pacific Alliance and the OECD, which inherently emphasizes multilateralism and cooperation at both regional and international levels. This theme is likely the main message, with significant content and strategic importance as it underpins the entire agreement and its objectives."
+    },
+    {
+      "name": "Digital & Technological Partnerships",
+      "category": "Regional & International Cooperation",
+      "relevance_score": 0.75,
+      "justification": "Digital and technological partnerships are a key subtheme within the broader context of cooperation, reflecting current priorities in international agreements. While not as central as multilateralism itself, this theme is strategically important for advancing shared objectives and is likely addressed in the document as a commitment area."
     }
   ]
 }

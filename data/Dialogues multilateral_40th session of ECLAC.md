@@ -1,6 +1,6 @@
-# High-Level Political Forum 2024 Documentation
+# Documentation for the High-Level Political Forum 2024
 
-**Date**: Date not specified
+**Date**: 2024
 
 **Location**: Location not specified
 
@@ -14,13 +14,13 @@ No key characteristics identified in the document.
 
 ## Actors
 
-No actors identified.
+| Category | Actor |
+| --- | --- |
+| Political Actors | United Nations; United Nations Officials |
 
 ## Main Themes
 
-| Category | Subcategory |
-| --- | --- |
-| Regional & International Cooperation | Global Digital Cooperation |
+No themes identified.
 
 ## Practical Applications
 

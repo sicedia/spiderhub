@@ -1,4 +1,4 @@
-# IV Colombia-European Union Forum 2023: Advancing Digital, Green, and Social Transitions
+# IV Colombia-European Union Forum 2023: Advancing Digital, Green, and Social Transitions through EU-Colombia Partnership
 
 **Date**: 2023-03-15
 
@@ -6,40 +6,43 @@
 
 ## Executive Summary
 
-The IV Colombia-European Union Forum, held in Bogotá on March 15-16, 2023, focused on enhancing cooperation and investment for Colombia's sustainable transformation in line with the EU's Global Gateway strategy. Key objectives included promoting a triple transition—digital, green, and social—while fostering public-private partnerships. Discussions highlighted the need for resilient connectivity, digital transformation initiatives, and renewable energy investments. High-level participants included EU officials and Colombian leaders, who affirmed a shared agenda under the EU-LAC Digital Alliance. Outcomes included commitments to accelerate 5G expansion, align on green-energy projects, and develop a pipeline of projects for EU funding. Next steps involve intensifying skills programs and monitoring progress for future EU-LAC dialogues in 2024.
+The IV Colombia-European Union Forum held in Bogotá on 15-16 March 2023 focused on strengthening EU-Colombia cooperation for a sustainable triple transition—digital, green, and social—aligned with the EU's Global Gateway strategy. Key discussions included scaling digital infrastructure and rural connectivity, renewable energy investments, and digital skills development to promote inclusive growth. High-level participants included EU Executive Vice-President Margrethe Vestager, Colombian President Gustavo Petro, and private sector leaders. Outcomes emphasized accelerating 5G and fiber network expansion, aligning green energy projects with climate finance, and showcasing progress during Spain’s EU Council Presidency and the EU-CELAC Summit. Next steps involve developing flagship connectivity and renewable energy projects eligible for EU funding, expanding skills programs targeting vulnerable populations, and monitoring progress through upcoming EU-LAC dialogues in 2024. The forum reinforced Colombia’s role as a regional leader within the EU-LAC Digital Alliance.
 
 ## Characteristics
 
-- The forum focused on enhancing EU-Colombia cooperation for sustainable transformation, aligning with the EU's Global Gateway strategy.
-- Key discussions included digital infrastructure, renewable energy investments, and skills training for inclusive growth.
-- High-level participants included EU and Colombian leaders, emphasizing public-private collaboration.
-- Outcomes included commitments to accelerate digital connectivity and green energy projects, with plans for future monitoring and reporting.
+- The IV Colombia-EU Forum (March 2023) focused on deepening cooperation for Colombia's sustainable, inclusive transformation aligned with the EU's Global Gateway strategy.
+- Key themes included digital infrastructure expansion, green energy investments, digital transformation roadmaps, and inclusive growth through digital skills training.
+- High-level participants spanned EU officials, Colombian government leaders, and private sector representatives, emphasizing public-private collaboration.
+- Outcomes featured commitments to accelerate 5G/fibre deployment, align green-energy projects with climate finance, and position Colombia as a regional leader in the EU-LAC Digital Alliance.
+- Next steps involve developing flagship connectivity and renewable-energy projects for EU funding, expanding skills programs, and monitoring progress in future ministerial dialogues.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | Margrethe Vestager; Félix Fernández-Shaw; Gustavo Petro; Sandra Milena Urrutia |
-| Economic Actors | Fabián Hernández |
-| Civil Society Actors | Euroamérica Foundation; Telefónica |
+| Political Actors | European Union; European Commission; EU Member States; Governments; Government Officials |
+| Economic Actors | Private Sector Representatives; Telecommunication Companies; Development Bank of Latin America and the Caribbean; Inter-American Development Bank |
+| Research and Innovation Actors | EU-LAC Digital Alliance |
+| Civil Society Actors | Non-governmental Institutions |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Digital Transformation & Strategy | Digital Infrastructure; Digital Skills Development |
-| Regional & International Cooperation | EU-LAC Digital Alliance; EU-CELAC Digital Partnership |
+| Digital Transformation & Strategy | Digital Infrastructure; Digital Acceleration; Digital Skills Development |
+| Regional & International Cooperation | EU-LAC Digital Alliance |
 
 ## Practical Applications
 
-- Implementation of Colombia's 'ConectaTIC 360' roadmap for digital transformation.
-- Development of Spain's 'España Digital 2026' plan, which aligns with Colombia's digital initiatives.
-- Ongoing collaboration on renewable-energy projects and climate-finance avenues under the Global Gateway strategy.
-- Establishment of a pipeline for flagship connectivity and renewable-energy projects eligible for EU funding instruments.
-- Intensification of skills programs and digital-innovation hubs targeting rural and vulnerable populations.
-- Commitment to monitor implementation and report progress at the upcoming EU-LAC ministerial dialogues in 2024.
+- Implementation of Colombia's 'ConectaTIC 360' digital transformation roadmap.
+- Spain's 'España Digital 2026' plan as a model for digital transformation initiatives.
+- Acceleration of spectrum renewal and development of innovative business models to expand 5G and fiber networks in Colombia.
+- Development and consolidation of a pipeline of flagship connectivity and renewable-energy projects eligible for EU funding under the Global Gateway strategy.
+- Alignment and promotion of green-energy projects and climate-finance initiatives supported by development banks such as CAF and IDB.
+- Expansion of digital-skills training programs and establishment of digital-innovation hubs targeting rural and vulnerable populations.
+- Ongoing monitoring and reporting of progress at EU-LAC ministerial dialogues, with showcased advancements planned for Spain's EU Council Presidency (H2 2023) and the EU-CELAC Summit.
 
 ## Commitments
 
-- Showcase progress during Spain's EU Council Presidency in H2 2023.
-- Monitor implementation and report at forthcoming EU-LAC ministerial dialogues in 2024.
+- Showcase progress on green-energy projects and digital connectivity expansion during Spain's EU Council Presidency in the second half of 2023 (H2 2023) and the EU-CELAC Summit.
+- Monitor implementation and report on progress at forthcoming EU-LAC ministerial dialogues in 2024.

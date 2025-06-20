@@ -1,4 +1,4 @@
-# Women4Ethical AI Conference: Advancing Gender Equity in Artificial Intelligence
+# Women4Ethical AI Conference: Advancing Ethical AI through Multilateral Dialogue and Women's Leadership
 
 **Date**: Date not specified
 
@@ -20,7 +20,8 @@ No actors identified.
 
 | Category | Subcategory |
 | --- | --- |
-| Technology & Innovation | AI Ethics |
+| Inclusion & Social Development | Gender Equality in Tech |
+| Technology & Innovation | Artificial Intelligence; AI Ethics |
 
 ## Practical Applications
 

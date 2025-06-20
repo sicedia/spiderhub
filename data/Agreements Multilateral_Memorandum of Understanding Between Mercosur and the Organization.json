@@ -2,10 +2,16 @@
   "title": "Memorandum of Understanding Between Mercosur and the Organization of Ibero-American States for Education, Science and Culture",
   "date": null,
   "location": null,
-  "executive_summary": null,
-  "characteristics": [],
+  "executive_summary": "The Memorandum of Understanding between Mercosur and the Organization of Ibero-American States for Education, Science and Culture establishes a framework for cooperation in the fields of education, science, and culture. The agreement aims to promote joint initiatives, share best practices, and facilitate the exchange of knowledge and expertise among member states. By fostering collaboration, the memorandum seeks to enhance regional integration, support educational and scientific development, and strengthen cultural ties within the Ibero-American and Mercosur regions.",
+  "characteristics": [
+    "Establishes a framework for cooperation between Mercosur and the Organization of Ibero-American States in education, science, and culture.",
+    "Aims to promote joint initiatives, exchange of information, and technical collaboration.",
+    "Focuses on strengthening regional integration and development through shared projects and activities.",
+    "Encourages mutual support in policy development and capacity building within member states."
+  ],
   "themes": {
     "Regional & International Cooperation": [
+      "Digital & Technological Partnerships",
       "Bi-regional Cooperation"
     ]
   },
@@ -15,23 +21,25 @@
       "Organisation of Ibero-American States"
     ]
   },
-  "practical_applications": [],
+  "practical_applications": [
+    "Established Memorandum of Understanding (MoU) between Mercosur and the Organization of Ibero-American States for Education, Science and Culture, formalizing cooperation in the areas of education, science, and culture."
+  ],
   "commitments": [],
-  "score": 89,
+  "score": 95,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 70,
-    "completeness": 89,
+    "consistency": 95,
+    "completeness": 80,
     "accuracy": 100,
     "issues": []
   },
   "extra_data": {
-    "lead_country_iso": "ARG",
+    "lead_country_iso": null,
     "agreement_type": [
       "MoU"
     ],
-    "legal_bindingness": "Politically-binding",
-    "coverage_scope": "Sub-regional",
+    "legal_bindingness": "Non-binding",
+    "coverage_scope": "Multilateral",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [],
@@ -41,138 +49,123 @@
     "commitment_details": [],
     "kpi_list": [
       {
-        "kpi_text": "Strengthen cooperation in education, science, and culture among member states.",
+        "kpi_text": "Promote cooperation in the fields of education, science, technology and culture between Mercosur and the Organization of Ibero-American States for Education, Science and Culture (OEI).",
         "kpi_type": "qualitative",
-        "metric_name": "Cooperation Strengthening",
+        "metric_name": "Promotion of Cooperation in Education, Science, Technology, and Culture",
         "target_value": null,
-        "target_description": "Enhance collaboration in education, science, and culture.",
+        "target_description": "Promote cooperation in the fields of education, science, technology, and culture between Mercosur and OEI",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Assessment of collaborative initiatives and agreements",
-        "responsible_entity": "Member States of Mercosur and the Organization of Ibero-American States",
-        "sector": "Education, Science, and Culture"
+        "measurement_method": "Evidence of joint initiatives, programs, or projects",
+        "responsible_entity": "Mercosur and OEI",
+        "sector": "Education, Science, Technology, Culture"
       },
       {
-        "kpi_text": "Increase the number of joint educational programs by 30% by 2025.",
-        "kpi_type": "quantitative",
-        "metric_name": "Joint Educational Programs Increase",
-        "target_value": 30.0,
-        "target_description": "Achieve a 30% increase in collaborative educational programs.",
-        "unit": "percentage",
-        "timeframe": "by 2025",
-        "measurement_method": "Count of joint educational programs established",
-        "responsible_entity": "Educational Institutions within Mercosur",
-        "sector": "Education"
-      },
-      {
-        "kpi_text": "Allocate €50 million for cultural exchange initiatives by 2024.",
-        "kpi_type": "quantitative",
-        "metric_name": "Cultural Exchange Funding",
-        "target_value": 50.0,
-        "target_description": "Financial commitment for cultural exchange programs.",
-        "unit": "million EUR",
-        "timeframe": "by 2024",
-        "measurement_method": "Financial reports and budget allocations",
-        "responsible_entity": "Mercosur and the Organization of Ibero-American States",
-        "sector": "Culture"
-      },
-      {
-        "kpi_text": "Develop a framework for scientific collaboration by 2023.",
+        "kpi_text": "Develop and implement joint programs and projects in areas of mutual interest.",
         "kpi_type": "qualitative",
-        "metric_name": "Scientific Collaboration Framework Development",
+        "metric_name": "Joint Program and Project Development",
         "target_value": null,
-        "target_description": "Create a structured approach for scientific partnerships.",
-        "unit": "qualitative milestone",
-        "timeframe": "by 2023",
-        "measurement_method": "Framework documentation and implementation",
-        "responsible_entity": "Scientific Bodies of Member States",
-        "sector": "Science"
-      },
-      {
-        "kpi_text": "Enhance transparency in funding allocation processes.",
-        "kpi_type": "qualitative",
-        "metric_name": "Funding Transparency Enhancement",
-        "target_value": null,
-        "target_description": "Improve clarity and openness in how funds are allocated.",
+        "target_description": "Develop and implement joint programs and projects in areas of mutual interest",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Evaluation of funding processes and stakeholder feedback",
-        "responsible_entity": "Financial Oversight Committees",
-        "sector": "Finance"
+        "measurement_method": "Number and quality of joint programs and projects initiated",
+        "responsible_entity": "Mercosur and OEI",
+        "sector": "Education, Science, Technology, Culture"
       },
       {
-        "kpi_text": "Implement regulations for educational quality standards by 2026.",
+        "kpi_text": "Facilitate the exchange of information, experiences, and best practices between the Parties.",
         "kpi_type": "qualitative",
-        "metric_name": "Educational Quality Standards Implementation",
+        "metric_name": "Information and Best Practice Exchange",
         "target_value": null,
-        "target_description": "Establish and enforce quality standards in education.",
+        "target_description": "Facilitate exchange of information, experiences, and best practices between Mercosur and OEI",
         "unit": "qualitative milestone",
-        "timeframe": "by 2026",
-        "measurement_method": "Regulatory compliance assessments",
-        "responsible_entity": "Education Ministries of Member States",
-        "sector": "Education"
+        "timeframe": null,
+        "measurement_method": "Documented exchanges, workshops, or reports",
+        "responsible_entity": "Mercosur and OEI",
+        "sector": "Education, Science, Technology, Culture"
       },
       {
-        "kpi_text": "Train 500 educators in innovative teaching methods by 2025.",
-        "kpi_type": "quantitative",
-        "metric_name": "Educator Training in Innovative Methods",
-        "target_value": 500.0,
-        "target_description": "Provide training to enhance teaching practices.",
-        "unit": "educators",
-        "timeframe": "by 2025",
-        "measurement_method": "Training program attendance records",
-        "responsible_entity": "Educational Institutions and Training Organizations",
-        "sector": "Education"
+        "kpi_text": "Strengthen institutional capacities in the fields of education, science, technology, and culture.",
+        "kpi_type": "qualitative",
+        "metric_name": "Institutional Capacity Strengthening",
+        "target_value": null,
+        "target_description": "Strengthen institutional capacities in relevant fields",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Assessment of institutional capacity improvements",
+        "responsible_entity": "Mercosur and OEI",
+        "sector": "Education, Science, Technology, Culture"
       },
       {
-        "kpi_text": "Establish partnerships with at least 10 international organizations by 2024.",
-        "kpi_type": "quantitative",
-        "metric_name": "International Partnerships Establishment",
-        "target_value": 10.0,
-        "target_description": "Form partnerships to enhance collaboration.",
-        "unit": "partnerships",
-        "timeframe": "by 2024",
-        "measurement_method": "Partnership agreements and collaborations",
-        "responsible_entity": "Member States and Relevant Organizations",
-        "sector": "International Relations"
+        "kpi_text": "Establish mechanisms for regular dialogue and coordination between the Parties.",
+        "kpi_type": "qualitative",
+        "metric_name": "Establishment of Dialogue and Coordination Mechanisms",
+        "target_value": null,
+        "target_description": "Establish mechanisms for regular dialogue and coordination",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Existence and frequency of coordination meetings or mechanisms",
+        "responsible_entity": "Mercosur and OEI",
+        "sector": "Education, Science, Technology, Culture"
       },
       {
-        "kpi_text": "Promote cultural heritage awareness through 15 events by 2025.",
-        "kpi_type": "quantitative",
-        "metric_name": "Cultural Heritage Events Promotion",
-        "target_value": 15.0,
-        "target_description": "Organize events to raise awareness of cultural heritage.",
-        "unit": "events",
-        "timeframe": "by 2025",
-        "measurement_method": "Event attendance and feedback",
-        "responsible_entity": "Cultural Organizations and Local Governments",
-        "sector": "Culture"
+        "kpi_text": "Promote the participation of experts, researchers, and professionals in joint activities.",
+        "kpi_type": "qualitative",
+        "metric_name": "Expert and Professional Participation in Joint Activities",
+        "target_value": null,
+        "target_description": "Promote participation of experts, researchers, and professionals in joint activities",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Number and diversity of participants in joint activities",
+        "responsible_entity": "Mercosur and OEI",
+        "sector": "Education, Science, Technology, Culture"
+      },
+      {
+        "kpi_text": "Encourage the dissemination of results and outcomes of joint activities.",
+        "kpi_type": "qualitative",
+        "metric_name": "Dissemination of Joint Activity Results",
+        "target_value": null,
+        "target_description": "Encourage dissemination of results and outcomes of joint activities",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Number and reach of publications, reports, or communications",
+        "responsible_entity": "Mercosur and OEI",
+        "sector": "Education, Science, Technology, Culture"
       }
     ],
     "country_list_iso": [],
     "responsible_entity": null,
-    "sdg_alignment": []
+    "sdg_alignment": [
+      "SDG 4: Quality Education",
+      "SDG 9: Industry, Innovation and Infrastructure"
+    ]
   },
   "top_actors": [
     {
-      "name": "Mercosur",
+      "name": "Southern Common Market",
       "category": "Political Actors",
-      "relevance_score": 0.7,
-      "justification": "Mercosur is the primary actor in the document, as the memorandum is specifically between Mercosur and another organization, indicating its central role in the agreement."
+      "relevance_score": 1.0,
+      "justification": "The Southern Common Market (Mercosur) is a primary signatory of the Memorandum of Understanding, directly involved in the agreement and central to the document's context. Its role is fundamental in shaping the cooperation outlined in the agreement."
     },
     {
       "name": "Organisation of Ibero-American States",
       "category": "Political Actors",
-      "relevance_score": 0.6,
-      "justification": "The Organisation of Ibero-American States is the other party in the memorandum, making it significant in the context of the agreement and its implications for education, science, and culture."
+      "relevance_score": 1.0,
+      "justification": "The Organisation of Ibero-American States is the other main signatory of the Memorandum of Understanding, equally central to the document. Its participation is crucial for the implementation and success of the initiatives in education, science, and culture described."
     }
   ],
   "top_themes": [
     {
       "name": "Bi-regional Cooperation",
       "category": "Regional & International Cooperation",
-      "relevance_score": 1.0,
-      "justification": "This theme is central to the document as it outlines the collaboration between Mercosur and the Organization of Ibero-American States, emphasizing the importance of educational, scientific, and cultural exchanges across regions."
+      "relevance_score": 0.95,
+      "justification": "The document is a Memorandum of Understanding between Mercosur and the Organization of Ibero-American States, which is fundamentally about establishing and strengthening cooperation between two regional entities. This theme is central to the document's main message, likely occupies the majority of its content, and is strategically important for advancing shared objectives in education, science, and culture."
+    },
+    {
+      "name": "Digital & Technological Partnerships",
+      "category": "Regional & International Cooperation",
+      "relevance_score": 0.7,
+      "justification": "While the primary focus is on bi-regional cooperation, digital and technological partnerships are likely a significant subtheme, given the involvement of organizations dedicated to education, science, and culture. These partnerships are strategically important for modernizing and enhancing cooperation, but are likely secondary to the broader cooperation framework."
     }
   ]
 }

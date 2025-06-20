@@ -1,6 +1,6 @@
-# Forum of the Countries of Latin America and the Caribbean on Sustainable Development 2023: 6th Meeting Summary
+# Forum of the Countries of Latin America and the Caribbean on Sustainable Development 2023, 6th Meeting – Santiago, 25-28 April
 
-**Date**: 2023-04-25
+**Date**: 2023-04
 
 **Location**: Santiago, Chile
 
@@ -14,13 +14,13 @@ No key characteristics identified in the document.
 
 ## Actors
 
-No actors identified.
+| Category | Actor |
+| --- | --- |
+| Political Actors | Forum of the Countries of Latin America and the Caribbean on Sustainable Development; Community of Latin American and Caribbean States |
 
 ## Main Themes
 
-| Category | Subcategory |
-| --- | --- |
-| Inclusion & Social Development | Sustainable Digital Development |
+No themes identified.
 
 ## Practical Applications
 

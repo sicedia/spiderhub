@@ -1,71 +1,114 @@
 {
-  "title": "Political Declaration on Gender Equality and Women's Empowerment at the 69th Session of the Commission on the Status of Women",
+  "title": "Political Declaration on the 30th Anniversary of the Fourth World Conference on Women: Accelerating Gender Equality and Empowerment of Women and Girls",
   "date": "2025-03-06",
-  "location": "New York, USA",
-  "executive_summary": "The 69th Session of the Commission on the Status of Women, held in March 2025, marked the thirtieth anniversary of the Fourth World Conference on Women in Beijing. The session adopted a political declaration reaffirming commitments to the Beijing Declaration and Platform for Action, emphasizing the need for accelerated implementation to achieve gender equality and empower all women and girls. Key challenges identified include structural barriers, discriminatory laws, and persistent inequalities. The declaration calls for comprehensive actions across various sectors, including economic empowerment, education, healthcare, and violence prevention. It highlights the importance of engaging men and boys as allies and ensuring adequate funding for gender equality initiatives. The session also recognized the vital role of civil society and the need for robust data collection to inform policies. Overall, it reaffirmed a collective commitment to achieving gender equality and the full enjoyment of human rights for all women and girls.",
+  "location": "New York, United States",
+  "executive_summary": "The 69th session of the UN Commission on the Status of Women marked the 30th anniversary of the Fourth World Conference on Women (Beijing, 1995). The session reaffirmed commitment to fully implement the Beijing Declaration and Platform for Action and related UN frameworks to achieve gender equality and empower all women and girls. It recognized persistent global challenges including structural barriers, discrimination, violence, poverty, and underrepresentation in decision-making. The declaration emphasized the importance of inclusive policies addressing economic empowerment, unpaid care work, digital access, education, health, violence prevention, and environmental issues. It called for sustainable funding, strengthened national mechanisms, enhanced data collection, and active engagement of men, boys, youth, and civil society. The session highlighted UN Women’s role and urged continued UN system support, gender mainstreaming, and accountability. It also encouraged nominating women for high-level UN positions and stressed the need for an inclusive, transparent approach to accelerate progress toward gender equality and the full enjoyment of women’s human rights globally.",
   "characteristics": [
-    "The document outlines a political declaration marking the 30th anniversary of the Fourth World Conference on Women, emphasizing the need for gender equality and women's empowerment.",
-    "It reaffirms commitments to the Beijing Declaration and Platform for Action, highlighting the importance of their full implementation.",
-    "The declaration identifies ongoing challenges, including structural barriers and discrimination, that hinder progress towards gender equality.",
-    "It calls for increased participation of women and girls in decision-making processes and leadership roles across various sectors.",
-    "The document stresses the necessity of adequate funding and resources to support gender equality initiatives and eliminate inequalities.",
-    "It recognizes the role of men and boys as allies in achieving gender equality and the importance of engaging civil society in these efforts."
+    "The 69th session of the Commission on the Status of Women (March 2025) marked the 30th anniversary of the Fourth World Conference on Women (Beijing, 1995), focusing on reviewing and accelerating the implementation of the Beijing Declaration and Platform for Action.",
+    "The session reaffirmed commitments to gender equality, women's empowerment, and the full enjoyment of human rights, emphasizing the need for accelerated action and addressing persistent structural barriers, discrimination, and violence.",
+    "It highlighted the importance of comprehensive approaches including economic empowerment, education, health, violence prevention, digital inclusion, and environmental policies, with a focus on marginalized groups and intersectional discrimination.",
+    "The declaration called for sustainable funding, gender-responsive budgeting, enhanced data collection, and strengthened national and international mechanisms, including the role of UN Women and civil society partnerships.",
+    "The session emphasized the engagement of men and boys as allies, the leadership of young women, and the need for inclusive participation in decision-making and peace processes.",
+    "It recognized ongoing challenges such as poverty, inequality, and slow progress, urging renewed political will and coordinated global efforts to achieve the Sustainable Development Goals related to gender equality."
   ],
   "themes": {
     "Inclusion & Social Development": [
-      "Gender Equality in Tech"
-    ],
-    "Data & Governance": [
-      "Digital Rights",
-      "Data Governance"
+      "Gender Equality in Tech",
+      "Digital Education"
     ]
   },
   "actors": {
     "Political Actors": [
       "United Nations",
       "Governments",
+      "Commission on the Status of Women",
+      "Member States",
+      "General Assembly",
       "United Nations Officials"
     ],
     "Civil Society Actors": [
-      "Civil Society Organisations"
+      "Civil Society Organisations",
+      "Non-governmental Institutions",
+      "National human rights institutions",
+      "Women’s and community-based organizations",
+      "Youth-led organizations",
+      "Women journalists and media professionals",
+      "Trade unions",
+      "Grass-roots and community-based organizations",
+      "Indigenous groups",
+      "Feminist groups",
+      "Women of African descent"
     ]
   },
   "practical_applications": [
-    "Adoption of a political declaration reaffirming the Beijing Declaration and Platform for Action, committing to their full, effective, and accelerated implementation.",
-    "Emphasis on the mutual reinforcement of the Beijing Declaration and the Convention on the Elimination of All Forms of Discrimination against Women, encouraging states to ratify or accede to the Convention.",
-    "Recognition of the need for adequate, predictable, sustainable, and long-term funding to eliminate structural inequalities and empower women and girls.",
-    "Commitment to mobilizing domestic and international resources through innovative mechanisms, including public-private partnerships and gender-responsive budgeting.",
-    "Implementation of national action plans to prevent, eliminate, and respond to violence against women and girls in all forms.",
-    "Promotion of women's economic empowerment through access to credit, entrepreneurship, and capacity-building initiatives.",
-    "Adoption of measures to ensure women's and girls' access to quality education and lifelong learning opportunities.",
-    "Mainstreaming a gender perspective in environmental, climate change, and disaster risk reduction policies.",
-    "Strengthening the protection of women and girls in armed conflict and ensuring their participation in peace processes and decision-making.",
-    "Support for civil society organizations, particularly those focused on women's rights, through flexible and sustainable funding and capacity-building initiatives."
+    "Convening regional reviews by United Nations regional commissions on the implementation of the Beijing Declaration and Platform for Action, involving civil society and national human rights institutions.",
+    "Mobilizing domestic and international resources through innovative, equitable, and effective mechanisms such as improving tax systems, increasing public investments, strengthening North-South, South-South, and triangular cooperation, and public-private partnerships.",
+    "Promoting women’s economic empowerment by enhancing access to credit, entrepreneurship, capacity-building, financial inclusion, and financial literacy.",
+    "Enforcing labor rights for women, including protection against discrimination, violence, and harassment at work, promoting equal pay, social security, and transition from informal to formal work.",
+    "Prioritizing public investments to develop and expand integrated care systems, including care leave policies and universal care and support services.",
+    "Expanding digital learning, literacy, and capacity-building opportunities for women and girls, mainstreaming gender perspectives in digital technology development and policy.",
+    "Adopting and funding national action plans to prevent, eliminate, and respond to violence against women and girls, including multisectoral approaches to investigation, prosecution, and punishment.",
+    "Ensuring victims and survivors of violence have access to quality social, healthcare, psychological, counseling, and legal services.",
+    "Accelerating women’s full, equal, and meaningful participation in leadership and decision-making through temporary special measures and removing structural barriers.",
+    "Ensuring effective and well-resourced national machineries to promote, coordinate, implement, and evaluate gender equality policies and programs.",
+    "Implementing gender-responsive budgeting and tracking across all sectors.",
+    "Promoting safe and enabling environments for civil society actors, including women’s, youth, grassroots, Indigenous, feminist, and minority groups, with access to flexible, sustainable, and long-term funding and capacity-building.",
+    "Supporting women’s full participation and leadership in peace processes, conflict prevention, peacebuilding, and humanitarian action, including development and financing of national action plans.",
+    "Mainstreaming gender perspectives into environmental, climate change, and disaster risk reduction policies, promoting women’s participation and leadership in these areas.",
+    "Strengthening capacity and coordination of national statistics and data production offices with financial, technical, and human resources to improve gender statistics and data disaggregated by multiple characteristics.",
+    "Supporting UN Women’s role in promoting gender equality and coordinating the UN system and stakeholders for implementation of the Beijing Declaration and Platform for Action.",
+    "Encouraging nomination of women candidates for high-level UN positions such as Secretary-General and President of the General Assembly.",
+    "Supporting civil society efforts with increased, flexible, and sustainable resources at all levels to advance gender equality and empowerment of women and girls."
   ],
-  "commitments": [],
-  "score": 92,
+  "commitments": [
+    "[",
+    "\"Commit to the full, effective and accelerated implementation of the Beijing Declaration and Platform for Action and the outcome documents of the twenty-third special session of the General Assembly by 2025, the thirtieth anniversary of the Fourth World Conference on Women.\",",
+    "\"Call upon States that have not yet done so to consider ratifying or acceding to the Convention on the Elimination of All Forms of Discrimination against Women and the Optional Protocol thereto.\",",
+    "\"Mobilize adequate, predictable, sustainable and long-term funding, including transparent and impactful allocation of resources, to eliminate structural inequalities and empower all women and girls through innovative, equitable and effective mechanisms such as improving tax systems, increasing public investments, strengthening North-South, South-South and triangular cooperation, public-private partnerships, and meeting official development assistance commitments.\",",
+    "\"Take concrete actions to ensure women's economic empowerment by promoting women's access to credit and entrepreneurship, capacity-building, financial inclusion and literacy, equal pay for work of equal value, social security, transition from informal to formal work, and closing pay and pension inequality.\",",
+    "\"Promote equal sharing of unpaid care and domestic work between men and women by prioritizing public investments to develop and expand integrated care systems, including care leave policies and universal care and support services.\",",
+    "\"Harness technology and innovation to close digital divides, including the gender digital divide, by expanding digital learning, literacy and capacity-building opportunities, mainstreaming a gender perspective in digital technology development including artificial intelligence.\",",
+    "\"Take comprehensive and targeted measures to eradicate poverty in all its forms and dimensions for women and girls, including extreme poverty, feminization of poverty, multidimensional and intergenerational poverty, and structural inequalities in access to services, resources, and infrastructure.\",",
+    "\"Ensure all women throughout their life course enjoy equal access to gender-responsive comprehensive and universal social protection systems, including floors, public and financial services, productive resources, sustainable infrastructures, markets and networks, and affordable technologies.\",",
+    "\"Achieve universal health coverage for all women and girls, including safe, available, affordable, accessible, quality and inclusive healthcare services, maternal and neonatal health, menstrual health and hygiene management, and all communicable and noncommunicable diseases.\",",
+    "\"Ensure access to inclusive and equitable quality education and lifelong learning opportunities for all women and girls, including eliminating structural barriers, investing in public education systems and infrastructure, and providing training and skills development in STEM and ICT.\",",
+    "\"Adopt, fund and implement national action plans to prevent, eliminate and respond to violence against all women and girls in all forms, including multisectoral and coordinated approaches to investigate, prosecute and punish perpetrators and end impunity.\",",
+    "\"Adopt comprehensive approaches to eliminate violence amplified by technology, including combating harassment, racism, trafficking, and all forms of sexual exploitation and abuse of women and girls online.\",",
+    "\"Ensure victims and survivors of all forms of violence against women and girls have prompt and universal access to quality social and healthcare services, including psychological and counseling services, and access to justice including legal services.\",",
+    "\"Accelerate progress towards women's full, equal and meaningful participation in leadership and decision-making across sectors and levels, including through temporary special measures and removing structural barriers.\",",
+    "\"Ensure effective and well-resourced national machineries to promote, coordinate, implement and evaluate policies and programmes to achieve gender equality and empowerment of all women and girls.\",",
+    "\"Adopt and implement comprehensive gender-responsive budgeting and tracking across all sectors.\",",
+    "\"Promote safe and enabling environments for civil society actors, especially women’s, young women’s, girls’, grassroots and community-based organizations, and provide access to flexible, sustainable and long-term funding and capacity-building.\",",
+    "\"Strengthen protection of all women and girls in armed conflict and ensure their full, equal and meaningful participation and leadership at all levels of decision-making and peace processes, including development, implementation and financing of national action plans and support for local women’s organizations.\",",
+    "\"Mainstream a gender perspective into environmental, climate change and disaster risk reduction policies, strengthen resilience and adaptive capacities of women and girls, and promote their participation and leadership in decision-making on these issues.\",",
+    "\"Strengthen capacity and coordination of national statistics and data production offices and other institutions by providing financial, technical and human resources to improve ethical collection, analysis, dissemination and use of gender statistics and data disaggregated by relevant characteristics to inform evidence-based policies and monitor progress.\",",
+    "\"Encourage Member States to consider nominating women as candidates for the Secretary-General position and as candidates for the President of the General Assembly in upcoming and subsequent selection processes.\",",
+    "\"Pledge to continue supporting civil society efforts for gender equality and empowerment of all women and girls with increased, flexible and sustainable resources at local, national, regional and global levels, including promoting and ensuring a safe and enabling environment for them.\"",
+    "]"
+  ],
+  "score": 95,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 92,
-    "completeness": 92,
-    "accuracy": 85,
+    "consistency": 95,
+    "completeness": 95,
+    "accuracy": 90,
     "issues": []
   },
   "extra_data": {
     "lead_country_iso": "USA",
     "agreement_type": [
-      "Declaration"
+      "Political Declaration"
     ],
     "legal_bindingness": "Politically-binding",
-    "coverage_scope": "Global",
+    "coverage_scope": "Multilateral",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [
       "woman",
       "girl",
-      "community",
-      "society",
-      "rural"
+      "care worker",
+      "farmer",
+      "migrant"
     ],
     "beneficiary_group": [
       {
@@ -77,190 +120,156 @@
         "label": "Gender Equality Initiatives"
       },
       {
-        "category": "Civil Society / NGOs",
-        "label": "Community Organizations"
+        "category": "Farmers & Primary Producers",
+        "label": "Farmers"
       },
       {
-        "category": "Rural & Remote Communities",
-        "label": "Rural Populations"
+        "category": "Migrants & Refugees",
+        "label": "Migrants"
       }
     ],
     "start_date": "2025-03-10",
     "end_date": "2025-03-21",
-    "commitment_details": [],
-    "kpi_list": [
+    "commitment_details": [
       {
-        "kpi_text": "Reaffirm the need to respect, protect and promote all human rights and fundamental freedoms, civil, cultural, economic, political and social rights, including the right to development, for all women and girls throughout their life course, without distinction of any kind.",
-        "kpi_type": "qualitative",
-        "metric_name": "Human Rights Promotion",
-        "target_value": null,
-        "target_description": "Ensure respect, protection, and promotion of all human rights for women and girls.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Monitoring of human rights conditions and reports",
-        "responsible_entity": "Member States",
-        "sector": "Human Rights"
+        "text": "Commit to the full, effective and accelerated implementation of the Beijing Declaration and Platform for Action and the outcome documents of the twenty-third special session of the General Assembly by 2025, the thirtieth anniversary of the Fourth World Conference on Women.",
+        "commitment_class": "Declarative"
       },
       {
-        "kpi_text": "Recognize that 2025 provides a momentous opportunity to bring Member States together to intensify action to achieve the implementation of the Beijing Declaration and Platform for Action.",
-        "kpi_type": "qualitative",
-        "metric_name": "Implementation Intensification",
-        "target_value": null,
-        "target_description": "Intensify action for the implementation of the Beijing Declaration.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Assessment of Member States' actions and commitments",
-        "responsible_entity": "Member States",
-        "sector": "Gender Equality"
+        "text": "Call upon States that have not yet done so to consider ratifying or acceding to the Convention on the Elimination of All Forms of Discrimination against Women and the Optional Protocol thereto.",
+        "commitment_class": "Declarative"
       },
       {
-        "kpi_text": "Ensure women’s economic empowerment by promoting women’s access to credit and entrepreneurship as well as capacity-building, financial inclusion and financial literacy for women and girls.",
-        "kpi_type": "qualitative",
-        "metric_name": "Economic Empowerment of Women",
-        "target_value": null,
-        "target_description": "Promote access to credit, entrepreneurship, and financial literacy for women.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluation of programs and initiatives supporting women's economic empowerment",
-        "responsible_entity": "Member States and relevant stakeholders",
-        "sector": "Economic Development"
+        "text": "Mobilize adequate, predictable, sustainable and long-term funding, including transparent and impactful allocation of resources, to eliminate structural inequalities and empower all women and girls through innovative, equitable and effective mechanisms such as improving tax systems, increasing public investments, strengthening North-South, South-South and triangular cooperation, public-private partnerships, and meeting official development assistance commitments.",
+        "commitment_class": "Financed"
       },
       {
-        "kpi_text": "Adopting, funding and implementing national action plans to prevent, eliminate and respond to violence against all women and girls in all its forms and manifestations.",
-        "kpi_type": "qualitative",
-        "metric_name": "National Action Plans on Violence",
-        "target_value": null,
-        "target_description": "Implement national action plans to combat violence against women and girls.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Review of national action plans and their implementation",
-        "responsible_entity": "Member States",
-        "sector": "Violence Prevention"
+        "text": "Take concrete actions to ensure women's economic empowerment by promoting women's access to credit and entrepreneurship, capacity-building, financial inclusion and literacy, equal pay for work of equal value, social security, transition from informal to formal work, and closing pay and pension inequality.",
+        "commitment_class": "Implemented"
       },
       {
-        "kpi_text": "Mobilizing and strengthening communities, institutions and all relevant stakeholders to prevent, eliminate and respond to all forms of violence against all women and girls as well as its underlying root causes.",
-        "kpi_type": "qualitative",
-        "metric_name": "Community Mobilization Against Violence",
-        "target_value": null,
-        "target_description": "Strengthen community and institutional responses to violence against women.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Community engagement and response assessments",
-        "responsible_entity": "Local Governments and NGOs",
-        "sector": "Community Development"
+        "text": "Promote equal sharing of unpaid care and domestic work between men and women by prioritizing public investments to develop and expand integrated care systems, including care leave policies and universal care and support services.",
+        "commitment_class": "Programmatic"
       },
       {
-        "kpi_text": "Strengthening the capacity and coordination of national statistics and data production offices, government institutions and other research organizations by providing financial, technical and human resources.",
-        "kpi_type": "qualitative",
-        "metric_name": "Capacity Building for Data Collection",
-        "target_value": null,
-        "target_description": "Enhance the capacity for gender statistics and data collection.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluation of data collection and analysis capabilities",
-        "responsible_entity": "National Statistics Offices",
-        "sector": "Data and Statistics"
+        "text": "Harness technology and innovation to close digital divides, including the gender digital divide, by expanding digital learning, literacy and capacity-building opportunities, mainstreaming a gender perspective in digital technology development including artificial intelligence.",
+        "commitment_class": "Programmatic"
       },
       {
-        "kpi_text": "Promoting, respecting and protecting the right to the enjoyment of the highest attainable standard of physical and mental health for all women and girls.",
-        "kpi_type": "qualitative",
-        "metric_name": "Health Rights Promotion",
-        "target_value": null,
-        "target_description": "Ensure access to the highest standard of health for women and girls.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Health outcome assessments and access evaluations",
-        "responsible_entity": "Health Ministries",
-        "sector": "Health"
+        "text": "Take comprehensive and targeted measures to eradicate poverty in all its forms and dimensions for women and girls, including extreme poverty, feminization of poverty, multidimensional and intergenerational poverty, and structural inequalities in access to services, resources, and infrastructure.",
+        "commitment_class": "Programmatic"
       },
       {
-        "kpi_text": "Ensuring effective and well-resourced national machineries to promote, coordinate, implement and evaluate policies and programmes to achieve gender equality.",
-        "kpi_type": "qualitative",
-        "metric_name": "National Gender Machinery Effectiveness",
-        "target_value": null,
-        "target_description": "Establish effective national mechanisms for gender equality.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluation of national gender machinery effectiveness",
-        "responsible_entity": "National Governments",
-        "sector": "Gender Equality"
+        "text": "Ensure all women throughout their life course enjoy equal access to gender-responsive comprehensive and universal social protection systems, including floors, public and financial services, productive resources, sustainable infrastructures, markets and networks, and affordable technologies.",
+        "commitment_class": "Programmatic"
       },
       {
-        "kpi_text": "Encouraging the development, implementation and financing of national action plans, as well as support for local women’s organizations and peacebuilders, in conflict prevention, peacebuilding and sustaining peace.",
-        "kpi_type": "qualitative",
-        "metric_name": "Support for Women's Peacebuilding",
-        "target_value": null,
-        "target_description": "Support local women's organizations in peacebuilding efforts.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Assessment of support and funding for women's organizations",
-        "responsible_entity": "National Governments and International Organizations",
-        "sector": "Peace and Security"
+        "text": "Achieve universal health coverage for all women and girls, including safe, available, affordable, accessible, quality and inclusive healthcare services, maternal and neonatal health, menstrual health and hygiene management, and all communicable and noncommunicable diseases.",
+        "commitment_class": "Programmatic"
       },
       {
-        "kpi_text": "Mainstreaming a gender perspective into environmental, climate change and disaster risk reduction policies.",
-        "kpi_type": "qualitative",
-        "metric_name": "Gender Mainstreaming in Environmental Policies",
-        "target_value": null,
-        "target_description": "Integrate gender perspectives into environmental and climate policies.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Review of policy frameworks and gender integration",
-        "responsible_entity": "Environmental Agencies",
-        "sector": "Environment"
+        "text": "Ensure access to inclusive and equitable quality education and lifelong learning opportunities for all women and girls, including eliminating structural barriers, investing in public education systems and infrastructure, and providing training and skills development in STEM and ICT.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Adopt, fund and implement national action plans to prevent, eliminate and respond to violence against all women and girls in all forms, including multisectoral and coordinated approaches to investigate, prosecute and punish perpetrators and end impunity.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "Adopt comprehensive approaches to eliminate violence amplified by technology, including combating harassment, racism, trafficking, and all forms of sexual exploitation and abuse of women and girls online.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Ensure victims and survivors of all forms of violence against women and girls have prompt and universal access to quality social and healthcare services, including psychological and counseling services, and access to justice including legal services.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "Accelerate progress towards women's full, equal and meaningful participation in leadership and decision-making across sectors and levels, including through temporary special measures and removing structural barriers.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Ensure effective and well-resourced national machineries to promote, coordinate, implement and evaluate policies and programmes to achieve gender equality and empowerment of all women and girls.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "Adopt and implement comprehensive gender-responsive budgeting and tracking across all sectors.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "Promote safe and enabling environments for civil society actors, especially women’s, young women’s, girls’, grassroots and community-based organizations, and provide access to flexible, sustainable and long-term funding and capacity-building.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "Strengthen protection of all women and girls in armed conflict and ensure their full, equal and meaningful participation and leadership at all levels of decision-making and peace processes, including development, implementation and financing of national action plans and support for local women’s organizations.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Mainstream a gender perspective into environmental, climate change and disaster risk reduction policies, strengthen resilience and adaptive capacities of women and girls, and promote their participation and leadership in decision-making on these issues.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Strengthen capacity and coordination of national statistics and data production offices and other institutions by providing financial, technical and human resources to improve ethical collection, analysis, dissemination and use of gender statistics and data disaggregated by relevant characteristics to inform evidence-based policies and monitor progress.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "Encourage Member States to consider nominating women as candidates for the Secretary-General position and as candidates for the President of the General Assembly in upcoming and subsequent selection processes.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "Pledge to continue supporting civil society efforts for gender equality and empowerment of all women and girls with increased, flexible and sustainable resources at local, national, regional and global levels, including promoting and ensuring a safe and enabling environment for them.",
+        "commitment_class": "Financed"
       }
     ],
+    "kpi_list": [],
     "country_list_iso": [],
     "responsible_entity": "Commission on the Status of Women",
     "sdg_alignment": [
-      "SDG 5: Gender Equality",
       "SDG 1: No Poverty",
+      "SDG 2: Zero Hunger",
       "SDG 3: Good Health and Well-being",
       "SDG 4: Quality Education",
+      "SDG 5: Gender Equality",
       "SDG 8: Decent Work and Economic Growth",
-      "SDG 12: Responsible Consumption and Production",
       "SDG 10: Reduced Inequalities",
+      "SDG 11: Sustainable Cities and Communities",
+      "SDG 12: Responsible Consumption and Production",
+      "SDG 13: Climate Action",
+      "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
   },
   "top_actors": [
     {
+      "name": "Commission on the Status of Women",
+      "category": "Political Actors",
+      "relevance_score": 1.0,
+      "justification": "The document is a draft resolution submitted by the Chair of the Commission on the Status of Women and revolves around the Commission's role, responsibilities, and follow-up actions related to the Beijing Declaration and Platform for Action. It is the primary institutional actor driving the agenda and implementation of gender equality initiatives discussed."
+    },
+    {
       "name": "United Nations",
       "category": "Political Actors",
       "relevance_score": 0.9,
-      "justification": "The United Nations is the primary body responsible for the Commission on the Status of Women and is mentioned throughout the document as the overarching authority guiding the discussions and resolutions related to gender equality and women's empowerment."
+      "justification": "The United Nations is the overarching international organization under which the Commission on the Status of Women operates. The text references multiple UN bodies, treaties, and resolutions, emphasizing the UN system's role in promoting gender equality, coordinating efforts, and supporting Member States."
     },
     {
-      "name": "Governments",
+      "name": "Member States",
       "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "Governments are key stakeholders in the implementation of the Beijing Declaration and Platform for Action, as they are responsible for enacting policies and initiatives that promote gender equality and women's rights, making them highly relevant in the context of the document."
-    },
-    {
-      "name": "Civil Society Organisations",
-      "category": "Civil Society Actors",
-      "relevance_score": 0.7,
-      "justification": "Civil society organizations play a crucial role in advocating for women's rights and gender equality, contributing to the discussions and initiatives outlined in the document, and are recognized for their contributions to the implementation of the Beijing Declaration."
+      "relevance_score": 0.85,
+      "justification": "Member States are repeatedly mentioned as the key actors responsible for implementing the Beijing Declaration and Platform for Action, ratifying treaties, and participating in the Commission's sessions. Their commitment and actions are critical to achieving the goals outlined in the document."
     }
   ],
   "top_themes": [
     {
-      "name": "Gender Equality in Tech",
+      "name": "Gender Equality in Tech (Inclusion & Social Development)",
       "category": "Inclusion & Social Development",
-      "relevance_score": 0.9,
-      "justification": "This theme is central to the document's main message, which emphasizes the importance of gender equality and the empowerment of women and girls across various sectors, including technology. It aligns with key objectives of the Beijing Declaration and the 2030 Agenda for Sustainable Development."
-    },
-    {
-      "name": "Digital Rights",
-      "category": "Data & Governance",
-      "relevance_score": 0.8,
-      "justification": "Digital rights are crucial in the context of gender equality, as they address the need for equitable access to technology and the internet, which is essential for empowering women and girls. The document highlights the importance of closing the digital divide and ensuring women's rights in the digital space."
-    },
-    {
-      "name": "Data Governance",
-      "category": "Data & Governance",
       "relevance_score": 0.7,
-      "justification": "Data governance is important for informing policies and programs aimed at achieving gender equality. The document stresses the need for improved data collection and analysis to monitor progress and identify gaps in the implementation of gender equality initiatives."
+      "justification": "The document highlights the importance of harnessing technology and innovation to close digital divides, including the gender digital divide, and mainstreaming a gender perspective in technology development and policy. This theme is strategically important as it addresses emerging challenges and opportunities for women's empowerment in the digital age, linking directly to sustainable development and gender equality goals."
+    },
+    {
+      "name": "Digital Education (Inclusion & Social Development)",
+      "category": "Inclusion & Social Development",
+      "relevance_score": 0.6,
+      "justification": "The text emphasizes promoting inclusive and equitable quality education, including digital literacy and lifelong learning opportunities for women and girls. Education is a key driver for gender equality and empowerment, making digital education a critical subtheme that supports broader commitments to sustainable development and closing gender gaps."
     }
   ]
 }

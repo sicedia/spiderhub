@@ -1,90 +1,173 @@
 {
-  "title": "Commission Work Programme 2023: A United Response to Crises and Future Challenges",
+  "title": "European Commission Work Programme 2023: A Union Standing Firm and United",
   "date": "2022-10-18",
   "location": "Strasbourg, France",
-  "executive_summary": "The European Commission's 2023 Work Programme emphasizes unity in addressing multiple crises, including the ongoing war in Ukraine and its economic repercussions. It outlines three key priorities: collective action to tackle challenges, accelerated transformation for resilience and competitiveness, and urgent responses to immediate needs. The programme focuses on energy security, economic stability, and support for Ukraine, with significant financial commitments and humanitarian aid. It also aims to enhance the EU's green and digital transitions, promote social equity, and strengthen democratic values. Key initiatives include the European Green Deal, digital economy advancements, and a renewed focus on citizen engagement following the Conference on the Future of Europe. The Commission will prioritize legislative actions to ensure effective implementation of policies, aiming for a resilient and prosperous Union that upholds its core values and responds effectively to global challenges.",
+  "executive_summary": "The European Commission’s 2023 Work Programme, presented against the backdrop of Russia’s invasion of Ukraine and global crises, emphasizes unity, resilience, and accelerated transformation. Key priorities include supporting Ukraine, addressing the energy and cost-of-living crises, and safeguarding the EU’s single market. The programme advances the European Green Deal, digital transformation, and economic security, while reinforcing social protections and the rule of law. It builds on citizen input from the Conference on the Future of Europe, focusing on sustainability, digitalization, and democratic engagement. Major initiatives target climate action, energy reform, food security, digital skills, and strategic autonomy. The Commission also commits to strengthening external partnerships, humanitarian aid, and EU enlargement. Implementation, better regulation, and enforcement of EU law remain central to delivering tangible benefits for citizens and ensuring the EU’s global leadership and internal cohesion.",
   "characteristics": [
-    "The Commission's work program for 2023 emphasizes unity and collective action in response to crises, particularly the war in Ukraine and its economic impacts.",
-    "It prioritizes a radical transformation towards sustainability, resilience, and competitiveness, addressing climate change and energy dependency.",
-    "The program includes initiatives to support citizens, enhance social protections, and ensure economic stability amid high uncertainty.",
-    "It aims to strengthen democracy and uphold fundamental rights, with a focus on media freedom and combating disinformation.",
-    "The Commission plans to implement better regulation and enforcement of EU laws to maximize benefits for citizens and businesses."
+    "Emphasis on Unity and Solidarity: The programme highlights the EU’s collective response to crises (e.g., Russian invasion of Ukraine, energy crisis, COVID-19), stressing the need for unity, fast reactions, and solidarity among Member States.",
+    "Six Headline Ambitions: The work programme is structured around six priorities: the European Green Deal, digital transformation, an economy that works for people, a stronger Europe in the world, promoting the European way of life, and a new push for European democracy.",
+    "Crisis Response and Resilience: Focus on reducing energy dependence, supporting Ukraine, addressing food security, and strengthening critical infrastructure, with continued investment and reforms (e.g., REPowerEU, NextGenerationEU).",
+    "Citizen-Centric Democracy: Incorporates outcomes from the Conference on the Future of Europe, increasing citizen participation in policymaking, and introducing citizens’ panels for key initiatives.",
+    "Green and Digital Transitions: Accelerates climate action (Fit for 55, biodiversity, circular economy), energy market reform, and digital innovation (Digital Decade, metaverse, critical raw materials), while ensuring social fairness and competitiveness.",
+    "Rule of Law, Rights, and Better Regulation: Reinforces democracy, rule of law, media freedom, anti-corruption, and equality, with a focus on better regulation, enforcement of EU law, and reducing administrative burdens, especially for SMEs."
   ],
   "themes": {
-    "Regional & International Cooperation": [
-      "Global Digital Cooperation",
-      "Multilateralism"
+    "Digital Transformation & Strategy": [
+      "Digital Agenda",
+      "Digital Decade",
+      "Digital Acceleration",
+      "Digital Platforms",
+      "Digital Infrastructure",
+      "Digital Policy",
+      "Digital Ecosystem",
+      "Digital Investment",
+      "Digital Regulation",
+      "Digital Transitions",
+      "Digital Research",
+      "Digital Sustainability",
+      "Digital Economy",
+      "Digital Skills Development"
+    ],
+    "Technology & Innovation": [
+      "Artificial Intelligence",
+      "Tech-Driven Solutions",
+      "ICT Innovation",
+      "Cloud Computing",
+      "Innovation in Computing",
+      "5G"
     ],
     "Data & Governance": [
+      "Data Governance",
+      "Digital Rights",
       "Digital Governance",
-      "Data Protection"
+      "Data Protection",
+      "Cybersecurity",
+      "Cyber Risk Management",
+      "Data Privacy",
+      "Digital Access",
+      "Digital Identity Management",
+      "Internet Governance",
+      "Digital Ethics",
+      "E-Governance"
     ],
-    "Digital Transformation & Strategy": [
-      "Digital Policy",
-      "Digital Economy"
+    "Inclusion & Social Development": [
+      "Digital Inclusion",
+      "Social Cohesion",
+      "Gender Equality in Tech",
+      "Digital Education",
+      "Connectivity",
+      "Sustainable Digital Development"
+    ],
+    "Regional & International Cooperation": [
+      "EU-LAC Digital Alliance",
+      "Bi-regional Cooperation",
+      "Global Digital Cooperation",
+      "Multilateralism",
+      "EU-CELAC Digital Partnership",
+      "Digital & Technological Partnerships"
     ]
   },
   "actors": {
     "Political Actors": [
-      "Ursula von der Leyen"
+      "European Union",
+      "EU Member States",
+      "European Council",
+      "European Parliament",
+      "European Commission",
+      "United Nations",
+      "United Nations Officials"
+    ],
+    "Economic Actors": [
+      "Organisation for Economic Cooperation and Development",
+      "World Bank",
+      "Industry Actors",
+      "Private Sector Representatives",
+      "Research Funding Organisations"
+    ],
+    "Civil Society Actors": [
+      "Civil Society Organisations",
+      "Non-governmental Institutions"
+    ],
+    "Research and Innovation Actors": [
+      "Universities",
+      "Academic Institutions",
+      "Researchers",
+      "Innovators",
+      "Technology Organisations",
+      "Knowledge and Innovation Communities",
+      "European Institute of Innovation and Technology"
     ]
   },
   "practical_applications": [
-    "Implementation of the RepowerEU plan to reduce dependence on Russian energy imports, including gas savings plans and emergency energy market intervention measures.",
-    "Activation of the Temporary Protection Directive to ensure access to jobs, housing, education, and healthcare for Ukrainian refugees.",
-    "Mobilization of over EUR 19 billion in financial support for Ukraine, including EUR 3.1 billion for military support under the European Peace Facility.",
+    "Implementation of the Gas Storage Regulation, resulting in almost 91% of EU storage capacity being filled and Member States putting in place gas savings plans in line with the European Gas Demand Reduction Plan.",
+    "Emergency energy market intervention measures set out by the Commission to tackle dramatic price rises and reduce energy bills for Europeans and European businesses.",
+    "REPowerEU plan to reduce Europe’s dependence on Russian energy imports, including outreach to international partners and increased alternative energy supplies.",
+    "Mobilisation of over EUR 19 billion by the EU and its Member States to strengthen Ukraine’s economic, social, and financial resilience, and an additional EUR 3.1 billion of military support under the European Peace Facility.",
+    "Activation of the Temporary Protection Directive to ensure access to jobs, housing, education, and healthcare for Ukrainians fleeing the war.",
+    "Provision of over 70,000 tonnes of aid to Ukraine via the EU Civil Protection Mechanism, including food, water, shelter, energy, and healthcare.",
+    "Mobilisation of medical and specialised equipment for public health risks via the Health Emergency and Preparedness Authority (HERA) and rescEU emergency stockpiles.",
+    "Implementation of Cohesion’s Action for Refugees in Europe (CARE) and the proposal on FAST-CARE to facilitate the mobilisation of cohesion funds for people fleeing the war.",
     "Provision of EUR 100 million for the rehabilitation of damaged Ukrainian schools.",
-    "Establishment of 'Solidarity Lanes' to facilitate Ukraine's export of grain and other products and import of necessary goods.",
-    "Mobilization of EUR 600 million from the European Development Fund to support food security in African, Caribbean, and Pacific countries.",
-    "Adoption of a pioneering proposal to halve pesticide use by 2030 and restore Europe’s damaged ecosystems by 2050.",
+    "Operation of ‘Solidarity Lanes’ to allow Ukraine to export grain and other products and import necessary goods, including humanitarian aid and fertilisers.",
+    "Mobilisation of EUR 600 million from the European Development Fund to support food security in African, Caribbean, and Pacific countries.",
+    "Integration of the United Nations Sustainable Development Goals (SDGs) into the European Semester and mainstreaming in better regulation tools.",
+    "Adoption of a proposal to halve pesticide use by 2030 and restore Europe’s damaged ecosystems by 2050.",
     "Creation of a new European Hydrogen Bank to invest EUR 3 billion into kick-starting a hydrogen market in the EU.",
-    "Launch of the European Year of Skills in 2023 to promote reskilling and upskilling of the workforce.",
-    "Proposal for a Council Recommendation on developing social economy framework conditions to support social economy entities.",
-    "Proposal for a digital euro to ensure the common currency is fit for the digital age.",
-    "Implementation of the Beating Cancer Plan as part of the European Health Union.",
-    "Development of a European Health Data Space to strengthen healthcare quality and continuity.",
-    "Proposal for a revision of the Directive on combatting child sexual abuse to address new challenges brought about by technological change."
+    "Implementation of the ‘one in, one out’ approach to regulation, focusing on reducing costs for citizens and businesses.",
+    "Deployment of the ‘Fit for Future’ platform and a high-level group of stakeholders to identify simplification and burden reduction potential in EU legislation.",
+    "Implementation of the European Year of Skills 2023 to deliver reskilling and upskilling of the workforce and attract needed skills to Europe.",
+    "Ongoing implementation of the Beating Cancer Plan as part of the European Health Union.",
+    "Implementation of the HealthyLifestyle4All initiative and its Youth Ideas Labs to promote sport and healthy lifestyles.",
+    "Ongoing support for the implementation of the Joint Roadmap on the Pact on Migration and Asylum, including the adoption of all proposals on the table.",
+    "Ongoing implementation of the European Democracy Action Plan, including the proposal of the European Media Freedom Act.",
+    "Doubling of EU firefighting capacities ahead of the 2023 forest fire season, including the addition of 10 light amphibious aircraft and 3 helicopters to the EU fleet.",
+    "Ongoing support for the implementation of the revised Schengen Borders Code and the digitalisation of travel documents.",
+    "Ongoing enforcement and support for the application of EU law, including engagement with Member States to ensure correct implementation and decisive action on infringements."
   ],
   "commitments": [
-    "Provide EUR 100 million for the rehabilitation of damaged Ukrainian schools.",
-    "Mobilise EUR 600 million from the European Development Fund to increase support for food security in African, Caribbean, and Pacific countries.",
-    "Create a new European Hydrogen Bank to invest EUR 3 billion into kick-starting a hydrogen market in the EU.",
-    "Propose a comprehensive reform of the EU electricity market in early 2023.",
-    "Set food waste reduction targets as part of measures to reduce waste and environmental impact in 2023.",
-    "Declare 2023 as the European Year of Skills to deliver necessary reskilling and upskilling of the workforce.",
-    "Present a proposal for a second basket of new own resources in 2023.",
-    "Carry out a mid-term review of the multiannual financial framework (MFF) 2021-2027 in 2023.",
-    "Propose a defence of democracy package in 2023 to promote free and fair elections and combat disinformation.",
-    "Ensure all new rules related to elections are in place in time for the next European Parliament elections in 2024.",
-    "Double firefighting capacities ahead of the 2023 forest fire season and add 10 light amphibious aircraft and 3 helicopters to the fleet."
+    "The EU and its Member States mobilised over EUR 19 billion to strengthen Ukraine’s economic, social and financial resilience and an additional EUR 3.1 billion of military support under the European Peace Facility (by September 2022).",
+    "The EU will provide EUR 100 million for the rehabilitation of damaged Ukrainian schools (timeline not specified, but described as a \"first step\").",
+    "The EU has mobilised EUR 600 million from the European Development Fund to increase support to food security to African, Caribbean and Pacific countries.",
+    "The Commission adopted a proposal to halve pesticide use by 2030.",
+    "The Commission adopted a proposal to restore Europe’s damaged ecosystems by 2050.",
+    "The Commission will propose a comprehensive reform of the EU electricity market in early 2023.",
+    "The EU will create a new European Hydrogen Bank to invest EUR 3 billion into kick-starting a hydrogen market in the EU.",
+    "The Commission will take measures including food waste reduction targets (specific targets not quantified in the text).",
+    "The Commission will double its firefighting capacities ahead of the 2023 forest fire season and add 10 light amphibious aircrafts and 3 helicopters to its fleet.",
+    "The Commission will propose a second basket of new own resources for the EU budget in 2023.",
+    "The Commission will carry out a mid-term review of the multiannual financial framework (MFF) 2021-2027 in 2023.",
+    "The Commission will propose a legislative initiative on a statute for European cross-border associations in 2023.",
+    "The Commission will propose a package of measures to facilitate retail investment and revise the payment services Directive (timeline not specified, but within the 2023 work programme).",
+    "The Commission will propose a digital euro before its potential issuance by the European Central Bank.",
+    "The Commission will propose a European disability card ensuring the mutual recognition of disability status across all Member States (timeline not specified, but within the 2023 work programme).",
+    "The Commission will propose amendments to the rules governing cooperation between consumer protection authorities (timeline not specified, but within the 2023 work programme).",
+    "The Commission will continue to implement the ‘one in, one out’ approach in 2023."
   ],
-  "score": 90,
+  "score": 98,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 90,
-    "completeness": 90,
-    "accuracy": 80,
+    "consistency": 92,
+    "completeness": 97,
+    "accuracy": 100,
     "issues": []
   },
   "extra_data": {
-    "lead_country_iso": "FRA",
+    "lead_country_iso": null,
     "agreement_type": [
-      "Communication"
+      "Work Programme"
     ],
-    "legal_bindingness": "Politically-binding",
+    "legal_bindingness": "Non-binding",
     "coverage_scope": "Regional",
     "eu_policy_alignment": [
-      "Digital Decade",
-      "Horizon Europe",
-      "EU Cyber Strategy"
+      "Digital Decade"
     ],
     "review_schedule": "Biennial",
     "beneficiary_group_raw": [
       "citizen",
       "business",
-      "youth",
-      "women",
-      "community"
+      "SME",
+      "Ukrainian",
+      "youth"
     ],
     "beneficiary_group": [
       {
@@ -96,189 +179,225 @@
         "label": "Companies"
       },
       {
+        "category": "SMEs / Businesses",
+        "label": "Small and Medium Enterprises"
+      },
+      {
+        "category": "Indigenous Peoples & Ethnic Groups",
+        "label": "Minority Groups"
+      },
+      {
         "category": "Students & Youth",
         "label": "Youth"
-      },
-      {
-        "category": "Women & Girls",
-        "label": "Gender Equality Initiatives"
-      },
-      {
-        "category": "Civil Society / NGOs",
-        "label": "Community Organizations"
       }
     ],
     "start_date": "2022-10-18",
-    "end_date": "2023-01-01",
+    "end_date": "2023-12-31",
     "commitment_details": [
       {
-        "text": "Provide EUR 100 million for the rehabilitation of damaged Ukrainian schools.",
+        "text": "The EU and its Member States mobilised over EUR 19 billion to strengthen Ukraine’s economic, social and financial resilience and an additional EUR 3.1 billion of military support under the European Peace Facility (by September 2022).",
         "commitment_class": "Financed"
       },
       {
-        "text": "Mobilise EUR 600 million from the European Development Fund to increase support for food security in African, Caribbean, and Pacific countries.",
+        "text": "The EU will provide EUR 100 million for the rehabilitation of damaged Ukrainian schools (timeline not specified, but described as a \"first step\").",
         "commitment_class": "Financed"
       },
       {
-        "text": "Create a new European Hydrogen Bank to invest EUR 3 billion into kick-starting a hydrogen market in the EU.",
+        "text": "The EU has mobilised EUR 600 million from the European Development Fund to increase support to food security to African, Caribbean and Pacific countries.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "The Commission adopted a proposal to halve pesticide use by 2030.",
         "commitment_class": "Programmatic"
       },
       {
-        "text": "Propose a comprehensive reform of the EU electricity market in early 2023.",
-        "commitment_class": "Declarative"
+        "text": "The Commission adopted a proposal to restore Europe’s damaged ecosystems by 2050.",
+        "commitment_class": "Programmatic"
       },
       {
-        "text": "Set food waste reduction targets as part of measures to reduce waste and environmental impact in 2023.",
-        "commitment_class": "Declarative"
+        "text": "The Commission will propose a comprehensive reform of the EU electricity market in early 2023.",
+        "commitment_class": "Programmatic"
       },
       {
-        "text": "Declare 2023 as the European Year of Skills to deliver necessary reskilling and upskilling of the workforce.",
-        "commitment_class": "Declarative"
+        "text": "The EU will create a new European Hydrogen Bank to invest EUR 3 billion into kick-starting a hydrogen market in the EU.",
+        "commitment_class": "Financed"
       },
       {
-        "text": "Present a proposal for a second basket of new own resources in 2023.",
-        "commitment_class": "Declarative"
+        "text": "The Commission will take measures including food waste reduction targets (specific targets not quantified in the text).",
+        "commitment_class": "Programmatic"
       },
       {
-        "text": "Carry out a mid-term review of the multiannual financial framework (MFF) 2021-2027 in 2023.",
-        "commitment_class": "Declarative"
-      },
-      {
-        "text": "Propose a defence of democracy package in 2023 to promote free and fair elections and combat disinformation.",
-        "commitment_class": "Declarative"
-      },
-      {
-        "text": "Ensure all new rules related to elections are in place in time for the next European Parliament elections in 2024.",
+        "text": "The Commission will double its firefighting capacities ahead of the 2023 forest fire season and add 10 light amphibious aircrafts and 3 helicopters to its fleet.",
         "commitment_class": "Implemented"
       },
       {
-        "text": "Double firefighting capacities ahead of the 2023 forest fire season and add 10 light amphibious aircraft and 3 helicopters to the fleet.",
+        "text": "The Commission will propose a second basket of new own resources for the EU budget in 2023.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Commission will carry out a mid-term review of the multiannual financial framework (MFF) 2021-2027 in 2023.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Commission will propose a legislative initiative on a statute for European cross-border associations in 2023.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Commission will propose a package of measures to facilitate retail investment and revise the payment services Directive (timeline not specified, but within the 2023 work programme).",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Commission will propose a digital euro before its potential issuance by the European Central Bank.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Commission will propose a European disability card ensuring the mutual recognition of disability status across all Member States (timeline not specified, but within the 2023 work programme).",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Commission will propose amendments to the rules governing cooperation between consumer protection authorities (timeline not specified, but within the 2023 work programme).",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Commission will continue to implement the ‘one in, one out’ approach in 2023.",
         "commitment_class": "Implemented"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "Mobilise over EUR 19 billion to strengthen Ukraine’s economic, social and financial resilience.",
+        "kpi_text": "almost 91% of EU storage capacity has been filled and Member States are putting in place gas savings plans in line with the European Gas Demand Reduction Plan",
         "kpi_type": "quantitative",
-        "metric_name": "Support to Ukraine",
-        "target_value": 19.0,
-        "target_description": "Mobilise financial resources to support Ukraine's resilience.",
+        "metric_name": "EU Gas Storage Capacity Filled",
+        "target_value": 91.0,
+        "target_description": "Fill at least 91% of EU gas storage capacity",
+        "unit": "percentage",
+        "timeframe": "by winter 2022/2023",
+        "measurement_method": "Percentage of total EU gas storage capacity filled",
+        "responsible_entity": "EU Member States, European Commission",
+        "sector": "Energy"
+      },
+      {
+        "kpi_text": "the EU and its Member States mobilised over EUR 19 billion to strengthen Ukraine’s economic, social and financial resilience and an additional EUR 3.1 billion of military support under the European Peace Facility",
+        "kpi_type": "quantitative",
+        "metric_name": "Financial and Military Support to Ukraine",
+        "target_value": 22.1,
+        "target_description": "Mobilize over EUR 19 billion for economic, social, and financial resilience and EUR 3.1 billion for military support to Ukraine",
         "unit": "billion EUR",
-        "timeframe": null,
-        "measurement_method": "Financial mobilization tracking",
-        "responsible_entity": "European Union",
-        "sector": "International Aid"
+        "timeframe": "by September 2022",
+        "measurement_method": "Total funds mobilized and disbursed",
+        "responsible_entity": "EU and Member States",
+        "sector": "Foreign Affairs / Humanitarian Aid"
       },
       {
-        "kpi_text": "Provide EUR 100 million for the rehabilitation of damaged Ukrainian schools.",
+        "kpi_text": "over 70,000 tonnes of aid have been provided to Ukraine, including food, water, shelter, energy and healthcare",
         "kpi_type": "quantitative",
-        "metric_name": "Rehabilitation of Schools in Ukraine",
+        "metric_name": "Humanitarian Aid Delivered to Ukraine",
+        "target_value": 70000.0,
+        "target_description": "Deliver over 70,000 tonnes of humanitarian aid to Ukraine",
+        "unit": "tonnes",
+        "timeframe": "by September 2022",
+        "measurement_method": "Total weight of aid delivered",
+        "responsible_entity": "EU Civil Protection Mechanism",
+        "sector": "Humanitarian Aid"
+      },
+      {
+        "kpi_text": "providing EUR 100 million for the rehabilitation of damaged Ukrainian schools",
+        "kpi_type": "quantitative",
+        "metric_name": "Funding for Rehabilitation of Ukrainian Schools",
         "target_value": 100.0,
-        "target_description": "Financial support for the rehabilitation of schools.",
+        "target_description": "Provide EUR 100 million for rehabilitation of damaged Ukrainian schools",
         "unit": "million EUR",
-        "timeframe": null,
-        "measurement_method": "Funding allocation and project completion reports",
-        "responsible_entity": "European Union",
-        "sector": "Education"
+        "timeframe": "first step in support for Ukraine (2022/2023)",
+        "measurement_method": "Funds allocated and disbursed",
+        "responsible_entity": "European Commission",
+        "sector": "Education / Foreign Aid"
       },
       {
-        "kpi_text": "Mobilise EUR 600 million from the European Development Fund to increase support to food security to African, Caribbean and Pacific countries.",
+        "kpi_text": "mobilised EUR 600 million from the European Development Fund to increase support to food security to African, Caribbean and Pacific countries",
         "kpi_type": "quantitative",
-        "metric_name": "Food Security Support",
+        "metric_name": "Food Security Support to ACP Countries",
         "target_value": 600.0,
-        "target_description": "Financial support for food security initiatives.",
+        "target_description": "Mobilize EUR 600 million to support food security in African, Caribbean, and Pacific countries",
         "unit": "million EUR",
-        "timeframe": null,
-        "measurement_method": "Funding allocation and impact assessment",
-        "responsible_entity": "European Union",
-        "sector": "Food Security"
+        "timeframe": "2022/2023",
+        "measurement_method": "Funds allocated and disbursed",
+        "responsible_entity": "European Commission, European Development Fund",
+        "sector": "Development Aid / Food Security"
       },
       {
-        "kpi_text": "Halve pesticide use by 2030.",
+        "kpi_text": "proposal to halve pesticide use by 2030",
         "kpi_type": "quantitative",
         "metric_name": "Pesticide Use Reduction",
         "target_value": 50.0,
-        "target_description": "Reduce pesticide use in agriculture.",
-        "unit": "percentage",
+        "target_description": "Reduce pesticide use by 50% by 2030",
+        "unit": "percentage reduction",
         "timeframe": "by 2030",
-        "measurement_method": "Agricultural monitoring and reporting",
-        "responsible_entity": "European Commission",
-        "sector": "Agriculture"
+        "measurement_method": "Comparison of pesticide use baseline to 2030 levels",
+        "responsible_entity": "European Commission, Member States",
+        "sector": "Agriculture / Environment"
       },
       {
-        "kpi_text": "Restore Europe’s damaged ecosystems by 2050.",
+        "kpi_text": "restore Europe’s damaged ecosystems by 2050",
         "kpi_type": "qualitative",
         "metric_name": "Ecosystem Restoration",
         "target_value": null,
-        "target_description": "Implement measures to restore ecosystems across Europe.",
+        "target_description": "Restore Europe’s damaged ecosystems by 2050",
         "unit": "qualitative milestone",
         "timeframe": "by 2050",
-        "measurement_method": "Ecosystem health assessments",
-        "responsible_entity": "European Commission",
-        "sector": "Environment"
+        "measurement_method": "Assessment of ecosystem health and restoration progress",
+        "responsible_entity": "European Commission, Member States",
+        "sector": "Environment / Biodiversity"
       },
       {
-        "kpi_text": "Establish a comprehensive framework for sustainable food systems in the EU.",
-        "kpi_type": "qualitative",
-        "metric_name": "Sustainable Food Systems Framework",
-        "target_value": null,
-        "target_description": "Create a framework that integrates sustainability into food policies.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Framework establishment and implementation",
+        "kpi_text": "create a new European Hydrogen Bank to invest EUR 3 billion into kick-starting a hydrogen market in EU, including through matching supply with demand",
+        "kpi_type": "quantitative",
+        "metric_name": "Hydrogen Market Investment",
+        "target_value": 3.0,
+        "target_description": "Invest EUR 3 billion to establish a European Hydrogen Bank and kick-start the hydrogen market",
+        "unit": "billion EUR",
+        "timeframe": "2023 onwards",
+        "measurement_method": "Funds allocated and operationalization of the Hydrogen Bank",
         "responsible_entity": "European Commission",
-        "sector": "Food Policy"
+        "sector": "Energy / Innovation"
       },
       {
-        "kpi_text": "Launch the European Year of Skills to deliver necessary reskilling and upskilling of our workforce.",
+        "kpi_text": "double our firefighting capacities ahead of the 2023 forest fire season and add 10 light amphibious aircrafts and 3 helicopters to our fleet",
+        "kpi_type": "quantitative",
+        "metric_name": "EU Firefighting Capacity Expansion",
+        "target_value": 2.0,
+        "target_description": "Double EU firefighting capacities and add 10 aircraft and 3 helicopters by 2023",
+        "unit": "multiple (capacity multiplier, number of aircraft, number of helicopters)",
+        "timeframe": "by 2023 forest fire season",
+        "measurement_method": "Comparison of fleet size and capacity before and after expansion",
+        "responsible_entity": "European Commission",
+        "sector": "Civil Protection / Disaster Response"
+      },
+      {
+        "kpi_text": "adopt ambitious packages of further climate and environment measures including with regards to transport emissions and carbon removal certification, proposals to improve ambient air and water quality, and key initiatives in circular economy",
         "kpi_type": "qualitative",
-        "metric_name": "European Year of Skills",
+        "metric_name": "Adoption of Climate and Environment Legislative Packages",
         "target_value": null,
-        "target_description": "Promote reskilling and upskilling initiatives across Europe.",
+        "target_description": "Adopt legislative packages on transport emissions, carbon removal certification, air and water quality, and circular economy",
         "unit": "qualitative milestone",
         "timeframe": "2023",
-        "measurement_method": "Program implementation and participation metrics",
-        "responsible_entity": "European Commission",
-        "sector": "Education and Employment"
-      },
-      {
-        "kpi_text": "Propose a Council Recommendation on developing social economy framework conditions.",
-        "kpi_type": "qualitative",
-        "metric_name": "Social Economy Framework Development",
-        "target_value": null,
-        "target_description": "Develop policies to support social economy entities.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Policy proposal tracking",
-        "responsible_entity": "European Commission",
-        "sector": "Social Economy"
-      },
-      {
-        "kpi_text": "Implement the Joint Roadmap on the Pact on Migration and Asylum.",
-        "kpi_type": "qualitative",
-        "metric_name": "Migration and Asylum Implementation",
-        "target_value": null,
-        "target_description": "Ensure progress on the migration and asylum roadmap.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Implementation progress reports",
-        "responsible_entity": "European Commission",
-        "sector": "Migration"
-      },
-      {
-        "kpi_text": "Present a proposal for a second basket of new own resources.",
-        "kpi_type": "qualitative",
-        "metric_name": "New Own Resources Proposal",
-        "target_value": null,
-        "target_description": "Develop a proposal for new funding sources for the EU.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Proposal submission and legislative tracking",
-        "responsible_entity": "European Commission",
-        "sector": "Finance"
+        "measurement_method": "Legislation adopted and implemented",
+        "responsible_entity": "European Commission, EU co-legislators",
+        "sector": "Environment / Climate Policy"
       }
     ],
-    "country_list_iso": [],
+    "country_list_iso": [
+      "AUS",
+      "CHL",
+      "DEU",
+      "GEO",
+      "IND",
+      "IDN",
+      "MEX",
+      "MDA",
+      "NZL",
+      "RUS",
+      "UKR"
+    ],
     "responsible_entity": "European Commission",
     "sdg_alignment": [
       "SDG 1: No Poverty",
@@ -289,40 +408,55 @@
       "SDG 6: Clean Water and Sanitation",
       "SDG 7: Affordable and Clean Energy",
       "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
       "SDG 11: Sustainable Cities and Communities",
       "SDG 12: Responsible Consumption and Production",
       "SDG 13: Climate Action",
+      "SDG 14: Life Below Water",
+      "SDG 15: Life on Land",
       "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
   },
   "top_actors": [
     {
-      "name": "Ursula von der Leyen",
+      "name": "European Commission",
       "category": "Political Actors",
       "relevance_score": 1.0,
-      "justification": "As the President of the European Commission, Ursula von der Leyen is prominently mentioned throughout the document, particularly in relation to key initiatives and responses to crises, such as the war in Ukraine and the energy crisis. Her leadership role and direct involvement in shaping the Commission's work programme make her the most relevant actor."
+      "justification": "The European Commission is the author and central actor throughout the document, responsible for drafting, proposing, and implementing the work programme. It leads key initiatives, coordinates responses to crises, and is repeatedly referenced as the main driver of EU policy and action."
+    },
+    {
+      "name": "European Union",
+      "category": "Political Actors",
+      "relevance_score": 0.95,
+      "justification": "The European Union is the overarching entity within which all actions, policies, and strategies are framed. The document discusses the EU's collective response to crises, its values, and its ambitions, making it fundamental to the context and influence of all main topics."
+    },
+    {
+      "name": "European Parliament",
+      "category": "Political Actors",
+      "relevance_score": 0.85,
+      "justification": "The European Parliament is a key co-legislator and recipient of the Commission's communication. It is central to the adoption of legislative proposals, interinstitutional negotiations, and the follow-up to the Conference on the Future of Europe, giving it significant influence on the main decisions and initiatives discussed."
     }
   ],
   "top_themes": [
     {
-      "name": "Digital Economy",
+      "name": "Digital Agenda",
       "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.9,
-      "justification": "The digital economy is central to the document's main message as it emphasizes the need for Europe to enhance its economic resilience and competitiveness through digital solutions, which are crucial for addressing current challenges and future growth."
+      "relevance_score": 0.95,
+      "justification": "The Digital Agenda, encompassing digital transformation, infrastructure, policy, and investment, is a central pillar of the Commission's 2023 work programme. It is directly tied to the EU's strategic objectives for competitiveness, resilience, and the twin green and digital transitions. A significant portion of the document is dedicated to digitalisation, including the Digital Decade, digital skills, digital economy, and regulatory frameworks, making it one of the most prominent and cross-cutting themes."
     },
     {
-      "name": "Digital Governance",
-      "category": "Data & Governance",
+      "name": "European Green Deal",
+      "category": "Sustainability & Climate Action",
+      "relevance_score": 0.92,
+      "justification": "Although not explicitly listed in the detected themes, the European Green Deal and the green transition are core to the document's ambitions, with extensive content on climate action, energy transition, sustainability, and related regulatory and investment measures. The Green Deal is repeatedly referenced as a headline ambition and is strategically vital for the EU's long-term resilience, competitiveness, and global leadership."
+    },
+    {
+      "name": "Multilateralism",
+      "category": "Regional & International Cooperation",
       "relevance_score": 0.85,
-      "justification": "Digital governance is highlighted as a key aspect of ensuring ethical and transparent digital transformation, which is essential for maintaining trust and security in the digital age, aligning with the document's objectives of promoting a safe and inclusive digital environment."
-    },
-    {
-      "name": "Data Protection",
-      "category": "Data & Governance",
-      "relevance_score": 0.8,
-      "justification": "Data protection is critical in the context of digital transformation, as it underpins citizens' rights and privacy, which are fundamental to the EU's democratic values and the overall success of digital initiatives outlined in the document."
+      "justification": "Multilateralism and international cooperation are emphasized throughout the document, especially in the context of responding to global crises (e.g., Ukraine, energy, food security), upholding the rules-based order, and advancing EU interests through partnerships and alliances. The document dedicates substantial content to the EU's external action, support for Ukraine, and engagement with global partners, making this theme strategically and contextually important."
     }
   ]
 }

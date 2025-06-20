@@ -1,28 +1,53 @@
 {
-  "title": "EU Policy and Outreach Partnership: Strategic Framework for Mexico, Central America, and the Caribbean (2018-2020)",
+  "title": "EU Policy and Outreach Partnership: Multi-annual Indicative Programme 2018-2020 for Mexico, Central America, and the Caribbean",
   "date": "2018-2020",
-  "location": null,
-  "executive_summary": "The EU Policy and Outreach Partnership for Mexico, Central America, and the Caribbean, established under the Partnership Instrument, aims to enhance EU strategic interests globally from 2018 to 2020. This initiative focuses on fostering cooperation with third countries, particularly in trade, economic diplomacy, environmental sustainability, security, and digital governance. The program allocates a budget of EUR 461 million, emphasizing multilateralism, EU values, and resilience. Key priorities include promoting responsible business conduct, addressing climate change, and enhancing global health. The Partnership Instrument supports the EU's external action objectives, facilitating partnerships and dialogues to tackle global challenges while ensuring coherence with internal policies. The document outlines a strategic framework for engaging with various regions, particularly Latin America, to strengthen economic ties and address shared global issues.",
+  "location": "Brussels, Belgium",
+  "executive_summary": "The EU Policy and Outreach Partnership Instrument (PI), established in 2014, is a global tool designed to advance EU strategic interests and values through partnerships with third countries, including Mexico, Central America, and the Caribbean. For 2018-2020, the PI focuses on four main areas: trade and economic diplomacy, environment/climate/energy, peace and security, and digital/global health, integrating cross-cutting themes such as multilateralism, EU values, resilience, and innovation. The PI supports EU foreign policy by fostering bilateral, regional, and multilateral cooperation, enhancing market access for EU businesses (especially SMEs), and promoting public and cultural diplomacy. With a remaining budget of €461 million for 2018-2020, the PI emphasizes flexibility, rapid response to emerging priorities, and complementarity with other EU instruments. The strategy aims to strengthen the EU’s global role, support sustainable development, and build alliances to address global challenges.",
   "characteristics": [
-    "The Partnership Instrument, established in 2014, aims to promote EU strategic interests globally through cooperation with third countries, particularly middle-income nations.",
-    "It focuses on four main intervention areas: global challenges, the international dimension of Europe 2020, trade and market access, and public and cultural diplomacy.",
-    "Priorities for 2018-2020 include trade diplomacy, environmental sustainability, peace and security, digital governance, and global health.",
-    "The instrument emphasizes multilateralism, EU values, resilience, and innovation, integrating these principles across its actions.",
-    "A budget of EUR 461 million is allocated for 2018-2020, with a reserve of EUR 20 million for unforeseen challenges."
+    "The Partnership Instrument (PI) is an EU policy-support tool (2014–2020) designed to advance EU strategic interests globally, focusing on cooperation with third countries, especially middle-income and strategic partners, on a peer-to-peer basis, and is not limited by Official Development Assistance (ODA) criteria.",
+    "PI’s four main intervention areas are: (1) global challenges (e.g., climate change, environment), (2) international dimension of Europe 2020 (smart, sustainable, inclusive growth), (3) trade & market access (including economic diplomacy), and (4) public & cultural diplomacy (engagement, visibility, mutual understanding).",
+    "Key priorities for 2018–2020 include: trade and economic diplomacy (responsible business conduct, tax governance), environment/climate/energy (water, ocean governance, circular economy, urbanisation), peace/security/defence, digital (cybersecurity, digital governance), and global health (notably anti-microbial resistance).",
+    "Cross-cutting issues mainstreamed in all actions: multilateralism (global alliances, rules-based order), EU values (democracy, rule of law, human rights, gender equality), resilience, and innovation.",
+    "PI operates through standalone long-term projects and rapid-response tools (Policy Support Facility, TAIEX), ensuring flexibility to address emerging priorities and support EU foreign policy objectives, including support for trade agreements, regulatory cooperation, and public diplomacy.",
+    "Geographic focus is global, with specific attention to Asia-Pacific, Americas (notably Mexico, Central America, Caribbean), Russia/Central Asia/Arctic, Gulf countries, Africa, and the EU neighbourhood, supporting both bilateral and regional partnerships and dialogues."
   ],
   "themes": {
     "Regional & International Cooperation": [
+      "Digital & Technological Partnerships",
       "EU-LAC Digital Alliance",
+      "Bi-regional Cooperation",
       "Global Digital Cooperation",
-      "Digital & Technological Partnerships"
+      "Multilateralism",
+      "EU-CELAC Digital Partnership"
     ],
     "Digital Transformation & Strategy": [
+      "Digital Agenda",
       "Digital Policy",
-      "Digital Trade"
+      "Digital Trade",
+      "Digital Platforms",
+      "Digital Infrastructure",
+      "Digital Economy"
+    ],
+    "Technology & Innovation": [
+      "Tech-Driven Solutions",
+      "ICT Innovation",
+      "Cloud Computing",
+      "Artificial Intelligence",
+      "Technology Regulations",
+      "AI Ethics"
     ],
     "Data & Governance": [
       "Digital Governance",
-      "Data Governance"
+      "Internet Governance",
+      "Cybersecurity",
+      "Data Protection",
+      "Digital Rights"
+    ],
+    "Inclusion & Social Development": [
+      "Digital Inclusion",
+      "Connectivity",
+      "Digital Skills Development",
+      "Gender Equality in Tech"
     ]
   },
   "actors": {
@@ -30,278 +55,346 @@
       "European Union",
       "EU Member States",
       "European Commission",
-      "United Nations",
+      "EU Delegations",
       "Community of Latin American and Caribbean States",
       "Southern Common Market",
-      "Pacific Alliance"
-    ],
-    "Economic Actors": [
-      "Inter-American Development Bank",
-      "World Bank",
-      "Development Bank of Latin America and the Caribbean",
-      "Central American Bank for Economic Integration"
+      "Pacific Alliance",
+      "United Nations",
+      "European Council"
     ],
     "Research and Innovation Actors": [
-      "EU-LAC Foundation",
       "Universities",
-      "Research Performing Organisations"
+      "Academic Institutions",
+      "Researchers",
+      "Innovators",
+      "European Institute of Innovation and Technology",
+      "Digital Innovation Hubs",
+      "Knowledge and Innovation Communities"
+    ],
+    "Economic Actors": [
+      "Organisation for Economic Cooperation and Development",
+      "World Bank",
+      "Development Bank of Latin America and the Caribbean",
+      "Central American Bank for Economic Integration",
+      "Inter-American Development Bank",
+      "Private Sector Representatives",
+      "Industry Actors",
+      "ICT Companies",
+      "Digital Companies",
+      "Telecommunication Companies",
+      "Research Funding Organisations"
+    ],
+    "Civil Society Actors": [
+      "Civil Society Organisations",
+      "Non-governmental Institutions"
     ]
   },
   "practical_applications": [
-    "Implementation of the Multi-annual Indicative Programme (MIP) for the period 2018-2020, focusing on trade and economic diplomacy, environment, climate and energy, peace, security and defence, digital governance, and global health.",
-    "Active use of the Policy Support Facility (PSF) and Technical Assistance and Information Exchange (TAIEX) tools to respond to emerging political priorities and provide technical assistance in partner countries.",
-    "Ongoing support for the implementation of the Paris Agreement and the 2030 Agenda for Sustainable Development through partnerships with key players in climate and energy.",
-    "Engagement in public diplomacy activities to enhance mutual understanding and improve the perception of the EU in partner countries, targeting students, civil society, and cultural operators.",
-    "Support for the Erasmus+ initiative to extend opportunities for student and academic staff mobility in partner countries, promoting higher education cooperation.",
-    "Development of partnerships with Latin American and Caribbean countries through the Community of Latin American and Caribbean States (CELAC) and the EU-CELAC Joint Action Plan.",
-    "Ongoing negotiations and implementation of trade agreements with various countries, including Mercosur, and support for compliance with international standards and trade facilitation measures.",
-    "Promotion of circular economy initiatives and resource efficiency policies in collaboration with partner countries to address environmental challenges.",
-    "Support for migration management and cooperation with third countries to address root causes of irregular migration, in line with the EU's European Agenda on Migration.",
-    "Active participation in international fora to promote EU interests and values, including the G7, G20, and UN, particularly in areas related to climate change, security, and global health."
+    "Implementation of the Partnership Instrument (PI) as a global EU funding mechanism since 2014, supporting EU strategic interests through standalone actions, rapid-response tools (Policy Support Facility - PSF, and Technical Assistance and Information Exchange - TAIEX), and public diplomacy activities.",
+    "Active funding and operation of 246 PI actions (as of July 2017), including 98 under PSF and 59 under TAIEX, with more in the pipeline.",
+    "Ongoing support for the negotiation, implementation, and updating of EU trade and investment agreements with partner countries, including FTAs and Association Agreements (e.g., with Mexico, Chile, Mercosur, Central America, and the Caribbean).",
+    "Established frameworks for cooperation and political and trade relations, such as the Political Dialogue and Cooperation Agreement with Cuba, the Association Agreement in Central America, and the Economic Partnership Agreement with the Caribbean.",
+    "Implementation of the EU-CELAC Joint Action Plan (2015) to advance dialogue and cooperation in areas of mutual interest between the EU and Latin America and the Caribbean.",
+    "Funding and support for public and cultural diplomacy initiatives, including the Jean Monnet Centres, Erasmus+ international credit mobility and joint masters, and targeted outreach to academics, students, civil society, and cultural operators.",
+    "Support for the international dimension of the Erasmus+ programme, enabling student and staff mobility, academic recognition, and higher education partnerships with third countries.",
+    "Ongoing support for the implementation of the Paris Agreement and the 2030 Agenda for Sustainable Development through policy dialogues, pilot projects, and technical assistance in climate, energy, and sustainable urbanisation.",
+    "Promotion and support of circular economy initiatives, resource efficiency, and environmental protection in partner countries, including through dedicated actions, platforms, and regulatory cooperation in FTAs.",
+    "Support for migration management and mobility cooperation with partner countries, in line with the European Agenda on Migration and the Partnership Framework with third countries.",
+    "Implementation of targeted business support programmes for EU companies, especially SMEs, to improve market access and competitiveness in challenging markets, particularly in Asia and Latin America, leveraging the Enterprise Europe Network and COSME programme structures.",
+    "Ongoing support for the development and implementation of digital policy frameworks, including cooperation on cybersecurity, digital governance, and the international dimension of the EU Digital Single Market.",
+    "Active engagement in multilateral and regional fora (e.g., UN, G7, G20, WTO, CELAC) to promote EU interests, influence international agendas, and support the implementation of global agreements.",
+    "Maintenance of a financial reserve within the PI to allow for swift and flexible responses to emerging policy objectives or unforeseen challenges in external relations."
   ],
   "commitments": [
-    "The remaining financial envelope for the period 2018-2020 will be EUR 461 million.",
-    "A reserve of EUR 20 million will be maintained for unallocated funds to respond to emerging policy objectives.",
-    "The Partnership Instrument will support the implementation of the Paris Agreement and other multilateral climate measures, with specific objectives to foster investment opportunities related to clean, low carbon, resource efficient, and climate resilient technologies.",
-    "The EU aims to promote the implementation of international commitments at UN level or under the G7 and G20 processes related to plastic marine litter and microplastics.",
-    "The Partnership Instrument will support the development of carbon market mechanisms in key partner countries.",
-    "The EU will continue to support the implementation of the external dimension of EU energy policy, focusing on energy security issues such as supply sources and routes.",
-    "The Partnership Instrument will support actions to promote and facilitate effective implementation of provisions under the Sustainable Development Chapters of the EU trade and investment agreements.",
-    "The EU will support the systematic implementation and possible updating of all trade and investment agreements by the EU's partners.",
-    "The expected outcome under Objective 1 is that EU bilateral, regional, inter-regional, and multilateral cooperation and partnership strategies are enhanced through reinforced policy dialogues and collective approaches to challenges of global concern.",
-    "The expected outcome under Objective 2 is that approaches and practices beneficial to the achievement of the EU 2020 strategy are taken up in partner countries.",
-    "The expected outcome under Objective 3 is that conditions for accessing partner country markets are improved."
+    "The remaining financial envelope for the Partnership Instrument for the period 2018-2020 will be EUR 461 million.",
+    "A reserve of EUR 20 million will be maintained for the period 2018-2020 to allow swift and flexible responses to emerging policy objectives or unforeseen challenges.",
+    "The indicative financial allocations for the Americas region for 2018-2020 are EUR 281 million (as per the new proposed MIP).",
+    "The indicative financial allocations for Asia & the Pacific for 2018-2020 are EUR 390 million (as per the new proposed MIP).",
+    "The indicative financial allocations for Russia, Central Asia and the Arctic for 2018-2020 are EUR 48 million (as per the new proposed MIP).",
+    "The indicative financial allocations for Gulf countries for 2018-2020 are EUR 23 million (as per the new proposed MIP).",
+    "The indicative financial allocations for Multicountry/Multilateral/Global actions for 2018-2020 are EUR 160 million (as per the new proposed MIP).",
+    "The total operational appropriations for the Partnership Instrument for 2014-2020 are EUR 922.2 million.",
+    "The total administrative support for the Partnership Instrument for 2014-2020 is EUR 38.2 million.",
+    "The grand total for the Partnership Instrument Multi-annual Indicative Programme 2014-2020 is EUR 960.4 million."
   ],
-  "score": 90,
+  "score": 58,
   "quality_breakdown": {
-    "faithfulness": 100,
-    "consistency": 90,
-    "completeness": 90,
-    "accuracy": 80,
-    "issues": []
+    "faithfulness": 0,
+    "consistency": 95,
+    "completeness": 98,
+    "accuracy": 81,
+    "issues": [
+      "Low faithfulness - check for hallucinations in basic or strategic extra data"
+    ]
   },
   "extra_data": {
-    "lead_country_iso": "MEX",
+    "lead_country_iso": "EUU",
     "agreement_type": [
-      "MoU"
+      "Multi-annual Indicative Programme"
     ],
-    "legal_bindingness": "Politically-binding",
+    "legal_bindingness": "Non-binding",
     "coverage_scope": "Global",
     "eu_policy_alignment": [
-      "Global Gateway",
-      "NDICI-Global Europe",
-      "Digital Decade",
       "Horizon Europe",
       "EU Cyber Strategy"
     ],
     "review_schedule": "Biennial",
     "beneficiary_group_raw": [
+      "company",
       "SME",
       "woman",
-      "community",
-      "student",
-      "academic"
+      "youth",
+      "civil society organisation"
     ],
     "beneficiary_group": [
+      {
+        "category": "SMEs / Businesses",
+        "label": "Companies"
+      },
       {
         "category": "SMEs / Businesses",
         "label": "Small and Medium Enterprises"
       },
       {
         "category": "Women & Girls",
-        "label": "Gender Equality Initiatives"
-      },
-      {
-        "category": "Civil Society / NGOs",
-        "label": "Community Organizations"
+        "label": "Women in Tech"
       },
       {
         "category": "Students & Youth",
-        "label": "Students"
+        "label": "Youth"
       },
       {
-        "category": "Researchers & Academia",
-        "label": "Academic Institutions"
+        "category": "Civil Society / NGOs",
+        "label": "Civil Society Organizations"
       }
     ],
     "start_date": "2018-01-01",
-    "end_date": "2020-01-01",
+    "end_date": "2020-12-31",
     "commitment_details": [
       {
-        "text": "The remaining financial envelope for the period 2018-2020 will be EUR 461 million.",
+        "text": "The remaining financial envelope for the Partnership Instrument for the period 2018-2020 will be EUR 461 million.",
         "commitment_class": "Financed"
       },
       {
-        "text": "A reserve of EUR 20 million will be maintained for unallocated funds to respond to emerging policy objectives.",
+        "text": "A reserve of EUR 20 million will be maintained for the period 2018-2020 to allow swift and flexible responses to emerging policy objectives or unforeseen challenges.",
         "commitment_class": "Financed"
       },
       {
-        "text": "The Partnership Instrument will support the implementation of the Paris Agreement and other multilateral climate measures, with specific objectives to foster investment opportunities related to clean, low carbon, resource efficient, and climate resilient technologies.",
-        "commitment_class": "Programmatic"
+        "text": "The indicative financial allocations for the Americas region for 2018-2020 are EUR 281 million (as per the new proposed MIP).",
+        "commitment_class": "Financed"
       },
       {
-        "text": "The EU aims to promote the implementation of international commitments at UN level or under the G7 and G20 processes related to plastic marine litter and microplastics.",
-        "commitment_class": "Programmatic"
+        "text": "The indicative financial allocations for Asia & the Pacific for 2018-2020 are EUR 390 million (as per the new proposed MIP).",
+        "commitment_class": "Financed"
       },
       {
-        "text": "The Partnership Instrument will support the development of carbon market mechanisms in key partner countries.",
-        "commitment_class": "Programmatic"
+        "text": "The indicative financial allocations for Russia, Central Asia and the Arctic for 2018-2020 are EUR 48 million (as per the new proposed MIP).",
+        "commitment_class": "Financed"
       },
       {
-        "text": "The EU will continue to support the implementation of the external dimension of EU energy policy, focusing on energy security issues such as supply sources and routes.",
-        "commitment_class": "Programmatic"
+        "text": "The indicative financial allocations for Gulf countries for 2018-2020 are EUR 23 million (as per the new proposed MIP).",
+        "commitment_class": "Financed"
       },
       {
-        "text": "The Partnership Instrument will support actions to promote and facilitate effective implementation of provisions under the Sustainable Development Chapters of the EU trade and investment agreements.",
-        "commitment_class": "Programmatic"
+        "text": "The indicative financial allocations for Multicountry/Multilateral/Global actions for 2018-2020 are EUR 160 million (as per the new proposed MIP).",
+        "commitment_class": "Financed"
       },
       {
-        "text": "The EU will support the systematic implementation and possible updating of all trade and investment agreements by the EU's partners.",
-        "commitment_class": "Programmatic"
+        "text": "The total operational appropriations for the Partnership Instrument for 2014-2020 are EUR 922.2 million.",
+        "commitment_class": "Financed"
       },
       {
-        "text": "The expected outcome under Objective 1 is that EU bilateral, regional, inter-regional, and multilateral cooperation and partnership strategies are enhanced through reinforced policy dialogues and collective approaches to challenges of global concern.",
-        "commitment_class": "Declarative"
+        "text": "The total administrative support for the Partnership Instrument for 2014-2020 is EUR 38.2 million.",
+        "commitment_class": "Financed"
       },
       {
-        "text": "The expected outcome under Objective 2 is that approaches and practices beneficial to the achievement of the EU 2020 strategy are taken up in partner countries.",
-        "commitment_class": "Declarative"
-      },
-      {
-        "text": "The expected outcome under Objective 3 is that conditions for accessing partner country markets are improved.",
-        "commitment_class": "Declarative"
+        "text": "The grand total for the Partnership Instrument Multi-annual Indicative Programme 2014-2020 is EUR 960.4 million.",
+        "commitment_class": "Financed"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "Mobilize €461 million in public and private investment by 2020 for various strategic initiatives.",
+        "kpi_text": "Following implementation of the Partnership Instrument over the period 2014-17 which consumed about 52% of the overall budget of EUR 960.4 million for the MFF period 2014-2020, the remaining financial envelope for the period 2018-20 will be EUR 461 million.",
         "kpi_type": "quantitative",
-        "metric_name": "Investment Mobilization",
+        "metric_name": "Financial Allocation for 2018-2020",
         "target_value": 461.0,
-        "target_description": "Mobilize funds for strategic initiatives.",
+        "target_description": "Allocate EUR 461 million for Partnership Instrument activities in 2018-2020",
         "unit": "million EUR",
-        "timeframe": "by 2020",
-        "measurement_method": "Financial reports and audits",
-        "responsible_entity": "EU Commission",
-        "sector": "Finance"
+        "timeframe": "2018-2020",
+        "measurement_method": "Budget allocation and expenditure tracking",
+        "responsible_entity": "European Commission",
+        "sector": "Multi-sector/External Action"
       },
       {
-        "kpi_text": "Establish a robust framework for public and cultural diplomacy by 2020.",
+        "kpi_text": "A small proportion (EUR 20 million) of the budget will remain unallocated in the form of a reserve in order to allow swift and flexible responses to emerging policy objectives in external relations, or to deal with unforeseen challenges.",
+        "kpi_type": "quantitative",
+        "metric_name": "Reserve Fund Allocation",
+        "target_value": 20.0,
+        "target_description": "Maintain EUR 20 million as a reserve for unprogrammed funds",
+        "unit": "million EUR",
+        "timeframe": "2018-2020",
+        "measurement_method": "Budget allocation and reserve tracking",
+        "responsible_entity": "European Commission",
+        "sector": "Multi-sector/External Action"
+      },
+      {
+        "kpi_text": "So far, 98 actions have been financed under the PSF and 59 actions under TAIEX, with more in the pipeline. Statistics (July 2017) for the total of 246 Partnership Instrument actions (standalone, PSF and TAIEX) are presented in figures below.",
+        "kpi_type": "quantitative",
+        "metric_name": "Number of Partnership Instrument Actions Implemented",
+        "target_value": 246.0,
+        "target_description": "Implement 246 Partnership Instrument actions (standalone, PSF, TAIEX) by July 2017",
+        "unit": "actions",
+        "timeframe": "by July 2017",
+        "measurement_method": "Action/project count",
+        "responsible_entity": "European Commission",
+        "sector": "Multi-sector/External Action"
+      },
+      {
+        "kpi_text": "Fostering the implementation of the Paris Agreement and other multilateral and regional climate measures amongst major economies and key partner countries, including with regard to mitigation policy instruments, mid-century strategies, monitoring and reporting and adaptation planning.",
         "kpi_type": "qualitative",
-        "metric_name": "Public and Cultural Diplomacy Framework",
+        "metric_name": "Paris Agreement Implementation Support",
         "target_value": null,
-        "target_description": "Create a framework to enhance public and cultural diplomacy.",
+        "target_description": "Foster implementation of the Paris Agreement and related climate measures among major economies and key partner countries",
         "unit": "qualitative milestone",
-        "timeframe": "by 2020",
-        "measurement_method": "Framework establishment and implementation review",
-        "responsible_entity": "EU Commission",
-        "sector": "Diplomacy"
+        "timeframe": "2018-2020",
+        "measurement_method": "Assessment of policy dialogues, adoption of measures, and progress reports",
+        "responsible_entity": "European Commission, EU Delegations",
+        "sector": "Climate and Energy"
       },
       {
-        "kpi_text": "Increase the number of EU trade agreements implemented by 50% by 2020.",
-        "kpi_type": "quantitative",
-        "metric_name": "Trade Agreement Implementation",
-        "target_value": 50.0,
-        "target_description": "Increase the implementation of trade agreements.",
-        "unit": "percentage",
-        "timeframe": "by 2020",
-        "measurement_method": "Trade agreement compliance reports",
-        "responsible_entity": "EU Commission",
-        "sector": "Trade"
-      },
-      {
-        "kpi_text": "Support the implementation of the Paris Agreement through national contributions by 2020.",
+        "kpi_text": "To support a number of flagship initiatives such as a “sustainable urbanisation” initiative focusing on sustainable, low carbon and low emission, green and resource and energy efficient growth, sustainable mobility solutions, and sustainable management of water and waste involving major cities in middle income countries, and Clean Energy Centres and/or Clean Technology and Innovation Actions in key partner countries;",
         "kpi_type": "qualitative",
-        "metric_name": "Paris Agreement Support",
+        "metric_name": "Sustainable Urbanisation Initiatives",
         "target_value": null,
-        "target_description": "Support national contributions to the Paris Agreement.",
+        "target_description": "Support flagship sustainable urbanisation initiatives and Clean Energy/Technology Centres in key partner countries",
         "unit": "qualitative milestone",
-        "timeframe": "by 2020",
-        "measurement_method": "Monitoring of national contributions",
-        "responsible_entity": "EU Commission",
-        "sector": "Environment"
+        "timeframe": "2018-2020",
+        "measurement_method": "Initiative/project establishment and implementation",
+        "responsible_entity": "European Commission, EU Delegations",
+        "sector": "Urban Development, Energy, Environment"
       },
       {
-        "kpi_text": "Enhance market access for EU companies in third countries by reducing trade barriers by 30% by 2020.",
-        "kpi_type": "quantitative",
-        "metric_name": "Market Access Enhancement",
-        "target_value": 30.0,
-        "target_description": "Reduce trade barriers for EU companies.",
-        "unit": "percentage",
-        "timeframe": "by 2020",
-        "measurement_method": "Trade barrier assessments",
-        "responsible_entity": "EU Commission",
-        "sector": "Trade"
-      },
-      {
-        "kpi_text": "Increase the number of partnerships with civil society organizations by 40% by 2020.",
-        "kpi_type": "quantitative",
-        "metric_name": "Civil Society Partnerships",
-        "target_value": 40.0,
-        "target_description": "Increase partnerships with civil society organizations.",
-        "unit": "percentage",
-        "timeframe": "by 2020",
-        "measurement_method": "Partnership agreements documentation",
-        "responsible_entity": "EU Commission",
-        "sector": "Civil Society"
-      },
-      {
-        "kpi_text": "Develop a comprehensive strategy for digital cooperation with key partners by 2020.",
+        "kpi_text": "Support for the implementation and negotiation of EU trade and investment agreements",
         "kpi_type": "qualitative",
-        "metric_name": "Digital Cooperation Strategy",
+        "metric_name": "Trade and Investment Agreement Implementation",
         "target_value": null,
-        "target_description": "Create a strategy for digital cooperation.",
+        "target_description": "Support systematic implementation and negotiation of EU trade and investment agreements with partner countries",
         "unit": "qualitative milestone",
-        "timeframe": "by 2020",
-        "measurement_method": "Strategy development and approval process",
-        "responsible_entity": "EU Commission",
-        "sector": "Digital"
+        "timeframe": "2018-2020",
+        "measurement_method": "Number and progress of agreements supported",
+        "responsible_entity": "European Commission, DG Trade",
+        "sector": "Trade and Investment"
       },
       {
-        "kpi_text": "Achieve a 25% increase in public awareness of EU policies through outreach activities by 2020.",
-        "kpi_type": "quantitative",
-        "metric_name": "Public Awareness Increase",
-        "target_value": 25.0,
-        "target_description": "Increase public awareness of EU policies.",
-        "unit": "percentage",
-        "timeframe": "by 2020",
-        "measurement_method": "Public surveys and feedback",
-        "responsible_entity": "EU Commission",
-        "sector": "Public Relations"
+        "kpi_text": "Support for the international dimension of the EU's Digital Policy Agenda with key partner countries by promoting the EU values on the internet governance and by working with third countries to improve international trade conditions for digital goods and services, including with regard to intellectual property rights;",
+        "kpi_type": "qualitative",
+        "metric_name": "International Digital Policy Promotion",
+        "target_value": null,
+        "target_description": "Promote EU digital policy values and improve international trade conditions for digital goods and services",
+        "unit": "qualitative milestone",
+        "timeframe": "2018-2020",
+        "measurement_method": "Policy dialogues, agreements, and adoption of standards",
+        "responsible_entity": "European Commission, DG CONNECT",
+        "sector": "Digital Economy"
       },
       {
-        "kpi_text": "Implement 100% of planned public diplomacy initiatives by 2020.",
+        "kpi_text": "Number of processes related to the negotiation, implementation or enforcement of EU trade and investment agreements with partner countries which have been advanced;",
         "kpi_type": "quantitative",
-        "metric_name": "Public Diplomacy Initiatives Implementation",
-        "target_value": 100.0,
-        "target_description": "Complete all planned public diplomacy initiatives.",
+        "metric_name": "Advanced Trade and Investment Agreement Processes",
+        "target_value": null,
+        "target_description": "Increase the number of processes related to negotiation, implementation, or enforcement of EU trade and investment agreements",
+        "unit": "processes",
+        "timeframe": "2018-2020",
+        "measurement_method": "Process count and progress tracking",
+        "responsible_entity": "European Commission, DG Trade",
+        "sector": "Trade and Investment"
+      },
+      {
+        "kpi_text": "Percentage of participants targeted by outreach and advocacy events who acknowledge a positive change in their perception of the EU and/or international policies and standards;",
+        "kpi_type": "quantitative",
+        "metric_name": "Positive Perception Change from Outreach Events",
+        "target_value": null,
+        "target_description": "Increase the percentage of participants in outreach events who report a positive change in perception of the EU",
         "unit": "percentage",
-        "timeframe": "by 2020",
-        "measurement_method": "Project completion reports",
-        "responsible_entity": "EU Commission",
-        "sector": "Diplomacy"
+        "timeframe": "2018-2020",
+        "measurement_method": "Post-event participant surveys",
+        "responsible_entity": "European Commission, EU Delegations",
+        "sector": "Public Diplomacy"
+      },
+      {
+        "kpi_text": "To promote, through such mobility, transparency, mutual recognition of qualifications and periods of study, research and training, and portability of credits, as well as improving mutual understanding of issues relevant to relations between the EU and the partner countries;",
+        "kpi_type": "qualitative",
+        "metric_name": "Academic Mobility and Mutual Recognition",
+        "target_value": null,
+        "target_description": "Promote transparency, mutual recognition of qualifications, and portability of credits through academic mobility",
+        "unit": "qualitative milestone",
+        "timeframe": "2018-2020",
+        "measurement_method": "Number of mobility actions, recognition agreements, and participant feedback",
+        "responsible_entity": "European Commission, Erasmus+ Programme",
+        "sector": "Education/Academic Cooperation"
       }
     ],
     "country_list_iso": [
-      "ARG",
+      "AUS",
+      "AUT",
+      "BEL",
+      "BLR",
       "BRA",
+      "BRN",
       "CAN",
       "CHL",
+      "CHN",
       "COL",
+      "CRI",
       "CUB",
-      "DOM",
+      "DEU",
+      "DNK",
       "ECU",
+      "ESP",
+      "FIN",
+      "FRA",
+      "GRL",
+      "IDN",
+      "IND",
+      "IRL",
+      "IRN",
+      "ISL",
+      "ITA",
+      "JPN",
+      "KOR",
       "MEX",
-      "USA"
+      "MNG",
+      "MYS",
+      "NLD",
+      "NOR",
+      "NZL",
+      "PER",
+      "PHL",
+      "RUS",
+      "SGP",
+      "SWE",
+      "THA",
+      "USA",
+      "VNM",
+      "ZAF"
     ],
-    "responsible_entity": "EU",
+    "responsible_entity": "the European Union",
     "sdg_alignment": [
+      "SDG 1: No Poverty",
+      "SDG 2: Zero Hunger",
       "SDG 3: Good Health and Well-being",
+      "SDG 4: Quality Education",
+      "SDG 5: Gender Equality",
       "SDG 6: Clean Water and Sanitation",
       "SDG 7: Affordable and Clean Energy",
+      "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
+      "SDG 10: Reduced Inequalities",
       "SDG 11: Sustainable Cities and Communities",
       "SDG 12: Responsible Consumption and Production",
       "SDG 13: Climate Action",
+      "SDG 14: Life Below Water",
+      "SDG 15: Life on Land",
       "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
@@ -311,39 +404,39 @@
       "name": "European Union",
       "category": "Political Actors",
       "relevance_score": 1.0,
-      "justification": "The European Union is the central actor in the document, driving the Partnership Instrument and shaping its strategic objectives, priorities, and actions. Its prominence and influence on global policies, particularly in relation to trade, climate change, and international cooperation, make it the most relevant actor."
-    },
-    {
-      "name": "EU Member States",
-      "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "EU Member States play a crucial role in the implementation of the Partnership Instrument and contribute to the EU's collective foreign policy. Their involvement in decision-making processes and initiatives enhances the EU's credibility and effectiveness as a global actor."
+      "justification": "The European Union is the central actor throughout the document, as the Partnership Instrument is an EU initiative designed to advance EU interests, values, and external action globally. The EU is repeatedly referenced as the main decision-maker, implementer, and beneficiary of the policies, strategies, and funding described. All key objectives, priorities, and actions revolve around the EU's role as a global actor."
     },
     {
       "name": "European Commission",
       "category": "Political Actors",
-      "relevance_score": 0.85,
-      "justification": "The European Commission is instrumental in proposing and executing the policies outlined in the Partnership Instrument. Its role in coordinating actions and ensuring alignment with EU priorities is vital for the success of the initiatives discussed in the document."
+      "relevance_score": 0.9,
+      "justification": "The European Commission is the primary executive body responsible for designing, managing, and implementing the Partnership Instrument and related programmes. It is frequently mentioned as the initiator of proposals, the coordinator of internal EU processes, and the authority overseeing the allocation of funds and strategic direction. Its influence is critical in shaping and executing the main topics discussed."
+    },
+    {
+      "name": "EU Member States",
+      "category": "Political Actors",
+      "relevance_score": 0.8,
+      "justification": "EU Member States are key stakeholders and active participants in the implementation of the Partnership Instrument. They contribute resources, expertise (e.g., through TAIEX), and are involved in decision-making and project execution. Their cooperation is essential for the success of the EU's external action, and they are repeatedly referenced as partners in both policy and practical terms."
     }
   ],
   "top_themes": [
     {
+      "name": "Multilateralism",
+      "category": "Regional & International Cooperation",
+      "relevance_score": 1.0,
+      "justification": "Multilateralism is central to the document's main message, underpinning the EU's approach to global challenges, alliance-building, and the rules-based international order. The document dedicates significant content to the importance of multilateral partnerships, regional alliances (e.g., CELAC, ASEAN), and the EU's role in shaping global governance. It is strategically vital as it frames the EU's external action, objectives, and the Partnership Instrument's rationale."
+    },
+    {
+      "name": "Trade and Economic Diplomacy",
+      "category": "Regional & International Cooperation",
+      "relevance_score": 0.95,
+      "justification": "Trade and economic diplomacy is a core priority area, with extensive content on boosting trade, investment, and business opportunities for EU companies, especially SMEs. The document details objectives, actions, and expected outcomes related to market access, regulatory cooperation, and support for EU trade agreements. This theme is strategically important for the EU's global competitiveness and is directly linked to the Partnership Instrument's key objectives."
+    },
+    {
       "name": "Digital Policy",
       "category": "Digital Transformation & Strategy",
       "relevance_score": 0.9,
-      "justification": "Digital Policy is central to the document's main message as it outlines the EU's strategic approach to digital transformation, which is crucial for enhancing cooperation and trade with partner countries."
-    },
-    {
-      "name": "Digital Trade",
-      "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.85,
-      "justification": "Digital Trade is emphasized throughout the document as a key area for boosting economic partnerships and market access, reflecting the EU's commitment to integrating digital aspects into trade agreements."
-    },
-    {
-      "name": "Data Governance",
-      "category": "Data & Governance",
-      "relevance_score": 0.8,
-      "justification": "Data Governance is strategically important as it relates to the management of data in digital trade and cooperation, aligning with the EU's objectives of ensuring secure and efficient data flows in international relations."
+      "justification": "Digital policy—including digital trade, digital governance, and the digital single market—is highlighted as a major intervention area and strategic priority. The document discusses the EU's leadership in digital transformation, international digital cooperation, and the importance of digital issues in trade, security, and societal development. This theme is closely tied to the EU's objectives of innovation, competitiveness, and global influence."
     }
   ]
 }
