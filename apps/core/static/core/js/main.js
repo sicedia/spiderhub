@@ -1,5 +1,5 @@
 // Global utilities and reusable functions
-const Utils = {
+export const Utils = {
   // Animation and interaction constants
   ANIMATION_DURATION: 2000,
   RESIZE_DEBOUNCE_DELAY: 250,
@@ -68,24 +68,38 @@ const Utils = {
     
     let isMenuOpen = false;
     
-    toggleButton.addEventListener('click', () => {
+    // Improved event handling for mobile
+    const toggleMenu = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
       isMenuOpen = !isMenuOpen;
       toggleButton.classList.toggle('active', isMenuOpen);
       overlay.classList.toggle('active', isMenuOpen);
       
       // Prevent body scroll when menu is open
       document.body.style.overflow = isMenuOpen ? 'hidden' : '';
-    });
+    };
+    
+    // Use both click and touchstart for better mobile support
+    toggleButton.addEventListener('click', toggleMenu);
+    toggleButton.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      toggleMenu(e);
+    }, { passive: false });
     
     // Close menu when clicking on a link
     const mobileNavLinks = overlay.querySelectorAll('.mobile-nav-links a');
     mobileNavLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      const closeMenu = () => {
         isMenuOpen = false;
         toggleButton.classList.remove('active');
         overlay.classList.remove('active');
         document.body.style.overflow = '';
-      });
+      };
+      
+      link.addEventListener('click', closeMenu);
+      link.addEventListener('touchstart', closeMenu, { passive: true });
     });
     
     // Close menu when clicking outside
@@ -111,31 +125,7 @@ const Utils = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize all components using modern approach
-  const components = {
-    statNumbers: document.querySelectorAll('.stat-number'),
-    nodeWeb: document.getElementById('node-web'),
-    carouselTrack: document.querySelector('.carousel-track'),
-    mobileMenuToggle: document.querySelector('.mobile-menu-toggle'),
-    mobileNavOverlay: document.querySelector('.mobile-nav-overlay')
-  };
-
-  // Initialize stat counters if present
-  if (components.statNumbers.length > 0) {
-    initializeStatCounters(components.statNumbers);
-  }
-  
-  // Initialize node web animation if present
-  if (components.nodeWeb) {
-    createNodeWebAnimation(components.nodeWeb);
-  }
-  
-  // Initialize carousel if present
-  if (components.carouselTrack) {
-    initializeCarousel();
-  }
-  
-  // Initialize mobile navigation using shared utility
+  // Initialize shared mobile navigation using utility
   Utils.initializeMobileNavigation();
 });
 

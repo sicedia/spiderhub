@@ -112,6 +112,11 @@ header {
   background: none;
   border: none;
   z-index: 1001;
+  position: relative;
+  min-width: 44px; /* Better touch target */
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
 }
 
 .mobile-menu-toggle span {
@@ -146,10 +151,15 @@ header {
   z-index: 1000;
   padding: 2rem 5%;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .mobile-nav-overlay.active {
   display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .mobile-nav-links {
@@ -223,7 +233,7 @@ header {
   font-size: 0.85rem;
   border: none;
   border-radius: 4px;
-  background: #094EB2;
+  background: var(--primary-green);
   color: white;
   cursor: pointer;
   transition: background 0.2s;
@@ -274,6 +284,9 @@ header {
   box-shadow: var(--shadow-medium);
   overflow: hidden;
   transition: transform var(--transition-medium);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .document-card:hover {
@@ -300,11 +313,15 @@ header {
 
 .document-body {
   padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .document-footer {
   padding: 0 1.5rem 1.5rem;
   text-align: right;
+  margin-top: auto;
 }
 
 /* Common Grid Patterns */
