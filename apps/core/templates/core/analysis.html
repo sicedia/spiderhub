@@ -49,6 +49,54 @@
         </div>
       </section>
       
+      < <!-- SDG Alignment Section -->
+      <section class="analysis-block" id="sdg-section">
+        <h2 class="block-title">SDG Alignment</h2>
+        
+        <div class="chart-container full-width chart-radar">
+          <h3>SDG Alignment</h3>
+          <div class="chart-placeholder" id="radar-chart">
+            <div class="placeholder-content">Radar Chart - SDG Alignment</div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Geography & Coverage Section -->
+      <section class="analysis-block" id="geography-section">
+        <h2 class="block-title">Geography & Coverage</h2>
+        
+        <div class="chart-container full-width">
+          <h3>Coverage Scope Distribution</h3>
+          <div class="chart-placeholder" id="coverage-bar-chart">
+            <div class="placeholder-content">Bar Chart - Coverage Scope</div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Strategic Alignment Section -->
+      <section class="analysis-block" id="strategic-section">
+        <h2 class="block-title">Strategic Alignment</h2>
+        
+        <div class="chart-container full-width">
+          <h3>Documents by Lead Country</h3>
+          <div class="chart-placeholder" id="choropleth-chart">
+            <div class="placeholder-content">Choropleth Map - Lead Countries</div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Legal Bindingness Section -->
+      <section class="analysis-block" id="legal-section">
+        <h2 class="block-title">Legal Bindingness</h2>
+        
+        <div class="chart-container full-width">
+          <h3>Legal Bindingness</h3>
+          <div class="chart-placeholder" id="pie-chart">
+            <div class="placeholder-content">Pie Chart - Legal Bindingness</div>
+          </div>
+        </div>
+      </section>
+      
       <!-- 2.4 Thematic Focus Section -->
       <section class="analysis-block" id="thematic-section">
         <h2 class="block-title">Thematic Focus</h2>
@@ -62,9 +110,9 @@
         
         <div class="chart-container full-width">
           <h3>Theme × Beneficiary Matrix</h3>
-          <div class="chart-placeholder" id="heatmap-chart">
-            <div class="placeholder-content">Heatmap - Theme × Beneficiary</div>
-          </div>
+<div class="chart-placeholder" id="heatmap-chart">
+  <div class="placeholder-content">Heatmap - Theme × Beneficiary</div>
+</div>
         </div>
       </section>
       
@@ -88,46 +136,6 @@
           </div>
         </div>
       </section>
-      
-      <!-- 2.6 Geography & Coverage Section -->
-      <section class="analysis-block" id="geography-section">
-        <h2 class="block-title">Geography & Coverage</h2>
-        
-        <div class="chart-container full-width">
-          <h3>Coverage Scope Distribution</h3>
-          <div class="chart-placeholder" id="coverage-bar-chart">
-            <div class="placeholder-content">Bar Chart - Coverage Scope</div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- 2.7 Strategic Alignment Section -->
-      <section class="analysis-block" id="strategic-section">
-        <h2 class="block-title">Strategic Alignment</h2>
-        
-        <div class="chart-container full-width">
-          <h3>Documents by Lead Country</h3>
-          <div class="chart-placeholder" id="choropleth-chart">
-            <div class="placeholder-content">Choropleth Map - Lead Countries</div>
-          </div>
-        </div>
-        
-        <div class="chart-grid">
-          <div class="chart-container chart-left chart-radar">
-            <h3>SDG Alignment</h3>
-            <div class="chart-placeholder" id="radar-chart">
-              <div class="placeholder-content">Radar Chart - SDG Alignment</div>
-            </div>
-          </div>
-          
-          <div class="chart-container chart-right">
-            <h3>Legal Bindingness</h3>
-            <div class="chart-placeholder" id="pie-chart">
-              <div class="placeholder-content">Pie Chart - Legal Bindingness</div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   </main>
 
@@ -137,6 +145,9 @@
   <!-- <script src="{% static 'core/js/main.js' %}"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@2.0.0"></script>
+  
+
   <!-- <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-geo@4.3.1/dist/chartjs-chart-geo.umd.min.js"></script> -->
 
 
@@ -148,12 +159,19 @@
     import { renderCountryChoropleth } from "{% static 'core/js/countryChoropleth.js' %}";
     import { renderLegalBindingPie } from "{% static 'core/js/legalBindingPie.js' %}";
     import { renderCoverageBar } from "{% static 'core/js/coverageScopeBar.js' %}";
-    
+    import { renderThemeBar }           from "{% static 'core/js/themeBarChart.js' %}";
+    import { renderThemeBeneficiaryHeatmap } from "{% static 'core/js/themeBeneficiaryHeatmap.js' %}";
+    import { renderActorBar } from "{% static 'core/js/actorBarChart.js' %}";
+    import { renderBeneficiaryBar }  from "{% static 'core/js/beneficiaryBarChart.js' %}";
     // Make it available globally for the analysis page manager
     window.renderSdgRadar = renderSdgRadar;
     window.renderCountryChoropleth = renderCountryChoropleth;
     window.renderLegalBindingPie = renderLegalBindingPie;
     window.renderCoverageBar = renderCoverageBar;
+    window.renderThemeBar = renderThemeBar;
+    window.renderThemeBeneficiaryHeatmap = renderThemeBeneficiaryHeatmap;
+    window.renderActorBar = renderActorBar;
+    window.renderBeneficiaryBar = renderBeneficiaryBar;
   </script>
 
   <!-- Inyect graphics data -->
