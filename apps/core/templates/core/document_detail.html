@@ -219,17 +219,6 @@
               </div>
             </div>
 
-            <!-- Quality Score -->
-            <div class="technical-item">
-              <div class="technical-label">Quality Score</div>
-              <div class="technical-value">
-                {% if document.score is not None %}
-                  {{ document.score }}%
-                {% else %}
-                  N/A
-                {% endif %}
-              </div>
-            </div>
 
           </div>
         </section>
@@ -358,7 +347,7 @@
                   {% if document.extra.country_code %}
                       <div class="country-code">{{ document.extra.country_code }}</div>
                   {% else %}
-                      <div class="country-code">N/A</div>
+                      <div class="country-code"></div>
                   {% endif %}
                 </div>
               </div>
