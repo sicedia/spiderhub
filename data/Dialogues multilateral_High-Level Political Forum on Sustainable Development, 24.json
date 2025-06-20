@@ -1,37 +1,31 @@
 {
-  "title": "High-Level Political Forum 2024 Outcomes Summary",
-  "date": null,
-  "location": null,
-  "executive_summary": "The High-Level Political Forum on Sustainable Development (HLPF) 2024 focused on advancing global sustainability goals through collaborative dialogue and actionable outcomes. Key discussions emphasized the importance of integrating sustainable practices across sectors, enhancing partnerships, and mobilizing resources to achieve the Sustainable Development Goals (SDGs). The forum highlighted the need for innovative solutions to address pressing global challenges, including climate change, inequality, and economic instability. Outcomes from the forum included commitments to strengthen accountability mechanisms, promote inclusive participation, and ensure that progress towards the SDGs is measurable and transparent. The emphasis was placed on fostering a multi-stakeholder approach to drive sustainable development initiatives effectively.",
-  "characteristics": [
-    "The High-Level Political Forum on Sustainable Development (HLPF) 2024 focuses on reviewing progress towards the Sustainable Development Goals (SDGs).",
-    "It emphasizes multi-stakeholder engagement, including participation from governments, civil society, and the private sector.",
-    "The forum aims to foster partnerships and collaborative efforts to address global challenges and promote sustainable development.",
-    "Outcomes from the forum will guide future actions and policies related to sustainable development initiatives."
-  ],
+  "title": "High-Level Political Forum on Sustainable Development 2024: Report and Outcomes",
+  "date": "2024",
+  "location": "New York, United States",
+  "executive_summary": "The High-Level Political Forum (HLPF) 2024 focused on advancing sustainable development goals (SDGs) through multilateral cooperation. Key outcomes emphasized accelerating climate action, enhancing inclusive economic growth, and strengthening partnerships to address global challenges. The forum highlighted the importance of integrating social, economic, and environmental dimensions to achieve the 2030 Agenda. Member states committed to scaling up efforts in poverty eradication, gender equality, and resilient infrastructure development. Emphasis was placed on data-driven policies, innovation, and mobilizing financial resources to support sustainable development. The HLPF 2024 underscored the need for enhanced international collaboration, capacity-building, and inclusive stakeholder engagement to ensure no one is left behind. The forum also called for urgent action to tackle inequalities and promote sustainable consumption and production patterns. Overall, the HLPF 2024 reinforced global commitment to sustainable development through coordinated, inclusive, and transformative approaches.",
+  "characteristics": [],
   "themes": {
-    "Inclusion & Social Development": [
-      "Digital Inclusion"
+    "Regional & International Cooperation": [
+      "Multilateralism"
     ],
-    "Data & Governance": [
-      "Digital Governance",
-      "Data Protection"
+    "Inclusion & Social Development": [
+      "Sustainable Digital Development"
     ]
   },
   "actors": {
     "Political Actors": [
-      "United Nations",
-      "United Nations Officials"
+      "High-Level Political Forum",
+      "United Nations"
     ]
   },
   "practical_applications": [],
   "commitments": [],
-  "score": 74,
+  "score": 76,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 70,
-    "completeness": 74,
-    "accuracy": 50,
+    "consistency": 95,
+    "completeness": 85,
+    "accuracy": 33,
     "issues": [
       "Potential factual errors in basic content or strategic extra data"
     ]
@@ -39,178 +33,64 @@
   "extra_data": {
     "lead_country_iso": "USA",
     "agreement_type": [],
-    "legal_bindingness": null,
+    "legal_bindingness": "Politically-binding",
     "coverage_scope": "Multilateral",
     "eu_policy_alignment": [],
     "review_schedule": null,
-    "beneficiary_group_raw": [
-      "SME",
-      "woman",
-      "community"
-    ],
-    "beneficiary_group": [
-      {
-        "category": "SMEs / Businesses",
-        "label": "Small and Medium Enterprises"
-      },
-      {
-        "category": "Women & Girls",
-        "label": "Gender Equality Initiatives"
-      },
-      {
-        "category": "Civil Society / NGOs",
-        "label": "Community Organizations"
-      }
-    ],
-    "start_date": "2024-01-01",
-    "end_date": "2024-01-01",
+    "beneficiary_group_raw": [],
+    "beneficiary_group": [],
+    "start_date": "2024-07-09",
+    "end_date": "2024-07-18",
     "commitment_details": [],
-    "kpi_list": [
-      {
-        "kpi_text": "Mobilize €300 billion in public and private investment by 2027 for digital infrastructure",
-        "kpi_type": "quantitative",
-        "metric_name": "Digital Infrastructure Investment",
-        "target_value": 300.0,
-        "target_description": "Mobilize public and private investment for digital infrastructure",
-        "unit": "billion EUR",
-        "timeframe": "by 2027",
-        "measurement_method": "Investment mobilization reports",
-        "responsible_entity": "Government and private sector",
-        "sector": "Digital Infrastructure"
-      },
-      {
-        "kpi_text": "Establish a robust cybersecurity framework for critical infrastructure protection",
-        "kpi_type": "qualitative",
-        "metric_name": "Cybersecurity Framework Establishment",
-        "target_value": null,
-        "target_description": "Establish robust cybersecurity framework for critical infrastructure",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Framework establishment and implementation",
-        "responsible_entity": "National cybersecurity agency",
-        "sector": "Cybersecurity"
-      },
-      {
-        "kpi_text": "Increase the number of trained cybersecurity professionals by 50% by 2025",
-        "kpi_type": "quantitative",
-        "metric_name": "Cybersecurity Professionals Training",
-        "target_value": 50.0,
-        "target_description": "Increase the number of trained cybersecurity professionals",
-        "unit": "percentage",
-        "timeframe": "by 2025",
-        "measurement_method": "Training program enrollment statistics",
-        "responsible_entity": "Educational institutions and training providers",
-        "sector": "Education and Cybersecurity"
-      },
-      {
-        "kpi_text": "Enhance international cooperation on cybersecurity by establishing 5 new partnerships by 2026",
-        "kpi_type": "qualitative",
-        "metric_name": "International Cybersecurity Partnerships",
-        "target_value": null,
-        "target_description": "Establish new partnerships for international cybersecurity cooperation",
-        "unit": "qualitative milestone",
-        "timeframe": "by 2026",
-        "measurement_method": "Partnership agreements and collaborations",
-        "responsible_entity": "International cybersecurity organizations",
-        "sector": "International Relations"
-      },
-      {
-        "kpi_text": "Reduce the number of successful cyber attacks on critical infrastructure by 30% by 2028",
-        "kpi_type": "quantitative",
-        "metric_name": "Cyber Attack Reduction",
-        "target_value": 30.0,
-        "target_description": "Reduce successful cyber attacks on critical infrastructure",
-        "unit": "percentage",
-        "timeframe": "by 2028",
-        "measurement_method": "Incident reports and cybersecurity assessments",
-        "responsible_entity": "National cybersecurity agency",
-        "sector": "Cybersecurity"
-      },
-      {
-        "kpi_text": "Implement new data protection regulations by 2025",
-        "kpi_type": "qualitative",
-        "metric_name": "Data Protection Regulation Implementation",
-        "target_value": null,
-        "target_description": "Implement new regulations for data protection",
-        "unit": "qualitative milestone",
-        "timeframe": "by 2025",
-        "measurement_method": "Regulatory compliance reports",
-        "responsible_entity": "Data protection authority",
-        "sector": "Data Protection"
-      },
-      {
-        "kpi_text": "Achieve a 40% increase in public awareness of cybersecurity issues by 2027",
-        "kpi_type": "quantitative",
-        "metric_name": "Public Awareness of Cybersecurity",
-        "target_value": 40.0,
-        "target_description": "Increase public awareness of cybersecurity issues",
-        "unit": "percentage",
-        "timeframe": "by 2027",
-        "measurement_method": "Public surveys and awareness campaigns",
-        "responsible_entity": "Public relations and awareness organizations",
-        "sector": "Public Awareness"
-      },
-      {
-        "kpi_text": "Develop a national cybersecurity strategy by 2025",
-        "kpi_type": "qualitative",
-        "metric_name": "National Cybersecurity Strategy Development",
-        "target_value": null,
-        "target_description": "Develop a comprehensive national cybersecurity strategy",
-        "unit": "qualitative milestone",
-        "timeframe": "by 2025",
-        "measurement_method": "Strategy documentation and stakeholder consultations",
-        "responsible_entity": "National cybersecurity agency",
-        "sector": "Cybersecurity"
-      },
-      {
-        "kpi_text": "Increase the number of cybersecurity exercises conducted annually to 10 by 2026",
-        "kpi_type": "quantitative",
-        "metric_name": "Cybersecurity Exercises",
-        "target_value": 10.0,
-        "target_description": "Increase the number of cybersecurity exercises conducted annually",
-        "unit": "count",
-        "timeframe": "by 2026",
-        "measurement_method": "Exercise reports and evaluations",
-        "responsible_entity": "National cybersecurity agency",
-        "sector": "Cybersecurity"
-      }
-    ],
+    "kpi_list": [],
     "country_list_iso": [],
     "responsible_entity": null,
-    "sdg_alignment": []
+    "sdg_alignment": [
+      "SDG 1: No Poverty",
+      "SDG 2: Zero Hunger",
+      "SDG 3: Good Health and Well-being",
+      "SDG 4: Quality Education",
+      "SDG 5: Gender Equality",
+      "SDG 6: Clean Water and Sanitation",
+      "SDG 7: Affordable and Clean Energy",
+      "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
+      "SDG 10: Reduced Inequalities",
+      "SDG 11: Sustainable Cities and Communities",
+      "SDG 12: Responsible Consumption and Production",
+      "SDG 13: Climate Action",
+      "SDG 14: Life Below Water",
+      "SDG 15: Life on Land",
+      "SDG 16: Peace, Justice and Strong Institutions",
+      "SDG 17: Partnerships for the Goals"
+    ]
   },
   "top_actors": [
+    {
+      "name": "High-Level Political Forum",
+      "category": "Political Actors",
+      "relevance_score": 1.0,
+      "justification": "The High-Level Political Forum is the central focus of the document, being the main event discussed. It is prominently mentioned and plays a key role in sustainable development discussions, decision-making, and outcomes."
+    },
     {
       "name": "United Nations",
       "category": "Political Actors",
       "relevance_score": 0.9,
-      "justification": "The United Nations is the primary organization referenced throughout the documents, indicating its central role in the High-Level Political Forum on Sustainable Development. Its initiatives and policies are crucial to the discussions and outcomes presented."
-    },
-    {
-      "name": "United Nations Officials",
-      "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "United Nations Officials are mentioned as key players in the implementation and facilitation of the forum's objectives. Their roles are vital in shaping the discussions and decisions made during the events."
+      "justification": "The United Nations is the overarching organization under which the High-Level Political Forum operates. It has significant influence on the forum's agenda, initiatives, and implementation of sustainable development goals."
     }
   ],
   "top_themes": [
     {
-      "name": "Digital Governance",
-      "category": "Data & Governance",
+      "name": "Multilateralism (Regional & International Cooperation)",
+      "category": "Global Governance and Cooperation",
       "relevance_score": 0.9,
-      "justification": "Digital governance is central to the document's main message as it addresses the frameworks and policies necessary for effective digital inclusion and data protection. It is crucial for ensuring that digital initiatives align with governance standards and ethical practices."
+      "justification": "The High-Level Political Forum on Sustainable Development is fundamentally a multilateral platform where countries and stakeholders come together to review and advance sustainable development goals. The document centers on international cooperation, collective commitments, and regional collaboration, making multilateralism the core theme driving the forum's agenda and outcomes."
     },
     {
-      "name": "Data Protection",
-      "category": "Data & Governance",
-      "relevance_score": 0.85,
-      "justification": "Data protection is vital in the context of digital governance, as it safeguards individuals' rights and privacy. The document emphasizes the importance of protecting data in digital initiatives, making it a key objective for sustainable development."
-    },
-    {
-      "name": "Digital Inclusion",
-      "category": "Inclusion & Social Development",
-      "relevance_score": 0.8,
-      "justification": "Digital inclusion is essential for achieving social development goals. The document highlights the need for equitable access to digital resources, which is critical for empowering marginalized communities and fostering inclusive growth."
+      "name": "Sustainable Digital Development (Inclusion & Social Development)",
+      "category": "Sustainable Development and Innovation",
+      "relevance_score": 0.7,
+      "justification": "Sustainable digital development is highlighted as a key enabler for inclusive social development and achieving sustainable development goals. The document dedicates significant attention to digital inclusion, innovation, and leveraging technology for social progress, reflecting its strategic importance in the current global development context."
     }
   ]
 }

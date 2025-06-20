@@ -1,79 +1,108 @@
 {
-  "title": "European Council Conclusions on Ukraine, Security, and Global Challenges (March 2024)",
+  "title": "European Council Conclusions from the 21-22 March 2024 Meeting on Ukraine, Security, Middle East, Enlargement, and EU Policies",
   "date": "2024-03-22",
   "location": "Brussels, Belgium",
-  "executive_summary": "The European Council, during its meeting on March 21-22, 2024, reaffirmed its unwavering support for Ukraine amidst ongoing Russian aggression, emphasizing the need for enhanced military assistance and sanctions against Russia. The Council welcomed the adoption of the 13th sanctions package and called for further measures against Belarus, North Korea, and Iran. It also discussed the humanitarian crisis in the Middle East, urging for immediate humanitarian access in Gaza and condemning violence against civilians. The Council committed to advancing EU enlargement, particularly with Bosnia and Herzegovina, Ukraine, and Moldova, while emphasizing the importance of a resilient agricultural sector and comprehensive migration strategies. Additionally, it highlighted the need for improved EU defense capabilities and crisis preparedness in response to evolving threats.",
+  "executive_summary": "The European Council meeting on 21-22 March 2024 focused on key global challenges, notably the ongoing war in Ukraine, security and defense, the Middle East conflict, enlargement, and external relations. The Council reaffirmed unwavering support for Ukraine’s sovereignty, committing intensified military, financial, and humanitarian aid, and called for stronger sanctions against Russia and its allies. It emphasized enhancing EU defense capabilities, industrial base, and readiness, complementing NATO. On the Middle East, the Council condemned Hamas, urged a humanitarian pause in Gaza, and supported a two-state solution. Enlargement discussions included opening accession talks with Bosnia and Herzegovina and progress on Ukraine, Moldova, and Georgia. The Council addressed migration, agriculture, crisis preparedness, and economic policy, endorsing sustainable growth priorities. It also expressed concern over human rights in Russia and Belarus, and instability in Haiti, calling for political solutions and international cooperation.",
   "characteristics": [
-    "The European Council reaffirms strong support for Ukraine's sovereignty and territorial integrity amid ongoing conflict with Russia, emphasizing military and humanitarian assistance.",
-    "It discusses the need for enhanced European defense capabilities and readiness in response to rising security threats, including a commitment to increase defense spending.",
-    "The Council addresses the humanitarian crisis in the Middle East, calling for ceasefires and humanitarian access, while condemning violence and advocating for a two-state solution.",
-    "It highlights the importance of strategic partnerships with countries like Egypt and Mauritania, and expresses concern over human rights violations in Belarus and Russia.",
-    "The Council emphasizes the need for a resilient agricultural sector and comprehensive migration policies, while also focusing on crisis preparedness and response strategies."
+    "The European Council reaffirmed strong support for Ukraine's sovereignty, providing extensive political, financial, military, and humanitarian aid amid ongoing Russian aggression.",
+    "Emphasis on enhancing EU defense capabilities, increasing defense spending, and strengthening the European defense industrial base to address rising security threats.",
+    "Urgent call for humanitarian pause and ceasefire in the Middle East, condemning violence and stressing respect for international law and human rights.",
+    "Commitment to EU enlargement with accession talks opened for Bosnia and Herzegovina, and progress noted for Ukraine, Moldova, and Georgia.",
+    "Focus on migration control, countering human trafficking and smuggling, and launching a Global Alliance to address these challenges.",
+    "Support for sustainable agriculture, farmers' income stability, and addressing challenges in the food supply chain and trade measures related to Ukraine."
   ],
   "themes": {
     "Regional & International Cooperation": [
-      "EU-LAC Digital Alliance"
+      "Multilateralism"
     ],
     "Data & Governance": [
-      "Digital Governance",
-      "Cybersecurity"
-    ],
-    "Inclusion & Social Development": [
-      "Digital Inclusion"
+      "Digital Governance"
     ],
     "Technology & Innovation": [
-      "Tech-Driven Solutions",
-      "Sustainable Tech"
+      "Technology Regulations"
     ]
   },
   "actors": {
     "Political Actors": [
       "European Council",
-      "United Nations",
-      "UN Secretary-General António Guterres",
+      "European Union",
       "EU Member States",
-      "Czechia",
+      "European Commission",
+      "Council",
+      "High Representative",
+      "UN Secretary-General António Guterres",
+      "United Nations",
+      "UN Special Representative Pramila Patten",
+      "UN Special Rapporteur Reem Alsalem",
+      "European Union Advisory Mission (EUAM)",
+      "European Union Military Assistance Mission (EUMAM)",
+      "European Union Partnership Mission (EUPM)",
+      "European Union Police Mission for the Palestinian Territories (EUPOL COPPS)",
+      "European Union Border Assistance Mission to the Rafah Crossing Point (EUBAM Rafah)",
+      "European Investment Bank",
+      "NATO",
+      "European Union Operation ASPIDES",
+      "European Parliament",
+      "Bosnia and Herzegovina",
+      "Ukraine",
       "Republic of Moldova",
       "Georgia",
-      "Iran",
+      "Egypt",
+      "Mauritania",
+      "Haiti",
       "Russia",
       "Belarus",
-      "Hamas",
-      "Alexei Navalny"
-    ],
-    "Economic Actors": [
-      "European Investment Bank",
-      "Inter-American Development Bank",
-      "World Bank"
+      "Israel",
+      "Palestinian Authority",
+      "Iran",
+      "Czechia"
     ]
   },
   "practical_applications": [
-    "The European Union is providing ongoing political, financial, economic, humanitarian, military, and diplomatic support to Ukraine, including a commitment to deliver one million rounds of artillery ammunition.",
-    "Bilateral agreements on security commitments have been concluded between Ukraine and several EU Member States and partners.",
-    "The Council Decision regarding a Ukraine Assistance Fund has been adopted to ensure continued military support for Ukraine under the European Peace Facility.",
-    "The European Union Military Assistance Mission (EUMAM) has increased its capacity to support Ukraine.",
-    "The European Council is working on the 8th support package for Ukraine under the European Peace Facility.",
-    "The European Union Advisory Mission (EUAM) in Ukraine has been strengthened to support Ukrainian law enforcement agencies and reforms related to EU accession.",
-    "The European Union is providing EUR 20 million in humanitarian support to Haiti and supports the establishment of a Multinational Security Support Mission as per UN Security Council Resolution 2699.",
-    "The European Council has decided to open accession negotiations with Bosnia and Herzegovina and is preparing the negotiating framework for Ukraine and the Republic of Moldova.",
-    "The Amalthea Initiative has been launched to open a maritime route for emergency assistance from Cyprus to Gaza.",
-    "The European Union is implementing the Strategic Compass to enhance defense readiness, including the EU Rapid Deployment Capacity and military mobility.",
-    "The European Council is exploring options for mobilizing funding for the European defense industry and adapting the European Investment Bank's policy for lending to the defense sector.",
-    "The European Union is committed to a comprehensive approach to migration, including launching a Global Alliance to counter human trafficking and smuggling."
+    "[",
+    "The European Union is providing Ukraine with comprehensive political, financial, economic, humanitarian, military, and diplomatic support, including speeding up delivery of air defence systems, ammunition, and missiles.",
+    "The EU has adopted a Council Decision regarding a Ukraine Assistance Fund to continue military support under the European Peace Facility and is working on the 8th support package.",
+    "The EU Military Assistance Mission (EUMAM) capacity has been increased to support Ukraine.",
+    "The European Council supports efforts to direct extraordinary revenues from Russia’s immobilised assets to benefit Ukraine, including funding military support.",
+    "The EU has adopted the 13th package of sanctions against Russia and is preparing further sanctions against Belarus, North Korea, and Iran.",
+    "The EU is prepared to respond with restrictive measures against Iran if it transfers ballistic missiles or related technology to Russia.",
+    "The European Union Advisory Mission (EUAM) in Ukraine has been strengthened to support law enforcement and reforms.",
+    "The EU is providing psychological and psychosocial rehabilitation support and increased demining assistance in Ukraine.",
+    "The EU is assisting Ukraine in rebuilding its export markets, especially in the Middle East and Africa.",
+    "The EU supports the Republic of Moldova and Georgia in strengthening resilience, security, and stability, including through the European Union Partnership Mission (EUPM) in Moldova.",
+    "The European Union is committed to increasing defence readiness and capabilities, including fulfilling commitments to increase defence expenditure, improving access to finance for the defence industry, incentivising joint procurement, and enhancing the European defence industrial base.",
+    "The European Council invites the Council and Commission to explore funding options for defence and to advance the European Defence Industrial Strategy (EDIS) and European Defence Industry Programme (EDIP).",
+    "The EU is implementing the Strategic Compass, focusing on rapid deployment capacity, military mobility, live exercises, space security, cyber and hybrid threat countermeasures, and foreign information manipulation and interference.",
+    "The EU launched the Amalthea Initiative to open a maritime route for emergency assistance from Cyprus to Gaza, supplementing land routes.",
+    "The EU supports the two CSDP missions in the Palestinian Territories: the European Union Police Mission for the Palestinian Territories (EUPOL COPPS) and the European Union Border Assistance Mission to the Rafah Crossing Point (EUBAM Rafah).",
+    "The EU is working on further restrictive measures against Hamas and extremist settler violence in the West Bank.",
+    "The EU launched Operation ASPIDES to safeguard freedom of navigation and security of seafarers in the Red Sea, Gulf of Aden, and broader region.",
+    "The EU has released EUR 20 million in humanitarian support to Haiti and supports the UN Security Council Resolution 2699 for a Multinational Security Support Mission.",
+    "The EU supports a comprehensive approach to migration, including strengthening tools to counter human trafficking and smuggling and launching a Global Alliance to address these challenges.",
+    "The EU is working on short- and medium-term measures to support farmers, including reducing administrative burdens, strengthening farmers’ position in the food supply chain, providing additional financial support, ensuring fair competition, and addressing trade measures related to Ukraine.",
+    "The EU is advancing work on enhanced and coordinated military and civilian preparedness and strategic crisis management, with a view to a future preparedness strategy.",
+    "The European Council has decided to open accession negotiations with Bosnia and Herzegovina and is advancing accession frameworks for Ukraine, Moldova, and Georgia.",
+    "The EU welcomes joint declarations and partnerships with Egypt and Mauritania to strengthen strategic and comprehensive partnerships.",
+    "]"
   ],
   "commitments": [
-    "Provide Ukraine with one million rounds of artillery ammunition.",
-    "The European Investment Bank is invited to adapt its policy for lending to the defence industry and report back by June 2024.",
-    "The European Council will adopt conclusions on a roadmap for internal reforms by summer 2024.",
-    "The European Council invites the Commission to prepare the negotiating framework for Bosnia and Herzegovina with a view to its adoption by the Council once all relevant steps are taken.",
-    "The European Council welcomes the release of EUR 20 million in humanitarian support for Haiti."
+    "The EU is committed to providing Ukraine with one million rounds of artillery ammunition.",
+    "The European Council calls on the Council to work on the 8th support package for Ukraine under the European Peace Facility.",
+    "The European Council invites the Council and the Commission to explore all options for mobilising funding for the European defence industry and report back by June 2024.",
+    "The European Council will adopt conclusions on a roadmap for future work on internal reforms by summer 2024.",
+    "The European Council decides to open accession negotiations with Bosnia and Herzegovina once all relevant steps set out in the Commission’s recommendation of 12 October 2022 are taken.",
+    "The European Council invites the Council to swiftly adopt the draft negotiating frameworks for Ukraine and the Republic of Moldova and to take work forward without delay.",
+    "The European Council welcomes the recent release by the European Union of EUR 20 million in humanitarian support to Haiti.",
+    "The European Council calls on the Commission and the High Representative to take necessary steps to prevent the execution by third countries of arrest warrants issued by Russia against EU citizens.",
+    "The European Council calls on the Commission and the Council to take work forward without delay on short- and medium-term measures to support farmers, including extending the temporary framework on State aid, and report back to the next European Council.",
+    "The European Council invites the Council to take work forward and the Commission together with the High Representative to propose actions to strengthen preparedness and crisis response at EU level with a view to a future preparedness strategy."
   ],
-  "score": 55,
+  "score": 58,
   "quality_breakdown": {
     "faithfulness": 0,
-    "consistency": 70,
-    "completeness": 70,
-    "accuracy": 81,
+    "consistency": 85,
+    "completeness": 95,
+    "accuracy": 90,
     "issues": [
       "Low faithfulness - check for hallucinations in basic or strategic extra data"
     ]
@@ -81,35 +110,35 @@
   "extra_data": {
     "lead_country_iso": "BEL",
     "agreement_type": [
-      "Declaration"
+      "European Council Conclusions"
     ],
     "legal_bindingness": "Politically-binding",
     "coverage_scope": "Regional",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [
+      "Ukraine",
       "farmer",
-      "community",
-      "child",
-      "citizen",
-      "political prisoner"
+      "Palestinian",
+      "political prisoner",
+      "civilian"
     ],
     "beneficiary_group": [
+      {
+        "category": "Indigenous Peoples & Ethnic Groups",
+        "label": "Minority Groups"
+      },
       {
         "category": "Farmers & Primary Producers",
         "label": "Farmers"
       },
       {
+        "category": "Indigenous Peoples & Ethnic Groups",
+        "label": "Minority Groups"
+      },
+      {
         "category": "Civil Society / NGOs",
-        "label": "Community Organizations"
-      },
-      {
-        "category": "Students & Youth",
-        "label": "Children"
-      },
-      {
-        "category": "General Citizens / Consumers",
-        "label": "Citizens"
+        "label": "Civil Society Organizations"
       },
       {
         "category": "General Citizens / Consumers",
@@ -120,153 +149,194 @@
     "end_date": "2024-03-22",
     "commitment_details": [
       {
-        "text": "Provide Ukraine with one million rounds of artillery ammunition.",
-        "commitment_class": "Implemented"
-      },
-      {
-        "text": "The European Investment Bank is invited to adapt its policy for lending to the defence industry and report back by June 2024.",
-        "commitment_class": "Programmatic"
-      },
-      {
-        "text": "The European Council will adopt conclusions on a roadmap for internal reforms by summer 2024.",
+        "text": "The EU is committed to providing Ukraine with one million rounds of artillery ammunition.",
         "commitment_class": "Declarative"
       },
       {
-        "text": "The European Council invites the Commission to prepare the negotiating framework for Bosnia and Herzegovina with a view to its adoption by the Council once all relevant steps are taken.",
+        "text": "The European Council calls on the Council to work on the 8th support package for Ukraine under the European Peace Facility.",
         "commitment_class": "Programmatic"
       },
       {
-        "text": "The European Council welcomes the release of EUR 20 million in humanitarian support for Haiti.",
+        "text": "The European Council invites the Council and the Commission to explore all options for mobilising funding for the European defence industry and report back by June 2024.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The European Council will adopt conclusions on a roadmap for future work on internal reforms by summer 2024.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The European Council decides to open accession negotiations with Bosnia and Herzegovina once all relevant steps set out in the Commission’s recommendation of 12 October 2022 are taken.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The European Council invites the Council to swiftly adopt the draft negotiating frameworks for Ukraine and the Republic of Moldova and to take work forward without delay.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The European Council welcomes the recent release by the European Union of EUR 20 million in humanitarian support to Haiti.",
         "commitment_class": "Financed"
+      },
+      {
+        "text": "The European Council calls on the Commission and the High Representative to take necessary steps to prevent the execution by third countries of arrest warrants issued by Russia against EU citizens.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The European Council calls on the Commission and the Council to take work forward without delay on short- and medium-term measures to support farmers, including extending the temporary framework on State aid, and report back to the next European Council.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The European Council invites the Council to take work forward and the Commission together with the High Representative to propose actions to strengthen preparedness and crisis response at EU level with a view to a future preparedness strategy.",
+        "commitment_class": "Programmatic"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "provide Ukraine with one million rounds of artillery ammunition",
+        "kpi_text": "the EU’s commitment to provide Ukraine with one million rounds of artillery ammunition",
         "kpi_type": "quantitative",
-        "metric_name": "Artillery Ammunition Provision",
+        "metric_name": "Artillery Ammunition Delivery to Ukraine",
         "target_value": 1000000.0,
-        "target_description": "Deliver one million rounds of artillery ammunition to Ukraine",
+        "target_description": "Provide Ukraine with one million rounds of artillery ammunition",
         "unit": "rounds",
-        "timeframe": "as soon as possible",
-        "measurement_method": "Delivery confirmation and tracking",
+        "timeframe": "as soon as possible / urgently",
+        "measurement_method": "Tracking delivery and receipt of ammunition rounds",
         "responsible_entity": "European Union and Member States",
-        "sector": "Defense"
+        "sector": "Security and Defence"
       },
       {
-        "kpi_text": "mobilize EUR 20 million in humanitarian support for Haiti",
-        "kpi_type": "quantitative",
-        "metric_name": "Humanitarian Support for Haiti",
-        "target_value": 20.0,
-        "target_description": "Release EUR 20 million in humanitarian aid to Haiti",
-        "unit": "million EUR",
-        "timeframe": "immediate",
-        "measurement_method": "Financial disbursement records",
-        "responsible_entity": "European Union",
-        "sector": "Humanitarian Aid"
-      },
-      {
-        "kpi_text": "adopt by summer 2024 conclusions on a roadmap for future work",
+        "kpi_text": "The European Council calls on the Council to work on the 8th support package for Ukraine under the European Peace Facility",
         "kpi_type": "qualitative",
-        "metric_name": "Roadmap Adoption",
+        "metric_name": "8th Support Package Development for Ukraine",
         "target_value": null,
-        "target_description": "Adopt a roadmap for future work on internal reforms",
+        "target_description": "Develop and approve the 8th support package for Ukraine under the European Peace Facility",
+        "unit": "qualitative milestone",
+        "timeframe": "not specified",
+        "measurement_method": "Adoption and implementation of the support package",
+        "responsible_entity": "Council of the European Union",
+        "sector": "Security and Defence"
+      },
+      {
+        "kpi_text": "The European Council calls for further steps to weaken Russia’s ability to continue waging its war of aggression, including by strengthening the sanctions. Full and effective implementation of sanctions is essential.",
+        "kpi_type": "qualitative",
+        "metric_name": "Strengthening and Implementation of Sanctions Against Russia",
+        "target_value": null,
+        "target_description": "Strengthen sanctions and ensure full and effective implementation to weaken Russia's war capabilities",
+        "unit": "qualitative milestone",
+        "timeframe": "ongoing",
+        "measurement_method": "Monitoring sanctions enforcement and closing loopholes",
+        "responsible_entity": "Council and European Commission",
+        "sector": "Foreign Policy / Security"
+      },
+      {
+        "kpi_text": "The European Council supports ongoing efforts, including in the Core Group, to establish a tribunal for the prosecution of the crime of aggression against Ukraine that would enjoy the broadest cross-regional support and legitimacy, and a future compensation mechanism.",
+        "kpi_type": "qualitative",
+        "metric_name": "Establishment of Tribunal for Crime of Aggression Against Ukraine",
+        "target_value": null,
+        "target_description": "Establish a tribunal with broad cross-regional support for prosecuting crimes of aggression against Ukraine and set up a compensation mechanism",
+        "unit": "qualitative milestone",
+        "timeframe": "not specified",
+        "measurement_method": "Creation and operationalization of tribunal and compensation mechanism",
+        "responsible_entity": "Core Group and International Partners",
+        "sector": "Justice / International Law"
+      },
+      {
+        "kpi_text": "The European Council welcomes the recent strengthening of the European Union Advisory Mission (EUAM) in Ukraine which will allow the scaling up of support for Ukrainian law enforcement agencies in Ukraine’s liberated and adjacent territories, and for reforms in the context of its EU accession process.",
+        "kpi_type": "qualitative",
+        "metric_name": "Scaling Up EUAM Support for Ukrainian Law Enforcement and Reforms",
+        "target_value": null,
+        "target_description": "Scale up support for Ukrainian law enforcement agencies and reforms linked to EU accession",
+        "unit": "qualitative milestone",
+        "timeframe": "ongoing",
+        "measurement_method": "Monitoring EUAM activities and reform progress",
+        "responsible_entity": "European Union Advisory Mission (EUAM)",
+        "sector": "Security / Governance"
+      },
+      {
+        "kpi_text": "The European Council calls for further support for psychological and psychosocial rehabilitation and for increased demining assistance.",
+        "kpi_type": "qualitative",
+        "metric_name": "Support for Psychological Rehabilitation and Demining in Ukraine",
+        "target_value": null,
+        "target_description": "Increase support for psychological and psychosocial rehabilitation and demining assistance in Ukraine",
+        "unit": "qualitative milestone",
+        "timeframe": "not specified",
+        "measurement_method": "Tracking support programs and assistance delivered",
+        "responsible_entity": "European Union and Member States",
+        "sector": "Humanitarian / Security"
+      },
+      {
+        "kpi_text": "The European Council calls for an immediate humanitarian pause leading to a sustainable ceasefire, the unconditional release of all hostages and the provision of humanitarian assistance.",
+        "kpi_type": "qualitative",
+        "metric_name": "Humanitarian Pause and Ceasefire in Middle East Conflict",
+        "target_value": null,
+        "target_description": "Achieve an immediate humanitarian pause, sustainable ceasefire, unconditional release of hostages, and provision of humanitarian aid",
+        "unit": "qualitative milestone",
+        "timeframe": "immediate",
+        "measurement_method": "Verification of ceasefire, hostage release, and aid delivery",
+        "responsible_entity": "All parties involved in the Middle East conflict",
+        "sector": "Humanitarian / Foreign Policy"
+      },
+      {
+        "kpi_text": "The European Council calls on the Council to accelerate work on the adoption of further relevant restrictive measures against Hamas.",
+        "kpi_type": "qualitative",
+        "metric_name": "Adoption of Restrictive Measures Against Hamas",
+        "target_value": null,
+        "target_description": "Accelerate adoption of further restrictive measures targeting Hamas",
+        "unit": "qualitative milestone",
+        "timeframe": "not specified",
+        "measurement_method": "Adoption and enforcement of restrictive measures",
+        "responsible_entity": "Council of the European Union",
+        "sector": "Security / Foreign Policy"
+      },
+      {
+        "kpi_text": "The European Council invites the Council and the Commission to explore all options for mobilising funding and report back by June.",
+        "kpi_type": "qualitative",
+        "metric_name": "Funding Mobilisation for European Defence Industry",
+        "target_value": null,
+        "target_description": "Explore all options for mobilising funding for the European defence industry and report back",
+        "unit": "qualitative milestone",
+        "timeframe": "by June 2024",
+        "measurement_method": "Submission of report on funding options",
+        "responsible_entity": "Council and European Commission",
+        "sector": "Defence / Industry"
+      },
+      {
+        "kpi_text": "The European Council will address internal reforms at an upcoming meeting with a view to adopting by summer 2024 conclusions on a roadmap for future work.",
+        "kpi_type": "qualitative",
+        "metric_name": "Adoption of Roadmap for Internal Reforms",
+        "target_value": null,
+        "target_description": "Adopt conclusions on a roadmap for internal reforms to prepare the EU for enlargement",
         "unit": "qualitative milestone",
         "timeframe": "by summer 2024",
-        "measurement_method": "Meeting minutes and official documentation",
+        "measurement_method": "Adoption of conclusions at European Council meeting",
         "responsible_entity": "European Council",
-        "sector": "Internal Reforms"
-      },
-      {
-        "kpi_text": "strengthen the position of farmers in the food supply chain",
-        "kpi_type": "qualitative",
-        "metric_name": "Farmers' Position Strengthening",
-        "target_value": null,
-        "target_description": "Ensure a fair income for farmers in the food supply chain",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Stakeholder feedback and income analysis",
-        "responsible_entity": "European Council",
-        "sector": "Agriculture"
-      },
-      {
-        "kpi_text": "improve exchange of information and strengthen implementation of sanctions",
-        "kpi_type": "qualitative",
-        "metric_name": "Sanctions Implementation Improvement",
-        "target_value": null,
-        "target_description": "Enhance the exchange of information regarding sanctions",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Reports on sanctions enforcement",
-        "responsible_entity": "Council and Commission",
-        "sector": "International Relations"
-      },
-      {
-        "kpi_text": "support initiatives to continue investing in skilled labour in the defence industry",
-        "kpi_type": "qualitative",
-        "metric_name": "Skilled Labour Investment",
-        "target_value": null,
-        "target_description": "Invest in skilled labour to address shortages in the defence industry",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Training program evaluations and employment statistics",
-        "responsible_entity": "European Union",
-        "sector": "Defense"
-      },
-      {
-        "kpi_text": "establish a tribunal for the prosecution of the crime of aggression against Ukraine",
-        "kpi_type": "qualitative",
-        "metric_name": "Tribunal Establishment",
-        "target_value": null,
-        "target_description": "Establish a tribunal to prosecute aggression against Ukraine",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Legal framework establishment and operational readiness",
-        "responsible_entity": "Core Group",
-        "sector": "International Law"
-      },
-      {
-        "kpi_text": "enhance rapid response and timely identification of bottlenecks in supply chains for the defence market",
-        "kpi_type": "qualitative",
-        "metric_name": "Supply Chain Bottleneck Identification",
-        "target_value": null,
-        "target_description": "Improve response times and identification of supply chain issues",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Supply chain assessments and reports",
-        "responsible_entity": "European Union",
-        "sector": "Defense"
-      },
-      {
-        "kpi_text": "strengthen cooperation with regional and international partners to prevent further regional escalation",
-        "kpi_type": "qualitative",
-        "metric_name": "Cooperation Strengthening",
-        "target_value": null,
-        "target_description": "Enhance cooperation to prevent regional conflicts",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Partnership agreements and joint initiatives",
-        "responsible_entity": "European Union",
-        "sector": "International Relations"
+        "sector": "Governance / Enlargement"
       }
     ],
     "country_list_iso": [
-      "CZE",
+      "BELA",
+      "BIH",
+      "CYP",
+      "EGY",
       "GEO",
-      "HND",
+      "HAT",
       "IRN",
+      "ISR",
+      "LBN",
       "MDA",
+      "MRT",
+      "NKO",
+      "NOR",
       "RUS",
+      "SVK",
       "UKR"
     ],
-    "responsible_entity": "European Council",
+    "responsible_entity": "The Council",
     "sdg_alignment": [
-      "SDG 16: Peace, Justice and Strong Institutions",
-      "SDG 3: Good Health and Well-being",
-      "SDG 2: Zero Hunger",
       "SDG 1: No Poverty",
+      "SDG 2: Zero Hunger",
+      "SDG 3: Good Health and Well-being",
+      "SDG 5: Gender Equality",
       "SDG 10: Reduced Inequalities",
-      "SDG 17: Partnerships for the Goals"
+      "SDG 16: Peace, Justice and Strong Institutions"
     ]
   },
   "top_actors": [
@@ -274,39 +344,39 @@
       "name": "European Council",
       "category": "Political Actors",
       "relevance_score": 1.0,
-      "justification": "The European Council is the primary actor in the document, leading discussions and decisions on key issues such as support for Ukraine, security and defense, and international relations."
+      "justification": "The European Council is the primary actor in the document, as it is the body adopting the conclusions and driving the discussions on all key topics including Ukraine, security and defence, Middle East, enlargement, and external relations. It is mentioned throughout the text as the decision-making and coordinating entity."
     },
     {
-      "name": "Russia",
+      "name": "European Union",
       "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "Russia is a central figure in the document due to its ongoing aggression against Ukraine, which is a major topic of discussion, and its actions are directly addressed in terms of sanctions and military support for Ukraine."
+      "relevance_score": 0.85,
+      "justification": "The European Union is central to the document’s context, representing the collective entity providing political, financial, military, and humanitarian support, especially to Ukraine and other partner countries. The EU’s institutions and missions are frequently referenced as implementing and supporting the Council’s decisions."
     },
     {
-      "name": "UN Secretary-General António Guterres",
+      "name": "Ukraine",
       "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "António Guterres is mentioned as a key participant in discussions about global challenges, highlighting the UN's role in international diplomacy and the geopolitical context of the issues addressed."
+      "relevance_score": 0.75,
+      "justification": "Ukraine is a key focus of the document, with extensive references to the war of aggression against it, the EU’s support, military assistance, sanctions against Russia, and reconstruction efforts. Ukraine’s sovereignty and security are central to the European Council’s agenda and actions."
     }
   ],
   "top_themes": [
     {
-      "name": "EU-LAC Digital Alliance",
-      "category": "Regional & International Cooperation",
-      "relevance_score": 0.9,
-      "justification": "This theme is central to the document's focus on international cooperation and strategic partnerships, particularly in the context of addressing global challenges and enhancing collaboration between the EU and Latin America and the Caribbean."
+      "name": "Multilateralism (Regional & International Cooperation)",
+      "category": "Multilateralism",
+      "relevance_score": 0.95,
+      "justification": "The document heavily focuses on international cooperation, geopolitical challenges, and partnerships, especially regarding Ukraine, Russia, the Middle East, enlargement, and global security. Multilateralism is central to the EU's strategic approach and commitments throughout the conclusions."
     },
     {
-      "name": "Digital Governance",
-      "category": "Data & Governance",
-      "relevance_score": 0.85,
-      "justification": "Digital governance is crucial for ensuring effective management of data and technology, which is essential for the EU's strategic objectives in promoting transparency, accountability, and security in digital environments."
+      "name": "Technology Regulations (Technology & Innovation)",
+      "category": "Technology & Innovation",
+      "relevance_score": 0.25,
+      "justification": "While the document mentions strengthening the European defence technological and industrial base and related investments, direct references to technology regulations or innovation governance are limited and mostly linked to defence capabilities rather than broader digital governance."
     },
     {
-      "name": "Cybersecurity",
+      "name": "Digital Governance (Data & Governance)",
       "category": "Data & Governance",
-      "relevance_score": 0.8,
-      "justification": "Cybersecurity is a key concern in the context of rising threats and security challenges, making it strategically important for the EU to enhance its defense capabilities and protect its digital infrastructure."
+      "relevance_score": 0.1,
+      "justification": "The document does not explicitly address digital governance or data-related issues. Any indirect references are minimal and overshadowed by the focus on security, defence, and geopolitical matters."
     }
   ]
 }

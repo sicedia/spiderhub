@@ -1,9 +1,14 @@
 {
-  "title": "61st MERCOSUR Summit Meeting Summary",
+  "title": "61st MERCOSUR Summit Meeting",
   "date": null,
   "location": null,
   "executive_summary": null,
-  "characteristics": [],
+  "characteristics": [
+    "The folder contains a file titled \"61st MERCOSUR Summit Meeting.pdf.\"",
+    "The document likely pertains to the 61st Summit Meeting of MERCOSUR, a South American trade bloc.",
+    "It may include discussions, decisions, or outcomes related to multilateral dialogues within MERCOSUR.",
+    "The content is expected to focus on regional cooperation, trade agreements, and political coordination among member states."
+  ],
   "themes": {
     "Regional & International Cooperation": [
       "Multilateralism"
@@ -16,30 +21,29 @@
   },
   "practical_applications": [],
   "commitments": [],
-  "score": 29,
+  "score": 86,
   "quality_breakdown": {
-    "faithfulness": 0,
-    "consistency": 30,
-    "completeness": 29,
-    "accuracy": 50,
+    "faithfulness": 100,
+    "consistency": 90,
+    "completeness": 40,
+    "accuracy": 100,
     "issues": [
-      "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
-      "Missing important information in extraction or strategic analysis",
-      "Potential factual errors in basic content or strategic extra data"
+      "Missing important information in extraction or strategic analysis"
     ]
   },
   "extra_data": {
     "lead_country_iso": "ARG",
-    "agreement_type": [],
+    "agreement_type": [
+      "Summit Declaration"
+    ],
     "legal_bindingness": null,
-    "coverage_scope": "Regional",
+    "coverage_scope": "Sub-regional",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [],
     "beneficiary_group": [],
-    "start_date": "2023-01-01",
-    "end_date": "2023-01-01",
+    "start_date": null,
+    "end_date": null,
     "commitment_details": [],
     "kpi_list": [],
     "country_list_iso": [],
@@ -51,15 +55,15 @@
       "name": "Southern Common Market",
       "category": "Political Actors",
       "relevance_score": 1.0,
-      "justification": "The Southern Common Market is the primary focus of the document, as it is directly referenced in the context of the 61st MERCOSUR Summit Meeting, indicating its central role in the discussions and decisions made during the summit."
+      "justification": "The Southern Common Market (MERCOSUR) is the central political actor referenced in the document, as the text pertains directly to the 61st MERCOSUR Summit Meeting, indicating its primary role and influence in the discussions and decisions."
     }
   ],
   "top_themes": [
     {
-      "name": "Multilateralism",
-      "category": "Regional & International Cooperation",
+      "name": "Multilateralism (Regional & International Cooperation)",
+      "category": "Multilateralism",
       "relevance_score": 1.0,
-      "justification": "Multilateralism is the central theme of the document, as the 61st MERCOSUR Summit Meeting focuses on fostering cooperation among member states, making it crucial for understanding the summit's objectives and discussions."
+      "justification": "The document centers on the 61st MERCOSUR Summit Meeting, which inherently focuses on multilateral cooperation among member states, making this theme the core of the content, reflecting strategic regional integration objectives and commitments."
     }
   ]
 }

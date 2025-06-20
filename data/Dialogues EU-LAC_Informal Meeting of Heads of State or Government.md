@@ -1,4 +1,4 @@
-# Informal Meeting of European Council Leaders in Prague: Key Discussions on Ukraine, Energy, and Economic Challenges (7 October 2022)
+# Informal Meeting of the European Council and European Political Community Summit, Prague, 6-7 October 2022
 
 **Date**: 2022-10-07
 
@@ -6,35 +6,32 @@
 
 ## Executive Summary
 
-On October 7, 2022, EU leaders convened in Prague for an informal meeting, hosted by Czech Prime Minister Petr Fiala and chaired by President Charles Michel. The agenda focused on three critical issues: Russia's war in Ukraine, the energy crisis, and the economic situation in the EU. Leaders discussed strategies for supporting Ukraine amidst escalating aggression from Russia, including military and financial aid, and measures to protect critical infrastructure. They also addressed the urgent need to ensure energy security and affordability for households and businesses, evaluating existing decisions and proposing coordinated actions. Additionally, the meeting aimed to foster cooperation among European nations on shared challenges, including peace, security, and economic stability, following the inaugural European Political Community meeting the previous day.
+The informal European Council meeting took place in Prague on 7 October 2022, hosted by Czech Prime Minister Petr Fiala and chaired by European Council President Charles Michel. Key topics included Russia’s war in Ukraine, focusing on EU responses to Kremlin’s escalations and support for Ukraine, energy security and affordability, and the economic situation addressing high prices and support for vulnerable groups. The day before, leaders participated in the inaugural European Political Community meeting to enhance cooperation on peace, security, economy, energy, climate, migration, and mobility across Europe. The Council emphasized solidarity and coordinated actions to ensure energy supply security and economic resilience amid ongoing geopolitical challenges. No formal outcomes were expected from the European Political Community meeting.
 
 ## Characteristics
 
-- The informal meeting of the European Council took place in Prague on 7 October 2022, hosted by Czech Prime Minister Petr Fiala and chaired by President Charles Michel.
-- Key discussion topics included Russia's war in Ukraine, energy security, and the economic situation in the EU.
-- Leaders aimed to coordinate responses to high energy prices and ensure support for vulnerable populations.
-- The meeting followed the inaugural session of the European Political Community on 6 October, focusing on cooperation among European nations.
+- Informal European Council meeting held in Prague on 7 October 2022, hosted by Czech Prime Minister Petr Fiala and chaired by President Charles Michel.
+- Key discussion topics: Russia’s war in Ukraine, energy security and affordability, and the economic situation including support for vulnerable groups.
+- Prior event: First meeting of the European Political Community on 6 October 2022, aimed at fostering cooperation on peace, security, economy, energy, climate, migration, and mobility.
+- Focus on EU’s response to Russia’s illegal annexation of Ukrainian territories and protection of Europe’s critical infrastructure.
+- Emphasis on coordinated EU measures to reduce energy prices and ensure security of supply for households and businesses.
+- Economic discussions centered on supporting growth, jobs, and protecting those most affected by high energy costs.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Council; Prime Minister Petr Fiala; President Charles Michel |
-| European Union | European Council |
+| Political Actors | European Council; European Union; EU Member States; European Parliament; European Commission; Government Officials |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Regional & International Cooperation | EU-LAC Digital Alliance |
-| Data & Governance | Digital Governance; Cybersecurity |
-| Digital Transformation & Strategy | Digital Policy |
+| Regional & International Cooperation | Multilateralism |
 
 ## Practical Applications
 
-- Established the European Political Community (EPC) to foster cooperation among European leaders on issues such as peace and security, economic situation, energy and climate, and migration and mobility.
-- Implemented emergency measures to reduce energy prices in response to the energy crisis, coordinated at the EU level.
-- Ongoing discussions among EU leaders to provide strong economic, military, political, and financial support to Ukraine in light of Russia's aggression.
+No existing practical applications or implementations identified.
 
 ## Commitments
 

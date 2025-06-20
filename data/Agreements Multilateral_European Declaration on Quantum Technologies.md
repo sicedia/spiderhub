@@ -1,4 +1,4 @@
-# European Declaration on Quantum Technologies: Commitment to a Leading Quantum Ecosystem in the EU
+# European Declaration on Quantum Technologies
 
 **Date**: 2025-05-20
 
@@ -6,30 +6,31 @@
 
 ## Executive Summary
 
-The European Declaration on Quantum Technologies emphasizes the critical role of quantum technologies in enhancing the scientific and industrial competitiveness of the EU. It outlines a commitment from twenty-six Member States to collaborate in establishing a robust quantum technology ecosystem, aiming to position Europe as the global leader in quantum innovation, referred to as the "quantum valley." The declaration reflects a unified effort to foster excellence in quantum technologies across the continent.
+The European Declaration on Quantum Technologies underscores the strategic significance of quantum technologies for the EU’s scientific and industrial competitiveness. Signed by twenty-six Member States, the declaration commits these countries to collaborate in building a world-class quantum technology ecosystem across Europe. The ultimate goal is to establish Europe as the global leader in quantum excellence and innovation, positioning it as the ‘quantum valley’ of the world. This collective effort aims to drive advancements in quantum technologies, ensuring Europe’s leadership in this critical field.
 
 ## Characteristics
 
-- Recognizes the strategic importance of quantum technologies for the EU's scientific and industrial competitiveness.
-- Commits to collaboration among Member States to develop a world-class quantum technology ecosystem.
-- Aims to establish Europe as the leading global region for quantum excellence and innovation, referred to as the ‘quantum valley’.
-- Signed by twenty-six Member States, including major countries like Germany, France, and Italy.
+- Recognises the strategic importance of quantum technologies for the EU’s scientific and industrial competitiveness.
+- Commits signatory Member States to collaborate on developing a world-class quantum technology ecosystem across Europe.
+- Aims to make Europe the global leader (“quantum valley”) in quantum excellence and innovation.
+- As of May 2025, twenty-six EU Member States have signed the declaration.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Union; EU Member States |
+| Political Actors | European Union; EU Member States; Governments |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
 | Technology & Innovation | Quantum Technologies |
+| Regional & International Cooperation | Digital & Technological Partnerships; Multilateralism |
 
 ## Practical Applications
 
-- Twenty-six Member States have signed the European Declaration on Quantum Technologies, committing to collaborate on the development of a world-class quantum technology ecosystem across Europe.
+- Twenty-six EU Member States have signed the European Declaration on Quantum Technologies, establishing a formal multilateral commitment to collaborate on developing a world-class quantum technology ecosystem across Europe.
 
 ## Commitments
 

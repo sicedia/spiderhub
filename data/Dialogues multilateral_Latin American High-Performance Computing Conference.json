@@ -1,5 +1,5 @@
 {
-  "title": "Latin America High Performance Computing Conference 2023 (CARLA 2023)",
+  "title": null,
   "date": null,
   "location": null,
   "executive_summary": null,
@@ -12,15 +12,14 @@
   "actors": {},
   "practical_applications": [],
   "commitments": [],
-  "score": 10,
+  "score": 16,
   "quality_breakdown": {
     "faithfulness": 0,
-    "consistency": 30,
+    "consistency": 95,
     "completeness": 10,
     "accuracy": 0,
     "issues": [
       "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
       "Missing important information in extraction or strategic analysis",
       "Potential factual errors in basic content or strategic extra data"
     ]
@@ -29,7 +28,7 @@
     "lead_country_iso": null,
     "agreement_type": [],
     "legal_bindingness": null,
-    "coverage_scope": "Sub-regional",
+    "coverage_scope": null,
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [],
@@ -48,7 +47,7 @@
       "name": "High-Performance Computing",
       "category": "Technology & Innovation",
       "relevance_score": 1.0,
-      "justification": "This theme is central to the document as it directly relates to the focus of the conference, which is centered around advancements and discussions in high-performance computing within the Latin American context."
+      "justification": "The document is centered on the Latin America High Performance Computer Conference, making High-Performance Computing the core theme, with the entire content dedicated to this topic and its strategic importance in advancing regional technological capabilities."
     }
   ]
 }

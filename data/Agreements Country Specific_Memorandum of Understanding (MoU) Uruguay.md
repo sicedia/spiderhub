@@ -1,8 +1,8 @@
-# Memorandum of Understanding (MoU) with Uruguay
+# Memorandum of Understanding (MoU) Uruguay
 
 **Date**: Date not specified
 
-**Location**: Uruguay
+**Location**: Montevideo, Uruguay
 
 ## Executive Summary
 
@@ -14,14 +14,15 @@ No key characteristics identified in the document.
 
 ## Actors
 
-No actors identified.
+| Category | Actor |
+| --- | --- |
+| Political Actors | Governments |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Technology & Innovation | Artificial Intelligence |
-| Data & Governance | Digital Governance; E-Governance |
+| Regional & International Cooperation | Digital & Technological Partnerships |
 
 ## Practical Applications
 

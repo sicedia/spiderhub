@@ -1,6 +1,6 @@
-# Latin American High Performance Computing Conference 2024
+# CARLA2024: La conferencia de HPC más importante de América Latina
 
-**Date**: Date not specified
+**Date**: 2024-09
 
 **Location**: Location not specified
 
@@ -14,9 +14,7 @@ No key characteristics identified in the document.
 
 ## Actors
 
-| Category | Actor |
-| --- | --- |
-| Research and Innovation Actors | Latin American Cooperation of Advanced Networks; Universities |
+No actors identified.
 
 ## Main Themes
 

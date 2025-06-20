@@ -1,32 +1,32 @@
 {
-  "title": "High-Level Political Forum 2024 Documentation",
-  "date": null,
+  "title": "Documentation for the High-Level Political Forum 2024",
+  "date": "2024",
   "location": null,
   "executive_summary": null,
   "characteristics": [],
-  "themes": {
-    "Regional & International Cooperation": [
-      "Global Digital Cooperation"
+  "themes": {},
+  "actors": {
+    "Political Actors": [
+      "United Nations",
+      "United Nations Officials"
     ]
   },
-  "actors": {},
   "practical_applications": [],
   "commitments": [],
-  "score": 24,
+  "score": 30,
   "quality_breakdown": {
     "faithfulness": 0,
-    "consistency": 30,
-    "completeness": 30,
-    "accuracy": 33,
+    "consistency": 90,
+    "completeness": 25,
+    "accuracy": 40,
     "issues": [
       "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
       "Missing important information in extraction or strategic analysis",
       "Potential factual errors in basic content or strategic extra data"
     ]
   },
   "extra_data": {
-    "lead_country_iso": null,
+    "lead_country_iso": "USA",
     "agreement_type": [],
     "legal_bindingness": null,
     "coverage_scope": "Multilateral",
@@ -42,13 +42,19 @@
     "responsible_entity": null,
     "sdg_alignment": []
   },
-  "top_actors": [],
-  "top_themes": [
+  "top_actors": [
     {
-      "name": "Global Digital Cooperation",
-      "category": "Regional & International Cooperation",
-      "relevance_score": 0.9,
-      "justification": "This theme is central to the document's main message, emphasizing the importance of collaboration in the digital realm to achieve global objectives. A significant portion of the content is dedicated to discussing strategies and commitments related to digital cooperation, highlighting its strategic importance in addressing global challenges."
+      "name": "United Nations",
+      "category": "Political Actors",
+      "relevance_score": 1.0,
+      "justification": "The United Nations is the primary international organization involved in the High-Level Political Forum 2024, playing a central role in setting agendas, coordinating multilateral dialogues, and influencing global policy decisions."
+    },
+    {
+      "name": "United Nations Officials",
+      "category": "Political Actors",
+      "relevance_score": 0.8,
+      "justification": "United Nations Officials are key actors responsible for implementing, guiding, and representing the UN's initiatives and decisions at the forum, thus having significant influence on the discussions and outcomes."
     }
-  ]
+  ],
+  "top_themes": []
 }

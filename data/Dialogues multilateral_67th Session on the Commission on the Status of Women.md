@@ -18,9 +18,7 @@ No actors identified.
 
 ## Main Themes
 
-| Category | Subcategory |
-| --- | --- |
-| Inclusion & Social Development | Gender Equality in Tech |
+No themes identified.
 
 ## Practical Applications
 

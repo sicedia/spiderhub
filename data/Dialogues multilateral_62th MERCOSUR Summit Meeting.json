@@ -1,83 +1,140 @@
 {
-  "title": "62nd MERCOSUR Summit Meeting: Joint Communiqué of Presidents on Regional Integration and Cooperation",
+  "title": "Joint Communiqué of the Presidents of MERCOSUR Member and Associated States – 62nd MERCOSUR Summit Meeting, July 4, 2023",
   "date": "2023-07-04",
   "location": "Iguazú, Argentina",
-  "executive_summary": "The LXII MERCOSUR Summit, held on July 4, 2023, in Iguazú, Argentina, brought together leaders from Argentina, Brazil, Paraguay, Uruguay, and Bolivia. The summit reaffirmed commitments to democratic institutions, human rights, and regional integration. Key outcomes included the revitalization of the MERCOSUR Social Summit, advancements in legal cooperation, and the establishment of a Digital Library for cultural exchange. Leaders emphasized the importance of addressing social issues, including violence against women and the rights of marginalized groups. They also discussed regional cooperation on drug trafficking, terrorism, and migration, while condemning unilateral actions regarding the Malvinas dispute. The summit concluded with a commitment to sustainable development, energy transition, and enhancing regional cooperation, particularly in agriculture and technology, as well as a recognition of Argentina's presidency and support for Brazil's upcoming leadership.",
+  "executive_summary": "The 62nd MERCOSUR Summit held in Iguazú, Argentina, on July 4, 2023, reaffirmed commitments to democracy, human rights, and regional integration among member and associated states. Key outcomes included strengthening political inclusion, reviving the MERCOSUR Social Summit, advancing legal cooperation, and promoting cultural initiatives such as the MERCOSUR Digital Library and recognition of the ESMA Memory Museum. The summit emphasized social issues, including protection of older persons, combating gender violence, and supporting indigenous and Afro-descendant rights. It condemned terrorism, reinforced cooperation against transnational crime, and advocated for safe, orderly migration respecting human rights. Environmental concerns were addressed with commitments to combat climate change, biodiversity loss, and pollution, alongside support for sustainable development and renewable energy. The summit also highlighted infrastructure projects like Bioceanic Corridors to boost regional connectivity and economic growth. Participants endorsed multilateralism, the reform of the UN Security Council, and the full implementation of the 2030 Sustainable Development Agenda, while supporting Argentina's sovereignty claims over the Malvinas Islands.",
   "characteristics": [
-    "Commitment to democracy and human rights: The leaders reaffirmed their dedication to strengthening democratic institutions and the rule of law, emphasizing the importance of human rights and fundamental freedoms for regional integration.",
-    "Political inclusion: They highlighted efforts to enhance the participation of associated states in regional political matters, aiming for a more inclusive MERCOSUR.",
-    "Cultural integration initiatives: The summit celebrated cultural actions and the establishment of a digital library to promote Latin American literature and ideas, fostering cultural exchange.",
-    "Social rights focus: The leaders committed to advancing social rights, particularly for vulnerable groups, including the elderly and women, and addressing violence against women.",
-    "Environmental and sustainable development: They emphasized the need for collaborative efforts to combat climate change, promote biodiversity, and ensure sustainable development in the region."
+    "Reaffirmed commitment to democracy, rule of law, human rights, and fundamental freedoms as essential for regional integration.",
+    "Emphasized strengthening political inclusion of associate states and revitalizing the MERCOSUR Social Summit for civil society participation.",
+    "Highlighted cooperation in justice, culture, social development, gender equality, indigenous and Afro-descendant rights, and combating violence and discrimination.",
+    "Committed to addressing migration humanely, enhancing regional security, fighting organized crime, and promoting sustainable development and environmental protection.",
+    "Supported regional infrastructure projects like Bioceanic Corridors to boost economic integration, trade, and connectivity.",
+    "Reiterated support for Argentina's sovereignty claims over the Malvinas Islands and called for peaceful resolution per UN mandates."
   ],
   "themes": {
-    "Inclusion & Social Development": [
-      "Digital Inclusion",
-      "Social Cohesion",
-      "Gender Equality in Tech",
-      "Digital Education"
-    ],
-    "Regional & International Cooperation": [
-      "EU-LAC Digital Alliance",
-      "Global Digital Cooperation",
-      "Digital & Technological Partnerships"
+    "Digital Transformation & Strategy": [
+      "Digital Agenda",
+      "Digital Platforms",
+      "Digital Ecosystem",
+      "Digital Policy"
     ],
     "Data & Governance": [
-      "Data Governance",
-      "Digital Rights",
       "Digital Governance",
-      "Data Protection",
-      "Cybersecurity",
-      "Data Privacy"
+      "Digital Rights",
+      "Digital Ethics",
+      "E-Governance"
+    ],
+    "Inclusion & Social Development": [
+      "Digital Inclusion",
+      "Social Cohesion"
+    ],
+    "Regional & International Cooperation": [
+      "Multilateralism",
+      "Bi-regional Cooperation",
+      "Global Digital Cooperation",
+      "Digital & Technological Partnerships"
     ]
   },
   "actors": {
     "Political Actors": [
-      "Alberto Fernández",
-      "Luiz Inácio Lula da Silva",
-      "Mario Abdo Benítez",
-      "Luis Lacalle Pou",
-      "Luis Alberto Arce Catacora"
+      "Governments",
+      "Government Officials",
+      "Policy Level Representatives",
+      "Southern Common Market",
+      "United Nations"
+    ],
+    "Economic Actors": [
+      "Development Bank of Latin America and the Caribbean"
     ]
   },
   "practical_applications": [
-    "Commitment to the implementation of the \"Agreement on Mutual Recognition of Protection Measures for Women in Situations of Gender Violence\" among MERCOSUR member states and associated states.",
-    "Establishment of mechanisms for normative harmonization and regional cooperation regarding marriage, personal and patrimonial relations, divorce, and separation.",
-    "Adoption of the recommendation on \"Comprehensive Protection of the Rights of Older Persons,\" promoting public policies for their inclusion and participation in society.",
-    "Support for the Regional Network of Mediators of the Southern Cone to enhance women's participation in peace processes.",
-    "Creation of the \"Digital Library of MERCOSUR and the South American Unit,\" providing free access to texts on South American unity and integration.",
-    "Recognition of the work of the Specialized Meeting of Audiovisual Authorities in negotiating an audiovisual co-production agreement to strengthen the industry and promote regional collaboration.",
-    "Commitment to the Forum Specialized on Migration, including cooperation with the Development Bank of Latin America (CAF) for the extension of a signed agreement.",
-    "Promotion of the \"Bioceanic Corridors\" projects, including the Bioceanic Integration Railway Corridor and the Bioceanic Road Corridor, to enhance regional trade and connectivity.",
-    "Emphasis on the importance of the Agreement on Border Localities to facilitate cross-border circulation and provide benefits in education, work, health, and commerce for border populations.",
-    "Commitment to strengthen cooperation in the fight against transnational organized crime and related offenses, including the enhancement of criminal investigation capacities.",
-    "Support for the implementation of the Vienna Action Program to address the special needs and challenges of Landlocked Developing Countries.",
-    "Commitment to the implementation of the 2030 Agenda for Sustainable Development, focusing on economic, social, and environmental dimensions.",
-    "Recognition of the need to combat environmental crimes as a priority area for regional cooperation."
+    "Continuation and deepening of the MERCOSUR POLÍTICO forum to include greater participation of Associated States in regional political affairs.",
+    "Regular celebration of the MERCOSUR Social Summit as a platform for social movements, NGOs, and organized communities to express their needs and initiatives.",
+    "Implementation of the “Agreement on Mutual Recognition of Protection Measures for Women in Situations of Gender Violence” among MERCOSUR and Associated States.",
+    "Establishment of mechanisms for normative harmonization and regional cooperation on marriage, personal and patrimonial relations between spouses, divorce, separation, and dissolution of cohabitation unions.",
+    "Promotion of regional cultural integration through actions such as the MERCOSUR Film Exhibition, virtual talks on memory sites, university arts festivals, and the upcoming 2024 Southern Cultural Industries Market in Chile.",
+    "Incorporation of the ESMA Memory Site Museum as a Cultural Asset of MERCOSUR to support human rights promotion and defense policies.",
+    "Negotiation and advancement of an audiovisual co-production agreement to strengthen the regional film and audiovisual industry.",
+    "Creation and promotion of the MERCOSUR and South American Digital Library for free access to texts on Latin American unity and integration.",
+    "Adoption of the Recommendation on \"Comprehensive Protection of the Rights of Older Persons\" to promote inclusive public policies.",
+    "Commitment to preventing, sanctioning, and eradicating violence against women, promoting their participation in politics and public life, and supporting the Regional Network of Mediators of the Southern Cone.",
+    "Strengthening public policies to foster a democratic culture based on respect and equality, combating hate speech, discrimination, intolerance, and inequality.",
+    "Preservation, revitalization, and promotion of indigenous languages within the framework of the International Decade of Indigenous Languages.",
+    "Combatting racial discrimination and strengthening mechanisms to ensure full access to education, justice, and health for Afro-descendant populations.",
+    "Balanced and integrated approach to the global drug problem, focusing on combating illicit trafficking and providing prevention and care with ethnic, gender, and human rights perspectives.",
+    "Strengthening cooperation to prevent and combat terrorism and its financing.",
+    "Regional cooperation to fight transnational organized crime, including illegal mining, arms trafficking, human trafficking, and migrant smuggling, with emphasis on criminal investigation capacities and information exchange through the MERCOSUR Security Information System (SISME).",
+    "Strengthening access to justice for older persons through the work of the MERCOSUR Public Defenders' Specialized Meeting.",
+    "Prevention and fight against illicit manufacturing and trafficking of firearms, ammunition, explosives, and related materials, including implementation of the MERCOSUR Regional Correspondence Code on Arms.",
+    "Promotion of safe, orderly, regular, and humane migration respecting migrants' human rights, with cooperation involving the MERCOSUR Specialized Migration Forum and the Development Bank of Latin America (CAF).",
+    "Encouragement for countries to ratify the MERCOSUR Border Localities Agreement to facilitate cross-border circulation and provide benefits in education, work, health, transport, and subsistence goods trade.",
+    "Strengthening consular cooperation mechanisms among MERCOSUR States, including in natural disasters and emergencies.",
+    "Support for Argentina's legitimate sovereignty claims over the Malvinas Islands and promotion of peaceful dispute resolution through UN good offices.",
+    "Efforts to overcome asymmetries among MERCOSUR States and Associated States, including common instruments to ensure smooth trade under transparent rules for international land and river transport.",
+    "Commitment to the Vienna Program of Action addressing special development needs of Landlocked Developing Countries, including participation in the 2023 regional review conference.",
+    "Support for multilateralism, including reform of the UN Security Council and strengthening the UN Human Rights Council.",
+    "Full implementation of the 2030 Agenda for Sustainable Development with mobilization of necessary means and respect for national policies and priorities.",
+    "Collaborative work on climate change, pollution, biodiversity loss, and environmental crimes, emphasizing sustainable, ambitious, and rights-based solutions.",
+    "Recognition of the need for financing, capacity building, scientific and technical cooperation, and technology transfer from developed to developing countries for environmental goals.",
+    "Support for the Kunming-Montreal Global Biodiversity Framework and call for international financing for its implementation.",
+    "Support for the Agreement on Conservation and Sustainable Use of Marine Biodiversity Beyond National Jurisdiction (BBNJ) and Chile's offer to host its Secretariat.",
+    "Support for Brazil's candidacy to host the 30th UN Climate Change Conference (COP30) in 2025.",
+    "Promotion of Bioceanic Corridors projects to enhance socioeconomic development, regional integration, trade, investment, tourism, and quality of life, including the Bioceanic Railway Integration Project and the Bioceanic Road Corridor.",
+    "Strengthening rapprochement and convergence between MERCOSUR and the Andean Community in areas of mutual interest.",
+    "Deepening cooperation in agriculture, science, and technology to improve production and productivity.",
+    "Actions to guarantee food security, sustainable agricultural development, and fair, transparent, and predictable international agricultural trade.",
+    "Promotion of agile mechanisms to strengthen South-South and Triangular Cooperation to enhance institutional capacities in prioritized sectors such as trade, agroindustry, digital agenda, human rights, science and technology, and climate change.",
+    "Increase production and use of renewable energies and accelerate a sustainable, just, equitable, and inclusive energy transition.",
+    "Efforts to prioritize border integration focusing on the needs of border populations within MERCOSUR.",
+    "Utilization and improvement of MERCOSUR institutional spaces and specialized forums to deepen regional integration and achieve effective cooperation results, aligned with the Brazil Consensus from the South American Presidents Summit."
   ],
   "commitments": [
-    "Commit to the continuation and celebration of the MERCOSUR Social Summit, which had not been held since 2016, indicating a commitment to regular future gatherings.",
-    "Commit to the promotion of regional actions that contribute to the integration of culture as a specific goal among the upcoming Sustainable Development Goals of the United Nations after 2030.",
-    "Celebrate the upcoming Mercado de Industrias Culturales del Sur in Chile in 2024.",
-    "Commit to the implementation of the \"Agreement on Mutual Recognition of Protection Measures for Women in Situations of Gender Violence\" among MERCOSUR member states.",
-    "Commit to the adoption of the Recommendation on \"Comprehensive Protection of the Rights of Older Persons,\" promoting actions to strengthen their rights and inclusion in society.",
-    "Commit to the evaluation of the impact of electronic travel authorizations on migration flows in the region, with discussions to take place in the Specialized Migration Forum.",
-    "Commit to the full implementation of the 2030 Agenda for Sustainable Development, with a focus on mobilizing necessary resources and respecting national policies and priorities.",
-    "Commit to the regional conference for the review of the Vienna Action Program for July 27-28, 2023, in Asunción, Paraguay.",
-    "Commit to the adoption of measures to combat the triple planetary crisis of climate change, pollution, and biodiversity loss, with a focus on addressing plastic pollution.",
-    "Commit to the financing of the Kunming-Montreal Global Framework for Biodiversity, urging the international community to provide necessary funding for effective implementation.",
-    "Commit to the candidacy of Brazil to host the 30th Conference of the Parties to the UN Framework Convention on Climate Change (COP-30) in 2025.",
-    "Commit to the strengthening of cooperation in the fight against transnational organized crime, particularly in the areas of criminal investigation and asset laundering.",
-    "Commit to the promotion of food security and sustainable agricultural production, ensuring access to adequate food for all.",
-    "Commit to the promotion of renewable energy production and the acceleration of the energy transition in a sustainable and inclusive manner."
+    "Continue and deepen the expansion of MERCOSUR POLÍTICO in future Pro Tempore Presidencies to increasingly reflect the diverse reality of the peoples of the expanded MERCOSUR.",
+    "Continue holding the MERCOSUR Social Summit regularly as an important forum for social movements, NGOs, and organized communities to express their needs and initiatives.",
+    "Facilitate the prompt coordinated and harmonious implementation of the “Agreement on Mutual Recognition of Protection Measures for Women in Situations of Gender Violence” among MERCOSUR Member and Associated States.",
+    "Promote regional actions to integrate culture as a specific goal among the United Nations Sustainable Development Goals after 2030.",
+    "Hold the Mercado de Industrias Culturales del Sur in Chile in 2024.",
+    "Promote the adoption of the Recommendation on \"Comprehensive Protection of the Rights of Older Persons\" to strengthen and make effective the rights of older persons.",
+    "Work to prevent, sanction, and eradicate violence against women and promote their participation in politics and public life, in accordance with international human rights instruments.",
+    "Continue efforts to strengthen policies that foster a democratic culture based on respect and equality to combat all forms of discrimination, intolerance, and inequality.",
+    "Continue working to preserve, revitalize, and promote indigenous languages within the framework of the International Decade of Indigenous Languages.",
+    "Combat racial discrimination and strengthen mechanisms to guarantee full access and permanence of Afro-descendant populations in education, justice, and comprehensive health.",
+    "Adopt balanced, integral, and articulated strategies to address the World Drug Problem, including prevention, care, and accompaniment for persons with consumption problems, with ethnic, gender, and human rights approaches.",
+    "Strengthen cooperation to prevent and combat terrorism and its financing.",
+    "Strengthen regional cooperation in the fight against transnational organized crime and related offenses, emphasizing criminal investigation capacities and the pursuit of money laundering.",
+    "Continue strengthening cooperation and coordination in the search for missing persons or persons of unknown identity.",
+    "Continue strengthening cooperation on firearms and ammunition control, including implementing the MERCOSUR Regional Correspondence Code on Arms, with a gender perspective.",
+    "Continue advancing the MERCOSUR Specialized Forum on Migration, promoting safe, orderly, regular, and humane migration respecting human rights.",
+    "Encourage countries that have not yet ratified the MERCOSUR Border Localities Agreement to evaluate ratification to facilitate border circulation and provide benefits in study, work, health, transport, and subsistence goods trade.",
+    "Evaluate the impact of new electronic travel authorization requirements (e.g., ETIAS) on regional migration flows and consider adopting a common position.",
+    "Request the next Pro Tempore Presidency to renew efforts with the UN Secretary-General to resume negotiations for a peaceful solution to the sovereignty dispute over the Malvinas Islands as soon as possible.",
+    "Generate common instruments to guarantee smooth trade under transparent principles and rules for international land and river transport in the region.",
+    "Fully implement the WTO Trade Facilitation Agreement to counteract high trade costs faced by Landlocked Developing Countries.",
+    "Reinforce cooperation on sustainable development challenges of Landlocked Developing Countries, supporting the regional review conference for the 2014-2024 Decade on July 27-28, 2023, in Asunción, Paraguay.",
+    "Renew commitment to the full implementation of the 2030 Agenda for Sustainable Development, mobilizing necessary means and respecting national policies and priorities.",
+    "Work constructively and collaboratively in multilateral processes to urgently address climate change, pollution (especially plastic pollution), and biodiversity loss, applying the Rio Declaration principles and common but differentiated responsibilities.",
+    "Strengthen regional cooperation to combat environmental crimes.",
+    "Support the provision of financing, capacity building, scientific and technical cooperation, and technology transfer on preferential and concessional terms from developed to developing countries to achieve environmental objectives.",
+    "Support the effective implementation of the Kunming-Montreal Global Biodiversity Framework, urging the international community to provide necessary financing.",
+    "Support the implementation of the Agreement on the Conservation and Sustainable Use of Marine Biodiversity Beyond National Jurisdiction (BBNJ).",
+    "Support Brazil's candidacy to host the 30th Conference of the Parties to the UN Framework Convention on Climate Change (COP-30) in 2025 in Belém do Pará.",
+    "Promote the development of Bioceanic Corridors projects to enhance socioeconomic development, physical integration, trade, investment, tourism, and job opportunities in the region.",
+    "Strengthen approaches between MERCOSUR and the Andean Community to achieve articulation, complementation, and convergence in areas of mutual interest.",
+    "Deepen cooperation in agriculture, science, and technology to improve regional production and productivity.",
+    "Promote effective actions to guarantee food security, support sustainable food production, and ensure timely and permanent access to adequate food for all.",
+    "Promote agile mechanisms to strengthen South-South and Triangular Cooperation to enhance institutional capacities in prioritized sectors such as trade, agroindustry, digital agenda, human rights, science and technology, and climate change.",
+    "Increase production and use of renewable energies and accelerate a sustainable, just, equitable, and inclusive energy transition respecting national realities and priorities.",
+    "Redouble efforts to achieve border integration prioritizing the needs of peoples living in MERCOSUR border areas."
   ],
-  "score": 94,
+  "score": 60,
   "quality_breakdown": {
-    "faithfulness": 100,
-    "consistency": 94,
-    "completeness": 94,
+    "faithfulness": 0,
+    "consistency": 95,
+    "completeness": 95,
     "accuracy": 90,
-    "issues": []
+    "issues": [
+      "Low faithfulness - check for hallucinations in basic or strategic extra data"
+    ]
   },
   "extra_data": {
     "lead_country_iso": "ARG",
@@ -85,266 +142,259 @@
       "Ministerial Communiqué"
     ],
     "legal_bindingness": "Politically-binding",
-    "coverage_scope": "Regional",
+    "coverage_scope": "Sub-regional",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [
-      "mujer",
-      "pueblo",
-      "comunidad",
-      "persona mayor",
-      "indígena"
+      "woman",
+      "person",
+      "indigenous",
+      "afrodescendant",
+      "migrant"
     ],
     "beneficiary_group": [
       {
         "category": "Women & Girls",
-        "label": "Women"
+        "label": "Women in Tech"
+      },
+      {
+        "category": "Persons with Disabilities",
+        "label": "Persons with Disabilities"
       },
       {
         "category": "Indigenous Peoples & Ethnic Groups",
         "label": "Indigenous Communities"
       },
       {
-        "category": "Rural & Remote Communities",
-        "label": "Underserved Communities"
+        "category": "Indigenous Peoples & Ethnic Groups",
+        "label": "Afro-descendant Groups"
       },
       {
-        "category": "General Citizens / Consumers",
-        "label": "Citizens"
+        "category": "Migrants & Refugees",
+        "label": "Migrants"
       }
     ],
     "start_date": "2023-07-04",
     "end_date": "2023-07-04",
     "commitment_details": [
       {
-        "text": "Commit to the continuation and celebration of the MERCOSUR Social Summit, which had not been held since 2016, indicating a commitment to regular future gatherings.",
-        "commitment_class": "Declarative"
+        "text": "Continue and deepen the expansion of MERCOSUR POLÍTICO in future Pro Tempore Presidencies to increasingly reflect the diverse reality of the peoples of the expanded MERCOSUR.",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the promotion of regional actions that contribute to the integration of culture as a specific goal among the upcoming Sustainable Development Goals of the United Nations after 2030.",
-        "commitment_class": "Declarative"
+        "text": "Continue holding the MERCOSUR Social Summit regularly as an important forum for social movements, NGOs, and organized communities to express their needs and initiatives.",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Celebrate the upcoming Mercado de Industrias Culturales del Sur in Chile in 2024.",
-        "commitment_class": "Declarative"
+        "text": "Facilitate the prompt coordinated and harmonious implementation of the “Agreement on Mutual Recognition of Protection Measures for Women in Situations of Gender Violence” among MERCOSUR Member and Associated States.",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the implementation of the \"Agreement on Mutual Recognition of Protection Measures for Women in Situations of Gender Violence\" among MERCOSUR member states.",
-        "commitment_class": "Implemented"
+        "text": "Promote regional actions to integrate culture as a specific goal among the United Nations Sustainable Development Goals after 2030.",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the adoption of the Recommendation on \"Comprehensive Protection of the Rights of Older Persons,\" promoting actions to strengthen their rights and inclusion in society.",
-        "commitment_class": "Programmatic"
+        "text": "Hold the Mercado de Industrias Culturales del Sur in Chile in 2024.",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the evaluation of the impact of electronic travel authorizations on migration flows in the region, with discussions to take place in the Specialized Migration Forum.",
-        "commitment_class": "Programmatic"
+        "text": "Promote the adoption of the Recommendation on \"Comprehensive Protection of the Rights of Older Persons\" to strengthen and make effective the rights of older persons.",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the full implementation of the 2030 Agenda for Sustainable Development, with a focus on mobilizing necessary resources and respecting national policies and priorities.",
-        "commitment_class": "Programmatic"
+        "text": "Work to prevent, sanction, and eradicate violence against women and promote their participation in politics and public life, in accordance with international human rights instruments.",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the regional conference for the review of the Vienna Action Program for July 27-28, 2023, in Asunción, Paraguay.",
-        "commitment_class": "Declarative"
+        "text": "Continue efforts to strengthen policies that foster a democratic culture based on respect and equality to combat all forms of discrimination, intolerance, and inequality.",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the adoption of measures to combat the triple planetary crisis of climate change, pollution, and biodiversity loss, with a focus on addressing plastic pollution.",
-        "commitment_class": "Programmatic"
+        "text": "Continue working to preserve, revitalize, and promote indigenous languages within the framework of the International Decade of Indigenous Languages.",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the financing of the Kunming-Montreal Global Framework for Biodiversity, urging the international community to provide necessary funding for effective implementation.",
-        "commitment_class": "Financed"
+        "text": "Combat racial discrimination and strengthen mechanisms to guarantee full access and permanence of Afro-descendant populations in education, justice, and comprehensive health.",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the candidacy of Brazil to host the 30th Conference of the Parties to the UN Framework Convention on Climate Change (COP-30) in 2025.",
-        "commitment_class": "Declarative"
+        "text": "Adopt balanced, integral, and articulated strategies to address the World Drug Problem, including prevention, care, and accompaniment for persons with consumption problems, with ethnic, gender, and human rights approaches.",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the strengthening of cooperation in the fight against transnational organized crime, particularly in the areas of criminal investigation and asset laundering.",
-        "commitment_class": "Programmatic"
+        "text": "Strengthen cooperation to prevent and combat terrorism and its financing.",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the promotion of food security and sustainable agricultural production, ensuring access to adequate food for all.",
-        "commitment_class": "Programmatic"
+        "text": "Strengthen regional cooperation in the fight against transnational organized crime and related offenses, emphasizing criminal investigation capacities and the pursuit of money laundering.",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the promotion of renewable energy production and the acceleration of the energy transition in a sustainable and inclusive manner.",
-        "commitment_class": "Programmatic"
+        "text": "Continue strengthening cooperation and coordination in the search for missing persons or persons of unknown identity.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Continue strengthening cooperation on firearms and ammunition control, including implementing the MERCOSUR Regional Correspondence Code on Arms, with a gender perspective.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Continue advancing the MERCOSUR Specialized Forum on Migration, promoting safe, orderly, regular, and humane migration respecting human rights.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Encourage countries that have not yet ratified the MERCOSUR Border Localities Agreement to evaluate ratification to facilitate border circulation and provide benefits in study, work, health, transport, and subsistence goods trade.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Evaluate the impact of new electronic travel authorization requirements (e.g., ETIAS) on regional migration flows and consider adopting a common position.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Request the next Pro Tempore Presidency to renew efforts with the UN Secretary-General to resume negotiations for a peaceful solution to the sovereignty dispute over the Malvinas Islands as soon as possible.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Generate common instruments to guarantee smooth trade under transparent principles and rules for international land and river transport in the region.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Fully implement the WTO Trade Facilitation Agreement to counteract high trade costs faced by Landlocked Developing Countries.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Reinforce cooperation on sustainable development challenges of Landlocked Developing Countries, supporting the regional review conference for the 2014-2024 Decade on July 27-28, 2023, in Asunción, Paraguay.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Renew commitment to the full implementation of the 2030 Agenda for Sustainable Development, mobilizing necessary means and respecting national policies and priorities.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Work constructively and collaboratively in multilateral processes to urgently address climate change, pollution (especially plastic pollution), and biodiversity loss, applying the Rio Declaration principles and common but differentiated responsibilities.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Strengthen regional cooperation to combat environmental crimes.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Support the provision of financing, capacity building, scientific and technical cooperation, and technology transfer on preferential and concessional terms from developed to developing countries to achieve environmental objectives.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Support the effective implementation of the Kunming-Montreal Global Biodiversity Framework, urging the international community to provide necessary financing.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Support the implementation of the Agreement on the Conservation and Sustainable Use of Marine Biodiversity Beyond National Jurisdiction (BBNJ).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Support Brazil's candidacy to host the 30th Conference of the Parties to the UN Framework Convention on Climate Change (COP-30) in 2025 in Belém do Pará.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Promote the development of Bioceanic Corridors projects to enhance socioeconomic development, physical integration, trade, investment, tourism, and job opportunities in the region.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Strengthen approaches between MERCOSUR and the Andean Community to achieve articulation, complementation, and convergence in areas of mutual interest.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Deepen cooperation in agriculture, science, and technology to improve regional production and productivity.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Promote effective actions to guarantee food security, support sustainable food production, and ensure timely and permanent access to adequate food for all.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Promote agile mechanisms to strengthen South-South and Triangular Cooperation to enhance institutional capacities in prioritized sectors such as trade, agroindustry, digital agenda, human rights, science and technology, and climate change.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Increase production and use of renewable energies and accelerate a sustainable, just, equitable, and inclusive energy transition respecting national realities and priorities.",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Redouble efforts to achieve border integration prioritizing the needs of peoples living in MERCOSUR border areas.",
+        "commitment_class": "Unclassified"
       }
     ],
-    "kpi_list": [
-      {
-        "kpi_text": "Se comprometieron a continuar y profundizar esta ampliación del MERCOSUR POLÍTICO en las futuras Presidencias Pro Tempore.",
-        "kpi_type": "qualitative",
-        "metric_name": "Ampliación del MERCOSUR Político",
-        "target_value": null,
-        "target_description": "Profundizar la inclusión de los Estados Asociados en el MERCOSUR Político.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluación de la participación de los Estados Asociados en el MERCOSUR Político.",
-        "responsible_entity": "Estados Partes del MERCOSUR",
-        "sector": "Política"
-      },
-      {
-        "kpi_text": "Se comprometieron a continuar con la celebración de la Cumbre Social del MERCOSUR.",
-        "kpi_type": "qualitative",
-        "metric_name": "Celebración de la Cumbre Social del MERCOSUR",
-        "target_value": null,
-        "target_description": "Realizar la Cumbre Social del MERCOSUR de manera regular.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Registro de la realización de la Cumbre Social.",
-        "responsible_entity": "Estados Partes del MERCOSUR",
-        "sector": "Social"
-      },
-      {
-        "kpi_text": "Se congratularon por la adopción de la recomendación sobre la implementación del Acuerdo sobre Reconocimiento Mutuo de Medidas de Protección para las Mujeres en Situación de Violencia de Género.",
-        "kpi_type": "qualitative",
-        "metric_name": "Implementación del Acuerdo de Protección a Mujeres",
-        "target_value": null,
-        "target_description": "Facilitar la pronta puesta en vigencia del Acuerdo de Protección para mujeres en situación de violencia de género.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluación de la implementación del Acuerdo.",
-        "responsible_entity": "Estados Partes del MERCOSUR",
-        "sector": "Derechos Humanos"
-      },
-      {
-        "kpi_text": "Se comprometieron a trabajar para la prevención, sanción y erradicación de la violencia contra la mujer.",
-        "kpi_type": "qualitative",
-        "metric_name": "Prevención de la Violencia de Género",
-        "target_value": null,
-        "target_description": "Implementar políticas para prevenir y erradicar la violencia contra la mujer.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluación de políticas implementadas y su efectividad.",
-        "responsible_entity": "Estados Partes del MERCOSUR",
-        "sector": "Derechos Humanos"
-      },
-      {
-        "kpi_text": "Se comprometieron a fortalecer la cooperación regional en la lucha contra el crimen organizado transnacional.",
-        "kpi_type": "qualitative",
-        "metric_name": "Cooperación contra el Crimen Organizado",
-        "target_value": null,
-        "target_description": "Fortalecer la cooperación en la lucha contra el crimen organizado.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluación de acuerdos y acciones conjuntas.",
-        "responsible_entity": "Estados Partes del MERCOSUR",
-        "sector": "Seguridad"
-      },
-      {
-        "kpi_text": "Se comprometieron a redoblar esfuerzos para combatir la triple crisis planetaria.",
-        "kpi_type": "qualitative",
-        "metric_name": "Compromiso con la Crisis Planetaria",
-        "target_value": null,
-        "target_description": "Trabajar de manera colaborativa en procesos multilaterales para abordar la crisis climática, contaminación y pérdida de biodiversidad.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluación de acciones y políticas implementadas.",
-        "responsible_entity": "Estados Partes del MERCOSUR",
-        "sector": "Medio Ambiente"
-      },
-      {
-        "kpi_text": "Se comprometieron a impulsar acciones efectivas tendientes a garantizar la seguridad alimentaria.",
-        "kpi_type": "qualitative",
-        "metric_name": "Seguridad Alimentaria",
-        "target_value": null,
-        "target_description": "Aumentar la producción sostenible de alimentos y garantizar el acceso a alimentos adecuados.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluación de políticas y programas implementados.",
-        "responsible_entity": "Estados Partes del MERCOSUR",
-        "sector": "Agricultura"
-      },
-      {
-        "kpi_text": "Se comprometieron a incrementar la producción y el uso de energías renovables.",
-        "kpi_type": "qualitative",
-        "metric_name": "Producción de Energías Renovables",
-        "target_value": null,
-        "target_description": "Acelerar la transición energética de manera sustentable y equitativa.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluación de proyectos y políticas energéticas.",
-        "responsible_entity": "Estados Partes del MERCOSUR",
-        "sector": "Energía"
-      },
-      {
-        "kpi_text": "Se comprometieron a fortalecer los acercamientos entre el MERCOSUR y la Comunidad Andina.",
-        "kpi_type": "qualitative",
-        "metric_name": "Fortalecimiento de Relaciones Regionales",
-        "target_value": null,
-        "target_description": "Articular y complementar acciones entre MERCOSUR y la Comunidad Andina.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluación de acuerdos y colaboraciones establecidas.",
-        "responsible_entity": "Estados Partes del MERCOSUR",
-        "sector": "Cooperación Regional"
-      }
-    ],
+    "kpi_list": [],
     "country_list_iso": [
       "BOL",
       "BRA",
       "CHL",
+      "CHN",
+      "ECU",
+      "GBR",
+      "KOR",
+      "NZL",
+      "PER",
       "PRY",
       "URY"
     ],
-    "responsible_entity": "MERCOSUR",
+    "responsible_entity": "Presidencia Pro Tempore del MERCOSUR",
     "sdg_alignment": [
       "SDG 5: Gender Equality",
       "SDG 10: Reduced Inequalities",
       "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals",
+      "SDG 1: No Poverty",
       "SDG 2: Zero Hunger",
       "SDG 3: Good Health and Well-being",
       "SDG 4: Quality Education",
-      "SDG 6: Clean Water and Sanitation",
-      "SDG 13: Climate Action",
-      "SDG 15: Life on Land",
-      "SDG 12: Responsible Consumption and Production",
       "SDG 8: Decent Work and Economic Growth",
-      "SDG 11: Sustainable Cities and Communities"
+      "SDG 9: Industry, Innovation and Infrastructure",
+      "SDG 11: Sustainable Cities and Communities",
+      "SDG 12: Responsible Consumption and Production",
+      "SDG 13: Climate Action",
+      "SDG 14: Life Below Water",
+      "SDG 15: Life on Land",
+      "SDG 6: Clean Water and Sanitation",
+      "SDG 7: Affordable and Clean Energy"
     ]
   },
   "top_actors": [
     {
-      "name": "Alberto Fernández",
+      "name": "Governments",
+      "category": "Political Actors",
+      "relevance_score": 1.0,
+      "justification": "The text is primarily a joint communiqué from the Presidents of the MERCOSUR member states and associated states, emphasizing their commitments, decisions, and initiatives. Governments are the main actors driving the summit's agenda, decisions, and regional integration efforts."
+    },
+    {
+      "name": "Southern Common Market",
       "category": "Political Actors",
       "relevance_score": 0.9,
-      "justification": "As the President of Argentina, he hosted the summit and is prominently mentioned throughout the document, reflecting his central role in the discussions and decisions made during the meeting."
+      "justification": "MERCOSUR is the central regional organization around which the entire document revolves. It is the framework for cooperation, integration, and policy coordination among member and associated states, making it a key actor in all initiatives and commitments discussed."
     },
     {
-      "name": "Luiz Inácio Lula da Silva",
+      "name": "United Nations",
       "category": "Political Actors",
-      "relevance_score": 0.85,
-      "justification": "The President of Brazil, Lula's leadership is crucial in MERCOSUR, and he is mentioned multiple times, indicating his influence on key initiatives and regional cooperation efforts."
-    },
-    {
-      "name": "Mario Abdo Benítez",
-      "category": "Political Actors",
-      "relevance_score": 0.75,
-      "justification": "As the President of Paraguay, he plays a significant role in MERCOSUR discussions, and his participation in the summit highlights his importance in regional matters, although he is less frequently mentioned than the top two."
+      "relevance_score": 0.6,
+      "justification": "The United Nations is referenced multiple times as a multilateral framework supporting various initiatives such as human rights, dispute resolution (Malvinas), sustainable development goals, and multilateralism. Its role as an international body lends legitimacy and context to the regional commitments."
     }
   ],
   "top_themes": [
     {
+      "name": "Multilateralism",
+      "category": "Regional & International Cooperation",
+      "relevance_score": 0.95,
+      "justification": "The document is fundamentally a multilateral summit communiqué involving multiple South American countries, emphasizing regional cooperation, joint commitments, and collective action on political, social, economic, and environmental issues. Multilateralism is central to the entire text as it frames the context of all agreements and initiatives."
+    },
+    {
       "name": "Social Cohesion",
       "category": "Inclusion & Social Development",
-      "relevance_score": 0.9,
-      "justification": "Social cohesion is central to the document's main message, emphasizing the importance of inclusion and integration among member states. The commitment to strengthening democratic institutions and promoting human rights reflects a strategic focus on fostering unity and collaboration within the region."
-    },
-    {
-      "name": "Gender Equality in Tech",
-      "category": "Inclusion & Social Development",
       "relevance_score": 0.85,
-      "justification": "Gender equality is highlighted as a critical issue, particularly in the context of violence against women and the need for their participation in political and public life. This theme aligns with key commitments to promote human rights and social justice, making it strategically important for regional development."
+      "justification": "A significant portion of the document is dedicated to social issues such as human rights, gender violence prevention, indigenous and Afro-descendant rights, social inclusion, migration, and cultural integration. These themes highlight the commitment to social cohesion as a strategic objective for regional stability and development."
     },
     {
-      "name": "Digital Rights",
-      "category": "Data & Governance",
-      "relevance_score": 0.8,
-      "justification": "Digital rights are increasingly relevant in the context of global digital cooperation and governance. The document's emphasis on protecting human rights and promoting access to information underscores the strategic importance of ensuring digital rights as part of broader social and economic development goals."
+      "name": "Digital & Technological Partnerships",
+      "category": "Regional & International Cooperation",
+      "relevance_score": 0.15,
+      "justification": "While digital themes are listed, the document contains minimal to no explicit references to digital transformation, platforms, or governance. However, the mention of cooperation in scientific and technological areas and digital library initiatives suggests some relevance, though it is marginal compared to the dominant themes."
     }
   ]
 }
