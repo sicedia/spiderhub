@@ -21,8 +21,8 @@
       <div class="document-title-container">
         <h1 id="document-title">{{ document.title }}</h1>
         <div class="document-meta-header">
-          {% if document.city or document.country %}
-            <span id="document-location">{{ document.city }}{% if document.city and document.country %}, {% endif %}{{ document.country }}</span> • 
+          {% if document.event_city or document.event_country %}
+            <span id="document-location">{{ document.event_city|default:"" }}{% if document.event_city and document.event_country %}, {% endif %}{{ document.event_country|default:"" }}</span> • 
           {% endif %}
           {% if document.event_date %}
             <span id="document-date">{{ document.event_date|date:"j F Y" }}</span> • 
@@ -153,7 +153,7 @@
                       <span class="agreement-type">{{ type }}</span>{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                   {% else %}
-                    N/A
+                      <div class="country-code"></div>
                   {% endif %}
                 {% endwith %}
               </div>

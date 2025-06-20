@@ -338,7 +338,17 @@ class DocumentAdmin(admin.ModelAdmin):
     document_type_badge.short_description = 'Type'
     
     def location_info(self, obj):
-        return format_html('🏙️ {} <br>🌍 {}', obj.event_city or '-', obj.event_country or '-')
+        event_location = ""
+        if obj.event_city and obj.event_country:
+            event_location = f"{obj.event_city}, {obj.event_country}"
+        elif obj.event_city:
+            event_location = str(obj.event_city)
+        elif obj.event_country:
+            event_location = str(obj.event_country)
+        else:
+            event_location = "-"
+        
+        return format_html('🏙️ {}', event_location)
     location_info.short_description = 'Location'
     
     def score_display(self, obj):
