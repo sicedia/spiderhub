@@ -302,11 +302,11 @@
               {% for group in ben_groups %}
                 {% for ben in group.list %}
                   <div class="beneficiary-card">
-
                     <div class="beneficiary-icon-wrapper">
                       <img
                         src="{% static 'core/icons/beneficiaries/' %}{{ group.grouper|slugify }}.svg"
                         alt="{{ group.grouper }} icon"
+                        
                       />
                     </div>
                     <div class="beneficiary-info">
@@ -334,7 +334,7 @@
                     {% endif %}
                     {% if kpi.sector %}
                       {# slugify sector for a CSS class, e.g. “health” → “health” #}
-                      <div class="kpi-sector {{ kpi.sector|slugify }}">
+                      <div class="kpi-sector random">
                         {{ kpi.sector }}
                       </div>
                     {% endif %}
@@ -480,4 +480,4 @@
 {% block extra_scripts %}
   <script src="{% static 'core/js/main.js' %}"></script>
   <script src="{% static 'core/js/document_detail.js' %}"></script>
-{% endblock %}s
+{% endblock %}
