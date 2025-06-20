@@ -223,8 +223,8 @@
             <div class="technical-item">
               <div class="technical-label">Quality Score</div>
               <div class="technical-value">
-                {% if document.extra.score is not None %}
-                  {{ document.extra.score }}%
+                {% if document.score is not None %}
+                  {{ document.score }}%
                 {% else %}
                   N/A
                 {% endif %}

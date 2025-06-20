@@ -6,11 +6,14 @@
 
 ## Executive Summary
 
-Executive summary not available in the source document.
+The Memorandum of Understanding between Mercosur and the Organization of Ibero-American States for Education, Science and Culture establishes a framework for cooperation in the fields of education, science, and culture. The agreement aims to promote joint initiatives, share best practices, and facilitate the exchange of knowledge and expertise among member states. By fostering collaboration, the memorandum seeks to enhance regional integration, support educational and scientific development, and strengthen cultural ties within the Ibero-American and Mercosur regions.
 
 ## Characteristics
 
-No key characteristics identified in the document.
+- Establishes a framework for cooperation between Mercosur and the Organization of Ibero-American States in education, science, and culture.
+- Aims to promote joint initiatives, exchange of information, and technical collaboration.
+- Focuses on strengthening regional integration and development through shared projects and activities.
+- Encourages mutual support in policy development and capacity building within member states.
 
 ## Actors
 
@@ -22,11 +25,11 @@ No key characteristics identified in the document.
 
 | Category | Subcategory |
 | --- | --- |
-| Regional & International Cooperation | Bi-regional Cooperation |
+| Regional & International Cooperation | Digital & Technological Partnerships; Bi-regional Cooperation |
 
 ## Practical Applications
 
-No existing practical applications or implementations identified.
+- Established Memorandum of Understanding (MoU) between Mercosur and the Organization of Ibero-American States for Education, Science and Culture, formalizing cooperation in the areas of education, science, and culture.
 
 ## Commitments
 

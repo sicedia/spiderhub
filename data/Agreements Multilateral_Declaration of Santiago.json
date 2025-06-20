@@ -1,73 +1,100 @@
 {
-  "title": "\"Declaration of Santiago: Promoting Ethical Artificial Intelligence in Latin America and the Caribbean\"",
-  "date": "2023-10-23",
+  "title": "Declarations of Santiago: 1998 Summit of the Americas and 2023 Latin America and Caribbean AI Ethics",
+  "date": "2023-10-24",
   "location": "Santiago, Chile",
-  "executive_summary": "The \"Declaration of Santiago,\" signed on October 23-24, 2023, by representatives from Latin America and the Caribbean, emphasizes the commitment to ethical artificial intelligence (AI) development in the region. It acknowledges AI's potential to transform development models while recognizing associated risks to human rights and societal inequalities. The declaration calls for strategic regulation, governance, and regional cooperation to harness AI's benefits responsibly. It highlights the importance of integrating cultural specifics into AI technologies and stresses the need for public policies that uphold human rights principles. A working group will be established to form an intergovernmental AI council, with Chile leading the initiative. The declaration also emphasizes the necessity of empowering citizens through education and fostering inclusive AI practices to mitigate risks, particularly for vulnerable populations.",
+  "executive_summary": "The Declaration of Santiago (2023) reflects a unified commitment by Latin American and Caribbean nations to promote ethical, inclusive, and human rights-based development and governance of artificial intelligence (AI) in the region. Recognizing both the opportunities and risks of AI, the declaration emphasizes the need for strategic regulation, regional cooperation, and the integration of local cultural perspectives. Key actions include establishing a regional working group, led by Chile, to lay the groundwork for an intergovernmental AI council, and leveraging UNESCO’s ethical guidelines. The declaration calls for inclusive policy-making, capacity-building, investment, and safeguards to address social inequalities, protect vulnerable groups, and ensure responsible AI use. It also highlights the importance of data governance, innovation, and collaboration among governments, private sector, academia, and civil society to maximize AI’s benefits while mitigating its risks.",
   "characteristics": [
-    "The **Declaration of Santiago** (2023) emphasizes the commitment to ethical AI development in Latin America and the Caribbean, focusing on human rights and cultural considerations.",
-    "It acknowledges the potential of AI to transform development models but warns of risks to privacy, employment, and inequality.",
-    "A **working group** is proposed to establish an intergovernmental council for AI governance in the region.",
-    "The declaration calls for **multistakeholder collaboration** in AI policy-making, ensuring diverse participation and addressing specific regional needs.",
-    "It highlights the importance of **education and capacity building** to empower citizens regarding AI's impact and benefits.",
-    "The document stresses the need for **regulatory frameworks** that prioritize human rights and ethical standards in AI deployment."
+    "The 2023 Declaration of Santiago focuses on promoting ethical artificial intelligence (AI) in Latin America and the Caribbean, emphasizing human rights, inclusion, and regional cooperation.",
+    "It calls for the creation of a regional intergovernmental AI Council, led initially by Chile, to coordinate strategies, regulations, and capacity-building aligned with UNESCO’s AI ethics recommendations.",
+    "The declaration highlights the need for inclusive, sustainable, and culturally relevant AI development, addressing risks such as discrimination, privacy, and inequality, and ensuring broad stakeholder participation.",
+    "It stresses the importance of public policies that ensure transparency, accountability, gender equity, data protection, and responsible innovation, while fostering investment, education, and digital skills.",
+    "The document urges monitoring AI’s impact on labor, supporting vulnerable groups, and promoting regional autonomy in AI governance, data sharing, and infrastructure collaboration."
   ],
   "themes": {
     "Technology & Innovation": [
       "Artificial Intelligence",
-      "AI Ethics"
+      "AI Ethics",
+      "Tech-Driven Solutions"
     ],
     "Data & Governance": [
-      "Digital Rights",
+      "Digital Governance",
       "Data Protection",
-      "Digital Governance"
+      "Digital Rights",
+      "Digital Ethics"
+    ],
+    "Digital Transformation & Strategy": [
+      "Digital Agenda",
+      "Digital Acceleration",
+      "Digital Policy",
+      "Digital Skills Development",
+      "Digital Infrastructure",
+      "Digital Ecosystem",
+      "Digital Investment",
+      "Digital Regulation"
     ],
     "Inclusion & Social Development": [
       "Digital Inclusion",
-      "Gender Equality in Tech"
+      "Gender Equality in Tech",
+      "Digital Education"
     ],
     "Regional & International Cooperation": [
       "Global Digital Cooperation",
+      "Multilateralism",
       "Digital & Technological Partnerships"
     ]
   },
   "actors": {
     "Political Actors": [
       "Governments",
-      "Community of Latin American and Caribbean States",
-      "United Nations"
-    ],
-    "Research and Innovation Actors": [
-      "UNESCO",
-      "CAF - banco de desarrollo de América Latina y el Caribe"
+      "Government Officials",
+      "Policy Level Representatives",
+      "United Nations",
+      "United Nations Officials",
+      "Organisation of Ibero-American States",
+      "Community of Latin American and Caribbean States"
     ],
     "Economic Actors": [
+      "Development Bank of Latin America and the Caribbean",
       "Inter-American Development Bank",
-      "Development Bank of Latin America and the Caribbean"
+      "Organisation for Economic Cooperation and Development",
+      "World Bank",
+      "Private Sector Representatives",
+      "Industry Actors"
+    ],
+    "Civil Society Actors": [
+      "Civil Society Organisations",
+      "Non-governmental Institutions"
+    ],
+    "Research and Innovation Actors": [
+      "Universities",
+      "Academic Institutions",
+      "Research Performing Organisations"
     ]
   },
   "practical_applications": [
-    "Establishment of a Working Group aimed at forming an Intergovernmental Council on Artificial Intelligence for Latin America and the Caribbean, as part of the Declaration of Santiago.",
-    "Commitment to promote the participation of multiple stakeholders in the design and implementation of public policies, plans, and strategies related to AI, in alignment with the UNESCO Recommendation on the Ethics of Artificial Intelligence.",
-    "Recognition of the need for countries to analyze and adopt new legal frameworks and regulatory agendas for the responsible design, development, and use of AI, considering human rights principles.",
-    "Agreement to monitor the impact of AI on workers in Latin America and the Caribbean, with a focus on protecting vulnerable populations, particularly youth.",
-    "Acknowledgment of the importance of strengthening capacities and empowering individuals in the region regarding AI, including the development of educational methodologies to enhance understanding of AI's impact.",
-    "Promotion of initiatives and policies to foster inclusive design, development, and use of AI, emphasizing gender equity and intersectional perspectives.",
-    "Commitment to enhance investments in the region to leverage AI for addressing various challenges and promoting innovative uses of the technology.",
-    "Agreement to strengthen governance, representativeness, and quality of data used in AI systems, and to promote safe, equitable, legal, and ethical data sharing mechanisms.",
-    "Decision to deepen regional dialogue on AI development and deployment, reflecting the needs and interests of Latin America and the Caribbean."
+    "Establishment of a Group of Work (Grupo de Trabajo) with the aim of constituting an Intergovernmental Council on Artificial Intelligence for Latin America and the Caribbean, under the framework of the UNESCO Recommendation on the Ethics of AI, to strengthen regional capacities in this area.",
+    "Appointment of the Republic of Chile to lead the Group of Work, with a mandate to convene a working meeting during the first half of 2024; participating countries are to designate a focal point for this process.",
+    "Ongoing technical and financial support from UNESCO and CAF (Development Bank of Latin America and the Caribbean) for the Group of Work for a period of two years.",
+    "Recognition of the technical and financial support provided by UNESCO and CAF for the organization and execution of the ministerial meeting and for fostering discussions and exchange of best practices on AI in the region.",
+    "Active implementation of national public policy initiatives in some countries of the region, focusing on ethics, regulation, talent development, and infrastructure for the deployment of AI technology.",
+    "Use of the UNESCO Recommendation on the Ethics of Artificial Intelligence, including its Readiness Assessment Methodology and Ethical Impact Assessment Methodology, as guiding tools for the design and implementation of national AI policies, plans, and strategies.",
+    "Commitment to promote multi-stakeholder participation in the design and implementation of public policies, plans, and strategies related to AI.",
+    "Encouragement of collaboration and shared use of infrastructure and computing capacity resources in the context of AI among countries in the region."
   ],
   "commitments": [
-    "Establish a Working Group aimed at forming an Intergovernmental Council on Artificial Intelligence for Latin America and the Caribbean, with a meeting to be convened in the first half of 2024.",
-    "Commit to maintaining support from UNESCO and CAF for the Working Group for a duration of two (2) years.",
-    "Countries will designate a focal point to facilitate the process of establishing the Working Group."
+    "The Republic of Chile will convene a meeting of the regional AI Working Group in the first half of 2024.",
+    "UNESCO and CAF are to be evaluated for maintaining support to the AI Working Group for a period of two (2) years."
   ],
-  "score": 94,
+  "score": 55,
   "quality_breakdown": {
-    "faithfulness": 100,
-    "consistency": 94,
-    "completeness": 94,
+    "faithfulness": 0,
+    "consistency": 65,
+    "completeness": 95,
     "accuracy": 90,
-    "issues": []
+    "issues": [
+      "Low faithfulness - check for hallucinations in basic or strategic extra data",
+      "Internal inconsistencies detected across data sections"
+    ]
   },
   "extra_data": {
     "lead_country_iso": "CHL",
@@ -75,18 +102,22 @@
       "Declaration",
       "Declaration"
     ],
-    "legal_bindingness": "Politically-binding",
-    "coverage_scope": "Sub-regional",
+    "legal_bindingness": "Non-binding",
+    "coverage_scope": "Regional",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [
-      "mujeres",
-      "pueblos indígenas",
-      "pueblos afrodescendientes",
-      "comunidades rurales",
-      "empresas pequeñas"
+      "woman",
+      "girl",
+      "indigenous population",
+      "migrant",
+      "micro and small enterprise"
     ],
     "beneficiary_group": [
+      {
+        "category": "Women & Girls",
+        "label": "Women in Tech"
+      },
       {
         "category": "Women & Girls",
         "label": "Women in Tech"
@@ -96,12 +127,8 @@
         "label": "Indigenous Communities"
       },
       {
-        "category": "Indigenous Peoples & Ethnic Groups",
-        "label": "Afro-descendant Groups"
-      },
-      {
-        "category": "Rural & Remote Communities",
-        "label": "Rural Populations"
+        "category": "Migrants & Refugees",
+        "label": "Migrants"
       },
       {
         "category": "SMEs / Businesses",
@@ -112,165 +139,157 @@
     "end_date": "2023-10-24",
     "commitment_details": [
       {
-        "text": "Establish a Working Group aimed at forming an Intergovernmental Council on Artificial Intelligence for Latin America and the Caribbean, with a meeting to be convened in the first half of 2024.",
-        "commitment_class": "Declarative"
-      },
-      {
-        "text": "Commit to maintaining support from UNESCO and CAF for the Working Group for a duration of two (2) years.",
+        "text": "The Republic of Chile will convene a meeting of the regional AI Working Group in the first half of 2024.",
         "commitment_class": "Programmatic"
       },
       {
-        "text": "Countries will designate a focal point to facilitate the process of establishing the Working Group.",
+        "text": "UNESCO and CAF are to be evaluated for maintaining support to the AI Working Group for a period of two (2) years.",
         "commitment_class": "Declarative"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "Establecer un Consejo intergubernamental de Inteligencia Artificial para América Latina y el Caribe",
+        "kpi_text": "Establecimiento de un Grupo de Trabajo con miras a la constitución de un Consejo intergubernamental de Inteligencia Artificial para América Latina y el Caribe",
         "kpi_type": "qualitative",
-        "metric_name": "Establecimiento del Consejo de IA",
+        "metric_name": "Establishment of AI Intergovernmental Council Working Group",
         "target_value": null,
-        "target_description": "Crear un Consejo intergubernamental para la gobernanza de la IA en la región",
+        "target_description": "Establish a Working Group to prepare for the creation of an Intergovernmental AI Council for Latin America and the Caribbean",
         "unit": "qualitative milestone",
-        "timeframe": "durante el primer semestre de 2024",
-        "measurement_method": "Evaluación del establecimiento y funcionamiento del Consejo",
+        "timeframe": null,
+        "measurement_method": "Formal creation and operationalization of the Working Group",
+        "responsible_entity": "República de Chile (to lead), participating countries",
+        "sector": "Artificial Intelligence Governance"
+      },
+      {
+        "kpi_text": "Convocar a una reunión de trabajo en el transcurso del primer semestre de 2024",
+        "kpi_type": "qualitative",
+        "metric_name": "Convening of AI Working Group Meeting",
+        "target_value": null,
+        "target_description": "Hold a meeting of the AI Working Group in the first half of 2024",
+        "unit": "qualitative milestone",
+        "timeframe": "first semester of 2024",
+        "measurement_method": "Meeting held and documented",
         "responsible_entity": "República de Chile",
-        "sector": "Tecnología"
+        "sector": "Artificial Intelligence Governance"
       },
       {
-        "kpi_text": "Iniciar un análisis frente a la necesidad de elaborar y adoptar nuevos marcos jurídicos y agendas regulatorias para el diseño, desarrollo y uso responsable de la IA",
+        "kpi_text": "Evaluar solicitar a UNESCO y CAF -banco de desarrollo de América Latina y el Caribe- mantener por el término de dos (2) años el acompañamiento al mencionado Grupo de Trabajo.",
         "kpi_type": "qualitative",
-        "metric_name": "Análisis de Marcos Jurídicos de IA",
-        "target_value": null,
-        "target_description": "Realizar un análisis para la creación de marcos regulatorios sobre IA",
-        "unit": "qualitative milestone",
-        "timeframe": "sin fecha específica",
-        "measurement_method": "Informe sobre el análisis realizado",
-        "responsible_entity": "Estados firmantes",
-        "sector": "Regulación"
+        "metric_name": "UNESCO and CAF Support for AI Working Group",
+        "target_value": 2.0,
+        "target_description": "Seek to secure UNESCO and CAF support for the AI Working Group for two years",
+        "unit": "years",
+        "timeframe": "2 years",
+        "measurement_method": "Formal request and confirmation of support",
+        "responsible_entity": "AI Working Group, UNESCO, CAF",
+        "sector": "Artificial Intelligence Governance"
       },
       {
-        "kpi_text": "Fortalecer la cooperación internacional y regional en el ámbito digital",
+        "kpi_text": "Diseño e implementación de políticas, planes y estrategias nacionales, regionales e internacionales, para el diseño, desarrollo y uso seguro, ético y responsable de esta tecnología, así como el establecimiento de marcos institucionales nacionales efectivos, y con un enfoque de Derechos Humanos, para el manejo adecuado de la IA.",
         "kpi_type": "qualitative",
-        "metric_name": "Cooperación Digital",
+        "metric_name": "Development and Implementation of AI Policies and Institutional Frameworks",
         "target_value": null,
-        "target_description": "Mejorar la colaboración en el ámbito digital entre países",
+        "target_description": "Develop and implement effective national, regional, and international AI policies, plans, strategies, and institutional frameworks with a human rights focus",
         "unit": "qualitative milestone",
-        "timeframe": "sin fecha específica",
-        "measurement_method": "Evaluación de iniciativas de cooperación",
-        "responsible_entity": "Estados firmantes",
-        "sector": "Cooperación Internacional"
+        "timeframe": null,
+        "measurement_method": "Adoption and implementation of policies and frameworks",
+        "responsible_entity": "National governments",
+        "sector": "Artificial Intelligence Policy"
       },
       {
-        "kpi_text": "Monitorear el impacto de la IA en los trabajadores y trabajadoras de América Latina y el Caribe",
+        "kpi_text": "Iniciar un análisis frente a la necesidad de elaborar y adoptar nuevos marcos jurídicos y agendas regulatorias para el diseño, desarrollo y uso responsable de la IA.",
         "kpi_type": "qualitative",
-        "metric_name": "Monitoreo del Impacto de la IA",
+        "metric_name": "Analysis and Adoption of AI Legal and Regulatory Frameworks",
         "target_value": null,
-        "target_description": "Evaluar cómo la IA afecta el empleo en la región",
+        "target_description": "Initiate analysis and, if needed, develop and adopt new legal and regulatory frameworks for responsible AI",
         "unit": "qualitative milestone",
-        "timeframe": "sin fecha específica",
-        "measurement_method": "Informes sobre el impacto laboral de la IA",
-        "responsible_entity": "Estados firmantes",
-        "sector": "Trabajo"
+        "timeframe": null,
+        "measurement_method": "Completion of analysis and, if applicable, adoption of frameworks",
+        "responsible_entity": "National governments",
+        "sector": "Artificial Intelligence Regulation"
       },
       {
-        "kpi_text": "Incentivar mayores inversiones en la región para aprovechar de forma integral la IA",
+        "kpi_text": "Fortalecimiento de capacidades, el empoderamiento de todas las personas de América Latina y el Caribe sobre los elementos fundamentales de la IA, y la generación de espacios y metodologías de concientización para que la mayoría de la población comprenda el impacto que esta tecnología tendrá en sus vidas.",
         "kpi_type": "qualitative",
-        "metric_name": "Inversiones en IA",
+        "metric_name": "AI Capacity Building and Public Awareness",
         "target_value": null,
-        "target_description": "Fomentar inversiones que utilicen la IA para resolver problemas regionales",
+        "target_description": "Strengthen capacities and empower people in Latin America and the Caribbean on AI fundamentals, creating awareness spaces and methodologies",
         "unit": "qualitative milestone",
-        "timeframe": "sin fecha específica",
-        "measurement_method": "Evaluación de inversiones realizadas",
-        "responsible_entity": "Estados firmantes",
-        "sector": "Inversión"
+        "timeframe": null,
+        "measurement_method": "Implementation of capacity building programs and awareness initiatives",
+        "responsible_entity": "National governments, educational institutions",
+        "sector": "Education and Capacity Building"
       },
       {
-        "kpi_text": "Desarrollar capacidades y habilidades que permitan el aprovechamiento de la IA",
+        "kpi_text": "Promover iniciativas y políticas para fomentar el diseño, desarrollo y uso inclusivo de la IA, con énfasis en la promoción de la inclusión, la equidad de género y la disminución de brechas con perspectiva interseccional.",
         "kpi_type": "qualitative",
-        "metric_name": "Desarrollo de Capacidades en IA",
+        "metric_name": "Promotion of Inclusive and Gender-Equitable AI",
         "target_value": null,
-        "target_description": "Capacitar a la población en el uso y beneficios de la IA",
+        "target_description": "Promote initiatives and policies for inclusive AI design, development, and use, focusing on inclusion, gender equity, and reducing intersectional gaps",
         "unit": "qualitative milestone",
-        "timeframe": "sin fecha específica",
-        "measurement_method": "Evaluación de programas de capacitación",
-        "responsible_entity": "Estados firmantes",
-        "sector": "Educación"
+        "timeframe": null,
+        "measurement_method": "Adoption and implementation of inclusive AI policies",
+        "responsible_entity": "National governments",
+        "sector": "Social Inclusion and Gender"
       },
       {
-        "kpi_text": "Promover el diseño, desarrollo y uso inclusivo de la IA",
+        "kpi_text": "Monitorear el impacto de la IA en los trabajadores y trabajadoras de América Latina y el Caribe y la necesidad de pensar en formas de protección e intervención en caso de que se justifiquen, con el propósito de evitar profundizar las problemáticas de desempleo y exclusión, en especial en la población más joven y en situación de vulnerabilidad de los países de la región.",
         "kpi_type": "qualitative",
-        "metric_name": "Inclusión en IA",
+        "metric_name": "Monitoring AI Impact on Labor and Vulnerable Groups",
         "target_value": null,
-        "target_description": "Asegurar que la IA beneficie a todos los grupos sociales",
+        "target_description": "Monitor AI's impact on workers, especially youth and vulnerable populations, and develop protection/intervention measures if needed",
         "unit": "qualitative milestone",
-        "timeframe": "sin fecha específica",
-        "measurement_method": "Evaluación de políticas inclusivas",
-        "responsible_entity": "Estados firmantes",
-        "sector": "Inclusión Social"
+        "timeframe": null,
+        "measurement_method": "Establishment of monitoring mechanisms and implementation of interventions",
+        "responsible_entity": "National governments, labor ministries",
+        "sector": "Labor and Social Protection"
       },
       {
-        "kpi_text": "Generar conocimiento, habilidades, evidencia y métricas desagregadas sobre el impacto específico que la IA tiene y tendrá en la sociedad",
+        "kpi_text": "Incentivar mayores inversiones en la región para aprovechar de forma integral la IA para solucionar sus diversas problemáticas, y promover el uso innovador de esta tecnología, desarrollando los incentivos necesarios para este fin.",
         "kpi_type": "qualitative",
-        "metric_name": "Generación de Conocimiento sobre IA",
+        "metric_name": "Promotion of AI Investment and Innovation",
         "target_value": null,
-        "target_description": "Crear métricas y evidencias sobre el impacto de la IA",
+        "target_description": "Encourage increased investment and innovative use of AI to address regional challenges",
         "unit": "qualitative milestone",
-        "timeframe": "sin fecha específica",
-        "measurement_method": "Informes sobre el impacto de la IA",
-        "responsible_entity": "Estados firmantes",
-        "sector": "Investigación"
+        "timeframe": null,
+        "measurement_method": "Tracking of investment initiatives and innovation programs",
+        "responsible_entity": "National governments, private sector",
+        "sector": "Investment and Innovation"
       },
       {
-        "kpi_text": "Fortalecer la gobernanza, representatividad y calidad de los datos utilizados para entrenar los sistemas de IA",
+        "kpi_text": "Promover e invertir en mecanismos que permitan el intercambio seguro, equitativo, legal y ético de datos, en coherencia con la Recomendación sobre la Ética de la Inteligencia Artificial de UNESCO.",
         "kpi_type": "qualitative",
-        "metric_name": "Calidad de Datos para IA",
+        "metric_name": "Promotion of Secure and Ethical Data Exchange Mechanisms",
         "target_value": null,
-        "target_description": "Mejorar la calidad y representatividad de los datos en IA",
+        "target_description": "Promote and invest in mechanisms for secure, equitable, legal, and ethical data exchange for AI",
         "unit": "qualitative milestone",
-        "timeframe": "sin fecha específica",
-        "measurement_method": "Evaluación de la calidad de los datos",
-        "responsible_entity": "Estados firmantes",
-        "sector": "Datos"
-      },
-      {
-        "kpi_text": "Promover mecanismos de colaboración y el uso compartido de recursos de infraestructura y capacidad de cómputo en el contexto de la IA",
-        "kpi_type": "qualitative",
-        "metric_name": "Colaboración en Infraestructura de IA",
-        "target_value": null,
-        "target_description": "Facilitar el uso compartido de recursos tecnológicos",
-        "unit": "qualitative milestone",
-        "timeframe": "sin fecha específica",
-        "measurement_method": "Evaluación de iniciativas de colaboración",
-        "responsible_entity": "Estados firmantes",
-        "sector": "Tecnología"
+        "timeframe": null,
+        "measurement_method": "Implementation of data exchange mechanisms and investment tracking",
+        "responsible_entity": "National governments, data protection authorities",
+        "sector": "Data Governance"
       }
     ],
     "country_list_iso": [
       "ARG",
       "BOL",
       "BRA",
-      "CHL",
-      "COL",
-      "CUB",
-      "DOM",
-      "ECU",
-      "GTM",
+      "JPN",
       "MEX",
-      "NIC",
-      "PAN",
-      "PRY",
-      "PER",
-      "SLV",
-      "URY",
-      "VEN"
+      "USA"
     ],
     "responsible_entity": "República de Chile",
     "sdg_alignment": [
+      "SDG 1: No Poverty",
+      "SDG 2: Zero Hunger",
+      "SDG 3: Good Health and Well-being",
       "SDG 4: Quality Education",
       "SDG 5: Gender Equality",
+      "SDG 7: Affordable and Clean Energy",
       "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
+      "SDG 11: Sustainable Cities and Communities",
+      "SDG 12: Responsible Consumption and Production",
       "SDG 13: Climate Action",
       "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
@@ -280,40 +299,40 @@
     {
       "name": "Governments",
       "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "Governments are central to the discussions in the text, as they are the primary actors involved in the formulation and implementation of policies regarding ethical AI in Latin America and the Caribbean."
+      "relevance_score": 1.0,
+      "justification": "Governments (including Heads of State, Ministers, and official representatives) are the primary actors in both declarations. They are the conveners, signatories, and main decision-makers, responsible for adopting the declarations, establishing working groups, and implementing policies and strategies. Their role is central to all key initiatives and decisions discussed."
     },
     {
-      "name": "UNESCO",
-      "category": "Research and Innovation Actors",
-      "relevance_score": 0.8,
-      "justification": "UNESCO is frequently mentioned as a key reference for ethical AI guidelines and plays a significant role in shaping international consensus on the responsible use of AI."
+      "name": "United Nations",
+      "category": "Political Actors",
+      "relevance_score": 0.85,
+      "justification": "The United Nations, particularly through its agencies (e.g., UNESCO, ECLAC), is repeatedly referenced as a normative, technical, and cooperative partner. UN principles, recommendations, and frameworks (such as the Charter, Human Rights, and UNESCO's AI ethics guidelines) underpin much of the policy direction and are cited as foundational for regional action and governance."
     },
     {
-      "name": "CAF - banco de desarrollo de América Latina y el Caribe",
-      "category": "Research and Innovation Actors",
-      "relevance_score": 0.7,
-      "justification": "CAF is highlighted for its contributions to the digital agenda in the region and is recognized for its support in developing national AI policies, making it a crucial player in the context of AI development."
+      "name": "Development Bank of Latin America and the Caribbean (CAF)",
+      "category": "Economic Actors",
+      "relevance_score": 0.75,
+      "justification": "CAF is specifically acknowledged for its technical and financial support, its role in advancing the digital and AI agenda, and its involvement in the establishment and support of regional working groups. CAF's influence is significant in enabling capacity building, policy development, and regional cooperation on the main topics discussed."
     }
   ],
   "top_themes": [
     {
-      "name": "Artificial Intelligence (Technology & Innovation)",
+      "name": "AI Ethics",
       "category": "Technology & Innovation",
-      "relevance_score": 0.9,
-      "justification": "The document centers around the ethical development and governance of AI in Latin America and the Caribbean, highlighting its potential benefits and risks, making it the most critical theme."
+      "relevance_score": 1.0,
+      "justification": "AI Ethics is the central theme of the 'Declaración de Santiago', which is almost entirely dedicated to promoting an ethical framework for the development, deployment, and governance of artificial intelligence in Latin America and the Caribbean. The document repeatedly references the need for ethical principles, human rights, and responsible use of AI, making this theme the core of the declaration's message, objectives, and commitments."
     },
     {
-      "name": "AI Ethics (Technology & Innovation)",
-      "category": "Technology & Innovation",
-      "relevance_score": 0.85,
-      "justification": "AI ethics is a core focus of the declaration, emphasizing the need for responsible use and governance of AI technologies, which is essential for ensuring human rights and societal well-being."
+      "name": "Digital Governance",
+      "category": "Data & Governance",
+      "relevance_score": 0.92,
+      "justification": "Digital Governance is highly prominent, as the declaration calls for the establishment of new governance structures (such as a regional AI council), regulatory frameworks, and public policy measures to ensure the responsible management of AI. The document emphasizes the need for multistakeholder governance, legal frameworks, and oversight mechanisms, making this theme strategically vital to achieving the declaration's goals."
     },
     {
-      "name": "Digital Inclusion (Inclusion & Social Development)",
+      "name": "Digital Inclusion",
       "category": "Inclusion & Social Development",
-      "relevance_score": 0.8,
-      "justification": "The document stresses the importance of ensuring equitable access to digital technologies and AI, particularly for marginalized groups, which is vital for fostering inclusive development in the region."
+      "relevance_score": 0.88,
+      "justification": "Digital Inclusion is a major strategic objective, with significant content dedicated to ensuring that AI and digital technologies benefit all segments of society, especially vulnerable groups. The declaration stresses the importance of bridging digital divides, promoting gender equality, and empowering marginalized communities, positioning inclusion as a key commitment and outcome of the region's AI and digital agenda."
     }
   ]
 }

@@ -1,4 +1,4 @@
-# 12th Brazil - European Union Digital Dialogue Summary
+# Document Title Not Available
 
 **Date**: Date not specified
 
@@ -16,13 +16,11 @@ No key characteristics identified in the document.
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Union |
+| Political Actors | Brazil; European Union; EU Delegations |
 
 ## Main Themes
 
-| Category | Subcategory |
-| --- | --- |
-| Regional & International Cooperation | EU-Brazil Digital Dialogue |
+No themes identified.
 
 ## Practical Applications
 

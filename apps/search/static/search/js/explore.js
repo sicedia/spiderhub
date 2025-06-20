@@ -145,7 +145,6 @@
         currentState[key] = values[0]; // One value per date
       }
     });
-    console.log('Gathered filters:', currentState);
   }
 
   // ──────────────────────────────────────────────────────────

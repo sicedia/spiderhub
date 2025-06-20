@@ -1,37 +1,37 @@
 {
-  "title": "Memorandum of Understanding (MoU) with Uruguay",
+  "title": "Memorandum of Understanding (MoU) Uruguay",
   "date": null,
-  "location": "Uruguay",
+  "location": "Montevideo, Uruguay",
   "executive_summary": null,
   "characteristics": [],
   "themes": {
-    "Technology & Innovation": [
-      "Artificial Intelligence"
-    ],
-    "Data & Governance": [
-      "Digital Governance",
-      "E-Governance"
+    "Regional & International Cooperation": [
+      "Digital & Technological Partnerships"
     ]
   },
-  "actors": {},
+  "actors": {
+    "Political Actors": [
+      "Governments"
+    ]
+  },
   "practical_applications": [],
   "commitments": [],
-  "score": 47,
+  "score": 40,
   "quality_breakdown": {
     "faithfulness": 0,
-    "consistency": 50,
-    "completeness": 47,
-    "accuracy": 100,
+    "consistency": 90,
+    "completeness": 35,
+    "accuracy": 66,
     "issues": [
       "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
-      "Missing important information in extraction or strategic analysis"
+      "Missing important information in extraction or strategic analysis",
+      "Potential factual errors in basic content or strategic extra data"
     ]
   },
   "extra_data": {
     "lead_country_iso": "URY",
     "agreement_type": [],
-    "legal_bindingness": "Politically-binding",
+    "legal_bindingness": "Non-binding",
     "coverage_scope": "Bilateral",
     "eu_policy_alignment": [],
     "review_schedule": null,
@@ -45,25 +45,20 @@
     "responsible_entity": null,
     "sdg_alignment": []
   },
-  "top_actors": [],
+  "top_actors": [
+    {
+      "name": "Governments",
+      "category": "Political Actors",
+      "relevance_score": 1.0,
+      "justification": "The only detected actor in the document is 'Governments', which are central to the context of a Memorandum of Understanding (MoU) between countries. Governments are the primary signatories, decision-makers, and implementers of such agreements, making them the most relevant and influential actors in this context."
+    }
+  ],
   "top_themes": [
     {
-      "name": "E-Governance",
-      "category": "Data & Governance",
-      "relevance_score": 0.9,
-      "justification": "E-Governance is central to the document as it likely outlines the framework for digital interactions between government and citizens, which is a key objective of the Memorandum of Understanding."
-    },
-    {
-      "name": "Digital Governance",
-      "category": "Data & Governance",
-      "relevance_score": 0.8,
-      "justification": "Digital Governance supports the overarching goals of the MoU by ensuring that data management and governance practices are aligned with technological advancements, making it strategically important."
-    },
-    {
-      "name": "Artificial Intelligence",
-      "category": "Technology & Innovation",
-      "relevance_score": 0.7,
-      "justification": "Artificial Intelligence is relevant as it represents the technological innovation aspect that can enhance both E-Governance and Digital Governance, although it may not be as central as the governance themes."
+      "name": "Digital & Technological Partnerships",
+      "category": "Regional & International Cooperation",
+      "relevance_score": 0.95,
+      "justification": "This theme is explicitly identified and is central to the document's main message, focusing on collaboration between Uruguay and other entities in the digital and technological sectors. The majority of the content is likely dedicated to outlining the terms, objectives, and commitments related to these partnerships, making it the most strategically important theme."
     }
   ]
 }

@@ -14,15 +14,14 @@ No key characteristics identified in the document.
 
 ## Actors
 
-| Category | Actor |
-| --- | --- |
-| Political Actors | United Nations |
+No actors identified.
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Technology & Innovation | AI Ethics |
+| Technology & Innovation | AI Ethics; Artificial Intelligence |
+| Data & Governance | Digital Ethics |
 
 ## Practical Applications
 

@@ -1,42 +1,49 @@
-# EU-Latin America Dialogues on Sustainable Food Systems: Workshop Outcomes and Future Cooperation
+# EU-Latin America Dialogues on Sustainable Food Systems: Cooperation with Colombia, Ecuador, and Peru
 
 **Date**: 2022-09-28
 
-**Location**: Brussels, Belgium
+**Location**: The principal location where the event/document originates is Brussels, Belgium (European Union).
 
 ## Executive Summary
 
-The European Union (EU) is actively fostering cooperation with Colombia, Ecuador, and Peru to transition towards sustainable food systems, as highlighted in the dialogues held on September 28-29, 2022. These discussions, part of a broader initiative involving multiple Latin American regions, aim to address challenges such as climate change, biodiversity loss, and food waste. Key topics included agroecology, sustainable pesticide use, and strategies for reducing food loss. The dialogues facilitated exchanges between policymakers, public institutions, and private sector representatives, emphasizing shared values and commitments to sustainability. The EU's Farm to Fork Strategy underpins these efforts, promoting an inclusive approach to food system sustainability. Future workshops are planned, including a focus on the Caribbean in February 2023, to further strengthen these collaborative efforts.
+The European Union, in collaboration with Colombia, Ecuador, and Peru, is advancing cooperation on sustainable food systems through a series of policy dialogues held in 2022. These dialogues, part of the EU-Latin America and the Caribbean Dialogues on Sustainable Food Systems, aim to foster strategic partnerships to address climate change, biodiversity loss, and environmental degradation linked to food systems. Key topics include agroecology, sustainable pesticide use, and reducing food loss and waste. The workshops involved policymakers, public institutions, universities, and private sector representatives, emphasizing shared values and mutual commitments. The EU presented its Farm to Fork Strategy as a framework for sustainable food policies, while partner countries shared regional perspectives and initiatives. The dialogues are part of a broader effort including sub-regional workshops with Central America, Mercosur, Chile, and an upcoming Caribbean dialogue, aiming to build alliances for resilient, sustainable food systems globally.
 
 ## Characteristics
 
-- The EU-Latin America Dialogues focus on sustainable food systems, promoting collaboration among the EU, Colombia, Ecuador, and Peru.
-- The initiative includes multiple workshops aimed at addressing climate change, biodiversity loss, and environmental degradation.
-- Key topics discussed include agroecology, sustainable pesticide use, and reducing food loss and waste.
-- The dialogues aim to build partnerships and share best practices for resilient food systems.
-- The fourth workshop is planned for February 2023, focusing on the Caribbean region.
+- The EU-Latin America and Caribbean Dialogues on Sustainable Food Systems aim to foster strategic partnerships for sustainable food and agricultural production.
+- The dialogues include four sub-regional workshops and a bi-regional conference, focusing on cooperation between the EU and Latin American countries.
+- Key topics discussed include the EU Farm to Fork Strategy, sustainable pesticide use, food loss and waste reduction, agroecology, and climate change mitigation.
+- Participants include policymakers, public institutions, universities, and private sector representatives from the EU, Colombia, Ecuador, Peru, Mercosur, Chile, and Central America.
+- The dialogues emphasize shared values, mutual principles, and joint actions to build resilient, sustainable food systems benefiting farmers, consumers, and the environment.
+- The initiative is supported by the EU Foreign Policy Instruments and the EU-LAC Policy Dialogue Facility, with ongoing commitment to continued dialogue and cooperation.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Union; Colombia; Ecuador; Peru; European Commission; Director General for Health and Food Safety (DG SANTE); Deputy Minister for Policies and Supervision of Agrarian Development, Peru |
+| Political Actors | European Union; European Commission; Colombia; Ecuador; Peru; Southern Common Market; EU Member States |
+| Economic Actors | Private Sector Representatives |
 | Research and Innovation Actors | Universities |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Inclusion & Social Development | Sustainable Digital Development |
-| Regional & International Cooperation | EU-LAC Digital Alliance; Bi-regional Cooperation; Global Digital Cooperation |
+| Regional & International Cooperation | Bi-regional Cooperation |
+| Digital Transformation & Strategy | Digital Agenda |
 
 ## Practical Applications
 
-- The "EU - Latin America and the Caribbean Dialogues on Sustainable Food Systems" initiative, which includes a series of sub-regional workshops aimed at promoting sustainable food systems, with three workshops already held in 2022 and a fourth planned for February 2023.
-- The policy dialogues held on 28-29 September 2022, focusing on sustainable agriculture and food systems, which involved representatives from the EU, Colombia, Ecuador, and Peru, and addressed key challenges such as agroecology, sustainable pesticide use, and food loss and waste.
-- The implementation of the EU Farm to Fork Strategy as part of the dialogues, which aims to integrate sustainability into all food-related policies and promote sustainable food systems.
-- Ongoing collaboration and commitment from the EU and Andean countries (Colombia, Ecuador, and Peru) to address food waste, climate change, and enhance the sustainability of food systems through shared values and mutual principles.
+- Organisation of the "EU – Latin America and the Caribbean Dialogues on Sustainable Food Systems," consisting of four sub-regional workshops and a concluding bi-regional conference to promote cooperation on sustainable food systems.
+- Sub-regional workshops held in 2022 with Central America, Mercosur and Chile, and Colombia, Ecuador, and Peru focusing on sustainable agriculture and food systems.
+- Policy dialogues involving EU representatives, ministries, public institutions, universities, and private sector stakeholders from Colombia, Ecuador, and Peru to exchange perspectives and identify joint actions on climate change and sustainability challenges in food systems.
+- Focus areas in dialogues include agroecology as a transition for agricultural systems, sustainable use of pesticides, and reduction of food loss and waste.
+- Commitment by the EU and partner countries (Colombia, Ecuador, Peru) to continue dialogue and build alliances for transitioning to resilient and sustainable food systems.
+- Support for these dialogues provided by the EU Foreign Policy Instruments (FPI) and the EU-LAC Policy Dialogue Facility.
+- Upcoming EU-Caribbean sub-regional dialogue scheduled for February 2023 as part of the ongoing dialogue series.
 
 ## Commitments
 
-- The fourth sub-regional workshop of the "EU - Latin America and the Caribbean Dialogues on Sustainable Food Systems" is scheduled to take place in February 2023.
+- Organize a total of four sub-regional workshops on Sustainable Food Systems in 2022-2023, with three held in 2022 (Central America; Mercosur and Chile; Colombia, Peru and Ecuador) and the fourth scheduled for February 2023 (EU-Caribbean sub-regional dialogue).
+- Hold a bi-regional conference on Sustainable Food Systems expected to take place at the end of 2022.
+- Peru commits to addressing food waste and climate change, including reducing greenhouse gases, reducing pressure on water and its quality, preserving biodiversity, improving health and nutrition of rural communities, and providing better consumer information (no specific numerical targets or deadlines provided).

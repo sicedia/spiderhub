@@ -2,7 +2,12 @@
 {% load static %}
 {% block title %}SPIDERHUB: Explorar Diálogos - Transformación Digital UE - AL{% endblock %}
 {% block extra_head %}  
-  <!-- Main Content -->
+<link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/home.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/analysis_styles.css' %}">
+{% endblock %}
+
+{% block content %}
   <main class="analysis-container">
     <div class="analysis-hero">
       <div class="analysis-hero-content">
@@ -25,7 +30,7 @@
               </svg>
             </div>
             <div class="card-content">
-              <div class="card-number">127</div>
+              <div class="card-number">{{ summary.total_documents }}</div>
               <div class="card-label">Total Documents</div>
             </div>
           </div>
@@ -37,7 +42,7 @@
               </svg>
             </div>
             <div class="card-content">
-              <div class="card-number">45</div>
+              <div class="card-number">{{ summary.active_countries }}</div>
               <div class="card-label">Active Countries</div>
             </div>
           </div>
@@ -126,59 +131,23 @@
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-col">
-        <h3>SPIDERHUB</h3>
-        <p>Platform for analysis and visualisation of documents and agreements for digital transformation between the European Union and Latin America.</p>
-        <div class="social-links">
-          <a href="https://www.linkedin.com/company/spider-network-eu/" class="social-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM8.5 6.5C9.33 6.5 10 7.17 10 8C10 8.83 9.33 9.5 8.5 9.5C7.67 9.5 7 8.83 7 8C7 7.17 7.67 6.5 8.5 6.5ZM11 14H6V12.5C6 11.12 7.12 10 8.5 10C9.88 10 11 11.12 11 12.5V14ZM18 14H13V12.5C13 11.12 14.12 10 15.5 10C16.88 10 18 11.12 18 12.5V14ZM15.5 9.5C14.67 9.5 14 8.83 14 8C14 7.17 14.67 6.5 15.5 6.5C16.33 6.5 17 7.17 17 8C17 8.83 16.33 9.5 15.5 9.5Z" fill="white"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h3>Links</h3>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="explore.html">Explore Data</a></li>
-          <li><a href="analysis.html">Analysis</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="admin.html">Administration</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Resources</h3>
-        <ul>
-          <li><a href="#">Documentation</a></li>
-          <li><a href="#">Publications</a></li>
-          <li><a href="https://spidernetwork.org/news/">News</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Contact</h3>
-        <ul>
-          <li>planificacion@cedia.org.ec</li>
-          <li>+593998101478</li>
-          <li>Cuenca, Ecuador</li>
-        </ul>
-      </div>
-    </div>
-    <div class="copyright">
-      <p>&copy; 2025 SPIDERHUB. All rights reserved. | Powered by <a href="https://cedia.edu.ec/" style="color: inherit; text-decoration: none;">CEDIA</a></p>
-    </div>
-  </footer>
+{% endblock %}
 
-  <script src="main.js"></script>
+{% block extra_scripts %}
+  <!-- <script src="{% static 'core/js/main.js' %}"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-geo@4.3.1/dist/chartjs-chart-geo.umd.min.js"></script> -->
+
+
+  <script src="{% static 'core/js/main.js' %}"></script>
+  <script src="{% static 'core/js/analysis.js' %}"></script>
+
   <script type="module">
-    // Import SDG Radar Chart module
-    import { renderSdgRadar } from './sdgRadarChart.js';
-    import { renderCountryChoropleth } from './countryChoropleth.js';
-    import { renderLegalBindingPie } from './legalBindingPie.js';
-    import { renderCoverageBar } from './coverageScopeBar.js';
+    import { renderSdgRadar } from "{% static 'core/js/sdgRadarChart.js' %}";
+    import { renderCountryChoropleth } from "{% static 'core/js/countryChoropleth.js' %}";
+    import { renderLegalBindingPie } from "{% static 'core/js/legalBindingPie.js' %}";
+    import { renderCoverageBar } from "{% static 'core/js/coverageScopeBar.js' %}";
     
     // Make it available globally for the analysis page manager
     window.renderSdgRadar = renderSdgRadar;
@@ -186,6 +155,8 @@
     window.renderLegalBindingPie = renderLegalBindingPie;
     window.renderCoverageBar = renderCoverageBar;
   </script>
-  <script src="{% static 'core/js/analysis.js' %}"></script>
-</body>
-</html>
+
+  <!-- Inyect graphics data -->
+  {{ analysis_data|json_script:"analysis-data" }}
+
+{% endblock %}

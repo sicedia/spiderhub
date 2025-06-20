@@ -1,30 +1,29 @@
 {
-  "title": "Montevideo Declaration (eLAC 2024): Advancing Digital Transformation in Latin America and the Caribbean",
+  "title": "Montevideo Declaration on the Digital Agenda for Latin America and the Caribbean (eLAC 2024)",
   "date": "2022-11-18",
   "location": "Montevideo, Uruguay",
-  "executive_summary": "The Montevideo Declaration, adopted during the eighth Ministerial Conference on the Information Society in Latin America and the Caribbean from November 16-18, 2022, emphasizes the importance of digital transformation for sustainable development in the region. It reaffirms commitments to the 2030 Agenda for Sustainable Development and the Digital Agenda for Latin America and the Caribbean (eLAC2024). Key resolutions include enhancing regional cooperation, promoting digital skills, ensuring affordable broadband access, and fostering innovation in strategic sectors. The declaration also highlights the need for a robust legal framework to protect rights in the digital space and calls for active participation from various stakeholders, including the private sector and civil society. The next Ministerial Conference is set to take place in Chile in 2024, continuing the momentum for digital advancement in the region.",
+  "executive_summary": "The Montevideo Declaration, adopted at the eighth Ministerial Conference on the Information Society in Latin America and the Caribbean (Nov 2022), endorses the Digital Agenda for Latin America and the Caribbean (eLAC2024). It reaffirms commitment to the 2030 Sustainable Development Goals and principles from the World Summit on the Information Society. The declaration highlights digital technologies' role in economic resilience, social inclusion, and pandemic response. It stresses the need for affordable broadband, digital skills development, strengthened institutional frameworks, and promotion of digital economy, innovation, and entrepreneurship. Emphasis is placed on regional cooperation, legal frameworks, cybersecurity, and digital transformation of key sectors to boost productivity and sustainability. The declaration recognizes contributions from governments, regional bodies, and stakeholders, thanks Uruguay for hosting, and welcomes Chile to lead the next phase and host the 2024 conference.",
   "characteristics": [
-    "The Montevideo Declaration emphasizes the importance of digital technologies for economic resilience and social inclusion in Latin America and the Caribbean.",
-    "It highlights the need for effective broadband connectivity and the development of digital skills to drive economic and social transformation.",
-    "The declaration calls for strengthened regional cooperation and partnerships in digital matters to promote solidarity, inclusion, and sustainability.",
-    "It recognizes the significance of a robust legal and regulatory framework to ensure trust and protect rights in the digital environment.",
-    "The document outlines a commitment to adopt the Digital Agenda for Latin America and the Caribbean (eLAC2024) and continue cooperation activities through 2024."
+    "The Montevideo Declaration (eLAC 2024) was adopted at the eighth Ministerial Conference on the Information Society in Latin America and the Caribbean, held in November 2022.",
+    "It emphasizes digital technologies as essential for economic resilience, social inclusion, and reducing inequality in the region.",
+    "The declaration promotes regional cooperation, capacity-building, and the development of digital skills to drive economic and social transformation.",
+    "It highlights the importance of a legal and regulatory framework ensuring trust, cybersecurity, and protection of rights in the digital environment.",
+    "The declaration supports the digital transformation of strategic sectors and the construction of a regional digital market to boost cross-border e-commerce and competitiveness.",
+    "It recognizes the role of various stakeholders, including governments, private sector, civil society, and international organizations, in implementing the Digital Agenda for Latin America and the Caribbean (eLAC2024)."
   ],
   "themes": {
     "Digital Transformation & Strategy": [
       "Digital Agenda",
-      "Digital Economy",
+      "Digital Acceleration",
       "Digital Skills Development",
-      "Digital Infrastructure",
-      "Digital Sustainability"
+      "Digital Economy",
+      "Digital Policy"
+    ],
+    "Inclusion & Social Development": [
+      "Digital Inclusion"
     ],
     "Regional & International Cooperation": [
-      "Global Digital Cooperation",
-      "Digital & Technological Partnerships"
-    ],
-    "Data & Governance": [
-      "Digital Governance",
-      "Cybersecurity"
+      "Multilateralism"
     ]
   },
   "actors": {
@@ -32,33 +31,39 @@
       "Governments",
       "Community of Latin American and Caribbean States",
       "United Nations",
-      "United Nations Officials"
-    ],
-    "Research and Innovation Actors": [
-      "Digital Innovation Hubs"
+      "United Nations Officials",
+      "Economic Commission for Latin America and the Caribbean"
     ],
     "Economic Actors": [
-      "Inter-American Development Bank",
       "Development Bank of Latin America and the Caribbean"
+    ],
+    "Civil Society Actors": [
+      "Private Sector Representatives",
+      "Civil Society Organisations",
+      "Technology Providers"
     ]
   },
   "practical_applications": [
-    "Adoption of the Digital Agenda for Latin America and the Caribbean (eLAC2024).",
-    "Formulation of a programme of cooperation activities for the 2022–2024 period to strengthen regional cooperation in digital matters, facilitating dialogue, sharing of experiences, knowledge management, and capacity-building.",
-    "Recognition of the participation and work of regional and international entities, including the private sector, civil society, technical community, and development banks, in the implementation of the Digital Agenda for Latin America and the Caribbean (eLAC2024).",
-    "Acknowledgment of the Economic Commission for Latin America and the Caribbean as the technical secretariat for the Digital Agenda, ensuring continuity of the process.",
-    "Hosting of the ninth Ministerial Conference on the Information Society in Latin America and the Caribbean in 2024 by the Government of Chile."
+    "Adoption and implementation of the Digital Agenda for Latin America and the Caribbean (eLAC2024) as a regional framework for digital transformation.",
+    "Formulation and execution of a programme of regional cooperation activities in digital matters for the 2022–2024 period, focusing on dialogue facilitation, experience sharing, knowledge management, and capacity-building.",
+    "Active participation and collaboration with regional and international entities, including private sector, civil society, technical community, and development banks, in implementing the Digital Agenda for Latin America and the Caribbean (eLAC2024).",
+    "Leadership and coordination of the Digital Agenda process by the Government of Ecuador during 2020–2022.",
+    "Technical secretariat support and continuity of the Digital Agenda process provided by the Economic Commission for Latin America and the Caribbean (ECLAC).",
+    "Hosting and organization of Ministerial Conferences on the Information Society in Latin America and the Caribbean, with Uruguay hosting the eighth conference in 2022 and Chile committed to hosting the ninth in 2024."
   ],
   "commitments": [
-    "Formulate a programme of cooperation activities for the 2022–2024 period under the Digital Agenda for Latin America and the Caribbean (eLAC2024).",
-    "Host the ninth Ministerial Conference on the Information Society in Latin America and the Caribbean in 2024."
+    "[",
+    "\"Adopt the Digital Agenda for Latin America and the Caribbean (eLAC2024).\",",
+    "\"Formulate a programme of cooperation activities for the 2022–2024 period to strengthen regional cooperation in digital matters.\",",
+    "\"Host the ninth Ministerial Conference on the Information Society in Latin America and the Caribbean in 2024 (offered by the Government of Chile).\"",
+    "]"
   ],
-  "score": 92,
+  "score": 89,
   "quality_breakdown": {
     "faithfulness": 100,
     "consistency": 90,
-    "completeness": 92,
-    "accuracy": 88,
+    "completeness": 95,
+    "accuracy": 72,
     "issues": []
   },
   "extra_data": {
@@ -71,95 +76,159 @@
     "eu_policy_alignment": [],
     "review_schedule": "Biennial",
     "beneficiary_group_raw": [
-      "person",
-      "community",
-      "sector",
-      "economy",
-      "society"
+      "person"
     ],
     "beneficiary_group": [],
     "start_date": "2022-11-16",
     "end_date": "2022-11-18",
     "commitment_details": [
       {
-        "text": "Formulate a programme of cooperation activities for the 2022–2024 period under the Digital Agenda for Latin America and the Caribbean (eLAC2024).",
+        "text": "Adopt the Digital Agenda for Latin America and the Caribbean (eLAC2024).",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "Formulate a programme of cooperation activities for the 2022–2024 period to strengthen regional cooperation in digital matters.",
         "commitment_class": "Programmatic"
       },
       {
-        "text": "Host the ninth Ministerial Conference on the Information Society in Latin America and the Caribbean in 2024.",
-        "commitment_class": "Declarative"
+        "text": "Host the ninth Ministerial Conference on the Information Society in Latin America and the Caribbean in 2024 (offered by the Government of Chile).",
+        "commitment_class": "Implemented"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "Continue strengthening regional cooperation activities in digital matters within the framework of the Digital Agenda for Latin America and the Caribbean by formulating a programme of cooperation activities for the 2022–2024 period, facilitating dialogue, sharing of experiences, knowledge management and capacity-building.",
+        "kpi_text": "Adopt the Digital Agenda for Latin America and the Caribbean (eLAC2024);",
         "kpi_type": "qualitative",
-        "metric_name": "Regional Cooperation Activities",
+        "metric_name": "Adoption of Digital Agenda eLAC2024",
         "target_value": null,
-        "target_description": "Formulate a programme of cooperation activities for the 2022–2024 period.",
+        "target_description": "Formal adoption of the Digital Agenda for Latin America and the Caribbean (eLAC2024)",
         "unit": "qualitative milestone",
-        "timeframe": "by 2024",
-        "measurement_method": "Evaluation of cooperation programme implementation",
-        "responsible_entity": "Member States of the Digital Agenda",
+        "timeframe": "by November 2022",
+        "measurement_method": "Official adoption and endorsement by member countries",
+        "responsible_entity": "Member countries of Latin America and the Caribbean",
+        "sector": "Digital Policy / Regional Cooperation"
+      },
+      {
+        "kpi_text": "Continue strengthening regional cooperation activities in digital matters within the framework of the Digital Agenda for Latin America and the Caribbean by formulating a programme of cooperation activities for the 2022–2024 period, facilitating dialogue, sharing of experiences, knowledge management and capacity-building;",
+        "kpi_type": "qualitative",
+        "metric_name": "Regional Cooperation Programme Formulation and Implementation",
+        "target_value": null,
+        "target_description": "Formulate and implement a programme of cooperation activities in digital matters facilitating dialogue, experience sharing, knowledge management and capacity-building",
+        "unit": "qualitative milestone",
+        "timeframe": "2022–2024",
+        "measurement_method": "Existence and execution of a cooperation programme with documented activities and outcomes",
+        "responsible_entity": "Member countries and regional organizations under the Digital Agenda framework",
+        "sector": "Digital Cooperation / Capacity Building"
+      },
+      {
+        "kpi_text": "Recognize the participation and work of regional and international entities and organizations from the private sector, civil society, the technical community and development banks in the construction of the Digital Agenda for Latin America and the Caribbean (eLAC2024) and invite them to participate actively in implementation of the Conference’s agreements;",
+        "kpi_type": "qualitative",
+        "metric_name": "Multi-stakeholder Participation in Digital Agenda Implementation",
+        "target_value": null,
+        "target_description": "Active participation of regional and international entities from private sector, civil society, technical community and development banks in implementing the Digital Agenda agreements",
+        "unit": "qualitative milestone",
+        "timeframe": "Ongoing from 2022",
+        "measurement_method": "Level and quality of stakeholder engagement and contributions documented",
+        "responsible_entity": "Member countries and participating entities",
+        "sector": "Digital Governance / Multi-stakeholder Engagement"
+      },
+      {
+        "kpi_text": "Formulate a programme of cooperation activities for the 2022–2024 period, facilitating dialogue, sharing of experiences, knowledge management and capacity-building;",
+        "kpi_type": "qualitative",
+        "metric_name": "Capacity Building and Knowledge Management Programme",
+        "target_value": null,
+        "target_description": "Develop and implement a programme that facilitates dialogue, experience sharing, knowledge management and capacity-building in digital matters",
+        "unit": "qualitative milestone",
+        "timeframe": "2022–2024",
+        "measurement_method": "Programme documentation and reports on activities and outcomes",
+        "responsible_entity": "Regional organizations and member states",
+        "sector": "Digital Capacity Building"
+      },
+      {
+        "kpi_text": "Strengthen institutional frameworks and provide resources to the entities responsible for the design, implementation, follow-up and sustainability of digital transformation policies, agendas and plans in the countries of Latin America and the Caribbean",
+        "kpi_type": "qualitative",
+        "metric_name": "Institutional Framework Strengthening and Resource Provision",
+        "target_value": null,
+        "target_description": "Enhance institutional frameworks and allocate resources for entities managing digital transformation policies and plans",
+        "unit": "qualitative milestone",
+        "timeframe": "Ongoing",
+        "measurement_method": "Assessment of institutional capacity and resource allocation reports",
+        "responsible_entity": "Member countries and relevant government agencies",
+        "sector": "Digital Governance / Institutional Capacity"
+      },
+      {
+        "kpi_text": "Promote cybersecurity to build trust in digital media through policies, strategies and regulatory frameworks that are consistent with international standards and the protection of human rights",
+        "kpi_type": "qualitative",
+        "metric_name": "Cybersecurity Policy and Regulatory Framework Development",
+        "target_value": null,
+        "target_description": "Develop and implement cybersecurity policies, strategies and regulatory frameworks aligned with international standards and human rights protection",
+        "unit": "qualitative milestone",
+        "timeframe": "Ongoing",
+        "measurement_method": "Existence and enforcement of cybersecurity policies and frameworks",
+        "responsible_entity": "Member countries and regulatory bodies",
+        "sector": "Cybersecurity"
+      },
+      {
+        "kpi_text": "Formulate a programme of cooperation activities for the 2022–2024 period, facilitating dialogue, sharing of experiences, knowledge management and capacity-building;",
+        "kpi_type": "qualitative",
+        "metric_name": "Digital Cooperation Programme 2022-2024",
+        "target_value": null,
+        "target_description": "Establish and execute a cooperation programme to enhance dialogue, experience sharing, knowledge management and capacity building in digital matters",
+        "unit": "qualitative milestone",
+        "timeframe": "2022-2024",
+        "measurement_method": "Programme implementation reports and activity logs",
+        "responsible_entity": "Economic Commission for Latin America and the Caribbean (ECLAC) and member states",
         "sector": "Digital Cooperation"
       },
       {
-        "kpi_text": "Recognizing the need to promote the use and appropriation of emerging technologies to harness the potential of the technological revolution and enhance its impact on the economy, society and sustainability.",
-        "kpi_type": "qualitative",
-        "metric_name": "Promotion of Emerging Technologies",
-        "target_value": null,
-        "target_description": "Promote the use and appropriation of emerging technologies.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Assessment of technology adoption and impact",
-        "responsible_entity": "Member States and stakeholders",
-        "sector": "Technology and Innovation"
-      },
-      {
-        "kpi_text": "Stressing the importance of developing the digital skills and capacities of all persons, so that they benefit from the new digital revolution and drive the economic and social transformation of Latin American and Caribbean countries.",
-        "kpi_type": "qualitative",
-        "metric_name": "Digital Skills Development",
-        "target_value": null,
-        "target_description": "Develop digital skills and capacities for all persons.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluation of training programs and skill assessments",
-        "responsible_entity": "Member States and educational institutions",
-        "sector": "Education and Digital Skills"
-      },
-      {
-        "kpi_text": "Stressing the importance of continuing to support the construction of a regional digital market in which administrative barriers and transaction costs are reduced, to encourage cross-border e-commerce and growth in the region’s digital economy.",
+        "kpi_text": "Support the construction of a regional digital market in which administrative barriers and transaction costs are reduced, to encourage cross-border e-commerce and growth in the region’s digital economy",
         "kpi_type": "qualitative",
         "metric_name": "Regional Digital Market Development",
         "target_value": null,
-        "target_description": "Support the construction of a regional digital market.",
+        "target_description": "Reduce administrative barriers and transaction costs to foster cross-border e-commerce and digital economy growth",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Assessment of market integration and e-commerce growth",
-        "responsible_entity": "Member States and trade organizations",
-        "sector": "Digital Economy"
+        "timeframe": "Ongoing",
+        "measurement_method": "Monitoring of regulatory reforms and e-commerce growth indicators",
+        "responsible_entity": "Member countries and regional economic bodies",
+        "sector": "Digital Economy / Trade"
       },
       {
-        "kpi_text": "Thank the Government of Chile for offering to continue the process of the Digital Agenda for Latin America and the Caribbean and to host the ninth Ministerial Conference on the Information Society in Latin America and the Caribbean in 2024.",
+        "kpi_text": "Promote digital transformation of strategic sectors such as agriculture, health, manufacturing, commerce, tourism and mobility, to contribute to improved innovation, productivity and competitiveness and to reduce environmental impacts",
         "kpi_type": "qualitative",
-        "metric_name": "Ninth Ministerial Conference Hosting",
+        "metric_name": "Digital Transformation of Strategic Sectors",
         "target_value": null,
-        "target_description": "Host the ninth Ministerial Conference in 2024.",
+        "target_description": "Advance digital transformation in key sectors to enhance innovation, productivity, competitiveness and environmental sustainability",
         "unit": "qualitative milestone",
-        "timeframe": "in 2024",
-        "measurement_method": "Successful organization and execution of the conference",
-        "responsible_entity": "Government of Chile",
-        "sector": "Digital Governance"
+        "timeframe": "Ongoing",
+        "measurement_method": "Sectoral digitalization progress reports and impact assessments",
+        "responsible_entity": "Member countries and sectoral ministries",
+        "sector": "Sectoral Digital Transformation"
+      },
+      {
+        "kpi_text": "Strengthen statistical measurement and harmonization processes with regard to the digital sphere, to foster evidence-based policymaking in Latin America and the Caribbean",
+        "kpi_type": "qualitative",
+        "metric_name": "Digital Statistical Measurement and Harmonization",
+        "target_value": null,
+        "target_description": "Enhance statistical measurement and harmonization in digital matters to support evidence-based policymaking",
+        "unit": "qualitative milestone",
+        "timeframe": "Ongoing",
+        "measurement_method": "Implementation of harmonized digital statistics and use in policymaking",
+        "responsible_entity": "National statistical offices and regional organizations",
+        "sector": "Digital Statistics / Policy"
       }
     ],
-    "country_list_iso": [],
-    "responsible_entity": "Government of Ecuador",
+    "country_list_iso": [
+      "CHL",
+      "ECU",
+      "ESP"
+    ],
+    "responsible_entity": "Economic Commission for Latin America and the Caribbean",
     "sdg_alignment": [
-      "SDG 4: Quality Education",
       "SDG 8: Decent Work and Economic Growth",
       "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
-      "SDG 12: Responsible Consumption and Production",
+      "SDG 11: Sustainable Cities and Communities",
+      "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
   },
@@ -167,40 +236,40 @@
     {
       "name": "Governments",
       "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "Governments are central to the Montevideo Declaration as they represent the countries of Latin America and the Caribbean, directly involved in the decision-making and implementation of the Digital Agenda."
-    },
-    {
-      "name": "United Nations",
-      "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "The United Nations is referenced multiple times, highlighting its role in promoting sustainable development and digital cooperation, making it a key actor in the context of the declaration."
+      "relevance_score": 1.0,
+      "justification": "Governments of Latin America and the Caribbean are the primary actors throughout the document, as the declaration is made by their representatives. They lead and coordinate the digital agenda, host ministerial conferences, and are responsible for implementing policies and regional cooperation."
     },
     {
       "name": "Economic Commission for Latin America and the Caribbean",
       "category": "Political Actors",
+      "relevance_score": 0.85,
+      "justification": "The Economic Commission for Latin America and the Caribbean (ECLAC) is repeatedly mentioned as the technical secretariat and a key coordinator of the Digital Agenda process, playing a vital role in continuity, technical support, and regional cooperation."
+    },
+    {
+      "name": "United Nations",
+      "category": "Political Actors",
       "relevance_score": 0.7,
-      "justification": "The Economic Commission is recognized as the technical secretariat for the Digital Agenda, emphasizing its vital role in facilitating regional cooperation and continuity of the digital transformation process."
+      "justification": "The United Nations is referenced through its General Assembly resolutions, Secretary-General reports, and global initiatives that frame the regional digital agenda within the broader 2030 Agenda and global digital cooperation efforts, providing normative and strategic guidance."
     }
   ],
   "top_themes": [
     {
       "name": "Digital Agenda (Digital Transformation & Strategy)",
       "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.95,
-      "justification": "The Digital Agenda is central to the document as it outlines the strategic framework for digital transformation in Latin America and the Caribbean, emphasizing cooperation and integration in digital matters."
+      "relevance_score": 1.0,
+      "justification": "The document centers around the adoption, continuation, and implementation of the Digital Agenda for Latin America and the Caribbean (eLAC2024). It is the main framework guiding regional digital transformation efforts, cooperation, and policy-making, making it the core theme."
     },
     {
-      "name": "Digital Economy (Digital Transformation & Strategy)",
-      "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.9,
-      "justification": "The digital economy is highlighted as a crucial component for the region's development model, indicating its strategic importance for economic growth and resilience."
-    },
-    {
-      "name": "Digital Skills Development (Digital Transformation & Strategy)",
+      "name": "Digital Policy (Digital Transformation & Strategy)",
       "category": "Digital Transformation & Strategy",
       "relevance_score": 0.85,
-      "justification": "Developing digital skills is emphasized as essential for social inclusion and economic transformation, making it a key objective for achieving the goals set in the declaration."
+      "justification": "The declaration emphasizes the importance of legal and regulatory frameworks, cybersecurity, institutional strengthening, and evidence-based policymaking, all of which are critical for ensuring trust, security, and sustainability in the digital transformation process."
+    },
+    {
+      "name": "Multilateralism (Regional & International Cooperation)",
+      "category": "Regional & International Cooperation",
+      "relevance_score": 0.8,
+      "justification": "The document highlights regional cooperation, partnerships, and multilateral engagement as essential for the success of the Digital Agenda and digital transformation in Latin America and the Caribbean, reflecting the strategic importance of collective action and shared principles."
     }
   ]
 }

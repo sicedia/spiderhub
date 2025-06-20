@@ -1,70 +1,100 @@
 {
-  "title": "MERCOSUR Presidents' Joint Communiqué: Key Outcomes from the LXIII Summit in Rio de Janeiro, December 2023",
+  "title": "Joint Communiqué of the Presidents of MERCOSUR States Parties and Bolivia – LXIII MERCOSUR Summit, December 2023",
   "date": "2023-12-07",
   "location": "Rio de Janeiro, Brazil",
-  "executive_summary": "On December 7, 2023, the LXIII Summit of MERCOSUR Presidents convened in Rio de Janeiro, focusing on integration progress and future priorities. Key outcomes included the extension of the Common External Tariff review for modernization, commitment to implement new Rules of Origin, and advancements in customs facilitation and trade statistics. The summit emphasized universal health access, launching the first MERCOSUR Epidemiological Bulletin, and the importance of the Local Border Towns Agreement for cross-border mobility. Notably, the MERCOSUR-Singapore Free Trade Agreement was signed, marking a significant step in external relations. The leaders reaffirmed their commitment to democratic values, human rights, and regional energy integration, while maintaining the FOCEM fund to support structural convergence and innovation initiatives.",
+  "executive_summary": "The LXIII MERCOSUR Summit held in Rio de Janeiro on December 7, 2023, gathered the presidents of Brazil, Argentina, Paraguay, Uruguay, and Bolivia (in accession process) to review integration progress and set 2024 priorities. Key outcomes include extending the Common External Tariff review, implementing new Rules of Origin, and advancing customs facilitation and sector-specific trade issues. The summit emphasized universal health access, launched the first MERCOSUR Epidemiological Bulletin, and supported the Local Border Towns Agreement to ease cross-border mobility. Progress was made on cybersecurity cooperation and e-commerce agreements. Externally, MERCOSUR signed a Free Trade Agreement with Singapore, reaffirmed commitments to conclude agreements with the EU and EFTA, and advanced talks with several Latin American and global partners. The bloc also committed to strengthening democracy, human rights, regional energy integration, and science and technology cooperation, while maintaining the FOCEM fund to address structural asymmetries.",
   "characteristics": [
-    "The LXIII MERCOSUR Summit took place on December 7, 2023, in Rio de Janeiro, with leaders from Brazil, Argentina, Paraguay, Uruguay, and Bolivia discussing integration progress and future priorities.",
-    "Key economic initiatives included extending the review of the Common External Tariff and implementing new Rules of Origin to modernize trade practices.",
-    "Emphasis was placed on social and health cooperation, including the launch of the first MERCOSUR Epidemiological Bulletin and commitments to equitable health access.",
-    "The summit highlighted advancements in digital cooperation, particularly in cybersecurity and e-commerce agreements.",
-    "Significant external relations developments included the signing of a Free Trade Agreement with Singapore and ongoing negotiations with various countries to enhance trade ties.",
-    "The leaders reaffirmed their commitment to democratic values, human rights, and regional energy integration, alongside maintaining the structural convergence fund (FOCEM)."
+    "MERCOSUR leaders emphasized the need to revitalize the bloc with a pragmatic, integrated approach, reaffirming commitment to democracy, human rights, and social participation.",
+    "Economic priorities include modernizing the Common External Tariff, implementing new Rules of Origin, enhancing customs facilitation, and advancing sector-specific trade issues (automotive, sugar, organic products).",
+    "Health cooperation was strengthened with universal access goals, joint pandemic treaty positions, and the launch of the MERCOSUR Epidemiological Bulletin.",
+    "Digital agenda progress includes cybersecurity cooperation, mapping digital regulations, and ratifying the e-commerce agreement.",
+    "External relations focus on concluding trade agreements with the EU, EFTA, and Singapore (first Asia-Pacific partner), and advancing talks with Latin American and global partners.",
+    "Commitment to deepen regional energy integration, maintain the FOCEM fund for structural convergence, and promote science, technology, and innovation initiatives."
   ],
   "themes": {
-    "Regional & International Cooperation": [
-      "EU-LAC Digital Alliance",
-      "Global Digital Cooperation",
-      "Digital & Technological Partnerships"
-    ],
     "Digital Transformation & Strategy": [
-      "Digital Policy",
-      "Digital Infrastructure",
+      "Digital Agenda",
+      "Digital Acceleration",
       "Digital Platforms",
-      "Digital Trade"
+      "Digital Infrastructure",
+      "Digital Policy",
+      "Digital Regulation",
+      "Digital Economy"
+    ],
+    "Technology & Innovation": [
+      "ICT Innovation"
     ],
     "Data & Governance": [
       "Digital Governance",
       "Cybersecurity"
     ],
     "Inclusion & Social Development": [
-      "Digital Inclusion",
-      "Social Cohesion"
+      "Digital Inclusion"
+    ],
+    "Regional & International Cooperation": [
+      "Multilateralism",
+      "Digital & Technological Partnerships"
     ]
   },
   "actors": {
     "Political Actors": [
-      "Luiz Inácio Lula da Silva",
-      "Alberto Ángel Fernández",
-      "Santiago Peña Palacios",
-      "Luis Lacalle Pou",
-      "Luis Alberto Arce Catacora"
+      "Governments",
+      "Government Officials",
+      "Policy Level Representatives",
+      "Southern Common Market",
+      "Community of Portuguese Language Countries",
+      "Organisation of Ibero-American States",
+      "United Nations"
     ],
-    "Southern Common Market": [
-      "MERCOSUR"
+    "Economic Actors": [
+      "Private Sector Representatives",
+      "Industry Actors",
+      "Private Sector Intermediaries"
+    ],
+    "Civil Society Actors": [
+      "Civil Society Organisations",
+      "Non-governmental Institutions"
     ]
   },
   "practical_applications": [
-    "Extended the mandate for the review of the Common External Tariff (CET) for one year to modernize the tariff structure.",
-    "Committed to implementing the new MERCOSUR Rules of Origin (ROM) concluded in July 2023.",
-    "Launched the first MERCOSUR Epidemiological Bulletin to share epidemiological information among member states.",
-    "Endorsed the Local Border Towns Agreement to facilitate cross-border mobility and services.",
-    "Welcomed progress on a MERCOSUR cooperation instrument on cybersecurity to enhance coordination and response.",
-    "Signed the MERCOSUR-Singapore Free Trade Agreement, marking the first agreement with an Asia-Pacific partner.",
-    "Maintained the FOCEM (Structural Convergence Fund) to support integration and development initiatives within MERCOSUR.",
-    "Advanced discussions on trade agreements with Chile, Colombia, Peru, Ecuador, and explored negotiations with El Salvador, Dominican Republic, UAE, Canada, Indonesia, and Vietnam."
+    "Extension of the mandate for the Group ad hoc to examine the consistency and dispersion of the MERCOSUR Common External Tariff (CET) for one year to modernize the tariff structure.",
+    "Implementation of the new MERCOSUR Rules of Origin (ROM) concluded in July 2023 to simplify and adapt trade rules.",
+    "Ongoing work to improve customs facilitation and trade statistics through strengthening the SECEM system.",
+    "Continuation of sector-specific initiatives including automotive, sugar, and organic products, with the creation of the Commission of Specialists in Organic Production (CEPOR) to promote trade and regulatory harmonization.",
+    "Reinstatement and active work of the Committee on Competition Defense and the Committee on Consumer Defense, including development of manuals of good practices.",
+    "Realization of the XI MERCOSUR Business Forum to enhance private sector participation and public-private articulation.",
+    "Promotion of gender equality in commerce through the certification of the \"Sello Empresa Mujer\" (Women’s Company Seal).",
+    "Continuation and strengthening of the MERCOSUR Structural Convergence Fund (FOCEM) with Brazil establishing criteria for project selection favoring border municipalities.",
+    "Work by the Group ad hoc on Trade and Sustainable Development with a renewed mandate to integrate sustainability into trade policies.",
+    "Progress on a MERCOSUR cybersecurity cooperation instrument to improve coordination and response to malicious cyber activities.",
+    "Entry into force of the MERCOSUR E-commerce Agreement between Paraguay and Uruguay, with efforts to ratify it across the bloc.",
+    "Health cooperation initiatives including the first MERCOSUR Epidemiological Bulletin, a course on vaccine production and development, and the project \"Promoting Healthy and Safe MERCOSUR Borders\" with PAHO.",
+    "Advancement of the Local Border Towns Agreement to facilitate cross-border mobility and access to services such as education, health, work, and trade.",
+    "Strengthening regional energy integration focusing on electricity interconnection, renewable energy incorporation, and gas integration, with collaboration with OLADE.",
+    "Support for science, technology, and innovation through MERCOSUR Science and Technology Awards, training on alternative methods to animal use, startup support, and promotion of open science.",
+    "Active external trade negotiations and agreements including the MERCOSUR-Singapore Free Trade Agreement, ongoing MERCOSUR-EU Association Agreement talks, and negotiations with Chile, Colombia, Peru, Ecuador, El Salvador, Dominican Republic, UAE, Canada, Indonesia, and Vietnam.",
+    "Cooperation projects with international organizations such as CPLP, PAHO/WHO, and OEI, including the EU-funded project on legislative harmonization for border towns."
   ],
   "commitments": [
-    "Extend the mandate for the review of the Common External Tariff (CET) for one year.",
-    "Implement the new MERCOSUR Rules of Origin (ROM) concluded in July 2023.",
-    "Launch the first MERCOSUR Epidemiological Bulletin.",
-    "Maintain the FOCEM structural-convergence fund."
+    "Extend the mandate of the Group ad hoc to examine the consistency and dispersion of the Common External Tariff (CET) for one year (until end of 2024).",
+    "Continue to internalize and implement the new MERCOSUR Rules of Origin (ROM) concluded in July 2023.",
+    "Publish criteria for selection of projects to be presented to the MERCOSUR Structural Convergence Fund (FOCEM) in the first semester of 2024, favoring projects in municipalities up to 150 km from the border.",
+    "Promote ratification of the MERCOSUR Agreement on Electronic Commerce to establish a legal framework for e-commerce within the bloc.",
+    "Advance the approval and promulgation of the MERCOSUR Local Border Towns Agreement to facilitate cross-border mobility and access to services.",
+    "Continue negotiations and advance the update of trade agreements with Chile, Colombia, Peru, Ecuador, El Salvador, Dominican Republic, and initiate negotiations with UAE, Canada, Indonesia, and Vietnam.",
+    "Conclude and sign the MERCOSUR-EU Association Agreement and the MERCOSUR-EFTA trade agreement.",
+    "Deepen regional energy integration, especially electrical interconnection and gas integration, to increase renewable energy incorporation.",
+    "Maintain and continue funding the MERCOSUR Structural Convergence Fund (FOCEM) as a key tool to reduce asymmetries among member countries and regions.",
+    "Launch the first MERCOSUR Epidemiological Bulletin to share public health information among member states.",
+    "Implement the Plan Operative of the MERCOSUR Strategy on Climate Change and Health, including participation in COP28 in Dubai (2023-2024).",
+    "Continue cooperation projects in health, including production and development of vaccines, and border health initiatives in 2024.",
+    "Strengthen science, technology, and innovation initiatives, including increasing scientific and technological production and joint research efforts within MERCOSUR."
   ],
-  "score": 61,
+  "score": 63,
   "quality_breakdown": {
     "faithfulness": 0,
-    "consistency": 85,
-    "completeness": 70,
+    "consistency": 95,
+    "completeness": 95,
     "accuracy": 100,
     "issues": [
       "Low faithfulness - check for hallucinations in basic or strategic extra data"
@@ -77,221 +107,283 @@
       "Ministerial Communiqué"
     ],
     "legal_bindingness": "Politically-binding",
-    "coverage_scope": "Regional",
-    "eu_policy_alignment": [
-      "MERCOSUR-EU Association Agreement"
-    ],
+    "coverage_scope": "Sub-regional",
+    "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [
-      "mujer",
-      "comunidad",
-      "ciudadano",
-      "ciudadana",
-      "población"
+      "citizen",
+      "woman",
+      "consumer",
+      "entrepreneur",
+      "population"
     ],
     "beneficiary_group": [
-      {
-        "category": "Women & Girls",
-        "label": "Women"
-      },
       {
         "category": "General Citizens / Consumers",
         "label": "Citizens"
       },
       {
-        "category": "General Citizens / Consumers",
-        "label": "General Public"
+        "category": "Women & Girls",
+        "label": "Women in Tech"
       },
       {
-        "category": "Rural & Remote Communities",
-        "label": "Rural Populations"
+        "category": "General Citizens / Consumers",
+        "label": "Consumers"
+      },
+      {
+        "category": "SMEs / Businesses",
+        "label": "Entrepreneurs"
+      },
+      {
+        "category": "General Citizens / Consumers",
+        "label": "General Public"
       }
     ],
     "start_date": "2023-12-07",
     "end_date": "2023-12-07",
     "commitment_details": [
       {
-        "text": "Extend the mandate for the review of the Common External Tariff (CET) for one year.",
-        "commitment_class": "Declarative"
-      },
-      {
-        "text": "Implement the new MERCOSUR Rules of Origin (ROM) concluded in July 2023.",
-        "commitment_class": "Implemented"
-      },
-      {
-        "text": "Launch the first MERCOSUR Epidemiological Bulletin.",
+        "text": "Extend the mandate of the Group ad hoc to examine the consistency and dispersion of the Common External Tariff (CET) for one year (until end of 2024).",
         "commitment_class": "Programmatic"
       },
       {
-        "text": "Maintain the FOCEM structural-convergence fund.",
+        "text": "Continue to internalize and implement the new MERCOSUR Rules of Origin (ROM) concluded in July 2023.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "Publish criteria for selection of projects to be presented to the MERCOSUR Structural Convergence Fund (FOCEM) in the first semester of 2024, favoring projects in municipalities up to 150 km from the border.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Promote ratification of the MERCOSUR Agreement on Electronic Commerce to establish a legal framework for e-commerce within the bloc.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "Advance the approval and promulgation of the MERCOSUR Local Border Towns Agreement to facilitate cross-border mobility and access to services.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Continue negotiations and advance the update of trade agreements with Chile, Colombia, Peru, Ecuador, El Salvador, Dominican Republic, and initiate negotiations with UAE, Canada, Indonesia, and Vietnam.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Conclude and sign the MERCOSUR-EU Association Agreement and the MERCOSUR-EFTA trade agreement.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Deepen regional energy integration, especially electrical interconnection and gas integration, to increase renewable energy incorporation.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "Maintain and continue funding the MERCOSUR Structural Convergence Fund (FOCEM) as a key tool to reduce asymmetries among member countries and regions.",
         "commitment_class": "Financed"
+      },
+      {
+        "text": "Launch the first MERCOSUR Epidemiological Bulletin to share public health information among member states.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "Implement the Plan Operative of the MERCOSUR Strategy on Climate Change and Health, including participation in COP28 in Dubai (2023-2024).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "Continue cooperation projects in health, including production and development of vaccines, and border health initiatives in 2024.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "Strengthen science, technology, and innovation initiatives, including increasing scientific and technological production and joint research efforts within MERCOSUR.",
+        "commitment_class": "Declarative"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "Extend the mandate of the Group ad hoc for one year to modernize the Common External Tariff.",
-        "kpi_type": "qualitative",
-        "metric_name": "Common External Tariff Modernization",
-        "target_value": null,
-        "target_description": "Modernize the tariff structure.",
-        "unit": "qualitative milestone",
-        "timeframe": "by the end of 2024",
-        "measurement_method": "Review of tariff structure and implementation progress",
-        "responsible_entity": "MERCOSUR member states",
+        "kpi_text": "prórroga, por un año, del mandato del Grupo ad hoc para Examinar la Consistencia y Dispersión del Arancel Externo Común (GAHAEC)",
+        "kpi_type": "quantitative",
+        "metric_name": "Mandate Extension for CET Review",
+        "target_value": 1.0,
+        "target_description": "Extend the mandate of the ad hoc group to examine the Common External Tariff consistency and dispersion",
+        "unit": "year",
+        "timeframe": "one year from December 2023",
+        "measurement_method": "Mandate extension documentation and group activity reports",
+        "responsible_entity": "Grupo ad hoc para Examinar la Consistencia y Dispersión del Arancel Externo Común (GAHAEC)",
         "sector": "Economic and Trade"
       },
       {
-        "kpi_text": "Implement the new MERCOSUR Rules of Origin (ROM) concluded in July 2023.",
+        "kpi_text": "Comprometieron a continuar a trabajar para internalizar e implementar el nuevo Régimen de Origen MERCOSUR (ROM), concluido en julio de 2023",
         "kpi_type": "qualitative",
-        "metric_name": "Implementation of MERCOSUR Rules of Origin",
+        "metric_name": "Implementation of MERCOSUR Rules of Origin (ROM)",
         "target_value": null,
-        "target_description": "Internalize and implement the new Rules of Origin.",
+        "target_description": "Internalize and implement the new MERCOSUR Rules of Origin to simplify and modernize trade rules",
         "unit": "qualitative milestone",
-        "timeframe": "by the end of 2024",
-        "measurement_method": "Monitoring compliance with the new rules",
-        "responsible_entity": "MERCOSUR member states",
+        "timeframe": "ongoing from July 2023",
+        "measurement_method": "Adoption and enforcement of ROM across member states",
+        "responsible_entity": "Member States of MERCOSUR",
         "sector": "Economic and Trade"
       },
       {
-        "kpi_text": "Launch the first MERCOSUR Epidemiological Bulletin.",
+        "kpi_text": "publicación de decreto por el gobierno brasileño que establece proceso con criterios para la selección de proyectos que serán presentados para su selección en el primer semestre de 2024",
+        "kpi_type": "quantitative",
+        "metric_name": "Project Selection Process for FOCEM Funding",
+        "target_value": 1.0,
+        "target_description": "Establish a decree and criteria for project selection to be applied in the first semester of 2024",
+        "unit": "decree/process",
+        "timeframe": "first semester of 2024",
+        "measurement_method": "Publication and application of decree and project selection outcomes",
+        "responsible_entity": "Government of Brazil and FOCEM administration",
+        "sector": "Economic and Trade / Structural Convergence"
+      },
+      {
+        "kpi_text": "renovación del mandato del Grupo ad hoc sobre Comercio y Desarrollo Sostenible por un año adicional",
+        "kpi_type": "quantitative",
+        "metric_name": "Mandate Renewal for Trade and Sustainable Development Group",
+        "target_value": 1.0,
+        "target_description": "Renew the mandate of the ad hoc group on Trade and Sustainable Development for one additional year",
+        "unit": "year",
+        "timeframe": "one year from December 2023",
+        "measurement_method": "Official renewal documentation and group activity reports",
+        "responsible_entity": "Grupo ad hoc sobre Comercio y Desarrollo Sostenible",
+        "sector": "Economic and Trade / Sustainable Development"
+      },
+      {
+        "kpi_text": "realización del primer \"Curso de Producción y Desarrollo de Vacunas para Estados Partes y Asociados del MERCOSUR\"",
         "kpi_type": "qualitative",
-        "metric_name": "Epidemiological Bulletin Launch",
+        "metric_name": "Vaccine Production and Development Training",
         "target_value": null,
-        "target_description": "Provide a platform for sharing epidemiological information.",
+        "target_description": "Conduct the first training course on vaccine production and development for MERCOSUR member and associated states",
         "unit": "qualitative milestone",
-        "timeframe": "by December 2023",
-        "measurement_method": "Publication and distribution of the bulletin",
-        "responsible_entity": "MERCOSUR health authorities",
+        "timeframe": "completed by December 2023",
+        "measurement_method": "Course completion and participant feedback",
+        "responsible_entity": "Health authorities of MERCOSUR States Parties and Associates",
         "sector": "Health"
       },
       {
-        "kpi_text": "Sign the MERCOSUR-Singapore Free Trade Agreement.",
+        "kpi_text": "lanzamiento del primer Boletín Epidemiológico del MERCOSUR",
         "kpi_type": "qualitative",
-        "metric_name": "MERCOSUR-Singapore Free Trade Agreement",
+        "metric_name": "Epidemiological Bulletin Launch",
         "target_value": null,
-        "target_description": "Establish a free trade agreement with Singapore.",
+        "target_description": "Launch the first MERCOSUR Epidemiological Bulletin to share public health information among member states",
         "unit": "qualitative milestone",
         "timeframe": "by December 2023",
-        "measurement_method": "Agreement signing and implementation",
-        "responsible_entity": "MERCOSUR member states",
-        "sector": "External Relations and Trade"
+        "measurement_method": "Publication and dissemination of the bulletin",
+        "responsible_entity": "Health authorities of MERCOSUR States Parties",
+        "sector": "Health"
       },
       {
-        "kpi_text": "Strengthen democratic values, human-rights protection and social participation within MERCOSUR.",
+        "kpi_text": "avances en la negociación de un instrumento del MERCOSUR de cooperación en materia de seguridad cibernética",
         "kpi_type": "qualitative",
-        "metric_name": "Strengthening Democratic Values",
+        "metric_name": "Cybersecurity Cooperation Instrument Development",
         "target_value": null,
-        "target_description": "Enhance the protection of human rights and social participation.",
+        "target_description": "Advance negotiations on a MERCOSUR cybersecurity cooperation instrument to enhance coordination and response",
         "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Assessment of policies and initiatives",
-        "responsible_entity": "MERCOSUR member states",
-        "sector": "Social and Institutional"
+        "timeframe": "ongoing as of December 2023",
+        "measurement_method": "Negotiation progress reports and instrument adoption",
+        "responsible_entity": "MERCOSUR member states cybersecurity authorities",
+        "sector": "Digital and Cybersecurity"
       },
       {
-        "kpi_text": "Maintain the FOCEM structural-convergence fund.",
+        "kpi_text": "firma del Acuerdo de Libre Comercio entre el MERCOSUR y Singapur",
         "kpi_type": "qualitative",
-        "metric_name": "FOCEM Fund Maintenance",
+        "metric_name": "MERCOSUR-Singapore Free Trade Agreement Signing",
         "target_value": null,
-        "target_description": "Ensure the continuation of the structural-convergence fund.",
+        "target_description": "Sign the Free Trade Agreement between MERCOSUR and Singapore, the first with an Asia-Pacific partner",
         "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Review of fund allocation and usage",
-        "responsible_entity": "MERCOSUR member states",
-        "sector": "Economic and Social"
+        "timeframe": "achieved by December 2023",
+        "measurement_method": "Official signing and ratification documents",
+        "responsible_entity": "MERCOSUR member states and Singapore government",
+        "sector": "External Trade and Relations"
       },
       {
-        "kpi_text": "Advance discussions with Chile, Colombia, Peru, Ecuador and explore talks with El Salvador, Dominican Republic, UAE, Canada, Indonesia and Vietnam.",
+        "kpi_text": "reiteraron su compromiso para acelerar las tareas que permitan concretar la pronta suscripción del acuerdo comercial con el MERCOSUR y EFTA",
         "kpi_type": "qualitative",
-        "metric_name": "External Trade Negotiations",
+        "metric_name": "Acceleration of MERCOSUR-EFTA Trade Agreement Negotiations",
         "target_value": null,
-        "target_description": "Enhance trade relations with specified countries.",
+        "target_description": "Accelerate tasks to enable prompt signing of the trade agreement between MERCOSUR and EFTA",
         "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Progress reports on negotiations",
-        "responsible_entity": "MERCOSUR member states",
-        "sector": "External Relations and Trade"
+        "timeframe": "ongoing as of December 2023",
+        "measurement_method": "Progress in negotiation rounds and agreement signing",
+        "responsible_entity": "MERCOSUR member states and EFTA representatives",
+        "sector": "External Trade and Relations"
       },
       {
-        "kpi_text": "Deepen regional energy integration (electricity, gas) and collaboration on critical minerals.",
+        "kpi_text": "avanzar con los trámites internos de aprobación legislativa y promulgación del Acuerdo de Localidades Fronterizas del MERCOSUR",
         "kpi_type": "qualitative",
-        "metric_name": "Regional Energy Integration",
+        "metric_name": "Legislative Approval and Promulgation of Local Border Towns Agreement",
         "target_value": null,
-        "target_description": "Enhance collaboration on energy resources.",
+        "target_description": "Advance internal legislative approval and promulgation of the MERCOSUR Local Border Towns Agreement to facilitate cross-border mobility and services",
         "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Evaluation of energy projects and collaborations",
-        "responsible_entity": "MERCOSUR energy authorities",
-        "sector": "Energy"
-      },
-      {
-        "kpi_text": "Promote the certification of the Sello Empresa Mujer.",
-        "kpi_type": "qualitative",
-        "metric_name": "Promotion of Gender Equality in Business",
-        "target_value": null,
-        "target_description": "Encourage the certification to support women entrepreneurs.",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Tracking certification applications and impacts",
-        "responsible_entity": "MERCOSUR member states",
-        "sector": "Social and Economic"
+        "timeframe": "ongoing as of December 2023",
+        "measurement_method": "Legislative records and promulgation documents",
+        "responsible_entity": "Member States' legislative bodies and MERCOSUR Secretariat",
+        "sector": "Border Integration and Social"
       }
     ],
     "country_list_iso": [
       "ARG",
       "BOL",
+      "CAN",
+      "CHL",
+      "COL",
+      "DOM",
+      "ECU",
+      "IDN",
+      "PER",
       "PRY",
-      "URY"
+      "SGP",
+      "URY",
+      "VNM"
     ],
-    "responsible_entity": "MERCOSUR",
+    "responsible_entity": "Grupo ad hoc para Examinar la Consistencia y Dispersión del Arancel Externo Común (GAHAEC)",
     "sdg_alignment": [
       "SDG 3: Good Health and Well-being",
       "SDG 5: Gender Equality",
+      "SDG 7: Affordable and Clean Energy",
       "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
       "SDG 12: Responsible Consumption and Production",
       "SDG 13: Climate Action",
+      "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
   },
   "top_actors": [
     {
-      "name": "Luiz Inácio Lula da Silva",
+      "name": "Southern Common Market",
+      "category": "Political Actors",
+      "relevance_score": 1.0,
+      "justification": "The Southern Common Market (MERCOSUR) is the central actor in the document, as the entire communiqué revolves around its member states, integration processes, trade agreements, and institutional developments. It is the main framework within which all discussions, decisions, and initiatives take place."
+    },
+    {
+      "name": "Governments",
       "category": "Political Actors",
       "relevance_score": 0.9,
-      "justification": "As the President of Brazil and a key figure in MERCOSUR, Lula is prominently mentioned and plays a crucial role in shaping the agenda and decisions of the summit."
+      "justification": "The governments of the MERCOSUR member states and Bolivia are prominently mentioned as key decision-makers and participants in the summit. Their role is crucial in driving the agenda, approving agreements, and implementing policies discussed in the document."
     },
     {
-      "name": "Alberto Ángel Fernández",
+      "name": "Government Officials",
       "category": "Political Actors",
-      "relevance_score": 0.85,
-      "justification": "The President of Argentina, Fernández is also a significant actor in the discussions, representing one of the largest economies in MERCOSUR and influencing key economic and trade decisions."
-    },
-    {
-      "name": "MERCOSUR",
-      "category": "Southern Common Market",
-      "relevance_score": 0.8,
-      "justification": "As the overarching organization facilitating the integration and cooperation among member states, MERCOSUR is central to all discussions and initiatives outlined in the document."
+      "relevance_score": 0.7,
+      "justification": "Government officials, specifically the presidents of the member states and accession state, are the primary actors who convened the summit, negotiated, and endorsed the various initiatives and agreements. Their leadership and participation are essential for the legitimacy and execution of the bloc's agenda."
     }
   ],
   "top_themes": [
     {
-      "name": "Digital Trade",
+      "name": "Digital Policy",
       "category": "Digital Transformation & Strategy",
       "relevance_score": 0.9,
-      "justification": "Digital trade is central to the document's main message as it emphasizes the importance of e-commerce agreements and digital economic integration, which are crucial for the MERCOSUR bloc's future economic strategies."
+      "justification": "The document highlights the importance of advancing digital regulatory frameworks, including cybersecurity cooperation and e-commerce agreements, which are critical for MERCOSUR's digital transformation and international trade positioning."
     },
     {
       "name": "Cybersecurity",
       "category": "Data & Governance",
       "relevance_score": 0.85,
-      "justification": "Cybersecurity is highlighted as a key area of focus, reflecting the need for enhanced cooperation in digital security to protect trade and data integrity, which is vital for fostering trust in digital platforms."
+      "justification": "Cybersecurity is emphasized as a key area with ongoing negotiations for a cooperation instrument to enhance coordination and response, reflecting its strategic importance for securing the digital environment of the bloc."
     },
     {
-      "name": "Digital Inclusion",
-      "category": "Inclusion & Social Development",
+      "name": "Digital Economy",
+      "category": "Digital Transformation & Strategy",
       "relevance_score": 0.8,
-      "justification": "Digital inclusion is emphasized as a strategic objective to ensure equitable access to digital resources, which is essential for social cohesion and development within the MERCOSUR region."
+      "justification": "The document stresses the ratification of the MERCOSUR e-commerce agreement and the need to address digital divides, positioning the digital economy as a vital driver for regional integration and global competitiveness."
     }
   ]
 }

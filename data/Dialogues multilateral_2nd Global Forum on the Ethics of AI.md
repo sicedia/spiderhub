@@ -20,7 +20,7 @@ No actors identified.
 
 | Category | Subcategory |
 | --- | --- |
-| Technology & Innovation | AI Ethics |
+| Technology & Innovation | AI Ethics; Artificial Intelligence |
 
 ## Practical Applications
 

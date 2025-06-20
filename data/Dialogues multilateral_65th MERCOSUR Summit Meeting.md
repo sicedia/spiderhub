@@ -1,4 +1,4 @@
-# Conclusion of MERCOSUR-European Union Partnership Agreement Negotiations
+# Conclusion of MERCOSUR-EU Partnership Agreement Negotiations Announced at 65th MERCOSUR Summit
 
 **Date**: 2024-12-06
 
@@ -6,31 +6,38 @@
 
 ## Executive Summary
 
-On December 6, 2024, during the 65th MERCOSUR Summit in Montevideo, Argentina, Brazil, Paraguay, and Uruguay, alongside the European Commission, announced the conclusion of negotiations for a Partnership Agreement after over two decades of discussions. Following significant progress since June 2019, the parties engaged in an intensive negotiation process starting in 2023, which included seven rounds of talks. The agreement is now set for legal review and translation, with both blocs committed to finalizing these steps in the coming months, paving the way for the signing of the agreement.
+The 65th MERCOSUR Summit Meeting in Montevideo on December 6, 2024, marked the conclusion of negotiations for a Partnership Agreement between MERCOSUR (Argentina, Brazil, Paraguay, Uruguay) and the European Commission. After over two decades of discussions, intensified since 2023 with seven negotiation rounds, both parties have adjusted the agreement to address national, regional, and global challenges. The finalized agreement is now ready for legal review and translation, with plans for signing in the coming months. This milestone reflects a significant step in strengthening economic and political ties between the two regions.
 
 ## Characteristics
 
-- The joint statement was issued on December 6, 2024, during the 65th MERCOSUR Summit in Montevideo.
-- It announces the conclusion of negotiations for a Partnership Agreement between MERCOSUR (Argentina, Brazil, Paraguay, Uruguay) and the European Commission, after over two decades of discussions.
-- Since 2023, both parties engaged in seven rounds of negotiations to address contemporary challenges.
-- The agreement is now set for legal review and translation, with plans for signing in the coming months.
+- The Partnership Agreement between MERCOSUR (Argentina, Brazil, Paraguay, Uruguay) and the European Commission concluded negotiations after over two decades.
+- Intense negotiations resumed in 2023, including seven rounds, to update the agreement addressing national, regional, and global challenges.
+- The agreement is now ready for legal review and translation, aiming for future signing.
+- The announcement was made at the 65th MERCOSUR Summit in Montevideo on December 6, 2024.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Commission; Republic of Argentina; Federative Republic of Brazil; Republic of Paraguay; Oriental Republic of Uruguay; European Union; Southern Common Market |
+| Southern Common Market | Argentina; Brazil; Paraguay; Uruguay |
+| European Commission | European Commission |
+| European Union | European Union |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Regional & International Cooperation | EU-CELAC Digital Partnership |
+| Regional & International Cooperation | Multilateralism |
 
 ## Practical Applications
 
-- Conclusion of the negotiations of a Partnership Agreement between MERCOSUR (Argentina, Brazil, Paraguay, and Uruguay) and the European Commission, ready for legal review and translation, with plans for future signing.
+- MERCOSUR (Argentina, Brazil, Paraguay, Uruguay) and the European Commission have concluded negotiations on a Partnership Agreement after more than two decades of talks.
+- Since 2023, both parties engaged in an intense negotiation process including seven rounds of talks to adjust the agreement to current national, regional, and global challenges.
+- The Partnership Agreement is now ready for legal review and translation, with plans to complete these steps in the coming months.
+- Both blocs are determined to proceed towards the future signing of the Partnership Agreement.
 
 ## Commitments
 
-No specific quantifiable commitments or targets identified.
+- [
+- "Complete legal review and translation of the Partnership Agreement between MERCOSUR and the European Union in the next months (post-December 6, 2024), with a view to the future signing of the agreement."
+- ]

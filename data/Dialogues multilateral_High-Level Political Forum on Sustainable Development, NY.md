@@ -1,8 +1,8 @@
-# High-Level Political Forum 2023: Sustainable Development Dialogues in New York
+# High-Level Political Forum on Sustainable Development 2023, New York
 
-**Date**: Date not specified
+**Date**: 2023
 
-**Location**: New York, USA
+**Location**: New York, United States
 
 ## Executive Summary
 
@@ -18,9 +18,7 @@ No actors identified.
 
 ## Main Themes
 
-| Category | Subcategory |
-| --- | --- |
-| Inclusion & Social Development | Sustainable Digital Development |
+No themes identified.
 
 ## Practical Applications
 

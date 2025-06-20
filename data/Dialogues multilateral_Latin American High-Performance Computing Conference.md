@@ -1,4 +1,4 @@
-# Latin America High Performance Computing Conference 2023 (CARLA 2023)
+# Document Title Not Available
 
 **Date**: Date not specified
 

@@ -1,39 +1,46 @@
 {
-  "title": "Women4Ethical AI Conference: Advancing Gender Equity in Artificial Intelligence",
+  "title": "Women4Ethical AI Conference: Advancing Ethical AI through Multilateral Dialogue and Women's Leadership",
   "date": null,
   "location": null,
   "executive_summary": null,
   "characteristics": [],
   "themes": {
+    "Inclusion & Social Development": [
+      "Gender Equality in Tech"
+    ],
     "Technology & Innovation": [
+      "Artificial Intelligence",
       "AI Ethics"
     ]
   },
   "actors": {},
   "practical_applications": [],
   "commitments": [],
-  "score": 86,
+  "score": 71,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 70,
-    "completeness": 70,
-    "accuracy": 100,
-    "issues": []
+    "consistency": 85,
+    "completeness": 45,
+    "accuracy": 50,
+    "issues": [
+      "Missing important information in extraction or strategic analysis",
+      "Potential factual errors in basic content or strategic extra data"
+    ]
   },
   "extra_data": {
-    "lead_country_iso": null,
+    "lead_country_iso": "DEU",
     "agreement_type": [],
     "legal_bindingness": null,
     "coverage_scope": "Multilateral",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [
-      "women"
+      "woman"
     ],
     "beneficiary_group": [
       {
         "category": "Women & Girls",
-        "label": "Gender Equality Initiatives"
+        "label": "Women in Tech"
       }
     ],
     "start_date": null,
@@ -43,10 +50,7 @@
     "country_list_iso": [],
     "responsible_entity": null,
     "sdg_alignment": [
-      "SDG 5: Gender Equality",
-      "SDG 8: Decent Work and Economic Growth",
-      "SDG 12: Responsible Consumption and Production",
-      "SDG 17: Partnerships for the Goals"
+      "SDG 5: Gender Equality"
     ]
   },
   "top_actors": [],
@@ -55,19 +59,19 @@
       "name": "AI Ethics",
       "category": "Technology & Innovation",
       "relevance_score": 0.9,
-      "justification": "AI Ethics is central to the document's main message, focusing on the ethical implications of AI technologies. The content is heavily dedicated to discussions around ethical frameworks, guidelines, and commitments, making it a strategic priority for the conference."
+      "justification": "AI Ethics is central to the document as it focuses on advancing ethical considerations in AI development, which is critical for responsible innovation and aligns with the conference's core mission."
     },
     {
-      "name": "Gender Inclusion in AI",
-      "category": "Social Impact",
-      "relevance_score": 0.8,
-      "justification": "Gender Inclusion in AI is crucial as it addresses the need for diverse perspectives in AI development. The document emphasizes the importance of including women and marginalized groups in AI discussions, aligning with key objectives of promoting equity and representation."
+      "name": "Gender Equality in Tech (Inclusion & Social Development)",
+      "category": "Inclusion & Social Development",
+      "relevance_score": 0.85,
+      "justification": "Gender Equality in Tech is a key theme given the conference's focus on women and ethical AI, emphasizing inclusion and social development as strategic objectives to diversify and democratize AI."
     },
     {
-      "name": "Responsible AI Development",
+      "name": "Artificial Intelligence",
       "category": "Technology & Innovation",
       "relevance_score": 0.75,
-      "justification": "Responsible AI Development is highlighted as a key commitment in the document, focusing on creating AI systems that are safe, transparent, and accountable. This theme is vital for ensuring public trust and aligning with ethical standards in technology."
+      "justification": "Artificial Intelligence as a broad theme underpins the entire discussion, providing the technological context for ethical and gender-related considerations, making it strategically important but slightly less central than ethics and inclusion."
     }
   ]
 }

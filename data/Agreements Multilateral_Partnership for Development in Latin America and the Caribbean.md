@@ -1,55 +1,75 @@
-# IDB and UNDP Renew Partnership for Sustainable Development in Latin America and the Caribbean
+# Enhanced Collaboration Framework Agreement between IDB and UNDP (2024) and CAF-PNUD Cooperation Agreement on Climate Vulnerability Reduction Project in Latin America
 
-**Date**: 2024-04-22
+**Date**: The exact date found in the documents is "2024-04-22" from the IDB_UNDP_Enhanced_Collaboration_Report_2024.pdf and "2019-07-04" from the Partnership for Development in Latin America and the Caribbean.pdf.
+
+Since the instruction is to prioritize the most recent document, the date to output is:
+
+2024-04-22
 
 **Location**: Washington D.C., United States
 
 ## Executive Summary
 
-The IDB and UNDP have renewed their 25-year partnership with a new framework agreement aimed at enhancing sustainable development in Latin America and the Caribbean. This agreement focuses on key areas such as poverty reduction, climate action, productivity, and institutional capacity building. It aims to streamline operational processes, enabling more efficient joint actions and resource mobilization. The expected impact includes improved development outcomes through reduced duplication and enhanced collaboration. Additionally, a separate cooperation agreement between CAF and UNDP targets climate vulnerability and flood risk reduction in coastal urban areas of Chile and Ecuador, with a budget of approximately $12.88 million. This project emphasizes risk adaptation and knowledge sharing among stakeholders.
+The IDB and UNDP renewed their 25-year partnership with a new 2024 framework agreement to accelerate sustainable development in Latin America and the Caribbean, focusing on poverty reduction, climate action, innovation, and institutional capacity building. This agreement streamlines joint operations and resource mobilization. Separately, the Andean Development Corporation (CAF) and UNDP signed a cooperation agreement for a regional project reducing climate vulnerability and flood risk in coastal urban areas of Chile and Ecuador. Funded by the UN Adaptation Fund with $12.88 million, the project targets hydrometeorological hazards in specific cities, emphasizing risk-based adaptation, knowledge networks, and resilience culture. The agreement details roles, financial management, reporting, intellectual property, confidentiality, and dispute resolution, ensuring compliance with UNDP and Adaptation Fund policies. Both agreements highlight enhanced multilateral collaboration to address climate risks and sustainable development challenges in Latin America and the Caribbean.
 
 ## Characteristics
 
-- **Enhanced Collaboration Framework**: The IDB and UNDP renewed their partnership with a new agreement to accelerate sustainable development in Latin America and the Caribbean, streamlining operational processes for joint action.
-- **Priority Areas**: Focus on poverty reduction, climate action, productivity and innovation, and institutional capacity building, with joint programs targeting vulnerable populations.
-- **Implementation Modalities**: Involves joint analysis, co-financed projects, and shared knowledge products to enhance development impact.
-- **Specific Project Agreement**: The CAF-PNUD agreement targets climate vulnerability and flood risk reduction in urban coastal areas of Chile and Ecuador, emphasizing collaboration and knowledge sharing.
-- **Financial Commitment**: The project is funded with $12.88 million from the Adaptation Fund, with strict guidelines on resource allocation and reporting.
-- **Monitoring and Reporting**: Regular progress reports and audits are mandated to ensure compliance and effective use of resources throughout the project lifecycle.
+- The IDB and UNDP renewed a 25-year partnership with a new framework agreement in 2024 to accelerate sustainable development in Latin America and the Caribbean, focusing on poverty reduction, climate action, innovation, and institutional capacity building.
+- The CAF and UNDP cooperation agreement targets reducing climate vulnerability and flood risk in coastal urban and semi-urban areas in Chile and Ecuador, with a $12.88 million budget funded by the Adaptation Fund.
+- The CAF-PNUD project emphasizes risk-based adaptation, collaboration, knowledge networks, and culture of adaptation to address hydrometeorological hazards in specific cities.
+- The agreements include detailed governance structures, financial management, reporting, auditing, intellectual property rights, confidentiality, and dispute resolution mechanisms.
+- Both agreements prioritize compliance with environmental, social, and gender policies, ensuring transparent use of funds and accountability through regular progress and financial reports.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | Inter-American Development Bank (IDB); United Nations Development Programme (UNDP); Ilan Goldfajn; Achim Steiner; Juan Bernardo Requena Blanco; Matilde Mordt |
-| Economic Actors | Inter-American Development Bank (IDB); Development Bank of Latin America and the Caribbean (CAF); World Bank |
+| Political Actors | Governments; Government Officials; United Nations Officials |
+| Economic Actors | Inter-American Development Bank; Development Bank of Latin America and the Caribbean; World Bank |
+| Civil Society Actors | Non-governmental Institutions; Civil Society Organisations |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Regional & International Cooperation | Bi-regional Cooperation; Global Digital Cooperation |
-| Data & Governance | Digital Governance; Data Governance |
-| Inclusion & Social Development | Sustainable Digital Development; Digital Inclusion |
+| Inclusion & Social Development | Sustainable Digital Development |
+| Regional & International Cooperation | Multilateralism; Digital & Technological Partnerships |
 
 ## Practical Applications
 
-- **IDB & UNDP Enhanced Collaboration Framework Agreement**: A renewed partnership agreement signed on April 22, 2024, aimed at accelerating sustainable development in Latin America and the Caribbean, focusing on poverty reduction, climate action, productivity, innovation, and institutional capacity building.
-- **Joint Programmes for Poverty & Inequality Reduction**: Initiatives targeting vulnerable populations as part of the collaboration between IDB and UNDP.
-- **Climate Action Projects**: Coordinated support for mitigation, adaptation, and resilience projects under the IDB and UNDP partnership.
-- **Productivity & Innovation Initiatives**: Programs to foster sustainable growth and digitalization as part of the IDB and UNDP collaboration.
-- **Project on Climate Vulnerability Reduction**: A cooperation agreement between CAF and UNDP for a regional project in Chile and Ecuador aimed at reducing climate vulnerability and flood risk in urban and semi-urban coastal areas.
-- **Funding from the Adaptation Fund**: The project between CAF and UNDP is funded by the Adaptation Fund, with a total budget of $12,880,000 allocated for its execution.
-- **Project Management by UNDP**: The UNDP is responsible for executing the project aimed at reducing climate vulnerability in coastal cities, ensuring compliance with environmental, social, and gender policies.
-- **Establishment of a Steering Committee**: A committee formed by representatives from CAF, the Ministries of Environment of Chile and Ecuador, and UNDP to oversee the project's implementation.
-- **Regular Progress Reports**: The project requires the submission of semi-annual progress reports to ensure accountability and track the project's advancement.
-- **Capacity-Building Workshops**: Shared knowledge products and workshops are part of the implementation modalities under the IDB and UNDP collaboration framework.
+- The Inter-American Development Bank (IDB) and the United Nations Development Programme (UNDP) have signed a new enhanced collaboration framework agreement (2024) to accelerate sustainable development in Latin America and the Caribbean, focusing on poverty and inequality reduction, climate action, productivity and innovation, and institutional capacity building. This includes joint analysis, co-financed projects, blended-finance instruments, shared knowledge products, and capacity-building workshops.
+- The Corporación Andina de Fomento (CAF) and the United Nations Development Programme (UNDP) have an active cooperation agreement for the Regional Project "Reduction of climate vulnerability and flood risk in urban and semi-urban coastal areas of cities in Latin America" (Chile-Ecuador). This project is financed by the Adaptation Fund with a budget of USD 12.88 million and aims to reduce vulnerability to floods, mudslides, and landslides in specific coastal cities (Antofagasta and Taltal in Chile, Esmeraldas in Ecuador).
+- The CAF-UNDP project includes a governance structure with a Steering Committee and Advisory Committee involving national environment ministries and cooperation agencies from Chile and Ecuador.
+- The project implementation modalities include semi-annual acquisition plans, financial disbursements based on progress reports, strict compliance with Adaptation Fund operational policies, environmental and social safeguards, and gender policies.
+- UNDP acts as the executing agency responsible for technical, operational, and administrative management, including procurement, contracting, monitoring contractors, maintaining financial records, and reporting to CAF and the Adaptation Fund.
+- The project requires periodic reporting including start-up workshop reports, semi-annual progress reports, mid-term and final independent evaluations, and audited financial statements.
+- The project includes intellectual property provisions granting UNDP ownership of outputs with perpetual royalty-free licenses to CAF, the Adaptation Fund, Chile, and Ecuador.
+- The agreement establishes mechanisms for confidentiality, suspension, termination, dispute resolution by arbitration, and adherence to immunities and privileges of CAF and UNDP.
+- Financial management includes maintaining a dedicated USD bank account, advance payments, and reimbursement procedures, with provisions for recovery of misused funds.
+- The project mandates visibility and communication protocols crediting the Adaptation Fund and CAF in all publications and materials.
 
 ## Commitments
 
-- IDB and UNDP will co-finance projects and blended-finance instruments to support sustainable development in Latin America and the Caribbean, with specific targets to be defined in joint programmes.
-- The Adaptation Fund will provide up to **$12,880,000** for the execution of the project aimed at reducing climate vulnerability and flood risk in coastal urban and semi-urban areas of Latin America.
-- The project will focus on three cities, specifically targeting hydrometeorological hazards, with a commitment to implement the project within the timeframe established in the agreement, which will not exceed the duration of the CAF-FA agreement.
-- The project will deliver a **mid-term evaluation report** within **90 days** after the fifth semi-annual report.
-- The project will submit a **final evaluation report** within **90 days** of project completion.
-- The project will provide a **semi-annual progress report** to CAF within **30 days** after the commitment of **80%** of the semi-annual acquisition plan is executed.
+- IDB and UNDP signed a new framework agreement on 22 April 2024 to accelerate sustainable development in Latin America and the Caribbean, focusing on poverty & inequality reduction, climate action, productivity & innovation, and institutional capacity building. (No specific numerical targets or deadlines provided)
+- The Adaptation Fund (FA) will provide up to USD 12,880,000 through CAF for the execution of the regional project "Reduction of climate vulnerability and flood risk in coastal urban and semi-urban areas of cities in Latin America" (Chile and Ecuador).
+- The project focuses on reducing vulnerability to floods, mudslides, and landslides in three coastal cities: Antofagasta and Taltal (Chile), and Esmeraldas (Ecuador).
+- Project funding disbursement schedule (total USD 12,880,000):
+- 15 days after signing the agreement: USD 472,595
+- 15 days after delivery of the PNUD workshop report and approval of the semiannual procurement plan: USD 708,892
+- 15 February 2020: USD 1,312,821
+- 15 August 2020: USD 1,312,820
+- 15 February 2021: USD 3,969,577
+- 15 August 2021: USD 3,969,577
+- 15 February 2022: USD 259,345
+- 15 August 2022: USD 259,345
+- 15 February 2023: USD 307,514
+- 15 August 2023: USD 307,514
+- The project duration is effective from the date of the last signature (4 July 2019) and will remain in force until all project activities are completed, not exceeding the term of the CAF-FA agreement.
+- The PNUD as executor will receive 8% of the executed project budget as General Management Support Service fee.
+- The project requires semiannual progress reports (Project Performance Reports) to be submitted within 30 days after 80% of the semiannual procurement plan is executed, with the first report no later than 30 days after six months from the project start workshop.
+- Mid-term evaluation report to be delivered within 90 days after the fifth semiannual report.
+- Final evaluation report to be delivered within 90 days after project completion.
+- Financial audit reports to be delivered within 90 days after the fiscal year-end.
+- Unused funds after project completion must be returned to CAF within two months.
+- The project includes a 5% authorized budget variation limit per product without prior approval; variations above 5% require approval by the Steering Committee.
+- The project must comply with gender policy and environmental and social safeguards as described in the project document.

@@ -1,5 +1,5 @@
 {
-  "title": "Latin American High Performance Computing Conference Overview",
+  "title": null,
   "date": null,
   "location": null,
   "executive_summary": null,
@@ -12,15 +12,14 @@
   "actors": {},
   "practical_applications": [],
   "commitments": [],
-  "score": 10,
+  "score": 17,
   "quality_breakdown": {
     "faithfulness": 0,
-    "consistency": 30,
-    "completeness": 30,
+    "consistency": 100,
+    "completeness": 10,
     "accuracy": 0,
     "issues": [
       "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
       "Missing important information in extraction or strategic analysis",
       "Potential factual errors in basic content or strategic extra data"
     ]
@@ -48,7 +47,7 @@
       "name": "High-Performance Computing",
       "category": "Technology & Innovation",
       "relevance_score": 1.0,
-      "justification": "This theme is central to the document as it directly relates to the main focus of the conference, which is to discuss advancements and innovations in high-performance computing within the Latin American context."
+      "justification": "The document is centered on the Latin American High Performance Computing Conference, making High-Performance Computing the core theme. It is strategically important as it relates directly to advancing computing capabilities in the region and aligns with the conference's main objectives."
     }
   ]
 }

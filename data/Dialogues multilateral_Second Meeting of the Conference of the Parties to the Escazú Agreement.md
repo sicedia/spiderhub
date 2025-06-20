@@ -14,15 +14,11 @@ No key characteristics identified in the document.
 
 ## Actors
 
-| Category | Actor |
-| --- | --- |
-| Political Actors | United Nations |
+No actors identified.
 
 ## Main Themes
 
-| Category | Subcategory |
-| --- | --- |
-| Regional & International Cooperation | Global Digital Cooperation |
+No themes identified.
 
 ## Practical Applications
 

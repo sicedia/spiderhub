@@ -1,4 +1,4 @@
-# Amsterdam Declaration on Funding Research Software Sustainability
+# Amsterdam Declaration on Funding Research Software Sustainability (Draft v0.3, March 2023)
 
 **Date**: 2023-03-17
 
@@ -6,40 +6,37 @@
 
 ## Executive Summary
 
-The Amsterdam Declaration on Funding Research Software Sustainability emphasizes the critical role of research software in advancing scientific inquiry across disciplines. It highlights the need for sustainable practices in developing and maintaining research software, which is essential for reliable and reproducible research outcomes. The declaration calls for funders to enhance their support for research software through improved funding policies, documentation, and community engagement. It advocates for long-term funding strategies that recognize the value of research software as a key research output. The document outlines specific recommendations for funders, including incentivizing software reuse, ensuring responsible citation practices, and fostering diversity and inclusion within the research software ecosystem. This initiative aims to raise awareness and improve funding practices to sustain research software globally, ultimately enhancing the overall research landscape.
+The Amsterdam Declaration on Funding Research Software Sustainability (March 2023, draft v0.3) highlights the critical role of research software and its developers in enabling reliable, reproducible, and impactful research across disciplines. It calls for global, coordinated action by funders to ensure the long-term sustainability of research software through improved funding policies, recognition, and support for the people and infrastructure involved. The Declaration outlines 12 key recommendations for funders, including promoting open-source practices, incentivizing reuse, integrating software into open science policies, supporting training and career progression, and considering ethical, environmental, and social impacts. The aim is to foster a healthy research software ecosystem by aligning funding instruments with both sustainability and innovation, and by encouraging collaboration across institutional and national boundaries. The Declaration is a first step toward formalizing global principles and best practices for funding research software sustainability.
 
 ## Characteristics
 
-- The Amsterdam Declaration emphasizes the critical role of research software in ensuring reproducibility and reliability in academic research across various disciplines.
-- It advocates for the integration of research software sustainability into the overall research process, highlighting the need for skilled personnel to maintain software quality.
-- The Declaration calls for funders to improve funding practices, including long-term support for research software and recognition of its value as a research output.
-- It stresses the importance of collaboration among diverse stakeholders, including researchers, developers, and funders, to create a sustainable research software ecosystem.
-- The document outlines specific recommendations for funders to enhance documentation, incentivize software reuse, and ensure responsible citation practices.
+- Emphasises the critical role of research software and its developers in ensuring reliable, accessible, and reproducible research outcomes across all disciplines.
+- Advocates for the sustainability of research software through integration into the research process, long-term funding, and recognition of the people involved.
+- Recommends funders stimulate documentation, licensing, open-source distribution, reuse, and improvement of research software, and include it in open science policies.
+- Calls for coordinated, global efforts among funders (public, private, philanthropic) to support research software ecosystems, including infrastructure, communities, and personnel.
+- Stresses the importance of training, hiring, and rewarding research software professionals, and recognising software as a research output in its own right.
+- Encourages ethical considerations, including responsible indicators for software impact, environmental and social impacts, and diversity, equity, and inclusion in research software sustainability.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Research and Innovation Actors | Research Software Alliance |
+| Research and Innovation Actors | Research Software Alliance; Universities; Research Performing Organisations; Academic Institutions; Researchers |
 | Economic Actors | Research Funding Organisations |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Technology & Innovation | Research Software; AI Ethics |
-| Data & Governance | Data Governance; Digital Governance |
-| Digital Transformation & Strategy | Digital Research; Digital Sustainability |
+| Digital Transformation & Strategy | Digital Infrastructure; Digital Investment; Digital Ecosystem; Digital Policy; Digital Sustainability; Digital Skills Development; Digital Research |
+| Technology & Innovation | Tech-Driven Solutions; ICT Innovation; Innovation in Computing |
+| Data & Governance | Data Governance; Digital Governance; Digital Ethics |
+| Regional & International Cooperation | Global Digital Cooperation; Digital & Technological Partnerships |
+| Inclusion & Social Development | Digital Inclusion; Sustainable Digital Development |
 
 ## Practical Applications
 
-- The Amsterdam Declaration on Funding Research Software Sustainability was initiated during an international workshop in Amsterdam on November 8-9, 2022, aimed at raising awareness about the role of funding practices in sustaining research software.
-- The Declaration includes recommendations for funders to improve the research software ecosystem, such as stimulating documentation, licensing, open-source distribution, and accessibility of research software.
-- Funders are encouraged to incentivize the reuse and improvement of existing research software and to include research software in open science policies.
-- The Declaration promotes the development and maintenance of a research software ecosystem, including people, communities, and infrastructure, to ensure research software sustainability.
-- Funders are advised to coordinate their investments and work in a manner that acknowledges the interconnected nature of the research software ecosystem, which transcends institutional and national boundaries.
-- The Declaration emphasizes the need for long-term funding mechanisms that support both sustainability and innovation in research software.
-- The ADORE software toolkit is mentioned as a resource that will be further developed in future versions of the Declaration text.
+No existing practical applications or implementations identified.
 
 ## Commitments
 

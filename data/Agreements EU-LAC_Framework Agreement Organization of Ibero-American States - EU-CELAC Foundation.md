@@ -1,4 +1,4 @@
-# Cooperation Agreement Between OEI and EU-LAC Foundation for Education, Science, and Culture
+# Framework Agreement Between Organization of Ibero-American States and EU-LAC Foundation to Promote Education, Science, and Culture Cooperation
 
 **Date**: 2020-10-22
 
@@ -6,36 +6,35 @@
 
 ## Executive Summary
 
-On October 22, 2020, the Organization of Ibero-American States (OEI) and the EU-LAC Foundation signed a framework agreement to enhance cooperation in education, science, and culture between Europe and Latin America. This agreement aims to establish a shared space for higher education and research, promote cultural and creative industries, and strengthen historical ties between the regions. Key commitments include increasing mobility, internationalization, and supporting research networks. The agreement was signed virtually by leaders from both organizations, reinforcing their dedication to fostering transatlantic relations and mutual understanding. The OEI, established in 1949, and the EU-LAC Foundation, created in 2010, both play crucial roles in promoting collaboration and visibility between their respective regions.
+On October 22, 2020, the Organization of Ibero-American States (OEI) and the EU-LAC Foundation formalized a framework agreement to enhance cooperation in education, science, and culture across the Euro-Latin American and Caribbean regions. The agreement establishes a foundation for joint programs and activities, emphasizing the creation of a shared space for higher education and research, increased academic mobility, and support for research networks. It also prioritizes the development of cultural and creative industries, the promotion of Ibero-American cultural diversity, and the strengthening of transatlantic relations through public and cultural diplomacy. The agreement was signed virtually by the executive leaders of both organizations, reinforcing their commitment to advancing mutual interests and fostering bi-regional collaboration.
 
 ## Characteristics
 
-- The agreement between the OEI and the EU-LAC Foundation focuses on enhancing cooperation in education, science, and culture within the Euro-Latin American and Caribbean regions.
-- It aims to create a shared space for higher education and research, promoting mobility and internationalization.
-- The agreement emphasizes the development of cultural and creative industries and the promotion of Ibero-American cultural diversity.
-- It seeks to strengthen transatlantic relations between the EU, Latin America, and the Caribbean through joint events and knowledge management.
-- The OEI has been active since 1949, while the EU-LAC Foundation was established in 2010 to foster strategic partnerships between the regions.
+- The agreement establishes a framework for cooperation between the Organization of Ibero-American States (OEI) and the EU-LAC Foundation, focusing on education, science, culture, and research in the Euro-Latin American and Caribbean region.
+- Key commitments include building a shared space for higher education and research, increasing mobility and internationalization, and supporting research networks.
+- The agreement emphasizes fostering the relationship between culture and the economy, promoting cultural and creative industries, and enhancing cultural diplomacy and public diplomacy to strengthen mutual understanding and bi-regional partnership.
+- Activities include joint events, discussions, workshops, and initiatives aimed at knowledge management, socially relevant science, and improving the quality and measurement of higher education systems.
+- The OEI is an intergovernmental organization with 23 member states, while the EU-LAC Foundation is an international organization established to strengthen strategic partnerships and civil society participation between the EU, Latin America, and the Caribbean.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | Organisation of Ibero-American States |
-| Research and Innovation Actors | EU-LAC Foundation |
+| Political Actors | Organisation of Ibero-American States; European Union; EU Member States |
+| Research and Innovation Actors | EU-LAC Foundation; Universities; Academic Institutions |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Regional & International Cooperation | EU-CELAC Digital Partnership |
-| Inclusion & Social Development | Digital Education |
+| Regional & International Cooperation | EU-LAC Digital Alliance; Bi-regional Cooperation; Digital & Technological Partnerships |
 
 ## Practical Applications
 
-- Establishment of a framework agreement between the Organization of Ibero-American States (OEI) and the EU-CELAC Foundation to promote cooperation in education, science, and culture.
-- Development of programs and activities focused on enhancing higher education and research, including increasing mobility and internationalization.
-- Support for research networks and initiatives aimed at fostering the relationship between culture and economy, promoting cultural and creative industries, and enhancing cultural diversity in the Ibero-American context.
-- Organization of joint events, discussions, and workshops to manage knowledge and improve the quality of higher education systems.
+- The Organization of Ibero-American States (OEI) and the EU-LAC Foundation have established a framework agreement to cooperate in the development of programs and activities in education, science, culture, and research between the European Union, Latin America, and the Caribbean.
+- The agreement includes the implementation of joint events, discussions, and workshops focused on knowledge management, socially relevant science, and the improvement and measurement of higher education systems.
+- The agreement actively promotes the construction of a shared space for higher education and research, including increasing mobility, internationalization, and support for research networks.
+- The agreement supports initiatives to foster the relationship between culture and the economy, promote cultural and creative industries, and disseminate Ibero-American cultural diversity through cultural diplomacy and public diplomacy activities.
 
 ## Commitments
 
