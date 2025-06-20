@@ -1,27 +1,28 @@
 {
-  "title": "EU Commitment to Small Island Developing States at the 4th International Conference on SIDS",
+  "title": "Council Conclusions on the 4th International Conference on Small Island Developing States (SIDS) 2024",
   "date": "2024-05-27",
   "location": "Antigua and Barbuda",
-  "executive_summary": "The European Union (EU) and its Member States are preparing for the 4th International Conference on Small Island Developing States (SIDS) scheduled for May 27-30, 2024, in Antigua and Barbuda, themed ‘Charting the Course Toward Resilient Prosperity.’ The EU emphasizes its commitment to enhancing partnerships with SIDS, addressing their unique vulnerabilities to climate change, and supporting sustainable development through various initiatives, including the Multidimensional Vulnerability Index. The EU has pledged significant financial support, exceeding EUR 1.2 billion in 2022, and aims to mobilize resources for the 2030 Agenda and the Paris Agreement. The new Partnership Agreement with the Organisation of African, Caribbean and Pacific States (OACPS) will further facilitate cooperation on critical issues like climate change and ocean governance. The EU seeks to engage all stakeholders in the upcoming conference to ensure effective implementation of the SIDS Action Programme.",
+  "executive_summary": "The EU and its Member States welcome the 4th International Conference on Small Island Developing States (SIDS) in May 2024, emphasizing the theme \"Charting the Course Toward Resilient Prosperity.\" Recognizing SIDS' vulnerability to climate change, environmental degradation, and socio-economic challenges, the EU commits to strengthening partnerships, supporting sustainable development, and advancing climate action. Key initiatives include endorsing the Multidimensional Vulnerability Index, enhancing digital transformation, and mobilizing innovative financing. The EU highlights its significant financial support, including over EUR 1.2 billion in bilateral aid and EUR 3.47 billion via the European Investment Bank. Cooperation frameworks like the new EU-OACPS Partnership Agreement and regional protocols aim to tailor support to SIDS' diverse needs. The EU also prioritizes disaster preparedness, ocean protection, and inclusive climate policies, pledging continued collaboration to implement the SAMOA Pathway and global commitments, ensuring SIDS' resilience and prosperity by 2034 and beyond.",
   "characteristics": [
-    "The 4th International Conference on SIDS will be held from May 27-30, 2024, in Antigua and Barbuda, focusing on \"Charting the Course Toward Resilient Prosperity.\"",
-    "The EU emphasizes its commitment to enhancing partnerships with SIDS, addressing their unique vulnerabilities, particularly regarding climate change and economic challenges.",
-    "The EU supports the Multidimensional Vulnerability Index (MVI) to better reflect SIDS' development challenges beyond traditional economic indicators.",
-    "The EU is the largest donor to SIDS, providing over EUR 1.2 billion in 2022, and aims to mobilize resources for sustainable development and climate resilience.",
-    "The new Partnership Agreement with OACPS aims to strengthen cooperation on critical issues like climate change, human rights, and sustainable development for SIDS."
+    "The EU strongly supports the 4th International Conference on SIDS (May 2024) and designates 2024 as the International Year of SIDS to mainstream their perspectives globally.",
+    "SIDS face disproportionate vulnerabilities due to small size, remoteness, and climate change impacts like sea-level rise, marine pollution, and biodiversity loss.",
+    "The EU collaborates closely with SIDS on climate action, sustainable blue economies, biodiversity protection, and digital transformation, emphasizing inclusive and equitable development.",
+    "The EU funds over EUR 1.2 billion in bilateral and multilateral aid to SIDS, supports disaster preparedness, and promotes private sector investment through initiatives like EFSD+.",
+    "The EU values partnerships with SIDS in UN climate negotiations, supports innovative financing, and fosters regional cooperation via the new EU-OACPS Partnership Agreement.",
+    "The EU commits to ongoing dialogue, capacity building, and cooperation on priority areas including climate change, energy, environment, and access to finance for SIDS development."
   ],
   "themes": {
-    "Inclusion & Social Development": [
-      "Digital Inclusion",
-      "Digital Education"
-    ],
     "Regional & International Cooperation": [
       "Global Digital Cooperation",
-      "EU-LAC Digital Alliance"
+      "Multilateralism"
     ],
-    "Data & Governance": [
-      "Data Governance",
-      "Digital Governance"
+    "Digital Transformation & Strategy": [
+      "Digital Acceleration",
+      "Digital Infrastructure",
+      "Digital Platforms"
+    ],
+    "Inclusion & Social Development": [
+      "Digital Inclusion"
     ]
   },
   "actors": {
@@ -30,64 +31,77 @@
       "EU Member States",
       "European Council",
       "United Nations",
-      "United Nations Officials"
+      "United Nations Officials",
+      "Organisation of African, Caribbean and Pacific States",
+      "EU Delegations"
+    ],
+    "Research and Innovation Actors": [
+      "Digital for Development Hub"
     ],
     "Economic Actors": [
-      "World Bank",
-      "Inter-American Development Bank",
-      "Development Bank of Latin America and the Caribbean"
-    ],
-    "Civil Society Actors": [
-      "Civil Society Organisations"
+      "Private Sector Representatives"
     ]
   },
   "practical_applications": [
-    "The EU is committed to developing cooperation with the Alliance of Small Island States (AOSIS) and its Bureau.",
-    "The EU has pledged significant support to a fund for assisting developing countries particularly vulnerable to the adverse effects of climate change in responding to loss and damage.",
-    "The EU is funding selected strategic flagships that benefit SIDS, such as the Global Green Bonds Initiative and the ‘Green Blue Alliance for the Pacific’.",
-    "The European Investment Bank has provided EUR 3.47 billion to SIDS in the form of credit lines to local credit institutions to support SMEs and financing infrastructure investments.",
-    "The EU is funding a EUR 35 billion programme of support for African, Caribbean and Pacific SIDS and coastal countries, including the Biospace programme in the Caribbean and the Bioscape programme in the Pacific.",
-    "The EU has been supporting the reinforcement of national authorities and local communities’ capacities to anticipate, respond, and recover from the impacts of natural disasters through its humanitarian Disaster Preparedness Programme.",
-    "A Memorandum of Understanding on Disaster Risk Management between the EU and Latin America and the Caribbean is set to be signed in 2024.",
-    "The EU is working through the Digital for Development Hub (D4D Hub) to advance dialogue with partner regions, including the Caribbean and Pacific, to foster a human-centered and sustainable digital transformation.",
-    "The new Partnership Agreement between the EU and its Member States with Members of the Organisation of the African, Caribbean and Pacific States (OACPS) was signed in November 2023, facilitating enhanced cooperation on climate change, environment protection, and ocean governance.",
-    "The EU is committed to promoting cooperation between SIDS and other islands, notably with the EU’s Outermost Regions (ORs) and Overseas Countries and Territories (OCTs)."
+    "The EU and its Member States are funding more than EUR 1.2 billion in bilateral Official Development Assistance (ODA) and contributions through multilateral organizations to support SIDS in 2022.",
+    "Under the Global Gateway strategy, the EU and its Member States, as Team Europe, are partnering with SIDS through investments in digital, environment, climate and energy, transport, health, education, and research.",
+    "The EU funds strategic flagship initiatives benefiting SIDS, such as the Global Green Bonds Initiative, the ‘Green Blue Alliance for the Pacific’, and efforts to address the Sargassum algae plague in the Caribbean.",
+    "The European Investment Bank has provided EUR 3.47 billion in credit lines to local credit institutions in SIDS to support SMEs, infrastructure investments, and sectors including energy, services, health, education, agriculture, and fisheries.",
+    "The EU funds a EUR 35 billion program supporting African, Caribbean, and Pacific SIDS and coastal countries, including the Biospace program in the Caribbean, the Bioscape program in the Pacific, and support to the Critical Ecosystems Partnership Fund in the Western Indian Ocean.",
+    "The EU’s humanitarian Disaster Preparedness Programme has supported national authorities and local communities in SIDS for three decades to anticipate, respond, and recover from natural disasters.",
+    "A Memorandum of Understanding on Disaster Risk Management between the EU and Latin America and the Caribbean is to be signed in 2024, alongside launching a series of EU-LAC dialogues on disaster preparedness.",
+    "The EU supports the UN Secretary General’s ‘Early Warnings for All’ initiative, focusing on closing data gaps for weather and climate observations from SIDS and ensuring appropriate local warnings.",
+    "The EU works through the Digital for Development Hub (D4D Hub) to advance dialogue with partner regions, including the Caribbean and Pacific, to foster human-centered and sustainable digital transformation.",
+    "The European Fund for Sustainable Development Plus (EFSD+) provides guarantees to private sector investors through development financing institutions to leverage private sector investments in SIDS.",
+    "The new Partnership Agreement between the EU and the Organisation of African, Caribbean and Pacific States (OACPS), signed in November 2023, offers a framework for cooperation on human rights, democracy, climate change, environment, and ocean governance, particularly relevant for SIDS.",
+    "The EU supports the implementation of the Kunming-Montreal Global Biodiversity Framework in SIDS through Green Partnerships and cooperation assistance.",
+    "The EU and its Member States co-sponsored UN General Assembly Resolution 77/276 requesting an advisory opinion of the International Court of Justice on States’ obligations regarding climate change.",
+    "The EU is working closely with SIDS to conclude by the end of 2024 negotiations on an ambitious International Legally Binding Instrument to end plastic pollution.",
+    "The EU supports achieving land degradation neutrality by 2030 and welcomes COP16 to the UNCCD as a moment to accelerate action on land restoration, soil health, drought resilience, and green transition.",
+    "The EU and its Member States have pledged significant support to the new fund for assisting developing countries vulnerable to climate change loss and damage, as well as to existing funding arrangements.",
+    "The EU and its Member States collaborate with SIDS in developing and implementing ambitious Nationally Determined Contributions (NDCs) aligned with limiting global warming to 1.5°C, including economy-wide emission reduction targets.",
+    "The EU supports reform efforts of the International Financial Architecture and multilateral development banks, building on the Paris Pact for People and the Planet (4P) and the Bridgetown Agenda 2.0.",
+    "The EU promotes cooperation between SIDS and other islands, including the EU’s Outermost Regions (ORs) and Overseas Countries and Territories (OCTs), sharing common characteristics."
   ],
   "commitments": [
-    "The 4th International Conference on Small Island Developing States (SIDS) will be held on 27-30 May 2024 in Antigua and Barbuda.",
-    "The EU has pledged more than EUR 1.2 billion in funding for SIDS in the form of bilateral ODA and contributions through multilateral organizations in 2022.",
-    "The EU is funding a EUR 35 billion programme of support for African, Caribbean, and Pacific SIDS and coastal countries.",
-    "The EU will conclude a Memorandum of Understanding on Disaster Risk Management with Latin America and the Caribbean to be signed in 2024.",
-    "The EU aims to conclude negotiations on an International Legally Binding Instrument to combat plastic pollution by the end of 2024.",
-    "The EU highlights the importance of achieving land degradation neutrality by 2030.",
-    "The EU will work to ensure a successful Summit of the Future in September 2024.",
-    "The EU looks forward to the 4th Conference on Financing for Development to be held in Spain in 2025."
+    "The EU and its Member States have pledged significant support to the new fund for assisting developing countries particularly vulnerable to the adverse effects of climate change in responding to loss and damage (no specific amount or deadline given).",
+    "The EU and its Member States funded more than EUR 1.2 billion in bilateral Official Development Assistance (ODA) and contributions channeled through multilateral organizations to SIDS in 2022.",
+    "The European Investment Bank funded EUR 3.47 billion to SIDS as of December 2022, supporting SMEs, infrastructure, energy, services, health, education, agriculture, and fisheries.",
+    "The EU is funding a EUR 35 billion programme of support for African, Caribbean, and Pacific SIDS and coastal countries (no specific deadline given).",
+    "The EU will conclude a Memorandum of Understanding on Disaster Risk Management between the EU and Latin America and the Caribbean to be signed in 2024.",
+    "The EU aims to achieve land degradation neutrality by 2030.",
+    "The EU will work closely with SIDS towards concluding by the end of 2024 negotiations on an ambitious International Legally Binding Instrument to end plastic pollution.",
+    "The EU looks forward to the 4th International Conference on Financing for Development to be held in Spain in 2025.",
+    "The EU and its Member States will continue to strengthen collaboration with partners in developing and implementing ambitious Nationally Determined Contributions (NDCs) aligned with limiting global warming to 1.5°C (no specific deadline given).",
+    "The EU supports the swift ratification, entry into force, and implementation of the Biodiversity Beyond National Jurisdiction (BBNJ) Agreement, preparing for ambitious commitments at the 3rd UN Ocean Conference in June 2025."
   ],
-  "score": 93,
+  "score": 59,
   "quality_breakdown": {
-    "faithfulness": 100,
-    "consistency": 93,
-    "completeness": 93,
+    "faithfulness": 0,
+    "consistency": 92,
+    "completeness": 95,
     "accuracy": 90,
-    "issues": []
+    "issues": [
+      "Low faithfulness - check for hallucinations in basic or strategic extra data"
+    ]
   },
   "extra_data": {
     "lead_country_iso": "ATG",
     "agreement_type": [
-      "Ministerial Communiqué"
+      "Council Conclusions"
     ],
     "legal_bindingness": "Politically-binding",
-    "coverage_scope": "Global",
+    "coverage_scope": "Regional",
     "eu_policy_alignment": [
       "Global Gateway"
     ],
     "review_schedule": null,
     "beneficiary_group_raw": [
+      "Small Island Developing State",
       "woman",
       "girl",
       "Indigenous people",
-      "community",
-      "SME"
+      "local community"
     ],
     "beneficiary_group": [
       {
@@ -96,7 +110,7 @@
       },
       {
         "category": "Women & Girls",
-        "label": "Gender Equality Initiatives"
+        "label": "Girls"
       },
       {
         "category": "Indigenous Peoples & Ethnic Groups",
@@ -105,160 +119,176 @@
       {
         "category": "Civil Society / NGOs",
         "label": "Community Organizations"
-      },
-      {
-        "category": "SMEs / Businesses",
-        "label": "Small and Medium Enterprises"
       }
     ],
     "start_date": "2024-05-27",
     "end_date": "2024-05-30",
     "commitment_details": [
       {
-        "text": "The 4th International Conference on Small Island Developing States (SIDS) will be held on 27-30 May 2024 in Antigua and Barbuda.",
+        "text": "The EU and its Member States have pledged significant support to the new fund for assisting developing countries particularly vulnerable to the adverse effects of climate change in responding to loss and damage (no specific amount or deadline given).",
         "commitment_class": "Declarative"
       },
       {
-        "text": "The EU has pledged more than EUR 1.2 billion in funding for SIDS in the form of bilateral ODA and contributions through multilateral organizations in 2022.",
-        "commitment_class": "Financed"
+        "text": "The EU and its Member States funded more than EUR 1.2 billion in bilateral Official Development Assistance (ODA) and contributions channeled through multilateral organizations to SIDS in 2022.",
+        "commitment_class": "Implemented"
       },
       {
-        "text": "The EU is funding a EUR 35 billion programme of support for African, Caribbean, and Pacific SIDS and coastal countries.",
-        "commitment_class": "Financed"
+        "text": "The European Investment Bank funded EUR 3.47 billion to SIDS as of December 2022, supporting SMEs, infrastructure, energy, services, health, education, agriculture, and fisheries.",
+        "commitment_class": "Implemented"
       },
       {
-        "text": "The EU will conclude a Memorandum of Understanding on Disaster Risk Management with Latin America and the Caribbean to be signed in 2024.",
+        "text": "The EU is funding a EUR 35 billion programme of support for African, Caribbean, and Pacific SIDS and coastal countries (no specific deadline given).",
         "commitment_class": "Programmatic"
       },
       {
-        "text": "The EU aims to conclude negotiations on an International Legally Binding Instrument to combat plastic pollution by the end of 2024.",
+        "text": "The EU will conclude a Memorandum of Understanding on Disaster Risk Management between the EU and Latin America and the Caribbean to be signed in 2024.",
         "commitment_class": "Programmatic"
       },
       {
-        "text": "The EU highlights the importance of achieving land degradation neutrality by 2030.",
+        "text": "The EU aims to achieve land degradation neutrality by 2030.",
         "commitment_class": "Declarative"
       },
       {
-        "text": "The EU will work to ensure a successful Summit of the Future in September 2024.",
+        "text": "The EU will work closely with SIDS towards concluding by the end of 2024 negotiations on an ambitious International Legally Binding Instrument to end plastic pollution.",
         "commitment_class": "Programmatic"
       },
       {
-        "text": "The EU looks forward to the 4th Conference on Financing for Development to be held in Spain in 2025.",
+        "text": "The EU looks forward to the 4th International Conference on Financing for Development to be held in Spain in 2025.",
         "commitment_class": "Declarative"
+      },
+      {
+        "text": "The EU and its Member States will continue to strengthen collaboration with partners in developing and implementing ambitious Nationally Determined Contributions (NDCs) aligned with limiting global warming to 1.5°C (no specific deadline given).",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The EU supports the swift ratification, entry into force, and implementation of the Biodiversity Beyond National Jurisdiction (BBNJ) Agreement, preparing for ambitious commitments at the 3rd UN Ocean Conference in June 2025.",
+        "commitment_class": "Programmatic"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "Mobilize, in a global effort, the necessary resources from all sources for full and accelerated implementation of the 2030 Agenda and the Paris Agreement.",
-        "kpi_type": "qualitative",
-        "metric_name": "Resource Mobilization for 2030 Agenda",
-        "target_value": null,
-        "target_description": "Mobilize necessary resources for the implementation of the 2030 Agenda and the Paris Agreement.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Assessment of resource mobilization efforts and outcomes",
-        "responsible_entity": "EU and its Member States",
-        "sector": "Sustainable Development"
-      },
-      {
         "kpi_text": "The EU and its Member States together as Team Europe constitute the largest donor to the SIDS, funding more than EUR 1.2 billion in the form of bilateral ODA, and contributions channelled through multilateral organisations in 2022.",
         "kpi_type": "quantitative",
-        "metric_name": "ODA Funding to SIDS",
+        "metric_name": "EU Funding to SIDS",
         "target_value": 1.2,
-        "target_description": "Funding provided to SIDS in the form of bilateral ODA and contributions through multilateral organizations.",
+        "target_description": "Provide more than EUR 1.2 billion in bilateral Official Development Assistance and multilateral contributions to SIDS",
         "unit": "billion EUR",
-        "timeframe": "in 2022",
-        "measurement_method": "Financial reporting and audits",
-        "responsible_entity": "EU and its Member States",
-        "sector": "Development Aid"
+        "timeframe": "2022",
+        "measurement_method": "Financial disbursement and reporting of ODA contributions",
+        "responsible_entity": "European Union and its Member States",
+        "sector": "Development Finance"
       },
       {
-        "kpi_text": "The EU highlights the importance of achieving land degradation neutrality by 2030.",
+        "kpi_text": "The European Investment Bank funds (as of December 2022), EUR 3.47 billion to the SIDS, in the form of credit lines to local credit institutions to support SMEs, financing infrastructure investments, and in energy, services, health, education, agriculture and fisheries.",
+        "kpi_type": "quantitative",
+        "metric_name": "European Investment Bank Funding to SIDS",
+        "target_value": 3.47,
+        "target_description": "Provide EUR 3.47 billion in credit lines and financing to support SMEs and infrastructure in SIDS",
+        "unit": "billion EUR",
+        "timeframe": "as of December 2022",
+        "measurement_method": "Financial disbursement and reporting of credit lines and investments",
+        "responsible_entity": "European Investment Bank",
+        "sector": "Development Finance"
+      },
+      {
+        "kpi_text": "The EU is also funding a EUR 35 billion programme of support for African, Caribbean and Pacific SIDS and coastal countries, including the Biospace programme in the Caribbean, the Bioscape programme in the Pacific, and support to the Critical Ecosystems Partnership Fund in the Western Indian Ocean.",
+        "kpi_type": "quantitative",
+        "metric_name": "EU Programme Funding for ACP SIDS and Coastal Countries",
+        "target_value": 35.0,
+        "target_description": "Fund a EUR 35 billion programme supporting SIDS and coastal countries in Africa, Caribbean and Pacific regions",
+        "unit": "billion EUR",
+        "timeframe": "ongoing as per document date",
+        "measurement_method": "Financial disbursement and programme implementation reports",
+        "responsible_entity": "European Union and its Member States",
+        "sector": "Development Finance / Environmental Protection"
+      },
+      {
+        "kpi_text": "The EU highlights the importance of achieving land degradation neutrality by 2030, and welcome COP16 to the UNCCD in Saudi Arabia as the moment for accelerating national and global action on land restoration, soil health, drought resilience and green transition.",
         "kpi_type": "qualitative",
-        "metric_name": "Land Degradation Neutrality",
+        "metric_name": "Land Degradation Neutrality Achievement",
         "target_value": null,
-        "target_description": "Achieve land degradation neutrality.",
+        "target_description": "Achieve land degradation neutrality by 2030 through accelerated national and global action on land restoration, soil health, drought resilience and green transition",
         "unit": "qualitative milestone",
         "timeframe": "by 2030",
-        "measurement_method": "Monitoring land degradation and restoration efforts",
-        "responsible_entity": "EU and its Member States",
-        "sector": "Environmental Protection"
+        "measurement_method": "Monitoring of land degradation indicators and progress reports from UNCCD and national governments",
+        "responsible_entity": "EU Member States, National Governments, UNCCD",
+        "sector": "Environment / Land Management"
       },
       {
-        "kpi_text": "The EU will also work closely with SIDS towards concluding by the end of 2024 negotiations on an ambitious International Legally Binding Instrument to end plastic pollution.",
+        "kpi_text": "The EU will work closely with partners to accelerate and benefit from the green transition and support the implementation of global commitments. The EU is convinced of the potential of renewable energies, including marine renewable energies, for the ocean-based economy and other areas significant to sustainable development.",
         "kpi_type": "qualitative",
-        "metric_name": "Plastic Pollution Instrument Negotiation",
+        "metric_name": "Green Transition and Renewable Energy Implementation",
         "target_value": null,
-        "target_description": "Conclude negotiations on a legally binding instrument to combat plastic pollution.",
+        "target_description": "Accelerate green transition and implement renewable energy solutions, including marine renewables, to support sustainable ocean-based economies",
         "unit": "qualitative milestone",
-        "timeframe": "by the end of 2024",
-        "measurement_method": "Progress reports on negotiation status",
-        "responsible_entity": "EU and its Member States",
-        "sector": "Environmental Policy"
+        "timeframe": "ongoing",
+        "measurement_method": "Implementation of renewable energy projects and progress towards green transition targets",
+        "responsible_entity": "European Union and its Member States, SIDS partners",
+        "sector": "Energy / Environment"
       },
       {
-        "kpi_text": "The EU and its Member States will continue to strengthen collaboration with partners in developing and implementing ambitious Nationally Determined Contributions (NDCs).",
+        "kpi_text": "The EU and its Member States will continue to strengthen collaboration with partners in developing and implementing ambitious Nationally Determined Contributions (NDCs) that effectively address commitments taken in the GST, including economy-wide emission reduction targets aligned with limiting global warming to 1.5°C.",
         "kpi_type": "qualitative",
-        "metric_name": "Strengthening NDC Collaboration",
+        "metric_name": "NDC Implementation and Emission Reduction Alignment",
         "target_value": null,
-        "target_description": "Enhance collaboration for the development and implementation of NDCs.",
+        "target_description": "Develop and implement ambitious NDCs with economy-wide emission reduction targets aligned with limiting global warming to 1.5°C",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluation of NDC implementation and partnership effectiveness",
-        "responsible_entity": "EU and its Member States",
-        "sector": "Climate Action"
+        "timeframe": "post-COP28 period (2024 onwards)",
+        "measurement_method": "Review of NDC submissions and progress reports under the Global Stocktake (GST)",
+        "responsible_entity": "European Union, Member States, SIDS partners",
+        "sector": "Climate Change / Environment"
       },
       {
-        "kpi_text": "The EU is committed to working closely with partners to accelerate and benefit from the green transition.",
+        "kpi_text": "The EU welcomes the proposed Multidimensional Vulnerability Index (MVI) and calls for its swift endorsement... By collecting more and disaggregated data, the MVI should give greater understanding to inform decisions.",
         "kpi_type": "qualitative",
-        "metric_name": "Green Transition Acceleration",
+        "metric_name": "Multidimensional Vulnerability Index Endorsement and Use",
         "target_value": null,
-        "target_description": "Accelerate the green transition in collaboration with partners.",
+        "target_description": "Swift endorsement and adoption of the MVI to better reflect vulnerabilities of SIDS and inform development decisions",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Assessment of green transition initiatives and partnerships",
-        "responsible_entity": "EU and its Member States",
-        "sector": "Sustainable Development"
+        "timeframe": "short term (by or soon after 2024)",
+        "measurement_method": "Formal endorsement of MVI and integration into development institution analyses",
+        "responsible_entity": "European Union, Development Institutions, SIDS partners",
+        "sector": "Development Policy / Data & Analytics"
       },
       {
-        "kpi_text": "The EU will work to promote the cooperation between SIDS and other islands, notably with the EU’s Outermost Regions (ORs) and Overseas Countries and Territories (OCTs).",
+        "kpi_text": "The EU recalls the importance of supporting the UN Secretary General’s call for the ‘Early Warnings for All’ initiative, in particular closing major data gaps for weather and climate observations from SIDS, ensuring that warnings are appropriate to local needs, and disseminating them to local populations.",
         "kpi_type": "qualitative",
-        "metric_name": "Promotion of SIDS Cooperation",
+        "metric_name": "Early Warning Systems Enhancement for SIDS",
         "target_value": null,
-        "target_description": "Enhance cooperation between SIDS and other islands.",
+        "target_description": "Close data gaps for weather and climate observations, ensure locally appropriate warnings, and disseminate them effectively to local populations in SIDS",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Monitoring cooperation initiatives and outcomes",
-        "responsible_entity": "EU and its Member States",
-        "sector": "Regional Cooperation"
+        "timeframe": "ongoing with emphasis in 2024 and beyond",
+        "measurement_method": "Assessment of data coverage, warning dissemination effectiveness, and local responsiveness",
+        "responsible_entity": "European Union, UN, SIDS national authorities",
+        "sector": "Disaster Risk Management / Climate Adaptation"
       },
       {
-        "kpi_text": "The EU and its Member States are committed to playing a constructive role before, during and after the 4th International Conference on SIDS (SIDS4).",
+        "kpi_text": "The EU is committed to working closely with partners to accelerate and benefit from the green transition and support the implementation of global commitments.",
         "kpi_type": "qualitative",
-        "metric_name": "Constructive Role in SIDS4",
+        "metric_name": "Support for Global Green Transition Commitments",
         "target_value": null,
-        "target_description": "Engage constructively in the SIDS4 conference and its outcomes.",
+        "target_description": "Accelerate green transition efforts and support implementation of global environmental commitments in partnership with SIDS",
         "unit": "qualitative milestone",
-        "timeframe": "during and after SIDS4",
-        "measurement_method": "Evaluation of participation and contributions to SIDS4",
-        "responsible_entity": "EU and its Member States",
-        "sector": "International Relations"
+        "timeframe": "ongoing",
+        "measurement_method": "Monitoring progress on green transition initiatives and global commitment adherence",
+        "responsible_entity": "European Union and its Member States",
+        "sector": "Environment / Climate Change"
       },
       {
-        "kpi_text": "The EU looks forward to the SIDS4 conference and the next SIDS Action Programme with meaningful engagement of all relevant stakeholders.",
+        "kpi_text": "The EU and its Member States support ongoing efforts to reform the International Financial Architecture and multilateral development banks, building on the roadmap of the Paris Pact for People and the Planet (4P) and the Bridgetown Agenda 2.0.",
         "kpi_type": "qualitative",
-        "metric_name": "Stakeholder Engagement in SIDS4",
+        "metric_name": "International Financial Architecture Reform Support",
         "target_value": null,
-        "target_description": "Ensure meaningful engagement of stakeholders in SIDS4 and the Action Programme.",
+        "target_description": "Support reform of international financial institutions to better address development needs of SIDS",
         "unit": "qualitative milestone",
-        "timeframe": "during SIDS4",
-        "measurement_method": "Assessment of stakeholder engagement and feedback",
-        "responsible_entity": "EU and its Member States",
-        "sector": "Stakeholder Engagement"
+        "timeframe": "by 2025 (including Summit of the Future and 4th International Conference on Financing For Development)",
+        "measurement_method": "Participation in reform discussions and implementation of agreed reforms",
+        "responsible_entity": "European Union and its Member States",
+        "sector": "Finance / Development Policy"
       }
     ],
     "country_list_iso": [
-      "ATG",
+      "ABW",
       "BHS",
       "BRB",
       "BLZ",
@@ -293,23 +323,28 @@
       "SUR",
       "TLS",
       "TON",
+      "TTO",
       "TUV",
       "VUT"
     ],
-    "responsible_entity": "European Union (EU)",
+    "responsible_entity": "The European Union (EU) and its Member States",
     "sdg_alignment": [
-      "SDG 13: Climate Action",
-      "SDG 14: Life Below Water",
-      "SDG 15: Life on Land",
       "SDG 1: No Poverty",
       "SDG 2: Zero Hunger",
       "SDG 3: Good Health and Well-being",
       "SDG 4: Quality Education",
       "SDG 5: Gender Equality",
+      "SDG 6: Clean Water and Sanitation",
+      "SDG 7: Affordable and Clean Energy",
       "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
       "SDG 11: Sustainable Cities and Communities",
       "SDG 12: Responsible Consumption and Production",
+      "SDG 13: Climate Action",
+      "SDG 14: Life Below Water",
+      "SDG 15: Life on Land",
+      "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
   },
@@ -318,39 +353,39 @@
       "name": "European Union",
       "category": "Political Actors",
       "relevance_score": 1.0,
-      "justification": "The EU is the most prominent actor in the text, being mentioned frequently and playing a central role in the discussions about SIDS, including commitments to support and cooperation."
+      "justification": "The European Union is the primary actor throughout the document, frequently mentioned as the main partner and supporter of SIDS. It leads key initiatives, provides substantial funding, drives policy frameworks, and coordinates cooperation with multiple stakeholders, making it central to the text's themes."
     },
     {
       "name": "EU Member States",
       "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "The EU Member States are closely tied to the EU's initiatives and are mentioned as key partners in the context of SIDS, highlighting their collective influence and importance."
+      "relevance_score": 0.85,
+      "justification": "EU Member States are consistently referenced alongside the EU, jointly committing to actions, funding, and partnerships. Their role is crucial in implementing policies, supporting climate action, and engaging in multilateral negotiations, reflecting their significant influence and participation."
     },
     {
       "name": "United Nations",
       "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "The UN is referenced multiple times as a platform for addressing global challenges faced by SIDS, indicating its significant role in international cooperation and policy-making."
+      "relevance_score": 0.75,
+      "justification": "The United Nations is a key multilateral partner referenced in relation to global frameworks, summits, and resolutions that impact SIDS. It provides platforms for dialogue, policy development, and coordination, including specific UN offices and initiatives dedicated to SIDS, underscoring its importance."
     }
   ],
   "top_themes": [
     {
-      "name": "Digital Inclusion",
-      "category": "Inclusion & Social Development",
+      "name": "Multilateralism",
+      "category": "Regional & International Cooperation",
       "relevance_score": 0.9,
-      "justification": "Digital inclusion is crucial for advancing socio-economic development in SIDS, as it addresses the need for equitable access to digital resources, which is essential for resilience and prosperity."
-    },
-    {
-      "name": "Digital Education",
-      "category": "Inclusion & Social Development",
-      "relevance_score": 0.85,
-      "justification": "Digital education is vital for empowering individuals in SIDS, enabling them to adapt to changing economic landscapes and participate in global markets, thus supporting the overarching goals of sustainable development."
+      "justification": "Multilateralism is central to the document as it highlights the EU's commitment to working with international organizations, UN bodies, and SIDS partners to address climate change, sustainable development, and financing. The document repeatedly references UN summits, agreements, and multilateral frameworks, underscoring the strategic importance of collective global action."
     },
     {
       "name": "Global Digital Cooperation",
       "category": "Regional & International Cooperation",
-      "relevance_score": 0.8,
-      "justification": "Global digital cooperation is important for fostering partnerships that enhance the capacity of SIDS to leverage technology for development, aligning with the EU's commitment to support SIDS in achieving their goals."
+      "relevance_score": 0.7,
+      "justification": "Global Digital Cooperation is important as the EU emphasizes digital transformation as a key enabler for socio-economic development, climate action, and inclusion in SIDS. The document mentions initiatives like the Digital for Development Hub and stresses the need for equitable digital access and partnerships, linking digital cooperation to broader development goals."
+    },
+    {
+      "name": "Digital Inclusion",
+      "category": "Inclusion & Social Development",
+      "relevance_score": 0.6,
+      "justification": "Digital Inclusion is relevant as the document highlights the role of digitalization in promoting inclusive development, education, and overcoming remoteness challenges faced by SIDS. It is strategically important for ensuring vulnerable groups benefit from digital advances, supporting the EU’s broader commitments to social development and equity."
     }
   ]
 }

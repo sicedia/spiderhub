@@ -1,6 +1,6 @@
-# Forum of the Countries of Latin America and the Caribbean on Sustainable Development 2024: 7th Meeting Summary
+# Forum of the Countries of Latin America and the Caribbean on Sustainable Development 2024 – 7th Meeting Summary (Santiago, 15-18 April)
 
-**Date**: 2024-04-15
+**Date**: 2024-04
 
 **Location**: Santiago, Chile
 
@@ -14,13 +14,13 @@ No key characteristics identified in the document.
 
 ## Actors
 
-No actors identified.
+| Category | Actor |
+| --- | --- |
+| Political Actors | Forum of the Countries of Latin America and the Caribbean on Sustainable Development; Community of Latin American and Caribbean States |
 
 ## Main Themes
 
-| Category | Subcategory |
-| --- | --- |
-| Regional & International Cooperation | EU-LAC Digital Alliance |
+No themes identified.
 
 ## Practical Applications
 

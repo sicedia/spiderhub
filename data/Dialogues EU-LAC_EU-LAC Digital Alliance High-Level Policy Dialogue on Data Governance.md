@@ -1,4 +1,4 @@
-# EU-LAC Digital Alliance High-Level Policy Dialogue on Data Governance 2024 Report
+# EU-LAC Digital Alliance High-Level Policy Dialogue on Data Governance 2024
 
 **Date**: 2024-09-30
 
@@ -6,43 +6,47 @@
 
 ## Executive Summary
 
-The EU-LAC Digital Alliance held a High-Level Policy Dialogue on Data Governance in Montevideo, Uruguay, from September 30 to October 1, 2024. This event aimed to foster consensus on digital policy areas, focusing on personal data protection, AI governance, and international data transfers. Key discussions included harmonizing data protection regulations and establishing secure data transfer frameworks. Participants included high-level representatives from EU Member States, LAC countries, and various stakeholders. Outcomes included a commitment to draft a roadmap for regulatory convergence by mid-2025 and to enhance capacity-building for LAC data protection authorities. The next steps involve refining the roadmap and integrating outcomes into the Global Gateway Investment Agenda, with progress to be presented at the EU-CELAC Summit in Bogotá in 2025.
+The EU-LAC Digital Alliance High-Level Policy Dialogue on Data Governance, held in Montevideo from 30 September to 1 October 2024, brought together senior officials and experts from the EU and Latin America & Caribbean (LAC) to discuss regulatory convergence on data governance. Key topics included harmonizing data protection laws, governance of AI systems, secure international data transfers, and capacity building for data protection authorities. The dialogue resulted in commitments to draft a regulatory convergence roadmap by mid-2025, recognize data governance as essential for trusted AI and digital services, and launch capacity-building programs supported by Team Europe. Guyana formally joined the EU-LAC Digital Alliance during the event. Next steps involve refining the roadmap through working groups, presenting progress at the EU-CELAC Summit 2025, and integrating outcomes into the Global Gateway Investment Agenda to enhance digital connectivity and innovation across both regions.
 
 ## Characteristics
 
-- **Bi-regional Platform**: The EU-LAC Digital Alliance facilitates structured dialogues between Europe and Latin America & Caribbean, focusing on digital policy areas like data governance and AI.
-- **Multistakeholder Approach**: Involves governments, private sector, civil society, and academia to ensure diverse perspectives in discussions and decision-making.
-- **Key Objectives**: Aims to harmonize data protection regulations, enhance cooperation, and prepare for the EU-CELAC Summit 2025.
-- **Outcomes**: Commitment to draft a regulatory convergence roadmap and launch capacity-building programs for data protection authorities in LAC.
-- **Event Format**: Features plenary sessions and thematic working groups, conducted in Spanish, English, and Portuguese.
+- The EU-LAC Digital Alliance Policy Dialogues are a bi-regional platform uniting Team Europe and Latin American & Caribbean partners to align digital policies on e-Governance, data governance, cybersecurity, connectivity, and AI.
+- The 2024 High-Level Policy Dialogue on Data Governance in Montevideo focused on personal data protection, independent data authorities, international data transfers, and AI-data nexus.
+- Key discussions included harmonizing data protection for cross-border flows, AI governance models, interoperability standards, and capacity building for data protection authorities.
+- Participants included senior officials from EU and LAC countries, European Commission DG INTPA, data protection authorities, industry, academia, and civil society.
+- Outcomes featured a roadmap for regulatory convergence by mid-2025, recognition of data governance as key for trusted AI and digital services, and capacity-building commitments for LAC authorities.
+- Next steps involve working groups to refine the roadmap, presenting progress at the 2025 EU-CELAC Summit, and integrating results into the Global Gateway Investment Agenda.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Union; EU Member States; European Commission; Oriental Republic of Uruguay; Community of Latin American and Caribbean States |
-| Research and Innovation Actors | D4D Hub; EU-LAC Digital Alliance |
+| Political Actors | European Union; EU Member States; Governments; Government Officials; European Commission; Community of Latin American and Caribbean States |
+| Research and Innovation Actors | EU-LAC Digital Alliance; Digital for Development Hub; Academia; Academic Institutions |
+| Economic Actors | Private Sector Representatives; Industry Actors |
 | Civil Society Actors | Civil Society Organisations |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Regional & International Cooperation | EU-LAC Digital Alliance; Bi-regional Cooperation; Global Digital Cooperation |
-| Data & Governance | Data Governance; E-Governance; Data Protection; Cybersecurity |
-| Technology & Innovation | Artificial Intelligence |
+| Regional & International Cooperation | EU-LAC Digital Alliance; Bi-regional Cooperation |
+| Data & Governance | Data Governance; Digital Governance; Data Protection |
 
 ## Practical Applications
 
-- Implementation of the EU-LAC Digital Alliance Policy Dialogues, which serve as a structured bi-regional platform for consensus-building on digital policy areas.
-- Co-hosting of the High-Level Policy Dialogue on Data Governance by the European Union and Uruguay, facilitating discussions among senior government officials and experts.
-- Commitment to draft a roadmap for regulatory convergence on data governance by mid-2025.
-- Launch of capacity-building programmes for LAC data protection authorities, supported by Team Europe instruments.
-- Guyana's formal adherence to the Joint Declaration on the EU-LAC Digital Alliance during the event.
-- Establishment of working groups to refine the roadmap draft by Q1 2025.
+- The EU-LAC Digital Alliance Policy Dialogues provide a structured bi-regional platform for consensus-building on digital policy areas including data governance, supported by the D4D Hub with a multi-stakeholder approach involving governments, private sector, civil society, and academia.
+- The High-Level Policy Dialogue on Data Governance held in Montevideo (30 Sept - 1 Oct 2024) brought together senior officials and experts from EU and LAC countries to exchange best practices on personal data protection, independent data protection authorities, international data transfers, and AI-data nexus.
+- Agreement to draft a roadmap for regulatory convergence on data governance by mid-2025.
+- Commitment to launch capacity-building programmes for LAC data protection authorities supported by Team Europe instruments.
+- Guyana formally adhered to the Joint Declaration on the EU-LAC Digital Alliance during the 2024 event.
+- Establishment of working groups to refine the data governance roadmap draft by Q1 2025.
+- Integration of data governance outcomes into the Global Gateway Investment Agenda to support digital connectivity and innovation.
+- Presentation of progress on data governance convergence at the EU-CELAC Summit in Bogotá, 2025.
 
 ## Commitments
 
 - Draft a roadmap for regulatory convergence on data governance before mid-2025.
-- Launch capacity-building programmes for LAC data protection authorities with support from Team Europe instruments.
-- Establish working groups to refine roadmap draft by Q1 2025.
+- Launch capacity-building programmes for LAC data protection authorities with support from Team Europe instruments (no specific deadline given).
+- Establish working groups to refine the roadmap draft by Q1 2025.
+- Present progress on the roadmap at the EU-CELAC Summit in Bogotá, 2025.

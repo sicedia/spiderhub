@@ -1,270 +1,389 @@
 {
-  "title": "Ministerial Declaration on Building Back Better from COVID-19 and Advancing the 2030 Agenda for Sustainable Development",
-  "date": "2022-07-18",
+  "title": "Ministerial Declaration of the High-Level Segment of the 2022 ECOSOC Session and High-Level Political Forum on Sustainable Development",
+  "date": "2022-08-15",
   "location": "New York, United States",
-  "executive_summary": "The Ministerial Declaration from the 2022 High-Level Segment of the Economic and Social Council emphasizes the urgent need for global action to recover from the COVID-19 pandemic while advancing the 2030 Agenda for Sustainable Development. It highlights the exacerbation of poverty, hunger, and inequalities due to the pandemic and calls for a commitment to leave no one behind. The declaration reaffirms the importance of international cooperation, multilateralism, and solidarity in addressing global challenges, including climate change and biodiversity loss. It stresses the necessity of gender equality and the empowerment of women and girls as critical to achieving sustainable development. The document outlines a roadmap for recovery, urging countries to adopt inclusive and resilient strategies, enhance resource mobilization, and strengthen partnerships to achieve the Sustainable Development Goals by 2030.",
+  "executive_summary": "The 2022 Ministerial Declaration of the UN Economic and Social Council and High-Level Political Forum reaffirms global commitment to accelerating the implementation of the 2030 Agenda for Sustainable Development amid ongoing crises, including COVID-19, climate change, and rising inequalities. The declaration highlights setbacks in poverty reduction, food security, education, gender equality, and environmental protection, calling for urgent, inclusive, and resilient recovery strategies. Key priorities include equitable access to vaccines, strengthened health systems, gender-responsive policies, climate action aligned with the Paris Agreement, sustainable management of natural resources, and revitalized global partnerships and financing. The declaration urges enhanced international cooperation, multilateralism, and support for vulnerable countries, emphasizing the need for transformative action, data-driven policies, and inclusive participation to ensure no one is left behind and to achieve the Sustainable Development Goals by 2030.",
   "characteristics": [
-    "The declaration emphasizes the urgent need for global cooperation and solidarity to address the ongoing impacts of the COVID-19 pandemic and to accelerate the implementation of the 2030 Agenda for Sustainable Development.",
-    "It reaffirms the commitment to eradicate poverty, achieve food security, and ensure inclusive and equitable quality education, particularly for vulnerable populations.",
-    "The document highlights the interconnectedness of sustainable development, peace, and security, stressing that neither can be achieved without the other.",
-    "It calls for enhanced international cooperation to combat climate change, biodiversity loss, and pollution, recognizing these as critical challenges to sustainable development.",
-    "The declaration underscores the importance of gender equality and the empowerment of women and girls as essential for achieving all Sustainable Development Goals.",
-    "It advocates for innovative financing mechanisms and partnerships to mobilize resources for sustainable development, particularly in developing countries."
+    "Strong reaffirmation of commitment to the 2030 Agenda for Sustainable Development and its SDGs, emphasizing the need for accelerated, inclusive, and resilient recovery from COVID-19, with a focus on leaving no one behind and addressing poverty, inequality, and vulnerability.",
+    "Emphasis on multilateralism, international cooperation, and solidarity as essential for overcoming global challenges, including pandemics, climate change, biodiversity loss, and economic instability.",
+    "Recognition of the disproportionate impact of COVID-19 on vulnerable groups and countries, and the urgent need for equitable access to vaccines, health technologies, and support for health systems, especially in developing nations.",
+    "In-depth review and renewed commitments to SDGs 4 (education), 5 (gender equality), 14 (oceans), 15 (terrestrial ecosystems), and 17 (means of implementation), with specific actions to address setbacks caused by the pandemic and other crises.",
+    "Strong focus on climate action, including full implementation of the Paris Agreement, scaling up climate finance, supporting just transitions, and integrating nature-based solutions for biodiversity, land, and ocean conservation.",
+    "Calls for strengthening global partnerships, mobilizing resources (including ODA and innovative finance), supporting data and statistical capacity, and ensuring inclusive participation of all stakeholders, including youth, women, local authorities, and civil society, in SDG implementation and review."
   ],
   "themes": {
-    "Inclusion & Social Development": [
-      "Digital Education"
+    "Digital Transformation & Strategy": [
+      "Digital Agenda",
+      "Digital Acceleration",
+      "Digital Platforms",
+      "Digital Infrastructure",
+      "Digital Policy",
+      "Digital Ecosystem",
+      "Digital Investment",
+      "Digital Skills Development"
+    ],
+    "Technology & Innovation": [
+      "Tech-Driven Solutions",
+      "ICT Innovation",
+      "Sustainable Tech"
     ],
     "Data & Governance": [
+      "Data Governance",
       "Digital Rights",
-      "Data Governance"
+      "Digital Governance",
+      "Data Protection",
+      "Cybersecurity",
+      "Digital Access",
+      "Digital Identity Management",
+      "Internet Governance",
+      "Digital Ethics",
+      "E-Governance"
+    ],
+    "Inclusion & Social Development": [
+      "Digital Inclusion",
+      "Social Cohesion",
+      "Gender Equality in Tech",
+      "Digital Education",
+      "Connectivity",
+      "Sustainable Digital Development"
     ],
     "Regional & International Cooperation": [
+      "Multilateralism",
       "Global Digital Cooperation",
-      "Multilateralism"
+      "Digital & Technological Partnerships"
     ]
   },
   "actors": {
     "Political Actors": [
+      "Governments",
+      "Government Officials",
+      "Policy Level Representatives",
       "United Nations",
-      "United Nations Officials"
+      "United Nations Officials",
+      "General Assembly",
+      "Economic and Social Council",
+      "Member States",
+      "Group of 20",
+      "Paris Club",
+      "World Trade Organization",
+      "African Continental Free Trade Area",
+      "Committee for Development Policy",
+      "President of the General Assembly",
+      "Secretary-General"
+    ],
+    "Research and Innovation Actors": [
+      "Universities",
+      "Academic Institutions",
+      "Researchers",
+      "Innovators",
+      "Knowledge and Innovation Communities",
+      "Digital for Development Hub",
+      "LAC Space Agencies",
+      "National Research and Education Networks",
+      "Latin American and Caribbean Network Information Centre"
+    ],
+    "Economic Actors": [
+      "Organisation for Economic Cooperation and Development",
+      "Private Sector Representatives",
+      "Industry Actors",
+      "Private Sector Intermediaries",
+      "Inter-American Development Bank",
+      "Development Bank of Latin America and the Caribbean",
+      "Central American Bank for Economic Integration",
+      "World Bank",
+      "Research Funding Organisations",
+      "Digital Companies",
+      "ICT Companies",
+      "Telecommunication Companies",
+      "Multilateral development banks",
+      "International Monetary Fund"
     ],
     "Civil Society Actors": [
-      "Civil Society Organisations"
+      "Non-governmental Institutions",
+      "Civil Society Organisations",
+      "Digital Training and Education Providers",
+      "Digital Transformation Consultants",
+      "Digital Skills Development Platforms",
+      "Digital Cooperation Organization",
+      "Digital Literacy Initiatives",
+      "Technology Providers"
     ]
   },
   "practical_applications": [
-    "Commitment to accelerate global action for sustainable development and the implementation of the 2030 Agenda for Sustainable Development.",
-    "Support for the Access to COVID-19 Tools Accelerator (ACT-A) and its COVID-19 Vaccine Global Access (COVAX) Facility to ensure equitable access to vaccines.",
-    "Promotion of the Quadripartite Partnership for One Health, involving FAO, WHO, WOAH, and UNEP, to strengthen health systems and address zoonotic diseases.",
-    "Implementation of the Addis Ababa Action Agenda to enhance financing for development.",
-    "Support for the establishment of the Global Crisis Response Group on Food, Energy and Finance to address the multidimensional crisis exacerbated by COVID-19.",
-    "Commitment to the United Nations Decade of Ocean Science for Sustainable Development to enhance marine scientific research and cooperation.",
-    "Engagement in the 2023 Sustainable Development Goals Summit to provide political leadership and guidance for sustainable development.",
-    "Support for the establishment of the United Nations Food Systems Coordination Hub to assist countries in developing sustainable food systems.",
-    "Commitment to the implementation of the Sendai Framework for Disaster Risk Reduction 2015-2030 to enhance resilience against disasters.",
-    "Recognition of the importance of the Global Education Cooperation Mechanism to strengthen global cooperation in education.",
-    "Support for the establishment of the African Continental Free Trade Area to enhance intra-African trade and resilience post-COVID-19.",
-    "Commitment to the implementation of the New Urban Agenda to improve urban planning and management for sustainable development."
+    "The Quadripartite Partnership for One Health, composed of the Food and Agriculture Organization (FAO), World Health Organization (WHO), World Organization for Animal Health (WOAH), and United Nations Environment Programme (UNEP), is actively implementing the One Health approach to strengthen synergies between the health of people, animals, plants, and ecosystems.",
+    "The Access to COVID-19 Tools Accelerator (ACT-A) and its COVAX Facility, as well as the COVID-19 Technology Access Pool (C-TAP), are operational initiatives supporting the development, production, and equitable access to COVID-19 vaccines, therapeutics, and diagnostics.",
+    "The Group of 20 and Paris Club Debt Service Suspension Initiative is being implemented to provide debt relief to eligible countries affected by the COVID-19 pandemic.",
+    "The Common Framework for Debt Treatments beyond the Debt Service Suspension Initiative is being implemented to support highly indebted developing countries.",
+    "The United Nations Decade of Ocean Science for Sustainable Development is underway, promoting marine scientific research, capacity-building, and voluntary technology transfer to developing countries.",
+    "The United Nations Decade on Ecosystem Restoration 2021–2030 is being implemented to promote ecosystem conservation and restoration globally.",
+    "The United Nations strategic plan for forests 2017–2030 and its global forest goals are being implemented, with the United Nations Forum on Forests promoting sustainable management and conservation of forests.",
+    "The Agreement on Fisheries Subsidies, reached at the Twelfth Ministerial Conference of the World Trade Organization, is being implemented to address harmful fisheries subsidies and support sustainable fishing practices.",
+    "The United Nations Environment Assembly resolution 5/14 has established an intergovernmental negotiating committee to develop an international legally binding instrument on plastic pollution, including in the marine environment.",
+    "The United Nations Food Systems Coordination Hub, hosted by FAO in Rome, is operational and supporting governments to develop and strengthen SDG-based national pathways for sustainable food systems transformation.",
+    "The Global Education Cooperation Mechanism and the SDG 4-Education 2030 High-level Steering Committee are active in strengthening global cooperation in education.",
+    "The Global Accelerator on Jobs and Social Protection for Just Transitions, launched by the UN Secretary-General and the International Labour Organization (ILO), is being implemented to create decent work and strengthen social protection systems.",
+    "The International Monetary Fund (IMF) Resilience and Sustainability Trust is being operationalized to provide affordable long-term financing to low-income and vulnerable middle-income countries.",
+    "The United Nations Conference on Trade and Development (UNCTAD) has adopted the \"Bridgetown Covenant\" as an outcome document to guide its work.",
+    "The African Continental Free Trade Area has commenced trading under its agreement as of January 1, 2021, to strengthen intra-African trade and resilience.",
+    "The United Nations Conference on the Midterm Comprehensive Review of the Implementation of the Objectives of the International Decade for Action, “Water for Sustainable Development”, 2018–2028, is scheduled for 2023 to review and accelerate progress on water-related goals.",
+    "The United Nations Environment Assembly at its resumed fifth session has established a science-policy panel to contribute to the sound management of chemicals and waste and to prevent pollution.",
+    "The United Nations Food Systems Summit (2021) and its follow-up mechanisms, including national pathways and coalitions of action, are being implemented to transform food systems.",
+    "The United Nations Youth Strategy (Youth2030) is being implemented system-wide to engage and support youth participation in sustainable development.",
+    "The Vienna Programme of Action for Landlocked Developing Countries for the Decade 2014–2024 is being implemented, with a third United Nations Conference on Landlocked Developing Countries scheduled for 2024.",
+    "The SAMOA Pathway for Small Island Developing States is being implemented, with a fourth United Nations conference on SIDS scheduled for 2024.",
+    "The Doha Programme of Action for the Least Developed Countries is being implemented, with a second part of the Fifth United Nations Conference on the Least Developed Countries scheduled for 2023.",
+    "The United Nations 10-Year Framework of Programmes on Sustainable Consumption and Production Patterns has been extended to 2030, with ongoing development of a new Global Strategy on Sustainable Consumption and Production."
   ],
   "commitments": [
-    "Urge developed countries to fulfill their official development assistance (ODA) commitments, including achieving the target of 0.7% of gross national income (GNI) for ODA and 0.15 to 0.20% of ODA/GNI to least developed countries by 2025.",
-    "Commit to reducing global carbon dioxide emissions by 45% by 2030 relative to the 2010 level and to net zero around mid-century.",
-    "Urge developed countries to at least double their collective provision of climate finance for adaptation to developing countries from 2019 levels by 2025.",
-    "Commit to ensuring that at least 30% globally of land and ocean are protected or conserved within protected areas and other effective area-based conservation measures by 2030.",
-    "Call for the third United Nations Conference on Landlocked Developing Countries (LLDCs) to be held in 2024.",
-    "Call for a fourth United Nations conference on small island developing States (SIDS) to be held in 2024.",
-    "Commit to reducing the transaction costs of migrant remittances to less than 3% and eliminating corridors with costs higher than 5% by 2030.",
-    "Commit to the operationalization of the International Monetary Fund Resilience and Sustainability Trust to provide affordable long-term financing to low-income and vulnerable middle-income countries.",
-    "Call for the convening of the second part of the Fifth United Nations Conference on the Least Developed Countries in 2023."
+    "Developed countries are urged to scale up and fulfil their ODA commitments, including the commitment by many developed countries to achieve the target of 0.7% of gross national income (GNI) for official development assistance (ODA/GNI) and 0.15 to 0.20% of ODA/GNI to the least developed countries.",
+    "Developed countries are urged to fully deliver on the USD 100 billion per year climate finance goal urgently and through to 2025.",
+    "Developed countries are urged to at least double their collective provision of climate finance for adaptation to developing countries from 2019 levels by 2025.",
+    "All countries are encouraged to reduce global carbon dioxide emissions by 45% by 2030 relative to the 2010 level and to net zero around mid-century.",
+    "All countries are encouraged to revisit and strengthen the 2030 targets in their nationally determined contributions as necessary to align with the Paris Agreement temperature goal by the end of 2022.",
+    "More than 100 Member States have made voluntary commitments to ensure that at least 30% globally of land and of the ocean are protected or conserved within protected areas and other effective area-based conservation measures by 2030.",
+    "By 2030, reduce to less than 3% the transaction costs of migrant remittances and eliminate remittance corridors with costs higher than 5%.",
+    "Parties are called upon to accelerate global connectivity for all by 2030.",
+    "The intergovernmental negotiating committee is to complete its work on an international legally binding instrument on plastic pollution, including in the marine environment, by the end of 2024.",
+    "The third United Nations Conference on Landlocked Developing Countries (LLDCs) will be held in 2024 to review the Vienna Programme of Action for the Decade 2014–2024 and adopt a renewed framework.",
+    "The fourth United Nations conference on small island developing States (SIDS) will be held in 2024.",
+    "All countries are encouraged to participate in the September 2023 Sustainable Development Goals Summit at the highest possible level."
   ],
-  "score": 93,
+  "score": 57,
   "quality_breakdown": {
-    "faithfulness": 100,
-    "consistency": 93,
-    "completeness": 93,
-    "accuracy": 90,
-    "issues": []
+    "faithfulness": 0,
+    "consistency": 92,
+    "completeness": 95,
+    "accuracy": 81,
+    "issues": [
+      "Low faithfulness - check for hallucinations in basic or strategic extra data"
+    ]
   },
   "extra_data": {
     "lead_country_iso": "USA",
     "agreement_type": [
       "Declaration"
     ],
-    "legal_bindingness": "Politically-binding",
+    "legal_bindingness": "Non-binding",
     "coverage_scope": "Global",
     "eu_policy_alignment": [],
-    "review_schedule": "Biennial",
+    "review_schedule": null,
     "beneficiary_group_raw": [
       "woman",
       "girl",
-      "community",
-      "country",
-      "person"
+      "child",
+      "youth",
+      "indigenous people"
     ],
     "beneficiary_group": [
       {
         "category": "Women & Girls",
-        "label": "Women"
+        "label": "Women in Tech"
       },
       {
         "category": "Women & Girls",
-        "label": "Girls"
+        "label": "Women in Tech"
       },
       {
-        "category": "Civil Society / NGOs",
-        "label": "Community"
+        "category": "Students & Youth",
+        "label": "Children"
       },
       {
-        "category": "General Citizens / Consumers",
-        "label": "Citizens"
+        "category": "Students & Youth",
+        "label": "Youth"
       },
       {
-        "category": "General Citizens / Consumers",
-        "label": "Persons"
+        "category": "Indigenous Peoples & Ethnic Groups",
+        "label": "Indigenous Communities"
       }
     ],
-    "start_date": "2022-01-01",
+    "start_date": "2022-07-15",
     "end_date": "2022-07-18",
     "commitment_details": [
       {
-        "text": "Urge developed countries to fulfill their official development assistance (ODA) commitments, including achieving the target of 0.7% of gross national income (GNI) for ODA and 0.15 to 0.20% of ODA/GNI to least developed countries by 2025.",
-        "commitment_class": "Declarative"
+        "text": "Developed countries are urged to scale up and fulfil their ODA commitments, including the commitment by many developed countries to achieve the target of 0.7% of gross national income (GNI) for official development assistance (ODA/GNI) and 0.15 to 0.20% of ODA/GNI to the least developed countries.",
+        "commitment_class": "Financed"
       },
       {
-        "text": "Commit to reducing global carbon dioxide emissions by 45% by 2030 relative to the 2010 level and to net zero around mid-century.",
-        "commitment_class": "Declarative"
+        "text": "Developed countries are urged to fully deliver on the USD 100 billion per year climate finance goal urgently and through to 2025.",
+        "commitment_class": "Financed"
       },
       {
-        "text": "Urge developed countries to at least double their collective provision of climate finance for adaptation to developing countries from 2019 levels by 2025.",
-        "commitment_class": "Declarative"
+        "text": "Developed countries are urged to at least double their collective provision of climate finance for adaptation to developing countries from 2019 levels by 2025.",
+        "commitment_class": "Financed"
       },
       {
-        "text": "Commit to ensuring that at least 30% globally of land and ocean are protected or conserved within protected areas and other effective area-based conservation measures by 2030.",
-        "commitment_class": "Declarative"
-      },
-      {
-        "text": "Call for the third United Nations Conference on Landlocked Developing Countries (LLDCs) to be held in 2024.",
-        "commitment_class": "Declarative"
-      },
-      {
-        "text": "Call for a fourth United Nations conference on small island developing States (SIDS) to be held in 2024.",
-        "commitment_class": "Declarative"
-      },
-      {
-        "text": "Commit to reducing the transaction costs of migrant remittances to less than 3% and eliminating corridors with costs higher than 5% by 2030.",
-        "commitment_class": "Declarative"
-      },
-      {
-        "text": "Commit to the operationalization of the International Monetary Fund Resilience and Sustainability Trust to provide affordable long-term financing to low-income and vulnerable middle-income countries.",
+        "text": "All countries are encouraged to reduce global carbon dioxide emissions by 45% by 2030 relative to the 2010 level and to net zero around mid-century.",
         "commitment_class": "Programmatic"
       },
       {
-        "text": "Call for the convening of the second part of the Fifth United Nations Conference on the Least Developed Countries in 2023.",
+        "text": "All countries are encouraged to revisit and strengthen the 2030 targets in their nationally determined contributions as necessary to align with the Paris Agreement temperature goal by the end of 2022.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "More than 100 Member States have made voluntary commitments to ensure that at least 30% globally of land and of the ocean are protected or conserved within protected areas and other effective area-based conservation measures by 2030.",
+        "commitment_class": "Declarative"
+      },
+      {
+        "text": "By 2030, reduce to less than 3% the transaction costs of migrant remittances and eliminate remittance corridors with costs higher than 5%.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "Parties are called upon to accelerate global connectivity for all by 2030.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The intergovernmental negotiating committee is to complete its work on an international legally binding instrument on plastic pollution, including in the marine environment, by the end of 2024.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The third United Nations Conference on Landlocked Developing Countries (LLDCs) will be held in 2024 to review the Vienna Programme of Action for the Decade 2014–2024 and adopt a renewed framework.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "The fourth United Nations conference on small island developing States (SIDS) will be held in 2024.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "All countries are encouraged to participate in the September 2023 Sustainable Development Goals Summit at the highest possible level.",
         "commitment_class": "Declarative"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "Reduce global poverty rate by 50% by 2030.",
+        "kpi_text": "We recognize that limiting global warming to 1.5°C requires rapid, deep and sustained reductions in global greenhouse gas emissions, including reducing global carbon dioxide emissions by 45 per cent by 2030 relative to the 2010 level and to net zero around mid-century, as well as deep reductions in other greenhouse gases.",
         "kpi_type": "quantitative",
-        "metric_name": "Global Poverty Reduction",
-        "target_value": 50.0,
-        "target_description": "Reduce the global poverty rate.",
-        "unit": "percentage",
+        "metric_name": "Global Carbon Dioxide Emissions Reduction",
+        "target_value": 45.0,
+        "target_description": "Reduce global carbon dioxide emissions by 45% relative to 2010 levels",
+        "unit": "percentage reduction",
         "timeframe": "by 2030",
-        "measurement_method": "Poverty rate statistics",
-        "responsible_entity": "Governments and international organizations",
-        "sector": "Social Development"
+        "measurement_method": "Comparison of global CO2 emissions in 2030 to 2010 baseline",
+        "responsible_entity": "All UN Member States",
+        "sector": "Climate Change"
       },
       {
-        "kpi_text": "Ensure universal access to safe and affordable drinking water and sanitation for all by 2030.",
-        "kpi_type": "qualitative",
-        "metric_name": "Access to Water and Sanitation",
-        "target_value": null,
-        "target_description": "Achieve universal access to safe drinking water and sanitation.",
-        "unit": "qualitative milestone",
-        "timeframe": "by 2030",
-        "measurement_method": "Water access surveys and sanitation statistics",
-        "responsible_entity": "Governments and local authorities",
-        "sector": "Water and Sanitation"
-      },
-      {
-        "kpi_text": "Mobilize $100 billion annually for climate finance by 2025.",
+        "kpi_text": "We urge developed countries to fully deliver on the USD 100 billion goal urgently and through to 2025 and emphasize the importance of transparency in the implementation of their pledges.",
         "kpi_type": "quantitative",
-        "metric_name": "Climate Finance Mobilization",
+        "metric_name": "Annual Climate Finance Mobilization",
         "target_value": 100.0,
-        "target_description": "Mobilize financial resources for climate action.",
-        "unit": "billion USD",
-        "timeframe": "by 2025",
-        "measurement_method": "Financial reports and commitments",
+        "target_description": "Mobilize USD 100 billion per year for climate finance",
+        "unit": "billion USD per year",
+        "timeframe": "annually through to 2025",
+        "measurement_method": "Tracking of climate finance flows from developed to developing countries",
         "responsible_entity": "Developed countries",
-        "sector": "Climate Action"
+        "sector": "Climate Finance"
       },
       {
-        "kpi_text": "Achieve gender equality and empower all women and girls by 2030.",
-        "kpi_type": "qualitative",
-        "metric_name": "Gender Equality Achievement",
-        "target_value": null,
-        "target_description": "Ensure gender equality and empowerment of women and girls.",
-        "unit": "qualitative milestone",
-        "timeframe": "by 2030",
-        "measurement_method": "Gender equality indices and reports",
-        "responsible_entity": "Governments and NGOs",
-        "sector": "Gender Equality"
-      },
-      {
-        "kpi_text": "Increase the share of public expenditure on education to 20% by 2030.",
+        "kpi_text": "We further urge developed countries to at least double their collective provision of climate finance for adaptation to developing countries from 2019 levels by 2025, in the context of achieving a balance between mitigation and adaptation in the provision of scaled-up financial resources.",
         "kpi_type": "quantitative",
-        "metric_name": "Public Education Expenditure",
-        "target_value": 20.0,
-        "target_description": "Increase public expenditure on education.",
-        "unit": "percentage",
-        "timeframe": "by 2030",
-        "measurement_method": "National budget reports",
-        "responsible_entity": "National Governments",
-        "sector": "Education"
+        "metric_name": "Adaptation Climate Finance Doubling",
+        "target_value": 2.0,
+        "target_description": "Double collective climate finance for adaptation to developing countries from 2019 levels",
+        "unit": "multiple of 2019 baseline",
+        "timeframe": "by 2025",
+        "measurement_method": "Comparison of adaptation finance flows in 2025 to 2019 baseline",
+        "responsible_entity": "Developed countries",
+        "sector": "Climate Finance"
       },
       {
-        "kpi_text": "Ensure that at least 30% of land and ocean areas are protected by 2030.",
+        "kpi_text": "We take note of the voluntary commitments by more than 100 Member States to ensure that at least 30 per cent globally of land and of the ocean are protected or conserved within protected areas and other effective area-based conservation measures by 2030.",
         "kpi_type": "quantitative",
         "metric_name": "Protected Areas Coverage",
         "target_value": 30.0,
-        "target_description": "Increase the area of protected land and ocean.",
-        "unit": "percentage",
+        "target_description": "Protect or conserve at least 30% of land and ocean globally",
+        "unit": "percentage of global land and ocean",
         "timeframe": "by 2030",
-        "measurement_method": "Environmental protection statistics",
-        "responsible_entity": "National Governments",
-        "sector": "Biodiversity and Conservation"
+        "measurement_method": "Area of land and ocean under protection as reported by Member States",
+        "responsible_entity": "Participating Member States",
+        "sector": "Biodiversity/Conservation"
       },
       {
-        "kpi_text": "Strengthen international cooperation for sustainable development by 2030.",
-        "kpi_type": "qualitative",
-        "metric_name": "International Cooperation Strengthening",
-        "target_value": null,
-        "target_description": "Enhance international cooperation for sustainable development.",
-        "unit": "qualitative milestone",
-        "timeframe": "by 2030",
-        "measurement_method": "Cooperation agreements and partnerships",
-        "responsible_entity": "International Organizations",
-        "sector": "International Relations"
-      },
-      {
-        "kpi_text": "Reduce food insecurity by 50% by 2030.",
+        "kpi_text": "We urge development partners to scale up and fulfil their ODA commitments, including the commitment by many developed countries to achieve the target of 0.7 per cent of gross national income for official development assistance (ODA/GNI) and 0.15 to 0.20 per cent of ODA/GNI to the least developed countries.",
         "kpi_type": "quantitative",
-        "metric_name": "Food Insecurity Reduction",
-        "target_value": 50.0,
-        "target_description": "Reduce the number of people facing food insecurity.",
-        "unit": "percentage",
-        "timeframe": "by 2030",
-        "measurement_method": "Food security assessments",
-        "responsible_entity": "Governments and NGOs",
-        "sector": "Food Security"
+        "metric_name": "Official Development Assistance as Percentage of GNI",
+        "target_value": 0.7,
+        "target_description": "Achieve ODA of 0.7% of GNI (and 0.15-0.20% to least developed countries)",
+        "unit": "percentage of GNI",
+        "timeframe": null,
+        "measurement_method": "ODA as a percentage of GNI reported by donor countries",
+        "responsible_entity": "Developed countries",
+        "sector": "Development Finance"
       },
       {
-        "kpi_text": "Achieve universal health coverage by 2030.",
+        "kpi_text": "We encourage countries to consider developing national road maps of voluntary national reviews for presentation until 2030.",
         "kpi_type": "qualitative",
-        "metric_name": "Universal Health Coverage",
+        "metric_name": "National Roadmaps for Voluntary National Reviews",
         "target_value": null,
-        "target_description": "Ensure access to quality health services for all.",
+        "target_description": "Develop national roadmaps for voluntary national reviews through 2030",
         "unit": "qualitative milestone",
         "timeframe": "by 2030",
-        "measurement_method": "Health service access statistics",
-        "responsible_entity": "National Health Authorities",
-        "sector": "Health"
+        "measurement_method": "Existence and implementation of national roadmaps",
+        "responsible_entity": "National Governments",
+        "sector": "Governance/SDG Implementation"
+      },
+      {
+        "kpi_text": "We commit to accelerate actions to address climate change, environmental degradation, biodiversity loss and pollution crises, taking into account national circumstances, needs and priorities, by: (a) Scaling up financial resources with the aim of achieving a balance between adaptation and mitigation, taking into account country-driven strategies and the priorities and needs of developing countries, and making financial flows consistent with a pathway towards low greenhouse gas emissions and climate-resilient development, in line with the Paris Agreement as well as the intergovernmental agreed outcomes under the Conference of the Parties to the UNFCCC, including the Glasgow Climate Pact;",
+        "kpi_type": "qualitative",
+        "metric_name": "Balanced Climate Finance for Adaptation and Mitigation",
+        "target_value": null,
+        "target_description": "Scale up financial resources to achieve a balance between adaptation and mitigation",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Assessment of financial flows for adaptation and mitigation",
+        "responsible_entity": "All countries, especially developed countries",
+        "sector": "Climate Finance"
+      },
+      {
+        "kpi_text": "We commit to eliminating, preventing and responding to all forms of violence against women and girls, in public and private spaces, both in person and in digital contexts, such as sexual and gender-based violence, including domestic violence, gender-related killings, including femicide, harmful practices such as child, early and forced marriage and female genital mutilation, sexual exploitation and abuse and sexual harassment, as well as child and forced labour, trafficking in persons, modern slavery and other forms of exploitation.",
+        "kpi_type": "qualitative",
+        "metric_name": "Elimination of Violence Against Women and Girls",
+        "target_value": null,
+        "target_description": "Eliminate, prevent, and respond to all forms of violence against women and girls",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Monitoring of incidence and response to violence against women and girls",
+        "responsible_entity": "National Governments, UN agencies",
+        "sector": "Gender Equality"
+      },
+      {
+        "kpi_text": "We commit to including youth in the development, monitoring and implementation of intergenerational strategies and programmes designed to address their specific needs and to ensure that education, skills development and decent employment of young people, as well as youth agency and leadership are prioritized.",
+        "kpi_type": "qualitative",
+        "metric_name": "Youth Inclusion in Policy and Programme Development",
+        "target_value": null,
+        "target_description": "Include youth in development, monitoring, and implementation of strategies and prioritize their education, skills, and employment",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Evidence of youth participation in relevant processes and prioritization in policies",
+        "responsible_entity": "National Governments, UN agencies",
+        "sector": "Youth/Employment/Education"
+      },
+      {
+        "kpi_text": "We encourage promoting digital technologies, including low- and no-tech strategies, access to broadband Internet and technology devices, connectivity, digital inclusion and literacy and incorporating digital competences into the education system, including with ad hoc investments for teachers and the teaching profession, enhancing digital skills and competences development, including through public investment in digital qualification, specialization in digital technologies, digital economy, digital infrastructure, public policies and institutional development and multi-stakeholder and international collaboration.",
+        "kpi_type": "qualitative",
+        "metric_name": "Digital Inclusion and Literacy in Education",
+        "target_value": null,
+        "target_description": "Promote digital inclusion, literacy, and integration of digital competences in education systems",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Assessment of digital inclusion and literacy initiatives in education",
+        "responsible_entity": "National Governments, Education Ministries",
+        "sector": "Education/Digital Inclusion"
       }
     ],
     "country_list_iso": [
       "AND",
       "ARG",
+      "AGO",
       "BLR",
       "BWA",
       "CMR",
+      "CAN",
+      "CHN",
       "CIV",
       "DJI",
       "DMA",
-      "SLV",
-      "GNQ",
+      "NLD",
+      "ECU",
       "ERI",
       "SWZ",
       "ETH",
@@ -285,7 +404,6 @@
       "MWI",
       "MLI",
       "MNE",
-      "NLD",
       "PAK",
       "PHL",
       "STP",
@@ -300,7 +418,7 @@
       "ARE",
       "URY"
     ],
-    "responsible_entity": "United Nations",
+    "responsible_entity": "Governments",
     "sdg_alignment": [
       "SDG 1: No Poverty",
       "SDG 2: Zero Hunger",
@@ -308,12 +426,16 @@
       "SDG 4: Quality Education",
       "SDG 5: Gender Equality",
       "SDG 6: Clean Water and Sanitation",
+      "SDG 7: Affordable and Clean Energy",
       "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
+      "SDG 11: Sustainable Cities and Communities",
       "SDG 12: Responsible Consumption and Production",
       "SDG 13: Climate Action",
       "SDG 14: Life Below Water",
       "SDG 15: Life on Land",
+      "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
   },
@@ -322,39 +444,39 @@
       "name": "United Nations",
       "category": "Political Actors",
       "relevance_score": 1.0,
-      "justification": "The United Nations is the primary actor in the document, being the main body convening the high-level segment and driving the agenda for sustainable development and the implementation of the 2030 Agenda."
+      "justification": "The United Nations is the central actor throughout the document, convening the high-level segment, providing the framework for the 2030 Agenda for Sustainable Development, and coordinating the main initiatives and decisions. The UN system, including its organs, agencies, and forums, is repeatedly referenced as the primary driver and coordinator of global action on sustainable development, COVID-19 recovery, and related issues."
     },
     {
-      "name": "United Nations Officials",
+      "name": "Governments",
       "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "United Nations Officials play a crucial role in facilitating discussions, implementing decisions, and providing leadership in the context of the 2030 Agenda and COVID-19 recovery efforts."
+      "relevance_score": 0.95,
+      "justification": "Governments (including Member States) are consistently identified as having the primary responsibility for implementing the 2030 Agenda and Sustainable Development Goals. They are the main decision-makers, implementers, and participants in the high-level meetings, and their actions and commitments are central to the document's objectives and outcomes."
     },
     {
-      "name": "Civil Society Organisations",
-      "category": "Civil Society Actors",
-      "relevance_score": 0.6,
-      "justification": "Civil Society Organisations are mentioned as important stakeholders in the implementation and monitoring of the 2030 Agenda, highlighting their role in advocating for inclusive and equitable development."
+      "name": "Economic and Social Council",
+      "category": "Political Actors",
+      "relevance_score": 0.9,
+      "justification": "The Economic and Social Council (ECOSOC) is the main UN body under whose auspices the high-level segment and political forum are convened. It plays a key role in reviewing progress, catalyzing global responses, and supporting the implementation of the 2030 Agenda. ECOSOC's decisions and leadership are highlighted as crucial for advancing sustainable development and coordinating international efforts."
     }
   ],
   "top_themes": [
     {
       "name": "Multilateralism",
       "category": "Regional & International Cooperation",
-      "relevance_score": 0.9,
-      "justification": "Multilateralism is central to the document's main message, emphasizing the need for global cooperation to address challenges such as COVID-19, climate change, and sustainable development. The document dedicates significant content to the importance of international collaboration and solidarity, making it a strategic priority."
+      "relevance_score": 0.98,
+      "justification": "Multilateralism is central to the document's main message, which is the global, coordinated response to COVID-19 and the implementation of the 2030 Agenda for Sustainable Development. The declaration repeatedly emphasizes international cooperation, solidarity, and the role of the United Nations and other multilateral frameworks as essential for achieving the Sustainable Development Goals (SDGs). A significant portion of the content is dedicated to multilateral action, partnerships, and the need for global solidarity, making it the most strategically important theme."
     },
     {
-      "name": "Digital Education (Inclusion & Social Development)",
+      "name": "Sustainable Digital Development",
       "category": "Inclusion & Social Development",
-      "relevance_score": 0.8,
-      "justification": "Digital education is crucial for achieving the Sustainable Development Goals, particularly in the context of the COVID-19 pandemic, which has exacerbated educational inequalities. The document highlights the need for inclusive and equitable access to education, making this theme highly relevant."
+      "relevance_score": 0.9,
+      "justification": "Sustainable Digital Development is highly relevant as the document highlights the importance of digital transformation for inclusive recovery, resilience, and progress towards the SDGs. The text discusses digital inclusion, digital education, digital skills, and the need to bridge digital divides, especially in the context of COVID-19's impact on education, health, and economic systems. The strategic importance is underscored by commitments to digital access, infrastructure, and skills as enablers for sustainable development and leaving no one behind."
     },
     {
-      "name": "Global Digital Cooperation",
-      "category": "Regional & International Cooperation",
-      "relevance_score": 0.7,
-      "justification": "Global digital cooperation is important for addressing the digital divide and ensuring that all countries can benefit from technological advancements. The document discusses the role of digital technologies in achieving sustainable development, underscoring its strategic importance in the global context."
+      "name": "Digital Inclusion",
+      "category": "Inclusion & Social Development",
+      "relevance_score": 0.85,
+      "justification": "Digital Inclusion is a key subtheme, with the document dedicating substantial content to ensuring equitable access to digital technologies, connectivity, and digital skills, particularly for vulnerable and marginalized groups. This theme is strategically important as it directly relates to the SDGs' commitment to 'leave no one behind' and is positioned as a critical enabler for education, gender equality, and economic participation in the post-pandemic recovery."
     }
   ]
 }

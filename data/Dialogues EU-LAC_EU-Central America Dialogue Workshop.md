@@ -1,44 +1,44 @@
-# EU-Central America Dialogues on Sustainable Food Systems: Building Strategic Partnerships for Resilience and Sustainability
+# EU-Latin America and Caribbean Dialogues on Sustainable Food Systems and EU-Central America Cooperation
 
 **Date**: 2022-03-22
 
-**Location**: Location not specified
+**Location**: Brussels, Belgium
 
 ## Executive Summary
 
-The European Union (EU) and Central America are collaborating to transition towards sustainable food systems, recognizing the significant impact of food systems on climate change and biodiversity loss. The dialogues aim to foster constructive exchanges and develop bi-regional strategies, focusing on key issues such as healthy soils, sustainable pesticide use, and food loss and waste. The first online workshop took place on March 22-23, 2022, involving policymakers and representatives from both regions, highlighting the importance of strategic partnerships in addressing global food security challenges exacerbated by recent crises. The initiative includes four sub-regional workshops, culminating in a bi-regional conference, reinforcing the commitment to sustainable agricultural practices and cooperation under the existing Association Agreement.
+The EU-Latin America and the Caribbean (LAC) Dialogues on Sustainable Food Systems aim to foster strategic partnerships to accelerate the transition to sustainable agriculture and food systems. Supported by the EU's Foreign Policy Instruments and the EU-LAC Policy Dialogue Facility, these dialogues include four sub-regional workshops and a concluding bi-regional conference in 2022. The first workshop with Central America in March 2022 featured policymakers from the EU, Central American governments, and private sector representatives discussing shared priorities such as soil health, sustainable pesticide use, and reducing food loss and waste. The dialogues emphasize the EU's Farm to Fork Strategy and the Green Deal's recognition of food systems' impact on climate change and biodiversity loss. Both regions, linked by a decade-old Association Agreement, committed to ongoing cooperation to build resilient, sustainable food systems amid global challenges like the pandemic and food security threats.
 
 ## Characteristics
 
-- The EU-LAC Dialogues focus on accelerating the transition to sustainable food systems through strategic partnerships and constructive exchanges of ideas.
-- The dialogues involve multiple workshops and a bi-regional conference, emphasizing collaboration between the EU and Central America.
-- Key topics include sustainable agriculture, food loss and waste, and the sustainable use of pesticides.
-- The initiative is part of the EU's broader Farm to Fork Strategy and Green Deal, addressing climate change and environmental degradation.
-- The dialogues aim to strengthen cooperation and identify common priorities between the EU and Central American countries.
+- The EU-LAC Dialogues focus on accelerating the transition to sustainable food systems and agricultural production through strategic partnerships between the EU and Latin America and the Caribbean.
+- The dialogues include four sub-regional workshops and a concluding bi-regional conference, covering topics like sustainable agriculture, pesticide use, food loss and waste, and soil protection.
+- The EU Farm to Fork Strategy and the Green Deal are central frameworks guiding discussions on reducing climate change, biodiversity loss, and environmental degradation caused by food systems.
+- The EU and Central America engage in policy dialogues involving government and private sector representatives to share perspectives and develop cooperative strategies for sustainable food systems.
+- Key issues addressed include health and soils, sustainable pesticide use, and reducing food loss and waste, with a commitment to ongoing dialogue and collaboration to build resilient global food systems.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Union; Secretariat for Central American Economic Integration; Ministries of Agriculture of the Central American governments; European Commission |
-| Economic Actors | Central American Bank for Economic Integration |
+| Political Actors | European Union; European Commission; Secretariat for Central American Economic Integration; Community of Latin American and Caribbean States; Southern Common Market |
+| Economic Actors | Secretariat for Central American Economic Integration |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Inclusion & Social Development | Sustainable Digital Development |
-| Regional & International Cooperation | EU-LAC Digital Alliance; EU-CELAC Digital Partnership |
+| Regional & International Cooperation | EU-LAC Digital Alliance; Bi-regional Cooperation |
+| Digital Transformation & Strategy | Digital Agenda |
 
 ## Practical Applications
 
-- Ongoing EU-Latin America and the Caribbean Dialogues on Sustainable Food Systems, which include a series of workshops and a bi-regional conference aimed at promoting collaboration and sharing best practices.
-- Established policy dialogues between the EU and Central America focusing on sustainable agriculture and food systems, with participation from EU representatives, Central American governments, and the private sector.
-- Implementation of the EU Farm to Fork Strategy as part of the Green Deal, which addresses the sustainability of food systems and their impact on climate change and biodiversity.
-- Active discussions on key elements such as healthy soils, sustainable use of pesticides, and food loss and waste during the workshops, aimed at developing bi-regional strategies for sustainable food systems.
-- A decade-long Association Agreement between the EU and Central America that facilitates cooperation and exchange in building sustainable food systems.
+- Organisation of EU-Latin America and the Caribbean (LAC) Dialogues on Sustainable Food Systems, supported by the Foreign Policy Instruments (FPI) and the EU-Lac Policy Dialogue Facility, including four sub-regional workshops and a concluding bi-regional conference.
+- Conducting sub-regional workshops such as the EU-Central America Dialogue (March 2022), EU-Mercosur and Chile Dialogue (May 2022), and EU-Colombia, Ecuador and Peru Dialogue (September 2022) focusing on sustainable agriculture, sustainable food systems, sustainable use of pesticides, food loss and waste reduction, and soil protection.
+- Engagement of policy makers from the EU, Central American governments, the Secretariat for Central American Economic Integration (SIECA), and the Central American private sector in dialogues to share perspectives and strategies on sustainable food systems.
+- Promotion of bi-regional cooperation and strategic partnerships under the framework of the EU-Central America Association Agreement to strengthen exchanges and joint construction of sustainable food systems.
+- Focus on key elements such as healthy soils, sustainable pesticide use, and food loss and waste reduction as decisive parameters for sustainable food systems in the dialogues.
+- Commitment to continue dialogues and build synergies for the transition to sustainable and more resilient food systems at the global level.
 
 ## Commitments
 
-- Conduct a total of four sub-regional workshops on Sustainable Food Systems.
-- Hold a bi-regional conference expected to take place at the end of 2022.
+- Organize a total of four sub-regional workshops on Sustainable Food Systems, concluding with a bi-regional conference expected to take place at the end of 2022.

@@ -1,68 +1,89 @@
 {
-  "title": "68th Session of the Commission on the Status of Women: Agreed Conclusions on Gender Equality and Women's Empowerment",
+  "title": "Agreed Conclusions of the 68th Session of the UN Commission on the Status of Women on Accelerating Gender Equality by Addressing Poverty and Strengthening Institutions and Financing",
   "date": "2024-03-25",
-  "location": "New York, USA",
-  "executive_summary": "The 68th session of the Commission on the Status of Women, held from March 11-22, 2024, focused on accelerating gender equality and empowering women and girls by addressing poverty and enhancing institutional financing. The Commission reaffirmed commitments from the Beijing Declaration and emphasized the need for comprehensive implementation of gender-responsive policies. Key conclusions highlighted the importance of addressing systemic barriers, including poverty, discrimination, and violence against women. The session called for increased investments in education, health, and social protection, particularly for marginalized groups, and recognized the critical role of women in sustainable development. It urged member states to adopt gender-sensitive budgeting and enhance international cooperation to support women's empowerment. The Commission also stressed the need for robust data collection to inform policies and ensure accountability in achieving gender equality and addressing poverty.",
+  "location": "New York, United States",
+  "executive_summary": "The 68th session of the UN Commission on the Status of Women reaffirmed commitments to the Beijing Declaration and Platform for Action and related international frameworks, emphasizing the urgent need to accelerate gender equality and empower all women and girls by addressing poverty and strengthening institutions and financing with a gender perspective. The Commission highlighted the disproportionate impact of poverty, violence, climate change, and systemic discrimination on women and girls, especially marginalized groups such as Indigenous women, women with disabilities, and migrants. It called for comprehensive, gender-responsive policies including social protection, education, healthcare, financial inclusion, and legal reforms to eradicate poverty and promote women's economic empowerment. The session stressed the importance of data collection, international cooperation, and the full participation of women in decision-making. It urged enhanced financing, institutional capacity-building, and support for civil society organizations to ensure sustainable development and the realization of women's human rights globally.",
   "characteristics": [
-    "The 68th session of the Commission on the Status of Women focuses on accelerating gender equality and women's empowerment, particularly addressing poverty and strengthening institutions with a gender perspective.",
-    "It reaffirms commitments from the Beijing Declaration and emphasizes the importance of implementing gender-responsive policies to achieve sustainable development.",
-    "The session highlights the need for comprehensive strategies to combat the feminization of poverty and recognizes the unique challenges faced by women and girls in various contexts.",
-    "It calls for increased investment in education, health, and social protection systems to support women's economic empowerment and participation in decision-making.",
-    "The Commission stresses the importance of disaggregated data to inform policies and track progress towards gender equality and poverty eradication.",
-    "It advocates for the engagement of men and boys as allies in promoting gender equality and addressing systemic barriers to women's empowerment."
+    "The 68th session of the Commission on the Status of Women focused on accelerating gender equality and empowerment of women and girls by addressing poverty and strengthening institutions and financing with a gender perspective.",
+    "It reaffirmed commitments to international frameworks like the Beijing Declaration, CEDAW, and the 2030 Agenda for Sustainable Development, emphasizing their role in sustainable development and human rights.",
+    "The session highlighted the feminization of poverty, intersecting discrimination, and the disproportionate impact of global crises on women and girls, calling for comprehensive, gender-responsive policies.",
+    "It stressed the importance of women's full participation in decision-making, access to education, healthcare, social protection, and economic resources, including financial inclusion and decent work.",
+    "The Commission urged enhanced international cooperation, reforms in financial systems, and increased investments in social infrastructure, data collection, and support for civil society and women's organizations.",
+    "It emphasized combating violence against women, addressing unpaid care work, and promoting inclusive, gender-sensitive approaches in climate action, migration, and digital technology access."
   ],
   "themes": {
     "Inclusion & Social Development": [
       "Gender Equality in Tech",
-      "Digital Inclusion"
-    ],
-    "Data & Governance": [
-      "Digital Rights"
+      "Digital Education"
     ]
   },
   "actors": {
     "Political Actors": [
       "United Nations",
-      "United Nations Officials"
+      "United Nations Officials",
+      "Governments"
     ],
     "Civil Society Actors": [
-      "Civil Society Organisations"
+      "Civil Society Organisations",
+      "Non-governmental Institutions"
     ]
   },
   "practical_applications": [
-    "The Commission on the Status of Women reaffirms the Beijing Declaration and Platform for Action, emphasizing the need for their implementation to achieve gender equality and the empowerment of all women and girls.",
-    "The Commission recognizes the importance of integrating a gender perspective into financing for development commitments and calls for actions to implement existing commitments related to gender equality.",
-    "The Commission emphasizes the need for comprehensive poverty eradication strategies that address social, structural, and macroeconomic issues to ensure an adequate standard of living for all women and girls.",
-    "The Commission calls for the establishment of effective partnerships to support developing countries in eradicating poverty and achieving gender equality, including improving tax systems and promoting financial inclusion.",
-    "The Commission urges the implementation of gender-responsive budgeting and tracking across all sectors of public expenditure to address gaps in resourcing for gender equality.",
-    "The Commission recognizes the importance of civil society organizations in promoting and protecting the rights of women and girls and calls for increased public and private financing for these organizations.",
-    "The Commission emphasizes the need for measures to combat trafficking and raise public awareness about the risks of trafficking in women and girls.",
-    "The Commission calls for the full, equal, and meaningful participation of women in decision-making processes at all levels, particularly in economic policy and poverty eradication strategies.",
-    "The Commission recognizes the critical role of women in agriculture and calls for policies that support women's access to resources and decision-making in agricultural production.",
-    "The Commission emphasizes the importance of improving public services and sustainable infrastructure to enhance the safety and well-being of women and girls.",
-    "The Commission calls for the strengthening of national mechanisms for gender equality and the empowerment of women and girls to support gender-responsive approaches in public agencies.",
-    "The Commission recognizes the need for comprehensive social protection systems that integrate a gender perspective to ensure full access for all women and girls, particularly those living in poverty."
+    "Implementation of comprehensive and participatory poverty eradication strategies that address social, structural, and macroeconomic issues to ensure an adequate standard of living for all women and girls, including through social protection systems, access to public services, and sustainable infrastructure.",
+    "Creation and sustenance of effective partnerships to support developing countries in eradicating poverty and achieving gender equality, including improving tax systems, promoting financial inclusion, enhancing capacity-building, entrepreneurship, and promoting full and productive employment and decent work for women.",
+    "Promotion and enforcement of non-discriminatory laws, social infrastructure, and policies for sustainable development that enable full, equal, and meaningful participation and leadership of women, including young women, in all spheres and levels of public life.",
+    "Implementation of multisectoral and coordinated approaches to eliminate all forms of violence against women and girls, including sexual and gender-based violence, harmful practices, trafficking, and exploitation, with measures to investigate, prosecute, and punish perpetrators and create safe working environments.",
+    "Promotion of gender-responsive policies and programs to support financial inclusion, ensuring equal access to credit, social security, markets, financial skills, technology, rural infrastructure, and finance networks for women entrepreneurs and women in the informal economy.",
+    "Mainstreaming a gender perspective into agricultural policies and projects to close the gender gap in investments, innovation, and access to resources, technologies, markets, and decision-making forums for women in agriculture, fisheries, and value chains.",
+    "Strengthening social protection schemes, including unemployment protection and pension systems, to ensure women’s full and equal access and reduce gender gaps in coverage and benefits.",
+    "Promotion of quality, affordable, resilient, and accessible public health-care systems and services, including sexual and reproductive health-care, mental health, maternal and neonatal health, and menstrual health and hygiene management.",
+    "Investment in quality, equitable, affordable, accessible, and inclusive education, lifelong learning, reskilling, vocational training, and digital education for women and girls, including those living in poverty and marginalized groups.",
+    "Recognition, reduction, and redistribution of women’s and girls’ disproportionate share of unpaid care and domestic work through investments in the care economy, work-life balance policies, and provision of accessible, affordable, and quality social services and care facilities.",
+    "Establishment or strengthening of inclusive, comprehensive, and universal social protection systems with a gender perspective to ensure full access for all women and girls, including those in poverty and informal employment.",
+    "Expansion of fiscal space and strengthening of institutions to support economic and societal transformations to end women’s poverty, including reforms for a stable, inclusive, and sustainable international financial architecture.",
+    "Support for gender-responsive budgeting and tracking across all sectors of public expenditure to resource national and sectoral plans for gender equality and women’s empowerment effectively.",
+    "Strengthening national and local planning and budgetary processes to cost, allocate, and invest in policies addressing challenges faced by women and girls living in poverty, including gender analyses embedded in policymaking.",
+    "Promotion of inclusive, effective international tax cooperation to expand fiscal space and direct resources to eradicate poverty among women and girls.",
+    "Improvement of international debt mechanisms to support debt review, payment suspensions, restructuring, and debt relief to enhance fiscal space for investments benefiting women and girls living in poverty.",
+    "Encouragement of programs that increase the capacity of women-led and women-owned businesses to advance gender equality and women’s economic empowerment, including facilitating their participation in domestic, regional, and international trade.",
+    "Strengthening international and regional cooperation, including North-South, South-South, and triangular cooperation, focusing on shared development priorities and capacity-building to implement Sustainable Development Goals with involvement of multiple stakeholders.",
+    "Urging developed countries to fully implement official development assistance commitments, targeting investments for gender equality and empowerment of women and girls living in poverty.",
+    "Promotion of a safe and enabling environment for civil society actors, increasing public and private financing for civil society organizations, prioritizing local community-level initiatives, and strengthening monitoring and accountability.",
+    "Support for women’s collectives, cooperatives, trade unions, and associations in advocating for the right to work, rights at work, equal pay, and participation in labor policy design and implementation.",
+    "Engagement of men and boys as agents and beneficiaries of change and strategic partners in achieving gender equality, including addressing gender stereotypes, unequal power relations, and promoting equal sharing of care and domestic work responsibilities.",
+    "Investment in family-oriented policies addressing multidimensional poverty faced by women and girls, focusing on access to education, training, health, employment, social security, livelihoods, social cohesion, and social protection measures with a gender perspective.",
+    "Strengthening capacity of national statistical offices and government institutions to collect, analyze, disseminate, and use disaggregated data and gender statistics on multidimensional poverty and related issues to inform policy and program design and assessment.",
+    "Development of gender-sensitive measures of progress on sustainable development that recognize unpaid care and domestic work and promote inclusive approaches to international cooperation and access to development finance."
   ],
   "commitments": [
-    "By 2030, an estimated 8% of women worldwide (342 million) will be subsisting on less than $2.15 a day if current trends continue.",
-    "The Commission calls for developed countries to fully implement their official development assistance commitments, including the target of 0.7% of their gross national income for official development assistance to developing countries and the target of 0.15 to 0.20% of their gross national income for official development assistance to the least developed countries.",
-    "The Commission recognizes the urgency of providing predictable, sustainable, and sufficient development finance to developing countries to significantly increase resources for ending poverty in all its forms and dimensions, including extreme and multidimensional poverty affecting women and girls.",
-    "The Commission emphasizes the need for bold and ambitious reforms in the international financial architecture to address the financing needs of developing countries and the needs of all women and girls living in poverty."
+    "Developed countries are urged to fully implement their official development assistance commitments, including the target of 0.7% of their gross national income for official development assistance to developing countries and the target of 0.15 to 0.20% of their gross national income for official development assistance to the least developed countries.",
+    "By 2030, an estimated 8% of women worldwide (342 million) are projected to subsist on less than $2.15 a day if current trends continue, highlighting the urgency to address extreme poverty among women.",
+    "The Commission calls for strengthening national and local planning and budgetary processes to cost, allocate, and invest in policies and programs addressing challenges facing all women and girls living in poverty, including conducting gender analyses embedded in policy and decision-making processes.",
+    "The Commission calls for strengthening international tax cooperation, including combating tax evasion and avoidance and curbing illicit financial flows, to expand fiscal space and direct resources to eradicate poverty among women and girls throughout their life course.",
+    "The Commission urges the improvement of international debt mechanisms to support debt review, debt payment suspensions, and debt restructuring, with expansion of support and eligibility to vulnerable countries, to enhance fiscal space for investments for all women and girls living in poverty.",
+    "The Commission calls for the promotion and enforcement of non-discriminatory laws, social infrastructure, and policies for sustainable development, enabling full, equal, and meaningful participation and leadership of women, including young women, in all spheres and levels of public life.",
+    "The Commission calls for significantly increasing public and private sector investment in evidence-based initiatives aimed at eliminating the gender digital divide, especially for women and girls living in poverty.",
+    "The Commission calls for ensuring universal access to sexual and reproductive health-care services, including family planning, information, and education, as part of gender-responsive health policies.",
+    "The Commission calls for the establishment or strengthening of inclusive, comprehensive, and universal social protection systems, including floors, integrating a gender perspective to ensure full access to social protection for all women and girls, including those living in poverty.",
+    "The Commission calls for accelerating efforts and providing adequate resources to promote the full, equal, and meaningful participation of women in all decision-making bodies at all levels of government.",
+    "The Commission calls for promoting and protecting the rights of older women and increasing their resilience by ensuring equal access to social, legal, digital, and financial services, infrastructure, health-care services, social protection, and economic resources.",
+    "The Commission calls for promoting a safe and enabling environment for all civil society actors and increasing public and private financing, including robust, sustainable, flexible, multi-year financing, for civil society organizations, prioritizing local community-level initiatives.",
+    "The Commission calls for strengthening the capacity of national statistical offices and government institutions by providing financial, technical, and human resources to collect, analyze, disseminate, and use disaggregated data and gender statistics on multidimensional poverty, including on women and girls living in poverty."
   ],
-  "score": 85,
+  "score": 59,
   "quality_breakdown": {
-    "faithfulness": 100,
-    "consistency": 85,
-    "completeness": 85,
-    "accuracy": 60,
+    "faithfulness": 0,
+    "consistency": 92,
+    "completeness": 95,
+    "accuracy": 90,
     "issues": [
-      "Potential factual errors in basic content or strategic extra data"
+      "Low faithfulness - check for hallucinations in basic or strategic extra data"
     ]
   },
   "extra_data": {
     "lead_country_iso": "USA",
     "agreement_type": [
-      "Ministerial Communiqué"
+      "Agreed Conclusions"
     ],
     "legal_bindingness": "Politically-binding",
     "coverage_scope": "Global",
@@ -71,9 +92,10 @@
     "beneficiary_group_raw": [
       "woman",
       "girl",
-      "community",
-      "Indigenous",
-      "migrant"
+      "Indigenous woman",
+      "migrant woman",
+      "older woman",
+      "rural woman"
     ],
     "beneficiary_group": [
       {
@@ -91,149 +113,207 @@
       {
         "category": "Migrants & Refugees",
         "label": "Migrants"
+      },
+      {
+        "category": "Women & Girls",
+        "label": "Gender Equality Initiatives"
+      },
+      {
+        "category": "Rural & Remote Communities",
+        "label": "Rural Populations"
       }
     ],
     "start_date": "2024-03-11",
     "end_date": "2024-03-22",
     "commitment_details": [
       {
-        "text": "By 2030, an estimated 8% of women worldwide (342 million) will be subsisting on less than $2.15 a day if current trends continue.",
+        "text": "Developed countries are urged to fully implement their official development assistance commitments, including the target of 0.7% of their gross national income for official development assistance to developing countries and the target of 0.15 to 0.20% of their gross national income for official development assistance to the least developed countries.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "By 2030, an estimated 8% of women worldwide (342 million) are projected to subsist on less than $2.15 a day if current trends continue, highlighting the urgency to address extreme poverty among women.",
         "commitment_class": "Declarative"
       },
       {
-        "text": "The Commission calls for developed countries to fully implement their official development assistance commitments, including the target of 0.7% of their gross national income for official development assistance to developing countries and the target of 0.15 to 0.20% of their gross national income for official development assistance to the least developed countries.",
+        "text": "The Commission calls for strengthening national and local planning and budgetary processes to cost, allocate, and invest in policies and programs addressing challenges facing all women and girls living in poverty, including conducting gender analyses embedded in policy and decision-making processes.",
         "commitment_class": "Programmatic"
       },
       {
-        "text": "The Commission recognizes the urgency of providing predictable, sustainable, and sufficient development finance to developing countries to significantly increase resources for ending poverty in all its forms and dimensions, including extreme and multidimensional poverty affecting women and girls.",
+        "text": "The Commission calls for strengthening international tax cooperation, including combating tax evasion and avoidance and curbing illicit financial flows, to expand fiscal space and direct resources to eradicate poverty among women and girls throughout their life course.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Commission urges the improvement of international debt mechanisms to support debt review, debt payment suspensions, and debt restructuring, with expansion of support and eligibility to vulnerable countries, to enhance fiscal space for investments for all women and girls living in poverty.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Commission calls for the promotion and enforcement of non-discriminatory laws, social infrastructure, and policies for sustainable development, enabling full, equal, and meaningful participation and leadership of women, including young women, in all spheres and levels of public life.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Commission calls for significantly increasing public and private sector investment in evidence-based initiatives aimed at eliminating the gender digital divide, especially for women and girls living in poverty.",
         "commitment_class": "Financed"
       },
       {
-        "text": "The Commission emphasizes the need for bold and ambitious reforms in the international financial architecture to address the financing needs of developing countries and the needs of all women and girls living in poverty.",
+        "text": "The Commission calls for ensuring universal access to sexual and reproductive health-care services, including family planning, information, and education, as part of gender-responsive health policies.",
         "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Commission calls for the establishment or strengthening of inclusive, comprehensive, and universal social protection systems, including floors, integrating a gender perspective to ensure full access to social protection for all women and girls, including those living in poverty.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Commission calls for accelerating efforts and providing adequate resources to promote the full, equal, and meaningful participation of women in all decision-making bodies at all levels of government.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "The Commission calls for promoting and protecting the rights of older women and increasing their resilience by ensuring equal access to social, legal, digital, and financial services, infrastructure, health-care services, social protection, and economic resources.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "The Commission calls for promoting a safe and enabling environment for all civil society actors and increasing public and private financing, including robust, sustainable, flexible, multi-year financing, for civil society organizations, prioritizing local community-level initiatives.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "The Commission calls for strengthening the capacity of national statistical offices and government institutions by providing financial, technical, and human resources to collect, analyze, disseminate, and use disaggregated data and gender statistics on multidimensional poverty, including on women and girls living in poverty.",
+        "commitment_class": "Financed"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "10.3 per cent of women are living in extreme poverty and, if current trends continue, an estimated 8 per cent of women worldwide (342 million) will be subsisting on less than $2.15 a day in 2030.",
-        "kpi_type": "quantitative",
-        "metric_name": "Extreme Poverty Rate for Women",
-        "target_value": 8.0,
-        "target_description": "Reduce the percentage of women living on less than $2.15 a day to 8% by 2030.",
-        "unit": "percentage",
-        "timeframe": "by 2030",
-        "measurement_method": "Statistical analysis of poverty rates",
-        "responsible_entity": "Member States",
-        "sector": "Economic Development"
+        "kpi_text": "Mobilize resources equitably and target investments and policies towards achieving gender equality and the empowerment of all women and girls and eradicating poverty in all its forms and dimensions, including extreme poverty affecting women and girls.",
+        "kpi_type": "qualitative",
+        "metric_name": "Equitable Resource Mobilization for Gender Equality and Poverty Eradication",
+        "target_value": null,
+        "target_description": "Mobilize and target investments and policies to achieve gender equality and eradicate all forms of poverty, including extreme poverty affecting women and girls.",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Assessment of resource allocation and policy targeting effectiveness",
+        "responsible_entity": "Member States, Governments",
+        "sector": "Gender Equality, Poverty Eradication"
       },
       {
-        "kpi_text": "Recognize the urgency of providing predictable, sustainable and sufficient development finance to developing countries from all sources in order to significantly increase resources for ending poverty in all its forms and dimensions, including extreme and multidimensional poverty, affecting women and girls.",
+        "kpi_text": "Increase public and private sector investment in evidence-based initiatives aimed at eliminating the gender digital divide, especially for women and girls living in poverty.",
         "kpi_type": "qualitative",
-        "metric_name": "Development Finance for Poverty Eradication",
+        "metric_name": "Investment in Gender Digital Divide Initiatives",
         "target_value": null,
-        "target_description": "Increase development finance to address poverty affecting women and girls.",
+        "target_description": "Significantly increase investments to eliminate the gender digital divide for women and girls living in poverty.",
         "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Monitoring of financial commitments and allocations",
-        "responsible_entity": "International Financial Institutions",
-        "sector": "Finance"
+        "timeframe": null,
+        "measurement_method": "Tracking investment levels and impact on digital inclusion",
+        "responsible_entity": "Public and Private Sectors",
+        "sector": "Digital Inclusion, Gender Equality"
       },
       {
-        "kpi_text": "Promote and protect the rights of older women and increase their resilience by ensuring their equal access to social, legal, digital and financial services, infrastructure, health-care services, social protection, adequate economic and financial resources, education, lifelong learning and training.",
+        "kpi_text": "Promote the full, equal and meaningful participation of women in all decision-making bodies at all levels of government, including by eliminating gender stereotyping in appointments and promotions.",
         "kpi_type": "qualitative",
-        "metric_name": "Rights and Resilience of Older Women",
+        "metric_name": "Women’s Participation in Decision-Making Bodies",
         "target_value": null,
-        "target_description": "Ensure equal access to services and resources for older women.",
+        "target_description": "Achieve full, equal and meaningful participation of women in decision-making at all government levels by eliminating gender stereotyping.",
         "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Policy implementation and monitoring",
-        "responsible_entity": "Member States",
-        "sector": "Social Services"
+        "timeframe": null,
+        "measurement_method": "Monitoring representation and participation rates of women in decision-making roles",
+        "responsible_entity": "Governments, National Mechanisms for Gender Equality",
+        "sector": "Governance, Gender Equality"
       },
       {
-        "kpi_text": "Significantly increase public and private sector investment in evidence-based initiatives aimed at eliminating the gender digital divide, especially for women and girls living in poverty.",
+        "kpi_text": "Take measures to significantly reduce maternal, perinatal, neonatal, infant and child mortality and morbidity and increase access to quality health services for newborns, infants and children, as well as all women before, during and after pregnancy and childbirth.",
         "kpi_type": "qualitative",
-        "metric_name": "Investment in Gender Digital Initiatives",
+        "metric_name": "Reduction in Maternal and Child Mortality and Morbidity",
         "target_value": null,
-        "target_description": "Increase investment in initiatives to eliminate the gender digital divide.",
+        "target_description": "Significantly reduce mortality and morbidity rates and increase access to quality health services for women and children around childbirth.",
         "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Tracking investment levels and outcomes",
-        "responsible_entity": "Private Sector and Governments",
-        "sector": "Technology"
-      },
-      {
-        "kpi_text": "Take measures to significantly reduce maternal, perinatal, neonatal, infant and child mortality and morbidity and increase access to quality health services for newborns, infants and children.",
-        "kpi_type": "qualitative",
-        "metric_name": "Reduction in Maternal and Child Mortality",
-        "target_value": null,
-        "target_description": "Reduce maternal and child mortality rates and improve access to health services.",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Health statistics and service access monitoring",
-        "responsible_entity": "Health Ministries",
+        "timeframe": null,
+        "measurement_method": "Health statistics on mortality and morbidity rates; access to health services",
+        "responsible_entity": "Health Ministries, Governments",
         "sector": "Health"
       },
       {
-        "kpi_text": "Ensure universal access to sexual and reproductive health and reproductive rights, in accordance with the Programme of Action of the International Conference on Population and Development.",
+        "kpi_text": "Ensure universal access to sexual and reproductive health and reproductive rights, including universal access to sexual and reproductive health-care services, family planning, information and education.",
         "kpi_type": "qualitative",
-        "metric_name": "Universal Access to Reproductive Health",
+        "metric_name": "Universal Access to Sexual and Reproductive Health Services",
         "target_value": null,
-        "target_description": "Achieve universal access to sexual and reproductive health services.",
+        "target_description": "Guarantee universal access to sexual and reproductive health-care services and related education and information.",
         "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Monitoring of health service access and utilization",
-        "responsible_entity": "Health Ministries",
-        "sector": "Health"
+        "timeframe": null,
+        "measurement_method": "Coverage and accessibility data of sexual and reproductive health services",
+        "responsible_entity": "Health Ministries, Governments",
+        "sector": "Health, Gender Equality"
       },
       {
-        "kpi_text": "Promote the full, equal and meaningful participation and leadership of young women and, as appropriate, adolescent girls in decision-making processes in the context of addressing poverty and strengthening institutions.",
+        "kpi_text": "Promote labour and employment policies that respect relevant international labour standards and ensure women’s economic autonomy, independence and empowerment, including by enhancing their full and productive employment and promoting equal pay for work of equal value.",
         "kpi_type": "qualitative",
-        "metric_name": "Participation of Young Women in Decision-Making",
+        "metric_name": "Labour Policies for Women’s Economic Empowerment",
         "target_value": null,
-        "target_description": "Increase the participation and leadership of young women in decision-making.",
+        "target_description": "Implement labour policies that ensure women’s economic autonomy, full employment, and equal pay for equal work.",
         "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Assessment of participation rates in decision-making bodies",
-        "responsible_entity": "Governments and NGOs",
-        "sector": "Governance"
+        "timeframe": null,
+        "measurement_method": "Evaluation of labour policies and employment statistics disaggregated by gender",
+        "responsible_entity": "Labour Ministries, Governments",
+        "sector": "Labour, Economic Empowerment"
       },
       {
-        "kpi_text": "Strengthen authority, operational and technical capacities and resources for national mechanisms working on gender equality and the empowerment of all women and girls.",
+        "kpi_text": "Expand fiscal space and strengthen institutions towards supporting economic and societal transformations to end women’s poverty, securing sustainable development by focusing on reducing systemic risks and structural inequalities.",
         "kpi_type": "qualitative",
-        "metric_name": "Capacity Building for Gender Equality Mechanisms",
+        "metric_name": "Fiscal Space Expansion for Ending Women’s Poverty",
         "target_value": null,
-        "target_description": "Enhance the capacity of national mechanisms for gender equality.",
+        "target_description": "Expand fiscal space and institutional capacity to support transformations aimed at ending women’s poverty and reducing inequalities.",
         "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Evaluation of capacity and resource allocation",
-        "responsible_entity": "National Governments",
-        "sector": "Governance"
+        "timeframe": null,
+        "measurement_method": "Assessment of fiscal policies, budget allocations and institutional reforms",
+        "responsible_entity": "Finance Ministries, Governments",
+        "sector": "Public Finance, Poverty Eradication"
       },
       {
-        "kpi_text": "Eliminate all forms of discrimination, including those exacerbated by poverty and hunger, against all women and girls.",
+        "kpi_text": "Strengthen the capacity of national statistical offices and government institutions to collect, analyse, disseminate and use disaggregated data and gender statistics on multidimensional poverty, including on women and girls living in poverty.",
         "kpi_type": "qualitative",
-        "metric_name": "Elimination of Discrimination Against Women",
+        "metric_name": "Capacity Building for Gender-Disaggregated Poverty Data",
         "target_value": null,
-        "target_description": "Achieve the elimination of discrimination against women and girls.",
+        "target_description": "Enhance capacity for collection and use of disaggregated gender data on multidimensional poverty.",
         "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Monitoring of discrimination cases and policy effectiveness",
-        "responsible_entity": "Governments and NGOs",
-        "sector": "Social Justice"
+        "timeframe": null,
+        "measurement_method": "Evaluation of data systems and availability of disaggregated statistics",
+        "responsible_entity": "National Statistical Offices, Governments",
+        "sector": "Data and Statistics, Poverty Eradication"
+      },
+      {
+        "kpi_text": "Promote and enforce non-discriminatory laws, social infrastructure and policies for sustainable development, as well as enable the full, equal and meaningful participation and leadership of women, including young women, in all spheres and levels of public life.",
+        "kpi_type": "qualitative",
+        "metric_name": "Legal and Policy Frameworks for Women’s Participation and Leadership",
+        "target_value": null,
+        "target_description": "Establish and enforce laws and policies that ensure non-discrimination and promote women’s leadership and participation in all public spheres.",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Review of legal frameworks and participation metrics",
+        "responsible_entity": "Governments, Legislatures",
+        "sector": "Governance, Gender Equality"
+      },
+      {
+        "kpi_text": "Take measures to eradicate poverty in all its forms and dimensions, including extreme poverty, and the feminization of poverty, which are major barriers to women’s economic empowerment and sustainable development.",
+        "kpi_type": "qualitative",
+        "metric_name": "Eradication of Poverty and Feminization of Poverty",
+        "target_value": null,
+        "target_description": "Implement comprehensive poverty eradication strategies addressing all forms of poverty and its feminization.",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Poverty rate statistics and gender-disaggregated poverty data",
+        "responsible_entity": "Member States, Governments",
+        "sector": "Poverty Eradication, Gender Equality"
       }
     ],
     "country_list_iso": [],
-    "responsible_entity": "UN Women",
+    "responsible_entity": "United Nations Entity for Gender Equality and the Empowerment of Women (UN-Women)",
     "sdg_alignment": [
       "SDG 1: No Poverty",
       "SDG 2: Zero Hunger",
       "SDG 3: Good Health and Well-being",
       "SDG 4: Quality Education",
       "SDG 5: Gender Equality",
+      "SDG 6: Clean Water and Sanitation",
+      "SDG 8: Decent Work and Economic Growth",
       "SDG 10: Reduced Inequalities",
-      "SDG 12: Responsible Consumption and Production",
       "SDG 13: Climate Action",
+      "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
   },
@@ -241,40 +321,34 @@
     {
       "name": "United Nations",
       "category": "Political Actors",
+      "relevance_score": 1.0,
+      "justification": "The United Nations is the primary institutional framework within which the Commission on the Status of Women operates. It is repeatedly referenced as the overarching body responsible for setting international legal frameworks, conventions, and agendas related to gender equality, poverty eradication, and sustainable development. The UN also coordinates key initiatives and supports member states in implementation."
+    },
+    {
+      "name": "Governments",
+      "category": "Political Actors",
       "relevance_score": 0.9,
-      "justification": "The United Nations is the primary actor in the text, driving the agenda for gender equality and the empowerment of women and girls. It is frequently mentioned and plays a crucial role in setting international standards and frameworks."
+      "justification": "Governments are emphasized as the main actors responsible for implementing policies, legislation, and national strategies to achieve gender equality and poverty eradication. They hold primary responsibility for follow-up and review of the 2030 Agenda and are central to enacting laws, financing, and institutional reforms discussed in the document."
     },
     {
       "name": "Civil Society Organisations",
       "category": "Civil Society Actors",
-      "relevance_score": 0.8,
-      "justification": "Civil Society Organisations are highlighted as key players in advocating for women's rights and gender equality. Their involvement is essential for grassroots mobilization and ensuring that the voices of women and girls are heard in policy discussions."
-    },
-    {
-      "name": "United Nations Officials",
-      "category": "Political Actors",
-      "relevance_score": 0.7,
-      "justification": "United Nations Officials are important for implementing the policies and initiatives discussed in the text. They are responsible for coordinating efforts and ensuring that the commitments made by the UN are followed through at various levels."
+      "relevance_score": 0.75,
+      "justification": "Civil society organizations, especially women’s, youth-led, grassroots, indigenous, and feminist groups, are recognized as critical contributors to promoting and protecting women’s rights, shaping policies, and monitoring implementation. Their engagement is vital for inclusive participation and accountability, though they face challenges such as funding and security risks."
     }
   ],
   "top_themes": [
     {
-      "name": "Gender Equality in Tech",
-      "category": "Inclusion & Social Development",
-      "relevance_score": 0.9,
-      "justification": "This theme is central to the document's main message, which emphasizes the importance of gender equality and women's empowerment across various sectors, including technology. The document dedicates significant content to addressing barriers women face in tech and the need for inclusive policies."
-    },
-    {
-      "name": "Digital Inclusion",
-      "category": "Inclusion & Social Development",
+      "name": "Gender Equality in Tech (Inclusion & Social Development)",
+      "category": "Gender Equality and Empowerment",
       "relevance_score": 0.85,
-      "justification": "Digital inclusion is crucial for achieving gender equality, as it addresses the disparities in access to technology and digital resources. The document highlights the importance of ensuring that women and girls have equal access to digital tools, which is essential for their empowerment and participation in the economy."
+      "justification": "The document emphasizes closing the gender digital divide and ensuring women's equal access to technology, digital skills, and participation in the digital economy as critical to achieving gender equality and empowerment. It highlights the strategic importance of technology inclusion in overcoming poverty and structural inequalities."
     },
     {
-      "name": "Digital Rights",
-      "category": "Data & Governance",
+      "name": "Digital Education (Inclusion & Social Development)",
+      "category": "Education and Capacity Building",
       "relevance_score": 0.75,
-      "justification": "Digital rights are strategically important as they relate to the broader context of human rights and gender equality. The document discusses the need for protecting women's rights in digital spaces, which is vital for ensuring their safety and empowerment in an increasingly digital world."
+      "justification": "Digital education is addressed as a key enabler for women and girls to overcome poverty and gain economic empowerment. The document dedicates significant content to promoting inclusive, safe, and quality digital learning environments, digital literacy, and lifelong learning opportunities, linking education directly to gender equality goals."
     }
   ]
 }

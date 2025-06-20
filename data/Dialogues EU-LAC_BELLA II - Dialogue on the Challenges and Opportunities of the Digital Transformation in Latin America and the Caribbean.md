@@ -1,4 +1,4 @@
-# Dialogue on Digital Transformation in Latin America and the Caribbean: Outcomes Report from Montevideo
+# Dialogue on the Challenges and Opportunities of the Digital Transformation in Latin America and the Caribbean – Outcomes Report
 
 **Date**: 2022-11-16
 
@@ -6,47 +6,60 @@
 
 ## Executive Summary
 
-The BELLA II project, coordinated by RedCLARA, aims to enhance digital transformation in Latin America and the Caribbean (LAC) through a series of dialogues, starting with a significant meeting in Montevideo on November 16, 2022. This initiative seeks to foster a digital alliance between LAC and Europe, focusing on long-term public policies, cooperation among stakeholders, and workforce training to bridge the digital divide. Key outcomes from the dialogue highlighted the necessity for stable policies, collaborative projects addressing common challenges like climate change, and the importance of training a skilled workforce to meet the demands of Industry 4.0. The project will invest €28 million to improve digital infrastructure and promote knowledge exchange, ultimately aiming to create a more inclusive and innovative digital ecosystem across the regions. Future dialogues and a web platform will facilitate ongoing collaboration and information sharing among stakeholders.
+The BELLA II project, coordinated by RedCLARA, held a dialogue in Montevideo on November 16, 2022, addressing digital transformation challenges and opportunities in Latin America and the Caribbean (LAC). The initiative aims to strengthen digital infrastructure, foster cooperation with Europe, and promote human-centered digital development. Key outcomes highlighted the need for long-term, stable public policies, enhanced cooperation across sectors and regions, and robust training programs to build digital skills. Participants emphasized addressing the digital divide beyond connectivity, including cultural and educational aspects, and the importance of inclusive strategies, especially for women and indigenous peoples. The role of academia, national research networks, and RedCLARA in facilitating knowledge transfer, infrastructure access, and policy articulation was underscored. The dialogue also stressed the urgency of cybersecurity training and the development of interoperable platforms. These insights will guide BELLA II’s ongoing dialogue process, aiming to foster sustainable digital transformation and regional integration through collaborative projects and policy frameworks.
 
 ## Characteristics
 
-- **Project Overview**: BELLA II aims to enhance the digital ecosystem in Latin America and the Caribbean (LAC) through a collaborative digital alliance with Europe, focusing on education, science, technology, and innovation.
-- **Dialogue Methodology**: The project employs a World Café methodology to facilitate open discussions among diverse stakeholders, fostering co-creation of solutions to digital transformation challenges.
-- **Stakeholder Engagement**: The dialogue involved a wide range of participants, including academic institutions, government representatives, technology companies, and international organizations, emphasizing the importance of multi-sector collaboration.
-- **Focus Areas**: Key topics addressed include the need for long-term public policies, workforce training, digital infrastructure, and strategies to bridge the digital divide, particularly in vulnerable communities.
-- **Future Steps**: The outcomes from the dialogue will inform ongoing discussions and initiatives, with plans for further meetings and a web platform to maintain engagement and collaboration among stakeholders.
+- BELLA II, coordinated by RedCLARA, aims to strengthen Latin America and the Caribbean's digital ecosystem by investing €28 million to enhance connectivity, digital transformation technologies, and cooperation with Europe.
+- The project uses dialogues, including World Café methodology, to identify challenges, opportunities, and collaborative solutions involving diverse stakeholders from academia, government, private sector, and international organizations.
+- Key challenges include the need for long-term public policies, improved cooperation frameworks, workforce training, digital divide reduction, infrastructure enhancement, and cybersecurity capacity building.
+- Cooperation with European initiatives and institutions is emphasized to leverage experience, funding, and best practices, particularly in data regulation, interoperability, and digital education.
+- The role of academia, national research and education networks, and RedCLARA is critical in fostering digital skills, knowledge transfer, and inclusive digital culture across the region.
+- The dialogue outcomes will guide ongoing activities, including a web platform for continuous collaboration and a series of face-to-face meetings to advance the BELLA II project goals.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Commission; EU International Partnerships Directorate (DG-INTPA); Community of Latin American and Caribbean States; European Union |
-| Research and Innovation Actors | RedCLARA; Universities; National Research and Education Networks; Latin American Cooperation of Advanced Networks |
-| Economic Actors | World Bank; Inter-American Development Bank; Development Bank of Latin America and the Caribbean; Central American Bank for Economic Integration |
-| Civil Society Actors | Digital Transformation Consultants; Digital Training and Education Providers |
+| Political Actors | European Commission; EU International Partnerships Directorate (DG-INTPA); European Union; EU Delegations; European Commission, multilateral banks (IDB, CAF, CABEI), the World Bank; Inter-American Development Bank; Development Bank of Latin America and the Caribbean (CAF); Central American Bank for Economic Integration (CABEI); World Bank; Organisation of Ibero-American States (OEI); United Nations Educational, Scientific and Cultural Organization (UNESCO) |
+| Research and Innovation Actors | RedCLARA; National Research and Education Networks; Universities; European regional network; Latin American Cooperation of Advanced Networks; EU-LAC Digital Alliance; Copernicus Program; Estonian Information Systems Authority (RIA); German cooperation agency (GIZ); International Telecommunication Union (ITU); Digital Alliance; Estonian Ministry of Foreign Affairs; Academic Institutions; Research centres and high-tech labs; National Networks; Academic networks; Universities connected through national research and education networks; Berlin Declaration on Digital Society and Value-Based Digital Government; GovStack Initiative; European Commission initiatives; European Institute of Innovation and Technology (implied by innovation focus) |
+| Economic Actors | Private Sector Representatives; Technology companies; Service providers; Telecommunication Companies; Digital Companies; Financial sector |
+| Civil Society Actors | Digital Training and Education Providers; Digital Skills Development Platforms; Digital Literacy Initiatives; Civil Society Organisations; Non-governmental Institutions |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Digital Transformation & Strategy | Digital Agenda; Digital Infrastructure; Digital Ecosystem |
-| Regional & International Cooperation | EU-LAC Digital Alliance; Bi-regional Cooperation; Global Digital Cooperation |
+| Digital Transformation & Strategy | Digital Agenda; Digital Acceleration; Digital Infrastructure; Digital Ecosystem |
+| Data & Governance | Digital Governance |
+| Inclusion & Social Development | Digital Inclusion |
+| Regional & International Cooperation | EU-LAC Digital Alliance; Bi-regional Cooperation |
 
 ## Practical Applications
 
-- The BELLA II project, coordinated by RedCLARA, aims to strengthen and expand the digital ecosystem in Latin America and the Caribbean (LAC) by investing twenty-eight million euros to design, build, and operate digital infrastructure for improved connectivity in Peru, Costa Rica, Guatemala, El Salvador, and Honduras.
-- The project includes initiatives to increase the adoption and use of digital transformation technologies for developing digital research and education solutions.
-- BELLA II promotes cooperative relations with European digital education and research ecosystems to facilitate knowledge exchange and the creation of dialogue spaces for innovative research and education projects.
-- The project commits to European initiatives such as the EU-LAC Digital Alliance to enhance capabilities in applying digital transformation technologies for innovation in public and private sectors.
-- A Memorandum of Understanding (MoU) has been signed between RedCLARA and the Estonian Information Systems Authority (RIA) to promote cooperation in cybersecurity.
-- The project aims to implement elements of the Berlin Declaration on Digital Society and Value-Based Digital Government in LAC countries.
-- The GovStack Initiative is supported for developing reusable and shareable digital products and services, backed by the German government and other international organizations.
-- RedCLARA is tasked with identifying, coordinating, and promoting enabling projects, particularly in collaboration with the European Union, to leverage opportunities for digital development.
-- The project will establish a web platform for ongoing dialogue and collaboration among stakeholders, with ten face-to-face meetings planned in the first year to facilitate discussions on digital transformation challenges and opportunities.
+- BELLA II project investing €28 million to design, build, and operate digital infrastructure connecting Peru, Costa Rica, Guatemala, El Salvador, and Honduras with the existing BELLA infrastructure and the Europe-Latin America submarine cable, with potential expansion to other LAC countries.
+- Implementation of dialogues (face-to-face and virtual using World Café methodology and Miro platform) across LAC and Europe to identify challenges, opportunities, and co-create digital transformation initiatives.
+- Coordination by RedCLARA to articulate national research and education networks, universities, governments, and private sector stakeholders to promote digital transformation.
+- Memorandum of Understanding between RedCLARA and the Estonian Information Systems Authority (RIA) to promote cooperation in cybersecurity.
+- Adoption of European Union digital initiatives such as the Berlin Declaration on Digital Society and Value-Based Digital Government, Estonia's X-Road, Interoperable Europe, and the GovStack Initiative for reusable and shareable digital products and services.
+- Development of a web platform by BELLA II to manage information, dialogue, and collaboration among stakeholders.
+- Planned organization of ten face-to-face dialogue meetings in the first year of BELLA II to foster ongoing engagement.
+- Promotion of long-term public policies with measurable indicators for digital transformation, inspired by EU experiences.
+- Cooperation with multilateral organizations (European Commission, IDB, CAF, CABEI, World Bank) to develop joint initiatives aligned with regional development agendas.
+- Training programs and capacity building initiatives for digital skills, including accelerated ICT professional training, continuing education for teachers and researchers, regional doctoral programs, and digital literacy for citizens.
+- Inclusion and development of competencies in science and digital culture among girls, women, and indigenous peoples.
+- Facilitation of remote access to high-tech research infrastructure and labs in Latin America and Europe through national research and education networks.
+- Promotion of interdisciplinary communities of practice around technology issues such as health, climate change, and agriculture.
+- Advocacy for regional governance models to harmonize regulations, legislation, and standardization to facilitate regional digital initiatives.
+- Support for language courses and regional mobility programs to enhance international experience and collaboration among students and researchers.
+- Emphasis on secure, accessible, and massive connectivity with budget provisions for network installation and maintenance.
+- Engagement of universities with local governments to co-create technological solutions for vulnerable and marginalized communities.
+- Production of a roadmap of collaborative initiatives and projects supporting planetary survival needs, with academic networks as central actors.
 
 ## Commitments
 
-- Invest twenty-eight million euros to design, build, and operate digital infrastructure for connectivity in Peru, Costa Rica, Guatemala, El Salvador, and Honduras.
-- Conduct ten face-to-face meetings during the first year of the BELLA II project, starting in April 2023.
-- Launch a web platform for managing project information and maintaining ongoing dialogue by the end of the first quarter of 2023.
-- Prepare an initiation report and proposed governance model for the project by March 2023.
+- BELLA II project will invest twenty-eight million euros to design, build, and operate digital infrastructure connecting Peru, Costa Rica, Guatemala, El Salvador, and Honduras with the rest of the BELLA infrastructure, with potential expansion to other countries depending on feasibility and resources.
+- During the first quarter of the year following the November 2022 dialogue, a web platform will be put into operation to manage information and maintain ongoing dialogue beyond face-to-face activities.
+- A planning session will be held in March (year following 2022) prior to the start of the project, by which time the initiation report and proposed governance model will be ready, and production of a white paper summarizing the first year of dialogues will have started.
+- Starting in April (year following 2022), ten face-to-face dialogue meetings will be held during the first year of the BELLA II project; venues and dates to be defined at the March planning meeting and published on the project management platform.
+- By 2030, the region is expected to have a deficit of trained individuals with specific technical skills essential for digital transformation, highlighting the need for accelerated training programs in areas such as cybersecurity.

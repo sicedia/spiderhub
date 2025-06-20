@@ -1,62 +1,76 @@
 {
-  "title": "12th Brazil-EU Digital Dialogue: Joint Communiqué on Cooperation in Digital Transformation",
-  "date": "2023-03-20",
+  "title": "12th Brazil-EU Digital Dialogue Joint Communiqué",
+  "date": "2024-03-20",
   "location": "Brasilia, Brazil",
-  "executive_summary": "The 12th Brazil-EU Digital Dialogue, held on March 20 in Brasilia, reinforced the strategic partnership between Brazil and the European Union, focusing on digital transformation across various sectors. Key areas of discussion included digital connectivity, governance, and advanced technologies like 5G and quantum computing. The dialogue emphasized collaboration to foster inclusive growth and innovation while addressing challenges in the digital landscape. Priority actions identified for future cooperation include enhancing digital connectivity in underserved regions, extending cooperation on 5G and 6G technologies, and improving data protection frameworks. A workplan will guide the implementation of these initiatives, with progress to be reviewed in future dialogues, aiming to strengthen the partnership and promote a secure digital future for both regions.",
+  "executive_summary": "The 12th Brazil-EU Digital Dialogue, held on March 20th in Brasilia, reaffirmed the strong partnership between Brazil and the European Union in advancing digital transformation. Key areas of cooperation include digital connectivity (especially in underserved regions like the Amazon), collaboration on 5G/6G technologies, high-performance computing, semiconductor supply chain resilience, digital signature interoperability, data protection, and regulatory frameworks for the digital economy, including artificial intelligence. Both parties emphasized shared values of democracy, human rights, and sustainable development, aiming to foster inclusive and sustainable digital growth. Preparatory workshops enriched discussions, and a workplan will guide the implementation of agreed actions, with progress to be reviewed at the next Dialogue. This ongoing collaboration seeks to deliver concrete outcomes, strengthen the partnership, and promote a secure, innovative digital future for both regions.",
   "characteristics": [
-    "The 12th Brazil-EU Digital Dialogue took place on March 20th in Brasilia, focusing on digital transformation, including connectivity, governance, and technologies like 5G and AI.",
-    "The dialogue aims to enhance cooperation in digital economy areas, reflecting shared values of democracy, human rights, and sustainable development.",
-    "Priority areas for collaboration include digital connectivity projects, cooperation on 5G and 6G technologies, and data protection.",
-    "Preparatory workshops informed discussions on digital market regulation and AI implications, enriching the main dialogue.",
-    "A workplan will guide the implementation of agreed actions, with progress assessed in future dialogues."
+    "Focus on digital transformation, including digital connectivity, digital government, information integrity, and collaboration on advanced technologies (5G/6G, High Performance Computing, quantum computing).",
+    "Emphasis on policy frameworks for data economy, artificial intelligence, and digital platforms, aiming for shared principles and possible regulatory convergence.",
+    "Commitment to inclusive, sustainable growth, innovation, and addressing digital challenges, reflecting shared values of democracy, human rights, and sustainable development.",
+    "Priority cooperation areas: digital connectivity in underserved regions (e.g., Amazon), 5G/6G technology, HPC collaboration, semiconductor supply chain resilience, digital signature interoperability, data protection, and international data flows.",
+    "Ongoing dialogue and workplan to monitor progress, with a focus on concrete outcomes and mutual benefit for citizens and businesses."
   ],
   "themes": {
+    "Regional & International Cooperation": [
+      "Digital & Technological Partnerships",
+      "Bi-regional Cooperation"
+    ],
     "Digital Transformation & Strategy": [
       "Digital Connectivity",
       "Digital Platforms",
-      "Digital Economy"
+      "Digital Economy",
+      "Digital Infrastructure"
     ],
     "Technology & Innovation": [
       "5G",
+      "Artificial Intelligence",
       "High-Performance Computing",
-      "Artificial Intelligence"
+      "Quantum Technologies"
     ],
     "Data & Governance": [
+      "Data Protection",
       "Data Governance",
-      "Data Protection"
+      "Digital Governance"
     ],
     "Inclusion & Social Development": [
       "Digital Inclusion"
-    ],
-    "Regional & International Cooperation": [
-      "Digital & Technological Partnerships"
     ]
   },
   "actors": {
     "Political Actors": [
-      "Government of Brazil",
-      "European Union"
+      "Governments",
+      "European Union",
+      "EU Member States",
+      "Policy Level Representatives"
     ],
     "Research and Innovation Actors": [
-      "Digital Innovation Hubs"
+      "Technology Organisations",
+      "Research Performing Organisations"
+    ],
+    "Economic Actors": [
+      "Bilateral Projects",
+      "Digital Companies",
+      "ICT Companies",
+      "Telecommunication Companies",
+      "Industry Actors"
     ]
   },
   "practical_applications": [
-    "Ongoing cooperation on meaningful digital connectivity projects, particularly in under-served regions of Brazil, such as the Amazon region, to drive social inclusion.",
-    "Extension of existing cooperation between European Union and Brazil stakeholders on 5G technologies, with exploration of potential 5G use cases in key economic sectors such as agriculture, energy, and mobility.",
-    "Enhanced cooperation between Brazilian and European Union High Performance Computing centres, including on HPC applications.",
-    "Knowledge sharing and exchange initiatives aimed at the stability and resilience of semiconductors global supply chains.",
-    "Work on the technical interoperability of Brazil and European Union digital signature systems for potential future mutual recognition.",
-    "Continued dialogue on data protection and international data flows, with a view to finalizing mutual adequacy decisions.",
-    "Exchange of best practices and promotion of cooperation on the regulatory framework for the digital economy, covering data governance, artificial intelligence, and digital platforms.",
-    "Cooperation in international fora to promote an inclusive digital ecosystem based on shared values of democracy, human rights, and sustainable development in the digital domain."
+    "Ongoing cooperation on meaningful digital connectivity projects, particularly targeting under-served regions of Brazil such as the Amazon region.",
+    "Existing cooperation between European Union and Brazil stakeholders on 5G technologies, with exploration of extension to 6G technologies and potential 5G use cases in key economic sectors (agriculture, energy, mobility).",
+    "Enhanced cooperation between Brazilian and European Union High Performance Computing (HPC) centres, including collaboration on HPC applications.",
+    "Knowledge sharing and exchange initiatives focused on the stability and resilience of global semiconductor supply chains.",
+    "Technical work on interoperability of Brazil and European Union digital signature systems, aiming toward possible future mutual recognition.",
+    "Continued dialogue and cooperation on data protection and international data flows, with the goal of finalizing mutual adequacy decisions.",
+    "Exchange of best practices and promotion of cooperation, including research, on regulatory frameworks for the digital economy (covering data governance, artificial intelligence, and digital platforms).",
+    "Joint cooperation in international fora to promote an inclusive digital ecosystem based on shared values of democracy, human rights, and sustainable development."
   ],
   "commitments": [],
-  "score": 96,
+  "score": 98,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 96,
-    "completeness": 96,
+    "consistency": 95,
+    "completeness": 98,
     "accuracy": 100,
     "issues": []
   },
@@ -65,17 +79,17 @@
     "agreement_type": [
       "Ministerial Communiqué"
     ],
-    "legal_bindingness": "Politically-binding",
+    "legal_bindingness": "Non-binding",
     "coverage_scope": "Bilateral",
     "eu_policy_alignment": [
       "Digital Decade"
     ],
-    "review_schedule": null,
+    "review_schedule": "Annual",
     "beneficiary_group_raw": [
-      "region",
       "citizen",
       "business",
-      "community",
+      "region",
+      "centre",
       "stakeholder"
     ],
     "beneficiary_group": [
@@ -88,161 +102,193 @@
         "label": "Companies"
       },
       {
-        "category": "Civil Society / NGOs",
-        "label": "Community Organizations"
+        "category": "Rural & Remote Communities",
+        "label": "Remote Area Citizens"
       },
       {
-        "category": "General Citizens / Consumers",
-        "label": "Digital Users"
+        "category": "Researchers & Academia",
+        "label": "Research and Development Centers"
+      },
+      {
+        "category": "Health Sector",
+        "label": "Public Health Stakeholders"
       }
     ],
-    "start_date": "2023-03-20",
-    "end_date": "2023-03-20",
+    "start_date": "2024-03-20",
+    "end_date": "2024-03-20",
     "commitment_details": [],
     "kpi_list": [
       {
         "kpi_text": "cooperate on meaningful digital connectivity projects, particularly in under-served regions of Brazil, such as the Amazon region, as a driver for social inclusion",
         "kpi_type": "qualitative",
-        "metric_name": "Digital Connectivity Projects Cooperation",
+        "metric_name": "Digital Connectivity in Under-served Regions",
         "target_value": null,
-        "target_description": "Cooperate on digital connectivity projects in under-served regions",
+        "target_description": "Implement digital connectivity projects in under-served regions, especially the Amazon, to promote social inclusion",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Assessment of project implementation and impact",
-        "responsible_entity": "Brazilian and EU governments",
-        "sector": "Digital Economy"
+        "measurement_method": "Assessment of project implementation and coverage in targeted regions",
+        "responsible_entity": "Government of Brazil and European Union",
+        "sector": "Digital Infrastructure"
       },
       {
-        "kpi_text": "explore the extension of the existing cooperation between European Union and Brazil stakeholders on 5G to 6G technologies",
+        "kpi_text": "explore the extension of the existing cooperation between European Union and Brazil stakeholders on 5G to 6G technologies and explore potential 5G use cases in key economic sectors such as agriculture, energy, mobility",
         "kpi_type": "qualitative",
-        "metric_name": "5G to 6G Cooperation Exploration",
+        "metric_name": "5G and 6G Technology Cooperation and Use Case Exploration",
         "target_value": null,
-        "target_description": "Explore cooperation on 5G and 6G technologies",
+        "target_description": "Extend cooperation on 5G to 6G technologies and identify 5G use cases in agriculture, energy, and mobility sectors",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Evaluation of cooperation initiatives and outcomes",
-        "responsible_entity": "Brazilian and EU stakeholders",
+        "measurement_method": "Documentation of cooperation agreements and identified use cases",
+        "responsible_entity": "Government of Brazil and European Union",
         "sector": "Telecommunications"
       },
       {
         "kpi_text": "support enhanced cooperation between Brazilian and European Union High Performance Computing centres, including on HPC applications",
         "kpi_type": "qualitative",
-        "metric_name": "High Performance Computing Cooperation",
+        "metric_name": "High Performance Computing (HPC) Cooperation",
         "target_value": null,
-        "target_description": "Enhance cooperation on High Performance Computing",
+        "target_description": "Enhance cooperation between Brazilian and EU HPC centres, including joint work on HPC applications",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Review of collaborative projects and outcomes",
-        "responsible_entity": "Brazilian and EU HPC centres",
-        "sector": "Digital Technology"
+        "measurement_method": "Number and quality of joint HPC initiatives and applications",
+        "responsible_entity": "Brazilian and EU HPC Centres",
+        "sector": "High Performance Computing"
       },
       {
         "kpi_text": "foster knowledge sharing and exchange on possible cooperation initiatives aiming at the stability and resilience of semiconductors global supply chains",
         "kpi_type": "qualitative",
-        "metric_name": "Semiconductors Supply Chain Cooperation",
+        "metric_name": "Semiconductor Supply Chain Resilience Cooperation",
         "target_value": null,
-        "target_description": "Foster knowledge sharing on semiconductor supply chains",
+        "target_description": "Promote knowledge sharing and cooperation to enhance stability and resilience of global semiconductor supply chains",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Assessment of knowledge exchange initiatives",
-        "responsible_entity": "Brazilian and EU stakeholders",
-        "sector": "Technology Supply Chain"
+        "measurement_method": "Record of knowledge exchange activities and cooperation initiatives",
+        "responsible_entity": "Government of Brazil and European Union",
+        "sector": "Semiconductors"
       },
       {
         "kpi_text": "work on the technical interoperability of Brazil and European Union digital signature systems in view of a possible future mutual recognition",
         "kpi_type": "qualitative",
-        "metric_name": "Digital Signature Systems Interoperability",
+        "metric_name": "Digital Signature System Interoperability",
         "target_value": null,
-        "target_description": "Achieve technical interoperability of digital signature systems",
+        "target_description": "Achieve technical interoperability of digital signature systems between Brazil and the EU for potential mutual recognition",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Evaluation of interoperability progress",
-        "responsible_entity": "Brazilian and EU digital authorities",
-        "sector": "Digital Identity"
+        "measurement_method": "Technical assessment and progress towards mutual recognition",
+        "responsible_entity": "Government of Brazil and European Union",
+        "sector": "Digital Identity/Trust Services"
       },
       {
         "kpi_text": "continue the dialogue on data protection and international data flows, with a view to finalizing mutual adequacy decisions",
         "kpi_type": "qualitative",
-        "metric_name": "Data Protection Dialogue Continuation",
+        "metric_name": "Data Protection Adequacy Decisions",
         "target_value": null,
-        "target_description": "Continue dialogue on data protection and finalize adequacy decisions",
+        "target_description": "Continue dialogue to finalize mutual adequacy decisions on data protection and international data flows",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Review of dialogue outcomes and decisions",
-        "responsible_entity": "Brazilian and EU data protection authorities",
+        "measurement_method": "Status of adequacy decisions and progress in dialogue",
+        "responsible_entity": "Government of Brazil and European Union",
         "sector": "Data Protection"
       },
       {
-        "kpi_text": "exchange best practices and promote cooperation, including on research, on the regulatory framework for the digital economy",
+        "kpi_text": "exchange best practices and promote cooperation, including on research, on the regulatory framework for the digital economy. This covers the areas of data governance, artificial intelligence and digital platforms and aims to explore common principles and possible convergence",
         "kpi_type": "qualitative",
-        "metric_name": "Regulatory Framework Cooperation",
+        "metric_name": "Digital Economy Regulatory Framework Cooperation",
         "target_value": null,
-        "target_description": "Promote cooperation on regulatory frameworks for the digital economy",
+        "target_description": "Exchange best practices and promote cooperation on digital economy regulation, including data governance, AI, and digital platforms",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Assessment of best practices and cooperation outcomes",
-        "responsible_entity": "Brazilian and EU regulatory bodies",
-        "sector": "Digital Economy"
+        "measurement_method": "Number and quality of best practice exchanges and research cooperation initiatives",
+        "responsible_entity": "Government of Brazil and European Union",
+        "sector": "Digital Economy Regulation"
       },
       {
         "kpi_text": "cooperate in international fora to promote an inclusive digital ecosystem based on our shared values of democracy, human rights and sustainable development in the digital domain",
         "kpi_type": "qualitative",
-        "metric_name": "International Cooperation for Digital Ecosystem",
+        "metric_name": "International Digital Ecosystem Promotion",
         "target_value": null,
-        "target_description": "Promote an inclusive digital ecosystem in international fora",
+        "target_description": "Promote an inclusive digital ecosystem in international fora, upholding democracy, human rights, and sustainable development",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Evaluation of cooperation in international discussions",
-        "responsible_entity": "Brazilian and EU representatives",
-        "sector": "International Relations"
+        "measurement_method": "Participation and initiatives in international digital fora",
+        "responsible_entity": "Government of Brazil and European Union",
+        "sector": "International Digital Policy"
+      },
+      {
+        "kpi_text": "The actual implementation of these actions will be supported by a workplan to be agreed at operational level.",
+        "kpi_type": "qualitative",
+        "metric_name": "Operational Workplan Development",
+        "target_value": null,
+        "target_description": "Develop and agree on an operational workplan to implement the identified actions",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Existence and approval of a joint operational workplan",
+        "responsible_entity": "Government of Brazil and European Union",
+        "sector": "Governance/Project Management"
+      },
+      {
+        "kpi_text": "At our next Dialogue we will be assessing the progress made and update this list of priorities.",
+        "kpi_type": "qualitative",
+        "metric_name": "Progress Assessment at Next Dialogue",
+        "target_value": null,
+        "target_description": "Assess progress on agreed actions and update priorities at the next Brazil-EU Digital Dialogue",
+        "unit": "qualitative milestone",
+        "timeframe": "at next Dialogue",
+        "measurement_method": "Formal progress review and updated priority list",
+        "responsible_entity": "Government of Brazil and European Union",
+        "sector": "Governance/Monitoring & Evaluation"
       }
     ],
     "country_list_iso": [],
     "responsible_entity": "Divisão de Temas Digitais – DTD, Ministério das Relações Exteriores",
     "sdg_alignment": [
+      "SDG 8: Decent Work and Economic Growth",
       "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
+      "SDG 11: Sustainable Cities and Communities",
+      "SDG 12: Responsible Consumption and Production",
+      "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
   },
   "top_actors": [
     {
-      "name": "Government of Brazil",
-      "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "The Government of Brazil is a primary actor in the document, being one of the two main parties in the bilateral Digital Dialogue. Their role is crucial as they represent Brazil's interests and commitments in digital transformation and cooperation."
-    },
-    {
       "name": "European Union",
       "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "The European Union is equally prominent as the other main party in the dialogue, reflecting its significant role in shaping policies and frameworks for digital cooperation with Brazil."
+      "relevance_score": 1.0,
+      "justification": "The European Union is one of the two primary parties in the document, directly named as a co-convener and co-decision maker in the Digital Dialogue. The EU is central to all initiatives, decisions, and future actions outlined, and is repeatedly referenced as a key actor in both the strategic partnership and the specific digital cooperation topics."
     },
     {
-      "name": "Digital Innovation Hubs",
+      "name": "Government of Brazil",
+      "category": "Political Actors",
+      "relevance_score": 1.0,
+      "justification": "The Government of Brazil is the other main party in the document, co-leading the Digital Dialogue with the European Union. It is directly responsible for shaping, implementing, and benefiting from the initiatives and priorities discussed, especially those targeting Brazil's digital transformation and inclusion."
+    },
+    {
+      "name": "Technology Organisations",
       "category": "Research and Innovation Actors",
-      "relevance_score": 0.6,
-      "justification": "While not as prominently mentioned as the political actors, Digital Innovation Hubs are important for fostering research and innovation in digital technologies, which is a key focus of the dialogue."
+      "relevance_score": 0.7,
+      "justification": "Technology Organisations, including High Performance Computing centres and stakeholders in 5G/6G, are specifically mentioned as key participants in cooperation initiatives. They are crucial for implementing technical projects, research, and knowledge exchange, directly influencing the success of the digital transformation goals set by the Brazil-EU partnership."
     }
   ],
   "top_themes": [
     {
+      "name": "Digital & Technological Partnerships",
+      "category": "Regional & International Cooperation",
+      "relevance_score": 1.0,
+      "justification": "The central focus of the document is the Brazil-EU Digital Dialogue, which is fundamentally about deepening digital and technological partnerships between the two regions. The communiqué repeatedly emphasizes cooperation, joint actions, and shared values, making this theme the backbone of the entire text and the driver for all other initiatives."
+    },
+    {
       "name": "Digital Economy",
       "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.9,
-      "justification": "The digital economy is central to the document's main message, as it encompasses various aspects of digital transformation and is a key area of cooperation between Brazil and the EU. The document emphasizes the importance of collaboration in this area to drive inclusive and sustainable growth."
+      "relevance_score": 0.92,
+      "justification": "The digital economy is highlighted as a key area of collaboration, with specific references to regulatory frameworks, data governance, artificial intelligence, and digital platforms. The document dedicates significant content to the digital economy as both a strategic objective and a field for concrete joint actions, reflecting its importance for inclusive and sustainable growth."
     },
     {
       "name": "Digital Connectivity",
       "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.85,
-      "justification": "Digital connectivity is highlighted as a priority for cooperation, particularly in underserved regions. It is crucial for social inclusion and is a foundational element of the digital transformation efforts discussed in the document."
-    },
-    {
-      "name": "Artificial Intelligence",
-      "category": "Technology & Innovation",
-      "relevance_score": 0.8,
-      "justification": "Artificial intelligence is a significant theme due to its implications for responsible development and use of technology. The document discusses the regulatory framework for AI, indicating its strategic importance in shaping the digital landscape."
+      "relevance_score": 0.88,
+      "justification": "Digital connectivity is singled out as a priority area for cooperation, especially in underserved regions like the Amazon. It is directly linked to social inclusion and is one of the first concrete actions listed for follow-up, underlining its strategic importance for both digital transformation and broader development goals."
     }
   ]
 }

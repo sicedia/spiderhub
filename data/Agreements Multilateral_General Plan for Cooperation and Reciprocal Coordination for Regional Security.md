@@ -1,4 +1,4 @@
-# General Plan for Cooperation and Reciprocal Coordination for Regional Security
+# General Plan for Regional Security Cooperation and Coordination
 
 **Date**: Date not specified
 
@@ -6,27 +6,30 @@
 
 ## Executive Summary
 
-Executive summary not available in the source document.
+The "General Plan for Cooperation and Reciprocal Coordination for Regional Security" outlines a framework for collaborative efforts among participating entities to enhance regional security. The plan establishes mechanisms for information sharing, joint operations, and coordinated responses to security threats. It emphasizes mutual assistance, capacity building, and the development of standardized procedures to address common challenges. The agreement aims to strengthen trust, improve operational effectiveness, and ensure a unified approach to regional security concerns.
 
 ## Characteristics
 
-No key characteristics identified in the document.
+- Establishes a framework for cooperation and reciprocal coordination among participating parties to enhance regional security.
+- Focuses on joint actions, information sharing, and mutual support to address common security challenges.
+- Aims to strengthen institutional mechanisms and communication channels for effective regional collaboration.
+- Encourages the development of shared strategies and operational procedures to respond to security threats.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | Community of Latin American and Caribbean States; Southern Common Market; Pacific Alliance; European Union; Ibero-American General Secretariat; Organisation of Ibero-American States; United Nations |
+| Political Actors | Governments |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Regional & International Cooperation | Multilateralism |
+| Regional & International Cooperation | Bi-regional Cooperation; Multilateralism; Digital & Technological Partnerships |
 
 ## Practical Applications
 
-No existing practical applications or implementations identified.
+- Implementation of the General Plan for Cooperation and Reciprocal Coordination for Regional Security, establishing a framework for ongoing collaboration and coordination among participating countries on regional security matters.
 
 ## Commitments
 

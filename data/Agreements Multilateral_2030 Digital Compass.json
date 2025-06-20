@@ -1,12 +1,20 @@
 {
-  "title": "2030 Digital Compass: EU Publication Overview",
+  "title": "2030 Digital Compass: EU Multilateral Agreements",
   "date": null,
-  "location": null,
-  "executive_summary": null,
-  "characteristics": [],
+  "location": "Brussels, Belgium",
+  "executive_summary": "The \"2030 Digital Compass\" outlines the European Union's vision and targets for digital transformation by 2030. It sets out four key points: developing digital skills, securing digital infrastructures, digitalizing businesses, and transforming public services. The strategy emphasizes strengthening the EU’s digital sovereignty, fostering innovation, and ensuring that digital advancements benefit all citizens and businesses. It also highlights the importance of international partnerships, ethical standards, and a human-centric approach to technology. The document provides a roadmap for achieving a digitally empowered and inclusive society, supporting economic growth and resilience across the EU.",
+  "characteristics": [
+    "Sets out the EU’s digital targets for 2030, focusing on digital skills, secure and sustainable digital infrastructures, digital transformation of businesses, and digitalization of public services.",
+    "Emphasizes digital sovereignty, aiming to reduce dependency on non-EU technologies and strengthen the EU’s digital leadership.",
+    "Promotes ethical and inclusive digital development, ensuring access and participation for all citizens and businesses.",
+    "Encourages investment in next-generation technologies, such as AI, cybersecurity, and high-performance computing."
+  ],
   "themes": {
+    "Digital Transformation & Strategy": [
+      "Digital Decade"
+    ],
     "Regional & International Cooperation": [
-      "Global Digital Cooperation"
+      "Multilateralism"
     ]
   },
   "actors": {
@@ -14,158 +22,102 @@
       "European Union"
     ]
   },
-  "practical_applications": [],
-  "commitments": [],
-  "score": 79,
+  "practical_applications": [
+    "The 2030 Digital Compass establishes the Digital Decade policy program, which sets concrete targets for digital transformation in the EU by 2030, including digital skills, secure and sustainable digital infrastructures, digitalization of businesses, and digitalization of public services.",
+    "The program implements annual monitoring and reporting mechanisms to track progress towards the 2030 targets, including the Digital Economy and Society Index (DESI).",
+    "The Digital Compass framework supports the implementation of multi-country projects, such as the development of common data infrastructures, deployment of 5G corridors, and establishment of European Digital Innovation Hubs.",
+    "The initiative includes the Digital Decade governance framework, which formalizes cooperation between the European Commission and Member States through structured dialogues and joint commitments.",
+    "Funding mechanisms for the Digital Compass objectives are established through EU programs such as the Digital Europe Programme, Connecting Europe Facility, and Horizon Europe, supporting digital infrastructure, skills, and innovation projects."
+  ],
+  "commitments": [
+    "By 2030, at least 80% of all adults in the EU should have basic digital skills.",
+    "By 2030, there should be 20 million employed ICT specialists in the EU, with convergence between men and women.",
+    "By 2030, all EU households should have gigabit connectivity and all populated areas should be covered by 5G.",
+    "By 2030, 75% of EU enterprises should use cloud computing services, big data, and Artificial Intelligence.",
+    "By 2030, more than 90% of EU SMEs should reach at least a basic level of digital intensity.",
+    "By 2030, the number of EU unicorns should double."
+  ],
+  "score": 91,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 70,
-    "completeness": 79,
-    "accuracy": 66,
-    "issues": [
-      "Potential factual errors in basic content or strategic extra data"
-    ]
+    "consistency": 92,
+    "completeness": 85,
+    "accuracy": 85,
+    "issues": []
   },
   "extra_data": {
     "lead_country_iso": null,
-    "agreement_type": [],
-    "legal_bindingness": "Politically-binding",
-    "coverage_scope": "Multilateral",
-    "eu_policy_alignment": [],
+    "agreement_type": [
+      "Roadmap"
+    ],
+    "legal_bindingness": "Non-binding",
+    "coverage_scope": "Regional",
+    "eu_policy_alignment": [
+      "Digital Decade"
+    ],
     "review_schedule": null,
     "beneficiary_group_raw": [],
     "beneficiary_group": [],
     "start_date": "2030-01-01",
-    "end_date": "2030-01-01",
-    "commitment_details": [],
-    "kpi_list": [
+    "end_date": null,
+    "commitment_details": [
       {
-        "kpi_text": "Increase the number of digital skills graduates by 20 million by 2030.",
-        "kpi_type": "quantitative",
-        "metric_name": "Digital Skills Graduates",
-        "target_value": 20.0,
-        "target_description": "Increase the number of graduates with digital skills.",
-        "unit": "million",
-        "timeframe": "by 2030",
-        "measurement_method": "Count of graduates reported by educational institutions.",
-        "responsible_entity": "Member States and educational institutions",
-        "sector": "Education"
+        "text": "By 2030, at least 80% of all adults in the EU should have basic digital skills.",
+        "commitment_class": "Declarative"
       },
       {
-        "kpi_text": "Achieve 100% coverage of 5G networks in urban areas by 2030.",
-        "kpi_type": "quantitative",
-        "metric_name": "5G Network Coverage",
-        "target_value": 100.0,
-        "target_description": "Ensure all urban areas have access to 5G networks.",
-        "unit": "percentage",
-        "timeframe": "by 2030",
-        "measurement_method": "Network coverage assessments and reports.",
-        "responsible_entity": "Telecommunications providers",
-        "sector": "Telecommunications"
+        "text": "By 2030, there should be 20 million employed ICT specialists in the EU, with convergence between men and women.",
+        "commitment_class": "Declarative"
       },
       {
-        "kpi_text": "Reduce the digital divide by increasing internet access to 100% of households by 2030.",
-        "kpi_type": "quantitative",
-        "metric_name": "Household Internet Access",
-        "target_value": 100.0,
-        "target_description": "Ensure all households have internet access.",
-        "unit": "percentage",
-        "timeframe": "by 2030",
-        "measurement_method": "Surveys and infrastructure reports.",
-        "responsible_entity": "Member States and internet service providers",
-        "sector": "Telecommunications"
+        "text": "By 2030, all EU households should have gigabit connectivity and all populated areas should be covered by 5G.",
+        "commitment_class": "Declarative"
       },
       {
-        "kpi_text": "Establish a European Digital Identity framework by 2024.",
-        "kpi_type": "qualitative",
-        "metric_name": "European Digital Identity Framework",
-        "target_value": null,
-        "target_description": "Create a framework for a secure and interoperable digital identity.",
-        "unit": "qualitative milestone",
-        "timeframe": "by 2024",
-        "measurement_method": "Framework establishment and implementation reports.",
-        "responsible_entity": "European Commission",
-        "sector": "Digital Identity"
+        "text": "By 2030, 75% of EU enterprises should use cloud computing services, big data, and Artificial Intelligence.",
+        "commitment_class": "Declarative"
       },
       {
-        "kpi_text": "Enhance cybersecurity resilience across the EU by implementing the Cybersecurity Act by 2024.",
-        "kpi_type": "qualitative",
-        "metric_name": "Cybersecurity Resilience Enhancement",
-        "target_value": null,
-        "target_description": "Implement measures outlined in the Cybersecurity Act.",
-        "unit": "qualitative milestone",
-        "timeframe": "by 2024",
-        "measurement_method": "Compliance and implementation assessments.",
-        "responsible_entity": "Member States and EU institutions",
-        "sector": "Cybersecurity"
+        "text": "By 2030, more than 90% of EU SMEs should reach at least a basic level of digital intensity.",
+        "commitment_class": "Declarative"
       },
       {
-        "kpi_text": "Increase the number of SMEs adopting digital technologies by 50% by 2025.",
-        "kpi_type": "quantitative",
-        "metric_name": "SMEs Adopting Digital Technologies",
-        "target_value": 50.0,
-        "target_description": "Encourage small and medium enterprises to adopt digital solutions.",
-        "unit": "percentage",
-        "timeframe": "by 2025",
-        "measurement_method": "Surveys and reports on SME technology adoption.",
-        "responsible_entity": "Member States and business associations",
-        "sector": "Business and Economy"
-      },
-      {
-        "kpi_text": "Develop a comprehensive digital education strategy by 2023.",
-        "kpi_type": "qualitative",
-        "metric_name": "Digital Education Strategy Development",
-        "target_value": null,
-        "target_description": "Create a strategy to enhance digital education across the EU.",
-        "unit": "qualitative milestone",
-        "timeframe": "by 2023",
-        "measurement_method": "Strategy documentation and stakeholder feedback.",
-        "responsible_entity": "European Commission and Member States",
-        "sector": "Education"
-      },
-      {
-        "kpi_text": "Implement a framework for data governance by 2025.",
-        "kpi_type": "qualitative",
-        "metric_name": "Data Governance Framework Implementation",
-        "target_value": null,
-        "target_description": "Establish a framework to manage and govern data usage.",
-        "unit": "qualitative milestone",
-        "timeframe": "by 2025",
-        "measurement_method": "Framework establishment and compliance checks.",
-        "responsible_entity": "European Commission",
-        "sector": "Data Governance"
-      },
-      {
-        "kpi_text": "Achieve a 30% reduction in greenhouse gas emissions from the digital sector by 2030.",
-        "kpi_type": "quantitative",
-        "metric_name": "Greenhouse Gas Emissions Reduction",
-        "target_value": 30.0,
-        "target_description": "Reduce emissions from digital technologies and services.",
-        "unit": "percentage",
-        "timeframe": "by 2030",
-        "measurement_method": "Emission reports and assessments.",
-        "responsible_entity": "Digital sector companies",
-        "sector": "Environment"
+        "text": "By 2030, the number of EU unicorns should double.",
+        "commitment_class": "Declarative"
       }
     ],
+    "kpi_list": [],
     "country_list_iso": [],
-    "responsible_entity": null,
-    "sdg_alignment": []
+    "responsible_entity": "European Commission",
+    "sdg_alignment": [
+      "SDG 4: Quality Education",
+      "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
+      "SDG 10: Reduced Inequalities",
+      "SDG 11: Sustainable Cities and Communities",
+      "SDG 17: Partnerships for the Goals"
+    ]
   },
   "top_actors": [
     {
       "name": "European Union",
       "category": "Political Actors",
       "relevance_score": 1.0,
-      "justification": "The European Union is the only actor mentioned in the text, indicating its central role in the context of the 2030 Digital Compass initiative."
+      "justification": "The European Union is the only explicitly mentioned actor in the text, as the publisher of the '2030 digital compass' document. It is central to the context, being the main initiator and decision-maker for the 2030 Digital Compass initiative, and has the highest influence on the main topics discussed."
     }
   ],
   "top_themes": [
     {
-      "name": "Global Digital Cooperation",
-      "category": "Regional & International Cooperation",
-      "relevance_score": 1.0,
-      "justification": "This theme is central to the document's main message, which focuses on fostering collaboration among nations to achieve digital transformation goals outlined in the 2030 Digital Compass."
+      "name": "Digital Decade (Digital Transformation & Strategy)",
+      "category": "Digital Transformation",
+      "relevance_score": 0.95,
+      "justification": "The '2030 Digital Compass' is a central EU policy document outlining the vision, targets, and strategy for Europe's digital transformation by 2030. The main message and the majority of the content are dedicated to defining the Digital Decade's objectives, making this theme the most central and strategically important."
+    },
+    {
+      "name": "Multilateralism (Regional & International Cooperation)",
+      "category": "International Cooperation",
+      "relevance_score": 0.7,
+      "justification": "Multilateralism is a key enabler for achieving the Digital Decade's goals, as the EU emphasizes cooperation with member states and international partners. While not the primary focus, it is strategically important and receives significant attention in the context of implementing digital policies and commitments."
     }
   ]
 }

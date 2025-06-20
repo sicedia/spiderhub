@@ -1,94 +1,84 @@
 {
-  "title": "Strengthening Digital Policy and Regulatory Frameworks for AI: EU-LAC Alliance Statement",
+  "title": "EU-LAC Statement on Converging Digital Policy and Regulatory Frameworks for AI",
   "date": "2023-11-16",
   "location": "Madrid, Spain",
-  "executive_summary": "On November 16, 2023, during the AI Alliance Assembly in Madrid, EU and Latin American and Caribbean (LAC) countries reaffirmed their commitment to a Digital Alliance aimed at enhancing cooperation on digital policy and regulatory frameworks for artificial intelligence (AI). Following a joint declaration in July 2023, participating nations, including Argentina, Colombia, and Mexico, proposed initiatives to promote convergence in AI regulation, emphasizing the need for best practice exchanges and the establishment of regulatory sandboxes. The upcoming EU Regulation on AI will set safety and rights-based requirements for AI systems, while fostering an environment for innovation across linguistic diversities. The statement highlights the importance of regular dialogue to ensure that AI development respects human rights and adapts to local contexts, ultimately supporting responsible and inclusive AI practices.",
+  "executive_summary": "On November 16, 2023, during the AI Alliance Assembly in Madrid, representatives from select EU and Latin American and Caribbean (LAC) countries reaffirmed their commitment to the EU-LAC Digital Alliance, aiming to reinforce and converge digital policy and regulatory frameworks on artificial intelligence (AI). The statement highlights the importance of exchanging best practices, fostering innovation across linguistic and cultural contexts, and aligning with ethical guidelines such as those from UNESCO. The group supports the development of regulatory sandboxes and regular dialogue to ensure AI regulation promotes innovation, human capital, and infrastructure while safeguarding human rights. A bi-regional investment package will support these initiatives, with flexibility to address local needs. The participating states commit to acting as forerunners in sharing regulatory experiences and supporting the responsible, inclusive, and trustworthy development of AI, particularly benefiting startups and SMEs.",
   "characteristics": [
-    "The statement emphasizes the establishment of a Digital Alliance between the EU and LAC countries to enhance human-centric digital cooperation and regulatory convergence on AI.",
-    "It highlights the upcoming EU Regulation on AI, which will set safety and rights-based requirements for AI system providers, including regulatory sandboxes for innovation.",
-    "The document calls for the exchange of best practices in AI regulation and governance, focusing on inclusivity across linguistic diversities.",
-    "It proposes a bi-regional investment package to support the Digital Alliance's objectives, considering local contexts and needs.",
-    "Regular dialogues among member states are encouraged to foster innovation, human capital, and infrastructure while ensuring human rights are respected in AI development."
+    "Promotes exchange of best practices and operational regulatory measures on AI, including governance mechanisms, among EU and LAC countries.",
+    "Supports convergence of digital policy and regulatory frameworks on AI, with regular dialogue to foster innovation, human capital, infrastructure, and respect for human rights.",
+    "Encourages development and use of regulatory sandboxes and accelerators to support innovative and trustworthy AI, especially for startups and SMEs.",
+    "Emphasizes inclusivity by fostering AI development across linguistic diversities, particularly in Spanish, Portuguese, and other official EU languages.",
+    "Recommends considering UNESCO’s ethical guidelines for responsible and inclusive AI, especially in Latin America and the Caribbean.",
+    "Provides for a bi-regional investment package, with allocation tailored to local contexts, needs, and opportunities."
   ],
   "themes": {
+    "Regional & International Cooperation": [
+      "EU-LAC Digital Alliance",
+      "Bi-regional Cooperation",
+      "Digital & Technological Partnerships"
+    ],
     "Digital Transformation & Strategy": [
-      "Digital Policy"
+      "Digital Policy",
+      "Digital Regulation",
+      "Digital Investment"
     ],
     "Technology & Innovation": [
       "Artificial Intelligence",
-      "AI Ethics"
+      "AI Ethics",
+      "Tech-Driven Solutions"
     ],
-    "Regional & International Cooperation": [
-      "EU-LAC Digital Alliance",
-      "Bi-regional Cooperation"
+    "Data & Governance": [
+      "Digital Governance"
     ]
   },
   "actors": {
     "Political Actors": [
-      "EU",
-      "Argentina",
-      "The Bahamas",
-      "Barbados",
-      "Brazil",
-      "Chile",
-      "Colombia",
-      "Costa Rica",
-      "Dominican Republic",
-      "Ecuador",
-      "El Salvador",
-      "Guatemala",
-      "Honduras",
-      "Jamaica",
-      "Mexico",
-      "Panama",
-      "Paraguay",
-      "Peru",
-      "Suriname",
-      "Trinidad and Tobago",
-      "Uruguay",
-      "Belgium",
-      "Estonia",
-      "Germany",
-      "Slovenia",
-      "Spain",
-      "European Commission"
+      "Governments",
+      "European Union",
+      "EU Member States",
+      "European Commission",
+      "Council of the EU"
     ],
     "Research and Innovation Actors": [
-      "EU-LAC Digital Alliance",
+      "EU-LAC Digital Alliance"
+    ],
+    "Civil Society Actors": [
       "UNESCO"
     ]
   },
   "practical_applications": [
-    "Establishment of the Digital Alliance EU-LAC, a framework for cooperation among EU and Latin American and Caribbean countries to promote human-centric digital cooperation and convergence of digital policy and regulatory frameworks.",
-    "Commitment by Argentina, Colombia, Chile, Dominican Republic, Mexico, Panama, and Uruguay, along with Belgium, Estonia, Germany, Slovenia, and Spain, to exchange best practices on AI regulation and implement measures through guidelines, recommendations, and regulatory sandboxes.",
-    "Creation of regulatory sandboxes as part of the upcoming Regulation on AI in the EU, allowing for the development and testing of innovative AI systems under the supervision of competent authorities.",
-    "Implementation of a bi-regional investment package for the Digital Alliance to support the initiatives outlined in the statement, considering local contexts and needs.",
-    "Regular dialogues among participating states to exchange information and foster the development of AI regulation that promotes innovation, human capital, and infrastructure while ensuring safety and human rights."
+    "The EU-LAC Digital Alliance has been established as a framework for human-centric digital cooperation, including the reinforcement and promotion of convergence of digital policy and regulatory frameworks, particularly in AI.",
+    "A bi-regional investment package exists for the implementation of the Digital Alliance, with states jointly defining the allocation of Digital Alliance investment for activities related to AI policy and regulatory convergence.",
+    "Participating states are actively exchanging best practices and sharing operational regulatory measures and guidelines on AI, including governance mechanisms for implementing and monitoring AI regulation.",
+    "Regular dialogue is being maintained among participating states to exchange information and promote convergence of digital policy and regulatory frameworks on AI, with a focus on fostering innovation, human capital, infrastructure, and the protection of human rights.",
+    "The EU Regulation on AI, which includes the creation of regulatory sandboxes for the development and testing of innovative AI systems under competent authority supervision, is being implemented and shared as a model within the Alliance.",
+    "States are fostering an environment for AI development across linguistic diversities, particularly in Spanish, Portuguese, and other official EU languages, to ensure inclusivity and innovation tailored to different communities.",
+    "States are considering the implementation of sandboxes for innovative and trustworthy AI, as well as accelerators, and are sharing good practices and lessons learned to support innovative startups and SMEs in creating trustworthy AI."
   ],
   "commitments": [],
-  "score": 95,
+  "score": 94,
   "quality_breakdown": {
     "faithfulness": 100,
     "consistency": 95,
-    "completeness": 95,
-    "accuracy": 100,
+    "completeness": 98,
+    "accuracy": 87,
     "issues": []
   },
   "extra_data": {
     "lead_country_iso": "ESP",
     "agreement_type": [
-      "Declaration"
+      "Statement"
     ],
-    "legal_bindingness": "Politically-binding",
-    "coverage_scope": "Regional",
+    "legal_bindingness": "Non-binding",
+    "coverage_scope": "Sub-regional",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [
       "startup",
       "SME",
       "community",
-      "country",
-      "region"
+      "state",
+      "human capital"
     ],
     "beneficiary_group": [
       {
@@ -101,93 +91,155 @@
       },
       {
         "category": "Civil Society / NGOs",
-        "label": "Community"
+        "label": "Community Organizations"
       },
       {
-        "category": "General Citizens / Consumers",
-        "label": "Citizens"
+        "category": "Public Sector / Governments",
+        "label": "Public Institutions"
       },
       {
-        "category": "General Citizens / Consumers",
-        "label": "General Public"
+        "category": "Researchers & Academia",
+        "label": "Academic Institutions"
       }
     ],
-    "start_date": "2023-07-17",
-    "end_date": "2023-11-16",
+    "start_date": "2023-11-16",
+    "end_date": "2023-11-17",
     "commitment_details": [],
     "kpi_list": [
       {
+        "kpi_text": "States will promote the exchange of best practices and sharing of operational regulatory measures and guidelines, including on the governance mechanisms set up to implement and monitor AI regulation.",
+        "kpi_type": "qualitative",
+        "metric_name": "Exchange of Best Practices on AI Regulation",
+        "target_value": null,
+        "target_description": "Promote exchange of best practices and sharing of operational regulatory measures and guidelines, including governance mechanisms for AI regulation",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Documentation and reporting of best practice exchanges and shared guidelines",
+        "responsible_entity": "Participating States in the EU-LAC Digital Alliance",
+        "sector": "AI Policy and Regulation"
+      },
+      {
+        "kpi_text": "Foster an environment where AI development thrives across linguistic diversities, particularly in Spanish, Portuguese and other official languages of the EU, to ensure AI technologies cater to the unique needs and contexts of the different communities, fostering innovation and inclusivity on a linguistic level.",
+        "kpi_type": "qualitative",
+        "metric_name": "AI Linguistic Inclusivity",
+        "target_value": null,
+        "target_description": "Foster AI development that supports linguistic diversity and inclusivity, especially in Spanish, Portuguese, and other official EU languages",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Assessment of AI solutions' linguistic coverage and inclusivity",
+        "responsible_entity": "Participating States in the EU-LAC Digital Alliance",
+        "sector": "AI Development and Inclusivity"
+      },
+      {
+        "kpi_text": "States may take into account the work on ethical guidelines outlined by UNESCO, particularly nations in Latin America and the Caribbean. These guidelines encompass a collective commitment to fostering responsible and inclusive AI practices.",
+        "kpi_type": "qualitative",
+        "metric_name": "Adoption of UNESCO Ethical AI Guidelines",
+        "target_value": null,
+        "target_description": "Consideration and potential adoption of UNESCO ethical guidelines for responsible and inclusive AI",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Reference to UNESCO guidelines in national AI policies and practices",
+        "responsible_entity": "Participating States, especially in Latin America and the Caribbean",
+        "sector": "AI Ethics"
+      },
+      {
         "kpi_text": "A bi-regional investment package exists for the implementation of the Digital Alliance.",
-        "kpi_type": "qualitative",
-        "metric_name": "Digital Alliance Investment Package",
+        "kpi_type": "quantitative",
+        "metric_name": "Bi-Regional Investment Package for Digital Alliance",
         "target_value": null,
-        "target_description": "Establish a bi-regional investment package for the Digital Alliance.",
-        "unit": "qualitative milestone",
+        "target_description": "Establish and maintain a bi-regional investment package to support Digital Alliance implementation",
+        "unit": "currency (amount unspecified)",
         "timeframe": null,
-        "measurement_method": "Existence of the investment package",
-        "responsible_entity": "Participating States",
-        "sector": "Digital Policy"
+        "measurement_method": "Existence and allocation of investment package",
+        "responsible_entity": "EU-LAC Digital Alliance",
+        "sector": "Digital Infrastructure and Policy"
       },
       {
-        "kpi_text": "States will promote the exchange of best practices and sharing of operational regulatory measures and guidelines.",
+        "kpi_text": "States will jointly define the form of Digital Alliance investment to be allocated for the purposes of this statement. Having under consideration local contexts and different needs and opportunities that States may have.",
         "kpi_type": "qualitative",
-        "metric_name": "Best Practices Exchange",
+        "metric_name": "Definition of Digital Alliance Investment Allocation",
         "target_value": null,
-        "target_description": "Promote the exchange of best practices on AI regulation.",
+        "target_description": "Jointly define and allocate Digital Alliance investment according to local contexts and needs",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Documentation of exchanges and shared guidelines",
-        "responsible_entity": "Participating States",
-        "sector": "AI Regulation"
+        "measurement_method": "Agreement and documentation of investment allocation",
+        "responsible_entity": "Participating States in the EU-LAC Digital Alliance",
+        "sector": "Digital Policy and Investment"
       },
       {
-        "kpi_text": "Foster an environment where AI development thrives across linguistic diversities.",
+        "kpi_text": "Maintaining a regular dialogue to exchange information with a view to converging digital policy and regulatory frameworks on AI, while ensuring that innovation, human capital and infrastructure are fostered, and human rights are respected.",
         "kpi_type": "qualitative",
-        "metric_name": "Linguistic Diversity in AI Development",
+        "metric_name": "Regular Dialogue on AI Policy Convergence",
         "target_value": null,
-        "target_description": "Ensure AI technologies cater to the unique needs of different communities.",
+        "target_description": "Maintain regular dialogue to exchange information and promote convergence of digital policy and regulatory frameworks on AI",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Assessment of AI technologies developed in multiple languages",
-        "responsible_entity": "Participating States",
-        "sector": "AI Development"
+        "timeframe": "Ongoing",
+        "measurement_method": "Frequency and documentation of dialogue sessions and outcomes",
+        "responsible_entity": "Participating States in the EU-LAC Digital Alliance",
+        "sector": "AI Policy and Regulation"
       },
       {
-        "kpi_text": "Regular dialogue will encourage the development of AI regulation that fosters innovation.",
+        "kpi_text": "Regular dialogue will encourage the development of AI regulation that fosters innovation, human capital and infrastructure while ensuring safety, and protects human rights. These states will consider the different paces and impacts that the development of AI has taken in each individual country.",
         "kpi_type": "qualitative",
-        "metric_name": "Regular Dialogue on AI Regulation",
+        "metric_name": "Encouragement of AI Regulation Development",
         "target_value": null,
-        "target_description": "Maintain regular dialogue to develop AI regulation that fosters innovation.",
+        "target_description": "Encourage development of AI regulation that fosters innovation, human capital, infrastructure, safety, and human rights",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Frequency and outcomes of dialogues",
-        "responsible_entity": "Participating States",
-        "sector": "AI Regulation"
+        "timeframe": "Ongoing",
+        "measurement_method": "Review of new or updated AI regulations and their alignment with stated goals",
+        "responsible_entity": "Participating States in the EU-LAC Digital Alliance",
+        "sector": "AI Policy and Regulation"
       },
       {
-        "kpi_text": "States will consider the different paces and impacts that the development of AI has taken in each individual country.",
+        "kpi_text": "Within these dialogues, States will have under their consideration the development of legislation and, as a possibility, sandboxes for innovative and trustworthy AI and accelerators, and to share good practices and lessons learnt in this respect, in particular to help innovative startups and SMEs to create trustworthy AI.",
         "kpi_type": "qualitative",
-        "metric_name": "Consideration of Country-Specific AI Development",
+        "metric_name": "Development of AI Legislation, Sandboxes, and Accelerators",
         "target_value": null,
-        "target_description": "Take into account the varying impacts of AI development in each country.",
+        "target_description": "Consider development of legislation, sandboxes, and accelerators for innovative and trustworthy AI, and share good practices to support startups and SMEs",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Documentation of country-specific considerations",
-        "responsible_entity": "Participating States",
-        "sector": "AI Development"
+        "measurement_method": "Tracking of legislative developments, sandbox creation, and support programs for startups/SMEs",
+        "responsible_entity": "Participating States in the EU-LAC Digital Alliance",
+        "sector": "AI Innovation and Regulation"
+      },
+      {
+        "kpi_text": "The Regulation on AI also foresees the creation of regulatory sandboxes to enable development and testing of innovative AI systems in a controlled environment and under the supervision of competent authorities.",
+        "kpi_type": "qualitative",
+        "metric_name": "Creation of Regulatory Sandboxes for AI",
+        "target_value": null,
+        "target_description": "Create regulatory sandboxes for development and testing of innovative AI systems under supervision",
+        "unit": "qualitative milestone",
+        "timeframe": "Upon entry into force of the Regulation on AI",
+        "measurement_method": "Establishment and operation of regulatory sandboxes",
+        "responsible_entity": "Competent authorities in EU Member States",
+        "sector": "AI Regulation and Innovation"
+      },
+      {
+        "kpi_text": "Exchanging information and best practices should be considered a priority for the partners of the EU – LAC Digital Alliance with a view to reinforcing and converging digital policy and regulatory frameworks on AI.",
+        "kpi_type": "qualitative",
+        "metric_name": "Priority of Information and Best Practice Exchange",
+        "target_value": null,
+        "target_description": "Prioritize exchange of information and best practices to reinforce and converge digital policy and regulatory frameworks on AI",
+        "unit": "qualitative milestone",
+        "timeframe": "Ongoing",
+        "measurement_method": "Frequency and quality of information and best practice exchanges",
+        "responsible_entity": "Partners of the EU-LAC Digital Alliance",
+        "sector": "AI Policy and Regulation"
       }
     ],
     "country_list_iso": [
       "ARG",
       "BHS",
       "BRB",
+      "BEL",
       "BRA",
       "CHL",
       "COL",
       "CRI",
+      "DEU",
       "DOM",
       "ECU",
-      "SLV",
+      "EST",
       "GTM",
       "HND",
       "JAM",
@@ -195,16 +247,13 @@
       "PAN",
       "PRY",
       "PER",
+      "SLV",
       "SUR",
+      "SVN",
       "TTO",
-      "URY",
-      "DEU",
-      "ESP",
-      "EST",
-      "BEL",
-      "SVN"
+      "URY"
     ],
-    "responsible_entity": "European Commission",
+    "responsible_entity": null,
     "sdg_alignment": [
       "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
@@ -214,42 +263,42 @@
   },
   "top_actors": [
     {
-      "name": "EU",
-      "category": "Political Actors",
+      "name": "EU-LAC Digital Alliance",
+      "category": "Research and Innovation Actors",
       "relevance_score": 1.0,
-      "justification": "The EU is central to the document as it is the primary entity initiating the Digital Alliance and is mentioned multiple times in relation to the regulatory frameworks on AI."
+      "justification": "The EU-LAC Digital Alliance is the central framework and main subject of the statement, driving the cooperation, convergence, and policy alignment on AI between the EU and LAC countries. It is repeatedly referenced as the platform for joint activities, investment, and dialogue, making it the most relevant actor."
     },
     {
-      "name": "Argentina",
+      "name": "European Union",
       "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "Argentina is one of the key signatories of the Digital Alliance and is highlighted as a forerunner in the proposed activities, indicating its significant role in the collaboration."
+      "relevance_score": 0.95,
+      "justification": "The European Union is a primary signatory and initiator of the Digital Alliance, provides the regulatory model (AI Regulation), and is a key driver of the policy and regulatory convergence discussed. The EU's institutions and member states are central to the initiatives and decisions outlined."
     },
     {
-      "name": "European Commission",
+      "name": "Governments",
       "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "The European Commission is mentioned in the context of overseeing the regulatory frameworks and is crucial for the implementation of the AI regulations discussed in the document."
+      "relevance_score": 0.85,
+      "justification": "National governments from both EU and LAC regions are the main participants and implementers of the statement's commitments. They are responsible for exchanging best practices, enacting regulations, and ensuring the convergence of digital policy frameworks on AI."
     }
   ],
   "top_themes": [
     {
+      "name": "Digital Policy",
+      "category": "Digital Transformation & Strategy",
+      "relevance_score": 1.0,
+      "justification": "The central focus of the document is the reinforcement and convergence of digital policy frameworks, particularly in the context of AI. The statement repeatedly emphasizes the need for aligned digital policies across EU and LAC countries, dedicating significant content to policy exchange, best practices, and regulatory harmonization. This theme is directly tied to the main objectives and commitments outlined in the document."
+    },
+    {
       "name": "Artificial Intelligence",
       "category": "Technology & Innovation",
-      "relevance_score": 0.9,
-      "justification": "AI is the central focus of the document, as it discusses the regulatory frameworks and policies specifically aimed at AI development and governance, highlighting its significance in the context of the Digital Alliance."
+      "relevance_score": 0.95,
+      "justification": "AI is the specific technological domain around which the entire statement is structured. The document discusses AI regulation, the impact of generative AI, regulatory sandboxes, and the need for trustworthy and innovative AI. The strategic importance of AI is highlighted through references to upcoming EU regulations and the need for bi-regional cooperation on AI governance."
     },
     {
       "name": "EU-LAC Digital Alliance",
       "category": "Regional & International Cooperation",
-      "relevance_score": 0.85,
-      "justification": "The document emphasizes the collaboration between the EU and LAC countries, making the Digital Alliance a key framework for promoting cooperation and convergence in digital policy and AI regulation."
-    },
-    {
-      "name": "Digital Policy",
-      "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.75,
-      "justification": "Digital policy is crucial as it underpins the regulatory frameworks being discussed, ensuring that AI development aligns with broader digital transformation goals and human-centric values."
+      "relevance_score": 0.9,
+      "justification": "The EU-LAC Digital Alliance provides the institutional and cooperative framework for all the commitments and activities described. The document frames all actions—policy convergence, investment, dialogue, and best practice exchange—within the context of this alliance, making it a foundational theme for the document's strategic direction and implementation."
     }
   ]
 }

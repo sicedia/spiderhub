@@ -1,4 +1,4 @@
-# Meeting of the European Political Community - Second Meeting Summary
+# Meeting of the European Political Community - Second Meeting
 
 **Date**: Date not specified
 
@@ -16,13 +16,11 @@ No key characteristics identified in the document.
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Union; EU Member States; European Council; European Parliament; European Commission |
+| Political Actors | European Political Community |
 
 ## Main Themes
 
-| Category | Subcategory |
-| --- | --- |
-| Regional & International Cooperation | EU-LAC Digital Alliance |
+No themes identified.
 
 ## Practical Applications
 

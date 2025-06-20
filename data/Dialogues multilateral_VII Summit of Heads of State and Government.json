@@ -1,44 +1,75 @@
 {
-  "title": "VII Summit of Heads of State and Government of CELAC: Declaration of Buenos Aires 2023",
+  "title": "Declaration of Buenos Aires: VII Summit of Heads of State and Government of CELAC (2023)",
   "date": "2023-01-24",
   "location": "Buenos Aires, Argentina",
-  "executive_summary": "The VII Summit of Heads of State and Government of CELAC, held in Buenos Aires on January 24, 2023, emphasized regional integration, democracy, and sustainable development. Leaders reaffirmed their commitment to addressing poverty, inequality, and the impacts of the COVID-19 pandemic through cooperative economic recovery and food security initiatives. They highlighted the importance of health strategies, including vaccine production and equitable access to healthcare. Environmental cooperation was prioritized, with a focus on climate action and biodiversity. The summit also addressed social issues, including gender equality, youth participation, and the rights of Afro-descendants and indigenous peoples. Additionally, leaders discussed migration policies, public integrity, and the need for regional cooperation in multilateral forums. The summit concluded with a commitment to strengthen CELAC's role in international relations and support for member states facing crises, particularly Haiti and Venezuela.",
+  "executive_summary": "The VII Summit of Heads of State and Government of CELAC, held in Buenos Aires in January 2023, reaffirmed the commitment to regional integration, democracy, human rights, and sustainable development. Key focuses included post-pandemic economic recovery, food and energy security, health strategy enhancement, and addressing the world drug problem with a human rights approach. The summit emphasized environmental cooperation, climate action, disaster risk management, and digital transformation, highlighting the importance of science, technology, and innovation. It addressed social issues such as gender equality, youth participation, Afro-descendant rights, indigenous languages, migration, disability, education, and culture. The summit also stressed public integrity, anti-corruption efforts, and strengthened multilateral cooperation. Special attention was given to regional challenges in Haiti, Cuba, Venezuela, and sovereignty disputes like the Malvinas. The event celebrated Brazil's return to CELAC and welcomed Saint Vincent and the Grenadines as the new Pro Tempore Presidency, underscoring unity and collaborative progress in Latin America and the Caribbean.",
   "characteristics": [
-    "The VII Summit of CELAC emphasized regional integration, unity, and the commitment to addressing poverty and inequality in Latin America and the Caribbean.",
-    "It reaffirmed the region's status as a Zone of Peace, promoting democracy, human rights, and non-intervention in state affairs.",
-    "The summit highlighted the need for sustainable economic recovery post-COVID-19, focusing on food and energy security.",
-    "It recognized the importance of environmental cooperation and climate action, including commitments to biodiversity and renewable energy.",
-    "The summit addressed social issues, including gender equality, youth participation, and the rights of Afro-descendants and indigenous peoples.",
-    "It called for enhanced cooperation in multilateral forums and support for Haiti, Cuba, and Venezuela, while reaffirming the region's stance on colonialism and territorial disputes."
+    "CELAC emphasizes regional integration, unity, and respect for sovereignty, democracy, human rights, and multilateralism to promote development and overcome poverty and inequalities in Latin America and the Caribbean.",
+    "The Summit addresses post-pandemic economic recovery, food and energy security, highlighting the need for sustainable development, financial support, and cooperation to tackle crises exacerbated by COVID-19 and global instability.",
+    "Environmental cooperation focuses on climate action, biodiversity financing, renewable energy, and disaster risk management, stressing the importance of international support and regional coordination.",
+    "The Summit promotes health self-sufficiency, joint vaccine production, and equitable access to medicines, alongside strategies to combat the world drug problem with a human rights approach.",
+    "Digital transformation, science, technology, and innovation are prioritized for social inclusion, economic growth, and regional competitiveness, with attention to cybersecurity, disinformation, and digital rights.",
+    "The declaration supports cultural diversity, education, migration management, gender equality, Afro-descendant and indigenous rights, and regional infrastructure projects to enhance integration and sustainable development."
   ],
   "themes": {
     "Digital Transformation & Strategy": [
-      "Digital Agenda",
-      "Digital Skills Development"
+      "Digital Inclusion",
+      "Digital Skills Development",
+      "Digital Infrastructure",
+      "Digital Platforms",
+      "Digital Policy"
+    ],
+    "Technology & Innovation": [
+      "ICT Innovation"
     ],
     "Data & Governance": [
       "Digital Governance",
-      "Data Protection"
+      "Digital Rights",
+      "Digital Ethics",
+      "Cyber Risk Management"
     ],
     "Inclusion & Social Development": [
-      "Digital Inclusion",
-      "Gender Equality in Tech"
+      "Social Cohesion",
+      "Gender Equality in Tech",
+      "Digital Education",
+      "Connectivity",
+      "Sustainable Digital Development"
     ],
     "Regional & International Cooperation": [
+      "Bi-regional Cooperation",
       "Global Digital Cooperation",
+      "Multilateralism",
       "Digital & Technological Partnerships"
     ]
   },
   "actors": {
     "Political Actors": [
       "Community of Latin American and Caribbean States",
-      "Governments",
-      "United Nations"
+      "European Union",
+      "Economic Commission for Latin America and the Caribbean (ECLAC)",
+      "Development Bank of Latin America and the Caribbean (CAF)",
+      "Food and Agriculture Organization of the United Nations (FAO)",
+      "Latin American and Caribbean Economic System (SELA)",
+      "Association of Caribbean States (ACS)",
+      "Organization of Eastern Caribbean States (OECS)",
+      "Caribbean Community (CARICOM)",
+      "Central American Integration System (SICA)",
+      "Inter-American Institute for Cooperation on Agriculture (IICA)",
+      "Caribbean Disaster Emergency Management Agency (CDEMA)",
+      "United Nations",
+      "United Nations Officials",
+      "Ibero-American General Secretariat",
+      "Organisation of Ibero-American States",
+      "International Atomic Energy Agency (IAEA)"
+    ],
+    "Research and Innovation Actors": [
+      "EU-LAC Foundation",
+      "Organisation of Ibero-American States",
+      "LAC Space Agencies"
     ],
     "Economic Actors": [
-      "Inter-American Development Bank",
       "Development Bank of Latin America and the Caribbean",
-      "World Bank"
+      "Multilateral Development Banks"
     ],
     "Civil Society Actors": [
       "Non-governmental Institutions",
@@ -46,39 +77,87 @@
     ]
   },
   "practical_applications": [
-    "Commitment to the \"Bridgetown Initiative\" proposed by the Government of Barbados to redesign the global financial system for better climate crisis response and development challenges.",
-    "Coordination of a meeting of Ministers of Economy and Finance in the first semester of 2023, with technical support from ECLAC, to design a common agenda for economic recovery in Latin America and the Caribbean.",
-    "Continuation of the CELAC Health Self-Sufficiency Plan to strengthen local and regional production and distribution of vaccines, medicines, and critical supplies.",
-    "Endorsement of the CELAC Sanitary Self-Sufficiency Plan to enhance mechanisms for joint international purchase of vaccines and essential medicines.",
-    "Approval of the CELAC Ministerial Declaration on the Environment to strengthen common positions and raise the region's voice on environmental matters.",
-    "Establishment of the CELAC Fund for Climate Adaptation and Comprehensive Response to Natural Disasters (FACRID) to implement projects for disaster prevention and recovery.",
-    "Adoption of the \"Declaration of Buenos Aires on Science, Technology and Innovation\" to coordinate actions and promote technological transfer among CELAC countries.",
-    "Establishment of five working groups on Ancestral Science, Aerospace Research, Regional Evaluators Network, Energy Transition, and Biotechnology to enhance collaboration in scientific and technological fields.",
-    "Implementation of the Spanish language teaching program for diplomatic officials of the Caribbean Community (CARICOM) by the Institute of the Foreign Service of the Nation (ISEN) of Argentina.",
-    "Adoption of the \"Declaration of the III CELAC Ministerial Meeting on Education\" to strengthen educational systems towards inclusive, equitable, and quality education.",
-    "Recognition of the establishment of the Ibero-American Institute of Indigenous Languages to promote the use and conservation of indigenous languages in Latin America and the Caribbean."
+    "Coordination, with technical support from ECLAC, to hold a meeting of Ministers of Economy and Finance in the first semester of 2023 to design a common agenda for Latin America and the Caribbean responding to the global economic crisis.",
+    "Updating the Plan for Food Security, Nutrition and the Eradication of Hunger of CELAC 2025 (SAN-CELAC) with technical assistance from FAO, IICA, ECLAC, ALADI, and other cooperation agencies.",
+    "Relaunch of the CELAC Working Group on Labor as a permanent mechanism for tripartite social dialogue.",
+    "Continuation and strengthening of the CELAC Health Self-Sufficiency Plan to boost local and regional production and distribution of vaccines, medicines, and critical supplies through technology transfer and innovation support.",
+    "Strengthening joint international purchase mechanisms for vaccines and essential medicines, including public procurement and creation of consortia for vaccine development and production.",
+    "Support for WHO and PAHO in drafting amendments to International Health Regulations and negotiating international instruments on pandemic prevention and response.",
+    "Implementation of the CELAC Fund for Climate Adaptation and Comprehensive Response to Natural Disasters (FACRID) to finance projects for disaster prevention, response, mitigation, and recovery.",
+    "Holding the VIII Regional Platform for Disaster Risk Reduction in the Americas and the Caribbean in Punta del Este, Uruguay, in early 2023 to strengthen cooperation and share best practices.",
+    "Establishment of five CELAC working groups on Science, Technology and Innovation in the areas of Ancestral Science, Aerospace Research, Regional Evaluators Network, Energy Transition, and Biotechnology (Agriculture and Health).",
+    "Implementation of the cooperation program for teaching Spanish to diplomatic officials of CARICOM by the Institute of the Foreign Service of the Nation (ISEN) of Argentina, with recommendation for its continuation.",
+    "Organization of the “Update and Training Program for young diplomats on the CELAC-EU strategic association” jointly by the EU-LAC Foundation and ISEN.",
+    "Adoption of the “Joint Action Plan for Cooperation on peaceful uses of nuclear science and technology for sustainable development (2022-2023)” between CELAC Member States and the IAEA.",
+    "Strengthening the Specialized Working Group on Prevention and Fight against Corruption, including implementation of corruption alerts, whistleblower protection, training, and regional cooperation.",
+    "Promotion of joint interventions and strategic alliances with international, regional, and sub-regional organizations such as ECLAC, CAF, FAO, SELA, ACS, OECS, CARICOM, SICA, IICA, and CDEMA.",
+    "Reactivation of CELAC Meetings on Migration and the CELAC-EU Structured and Integral Dialogue on Migration.",
+    "Support for the “Council of Youth of Latin America and the Caribbean” to foster youth participation in public policy design.",
+    "Promotion of the Ibero-American Institute of Indigenous Languages to conserve and promote indigenous languages.",
+    "Support for the International Year of Camelids in 2024 as per UN General Assembly Resolution A/RES/72/210.",
+    "Support for Brazil’s candidacy to host COP-30 in 2025 in Belém do Pará.",
+    "Holding the Regional Conference on the social and humanitarian impact of autonomous weapons in February 2023 in San José, Costa Rica.",
+    "Promotion of the Bi-Oceanic Integration Rail Corridor Project and Bi-Oceanic Road Corridor to enhance regional physical integration and trade.",
+    "Promotion of the Paraguay-Paraná Waterway and sub-regional integration mechanisms for fluvial navigation to facilitate regional trade.",
+    "Promotion of regional energy integration infrastructure projects and evaluation of regional electrical interconnection projects respecting national sovereignty and sustainable development.",
+    "Celebration and promotion of virtual cultural events and use of technology to strengthen cultural access and preservation.",
+    "Cooperation program on Spanish language teaching for Caribbean diplomatic officials in collaboration with the Organization of Ibero-American States for Education, Science and Culture (OEI).",
+    "Support for the development of digital skills and infrastructure to guarantee universal connectivity and narrow digital and gender gaps.",
+    "Promotion of open government approaches and transparency in digital transformation of public services.",
+    "Cooperation and coordination between States to combat cybercrime, disinformation, and illegal content on the Internet.",
+    "Promotion of regional cooperation in disaster risk management with emphasis on Small Island States, landlocked countries, and Central American Isthmus countries.",
+    "Support for Haiti through regional and extra-regional consensus and cooperation to address security and humanitarian crises, including participation in a specialized multinational force to combat organized crime and illicit arms trafficking."
   ],
   "commitments": [
-    "Commit to mobilizing at least US$200 billion annually from public and private sources to finance biodiversity-related plans and strategies.",
-    "Increase total international financial flows from developed to developing countries to $20 billion a year by 2025 and $30 billion a year by 2030.",
-    "Urge developed countries to fulfill their commitment to jointly mobilize $100 billion per year from 2020 until 2025 for climate financing.",
-    "Agree to hold a meeting of Ministers of Economy and Finance in the first semester of 2023 to design a common agenda for Latin America and the Caribbean.",
-    "Commit to updating the Plan for Food Security, Nutrition and the Eradication of Hunger of CELAC 2025 (SAN-CELAC) with technical assistance from FAO, IICA, ECLAC, ALADI, and other cooperation agencies.",
-    "Commit to the implementation of the CELAC Health Self-Sufficiency Plan to strengthen local and regional production and distribution of vaccines, medicines, and critical supplies.",
-    "Agree to hold the VIII Regional Platform for Disaster Risk Reduction in the Americas and the Caribbean from February 28 to March 2, 2023.",
-    "Commit to the establishment of five working groups on Ancestral Science, Aerospace Research, Regional Evaluators Network, Energy Transition, and Biotechnology.",
-    "Reaffirm commitment to the implementation of the 2030 Agenda and its SDGs, particularly in relation to SDG 6, with a focus on the Conference on the Comprehensive Midterm Review of the Achievement of the Goals of the International Decade for Action \"Water for Sustainable Development 2018-2028\" to be held from March 22 to 24, 2023.",
-    "Welcome Brazil's candidacy to host the 30th Conference of the Parties to the United Nations Framework Convention on Climate Change (COP-30) in 2025."
+    "Commit to the success of the celebration of the International Year of Camelids in 2024 (point 9).",
+    "Coordinate, with the technical support of ECLAC, the holding of a meeting of Ministers of Economy and Finance in the first semester of 2023 to design a common agenda for Latin America and the Caribbean to respond to the current global economic crisis (point 12).",
+    "Update the Plan for Food Security, Nutrition and the Eradication of Hunger of CELAC 2025 (SAN-CELAC) with technical assistance from FAO, IICA, ECLAC, ALADI and other agencies (point 15).",
+    "Continue implementing government actions to place persons at the core of health and resilience policies, including vulnerable groups (point 17).",
+    "Continue implementing the CELAC Health Self-Sufficiency Plan to strengthen local and regional production and distribution of vaccines, medicines, and critical supplies (point 18).",
+    "Strengthen mechanisms for joint international purchase of vaccines and essential medicines, creation of consortia for vaccine development and production, and regulatory convergence (point 19).",
+    "Support the negotiation of an international instrument on prevention, preparation and response to pandemics guaranteeing universal and equitable access to essential supplies (point 21).",
+    "Mobilize at least US$200 billion annually from public and private sources to finance biodiversity-related plans and strategies; increase total international financial flows from developed to developing countries to $20 billion a year by 2025 and $30 billion a year by 2030 (point 26).",
+    "Developed countries to jointly mobilize 100 billion dollars per year from 2020 until 2025 for climate financing to support developing countries (point 27).",
+    "Brazil to host the 30th Conference of the Parties to the UNFCCC (COP-30) in 2025 in Belém do Pará (point 28).",
+    "Advance in SDG 6 (water and sanitation) towards the Conference on the Comprehensive Midterm Review of the International Decade for Action \"Water for Sustainable Development 2018-2028\" to be held in New York from March 22 to 24, 2023 (point 36).",
+    "Prompt regulation of the CELAC Fund for Climate Adaptation and Comprehensive Response to Natural Disasters (FACRID) to implement projects for prevention, response, mitigation, and disaster recovery (point 38).",
+    "Hold the VIII Regional Platform for Disaster Risk Reduction in the Americas and the Caribbean in Punta del Este, Uruguay, from February 28 to March 2, 2023 (point 39).",
+    "Establish five working groups on Ancestral Science, Aerospace Research, Regional Evaluators Network, Energy Transition, and Biotechnology, with competencies and expected results to be agreed by National Coordinators (point 43).",
+    "Advance the digital transformation of States to guarantee agile, efficient, modern, accessible and inclusive public services, promoting open government approaches and transparency (point 48).",
+    "Hold the Regional Conference on the social and humanitarian impact of autonomous weapons from February 23 to 24, 2023, in San José, Costa Rica (point 52).",
+    "Continue working on the digital transformation to narrow digital and gender gaps and ensure universal access to connectivity, especially for vulnerable groups and remote areas (point 45).",
+    "Reaffirm the commitment to the implementation of the United Nations Convention against Corruption, commemorating its 20th anniversary in 2023 (point 90).",
+    "Hold the CELAC-China Forum Summit in 2024 on the occasion of the tenth anniversary of the establishment of the forum (point 99).",
+    "Hold the VIII Regional Platform for Disaster Risk Reduction in the Americas and the Caribbean from February 28 to March 2, 2023 (point 39).",
+    "Hold the XXVIII Ibero-American Summit of Heads of State and Government on March 25, 2023, in Santo Domingo, Dominican Republic (point 95).",
+    "Hold the Specialized Expo 2027/28 of the Bureau International des Expositions (BIE) in San Carlos de Bariloche, Argentina (point 97).",
+    "Continue advancing in the promotion of integration and insertion of migrants and national and regional migration policies for socioeconomic integration (point 67).",
+    "Continue working to counter multidimensional causes of migration through irregular channels and promote safe, orderly, and regular migration (point 68).",
+    "Reactivate the CELAC Meetings on Migration and the CELAC-EU Structured and Integral Dialogue on Migration (point 70).",
+    "Continue developing public policies and international actions to support the International Decade of Indigenous Languages 2022-2032 (point 64).",
+    "Continue working on the CELAC Health Self-Sufficiency Plan with objectives for strengthening local and regional production and distribution of vaccines, medicines, and critical supplies through technology transfer (point 18).",
+    "Hold the III Summit of Heads of State and Government during 2023 (point 100).",
+    "Celebrate the \"Film Week For Young Filmmakers Of CELAC\" and other cultural events (point 78).",
+    "Continue the cooperation program regarding the teaching of the Spanish language for diplomatic officials of CARICOM (point 81).",
+    "Continue the implementation of the Spanish Course for Beginners for English-speaking public officials and agents from Caribbean countries (point 82).",
+    "Continue working on the establishment of the Latin American and Caribbean Space Agency (ALCE) (point 84).",
+    "Implement the “Joint Action Plan for Cooperation on peaceful uses of nuclear science and technology for sustainable development (2022-2023)” (point 85).",
+    "Hold the CELAC-CAF International Seminar \"Latin America and the Caribbean: Unity in Diversity\" (point 94).",
+    "Support the candidacy of Brazil to host COP-30 in 2025 (point 28).",
+    "Hold the VIII Regional Platform for Disaster Risk Reduction in the Americas and the Caribbean from February 28 to March 2, 2023 (point 39).",
+    "Hold the Regional Conference on the social and humanitarian impact of autonomous weapons from February 23 to 24, 2023 (point 52).",
+    "Hold the XXVIII Ibero-American Summit of Heads of State and Government on March 25, 2023 (point 95).",
+    "Hold the CELAC-China Forum Summit in 2024 (point 99).",
+    "Hold the III Meeting of Ministers of Foreign Affairs of CELAC with the European Union in 2022-2023 (point 100).",
+    "Hold the Specialized Expo 2027/28 in San Carlos de Bariloche, Argentina (point 97)."
   ],
-  "score": 61,
+  "score": 98,
   "quality_breakdown": {
-    "faithfulness": 0,
-    "consistency": 85,
-    "completeness": 85,
+    "faithfulness": 100,
+    "consistency": 95,
+    "completeness": 95,
     "accuracy": 100,
-    "issues": [
-      "Low faithfulness - check for hallucinations in basic or strategic extra data"
-    ]
+    "issues": []
   },
   "extra_data": {
     "lead_country_iso": "ARG",
@@ -92,9 +171,9 @@
     "beneficiary_group_raw": [
       "woman",
       "youth",
-      "child",
-      "indigenous",
-      "Afro-descendant"
+      "indigenous people",
+      "afro-descendant",
+      "migrant"
     ],
     "beneficiary_group": [
       {
@@ -106,217 +185,352 @@
         "label": "Youth"
       },
       {
-        "category": "Students & Youth",
-        "label": "Children"
-      },
-      {
         "category": "Indigenous Peoples & Ethnic Groups",
         "label": "Indigenous Communities"
       },
       {
         "category": "Indigenous Peoples & Ethnic Groups",
         "label": "Afro-descendant Groups"
+      },
+      {
+        "category": "Migrants & Refugees",
+        "label": "Migrants"
       }
     ],
     "start_date": "2023-01-24",
-    "end_date": "2023-03-24",
+    "end_date": "2023-01-24",
     "commitment_details": [
       {
-        "text": "Commit to mobilizing at least US$200 billion annually from public and private sources to finance biodiversity-related plans and strategies.",
-        "commitment_class": "Financed"
+        "text": "Commit to the success of the celebration of the International Year of Camelids in 2024 (point 9).",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Increase total international financial flows from developed to developing countries to $20 billion a year by 2025 and $30 billion a year by 2030.",
-        "commitment_class": "Financed"
+        "text": "Coordinate, with the technical support of ECLAC, the holding of a meeting of Ministers of Economy and Finance in the first semester of 2023 to design a common agenda for Latin America and the Caribbean to respond to the current global economic crisis (point 12).",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Urge developed countries to fulfill their commitment to jointly mobilize $100 billion per year from 2020 until 2025 for climate financing.",
-        "commitment_class": "Financed"
+        "text": "Update the Plan for Food Security, Nutrition and the Eradication of Hunger of CELAC 2025 (SAN-CELAC) with technical assistance from FAO, IICA, ECLAC, ALADI and other agencies (point 15).",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Agree to hold a meeting of Ministers of Economy and Finance in the first semester of 2023 to design a common agenda for Latin America and the Caribbean.",
-        "commitment_class": "Declarative"
+        "text": "Continue implementing government actions to place persons at the core of health and resilience policies, including vulnerable groups (point 17).",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to updating the Plan for Food Security, Nutrition and the Eradication of Hunger of CELAC 2025 (SAN-CELAC) with technical assistance from FAO, IICA, ECLAC, ALADI, and other cooperation agencies.",
-        "commitment_class": "Programmatic"
+        "text": "Continue implementing the CELAC Health Self-Sufficiency Plan to strengthen local and regional production and distribution of vaccines, medicines, and critical supplies (point 18).",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the implementation of the CELAC Health Self-Sufficiency Plan to strengthen local and regional production and distribution of vaccines, medicines, and critical supplies.",
-        "commitment_class": "Implemented"
+        "text": "Strengthen mechanisms for joint international purchase of vaccines and essential medicines, creation of consortia for vaccine development and production, and regulatory convergence (point 19).",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Agree to hold the VIII Regional Platform for Disaster Risk Reduction in the Americas and the Caribbean from February 28 to March 2, 2023.",
-        "commitment_class": "Declarative"
+        "text": "Support the negotiation of an international instrument on prevention, preparation and response to pandemics guaranteeing universal and equitable access to essential supplies (point 21).",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Commit to the establishment of five working groups on Ancestral Science, Aerospace Research, Regional Evaluators Network, Energy Transition, and Biotechnology.",
-        "commitment_class": "Programmatic"
+        "text": "Mobilize at least US$200 billion annually from public and private sources to finance biodiversity-related plans and strategies; increase total international financial flows from developed to developing countries to $20 billion a year by 2025 and $30 billion a year by 2030 (point 26).",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Reaffirm commitment to the implementation of the 2030 Agenda and its SDGs, particularly in relation to SDG 6, with a focus on the Conference on the Comprehensive Midterm Review of the Achievement of the Goals of the International Decade for Action \"Water for Sustainable Development 2018-2028\" to be held from March 22 to 24, 2023.",
-        "commitment_class": "Implemented"
+        "text": "Developed countries to jointly mobilize 100 billion dollars per year from 2020 until 2025 for climate financing to support developing countries (point 27).",
+        "commitment_class": "Unclassified"
       },
       {
-        "text": "Welcome Brazil's candidacy to host the 30th Conference of the Parties to the United Nations Framework Convention on Climate Change (COP-30) in 2025.",
-        "commitment_class": "Declarative"
+        "text": "Brazil to host the 30th Conference of the Parties to the UNFCCC (COP-30) in 2025 in Belém do Pará (point 28).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Advance in SDG 6 (water and sanitation) towards the Conference on the Comprehensive Midterm Review of the International Decade for Action \"Water for Sustainable Development 2018-2028\" to be held in New York from March 22 to 24, 2023 (point 36).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Prompt regulation of the CELAC Fund for Climate Adaptation and Comprehensive Response to Natural Disasters (FACRID) to implement projects for prevention, response, mitigation, and disaster recovery (point 38).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the VIII Regional Platform for Disaster Risk Reduction in the Americas and the Caribbean in Punta del Este, Uruguay, from February 28 to March 2, 2023 (point 39).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Establish five working groups on Ancestral Science, Aerospace Research, Regional Evaluators Network, Energy Transition, and Biotechnology, with competencies and expected results to be agreed by National Coordinators (point 43).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Advance the digital transformation of States to guarantee agile, efficient, modern, accessible and inclusive public services, promoting open government approaches and transparency (point 48).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the Regional Conference on the social and humanitarian impact of autonomous weapons from February 23 to 24, 2023, in San José, Costa Rica (point 52).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Continue working on the digital transformation to narrow digital and gender gaps and ensure universal access to connectivity, especially for vulnerable groups and remote areas (point 45).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Reaffirm the commitment to the implementation of the United Nations Convention against Corruption, commemorating its 20th anniversary in 2023 (point 90).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the CELAC-China Forum Summit in 2024 on the occasion of the tenth anniversary of the establishment of the forum (point 99).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the VIII Regional Platform for Disaster Risk Reduction in the Americas and the Caribbean from February 28 to March 2, 2023 (point 39).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the XXVIII Ibero-American Summit of Heads of State and Government on March 25, 2023, in Santo Domingo, Dominican Republic (point 95).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the Specialized Expo 2027/28 of the Bureau International des Expositions (BIE) in San Carlos de Bariloche, Argentina (point 97).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Continue advancing in the promotion of integration and insertion of migrants and national and regional migration policies for socioeconomic integration (point 67).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Continue working to counter multidimensional causes of migration through irregular channels and promote safe, orderly, and regular migration (point 68).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Reactivate the CELAC Meetings on Migration and the CELAC-EU Structured and Integral Dialogue on Migration (point 70).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Continue developing public policies and international actions to support the International Decade of Indigenous Languages 2022-2032 (point 64).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Continue working on the CELAC Health Self-Sufficiency Plan with objectives for strengthening local and regional production and distribution of vaccines, medicines, and critical supplies through technology transfer (point 18).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the III Summit of Heads of State and Government during 2023 (point 100).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Celebrate the \"Film Week For Young Filmmakers Of CELAC\" and other cultural events (point 78).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Continue the cooperation program regarding the teaching of the Spanish language for diplomatic officials of CARICOM (point 81).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Continue the implementation of the Spanish Course for Beginners for English-speaking public officials and agents from Caribbean countries (point 82).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Continue working on the establishment of the Latin American and Caribbean Space Agency (ALCE) (point 84).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Implement the “Joint Action Plan for Cooperation on peaceful uses of nuclear science and technology for sustainable development (2022-2023)” (point 85).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the CELAC-CAF International Seminar \"Latin America and the Caribbean: Unity in Diversity\" (point 94).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Support the candidacy of Brazil to host COP-30 in 2025 (point 28).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the VIII Regional Platform for Disaster Risk Reduction in the Americas and the Caribbean from February 28 to March 2, 2023 (point 39).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the Regional Conference on the social and humanitarian impact of autonomous weapons from February 23 to 24, 2023 (point 52).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the XXVIII Ibero-American Summit of Heads of State and Government on March 25, 2023 (point 95).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the CELAC-China Forum Summit in 2024 (point 99).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the III Meeting of Ministers of Foreign Affairs of CELAC with the European Union in 2022-2023 (point 100).",
+        "commitment_class": "Unclassified"
+      },
+      {
+        "text": "Hold the Specialized Expo 2027/28 in San Carlos de Bariloche, Argentina (point 97).",
+        "commitment_class": "Unclassified"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "Mobilize at least US$200 billion annually from public and private sources to finance the execution of biodiversity-related plans and strategies.",
+        "kpi_text": "Reaffirm the urgency that developed countries fulfill their commitment to jointly mobilize 100 billion dollars per year from 2020 and until 2025 for climate financing, in order to support developing countries, especially Small Island Developing States, the landlocked countries and the countries of the Central American Isthmus",
+        "kpi_type": "quantitative",
+        "metric_name": "Climate Financing Mobilization",
+        "target_value": 100.0,
+        "target_description": "Mobilize 100 billion USD per year to support developing countries for climate financing",
+        "unit": "billion USD per year",
+        "timeframe": "2020 to 2025",
+        "measurement_method": "Tracking annual financial flows from developed to developing countries",
+        "responsible_entity": "Developed countries, CELAC member states",
+        "sector": "Environment / Climate Finance"
+      },
+      {
+        "kpi_text": "Welcome the adoption of the Kunming- Montreal Global Biodiversity Framework, which envisions mobilizing at least US$200 billion annually from public and private sources to finance the execution of biodiversity-related plans and strategies; and increase total international financial flows from developed to developing countries to $20 billion a year by 2025 and $30 billion a year by 2030",
         "kpi_type": "quantitative",
         "metric_name": "Biodiversity Financing",
         "target_value": 200.0,
-        "target_description": "Mobilize financial resources for biodiversity-related plans and strategies.",
-        "unit": "billion USD",
-        "timeframe": "annually",
-        "measurement_method": "Financial reports and audits",
-        "responsible_entity": "CELAC member states",
-        "sector": "Environment"
+        "target_description": "Mobilize at least 200 billion USD annually from public and private sources for biodiversity plans and strategies",
+        "unit": "billion USD per year",
+        "timeframe": "ongoing",
+        "measurement_method": "Annual financial reporting on biodiversity-related funding",
+        "responsible_entity": "Public and private sources, developed countries",
+        "sector": "Environment / Biodiversity"
       },
       {
-        "kpi_text": "Increase total international financial flows from developed to developing countries to $20 billion a year by 2025 and $30 billion a year by 2030.",
+        "kpi_text": "increase total international financial flows from developed to developing countries to $20 billion a year by 2025 and $30 billion a year by 2030",
         "kpi_type": "quantitative",
-        "metric_name": "International Financial Flows",
+        "metric_name": "International Financial Flows for Biodiversity",
         "target_value": 20.0,
-        "target_description": "Increase financial support from developed to developing countries.",
-        "unit": "billion USD",
-        "timeframe": "by 2025 and by 2030",
-        "measurement_method": "Financial tracking and reporting",
+        "target_description": "Increase financial flows to 20 billion USD per year by 2025",
+        "unit": "billion USD per year",
+        "timeframe": "by 2025",
+        "measurement_method": "Annual financial flow tracking",
         "responsible_entity": "Developed countries",
-        "sector": "Finance"
+        "sector": "Environment / Biodiversity"
       },
       {
-        "kpi_text": "Coordinate, with the technical support of ECLAC, the holding of a meeting of Ministers of Economy and Finance in the first semester of 2023.",
+        "kpi_text": "increase total international financial flows from developed to developing countries to $20 billion a year by 2025 and $30 billion a year by 2030",
+        "kpi_type": "quantitative",
+        "metric_name": "International Financial Flows for Biodiversity",
+        "target_value": 30.0,
+        "target_description": "Increase financial flows to 30 billion USD per year by 2030",
+        "unit": "billion USD per year",
+        "timeframe": "by 2030",
+        "measurement_method": "Annual financial flow tracking",
+        "responsible_entity": "Developed countries",
+        "sector": "Environment / Biodiversity"
+      },
+      {
+        "kpi_text": "Agree to coordinate, with the technical support of ECLAC, the holding of a meeting of Ministers of Economy and Finance in the first semester of 2023, on a date to be defined, in order to design a common agenda for Latin America and the Caribbean that can respond to the current global economic crisis",
         "kpi_type": "qualitative",
         "metric_name": "Ministerial Meeting Coordination",
         "target_value": null,
-        "target_description": "Hold a meeting to design a common agenda for economic response.",
+        "target_description": "Hold a meeting of Ministers of Economy and Finance to design a common economic agenda",
         "unit": "qualitative milestone",
         "timeframe": "first semester of 2023",
-        "measurement_method": "Meeting outcomes and agenda development",
-        "responsible_entity": "ECLAC and CELAC member states",
-        "sector": "Economy"
+        "measurement_method": "Successful convening and agenda design at the meeting",
+        "responsible_entity": "CELAC member states, ECLAC",
+        "sector": "Economic Policy / Regional Integration"
       },
       {
-        "kpi_text": "Strengthen the local and regional production and distribution of vaccines, medicines and critical supplies through technology transfer.",
+        "kpi_text": "Reaffirm the commitment of the countries of Latin America and the Caribbean with the implementation of the 2030 Agenda and its SDGs, within the framework of resolution 64/292 of the United Nations General Assembly, which recognizes the human right to water and sanitation, and we highlight regional efforts to advance in SDG 6 towards the Conference on the Comprehensive Midterm Review of the Achievement of the Goals of the International Decade for Action \"Water for Sustainable Development 2018-2028\" to be held in New York from 22 to March 24, 2023",
         "kpi_type": "qualitative",
-        "metric_name": "Health Self-Sufficiency Plan",
+        "metric_name": "SDG 6 Implementation and Review",
         "target_value": null,
-        "target_description": "Enhance local production capabilities for health supplies.",
+        "target_description": "Advance implementation of SDG 6 (water and sanitation) and participate in the 2023 Midterm Review Conference",
+        "unit": "qualitative milestone",
+        "timeframe": "by March 24, 2023",
+        "measurement_method": "Participation in conference and progress reports on SDG 6",
+        "responsible_entity": "CELAC member states",
+        "sector": "Sustainable Development / Water and Sanitation"
+      },
+      {
+        "kpi_text": "Welcome the relaunch of the CELAC Working Group on Labor as a mechanism for consultation and convergence based on institutionalized tripartite social dialogue characterized by its permanent and open nature",
+        "kpi_type": "qualitative",
+        "metric_name": "Labor Working Group Relaunch",
+        "target_value": null,
+        "target_description": "Establish a permanent and open tripartite social dialogue mechanism",
         "unit": "qualitative milestone",
         "timeframe": "ongoing",
-        "measurement_method": "Assessment of production and distribution metrics",
-        "responsible_entity": "CELAC Health Ministers",
+        "measurement_method": "Functioning and regular meetings of the Working Group",
+        "responsible_entity": "CELAC member states",
+        "sector": "Labor / Social Dialogue"
+      },
+      {
+        "kpi_text": "Emphasize the importance of improving the coordination of the national capacities and straightening them to better face current and future challenges in health matters, promoting a solidarity and cooperation approach",
+        "kpi_type": "qualitative",
+        "metric_name": "Health Capacity Coordination Improvement",
+        "target_value": null,
+        "target_description": "Improve coordination of national health capacities with solidarity and cooperation",
+        "unit": "qualitative milestone",
+        "timeframe": "ongoing",
+        "measurement_method": "Assessment of coordination mechanisms and cooperation initiatives",
+        "responsible_entity": "CELAC member states",
         "sector": "Health"
       },
       {
-        "kpi_text": "Promote effective actions aimed at guaranteeing food security by supporting agricultural and rural development.",
+        "kpi_text": "Highlight the importance of developing synergies between national and sub-regional programs aimed at the training of high-level scientists, including the mobility of researchers and the exchange of information on best practices and experiences",
         "kpi_type": "qualitative",
-        "metric_name": "Food Security Actions",
+        "metric_name": "Scientific Capacity Building and Collaboration",
         "target_value": null,
-        "target_description": "Ensure food security through agricultural support.",
+        "target_description": "Develop synergies for training scientists, researcher mobility, and best practice exchange",
         "unit": "qualitative milestone",
         "timeframe": "ongoing",
-        "measurement_method": "Monitoring food security indicators",
+        "measurement_method": "Number and quality of collaborative programs and exchanges",
         "responsible_entity": "CELAC member states",
-        "sector": "Agriculture"
+        "sector": "Science, Technology and Innovation"
       },
       {
-        "kpi_text": "Reiterate the commitment to promote effective actions aimed at guaranteeing food security by supporting agricultural and rural development.",
+        "kpi_text": "Highlight the relevance of guaranteeing universal access to connectivity in the digital era without discrimination, especially to groups in vulnerable situation and in remote and rural areas, ensuring the investments in necessary infrastructure and promoting the development of digital skills and competences, in order to narrow digital gaps, including gender gaps, as well as to achieve the SDGs",
         "kpi_type": "qualitative",
-        "metric_name": "Food Security Commitment",
+        "metric_name": "Universal Digital Connectivity and Skills Development",
         "target_value": null,
-        "target_description": "Commit to actions that ensure food security.",
+        "target_description": "Guarantee universal, non-discriminatory digital connectivity and promote digital skills to narrow gaps",
         "unit": "qualitative milestone",
         "timeframe": "ongoing",
-        "measurement_method": "Evaluation of food security initiatives",
+        "measurement_method": "Monitoring connectivity coverage and digital skills programs",
         "responsible_entity": "CELAC member states",
-        "sector": "Food Security"
-      },
-      {
-        "kpi_text": "Agree to continue working together towards Sustainable Development to face the health, social, economic and environmental crisis caused by the COVID-19 pandemic.",
-        "kpi_type": "qualitative",
-        "metric_name": "Sustainable Development Commitment",
-        "target_value": null,
-        "target_description": "Collaborate on sustainable development initiatives.",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Assessment of collaborative projects",
-        "responsible_entity": "CELAC member states",
-        "sector": "Sustainable Development"
-      },
-      {
-        "kpi_text": "Strengthen cooperation and coordination in disaster risk management and reduction.",
-        "kpi_type": "qualitative",
-        "metric_name": "Disaster Risk Management Cooperation",
-        "target_value": null,
-        "target_description": "Enhance regional cooperation for disaster risk management.",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Evaluation of disaster management initiatives",
-        "responsible_entity": "CELAC member states",
-        "sector": "Disaster Management"
-      },
-      {
-        "kpi_text": "Recognize the importance of increasing the production of renewable energy and accelerating the energetic transition.",
-        "kpi_type": "qualitative",
-        "metric_name": "Renewable Energy Production",
-        "target_value": null,
-        "target_description": "Commit to increasing renewable energy production.",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Monitoring renewable energy projects",
-        "responsible_entity": "CELAC member states",
-        "sector": "Energy"
-      },
-      {
-        "kpi_text": "Reaffirm the commitment of the countries of Latin America and the Caribbean with the implementation of the 2030 Agenda and its SDGs.",
-        "kpi_type": "qualitative",
-        "metric_name": "2030 Agenda Commitment",
-        "target_value": null,
-        "target_description": "Commit to the implementation of the 2030 Agenda.",
-        "unit": "qualitative milestone",
-        "timeframe": "ongoing",
-        "measurement_method": "Assessment of SDG progress",
-        "responsible_entity": "CELAC member states",
-        "sector": "Sustainable Development"
+        "sector": "Digital Transformation / ICT"
       }
     ],
     "country_list_iso": [
-      "ARG",
-      "BAR",
+      "BHS",
+      "BLZ",
       "BRA",
+      "BRB",
       "CHL",
       "COL",
+      "CRI",
       "CUB",
       "DOM",
       "ECU",
+      "GTM",
       "GUY",
+      "HTI",
       "HND",
+      "JAM",
       "MEX",
       "NIC",
+      "PAN",
       "PRY",
       "PER",
+      "SLV",
       "SUR",
+      "TTO",
       "URY",
       "VEN",
-      "USA",
-      "URY"
+      "VCT"
     ],
-    "responsible_entity": "CELAC",
+    "responsible_entity": "Economic Commission for Latin America and the Caribbean (ECLAC)",
     "sdg_alignment": [
       "SDG 1: No Poverty",
       "SDG 2: Zero Hunger",
       "SDG 3: Good Health and Well-being",
+      "SDG 4: Quality Education",
       "SDG 5: Gender Equality",
       "SDG 6: Clean Water and Sanitation",
+      "SDG 7: Affordable and Clean Energy",
       "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
       "SDG 11: Sustainable Cities and Communities",
       "SDG 12: Responsible Consumption and Production",
       "SDG 13: Climate Action",
+      "SDG 14: Life Below Water",
       "SDG 15: Life on Land",
       "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
@@ -324,42 +538,42 @@
   },
   "top_actors": [
     {
-      "name": "Community of Latin American and Caribbean States",
+      "name": "Community of Latin American and Caribbean States (CELAC)",
       "category": "Political Actors",
       "relevance_score": 1.0,
-      "justification": "CELAC is the primary focus of the document, as it is the organizing body for the summit and is mentioned throughout the text in relation to various initiatives, commitments, and declarations."
+      "justification": "CELAC is the central actor in the document, as the entire declaration is issued by its Heads of State and Government. It is the main regional integration mechanism discussed, responsible for the political dialogue, cooperation, and initiatives across all topics covered, including economic recovery, health, environment, and regional integration."
+    },
+    {
+      "name": "Economic Commission for Latin America and the Caribbean (ECLAC)",
+      "category": "Political Actors",
+      "relevance_score": 0.85,
+      "justification": "ECLAC is frequently mentioned as a key technical and coordinating body supporting CELAC initiatives, especially in economic recovery, climate adaptation, disaster risk management, and regional cooperation. Its role as a regional development institution gives it significant influence on the implementation of CELAC's agenda."
     },
     {
       "name": "United Nations",
       "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "The UN is referenced multiple times in relation to international law, human rights, and various global initiatives, highlighting its significant role in shaping the agenda and commitments of CELAC."
-    },
-    {
-      "name": "Governments",
-      "category": "Political Actors",
-      "relevance_score": 0.7,
-      "justification": "The governments of CELAC member states are crucial as they are the decision-makers and implementers of the agreements and initiatives discussed in the summit, reflecting their importance in the context of regional cooperation."
+      "relevance_score": 0.75,
+      "justification": "The United Nations is referenced multiple times as the framework for international law, human rights, and multilateral cooperation. Several UN bodies and agreements (e.g., WHO, FAO, IAEA, UN General Assembly resolutions) are cited, underscoring the UN's importance in legitimizing CELAC's positions and supporting its initiatives."
     }
   ],
   "top_themes": [
     {
-      "name": "Digital Transformation & Strategy",
-      "category": "Digital Agenda",
+      "name": "Digital Inclusion (Digital Transformation & Strategy)",
+      "category": "Digital Transformation & Strategy",
       "relevance_score": 0.9,
-      "justification": "This theme is central to the document's main message as it emphasizes the importance of digital transformation in achieving sustainable development and social inclusion, which aligns with the overarching goals of the CELAC summit."
+      "justification": "Digital inclusion is a central theme in the document's section on digital transformation, emphasizing universal access to connectivity, especially for vulnerable groups, and narrowing digital and gender gaps. It aligns with key commitments to ensure equitable access to digital infrastructure and services, which is crucial for social inclusion and sustainable development."
     },
     {
-      "name": "Digital Inclusion",
-      "category": "Inclusion & Social Development",
-      "relevance_score": 0.85,
-      "justification": "Digital inclusion is crucial for ensuring equitable access to technology and opportunities, particularly for vulnerable groups. The document highlights the need for inclusive policies, making this theme strategically important."
-    },
-    {
-      "name": "Global Digital Cooperation",
-      "category": "Regional & International Cooperation",
+      "name": "Digital Rights (Data & Governance)",
+      "category": "Data & Governance",
       "relevance_score": 0.8,
-      "justification": "This theme underscores the importance of collaboration between countries to address global challenges through digital means. It is vital for fostering partnerships that enhance regional integration and collective responses to issues."
+      "justification": "The document stresses the protection of human rights in the digital environment, including privacy and data protection, and calls for safe, secure digital experiences. This theme is strategically important as it underpins trust in digital technologies and supports democratic values, which are key objectives of the summit."
+    },
+    {
+      "name": "Digital & Technological Partnerships (Regional & International Cooperation)",
+      "category": "Regional & International Cooperation",
+      "relevance_score": 0.75,
+      "justification": "The document highlights cooperation with extra-regional partners and multilateral forums to advance digital and technological development. This theme is strategically important for leveraging international collaboration to enhance digital infrastructure, innovation, and governance, supporting the region's integration and sustainable development goals."
     }
   ]
 }

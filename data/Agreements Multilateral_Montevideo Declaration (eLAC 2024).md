@@ -1,4 +1,4 @@
-# Montevideo Declaration (eLAC 2024): Advancing Digital Transformation in Latin America and the Caribbean
+# Montevideo Declaration on the Digital Agenda for Latin America and the Caribbean (eLAC 2024)
 
 **Date**: 2022-11-18
 
@@ -6,41 +6,46 @@
 
 ## Executive Summary
 
-The Montevideo Declaration, adopted during the eighth Ministerial Conference on the Information Society in Latin America and the Caribbean from November 16-18, 2022, emphasizes the importance of digital transformation for sustainable development in the region. It reaffirms commitments to the 2030 Agenda for Sustainable Development and the Digital Agenda for Latin America and the Caribbean (eLAC2024). Key resolutions include enhancing regional cooperation, promoting digital skills, ensuring affordable broadband access, and fostering innovation in strategic sectors. The declaration also highlights the need for a robust legal framework to protect rights in the digital space and calls for active participation from various stakeholders, including the private sector and civil society. The next Ministerial Conference is set to take place in Chile in 2024, continuing the momentum for digital advancement in the region.
+The Montevideo Declaration, adopted at the eighth Ministerial Conference on the Information Society in Latin America and the Caribbean (Nov 2022), endorses the Digital Agenda for Latin America and the Caribbean (eLAC2024). It reaffirms commitment to the 2030 Sustainable Development Goals and principles from the World Summit on the Information Society. The declaration highlights digital technologies' role in economic resilience, social inclusion, and pandemic response. It stresses the need for affordable broadband, digital skills development, strengthened institutional frameworks, and promotion of digital economy, innovation, and entrepreneurship. Emphasis is placed on regional cooperation, legal frameworks, cybersecurity, and digital transformation of key sectors to boost productivity and sustainability. The declaration recognizes contributions from governments, regional bodies, and stakeholders, thanks Uruguay for hosting, and welcomes Chile to lead the next phase and host the 2024 conference.
 
 ## Characteristics
 
-- The Montevideo Declaration emphasizes the importance of digital technologies for economic resilience and social inclusion in Latin America and the Caribbean.
-- It highlights the need for effective broadband connectivity and the development of digital skills to drive economic and social transformation.
-- The declaration calls for strengthened regional cooperation and partnerships in digital matters to promote solidarity, inclusion, and sustainability.
-- It recognizes the significance of a robust legal and regulatory framework to ensure trust and protect rights in the digital environment.
-- The document outlines a commitment to adopt the Digital Agenda for Latin America and the Caribbean (eLAC2024) and continue cooperation activities through 2024.
+- The Montevideo Declaration (eLAC 2024) was adopted at the eighth Ministerial Conference on the Information Society in Latin America and the Caribbean, held in November 2022.
+- It emphasizes digital technologies as essential for economic resilience, social inclusion, and reducing inequality in the region.
+- The declaration promotes regional cooperation, capacity-building, and the development of digital skills to drive economic and social transformation.
+- It highlights the importance of a legal and regulatory framework ensuring trust, cybersecurity, and protection of rights in the digital environment.
+- The declaration supports the digital transformation of strategic sectors and the construction of a regional digital market to boost cross-border e-commerce and competitiveness.
+- It recognizes the role of various stakeholders, including governments, private sector, civil society, and international organizations, in implementing the Digital Agenda for Latin America and the Caribbean (eLAC2024).
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | Governments; Community of Latin American and Caribbean States; United Nations; United Nations Officials |
-| Research and Innovation Actors | Digital Innovation Hubs |
-| Economic Actors | Inter-American Development Bank; Development Bank of Latin America and the Caribbean |
+| Political Actors | Governments; Community of Latin American and Caribbean States; United Nations; United Nations Officials; Economic Commission for Latin America and the Caribbean |
+| Economic Actors | Development Bank of Latin America and the Caribbean |
+| Civil Society Actors | Private Sector Representatives; Civil Society Organisations; Technology Providers |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Digital Transformation & Strategy | Digital Agenda; Digital Economy; Digital Skills Development; Digital Infrastructure; Digital Sustainability |
-| Regional & International Cooperation | Global Digital Cooperation; Digital & Technological Partnerships |
-| Data & Governance | Digital Governance; Cybersecurity |
+| Digital Transformation & Strategy | Digital Agenda; Digital Acceleration; Digital Skills Development; Digital Economy; Digital Policy |
+| Inclusion & Social Development | Digital Inclusion |
+| Regional & International Cooperation | Multilateralism |
 
 ## Practical Applications
 
-- Adoption of the Digital Agenda for Latin America and the Caribbean (eLAC2024).
-- Formulation of a programme of cooperation activities for the 2022–2024 period to strengthen regional cooperation in digital matters, facilitating dialogue, sharing of experiences, knowledge management, and capacity-building.
-- Recognition of the participation and work of regional and international entities, including the private sector, civil society, technical community, and development banks, in the implementation of the Digital Agenda for Latin America and the Caribbean (eLAC2024).
-- Acknowledgment of the Economic Commission for Latin America and the Caribbean as the technical secretariat for the Digital Agenda, ensuring continuity of the process.
-- Hosting of the ninth Ministerial Conference on the Information Society in Latin America and the Caribbean in 2024 by the Government of Chile.
+- Adoption and implementation of the Digital Agenda for Latin America and the Caribbean (eLAC2024) as a regional framework for digital transformation.
+- Formulation and execution of a programme of regional cooperation activities in digital matters for the 2022–2024 period, focusing on dialogue facilitation, experience sharing, knowledge management, and capacity-building.
+- Active participation and collaboration with regional and international entities, including private sector, civil society, technical community, and development banks, in implementing the Digital Agenda for Latin America and the Caribbean (eLAC2024).
+- Leadership and coordination of the Digital Agenda process by the Government of Ecuador during 2020–2022.
+- Technical secretariat support and continuity of the Digital Agenda process provided by the Economic Commission for Latin America and the Caribbean (ECLAC).
+- Hosting and organization of Ministerial Conferences on the Information Society in Latin America and the Caribbean, with Uruguay hosting the eighth conference in 2022 and Chile committed to hosting the ninth in 2024.
 
 ## Commitments
 
-- Formulate a programme of cooperation activities for the 2022–2024 period under the Digital Agenda for Latin America and the Caribbean (eLAC2024).
-- Host the ninth Ministerial Conference on the Information Society in Latin America and the Caribbean in 2024.
+- [
+- "Adopt the Digital Agenda for Latin America and the Caribbean (eLAC2024).",
+- "Formulate a programme of cooperation activities for the 2022–2024 period to strengthen regional cooperation in digital matters.",
+- "Host the ninth Ministerial Conference on the Information Society in Latin America and the Caribbean in 2024 (offered by the Government of Chile)."
+- ]
