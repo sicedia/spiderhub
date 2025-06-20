@@ -151,8 +151,8 @@
   <!-- <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-geo@4.3.1/dist/chartjs-chart-geo.umd.min.js"></script> -->
 
 
-  <script src="{% static 'core/js/main.js' %}"></script>
-  <script src="{% static 'core/js/analysis.js' %}"></script>
+  <script type="module" src="{% static 'core/js/main.js' %}"></script>
+  <script type="module" src="{% static 'core/js/analysis.js' %}"></script>
 
   <script type="module">
     import { renderSdgRadar } from "{% static 'core/js/sdgRadarChart.js' %}";

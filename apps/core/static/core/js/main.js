@@ -88,7 +88,7 @@ export const Utils = {
       toggleMenu(e);
     }, { passive: false });
     
-    // Close menu when clicking on a link
+    // Close menu when clicking on a link (and force navigation)
     const mobileNavLinks = overlay.querySelectorAll('.mobile-nav-links a');
     mobileNavLinks.forEach(link => {
       const closeMenu = () => {
@@ -97,9 +97,17 @@ export const Utils = {
         overlay.classList.remove('active');
         document.body.style.overflow = '';
       };
-      
-      link.addEventListener('click', closeMenu);
-      link.addEventListener('touchstart', closeMenu, { passive: true });
+
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeMenu();
+        window.location.href = link.href;
+      });
+      link.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        closeMenu();
+        window.location.href = link.href;
+      }, { passive: false });
     });
     
     // Close menu when clicking outside
