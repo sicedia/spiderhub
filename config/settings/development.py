@@ -12,6 +12,7 @@ DATABASES = {
         'PASSWORD': get_env_variable('POSTGRES_PASSWORD'),
         'HOST': get_env_variable('POSTGRES_HOST'),
         'PORT': get_env_variable('POSTGRES_PORT'),
+        'CONN_MAX_AGE': 600, 
     }
 }
 
