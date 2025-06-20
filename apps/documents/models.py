@@ -9,7 +9,9 @@ are normalised into child tables.  Through‑tables allow extra metadata such as
 from django.db import models
 from django.contrib.auth.models import User
 from apps.core.models import BaseModel
-from django.db.models import Q, Count, F, IntegerField
+from django.db.models import (
+    Q, Count, F, IntegerField, OuterRef, Subquery, Value
+)
 from django.db.models.functions import Coalesce
 
 # Importing necessary fields and indexes for full-text search
@@ -265,56 +267,80 @@ class Document(BaseModel):
 
      def __str__(self):
          return self.title
-     
-     def get_related_documents(self, top_n=3):
-        """
-        Return up to top_n documents other than this one
-        sorted by how many taxonomy items they share
-        """
-        # IDs used by this document
-        theme_ids = self.themes.values_list('id', flat=True)
-        actor_ids = self.actors.values_list('id', flat=True)
-        ben_ids   = self.beneficiary_groups.values_list('id', flat=True)
-        sdg_ids   = self.sdgs.values_list('number', flat=True)
 
-        # base queryset excludes this document
-        qs = Document.objects.exclude(pk=self.pk)
+     def get_related_documents(self, top_n: int = 3):
+         """
+         Returns up to `top_n` distinct documents, ordered by the number of
+         taxonomy elements they share with the current document.
+         """
 
-        # keep those that share at least one theme actor beneficiary or SDG
-        qs = qs.filter(
-            Q(themes__in=theme_ids)
-            | Q(actors__in=actor_ids)
-            | Q(beneficiary_groups__in=ben_ids)
-            | Q(sdgs__number__in=sdg_ids)
-        )
+         # ------------------------------------------------------------------
+         # 1. Cached IDs in lists (evaluated only once)
+         # ------------------------------------------------------------------
+         theme_ids = list(self.themes.values_list('id', flat=True))
+         actor_ids = list(self.actors.values_list('id', flat=True))
+         ben_ids = list(self.beneficiary_groups.values_list('id', flat=True))
+         sdg_ids = list(self.sdgs.values_list('id', flat=True))
 
-        # count how many of each taxonomy they share
-        qs = qs.annotate(
-            same_themes=Count('themes',
-                              filter=Q(themes__in=theme_ids),
-                              distinct=True),
-            same_actors=Count('actors',
-                              filter=Q(actors__in=actor_ids),
-                              distinct=True),
-            same_bens=Count('beneficiary_groups',
-                            filter=Q(beneficiary_groups__in=ben_ids),
-                            distinct=True),
-            same_sdgs=Count('sdgs',
-                            filter=Q(sdgs__number__in=sdg_ids),
-                            distinct=True)
-        )
+         # If the document has no taxonomy, return empty queryset
+         if not any((theme_ids, actor_ids, ben_ids, sdg_ids)):
+             return Document.objects.none()
 
-        # add up those counts into a single relevance score
-        qs = qs.annotate(
-            relevance=Coalesce(F('same_themes'), 0, output_field=IntegerField())
-                      + Coalesce(F('same_actors'), 0, output_field=IntegerField())
-                      + Coalesce(F('same_bens'),   0, output_field=IntegerField())
-                      + Coalesce(F('same_sdgs'),   0, output_field=IntegerField())
-        )
+         qs = Document.objects.exclude(pk=self.pk)
 
-        # sort by relevance first then by newest event_date
-        return qs.order_by('-relevance', '-event_date')[:top_n]
+         # ------------------------------------------------------------------
+         # 2. Subqueries per each through table
+         # ------------------------------------------------------------------
+         #   • Each subquery filters only by its own through table
+         #   • COUNT(*) made inside: 1 single JOIN → O(1)
+         #   • OuterRef('pk') links to the document in the main queryset
+         # ------------------------------------------------------------------
+         theme_cnt_sq = DocumentTheme.objects.filter(
+             document_id=OuterRef('pk'),
+             theme_id__in=theme_ids
+         ).values('document_id'
+                  ).annotate(c=Count('*')
+                             ).values('c')
 
+         actor_cnt_sq = DocumentActor.objects.filter(
+             document_id=OuterRef('pk'),
+             actor_id__in=actor_ids
+         ).values('document_id').annotate(c=Count('*')).values('c')
+
+         ben_cnt_sq = (
+             Document.beneficiary_groups.through  # Automatically created through model
+             .objects.filter(
+                 document_id=OuterRef('pk'),
+                 beneficiarygroup_id__in=ben_ids
+             ).values('document_id').annotate(c=Count('*')).values('c')
+         )
+
+         sdg_cnt_sq = (
+             Document.sdgs.through
+             .objects.filter(
+                 document_id=OuterRef('pk'),
+                 sdg_id__in=sdg_ids
+             ).values('document_id').annotate(c=Count('*')).values('c')
+         )
+
+         # ------------------------------------------------------------------
+         # 3. Annotations and relevance score
+         # ------------------------------------------------------------------
+         qs = qs.annotate(
+             same_themes=Coalesce(Subquery(theme_cnt_sq, output_field=IntegerField()), Value(0)),
+             same_actors=Coalesce(Subquery(actor_cnt_sq, output_field=IntegerField()), Value(0)),
+             same_bens=Coalesce(Subquery(ben_cnt_sq, output_field=IntegerField()), Value(0)),
+             same_sdgs=Coalesce(Subquery(sdg_cnt_sq, output_field=IntegerField()), Value(0)),
+         ).annotate(
+             relevance=F('same_themes') + F('same_actors') + F('same_bens') + F('same_sdgs')
+         ).filter(
+             relevance__gt=0
+         ).order_by(
+             '-relevance',
+             '-event_date',
+         )[:top_n]
+
+         return qs
 
      def get_agreement_types(self):
         """
