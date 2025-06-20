@@ -22,7 +22,35 @@ from django.contrib.postgres.indexes import GinIndex
 # -----------------------------------------------------------------------------
 #  Taxonomies (normalised, re‑usable across documents)
 # ----------------------------------------------------------------------------
+class Country(BaseModel):
+    """ISO 3166-1 country catalog.  Ej.: iso3='ECU', name='Ecuador'."""
+    iso3 = models.CharField(max_length=3, unique=True)
+    iso2 = models.CharField(                       
+        max_length=2, unique=True, blank=True, null=True
+    )
+    name = models.CharField(max_length=120, unique=True)
 
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return f'{self.name} ({self.iso3})'
+
+
+class City(BaseModel):
+    """Ciudad normalizada, enlazada a Country."""
+    name = models.CharField(max_length=120)
+    country = models.ForeignKey(
+        Country, on_delete=models.CASCADE, related_name='cities'
+    )
+
+    class Meta:
+        unique_together = ('name', 'country')
+        ordering = ['name']
+
+    def __str__(self):
+        return f'{self.name}, {self.country.iso3}'
+    
 class Theme(BaseModel):
     """Main/Thematic taxonomy element (e.g. "Digital Connectivity")."""
     CATEGORY_CHOICES = [
@@ -200,8 +228,16 @@ class Document(BaseModel):
          blank=True, null=True
      )
      
-     city = models.CharField(max_length=200, null=True, blank=True)
-     country = models.CharField(max_length=200, null=True, blank=True)
+     event_city    = models.ForeignKey(City,     null=True, blank=True, on_delete=models.SET_NULL)
+     event_country = models.ForeignKey(Country,  null=True, blank=True, on_delete=models.SET_NULL)
+     
+     lead_country  = models.ForeignKey(         
+        Country, null=True, blank=True, on_delete=models.SET_NULL, related_name="lead_documents"
+    )
+     
+     countries_involved = models.ManyToManyField(  
+        Country, related_name="mentioned_in_documents", blank=True
+    )
 
      executive_summary = models.TextField(null=True, blank=True)
      score = models.PositiveSmallIntegerField(null=True, blank=True)

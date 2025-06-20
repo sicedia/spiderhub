@@ -19,10 +19,14 @@ Assumptions
 
 import json
 import os
+import re                                # changed code
+import difflib                           # changed code
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Union, Optional, Tuple, Any
+from unicodedata import normalize as u_norm, combining  # changed code
 
+import pycountry                      # NUEVO
 from django.core.files import File
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -32,8 +36,10 @@ from apps.documents.models import (
     Actor,
     BeneficiaryGroup,
     BeneficiaryGroupRaw,
+    City,
     Commitment,
     CommitmentDetail,
+    Country,
     Document,
     DocumentActor,
     DocumentBeneficiaryGroupRaw,
@@ -46,13 +52,14 @@ from apps.documents.models import (
 
 # Constants
 DATE_INPUT_FORMATS = ["%Y-%m-%d", "%d/%m/%Y", "%m/%d/%Y", "%d-%m-%Y"]
-TITLE_FIELDS = ["title", "Name of the Event", "name", "document_title", "event_name", "Title", "NAME"]
+TITLE_FIELDS = ["title", "Name of the Event", "name", "document_title",
+                "event_name", "Title", "NAME"]
 SUMMARY_FIELDS = ["executive_summary", "Summary", "summary", "description"]
 FALLBACK_CONTENT_FIELDS = ["description", "summary", "executive_summary"]
 
 TYPE_MAPPING = {
     "Agreement EU-LAC": "agreement_eu-lac",
-    "Agreements EU-LAC": "agreements_eu-lac", 
+    "Agreements EU-LAC": "agreements_eu-lac",
     "Dialogues EU-LAC": "dialogues_eu-lac",
     "Dialogues Bilateral": "dialogues_bilateral",
     "Dialogues Multilateral": "dialogues_multilateral",
@@ -62,13 +69,26 @@ TYPE_MAPPING = {
 }
 
 EXCLUDED_FIELDS = {
-    "title", "date", "location", "executive_summary", "summary", "themes", "actors", 
-    "beneficiary_groups", "beneficiary_group_raw", "sdg_alignment", "practical_applications", 
-    "commitments", "kpis", "top_themes", "top_actors", "extra_data", "name", "document_title", 
-    "event_name", "Title", "NAME", "description", "legal_bindingness", "coverage_scope",
+    "title", "date", "location", "executive_summary", "summary", "themes",
+    "actors", "beneficiary_groups", "beneficiary_group_raw", "sdg_alignment",
+    "practical_applications", "commitments", "kpis", "top_themes",
+    "top_actors", "extra_data", "name", "document_title", "event_name",
+    "Title", "NAME", "description", "legal_bindingness", "coverage_scope",
 }
 
 BENEFICIARY_CATEGORY_CHOICES = dict(BeneficiaryGroup.CATEGORY_CHOICES)
+
+#: Alias rápidos para nombres que **pycountry** no resuelve “tal cual”
+COUNTRY_ALIASES: Dict[str, str] = {
+    "EEUU": "United States",
+    "EE. UU.": "United States",
+    "Estados Unidos": "United States",
+    "Reino Unido": "United Kingdom",
+    "Corea del Sur": "Korea, Republic of",
+    "Brasil": "Brazil",
+    "Egipto": "Egypt",
+    # añade los que vayas detectando
+}
 
 # ---------------------------------------------------------------------------
 # Helper functions
@@ -126,9 +146,69 @@ def normalize_string(value: Any) -> Optional[str]:
     return normalized if normalized else None
 
 
+def strip_accents(s: str) -> str:       # changed code
+    """Eliminar acentos de una cadena."""
+    return ''.join(c for c in u_norm('NFKD', s) if not combining(c))
+
 # ---------------------------------------------------------------------------
-# Loader core
+# NUEVAS UTILIDADES PARA PAÍSES
 # ---------------------------------------------------------------------------
+def normalise_country_input(raw: str) -> Optional[pycountry.db.Country]:
+    """
+    Devuelve el objeto pycountry a partir de:
+      • nombre en cualquier idioma (Brasil, Allemagne…)
+      • abreviaturas (UK, USA…)
+      • códigos ISO-2 / ISO-3 (BR, BRA…)
+    Si no se encuentra, devuelve None.
+    """
+    if not raw:
+        return None
+    raw = raw.strip()
+    # 1) Alias manuales
+    raw = COUNTRY_ALIASES.get(raw, raw)
+    # 2) Lookup estricto
+    try:
+        return pycountry.countries.lookup(raw)
+    except LookupError:
+        pass
+    # 3) Búsqueda difusa
+    try:
+        match = pycountry.countries.search_fuzzy(raw)
+        return match[0] if match else None
+    except LookupError:
+        return None
+
+def get_or_create_country(raw: str) -> Optional[Country]:    # changed code
+    """
+    Devuelve un Country existente normalizado por iso3:
+      • Lookup estricto mediante pycountry, luego comprobación en BD.
+    No crea nuevos registros.
+    """
+    if not raw:
+        return None
+    country_info = normalise_country_input(raw)
+    if not country_info:
+        return None
+    iso3 = country_info.alpha_3
+    try:
+        return Country.objects.get(iso3=iso3)
+    except Country.DoesNotExist:
+        return None
+
+# ---------------------------------------------------------------------------
+
+def find_closest_city(name: str, country: Country) -> Optional[City]:  # changed code
+    """Buscar la ciudad existente más parecida sin crear nuevas."""
+    # Obtener solo nombres de ciudad para ese país
+    city_names = list(
+        City.objects.filter(country=country)
+                    .values_list('name', flat=True)
+    )
+    # Buscar coincidencia difusa
+    matches = difflib.get_close_matches(name, city_names, n=1, cutoff=0.8)
+    if matches:
+        return City.objects.get(name=matches[0], country=country)
+    return None
 
 class Loader:
     """Encapsulates JSON‑>DB import for one file."""
@@ -172,13 +252,45 @@ class Loader:
             title = f"Untitled Document {datetime.now().strftime('%Y%m%d_%H%M%S')}"
         
         return truncate_text(title, 120)
+    
+    def _location_objects(self) -> Tuple[Optional[City], Optional[Country]]:
+        """Return (city_obj, country_obj) normalizados."""
+        city_txt, country_txt = split_location(self.data.get("location", ""))
 
+        # 1) Limpiar paréntesis en el país
+        if country_txt:
+            country_clean = re.sub(r'\s*\([^)]*\)', '', country_txt).strip()
+        else:
+            country_clean = country_txt
+
+        country_obj = get_or_create_country(country_clean) if country_clean else None
+
+        city_obj = None
+        if city_txt and country_obj:
+            # 2) Limpiar paréntesis en la ciudad
+            city_clean = re.sub(r'\s*\([^)]*\)', '', city_txt).strip()
+            # 3) Quitar acentos y estandarizar mayúsculas
+            city_norm = strip_accents(city_clean).title()
+            # 4) Buscar la ciudad existente más parecida (no crear nuevas)
+            city_obj = find_closest_city(city_norm, country_obj)
+
+        return city_obj, country_obj
+    
     def _get_location_data(self) -> Tuple[Optional[str], Optional[str]]:
         """Extract and validate location data."""
         location = self.data.get("location", "")
-        city, country = split_location(location)
+        city, country = self._location_objects()
         return (truncate_text(city, 100) if city else None,
                 truncate_text(country, 100) if country else None)
+    
+    def get_or_create_country_by_iso3(self, iso3: str) -> Optional[Country]:  # changed code
+        if not iso3:
+            return None
+        try:
+            return Country.objects.get(iso3=iso3.upper())
+        except Country.DoesNotExist:
+            return None
+
 
     def _get_legal_bindingness(self) -> Optional[str]:
         """Extract legal_bindingness from main data or extra_data."""
@@ -191,7 +303,7 @@ class Loader:
         """Create the main Document instance."""
         title = self._get_document_title()
         event_date = parse_date(self.data.get("date") or self.data.get("Date"))
-        city, country = self._get_location_data()
+        event_city, event_country = self._location_objects()
         summary = get_first_available_value(self.data, SUMMARY_FIELDS)
         summary = truncate_text(summary, 5000) if summary else ""
         
@@ -208,8 +320,8 @@ class Loader:
             title=title,
             event_date=event_date,
             defaults={
-                "city": city,
-                "country": country,
+                "event_city": event_city,
+                "event_country": event_country,
                 "executive_summary": summary,
                 "document_type": document_type,
                 "coverage_scope": coverage_scope,
@@ -218,9 +330,32 @@ class Loader:
                 "score": score
             },
         )
+        # -----------------------
+        # Lead / country list ISO
+        # -----------------------
+        self._attach_countries()
 
         # now attach any matching .docx summary
         self._attach_summary_file()
+
+    def _attach_countries(self) -> None:
+        """
+        Centraliza la lógica de creación/vinculación de países:
+          • lead_country_iso / lead_country
+          • country_list_iso
+        """
+        lead_raw = self.extra_data.get("lead_country_iso") or self.extra_data.get("lead_country")
+        if lead_raw:
+            self.doc.lead_country = get_or_create_country(lead_raw)
+
+        for raw in self.extra_data.get("country_list_iso", []):
+            country_obj = get_or_create_country(raw)
+            if country_obj:
+                self.doc.countries_involved.add(country_obj)
+
+        if self.doc.lead_country_id:
+            # solo actualiza el FK lead_country
+            self.doc.save(update_fields=["lead_country"])
 
     def _attach_summary_file(self) -> None:
         """If a same-named .docx lives in data/, attach it to summary_file."""

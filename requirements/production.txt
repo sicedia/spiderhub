@@ -21,3 +21,7 @@ gunicorn
 # Utilities
 str2bool
 unidecode
+
+pycountry  # Country data for Django
+geonamescache
+django-cities-light
