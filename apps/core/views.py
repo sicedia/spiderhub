@@ -6,6 +6,10 @@ from apps.documents.models import (
 )
 import logging
 from django.db import connection
+import re
+from django.db.models import Value
+from django.db.models.functions import Coalesce
+from collections import defaultdict
 # Create your views here.
 
 logger = logging.getLogger(__name__)
@@ -203,6 +207,163 @@ def document_detail_page(request, pk):
         'document': document
     }
     return render(request, template_name, context)
-def test_page(request):
-    """Test page view"""
-    return render(request, 'core/test.html')
+
+def analysis_page(request):
+    template_name = 'core/analysis.html'
+    """Analysis page view"""
+
+    def hyphen_to_camel(s: str) -> str:
+        """
+        Transform 'kebab-case' (p. ej. 'non-binding') to 'camelCase' ('nonBinding').
+        """
+        return re.sub(r'-(\w)', lambda m: m.group(1).upper(), s)
+
+    # 1) Countries
+    countries_qs = (
+        Document.objects
+        .exclude(country__isnull=True)
+        .exclude(country__exact='')
+        .values('country')
+        .annotate(count=Count('id'))
+        .order_by('-count')
+    )
+    countries = {
+        entry['country'].upper()[0:3]:  entry['count']
+        for entry in countries_qs
+    }
+
+    # 2) SDGs: M2M → SDG with document count
+    sdgs_qs = (
+        SDG.objects
+           .annotate(count=Count('documents'))
+           .order_by('number')
+    )
+    sdgs = {
+        f'sdg{s.number}': s.count
+        for s in sdgs_qs
+    }
+
+    # 3) Bindingness
+    raw_legal_bindingness_choices = Document.legal_bindingness.field.choices
+    legal_bindingness_qs = (
+        Document.objects
+                .values('legal_bindingness')
+                .annotate(count=Count('id'))
+    )
+    legal_bindingness_counts = {entry['legal_bindingness']: entry['count'] for entry in legal_bindingness_qs}
+    legal_bindingness = {
+        hyphen_to_camel(slug): legal_bindingness_counts.get(slug, 0)
+        for slug, label in raw_legal_bindingness_choices
+    }
+
+    # 4) Coverage Scope
+    raw_coverage_scope_choices = Document.coverage_scope.field.choices
+    coverage_scope_qs = (
+        Document.objects
+                .values('coverage_scope')
+                .annotate(count=Count('id'))
+    )
+    coverage_scope_counts = {entry['coverage_scope']: entry['count'] for entry in coverage_scope_qs}
+    coverage_scope = {
+        hyphen_to_camel(slug.lower()): coverage_scope_counts.get(slug, 0)
+        for slug, label in raw_coverage_scope_choices
+    }
+
+    agreements_qs = Document.objects.filter(document_type__startswith="agreements")
+    cat_counts_qs = (
+        Theme.objects
+            .filter(documents__in=agreements_qs)
+            .values('category')
+            .annotate(count=Count('documents', distinct=True))
+    )
+    raw_cat_counts = {
+        (entry['category'] or 'Uncategorised'): entry['count']
+        for entry in cat_counts_qs
+    }
+
+    # b) respetar el orden definido en CATEGORY_CHOICES
+    theme_counts = {
+        label: raw_cat_counts.get(slug, 0)
+        for slug, label in Theme.CATEGORY_CHOICES
+    }
+    # 6) Theme × Beneficiary-Group matrix (solo documentos "agreements_")
+
+    raw_matrix_qs = (
+        Document.objects
+                .filter(pk__in=agreements_qs)
+                .values(
+                    theme_cat=Coalesce('themes__category', Value('Uncategorised')),
+                    ben_cat=Coalesce('beneficiary_groups__category', Value('Uncategorised'))
+                )
+                .distinct()               
+                .annotate(count=Count('id'))
+    )
+
+    # 1. Lista ordenada de categorías de cada eje
+    THEME_CATS = [label for slug, label in Theme.CATEGORY_CHOICES]
+    BEN_CATS   = [label for slug, label in BeneficiaryGroup.CATEGORY_CHOICES]
+
+    # 2. Matriz inicial (todos a 0)
+    matrix = {t: {b: 0 for b in BEN_CATS} for t in THEME_CATS}
+
+    # 3. Rellena con los counts reales
+    for row in raw_matrix_qs:
+        theme_label = dict(Theme.CATEGORY_CHOICES).get(row['theme_cat'], 'Uncategorised')
+        ben_label   = dict(BeneficiaryGroup.CATEGORY_CHOICES).get(row['ben_cat'], 'Uncategorised')
+        matrix[theme_label][ben_label] = row['count']
+
+    # 5. Agreements by actors
+    actor_cat_qs = (
+        Actor.objects
+            .filter(documents__in=agreements_qs)
+            .values('category')
+            .annotate(count=Count('documents', distinct=True))
+    )
+
+    raw_actor_counts = {
+        (row['category'] or 'Uncategorised'): row['count']
+        for row in actor_cat_qs
+    }
+
+    actor_counts = {
+        label: raw_actor_counts.get(slug, 0)
+        for slug, label in Actor.CATEGORY_CHOICES
+    }
+    # 6) Agreements by Beneficiary-Group (categoría)
+    ben_cat_qs = (
+        BeneficiaryGroup.objects
+            .filter(documents__in=agreements_qs)
+            .values('category')
+            .annotate(count=Count('documents', distinct=True))
+    )
+
+    raw_ben_counts = {
+        (row['category'] or 'Uncategorised'): row['count']
+        for row in ben_cat_qs
+    }
+
+    beneficiary_counts = {
+        label: raw_ben_counts.get(slug, 0)
+        for slug, label in BeneficiaryGroup.CATEGORY_CHOICES
+    }
+    
+    context = {
+        "summary": {
+            'total_documents': Document.objects.count(),
+            'active_countries': len(countries),
+        },
+        "analysis_data": {
+        "sdg_counts":     sdgs,
+        "binding_counts": legal_bindingness,
+        "country_counts": countries,
+        "scope_counts":   coverage_scope,
+        "theme_counts":   theme_counts,  
+        "theme_ben_matrix": matrix,
+        "actor_counts":  actor_counts,  
+        "beneficiary_counts": beneficiary_counts,
+        },
+
+    
+
+    }
+    return render(request, template_name, context)

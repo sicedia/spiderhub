@@ -1,36 +1,43 @@
 {
-  "title": "European Declaration on Quantum Technologies: Commitment to a Leading Quantum Ecosystem in the EU",
+  "title": "European Declaration on Quantum Technologies",
   "date": "2025-05-20",
   "location": "Brussels, Belgium",
-  "executive_summary": "The European Declaration on Quantum Technologies emphasizes the critical role of quantum technologies in enhancing the scientific and industrial competitiveness of the EU. It outlines a commitment from twenty-six Member States to collaborate in establishing a robust quantum technology ecosystem, aiming to position Europe as the global leader in quantum innovation, referred to as the \"quantum valley.\" The declaration reflects a unified effort to foster excellence in quantum technologies across the continent.",
+  "executive_summary": "The European Declaration on Quantum Technologies underscores the strategic significance of quantum technologies for the EU’s scientific and industrial competitiveness. Signed by twenty-six Member States, the declaration commits these countries to collaborate in building a world-class quantum technology ecosystem across Europe. The ultimate goal is to establish Europe as the global leader in quantum excellence and innovation, positioning it as the ‘quantum valley’ of the world. This collective effort aims to drive advancements in quantum technologies, ensuring Europe’s leadership in this critical field.",
   "characteristics": [
-    "Recognizes the strategic importance of quantum technologies for the EU's scientific and industrial competitiveness.",
-    "Commits to collaboration among Member States to develop a world-class quantum technology ecosystem.",
-    "Aims to establish Europe as the leading global region for quantum excellence and innovation, referred to as the ‘quantum valley’.",
-    "Signed by twenty-six Member States, including major countries like Germany, France, and Italy."
+    "Recognises the strategic importance of quantum technologies for the EU’s scientific and industrial competitiveness.",
+    "Commits signatory Member States to collaborate on developing a world-class quantum technology ecosystem across Europe.",
+    "Aims to make Europe the global leader (“quantum valley”) in quantum excellence and innovation.",
+    "As of May 2025, twenty-six EU Member States have signed the declaration."
   ],
   "themes": {
     "Technology & Innovation": [
       "Quantum Technologies"
+    ],
+    "Regional & International Cooperation": [
+      "Digital & Technological Partnerships",
+      "Multilateralism"
     ]
   },
   "actors": {
     "Political Actors": [
       "European Union",
-      "EU Member States"
+      "EU Member States",
+      "Governments"
     ]
   },
   "practical_applications": [
-    "Twenty-six Member States have signed the European Declaration on Quantum Technologies, committing to collaborate on the development of a world-class quantum technology ecosystem across Europe."
+    "Twenty-six EU Member States have signed the European Declaration on Quantum Technologies, establishing a formal multilateral commitment to collaborate on developing a world-class quantum technology ecosystem across Europe."
   ],
   "commitments": [],
-  "score": 86,
+  "score": 88,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 70,
-    "completeness": 86,
-    "accuracy": 71,
-    "issues": []
+    "consistency": 95,
+    "completeness": 95,
+    "accuracy": 66,
+    "issues": [
+      "Potential factual errors in basic content or strategic extra data"
+    ]
   },
   "extra_data": {
     "lead_country_iso": null,
@@ -41,47 +48,93 @@
     "coverage_scope": "Regional",
     "eu_policy_alignment": [],
     "review_schedule": null,
-    "beneficiary_group_raw": [],
-    "beneficiary_group": [],
+    "beneficiary_group_raw": [
+      "Member State",
+      "industry",
+      "scientist",
+      "region"
+    ],
+    "beneficiary_group": [
+      {
+        "category": "Public Sector / Governments",
+        "label": "Public Institutions"
+      },
+      {
+        "category": "Large Corporations",
+        "label": "Industry Leaders"
+      },
+      {
+        "category": "Researchers & Academia",
+        "label": "Researchers"
+      },
+      {
+        "category": "Rural & Remote Communities",
+        "label": "Remote Area Citizens"
+      }
+    ],
     "start_date": "2025-01-01",
-    "end_date": "2025-05-20",
+    "end_date": null,
     "commitment_details": [],
     "kpi_list": [
       {
-        "kpi_text": "The signatory Member States recognise the strategic importance of quantum technologies for the scientific and industrial competitiveness of the EU and commit to collaborating on the development of a world-class quantum technology ecosystem across Europe.",
+        "kpi_text": "collaborating on the development of a world-class quantum technology ecosystem across Europe",
         "kpi_type": "qualitative",
         "metric_name": "Quantum Technology Ecosystem Development",
         "target_value": null,
-        "target_description": "Collaborate on the development of a world-class quantum technology ecosystem in Europe.",
+        "target_description": "Develop a world-class quantum technology ecosystem across Europe",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Assessment of collaboration initiatives and ecosystem development progress",
+        "measurement_method": "Assessment of ecosystem development and collaboration initiatives",
         "responsible_entity": "Signatory Member States",
-        "sector": "Technology"
+        "sector": "Quantum Technologies"
       },
       {
-        "kpi_text": "make Europe the ‘quantum valley’ of the world, the leading region globally for quantum excellence and innovation.",
+        "kpi_text": "making Europe the ‘quantum valley’ of the world, the leading region globally for quantum excellence and innovation",
         "kpi_type": "qualitative",
         "metric_name": "Global Quantum Leadership",
         "target_value": null,
-        "target_description": "Establish Europe as the leading region for quantum excellence and innovation.",
+        "target_description": "Position Europe as the leading global region for quantum excellence and innovation",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Evaluation of global rankings and innovation metrics in quantum technologies",
+        "measurement_method": "Benchmarking against global quantum technology leaders",
         "responsible_entity": "Signatory Member States",
-        "sector": "Technology"
+        "sector": "Quantum Technologies"
       },
       {
-        "kpi_text": "To date, twenty-six Member States have signed the Declaration.",
+        "kpi_text": "collaborating on the development of a world-class quantum technology ecosystem across Europe",
+        "kpi_type": "qualitative",
+        "metric_name": "European Collaboration on Quantum Technologies",
+        "target_value": null,
+        "target_description": "Foster collaboration among Member States for quantum technology development",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Number and quality of collaborative projects and initiatives",
+        "responsible_entity": "Signatory Member States",
+        "sector": "Quantum Technologies"
+      },
+      {
+        "kpi_text": "The signatory Member States recognise the strategic importance of quantum technologies for the scientific and industrial competitiveness of the EU",
+        "kpi_type": "qualitative",
+        "metric_name": "Recognition of Quantum Technologies' Strategic Importance",
+        "target_value": null,
+        "target_description": "Acknowledge and promote the strategic importance of quantum technologies for EU competitiveness",
+        "unit": "qualitative milestone",
+        "timeframe": null,
+        "measurement_method": "Official statements and policy documents",
+        "responsible_entity": "Signatory Member States",
+        "sector": "Quantum Technologies"
+      },
+      {
+        "kpi_text": "To date, twenty-six Member States have signed the Declaration",
         "kpi_type": "quantitative",
-        "metric_name": "Member States Participation",
+        "metric_name": "Number of Member States Signing Declaration",
         "target_value": 26.0,
-        "target_description": null,
-        "unit": "countries",
-        "timeframe": "Ongoing",
-        "measurement_method": "Count of Member States that have signed the Declaration",
-        "responsible_entity": "European Union",
-        "sector": "International Relations"
+        "target_description": "Number of EU Member States that have signed the European Declaration on Quantum Technologies",
+        "unit": "Member States",
+        "timeframe": "as of 20/05/2025",
+        "measurement_method": "Count of official signatories",
+        "responsible_entity": "European Commission",
+        "sector": "Quantum Technologies"
       }
     ],
     "country_list_iso": [
@@ -107,26 +160,35 @@
       "POL",
       "PRT",
       "ROU",
-      "ESP",
       "SVK",
       "SVN",
+      "ESP",
       "SWE"
     ],
     "responsible_entity": null,
-    "sdg_alignment": []
+    "sdg_alignment": [
+      "SDG 9: Industry, Innovation and Infrastructure",
+      "SDG 17: Partnerships for the Goals"
+    ]
   },
   "top_actors": [
     {
-      "name": "European Union",
-      "category": "Political Actors",
-      "relevance_score": 1.0,
-      "justification": "The European Union is the primary entity behind the declaration, emphasizing its strategic importance for the EU's competitiveness in quantum technologies."
-    },
-    {
       "name": "EU Member States",
       "category": "Political Actors",
-      "relevance_score": 0.9,
-      "justification": "The Member States are crucial as they are the signatories of the declaration, demonstrating their commitment to collaboration in developing a quantum technology ecosystem."
+      "relevance_score": 1.0,
+      "justification": "The EU Member States are the direct signatories of the Declaration, explicitly listed and central to the commitment and implementation of the quantum technologies initiative. Their collaboration and decisions are the driving force behind the document's objectives."
+    },
+    {
+      "name": "European Union",
+      "category": "Political Actors",
+      "relevance_score": 0.95,
+      "justification": "The European Union provides the overarching framework, strategic direction, and legitimacy for the Declaration. The initiative is positioned as an EU-wide effort, and the EU is responsible for shaping Europe's digital future, as referenced in the document."
+    },
+    {
+      "name": "Governments",
+      "category": "Political Actors",
+      "relevance_score": 0.7,
+      "justification": "Governments are implicitly involved as the representatives of the Member States and are responsible for enacting the commitments made in the Declaration. However, they are less directly mentioned and specified than the Member States and the EU itself."
     }
   ],
   "top_themes": [
@@ -134,19 +196,19 @@
       "name": "Quantum Technologies",
       "category": "Technology & Innovation",
       "relevance_score": 1.0,
-      "justification": "Quantum technologies are the central theme of the document, as it emphasizes their strategic importance for the scientific and industrial competitiveness of the EU. The entire declaration revolves around the commitment of Member States to develop a world-class quantum technology ecosystem."
+      "justification": "Quantum technologies are the explicit and central focus of the declaration, which recognizes their strategic importance for the EU's scientific and industrial competitiveness. The entire document is dedicated to advancing quantum technologies and building a world-class ecosystem in this field."
     },
     {
-      "name": "Collaboration among Member States",
-      "category": "International Cooperation",
-      "relevance_score": 0.8,
-      "justification": "The document highlights the commitment of twenty-six Member States to collaborate on quantum technologies, which is crucial for achieving the goal of making Europe a leader in this field. This theme is significant as it underscores the collective effort required to establish a competitive quantum ecosystem."
+      "name": "Digital & Technological Partnerships",
+      "category": "Regional & International Cooperation",
+      "relevance_score": 0.85,
+      "justification": "The declaration emphasizes collaboration among EU Member States to develop a unified quantum technology ecosystem. This theme is crucial for achieving the document's objectives, as it underpins the commitment to joint action and shared innovation across Europe."
     },
     {
-      "name": "Strategic Importance for Competitiveness",
-      "category": "Economic Strategy",
+      "name": "Multilateralism",
+      "category": "Regional & International Cooperation",
       "relevance_score": 0.7,
-      "justification": "The declaration stresses the strategic importance of quantum technologies for the EU's competitiveness, linking technological advancement to economic growth and innovation. This theme is vital as it frames the context of the declaration within broader economic objectives."
+      "justification": "The document highlights the multilateral nature of the agreement, with 26 EU Member States as signatories. While this is important for legitimacy and scale, it is slightly less central than the direct focus on quantum technologies and the mechanisms of partnership."
     }
   ]
 }

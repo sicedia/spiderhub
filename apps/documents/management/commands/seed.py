@@ -68,6 +68,8 @@ EXCLUDED_FIELDS = {
     "event_name", "Title", "NAME", "description", "legal_bindingness", "coverage_scope",
 }
 
+BENEFICIARY_CATEGORY_CHOICES = dict(BeneficiaryGroup.CATEGORY_CHOICES)
+
 # ---------------------------------------------------------------------------
 # Helper functions
 # ---------------------------------------------------------------------------
@@ -183,7 +185,7 @@ class Loader:
         raw = self.data.get("legal_bindingness") or self.extra_data.get("legal_bindingness")
         normalized = normalize_string(raw)
         # Las keys del choice en el modelo están en minúsculas
-        return normalized.lower() if normalized else None
+        return normalized.lower() if normalized else 'uncategorised'
 
     def _create_document(self) -> None:
         """Create the main Document instance."""
@@ -194,10 +196,12 @@ class Loader:
         summary = truncate_text(summary, 5000) if summary else ""
         
         document_type = self._extract_document_type_from_filename()
-        coverage_scope = self.extra_data.get("coverage_scope")
+        coverage_scope = self.extra_data.get("coverage_scope") if self.extra_data.get("coverage_scope") else 'Uncategorised'
         legal_bindingness = self._get_legal_bindingness()
-        
+
         extra = {k: v for k, v in self.data.items() if k not in EXCLUDED_FIELDS}
+
+        score = extra.get("score", None)
 
         # capture created flag so we can attach file whether it's new or existing
         self.doc, _created = Document.objects.get_or_create(
@@ -211,6 +215,7 @@ class Loader:
                 "coverage_scope": coverage_scope,
                 "legal_bindingness": legal_bindingness,
                 "extra": extra,
+                "score": score
             },
         )
 
@@ -322,10 +327,13 @@ class Loader:
         """Load beneficiary groups from multiple sources."""
         # Regular beneficiary groups from root and extra_data
         for bg_data in [self.data.get("beneficiary_groups", []), 
-                       self.extra_data.get("beneficiary_group", [])]:
+                        self.extra_data.get("beneficiary_group", [])]:
             for bg_item in bg_data:
                 label = bg_item.get("label") if isinstance(bg_item, dict) else bg_item
                 category = bg_item.get("category", "Uncategorised") if isinstance(bg_item, dict) else "Uncategorised"
+                
+                # Validate category against predefined choices
+                category = BENEFICIARY_CATEGORY_CHOICES.get(category, "Uncategorised")
                 
                 if label:
                     bg, _ = BeneficiaryGroup.objects.get_or_create(
@@ -336,7 +344,7 @@ class Loader:
         
         # Raw beneficiary groups from root and extra_data
         for raw_data in [self.data.get("beneficiary_group_raw", []), 
-                        self.extra_data.get("beneficiary_group_raw", [])]:
+                         self.extra_data.get("beneficiary_group_raw", [])]:
             for raw in raw_data:
                 if raw:
                     raw_bg, _ = BeneficiaryGroupRaw.objects.get_or_create(name=raw)

@@ -1,4 +1,4 @@
-# XXVIII Ibero-American Summit of Heads of State and Government Summary
+# Document Title Not Available
 
 **Date**: Date not specified
 
@@ -14,13 +14,13 @@ No key characteristics identified in the document.
 
 ## Actors
 
-No actors identified.
+| Category | Actor |
+| --- | --- |
+| Political Actors | Community of Latin American and Caribbean States; Ibero-American General Secretariat |
 
 ## Main Themes
 
-| Category | Subcategory |
-| --- | --- |
-| Regional & International Cooperation | EU-LAC Digital Alliance |
+No themes identified.
 
 ## Practical Applications
 

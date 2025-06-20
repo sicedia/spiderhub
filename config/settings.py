@@ -7,11 +7,14 @@ import os
 from pathlib import Path
 
 # Determine which settings module to use
-settings_module = os.environ.get('DJANGO_SETTINGS_MODULE', 'config.settings.development')
+settings_module = os.environ.get('DJANGO_SETTINGS_MODULE')
 
-if settings_module == 'config.settings.production':
+if not settings_module or 'development' in settings_module:
+    from .settings.development import *
+elif 'production' in settings_module:
     from .settings.production import *
-elif settings_module == 'config.settings.testing':
+elif 'testing' in settings_module:
     from .settings.testing import *
 else:
+    # Por defecto usar development
     from .settings.development import *

@@ -1,294 +1,338 @@
 {
-  "title": "EuroLat Resolution on Digital Platforms in the Modern Economy",
+  "title": "EuroLat Resolution on Digital Platforms in the Modern Economy (2023)",
   "date": "2023-07-27",
   "location": "Madrid, España",
-  "executive_summary": "The EuroLat Resolution on Digital Platforms in the Modern Economy, adopted on July 27, 2023, emphasizes the need for a robust digital economy in both Europe and Latin America. It highlights the rapid growth of the digital economy, the importance of equitable access to digital services, and the necessity for regulatory frameworks that protect workers' rights and consumer privacy. The resolution calls for the establishment of a secure digital infrastructure, the creation of a common digital market, and the promotion of digital literacy to bridge the digital divide. It also stresses the importance of international cooperation to address challenges posed by digitalization, including the need for fair taxation and measures against online misinformation and cybercrime. Overall, the resolution aims to foster a competitive and inclusive digital landscape that benefits all stakeholders.",
+  "executive_summary": "The EuroLat Resolution on Digital Platforms in the Modern Economy (July 2023) addresses the rapid growth and transformative impact of digital platforms in Europe and Latin America. It highlights the dominance of US and Chinese platforms, the digital divide in Latin America, and the need for robust digital infrastructure, fair regulation, and digital literacy. The resolution calls for the creation of a secure, competitive digital environment, a common digital market in Latin America and the Caribbean, and harmonized legal frameworks to protect consumers and workers. It emphasizes investment in broadband, digital skills, and fair taxation, while urging action against illegal online content, misinformation, and cybercrime. The resolution also stresses the importance of data protection, competition policy, and international cooperation to ensure inclusive, equitable digital economic development across both regions.",
   "characteristics": [
-    "The resolution addresses the growth and impact of digital platforms in the modern economy, emphasizing their role in economic development and job creation in both Europe and Latin America.",
-    "It highlights the digital divide, noting that significant portions of the population in Latin America lack access to digital services, which hinders economic participation.",
-    "The document calls for the establishment of a secure digital infrastructure and a unified digital market to enhance connectivity and economic opportunities.",
-    "It stresses the importance of fair labor conditions and consumer protection in the digital economy, advocating for rights and protections for platform workers.",
-    "The resolution encourages international cooperation to address challenges posed by digitalization, including regulatory frameworks and combating misinformation and cybercrime."
+    "Digital platforms are highly diverse, ranging from global multinationals to local non-profits, and include online marketplaces, social networks, content channels, app stores, payment services, collaborative economy platforms, and search engines.",
+    "Key shared characteristics include the use of ICT to enable new forms of user interaction, data collection and utilization, and strong network effects, often leading to market dominance by a few operators.",
+    "Digital platforms facilitate business opportunities, employment, and economic growth, especially for SMEs, microenterprises, and startups, by lowering entry barriers to global markets.",
+    "There are significant concerns about fair working conditions, social protection, and workers’ rights, as well as the need for regulatory frameworks to ensure transparency, accountability, and competition.",
+    "The digital divide remains a challenge, particularly in Latin America and the Caribbean, with disparities in broadband access, especially between urban and rural areas.",
+    "The resolution emphasizes the need for secure infrastructure, digital literacy, fair taxation, consumer protection (especially regarding data privacy), and international cooperation to address challenges and maximize the benefits of digital platforms."
   ],
   "themes": {
     "Digital Transformation & Strategy": [
       "Digital Platforms",
       "Digital Economy",
-      "Digital Infrastructure"
+      "Digital Infrastructure",
+      "Digital Trade",
+      "Digital Skills Development",
+      "Digital Acceleration",
+      "Digital Agenda",
+      "Digital Policy",
+      "Digital Ecosystem",
+      "Digital Regulation",
+      "Digital Transitions"
     ],
     "Data & Governance": [
       "Data Protection",
+      "Digital Governance",
+      "E-Governance",
+      "Cybersecurity",
       "Digital Rights",
-      "Digital Governance"
+      "Internet Governance",
+      "Data Governance",
+      "Digital Ethics"
+    ],
+    "Inclusion & Social Development": [
+      "Digital Inclusion",
+      "Connectivity",
+      "Digital Education"
     ],
     "Regional & International Cooperation": [
       "EU-LAC Digital Alliance",
-      "Global Digital Cooperation"
+      "Bi-regional Cooperation",
+      "Global Digital Cooperation",
+      "Multilateralism",
+      "Digital & Technological Partnerships"
     ]
   },
   "actors": {
     "Political Actors": [
-      "Asamblea Parlamentaria Euro-Latinoamericana",
-      "Carlos Abraham Jiménez",
-      "Nicola Danti",
-      "Parlamento Europeo",
-      "Unión Europea",
+      "European Union",
+      "European Parliament",
+      "European Commission",
+      "EU Member States",
+      "European Council",
+      "Parliament Latinoamericano",
+      "Parlamento Centroamericano",
       "Parlamento Andino",
-      "Comunidad Andina",
-      "Organización de Estados Americanos",
+      "Parlamento del Mercosur",
+      "Comisión de Representantes Permanentes del Mercosur",
+      "Secretaría Permanente del Sistema Económico Latinoamericano y del Caribe",
+      "Organización de los Estados Americanos",
       "Naciones Unidas",
-      "Organización Mundial del Comercio",
-      "G20"
+      "Policy Level Representatives",
+      "Governments",
+      "Government Officials"
     ],
     "Economic Actors": [
-      "CAF (Banco de Desarrollo de América Latina)",
-      "Organización para la Cooperación y el Desarrollo Económicos",
-      "Banco Interamericano de Desarrollo",
-      "Banco Mundial"
+      "Organisation for Economic Cooperation and Development",
+      "Development Bank of Latin America and the Caribbean",
+      "Digital Companies",
+      "ICT Companies",
+      "Telecommunication Companies",
+      "Industry Actors",
+      "Private Sector Representatives",
+      "World Bank"
+    ],
+    "Research and Innovation Actors": [
+      "CEPAL",
+      "Research Performing Organisations",
+      "Technology Organisations",
+      "Digital for Development Hub",
+      "EU-LAC Digital Alliance",
+      "Universities",
+      "Academic Institutions"
+    ],
+    "Civil Society Actors": [
+      "Civil Society Organisations",
+      "Non-governmental Institutions",
+      "Digital Literacy Initiatives",
+      "Digital Training and Education Providers"
     ]
   },
   "practical_applications": [
-    "Launch of the \"Digital for Development\" (D4D) platform by the European Union in December 2021 to enhance global cooperation in digital markets in Latin America and the Caribbean.",
-    "Recommendation for the establishment of a digital single market in Latin America and the Caribbean to facilitate the free movement of digital goods, services, and capital.",
-    "Support for the ongoing multilateral negotiations at the World Trade Organization (WTO) regarding electronic commerce to enhance digital transactions and participation of small and medium enterprises (SMEs).",
-    "Call for the development of digital literacy programs at all levels to ensure widespread access to digital tools and connectivity, particularly in rural and remote areas.",
-    "Emphasis on the need to strengthen broadband infrastructure through national plans to maximize its potential for economic growth and innovation.",
-    "Proposal for the adaptation of services and connectivity in areas lacking coverage, ensuring that digital transformation benefits all sectors, especially education, health, and finance.",
-    "Advocacy for measures against illegal online content and misinformation through internationally agreed binding measures."
+    "In December 2021, the European Union launched the \"Digital for Development\" (D4D) platform for Latin America and the Caribbean to boost global cooperation in digital markets.",
+    "The European Union and Latin America and the Caribbean are participating in ongoing multilateral negotiations at the World Trade Organization (WTO) on e-commerce, with a broad membership and an ambitious negotiation agenda.",
+    "The OECD agreement on a two-pillar approach for digital economy taxation has been reached, with the EU and Latin America and the Caribbean coordinating efforts for its effective implementation.",
+    "National broadband infrastructure plans are being implemented to maximize the potential of broadband for economic growth, competitiveness, and innovation, using a mix of legislation, public policy, funding mechanisms, and expanded coverage.",
+    "Existing funding mechanisms, including access to venture capital, banks, public funds, and crowdfunding, are being used to support the development and expansion of digital platforms and infrastructure.",
+    "The General Data Protection Regulation (GDPR) is being enforced in the EU to protect consumer privacy and data in the digital platform economy.",
+    "The application of competition rules is being strengthened to address market dominance and protect consumers and small businesses in digital markets."
   ],
-  "commitments": [
-    "Pide que se elaboren programas de alfabetización digital a todos los niveles y en todos los sectores, para lo cual se deberán asignar recursos de los presupuestos públicos y de la cooperación internacional.",
-    "Destaca la necesidad de reforzar la infraestructura de banda ancha mediante la aplicación de planes nacionales que persigan maximizar el potencial de la banda ancha para impulsar el crecimiento económico, la competitividad y la innovación.",
-    "Señala que, en las zonas sin cobertura, es necesario desarrollar y adaptar servicios y conectividad, así como desarrollar plataformas de servicios digitales que compartan criterios comunes y características clave.",
-    "Pide que se proteja a los consumidores garantizando que las plataformas digitales salvaguarden la privacidad y protejan los datos personales y la elección de los consumidores."
-  ],
-  "score": 96,
+  "commitments": [],
+  "score": 57,
   "quality_breakdown": {
-    "faithfulness": 100,
-    "consistency": 96,
-    "completeness": 96,
-    "accuracy": 100,
-    "issues": []
+    "faithfulness": 0,
+    "consistency": 85,
+    "completeness": 95,
+    "accuracy": 87,
+    "issues": [
+      "Low faithfulness - check for hallucinations in basic or strategic extra data"
+    ]
   },
   "extra_data": {
     "lead_country_iso": "ESP",
     "agreement_type": [
       "Resolution"
     ],
-    "legal_bindingness": "Politically-binding",
-    "coverage_scope": "Bilateral",
+    "legal_bindingness": "Non-binding",
+    "coverage_scope": "Regional",
     "eu_policy_alignment": [
-      "Digital Decade",
-      "EU Cyber Strategy"
+      "Digital Decade"
     ],
     "review_schedule": null,
     "beneficiary_group_raw": [
-      "empresa",
-      "trabajador",
-      "comunidad",
-      "consumidor",
-      "pueblo"
+      "worker",
+      "consumer",
+      "microenterprise",
+      "enterprise",
+      "community"
     ],
     "beneficiary_group": [
-      {
-        "category": "SMEs / Businesses",
-        "label": "Companies"
-      },
       {
         "category": "General Citizens / Consumers",
         "label": "Consumers"
       },
       {
-        "category": "Rural & Remote Communities",
-        "label": "Rural Populations"
+        "category": "SMEs / Businesses",
+        "label": "Small and Medium Enterprises"
+      },
+      {
+        "category": "SMEs / Businesses",
+        "label": "Companies"
+      },
+      {
+        "category": "Civil Society / NGOs",
+        "label": "Community Organizations"
       }
     ],
     "start_date": "2023-07-27",
     "end_date": "2023-07-27",
-    "commitment_details": [
-      {
-        "text": "Pide que se elaboren programas de alfabetización digital a todos los niveles y en todos los sectores, para lo cual se deberán asignar recursos de los presupuestos públicos y de la cooperación internacional.",
-        "commitment_class": "Programmatic"
-      },
-      {
-        "text": "Destaca la necesidad de reforzar la infraestructura de banda ancha mediante la aplicación de planes nacionales que persigan maximizar el potencial de la banda ancha para impulsar el crecimiento económico, la competitividad y la innovación.",
-        "commitment_class": "Programmatic"
-      },
-      {
-        "text": "Señala que, en las zonas sin cobertura, es necesario desarrollar y adaptar servicios y conectividad, así como desarrollar plataformas de servicios digitales que compartan criterios comunes y características clave.",
-        "commitment_class": "Programmatic"
-      },
-      {
-        "text": "Pide que se proteja a los consumidores garantizando que las plataformas digitales salvaguarden la privacidad y protejan los datos personales y la elección de los consumidores.",
-        "commitment_class": "Declarative"
-      }
-    ],
+    "commitment_details": [],
     "kpi_list": [
       {
-        "kpi_text": "Pide que se elaboren programas de alfabetización digital a todos los niveles y en todos los sectores, para lo cual se deberán asignar recursos de los presupuestos públicos y de la cooperación internacional, que permitan financiar en primera instancia el acceso generalizado a las herramientas digitales y la expansión de la conectividad a todas las zonas geográficas, especialmente áreas rurales y remotas, con el fin de acotar la brecha digital en nuestras sociedades.",
+        "kpi_text": "Recomienda la creación y puesta en marcha de una infraestructura y un entorno económico seguros y adecuados para las plataformas digitales, incluido el despliegue de redes de banda ancha de alta velocidad y otras infraestructuras digitales que permitan cumplir los objetivos de conectividad, así como que se faciliten la obtención de fondos y las inversiones a través de los instrumentos de financiación existentes, mediante el acceso a capital de riesgo, a los bancos y los fondos públicos o a la financiación participativa;",
         "kpi_type": "qualitative",
-        "metric_name": "Digital Literacy Programs Development",
+        "metric_name": "Digital Infrastructure and Economic Environment Establishment",
         "target_value": null,
-        "target_description": "Develop digital literacy programs at all levels and sectors to reduce the digital divide.",
+        "target_description": "Create and implement secure and adequate infrastructure and economic environment for digital platforms, including high-speed broadband deployment and access to funding",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Program establishment and resource allocation",
-        "responsible_entity": null,
-        "sector": "Digital Education"
+        "measurement_method": "Establishment and operationalization of infrastructure and funding mechanisms",
+        "responsible_entity": "Governments and relevant public/private sector entities in EU and LAC",
+        "sector": "Digital Economy / Infrastructure"
       },
       {
-        "kpi_text": "Destaca la necesidad de reforzar la infraestructura de banda ancha mediante la aplicación de planes nacionales que persigan maximizar el potencial de la banda ancha para impulsar el crecimiento económico, la competitividad y la innovación, a través de una combinación de diferentes instrumentos, como la legislación, las políticas públicas, los mecanismos de financiación y el incremento de la cobertura y sus costos.",
+        "kpi_text": "Sugiere la creación de un mercado único digital en consonancia con la recomendación de CAF (Banco de Desarrollo de América Latina) con el fin de introducir la libre circulación de bienes, servicios digitales y capitales vinculados al sector digital, y señala, además, que la región se beneficiaría de inversiones en infraestructuras, para mejorar la conectividad, y en formación cualificada, para mejorar las competencias y capacidades relacionadas con el uso de herramientas digitales;",
         "kpi_type": "qualitative",
-        "metric_name": "Broadband Infrastructure Enhancement",
+        "metric_name": "Digital Single Market Establishment",
         "target_value": null,
-        "target_description": "Strengthen broadband infrastructure to maximize its potential for economic growth.",
+        "target_description": "Create a digital single market enabling free movement of digital goods, services, and capital, and invest in infrastructure and digital skills training",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Implementation of national plans and policies",
-        "responsible_entity": null,
-        "sector": "Telecommunications"
+        "measurement_method": "Establishment of market and implementation of investments and training programs",
+        "responsible_entity": "Governments and regional organizations (EU, LAC, CAF)",
+        "sector": "Digital Economy / Market Integration"
       },
       {
-        "kpi_text": "Señala que, en las zonas sin cobertura, es necesario desarrollar y adaptar servicios y conectividad, así como desarrollar plataformas de servicios digitales que compartan criterios comunes y características clave, para garantizar que los beneficios de la transformación digital lleguen a todos, especialmente en los sectores educativo, sanitario y financiero de esas zonas, así como un acceso a un precio asequible.",
+        "kpi_text": "Pide que se elaboren programas de alfabetización digital a todos los niveles y en todos los sectores, para lo cual se deberán asignar recursos de los presupuestos públicos y de la cooperación internacional, que permitan financiar en primera instancia el acceso generalizado a las herramientas digitales y la expansión de la conectividad a todas las zonas geográficas, especialmente áreas rurales y remotas, con el fin de acotar la brecha digital en nuestras sociedades;",
         "kpi_type": "qualitative",
-        "metric_name": "Digital Services Development in Underserved Areas",
+        "metric_name": "Digital Literacy Program Development and Implementation",
         "target_value": null,
-        "target_description": "Develop and adapt digital services and connectivity in underserved areas.",
+        "target_description": "Develop and implement digital literacy programs at all levels and sectors, with public and international funding, to expand digital access and connectivity, especially in rural and remote areas",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Service development and accessibility evaluation",
-        "responsible_entity": null,
-        "sector": "Digital Services"
+        "measurement_method": "Existence and reach of digital literacy programs and increased access/connectivity",
+        "responsible_entity": "National governments, international cooperation agencies",
+        "sector": "Education / Digital Inclusion"
       },
       {
-        "kpi_text": "Pide un conjunto equilibrado de normas jurídicas para garantizar un desarrollo justo de la economía digital y proteger los derechos de los consumidores y los trabajadores, garantizando unas condiciones de trabajo dignas.",
+        "kpi_text": "Destaca la necesidad de reforzar la infraestructura de banda ancha mediante la aplicación de planes nacionales que persigan maximizar el potencial de la banda ancha para impulsar el crecimiento económico, la competitividad y la innovación, a través de una combinación de diferentes instrumentos, como la legislación, las políticas públicas, los mecanismos de financiación y el incremento de la cobertura y sus costos;",
         "kpi_type": "qualitative",
-        "metric_name": "Legal Framework for Digital Economy",
+        "metric_name": "National Broadband Infrastructure Strengthening",
         "target_value": null,
-        "target_description": "Establish a balanced legal framework to ensure fair development of the digital economy.",
+        "target_description": "Strengthen broadband infrastructure through national plans using legislation, public policy, financing mechanisms, and increased coverage",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Legal framework establishment and implementation",
-        "responsible_entity": null,
-        "sector": "Legal/Regulatory"
+        "measurement_method": "Implementation of national broadband plans and increased broadband coverage",
+        "responsible_entity": "National governments",
+        "sector": "Telecommunications / Infrastructure"
       },
       {
-        "kpi_text": "Pide que se invierta en el reciclaje profesional de los trabajadores, así como que se garanticen unas condiciones de trabajo justas y una protección social adecuada en una economía en mutación.",
+        "kpi_text": "Propone que se refuercen las medidas de lucha contra los contenidos ilegales y nocivos en línea, como el discurso de odio, el material relacionado con abusos sexuales a menores y la incitación al terrorismo, y que se ponga fin a la difusión de noticias falsas mediante la aplicación de medidas vinculantes acordadas a escala internacional;",
         "kpi_type": "qualitative",
-        "metric_name": "Investment in Worker Reskilling",
+        "metric_name": "Online Harmful Content and Disinformation Mitigation",
         "target_value": null,
-        "target_description": "Invest in reskilling workers to ensure fair working conditions and social protection.",
+        "target_description": "Strengthen measures against illegal and harmful online content and disinformation through binding international measures",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Investment tracking and worker feedback",
-        "responsible_entity": null,
-        "sector": "Labor/Employment"
+        "measurement_method": "Adoption and enforcement of international binding measures",
+        "responsible_entity": "International organizations, national governments",
+        "sector": "Digital Regulation / Online Safety"
       },
       {
-        "kpi_text": "Pide una fiscalidad justa para la economía digital, con países que trabajen a escala internacional para incorporar la legislación fiscal a la era digital.",
+        "kpi_text": "Pide una fiscalidad justa para la economía digital, con países que trabajen a escala internacional para incorporar la legislación fiscal a la era digital; acoge con satisfacción el acuerdo alcanzado en la OCDE para una fiscalidad adaptada a la era digital; considera que la Unión Europea y América Latina y el Caribe deben seguir coordinando sus esfuerzos en diferentes foros internacionales para garantizar la aplicación efectiva, oportuna y proporcionada del acuerdo;",
         "kpi_type": "qualitative",
-        "metric_name": "Fair Taxation for Digital Economy",
+        "metric_name": "Digital Economy Fair Taxation Implementation",
         "target_value": null,
-        "target_description": "Establish fair taxation for the digital economy through international cooperation.",
+        "target_description": "Implement fair taxation for the digital economy and ensure effective, timely, and proportionate application of international agreements",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Tax policy development and international agreements",
-        "responsible_entity": null,
-        "sector": "Finance"
+        "measurement_method": "Adoption and enforcement of digital taxation measures and international agreements",
+        "responsible_entity": "National governments, OECD, EU, LAC regional bodies",
+        "sector": "Taxation / Digital Economy"
       },
       {
-        "kpi_text": "Señala la importancia de luchar contra la desinformación mediante la alfabetización digital de nuestras sociedades, de manera que contribuya a expandir el conocimiento de las oportunidades y de los riesgos de las herramientas digitales, así como a fomentar el pensamiento crítico que lleve a tomar decisiones informadas.",
+        "kpi_text": "Pide que se proteja a los consumidores garantizando que las plataformas digitales salvaguarden la privacidad y protejan los datos personales y la elección de los consumidores, a través, por ejemplo, de normas y medidas de vigilancia preventiva y control del uso de las tecnologías digitales, con el fin de minimizar el riesgo de incumplimiento y luchar contra la ciberdelincuencia;",
         "kpi_type": "qualitative",
-        "metric_name": "Digital Literacy for Misinformation Combat",
+        "metric_name": "Consumer Data Protection and Privacy Safeguards",
         "target_value": null,
-        "target_description": "Promote digital literacy to combat misinformation and enhance critical thinking.",
+        "target_description": "Ensure digital platforms safeguard consumer privacy and personal data through standards and preventive monitoring",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Digital literacy program effectiveness evaluation",
-        "responsible_entity": null,
-        "sector": "Education"
+        "measurement_method": "Implementation and enforcement of privacy and data protection standards",
+        "responsible_entity": "Regulatory authorities, digital platforms",
+        "sector": "Consumer Protection / Data Privacy"
       },
       {
-        "kpi_text": "Pide que se proteja a los consumidores garantizando que las plataformas digitales salvaguarden la privacidad y protejan los datos personales y la elección de los consumidores, a través, por ejemplo, de normas y medidas de vigilancia preventiva y control del uso de las tecnologías digitales, con el fin de minimizar el riesgo de incumplimiento y luchar contra la ciberdelincuencia.",
+        "kpi_text": "Señala que, en las zonas sin cobertura, es necesario desarrollar y adaptar servicios y conectividad, así como desarrollar plataformas de servicios digitales que compartan criterios comunes y características clave, para garantizar que los beneficios de la transformación digital lleguen a todos, especialmente en los sectores educativo, sanitario y financiero de esas zonas, así como un acceso a un precio asequible;",
         "kpi_type": "qualitative",
-        "metric_name": "Consumer Data Protection in Digital Platforms",
+        "metric_name": "Digital Service Access Expansion in Underserved Areas",
         "target_value": null,
-        "target_description": "Ensure consumer data protection and privacy on digital platforms.",
+        "target_description": "Develop and adapt digital services and connectivity in uncovered areas, ensuring affordable access in education, health, and finance sectors",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Compliance monitoring and consumer feedback",
-        "responsible_entity": null,
-        "sector": "Consumer Protection"
+        "measurement_method": "Deployment of digital services and increased access in target sectors and regions",
+        "responsible_entity": "National governments, service providers",
+        "sector": "Digital Inclusion / Public Services"
       },
       {
-        "kpi_text": "Señala que la creación de un entorno jurídico y económico adecuado tanto en la Unión Europea como en América Latina es esencial para la creación y expansión de plataformas digitales locales que puedan competir a escala mundial al tiempo que garantizan los derechos de los trabajadores.",
+        "kpi_text": "Pide, por lo tanto, que se invierta en el reciclaje profesional de los trabajadores, así como que se garanticen unas condiciones de trabajo justas y una protección social adecuada en una economía en mutación;",
         "kpi_type": "qualitative",
-        "metric_name": "Legal and Economic Environment for Local Digital Platforms",
+        "metric_name": "Workforce Reskilling and Social Protection Enhancement",
         "target_value": null,
-        "target_description": "Create a suitable legal and economic environment for local digital platforms.",
+        "target_description": "Invest in workforce reskilling and ensure fair working conditions and adequate social protection in the evolving economy",
         "unit": "qualitative milestone",
         "timeframe": null,
-        "measurement_method": "Assessment of legal and economic conditions",
-        "responsible_entity": null,
-        "sector": "Digital Economy"
+        "measurement_method": "Implementation of reskilling programs and social protection measures",
+        "responsible_entity": "National governments, labor ministries",
+        "sector": "Labor / Social Policy"
+      },
+      {
+        "kpi_text": "Señala que las conexiones de banda ancha también crecieron durante ese período, especialmente a través de teléfonos móviles, un tipo de conexión que aumentó un 65 %; que el 32 % de la población latinoamericana no tiene acceso a los servicios digitales, que solo cinco de cada diez hogares cuentan con una conexión fija de banda ancha — el 71 % en zonas urbanas y el 37 % en zonas rurales— y que menos del 40 % de la población tiene acceso individual a internet móvil;",
+        "kpi_type": "quantitative",
+        "metric_name": "Broadband and Digital Access Rates",
+        "target_value": 65.0,
+        "target_description": "Increase in mobile broadband connections by 65%; 32% of Latin American population lacks digital services; 50% of households have fixed broadband (71% urban, 37% rural); less than 40% have individual mobile internet access",
+        "unit": "percentage",
+        "timeframe": "2010-2020 (reference period)",
+        "measurement_method": "Statistical measurement of broadband and internet access rates",
+        "responsible_entity": "National statistics agencies, telecom regulators",
+        "sector": "Telecommunications / Digital Inclusion"
       }
     ],
     "country_list_iso": [
+      "CHN",
       "COL",
       "DEU",
       "ITA",
       "USA"
     ],
-    "responsible_entity": "Asamblea Parlamentaria Euro-Latinoamericana",
+    "responsible_entity": null,
     "sdg_alignment": [
       "SDG 1: No Poverty",
+      "SDG 4: Quality Education",
+      "SDG 5: Gender Equality",
       "SDG 8: Decent Work and Economic Growth",
       "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
+      "SDG 11: Sustainable Cities and Communities",
       "SDG 12: Responsible Consumption and Production",
-      "SDG 13: Climate Action",
       "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
   },
   "top_actors": [
     {
-      "name": "Asamblea Parlamentaria Euro-Latinoamericana",
+      "name": "European Union",
+      "category": "Political Actors",
+      "relevance_score": 1.0,
+      "justification": "The European Union is central to the resolution, being both a primary subject and a key actor in the development, regulation, and future direction of digital platforms in the modern economy. The text repeatedly references the EU's legislative framework, initiatives, and its role in international cooperation, making it the most prominent and influential actor."
+    },
+    {
+      "name": "América Latina y el Caribe (Latin America and the Caribbean)",
+      "category": "Political Actors",
+      "relevance_score": 0.95,
+      "justification": "Latin America and the Caribbean are the main regional focus alongside the EU, with the resolution specifically addressing digital development, challenges, and cooperation in this region. The text discusses regional statistics, digital divides, and the need for joint initiatives, highlighting their critical role in the document's context and objectives."
+    },
+    {
+      "name": "European Parliament",
       "category": "Political Actors",
       "relevance_score": 0.9,
-      "justification": "The Asamblea Parlamentaria Euro-Latinoamericana is the primary body responsible for the resolution discussed in the document, making it central to the text's context and objectives."
-    },
-    {
-      "name": "Parlamento Europeo",
-      "category": "Political Actors",
-      "relevance_score": 0.85,
-      "justification": "The Parlamento Europeo is frequently referenced throughout the document, indicating its significant role in shaping policies related to digital platforms and the economy, thus influencing the main topics discussed."
-    },
-    {
-      "name": "Unión Europea",
-      "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "The Unión Europea is mentioned multiple times and is crucial in the context of digital economy regulations and initiatives, highlighting its influence on the legislative framework discussed in the resolution."
+      "justification": "The European Parliament is repeatedly cited as the source of key resolutions, legislative actions, and policy directions that shape the digital economy. Its decisions and recommendations are foundational to the document, and it is directly involved in the creation and dissemination of the resolution, underscoring its high relevance and influence."
     }
   ],
   "top_themes": [
     {
       "name": "Digital Platforms",
       "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.9,
-      "justification": "Digital platforms are central to the document's focus on the modern economy, highlighting their role in facilitating economic activities and the need for a supportive regulatory environment."
+      "relevance_score": 1.0,
+      "justification": "The entire resolution is centered on the role, challenges, and opportunities of digital platforms in the modern economy, especially in the EU and LAC regions. The document discusses their impact on economic growth, employment, market structure, and the need for regulatory frameworks, making this theme the most central and extensively covered."
     },
     {
-      "name": "Digital Economy",
+      "name": "Digital Regulation",
       "category": "Digital Transformation & Strategy",
-      "relevance_score": 0.85,
-      "justification": "The digital economy is a key theme as it encompasses the broader implications of digital platforms and their impact on economic growth, employment, and market dynamics."
+      "relevance_score": 0.95,
+      "justification": "A significant portion of the document is dedicated to the need for fair, effective, and harmonized regulation of digital platforms, including competition law, data protection, labor rights, and consumer protection. The resolution calls for legal frameworks, standards, and coordinated policy action, highlighting its strategic importance for achieving the document's objectives."
     },
     {
-      "name": "Data Protection",
-      "category": "Data & Governance",
-      "relevance_score": 0.8,
-      "justification": "Data protection is crucial in the context of digital platforms, as it addresses consumer rights and privacy, which are essential for building trust in the digital economy."
+      "name": "Digital Inclusion",
+      "category": "Inclusion & Social Development",
+      "relevance_score": 0.9,
+      "justification": "The resolution repeatedly emphasizes bridging the digital divide, expanding connectivity, and ensuring that digital transformation benefits all segments of society, especially in rural and underserved areas. Digital inclusion is presented as a key objective, with concrete recommendations for infrastructure, skills, and access, making it highly central to the document's commitments."
     }
   ]
 }

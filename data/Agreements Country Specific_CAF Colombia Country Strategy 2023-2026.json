@@ -1,110 +1,217 @@
 {
-  "title": "CAF Colombia Country Strategy 2023-2026: Promoting Sustainable and Inclusive Growth",
-  "date": "2023-01-01",
+  "title": "CAF Colombia Country Strategy 2023-2026: Sustainable and Inclusive Development Agenda",
+  "date": null,
   "location": "Bogotá, Colombia",
-  "executive_summary": "The CAF Colombia Country Strategy 2023-2026 outlines a comprehensive approach to foster sustainable and inclusive growth in Colombia. It emphasizes four strategic pillars: rural development for sustainability and inclusion, sustainable productive transformation, social equity, and institutional modernization. The strategy aims to address significant regional disparities by enhancing infrastructure, promoting access to quality education and healthcare, and supporting local governance. CAF will leverage financial instruments, including loans and technical assistance, to finance high-impact projects aligned with the Sustainable Development Goals (SDGs). Key initiatives include improving connectivity, supporting climate action, and fostering economic opportunities for marginalized communities. The strategy underscores the importance of collaboration with local governments and stakeholders to ensure effective implementation and maximize social impact.",
+  "executive_summary": "The CAF Colombia Country Strategy 2023-2026 outlines CAF’s commitment to supporting Colombia’s sustainable, inclusive, and equitable growth. Aligned with Colombia’s National Development Plan, the strategy is structured around four pillars: (1) rural development for sustainability and inclusion, (2) sustainable productive transformation, (3) closing social gaps and promoting equity, and (4) institutional strengthening and modernization. Key actions include improving rural infrastructure and land access, fostering green and diversified economic growth, enhancing access to quality education, health, water, and digital connectivity, and supporting digital transformation and governance at all government levels. Cross-cutting themes address gender, diversity, climate action, and biodiversity. CAF will leverage a range of financial instruments, technical cooperation, and partnerships with public and private sectors to implement high-impact, measurable projects, with a strong focus on reducing regional disparities and supporting Colombia’s transition to a greener, more inclusive economy.",
   "characteristics": [
-    "**Sustainable Development Focus**: CAF positions itself as a green bank, emphasizing sustainable and inclusive growth in Colombia through strategic investments and partnerships.",
-    "**Four Strategic Pillars**: The strategy is built on four pillars: rural development, sustainable productive transformation, social and human development, and governmental modernization.",
-    "**Collaboration and Capacity Building**: CAF aims to strengthen local governments and institutions, enhancing their capacity to implement effective public policies and manage resources.",
-    "**Addressing Inequality**: The strategy prioritizes reducing social and economic inequalities, particularly in underserved regions, by improving access to essential services like education, health, and infrastructure.",
-    "**Climate Action and Biodiversity**: CAF integrates climate action into its projects, promoting initiatives that protect biodiversity and support climate resilience.",
-    "**Financial Instruments and Technical Assistance**: The strategy includes diverse financial instruments and technical support to facilitate project implementation and enhance investment in key sectors."
+    "Four Strategic Pillars: CAF’s 2023-2026 strategy for Colombia is built on four pillars—(1) rural development for sustainability and inclusion, (2) sustainable productive transformation, (3) social and human development with a focus on equity, and (4) institutional strengthening and modernization, especially through digital transformation.",
+    "Cross-Cutting Themes: The strategy integrates transversal approaches such as environmental sustainability, climate action, gender equality, diversity, inclusion, and peacebuilding, ensuring these are embedded in all interventions.",
+    "Territorial and Inclusive Focus: Emphasis is placed on reducing regional disparities by prioritizing investments and technical support in less developed areas, improving infrastructure, basic services, and local government capacities, and leveraging cities as regional development hubs.",
+    "Sustainable and Green Growth: CAF positions itself as the “green bank,” supporting Colombia’s transition to a low-carbon, biodiversity-rich, and resilient economy through investments in clean energy, climate-smart agriculture, sustainable infrastructure, and the development of green financial instruments.",
+    "Comprehensive Financing and Technical Support: The strategy offers a range of financial products (loans, guarantees, equity investments, blended finance) and technical cooperation to both public and private sectors, with a focus on high-impact, measurable projects aligned with national development priorities and the SDGs.",
+    "Institutional and Policy Support: CAF supports the modernization of public administration, regulatory improvement, digital government, and capacity building for public officials, aiming to enhance governance, transparency, and the effectiveness of public policy implementation."
   ],
   "themes": {
-    "Inclusion & Social Development": [
-      "Digital Inclusion",
-      "Social Cohesion",
-      "Gender Equality in Tech",
-      "Digital Education",
-      "Connectivity",
-      "Sustainable Digital Development"
-    ],
-    "Data & Governance": [
-      "Digital Governance",
-      "Data Protection",
-      "Cybersecurity",
-      "Data Privacy"
-    ],
     "Digital Transformation & Strategy": [
       "Digital Infrastructure",
       "Digital Platforms",
+      "Digital Skills Development",
+      "Digital Acceleration",
+      "Digital Economy",
       "Digital Policy",
-      "Digital Economy"
+      "Digital Ecosystem",
+      "Digital Investment",
+      "Digital Transitions"
+    ],
+    "Technology & Innovation": [
+      "Tech-Driven Solutions",
+      "ICT Innovation",
+      "Artificial Intelligence",
+      "Cloud Computing",
+      "Innovation in Computing",
+      "Blockchain"
+    ],
+    "Data & Governance": [
+      "Data Governance",
+      "Digital Governance",
+      "Data Protection",
+      "Cybersecurity",
+      "Digital Rights",
+      "Digital Access",
+      "Digital Identity Management",
+      "Internet Governance",
+      "Digital Ethics",
+      "E-Governance"
+    ],
+    "Inclusion & Social Development": [
+      "Digital Inclusion",
+      "Digital Education",
+      "Connectivity",
+      "Sustainable Digital Development",
+      "Gender Equality in Tech"
+    ],
+    "Regional & International Cooperation": [
+      "Digital & Technological Partnerships",
+      "Bi-regional Cooperation",
+      "Global Digital Cooperation"
     ]
   },
   "actors": {
     "Political Actors": [
-      "Government national",
-      "Government officials",
-      "Policy level representatives"
+      "Governments",
+      "Government Officials",
+      "Policy Level Representatives"
     ],
     "Economic Actors": [
-      "Inter-American Development Bank",
       "Development Bank of Latin America and the Caribbean",
-      "World Bank"
+      "Private Sector Representatives",
+      "Industry Actors",
+      "Private Sector Intermediaries",
+      "Inter-American Development Bank",
+      "World Bank",
+      "Research Funding Organisations",
+      "ICT Companies",
+      "Telecommunication Companies"
+    ],
+    "Research and Innovation Actors": [
+      "Universities",
+      "Academic Institutions",
+      "Technology Organisations",
+      "Research Performing Organisations",
+      "Knowledge and Innovation Communities",
+      "Researchers",
+      "Innovators"
     ],
     "Civil Society Actors": [
-      "Non-governmental institutions",
-      "Civil society organisations"
+      "Non-governmental Institutions",
+      "Civil Society Organisations",
+      "Digital Training and Education Providers",
+      "Digital Skills Development Platforms",
+      "Technology Providers"
     ]
   },
   "practical_applications": [
-    "Financing programs and projects of significant impact in Colombia, including infrastructure and social services.",
-    "Support for the Government of Colombia through budget support instruments amounting to USD 2.35 billion to promote strategic policies.",
-    "Collaboration with local governments and private sector to finance high-quality investment programs and projects aligned with the Sustainable Development Goals (SDGs).",
-    "Implementation of the Catastro Multipropósito to promote stable and transparent land tenure, enhancing productivity in the agricultural sector.",
-    "Financing for the construction and optimization of water and sanitation infrastructure through the National Rural Water Supply and Sanitation Plan.",
-    "Support for the development of the National Riego Plan for Family and Community Economy to improve agricultural productivity.",
-    "Financing for the expansion of energy transmission networks and the incorporation of renewable energy sources into the energy matrix.",
-    "Development of the CAF Asset Management Corp. (CAF-AM) to manage private capital funds for infrastructure projects, including the establishment of the first debt fund for infrastructure in Colombia.",
-    "Implementation of the Program for Integral Border Management to promote commercial, productive, and social integration in border regions.",
-    "Support for the digital transformation of public administration to improve service delivery and citizen engagement.",
-    "Promotion of financial inclusion initiatives targeting vulnerable populations, including women and ethnic minorities, through innovative financial products and services.",
-    "Financing for projects aimed at enhancing the competitiveness of small and medium enterprises (SMEs) and facilitating their access to international markets.",
-    "Support for the development of sustainable tourism initiatives that promote local culture and environmental conservation."
+    "Financing and technical support for the Catastro Multipropósito (Multipurpose Cadastre) to improve land tenure, including digital transformation and collaborative mechanisms for implementation.",
+    "Support for the Plan Caminos Comunitarios para la Paz Total, focusing on the recovery, construction, and maintenance of rural tertiary roads, with community organization involvement.",
+    "Financing and technical assistance for the Plan Nacional de Riego para la Economía Familiar y Campesina, supporting irrigation infrastructure and comprehensive rural development projects.",
+    "Support for the implementation of the Plan Nacional de Agrologística, including financing for the structuring and implementation of agrologistics districts and specialized logistics infrastructure.",
+    "Assistance to the Agencia Nacional de Tierras (ANT) and Agencia de Desarrollo Rural (ADR) with financial instruments and technical support for land formalization and rural development programs.",
+    "Promotion and financing of climate-smart agriculture initiatives, including the development of climate risk management tools such as index-based insurance and parametric insurance for the agricultural sector.",
+    "Support for the development and expansion of alternative financial services for the rural sector, including leasing, Fintech solutions, and strengthening rural cooperative financial systems.",
+    "Financing and technical support for the expansion and modernization of the national transportation infrastructure, including highways, ports, airports, and multimodal logistics corridors, with a focus on 4G and 5G concessions.",
+    "Establishment and operation of the Ashmore CAF-AM I and II infrastructure debt funds, which finance major road infrastructure projects under the 4G program and are planning a second fund for roads, ports, and airports.",
+    "Support for the implementation of the Política Portuaria and Plan Maestro Fluvial, including financing for prioritized projects.",
+    "Joint work with the government on the development of national railway infrastructure, including reactivation of railways for tourism and commercial purposes.",
+    "Financing for the renewal of the cargo transport fleet to reduce CO2 emissions, in partnership with private sector actors.",
+    "Development and support of private capital funds for infrastructure projects, including those managed by CAF Asset Management Corp. (CAF-AM).",
+    "Implementation of the Programa de Gestión Integral de Fronteras (PROGIF), supporting binational integration projects, especially on the Colombia-Venezuela and Colombia-Ecuador borders.",
+    "Support for the integration of migrant populations through infrastructure projects in housing, health, education, entrepreneurship, and financial inclusion.",
+    "Promotion and financing of the Agenda Verde for the productive sector, including funds for sustainable biodiversity-based businesses, in partnership with Bancóldex, Finagro, and Colcapital.",
+    "Support for the development of the carbon market in Colombia, aligned with the Iniciativa Latinoamericana de Créditos de Carbono, and other green financing mechanisms.",
+    "Implementation of the Banca de las Oportunidades program and support for the Unidad de Regulación Financiera to improve financial inclusion, especially for vulnerable populations, women, and migrants.",
+    "Technical assistance to Bancóldex and Finagro for digital transformation of microfinance and solidarity sector institutions.",
+    "Support for the Estrategia de Inclusión Crediticia para la Economía Popular, including capacity building and innovative financial product design for Grupo Bicentenario entities.",
+    "Financing and support for the Programa Nacional de Agua Potable y Saneamiento Básico Rural, including the creation of a project structuring unit for municipalities and communities.",
+    "Financing and support for the Programa de Conectividad Digital and fixed broadband solutions in regions with the greatest digital divide.",
+    "Support for the Plan Nacional de Espacios Educativos para la vida comunitaria, focusing on rural areas and articulation between secondary and higher education.",
+    "Financing for infrastructure expansion in higher education and support for the use of technology in education, including teacher training and digital platforms.",
+    "Support for the strengthening of Territorios Culturales, Creativos y de los Saberes (TCCS) and the development of cultural and creative economies.",
+    "Support for the implementation of the Plan Nacional de Transformación Digital and telemedicine programs to improve health coverage and quality, especially in vulnerable and remote populations.",
+    "Financing and technical support for the universalization of electricity service in rural areas and the implementation of the Estrategia de Transición Energética, including renewable energy projects (wind, solar, biogas, biomass, geothermics).",
+    "Support for the development of the green hydrogen sector and the industrialization strategy based on powershoring.",
+    "Support for the Red de Biodiverciudades de América Latina y el Caribe, including financing for sustainable urban transport and green infrastructure projects.",
+    "Support for conservation and reforestation projects in strategic areas, including the Amazon, and the implementation of Núcleos de Desarrollo de la economía forestal y de la biodiversidad.",
+    "Support for the Corredor Marino del Pacífico Este Tropical (CMAR) and the creation of a fiduciary mechanism for coral reef protection in the Colombian Caribbean.",
+    "Implementation of the Programa Prosperidad, a financing program for territorial entities to support investment projects aligned with the SDGs.",
+    "Operation of the Fondo de Inversión y Desarrollo Empresarial (FIDE) to support the development and strengthening of SMEs through venture capital.",
+    "Technical cooperation programs (CAF PPI and CAF PPSA) for pre-investment in economic integration and water/sanitation projects.",
+    "Support for the digital transformation of public administration, including the design and implementation of a GovTech roadmap, ethical AI use, and regulatory sandboxes.",
+    "Support for the modernization of public institutions, including improvements in tax collection systems, data management, and trade facilitation.",
+    "Capacity building for public officials through programs like Liderazgo para la Transformación 2.0 and partnerships with educational institutions.",
+    "Support for the implementation of participatory territorial planning processes, especially for RAP and RAPE regions, and the development of smart cities and territories.",
+    "Implementation of gender, inclusion, and diversity strategies in all operations, including support for financial inclusion policies with a gender perspective and accessibility for people with disabilities.",
+    "Mobilization of green financing and technical support for climate adaptation and biodiversity preservation projects, including water management, flood protection, and reforestation initiatives."
   ],
   "commitments": [
-    "Increase capital by USD 7,000 million to double the portfolio to USD 60,000 million by 2030.",
-    "Provide USD 2,350 million in budget support to promote strategic policies for the country.",
-    "Reduce CO2 emissions from the transport sector by 2.1 million tons.",
-    "Implement the National Water Supply and Basic Sanitation Plan to improve coverage and quality in vulnerable territories.",
-    "Support the financing of the National Irrigation Plan for Family and Peasant Economy to improve agricultural productivity and living conditions.",
-    "Prioritize financing for the construction, optimization, and expansion of water and sanitation infrastructure.",
-    "Increase the number of university slots through financing for higher education infrastructure.",
-    "Support the financing of projects for the construction of physical infrastructure for multipurpose irrigation and drainage.",
-    "Promote the financing of renewable energy projects, including wind, solar, and biomass, as part of the transition to a cleaner energy matrix."
+    "CAF aims to double its portfolio by 2030, reaching USD 60,000 million, following a capital increase of USD 7,000 million approved between December 2021 and March 2022.",
+    "CAF will support the financing and implementation of the Catastro Multipropósito (Multipurpose Cadastre) to improve land tenure, with a focus on digital transformation and collaborative mechanisms for its execution.",
+    "CAF will finance the Plan Caminos Comunitarios para la Paz Total (Community Roads for Total Peace), prioritizing the recovery, construction, and maintenance of rural tertiary roads, and updating the inventory of the tertiary road network.",
+    "CAF will support the implementation of the Plan Nacional de Riego para la Economía Familiar y Campesina (National Irrigation Plan for Family and Peasant Economy), including projects for multipurpose and on-farm irrigation infrastructure.",
+    "CAF will finance the expansion of energy transmission and distribution networks, including projects prioritized by the Unidad de Planeación Minero Energética (UPME), and support the universalization of electricity service in rural areas.",
+    "CAF will promote the incorporation of non-conventional renewable energies (wind, solar, biogas, biomass, geothermal) into Colombia’s energy matrix, including financing for related projects.",
+    "CAF will support the development of the hydrogen green sector as part of Colombia’s energy transition and industrialization strategy.",
+    "CAF will contribute to the reduction of 2.1 million tons of CO2 emissions in the transport sector by supporting the renewal of the cargo transport fleet.",
+    "CAF will finance the implementation of the Plan Nacional de Inversiones en vías nacionales (National Investment Plan for National Roads), including primary and secondary road networks, and support 5G concessions.",
+    "CAF will finance the Plan Nacional de Suministro de Agua Potable y Saneamiento Básico Rural (National Plan for Rural Drinking Water Supply and Basic Sanitation), including the creation of a project structuring unit for municipalities and communities.",
+    "CAF will support the implementation of the Programa de Conectividad Digital y Conectividad Fija Nacional (Digital Connectivity and National Fixed Connectivity Program), with emphasis on broadband solutions in regions with the greatest digital gap.",
+    "CAF will support the implementation of the Plan Nacional de Espacios Educativos para la vida comunitaria (National Plan for Educational Spaces for Community Life), focusing on rural areas and the articulation of secondary and higher education.",
+    "CAF will support the government’s plan to expand university enrollment by financing higher education infrastructure.",
+    "CAF will support the implementation of a national telemedicine program to improve health coverage and quality in isolated populations.",
+    "CAF Asset Management, through Ashmore CAF-AM, has established a private infrastructure debt fund in Colombia with investment commitments of around USD 500 million, currently financing 7 road infrastructure projects.",
+    "CAF plans to create a second infrastructure fund in Colombia, focused on financing roads, ports, and airports.",
+    "CAF will support the implementation of the Programa Prosperidad, dedicated to financing projects or investment programs for territorial entities to help meet the SDGs.",
+    "CAF will support the implementation of the Programa Integral de Fronteras (Comprehensive Border Program), with actions to promote commercial, productive, and social integration, especially at the Colombia-Venezuela and Colombia-Ecuador borders.",
+    "CAF will support the implementation of the Red de Biodiverciudades de América Latina y el Caribe (Network of Biodiverse Cities of Latin America and the Caribbean), including financing for sustainable urban transport systems with zero and low emissions.",
+    "CAF will support the conservation and reforestation of strategic areas, the implementation of Development Nuclei for the forest and biodiversity economy, and the consolidation of restoration processes, especially in the Amazon.",
+    "CAF will support the implementation of the Corredor Marino del Pacífico Este Tropical (CMAR) and the creation of a specific trust mechanism for coral reefs in the Colombian Caribbean.",
+    "CAF will support the implementation of the Programa Nacional de Agua Rural (National Rural Water Program).",
+    "CAF will support the implementation of the Plan Maestro Fluvial (Master River Plan) and the Política Portuaria (Port Policy).",
+    "CAF will support the implementation of the Estrategia de Transición Energética (Energy Transition Strategy), including the mobilization of non-reimbursable resources for high-impact components.",
+    "CAF will support the implementation of the Plan Nacional de Transformación Digital (National Digital Transformation Plan) for the health sector.",
+    "CAF will support the implementation of the Programa de seguridad alimentaria y nutrición (Food Security and Nutrition Program), with special emphasis on early childhood.",
+    "CAF will support the implementation of the Programa de formación docente (Teacher Training Program) to strengthen digital and pedagogical skills.",
+    "CAF will support the implementation of the Programa de conectividad para las comunidades (Connectivity Program for Communities), including infrastructure and technological equipment for schools.",
+    "CAF will support the implementation of the Programa de telemedicina (Telemedicine Program) to improve health coverage and quality in isolated populations.",
+    "CAF will support the implementation of the Plan Nacional de Espacios Educativos (National Plan for Educational Spaces).",
+    "CAF will support the implementation of the Plan Nacional de Inversiones en vías nacionales (National Investment Plan for National Roads).",
+    "CAF will support the implementation of the Plan Nacional de Suministro de Agua Potable y Saneamiento Básico Rural (National Plan for Rural Drinking Water Supply and Basic Sanitation).",
+    "CAF will support the implementation of the Plan Nacional de Riego para la Economía Familiar y Campesina (National Irrigation Plan for Family and Peasant Economy).",
+    "CAF will support the implementation of the Plan Caminos Comunitarios para la Paz Total (Community Roads for Total Peace).",
+    "CAF will support the implementation of the Plan Nacional de Agrologística (National Agrologistics Plan).",
+    "CAF will support the implementation of the Plan Maestro Fluvial (Master River Plan).",
+    "CAF will support the implementation of the Estrategia de Transición Energética (Energy Transition Strategy).",
+    "CAF will support the implementation of the Programa Nacional de Agua Rural (National Rural Water Program).",
+    "CAF will support the implementation of the Plan Nacional de Transformación Digital (National Digital Transformation Plan).",
+    "CAF will support the implementation of the Programa de seguridad alimentaria y nutrición (Food Security and Nutrition Program).",
+    "CAF will support the implementation of the Programa de formación docente (Teacher Training Program).",
+    "CAF will support the implementation of the Programa de conectividad para las comunidades (Connectivity Program for Communities).",
+    "CAF will support the implementation of the Programa de telemedicina (Telemedicine Program).",
+    "CAF will support the implementation of the Plan Nacional de Espacios Educativos (National Plan for Educational Spaces)."
   ],
-  "score": 86,
+  "score": 57,
   "quality_breakdown": {
-    "faithfulness": 100,
-    "consistency": 86,
-    "completeness": 86,
-    "accuracy": 63,
+    "faithfulness": 0,
+    "consistency": 92,
+    "completeness": 98,
+    "accuracy": 80,
     "issues": [
-      "Potential factual errors in basic content or strategic extra data"
+      "Low faithfulness - check for hallucinations in basic or strategic extra data"
     ]
   },
   "extra_data": {
     "lead_country_iso": "COL",
     "agreement_type": [
-      "Roadmap"
+      "Country Strategy Document"
     ],
-    "legal_bindingness": "Politically-binding",
+    "legal_bindingness": "Non-binding",
     "coverage_scope": "Bilateral",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [
-      "mujeres",
-      "comunidades rurales",
-      "poblaciones vulnerables",
-      "pequeñas empresas",
-      "poblaciones afrocolombianas"
+      "mujer",
+      "joven",
+      "comunidad rural",
+      "afrodescendiente",
+      "indígena"
     ],
     "beneficiary_group": [
       {
         "category": "Women & Girls",
         "label": "Women in Tech"
+      },
+      {
+        "category": "Students & Youth",
+        "label": "Youth"
       },
       {
         "category": "Rural & Remote Communities",
@@ -115,186 +222,335 @@
         "label": "Afro-descendant Groups"
       },
       {
-        "category": "SMEs / Businesses",
-        "label": "Small and Medium Enterprises"
-      },
-      {
-        "category": "Underserved Communities",
-        "label": "Underserved Communities"
+        "category": "Indigenous Peoples & Ethnic Groups",
+        "label": "Indigenous Communities"
       }
     ],
     "start_date": "2023-01-01",
     "end_date": "2026-01-01",
     "commitment_details": [
       {
-        "text": "Increase capital by USD 7,000 million to double the portfolio to USD 60,000 million by 2030.",
-        "commitment_class": "Financed"
-      },
-      {
-        "text": "Provide USD 2,350 million in budget support to promote strategic policies for the country.",
-        "commitment_class": "Financed"
-      },
-      {
-        "text": "Reduce CO2 emissions from the transport sector by 2.1 million tons.",
+        "text": "CAF aims to double its portfolio by 2030, reaching USD 60,000 million, following a capital increase of USD 7,000 million approved between December 2021 and March 2022.",
         "commitment_class": "Declarative"
       },
       {
-        "text": "Implement the National Water Supply and Basic Sanitation Plan to improve coverage and quality in vulnerable territories.",
+        "text": "CAF will support the financing and implementation of the Catastro Multipropósito (Multipurpose Cadastre) to improve land tenure, with a focus on digital transformation and collaborative mechanisms for its execution.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "CAF will finance the Plan Caminos Comunitarios para la Paz Total (Community Roads for Total Peace), prioritizing the recovery, construction, and maintenance of rural tertiary roads, and updating the inventory of the tertiary road network.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "CAF will support the implementation of the Plan Nacional de Riego para la Economía Familiar y Campesina (National Irrigation Plan for Family and Peasant Economy), including projects for multipurpose and on-farm irrigation infrastructure.",
         "commitment_class": "Implemented"
       },
       {
-        "text": "Support the financing of the National Irrigation Plan for Family and Peasant Economy to improve agricultural productivity and living conditions.",
+        "text": "CAF will finance the expansion of energy transmission and distribution networks, including projects prioritized by the Unidad de Planeación Minero Energética (UPME), and support the universalization of electricity service in rural areas.",
         "commitment_class": "Financed"
       },
       {
-        "text": "Prioritize financing for the construction, optimization, and expansion of water and sanitation infrastructure.",
+        "text": "CAF will promote the incorporation of non-conventional renewable energies (wind, solar, biogas, biomass, geothermal) into Colombia’s energy matrix, including financing for related projects.",
         "commitment_class": "Financed"
       },
       {
-        "text": "Increase the number of university slots through financing for higher education infrastructure.",
+        "text": "CAF will support the development of the hydrogen green sector as part of Colombia’s energy transition and industrialization strategy.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "CAF will contribute to the reduction of 2.1 million tons of CO2 emissions in the transport sector by supporting the renewal of the cargo transport fleet.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "CAF will finance the implementation of the Plan Nacional de Inversiones en vías nacionales (National Investment Plan for National Roads), including primary and secondary road networks, and support 5G concessions.",
         "commitment_class": "Financed"
       },
       {
-        "text": "Support the financing of projects for the construction of physical infrastructure for multipurpose irrigation and drainage.",
+        "text": "CAF will finance the Plan Nacional de Suministro de Agua Potable y Saneamiento Básico Rural (National Plan for Rural Drinking Water Supply and Basic Sanitation), including the creation of a project structuring unit for municipalities and communities.",
         "commitment_class": "Financed"
       },
       {
-        "text": "Promote the financing of renewable energy projects, including wind, solar, and biomass, as part of the transition to a cleaner energy matrix.",
+        "text": "CAF will support the implementation of the Programa de Conectividad Digital y Conectividad Fija Nacional (Digital Connectivity and National Fixed Connectivity Program), with emphasis on broadband solutions in regions with the greatest digital gap.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Plan Nacional de Espacios Educativos para la vida comunitaria (National Plan for Educational Spaces for Community Life), focusing on rural areas and the articulation of secondary and higher education.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the government’s plan to expand university enrollment by financing higher education infrastructure.",
         "commitment_class": "Financed"
+      },
+      {
+        "text": "CAF will support the implementation of a national telemedicine program to improve health coverage and quality in isolated populations.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF Asset Management, through Ashmore CAF-AM, has established a private infrastructure debt fund in Colombia with investment commitments of around USD 500 million, currently financing 7 road infrastructure projects.",
+        "commitment_class": "Financed"
+      },
+      {
+        "text": "CAF plans to create a second infrastructure fund in Colombia, focused on financing roads, ports, and airports.",
+        "commitment_class": "Programmatic"
+      },
+      {
+        "text": "CAF will support the implementation of the Programa Prosperidad, dedicated to financing projects or investment programs for territorial entities to help meet the SDGs.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Programa Integral de Fronteras (Comprehensive Border Program), with actions to promote commercial, productive, and social integration, especially at the Colombia-Venezuela and Colombia-Ecuador borders.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Red de Biodiverciudades de América Latina y el Caribe (Network of Biodiverse Cities of Latin America and the Caribbean), including financing for sustainable urban transport systems with zero and low emissions.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the conservation and reforestation of strategic areas, the implementation of Development Nuclei for the forest and biodiversity economy, and the consolidation of restoration processes, especially in the Amazon.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Corredor Marino del Pacífico Este Tropical (CMAR) and the creation of a specific trust mechanism for coral reefs in the Colombian Caribbean.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Programa Nacional de Agua Rural (National Rural Water Program).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Plan Maestro Fluvial (Master River Plan) and the Política Portuaria (Port Policy).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Estrategia de Transición Energética (Energy Transition Strategy), including the mobilization of non-reimbursable resources for high-impact components.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Plan Nacional de Transformación Digital (National Digital Transformation Plan) for the health sector.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Programa de seguridad alimentaria y nutrición (Food Security and Nutrition Program), with special emphasis on early childhood.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Programa de formación docente (Teacher Training Program) to strengthen digital and pedagogical skills.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Programa de conectividad para las comunidades (Connectivity Program for Communities), including infrastructure and technological equipment for schools.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Programa de telemedicina (Telemedicine Program) to improve health coverage and quality in isolated populations.",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Plan Nacional de Espacios Educativos (National Plan for Educational Spaces).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Plan Nacional de Inversiones en vías nacionales (National Investment Plan for National Roads).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Plan Nacional de Suministro de Agua Potable y Saneamiento Básico Rural (National Plan for Rural Drinking Water Supply and Basic Sanitation).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Plan Nacional de Riego para la Economía Familiar y Campesina (National Irrigation Plan for Family and Peasant Economy).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Plan Caminos Comunitarios para la Paz Total (Community Roads for Total Peace).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Plan Nacional de Agrologística (National Agrologistics Plan).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Plan Maestro Fluvial (Master River Plan).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Estrategia de Transición Energética (Energy Transition Strategy).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Programa Nacional de Agua Rural (National Rural Water Program).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Plan Nacional de Transformación Digital (National Digital Transformation Plan).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Programa de seguridad alimentaria y nutrición (Food Security and Nutrition Program).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Programa de formación docente (Teacher Training Program).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Programa de conectividad para las comunidades (Connectivity Program for Communities).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Programa de telemedicina (Telemedicine Program).",
+        "commitment_class": "Implemented"
+      },
+      {
+        "text": "CAF will support the implementation of the Plan Nacional de Espacios Educativos (National Plan for Educational Spaces).",
+        "commitment_class": "Implemented"
       }
     ],
     "kpi_list": [
       {
-        "kpi_text": "Mobilize USD 7 billion in public and private investment by 2030 for infrastructure projects.",
+        "kpi_text": "duplicar su cartera para 2030, llegando a los USD 60.000 millones",
         "kpi_type": "quantitative",
-        "metric_name": "Infrastructure Investment",
-        "target_value": 7.0,
-        "target_description": "Mobilize investment for infrastructure projects.",
-        "unit": "billion USD",
+        "metric_name": "CAF Total Lending Portfolio",
+        "target_value": 60000.0,
+        "target_description": "Double CAF's lending portfolio to reach USD 60 billion",
+        "unit": "million USD",
         "timeframe": "by 2030",
-        "measurement_method": "Investment tracking and reporting",
-        "responsible_entity": "CAF and local governments",
-        "sector": "Infrastructure"
+        "measurement_method": "CAF financial statements and portfolio reports",
+        "responsible_entity": "CAF",
+        "sector": "Finance/Development Banking"
       },
       {
-        "kpi_text": "Reduce poverty levels by 10% by 2026.",
-        "kpi_type": "quantitative",
-        "metric_name": "Poverty Reduction",
-        "target_value": 10.0,
-        "target_description": "Achieve a reduction in poverty levels.",
-        "unit": "percentage",
-        "timeframe": "by 2026",
-        "measurement_method": "National poverty surveys",
-        "responsible_entity": "Government of Colombia",
-        "sector": "Social Development"
+        "kpi_text": "financiamiento del Plan Caminos Comunitarios para la Paz Total, priorizado por el Gobierno nacional",
+        "kpi_type": "qualitative",
+        "metric_name": "Plan Caminos Comunitarios para la Paz Total Implementation",
+        "target_value": null,
+        "target_description": "Finance and support the implementation of the Plan Caminos Comunitarios para la Paz Total",
+        "unit": "qualitative milestone",
+        "timeframe": "2023-2026",
+        "measurement_method": "Project implementation and completion reports",
+        "responsible_entity": "CAF and Government of Colombia",
+        "sector": "Rural Development/Peacebuilding"
       },
       {
-        "kpi_text": "Improve access to clean water and sanitation for 1 million people by 2026.",
+        "kpi_text": "apoyar la ejecución del Catastro Multipropósito, como herramienta para la planificación territorial, el ordenamiento productivo y social de la tierra, y el fortalecimiento de las finanzas locales",
+        "kpi_type": "qualitative",
+        "metric_name": "Multipurpose Cadastre Implementation",
+        "target_value": null,
+        "target_description": "Support the execution of the Multipurpose Cadastre for land planning and fiscal strengthening",
+        "unit": "qualitative milestone",
+        "timeframe": "2023-2026",
+        "measurement_method": "Cadastre system operationalization and coverage reports",
+        "responsible_entity": "CAF, Government of Colombia, local entities",
+        "sector": "Land Management/Rural Development"
+      },
+      {
+        "kpi_text": "financiamiento de proyectos de ampliación de las redes de transmisión y distribución de energía eléctrica, tales como los proyectos de expansión de la red priorizados por la Unidad de Planeación Minero Energética (UPME)",
+        "kpi_type": "qualitative",
+        "metric_name": "Electricity Transmission Network Expansion",
+        "target_value": null,
+        "target_description": "Finance expansion projects for electricity transmission and distribution networks",
+        "unit": "qualitative milestone",
+        "timeframe": "2023-2026",
+        "measurement_method": "Project completion and network coverage statistics",
+        "responsible_entity": "CAF, UPME, Ministry of Mines and Energy",
+        "sector": "Energy"
+      },
+      {
+        "kpi_text": "meta de reducción de 2.1 millones de toneladas de CO2 de emisiones del sector transporte",
         "kpi_type": "quantitative",
-        "metric_name": "Water and Sanitation Access",
-        "target_value": 1000000.0,
-        "target_description": "Increase the number of people with access to clean water and sanitation.",
-        "unit": "people",
-        "timeframe": "by 2026",
-        "measurement_method": "Water access surveys",
-        "responsible_entity": "Ministry of Housing",
+        "metric_name": "Transport Sector CO2 Emissions Reduction",
+        "target_value": 2.1,
+        "target_description": "Reduce CO2 emissions from the transport sector by 2.1 million tons",
+        "unit": "million tons CO2",
+        "timeframe": "2023-2026",
+        "measurement_method": "Emissions monitoring and reporting",
+        "responsible_entity": "CAF, Ministry of Transport, sector partners",
+        "sector": "Transport/Climate Change"
+      },
+      {
+        "kpi_text": "financiamiento del Plan Nacional de Suministro de Agua Potable y Saneamiento Básico Rural, a ejecutarse con el Ministerio de Vivienda",
+        "kpi_type": "qualitative",
+        "metric_name": "Rural Water and Sanitation Plan Implementation",
+        "target_value": null,
+        "target_description": "Finance and support the implementation of the National Rural Water and Sanitation Plan",
+        "unit": "qualitative milestone",
+        "timeframe": "2023-2026",
+        "measurement_method": "Project implementation and coverage reports",
+        "responsible_entity": "CAF, Ministry of Housing",
         "sector": "Water and Sanitation"
       },
       {
-        "kpi_text": "Establish a digital connectivity program to reach 80% of rural areas by 2026.",
+        "kpi_text": "financiamiento del Programa de Conectividad digital, y conectividad fija nacional, con énfasis en solución de banda ancha fija en las regiones del país que presentan la mayor brecha digital",
         "kpi_type": "qualitative",
-        "metric_name": "Digital Connectivity Program",
+        "metric_name": "Digital Connectivity Program Implementation",
         "target_value": null,
-        "target_description": "Implement a program to enhance digital connectivity in rural areas.",
+        "target_description": "Finance and implement digital connectivity and fixed broadband solutions in regions with the largest digital gap",
         "unit": "qualitative milestone",
-        "timeframe": "by 2026",
-        "measurement_method": "Program implementation reports",
-        "responsible_entity": "Ministry of Information Technology",
+        "timeframe": "2023-2026",
+        "measurement_method": "Connectivity coverage and access statistics",
+        "responsible_entity": "CAF, Ministry of ICT",
         "sector": "Digital Infrastructure"
       },
       {
-        "kpi_text": "Train 500,000 individuals in vocational skills by 2026.",
-        "kpi_type": "quantitative",
-        "metric_name": "Vocational Training",
-        "target_value": 500000.0,
-        "target_description": "Provide vocational training to enhance employability.",
-        "unit": "people",
-        "timeframe": "by 2026",
-        "measurement_method": "Training program enrollment data",
-        "responsible_entity": "Ministry of Education",
+        "kpi_text": "apoyar el financiamiento para la implementación del Plan Nacional de Espacios Educativos para la vida comunitaria, con foco en la ruralidad y promoviendo la articulación de la educación media con la superior",
+        "kpi_type": "qualitative",
+        "metric_name": "Educational Spaces Plan Implementation",
+        "target_value": null,
+        "target_description": "Finance and support the implementation of the National Plan for Educational Spaces, focusing on rural areas and articulation between secondary and higher education",
+        "unit": "qualitative milestone",
+        "timeframe": "2023-2026",
+        "measurement_method": "Number and quality of educational spaces created or improved",
+        "responsible_entity": "CAF, Ministry of Education",
         "sector": "Education"
       },
       {
-        "kpi_text": "Increase the percentage of women in the workforce by 15% by 2026.",
-        "kpi_type": "quantitative",
-        "metric_name": "Women Workforce Participation",
-        "target_value": 15.0,
-        "target_description": "Enhance women's participation in the labor market.",
-        "unit": "percentage",
-        "timeframe": "by 2026",
-        "measurement_method": "Labor force surveys",
-        "responsible_entity": "Ministry of Labor",
-        "sector": "Labor and Employment"
-      },
-      {
-        "kpi_text": "Implement a national biodiversity strategy by 2025.",
+        "kpi_text": "apoyar el diseño e implementación de una hoja de ruta GovTech, se promoverá el uso ético y responsable de la inteligencia Artificial (IA), la actualización de la política nacional de IA, con sandboxes regulatorios y el desarrollo de soluciones a problemas específicos priorizados por el Gobierno nacional",
         "kpi_type": "qualitative",
-        "metric_name": "Biodiversity Strategy Implementation",
+        "metric_name": "GovTech and AI Policy Implementation",
         "target_value": null,
-        "target_description": "Develop and implement a strategy for biodiversity conservation.",
+        "target_description": "Support the design and implementation of a GovTech roadmap and responsible AI policy, including regulatory sandboxes and solutions to priority problems",
         "unit": "qualitative milestone",
-        "timeframe": "by 2025",
-        "measurement_method": "Strategy documentation and progress reports",
-        "responsible_entity": "Ministry of Environment",
-        "sector": "Environmental Conservation"
+        "timeframe": "2023-2026",
+        "measurement_method": "Policy adoption and implementation reports",
+        "responsible_entity": "CAF, Government of Colombia",
+        "sector": "Public Sector Digital Transformation"
       },
       {
-        "kpi_text": "Achieve a 20% reduction in greenhouse gas emissions by 2026.",
-        "kpi_type": "quantitative",
-        "metric_name": "Greenhouse Gas Emissions Reduction",
-        "target_value": 20.0,
-        "target_description": "Reduce emissions to combat climate change.",
-        "unit": "percentage",
-        "timeframe": "by 2026",
-        "measurement_method": "Emission inventory reports",
-        "responsible_entity": "Ministry of Environment",
-        "sector": "Climate Action"
-      },
-      {
-        "kpi_text": "Strengthen institutional capacity in 100 municipalities by 2026.",
+        "kpi_text": "apoyar la implementación de políticas y medidas de inclusión financiera con perspectiva de género en el desarrollo de estrategias, normativas, medidas de inclusión y educación financiera para fomentar un mayor acceso de las mujeres al sistema financiero",
         "kpi_type": "qualitative",
-        "metric_name": "Institutional Capacity Building",
+        "metric_name": "Gender-Inclusive Financial Access Policy Implementation",
         "target_value": null,
-        "target_description": "Enhance the capabilities of local governments.",
+        "target_description": "Support implementation of gender-inclusive financial access policies and education to increase women's access to the financial system",
         "unit": "qualitative milestone",
-        "timeframe": "by 2026",
-        "measurement_method": "Capacity assessment reports",
-        "responsible_entity": "CAF and local governments",
-        "sector": "Governance"
+        "timeframe": "2023-2026",
+        "measurement_method": "Policy implementation and financial inclusion statistics for women",
+        "responsible_entity": "CAF, Government of Colombia, financial sector",
+        "sector": "Finance/Gender Inclusion"
       }
     ],
     "country_list_iso": [
       "ARG",
       "BOL",
+      "BRB",
       "BRA",
-      "CAN",
       "CHL",
-      "COL",
       "CRI",
       "DOM",
       "ECU",
       "ESP",
+      "HND",
       "JAM",
       "MEX",
       "PAN",
       "PRY",
       "PER",
+      "PRT",
       "SLV",
       "TTO",
       "URY",
       "VEN"
     ],
-    "responsible_entity": "CAF",
+    "responsible_entity": "CAF - banco de desarrollo de América Latina y el Caribe",
     "sdg_alignment": [
       "SDG 1: No Poverty",
       "SDG 2: Zero Hunger",
@@ -302,53 +558,57 @@
       "SDG 4: Quality Education",
       "SDG 5: Gender Equality",
       "SDG 6: Clean Water and Sanitation",
+      "SDG 7: Affordable and Clean Energy",
       "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
       "SDG 11: Sustainable Cities and Communities",
       "SDG 12: Responsible Consumption and Production",
       "SDG 13: Climate Action",
+      "SDG 14: Life Below Water",
       "SDG 15: Life on Land",
+      "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
   },
   "top_actors": [
     {
-      "name": "Government national",
+      "name": "Development Bank of Latin America and the Caribbean (CAF)",
+      "category": "Economic Actors",
+      "relevance_score": 1.0,
+      "justification": "CAF is the central actor throughout the document, as the entire strategy is authored by and revolves around CAF's role, mission, and initiatives in Colombia. CAF is repeatedly referenced as the main driver of development financing, technical assistance, and strategic planning, and is directly responsible for the design and implementation of the key programs and interventions described."
+    },
+    {
+      "name": "Governments",
       "category": "Political Actors",
       "relevance_score": 0.9,
-      "justification": "The national government is frequently mentioned as a key partner in implementing policies and projects, indicating its central role in the strategy outlined by CAF."
+      "justification": "The Colombian Government (national, regional, and local) is a primary partner and beneficiary of CAF's strategy. The text emphasizes collaboration with government entities for policy alignment, project implementation, and the achievement of national development goals. The government's participation is essential for the success of the strategy, especially in areas like infrastructure, social policy, and institutional modernization."
     },
     {
-      "name": "Development Bank of Latin America and the Caribbean",
+      "name": "Private Sector Representatives",
       "category": "Economic Actors",
-      "relevance_score": 0.85,
-      "justification": "CAF, as a development bank, is pivotal in financing and supporting initiatives aimed at sustainable growth and development in Colombia, making it a crucial actor in the document."
-    },
-    {
-      "name": "World Bank",
-      "category": "Economic Actors",
-      "relevance_score": 0.75,
-      "justification": "The World Bank is referenced as a significant economic actor in the context of development financing, highlighting its influence on the economic strategies discussed in the document."
+      "relevance_score": 0.7,
+      "justification": "The private sector is highlighted as a key partner in achieving sustainable and inclusive growth. The document details multiple initiatives involving private sector actors, such as co-financing infrastructure, supporting SMEs, promoting innovation, and facilitating economic transformation. Their involvement is crucial for investment mobilization, job creation, and the implementation of green and productive projects."
     }
   ],
   "top_themes": [
     {
-      "name": "Connectivity",
+      "name": "Digital Inclusion",
       "category": "Inclusion & Social Development",
       "relevance_score": 0.95,
-      "justification": "Connectivity is central to the document's main message as it underpins the entire strategy for social inclusion and development. The document emphasizes the need for improved connectivity to enhance access to services and opportunities, making it a critical focus area."
+      "justification": "Digital inclusion is central to the document's vision of reducing regional and social inequalities, improving access to education, health, and public services, and fostering equitable development. The strategy repeatedly emphasizes bridging digital divides, expanding connectivity, and ensuring that digital transformation benefits all Colombians, especially vulnerable and rural populations. This theme is directly tied to the key objectives of social equity, human capital development, and territorial convergence."
     },
     {
-      "name": "Digital Education",
-      "category": "Inclusion & Social Development",
-      "relevance_score": 0.9,
-      "justification": "Digital education is highlighted as a key component for empowering individuals and improving employability. The document dedicates significant content to enhancing educational opportunities through digital means, aligning with strategic objectives for human capital development."
+      "name": "Digital Infrastructure (Digital Transformation & Strategy)",
+      "category": "Digital Transformation & Strategy",
+      "relevance_score": 0.92,
+      "justification": "The development and expansion of digital infrastructure is a foundational pillar throughout the document, underpinning goals in education, governance, economic competitiveness, and rural development. Significant content is dedicated to broadband, digital platforms, and the modernization of public services, all of which are positioned as strategic enablers for Colombia's sustainable and inclusive growth. This theme is essential for achieving the document's commitments to modernization, innovation, and improved service delivery."
     },
     {
-      "name": "Gender Equality in Tech",
-      "category": "Inclusion & Social Development",
-      "relevance_score": 0.85,
-      "justification": "Gender equality in technology is emphasized as a vital aspect of social equity and inclusion. The document outlines specific initiatives aimed at promoting women's participation in the digital economy, reflecting its strategic importance in achieving broader social goals."
+      "name": "Digital Governance",
+      "category": "Data & Governance",
+      "relevance_score": 0.88,
+      "justification": "Digital governance, including e-governance, data protection, and digital rights, is highlighted as a key driver for institutional modernization, transparency, and citizen participation. The document details the importance of digital transformation in public administration, regulatory simplification, and the use of technology for more effective, transparent, and participatory governance. This theme is strategically important for strengthening institutions and achieving the broader objectives of state modernization and public trust."
     }
   ]
 }

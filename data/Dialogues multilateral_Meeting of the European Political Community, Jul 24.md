@@ -1,6 +1,6 @@
-# Meeting of the European Political Community - July 24
+# Meeting of the European Political Community, July 24
 
-**Date**: 2023-07-24
+**Date**: 2024-07
 
 **Location**: Location not specified
 
@@ -16,13 +16,11 @@ No key characteristics identified in the document.
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | European Union; EU Member States; European Council; European Parliament; European Commission |
+| Political Actors | European Political Community |
 
 ## Main Themes
 
-| Category | Subcategory |
-| --- | --- |
-| Regional & International Cooperation | EU-LAC Digital Alliance |
+No themes identified.
 
 ## Practical Applications
 

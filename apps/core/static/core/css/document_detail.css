@@ -408,6 +408,19 @@
   color: #9c27b0;
 }
 
+.kpi-sector.general {
+  background: rgba(0,0,0,0.05);
+  color: var(--text-secondary);
+}
+
+/* Utility class for random color background (JS required to assign) */
+.kpi-sector.random {
+  background-color: #061828; /* fallback color */
+  color: #185a99; /* fallback color */
+  background-color: hsl(var(--random-hue, 200), 60%, 85%);
+  color: hsl(var(--random-hue, 200), 80%, 30%);
+}
+
 /* KPI Table */
 .kpi-table {
   border-radius: var(--border-radius-small);

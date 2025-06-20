@@ -1,4 +1,4 @@
-# Special Declaration on Cybercrime by MERCOSUR Leaders
+# Special Declaration on Cybercrime by MERCOSUR States
 
 **Date**: 2022-12-06
 
@@ -6,36 +6,37 @@
 
 ## Executive Summary
 
-On December 6, 2022, during the LXI MERCOSUR Summit in Montevideo, leaders from Argentina, Paraguay, Uruguay, and Brazil acknowledged the growing threat of cybercrime as a transnational issue. They recognized the potential of information and communication technologies for development, while also noting the increased complexity and volume of digital crimes. The declaration emphasizes the need for enhanced cooperation among states, including technical assistance to improve national legislation and capabilities against cybercrime. It highlights the importance of international legal cooperation, referencing the Budapest Convention on Cybercrime, and calls for ongoing dialogue within the UN framework to align regional objectives. The leaders committed to strengthening coordination and collaboration among MERCOSUR member and associated states to combat cybercrime effectively.
+The Special Declaration on Cybercrime, adopted by MERCOSUR leaders in December 2022, acknowledges the dual potential of information and communication technologies for development and criminal misuse. It highlights the rising transnational cybercrime and the increasing volume of digital evidence. The declaration expresses concern over the growing diversity and impact of cyber offenses on state infrastructure, businesses, and individuals. It emphasizes the need for enhanced coordination, technical assistance, and legal frameworks among member states to prevent, detect, investigate, and prosecute cybercrime. The document underscores the importance of cooperation between governments, authorities, and the private sector, while safeguarding rights in technology use. It recognizes tools like joint investigation teams and electronic communication for legal cooperation, referencing the Budapest Convention (2001) and ongoing UN efforts to develop a comprehensive international convention. The declaration commits to strengthening collaboration within MERCOSUR to effectively combat cybercrime.
 
 ## Characteristics
 
-- The declaration was made by leaders of MERCOSUR countries, emphasizing the potential and risks of information and communication technologies.
-- It acknowledges the transnational nature of cybercrime and the increasing complexity of digital crimes.
-- There is a call for improved coordination and cooperation among states to combat cybercrime effectively.
-- The importance of international legal cooperation and existing instruments like the Budapest Convention is highlighted.
-- The declaration stresses the need for ongoing dialogue and collaboration within MERCOSUR to address cybercrime challenges.
+- Recognizes the dual potential of information and communication technologies for development and increased cybercrime risks.
+- Highlights the transnational nature and growing volume of cybercrime and digital evidence.
+- Emphasizes the need for enhanced coordination, technical assistance, and legal frameworks among MERCOSUR states to combat cybercrime.
+- Stresses cooperation between states, authorities, and the private sector while protecting rights in technology use.
+- Notes the importance of international legal cooperation, referencing the Budapest Convention and UN expert committee efforts.
+- Commits to ongoing strengthening of coordination and cooperation among MERCOSUR member and associate states against cybercrime.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | Alberto Fernández; Mario Abdo Benítez; Luis Lacalle Pou; Hamilton Mourão |
-| Southern Common Market | MERCOSUR |
+| Political Actors | Governments; Government Officials; Southern Common Market; United Nations |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Data & Governance | Cybersecurity; Digital Governance |
-| Regional & International Cooperation | Global Digital Cooperation; Digital & Technological Partnerships |
+| Data & Governance | Cyber Risk Management; Cybersecurity; Digital Governance; E-Governance |
+| Regional & International Cooperation | Multilateralism |
 
 ## Practical Applications
 
-- Established a Special Declaration on Cybercrime among MERCOSUR member states (Argentina, Paraguay, Uruguay, and Brazil) to enhance cooperation and coordination in combating cybercrime.
-- Recognized the need for technical assistance among countries to improve national legislation and frameworks to address cybercrime.
-- Emphasized the importance of international legal cooperation in criminal matters to tackle cybercrime, referencing the Budapest Convention on Cybercrime (2001).
-- Agreed to strengthen coordination and cooperation among MERCOSUR member states to effectively combat cybercrime.
+- Establishment of enhanced coordination and cooperation mechanisms among MERCOSUR member states and associated states to combat cybercrime, including technical assistance to improve national legislation and strengthen authorities' capacities for prevention, detection, investigation, and prosecution of cybercrime.
+- Promotion of increased cooperation between states, central authorities, competent authorities, and the private sector in fighting cybercrime while protecting rights and enforcing duties related to the use and development of information technologies.
+- Utilization of new tools such as joint investigation teams, information exchange, electronic transmission of requests, and videoconferencing to improve international legal cooperation in criminal matters related to cybercrime.
+- Commitment to reinforcing coordination among MERCOSUR member and associated states in ongoing negotiations within the UN intergovernmental committee of experts to develop a comprehensive international convention against the criminal use of information and communication technologies.
+- Maintenance of open and continuous dialogue within MERCOSUR to identify common positions and best practices during international negotiations on cybercrime.
 
 ## Commitments
 

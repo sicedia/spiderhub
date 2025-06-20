@@ -8,8 +8,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS "pg_trgm";
 CREATE EXTENSION IF NOT EXISTS "unaccent";
 
--- Set default timezone
-SET timezone = 'UTC';
+SET timezone = 'America/Guayaquil';
 
 -- Create additional schemas if needed (optional)
 -- CREATE SCHEMA IF NOT EXISTS analytics;

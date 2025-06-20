@@ -230,7 +230,7 @@ Since you have a testing version and want to show initial results, start with ve
 **Initial Testing Version (Alpha)**: For early internal testing and initial previews
 ```bash
 # Build and tag alpha version
-docker build -t sicedia/spiderhub:0.1.0-alpha.1 .
+docker build -t sicedia/spiderhub:0.1.0-beta.2 .
 
 #or without cache
 docker build --no-cache -t sicedia/spiderhub:0.1.0-alpha.1 .

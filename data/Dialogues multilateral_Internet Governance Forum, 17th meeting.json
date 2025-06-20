@@ -1,92 +1,116 @@
 {
-  "title": "Addis Ababa IGF Messages: Key Themes and Recommendations from the 17th Internet Governance Forum Meeting",
+  "title": "Addis Ababa Messages from the 17th Internet Governance Forum (2022) on Global Digital Compact Themes",
   "date": "2022-11-28",
   "location": "Addis Ababa, Ethiopia",
-  "executive_summary": "The 17th Internet Governance Forum (IGF) held in Addis Ababa from November 28 to December 2, 2022, focused on five key themes for the proposed Global Digital Compact (GDC): connecting all people and safeguarding human rights, avoiding internet fragmentation, governing data and protecting privacy, enabling safety and security, and addressing advanced technologies like AI. The forum emphasized the importance of universal internet access, the need to bridge digital divides, and the protection of human rights online. It highlighted the risks of internet fragmentation and the necessity for multistakeholder governance to maintain an open internet. Discussions on data governance underscored the importance of privacy and ethical data management. The forum called for collaborative efforts to enhance cybersecurity and accountability while ensuring that advanced technologies are developed with respect for human rights. Overall, the IGF messages aim to contribute to the GDC's development and implementation, promoting a safe, inclusive, and equitable digital future.",
+  "executive_summary": "The 17th Internet Governance Forum (IGF) in Addis Ababa (2022) focused on five key themes aligned with the UN's proposed Global Digital Compact (GDC): connecting all people while safeguarding human rights; avoiding Internet fragmentation; governing data and protecting privacy; enabling safety, security, and accountability; and addressing advanced technologies including AI. Discussions emphasized closing digital divides, especially for marginalized groups and women, ensuring meaningful access beyond connectivity, and embedding human rights in digital development. The forum highlighted the risks of Internet fragmentation due to technical, commercial, and policy factors, advocating for multistakeholder governance and international cooperation. Data governance calls for coherent global frameworks balancing privacy, justice, and cross-border flows. Cybersecurity and cybercrime require coordinated, rights-respecting policies, with attention to misinformation and digital literacy. Advanced technologies like AI must be human-centered, transparent, and inclusive, with global standards developed through multistakeholder engagement to uphold rights and foster trust.",
   "characteristics": [
-    "The 17th Internet Governance Forum (IGF) focused on five key themes for the Global Digital Compact, emphasizing human rights, data governance, and advanced technologies.",
-    "Discussions highlighted the importance of connecting all people to the Internet, addressing digital divides, and ensuring meaningful access, particularly for marginalized groups.",
-    "The need to avoid Internet fragmentation was stressed, advocating for a global, open, and interoperable Internet.",
-    "Data governance and privacy were central topics, with calls for robust frameworks to protect personal data and ensure data justice.",
-    "Cybersecurity and accountability were identified as critical challenges, requiring multistakeholder cooperation and effective policy development.",
-    "Advanced technologies, including AI, were discussed in terms of their potential benefits and risks, emphasizing the need for ethical governance and human-centered design."
+    "The 17th Internet Governance Forum (IGF) focused on five key themes aligned with the UN's proposed Global Digital Compact: connectivity and human rights, avoiding internet fragmentation, data governance and privacy, safety and security, and advanced technologies including AI.",
+    "Emphasis on closing digital divides, especially for least developed countries, rural areas, and marginalized groups, with a focus on meaningful access beyond connectivity, including affordability, literacy, and local content.",
+    "Strong advocacy for human rights online, including freedom of expression, privacy, and protection from harassment, with calls to avoid internet shutdowns and improve digital rights monitoring.",
+    "Calls for multistakeholder governance to maintain an open, interoperable global internet and to address risks of fragmentation from technical, commercial, and policy factors.",
+    "Data governance highlighted as critical, with emphasis on privacy as a human right, the need for coherent global frameworks, data justice, and protection in AI and cross-border data flows.",
+    "Safety and security discussions stressed cybersecurity, cybercrime, misinformation, and accountability, alongside the environmental impact of digital technologies and the need for inclusive, rights-respecting AI governance."
   ],
   "themes": {
+    "Regional & International Cooperation": [
+      "Multilateralism"
+    ],
     "Data & Governance": [
       "Internet Governance",
+      "Digital Rights",
+      "Digital Governance",
       "Data Governance",
-      "Data Privacy"
+      "Data Privacy",
+      "Data Protection",
+      "Digital Ethics",
+      "Cybersecurity"
     ],
     "Inclusion & Social Development": [
-      "Digital Inclusion",
-      "Gender Equality in Tech"
+      "Digital Inclusion"
+    ],
+    "Digital Transformation & Strategy": [
+      "Digital Infrastructure"
     ],
     "Technology & Innovation": [
-      "Artificial Intelligence"
+      "Artificial Intelligence",
+      "AI Ethics"
     ]
   },
   "actors": {
     "Political Actors": [
       "United Nations",
-      "United Nations Officials"
+      "United Nations Officials",
+      "Governments"
     ],
     "Civil Society Actors": [
-      "Civil Society Organisations",
-      "Digital Cooperation Organization"
+      "Civil Society Organisations"
     ]
   },
   "practical_applications": [
-    "Support for the establishment and work of effective regulatory agencies and frameworks to address connectivity challenges in commercially unattractive areas.",
-    "Initiatives to improve access rates for less-connected social groups, including targeted infrastructure, devices, and services.",
-    "The IGF Policy Network on Internet Fragmentation, which addresses risks of fragmentation and promotes multistakeholder governance mechanisms.",
-    "Advocacy for the inclusion of cybersecurity standards in the Global Digital Compact to enhance global adoption and capacity building.",
-    "Development of educational curricula that include digital literacy skills to help children and vulnerable groups navigate online safety.",
-    "Community-led helplines and resources to support women in resisting and addressing online gender-based violence.",
-    "Proposals for international monitoring arrangements within the UN system to improve the implementation of digital rights.",
-    "Capacity-building initiatives for policymakers to enhance awareness of cybersecurity challenges and the links between sustainable development and cybersecurity.",
-    "Multistakeholder input in the development of data governance policies to ensure implementation challenges are understood and addressed."
+    "IGF Dynamic Coalitions are actively addressing specific challenges related to the thematic areas of the Global Digital Compact and intend to contribute to its preparatory and implementation phases.",
+    "Governments and multistakeholder partners support the establishment and work of effective regulatory agencies and frameworks to improve connectivity, including innovative approaches such as community networks, appropriate spectrum allocation, and low earth orbit satellite access.",
+    "Community-led helplines and resources in local languages are being supported to help women resist and redress online gender-based violence.",
+    "Standards development organizations are encouraged to invite participation by experts in online human rights from all stakeholder communities.",
+    "Governments, private sector, and technical community are urged to avoid cybercrime laws and standards that negatively affect cybersecurity defenders and to facilitate multistakeholder engagement in policy development.",
+    "International initiatives have been established to support cybersecurity capacity-building integrated into broader digital development efforts.",
+    "The United Nations is encouraged to promote global adoption of key cybersecurity standards through the Global Digital Compact, advocacy, capacity building, and initiatives to test and monitor deployment.",
+    "Educational curricula are being encouraged to include digital literacy skills to empower citizens to identify disinformation and increase online safety awareness, with initiatives involving parents, teachers, and guardians.",
+    "Civil society participation in cybercrime and cybersecurity discussions is supported through education and resource gathering.",
+    "Independent oversight bodies with mandates to manage data registration, provide guidance, investigate, and resolve complaints from data subjects are recommended.",
+    "Multistakeholder input is promoted in the development of data governance policies to ensure understanding of implementation challenges.",
+    "Regional and global cooperation efforts are encouraged to enhance institutional capacities in developing economies for data governance.",
+    "Stakeholders from technical and non-technical communities are collaborating to develop flexible principles, guidelines, and standards to foster trust in AI systems.",
+    "Efforts are underway to improve translation accuracy and relevance of platform community standards and guidelines to enable better user understanding across different languages.",
+    "Support for professional journalism and media is recognized as part of efforts to address disinformation.",
+    "The IGF Policy Network on Internet Fragmentation is an active multistakeholder initiative addressing risks of Internet fragmentation.",
+    "Governments, private sector, and technical community are encouraged to coordinate and cooperate regionally and internationally to maintain Internet openness and interoperability.",
+    "Capacity-building policies for AI literacy, skills development, and language resources for minority languages are being promoted to support a global approach to advanced technologies."
   ],
   "commitments": [],
-  "score": 92,
+  "score": 90,
   "quality_breakdown": {
     "faithfulness": 100,
-    "consistency": 92,
-    "completeness": 92,
-    "accuracy": 85,
+    "consistency": 95,
+    "completeness": 95,
+    "accuracy": 75,
     "issues": []
   },
   "extra_data": {
     "lead_country_iso": "ETH",
     "agreement_type": [
-      "Declaration"
+      "Summary Report"
     ],
     "legal_bindingness": "Politically-binding",
     "coverage_scope": "Global",
     "eu_policy_alignment": [],
     "review_schedule": "Annual",
     "beneficiary_group_raw": [
-      "women",
-      "communities",
-      "countries",
-      "students",
-      "businesses"
+      "person",
+      "student",
+      "woman",
+      "business",
+      "community"
     ],
     "beneficiary_group": [
       {
-        "category": "Women & Girls",
-        "label": "Women"
-      },
-      {
-        "category": "Rural & Remote Communities",
-        "label": "Underserved Communities"
+        "category": "Persons with Disabilities",
+        "label": "Persons with Disabilities"
       },
       {
         "category": "Students & Youth",
         "label": "Students"
       },
       {
+        "category": "Women & Girls",
+        "label": "Women in Tech"
+      },
+      {
         "category": "SMEs / Businesses",
-        "label": "Businesses"
+        "label": "Companies"
+      },
+      {
+        "category": "Civil Society / NGOs",
+        "label": "Community Organizations"
       }
     ],
     "start_date": "2022-11-28",
@@ -94,179 +118,175 @@
     "commitment_details": [],
     "kpi_list": [
       {
-        "kpi_text": "Connect all people to the Internet, including all schools.",
+        "kpi_text": "The UN Secretary-General’s proposed Global Digital Compact (GDC) has as its first principle to “Connect all people to the Internet, including all schools.”",
         "kpi_type": "qualitative",
         "metric_name": "Universal Internet Connectivity",
         "target_value": null,
-        "target_description": "Ensure all individuals and schools have access to the Internet.",
+        "target_description": "Connect all people to the Internet, including all schools",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Assessment of connectivity rates and access in schools",
-        "responsible_entity": "Governments and multistakeholder partners",
-        "sector": "Internet Governance"
+        "timeframe": "by 2024 (Summit of the Future) / ongoing",
+        "measurement_method": "Assessment of global Internet connectivity rates and school connectivity coverage",
+        "responsible_entity": "United Nations, Governments, Multistakeholder partners",
+        "sector": "Digital Inclusion / Internet Access"
       },
       {
-        "kpi_text": "2.7 billion people remain unconnected today.",
+        "kpi_text": "Yet 2.7 billion people remain unconnected today, with those in least developed countries and rural communities most disadvantaged.",
         "kpi_type": "quantitative",
-        "metric_name": "Unconnected Population",
-        "target_value": 2.7,
-        "target_description": "Identify and address the needs of the 2.7 billion unconnected individuals.",
+        "metric_name": "Number of Unconnected People",
+        "target_value": 0.0,
+        "target_description": "Reduce the number of unconnected people from 2.7 billion to zero",
         "unit": "billion people",
-        "timeframe": "Ongoing",
-        "measurement_method": "Population connectivity surveys",
-        "responsible_entity": "Governments and NGOs",
-        "sector": "Internet Governance"
+        "timeframe": "long-term / by 2030 (implied SDG alignment)",
+        "measurement_method": "Global connectivity statistics and surveys",
+        "responsible_entity": "Governments, International Organizations, Private Sector",
+        "sector": "Digital Inclusion / Internet Access"
       },
       {
-        "kpi_text": "Achieve universal, affordable Internet access.",
+        "kpi_text": "SDG target 9c, which seeks to achieve universal, affordable Internet access, cannot be met until this gap is closed [gender digital gap].",
         "kpi_type": "qualitative",
-        "metric_name": "Affordable Internet Access",
+        "metric_name": "Gender Digital Divide Closure",
         "target_value": null,
-        "target_description": "Ensure that Internet access is affordable for all populations.",
+        "target_description": "Close the gender digital gap to achieve universal, affordable Internet access",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Monitoring pricing and accessibility metrics",
-        "responsible_entity": "Governments and service providers",
-        "sector": "Internet Governance"
+        "timeframe": "by 2030 (SDG target 9c)",
+        "measurement_method": "Monitoring gender-disaggregated Internet access and usage data",
+        "responsible_entity": "Governments, UN Women, Civil Society",
+        "sector": "Digital Inclusion / Gender Equality"
       },
       {
-        "kpi_text": "Strengthen cooperation among stakeholder groups.",
+        "kpi_text": "Governments should protect and promote required infrastructure, including grid and off-grid power as well as communications networks.",
         "kpi_type": "qualitative",
-        "metric_name": "Stakeholder Cooperation",
+        "metric_name": "Digital Infrastructure Protection and Promotion",
         "target_value": null,
-        "target_description": "Enhance collaboration between governments, private sector, and civil society.",
+        "target_description": "Ensure resilient and secure digital infrastructure including power and communications networks",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluation of partnership initiatives and collaborative projects",
-        "responsible_entity": "Multistakeholder community",
-        "sector": "Internet Governance"
+        "timeframe": "ongoing",
+        "measurement_method": "Infrastructure resilience assessments and regulatory frameworks in place",
+        "responsible_entity": "Governments, Regulators",
+        "sector": "Digital Infrastructure"
       },
       {
-        "kpi_text": "Improve digital literacy across all demographics.",
+        "kpi_text": "The United Nations could help accelerate the global adoption of key standards by including their promotion in the Global Digital Compact, by supporting advocacy and capacity building and by encouraging initiatives to test and monitor deployment.",
         "kpi_type": "qualitative",
-        "metric_name": "Digital Literacy Improvement",
+        "metric_name": "Global Cybersecurity Standards Adoption",
         "target_value": null,
-        "target_description": "Enhance digital literacy skills among all age groups and communities.",
+        "target_description": "Accelerate global adoption and deployment of cybersecurity standards",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Assessment of digital literacy programs and outcomes",
-        "responsible_entity": "Educational institutions and NGOs",
-        "sector": "Education and Internet Governance"
+        "timeframe": "by 2024 (Summit of the Future) and ongoing",
+        "measurement_method": "Tracking adoption rates and implementation of cybersecurity standards globally",
+        "responsible_entity": "United Nations, Governments, Private Sector, Technical Community",
+        "sector": "Cybersecurity"
       },
       {
-        "kpi_text": "Develop international monitoring arrangements within the UN system.",
+        "kpi_text": "Developing economies need to enhance their institutional capacities to govern, use and manage data in a comprehensive, objective and evidence-based manner, including through regional and global cooperation.",
         "kpi_type": "qualitative",
-        "metric_name": "International Monitoring for Digital Rights",
+        "metric_name": "Institutional Capacity for Data Governance",
         "target_value": null,
-        "target_description": "Establish frameworks for monitoring digital rights globally.",
+        "target_description": "Enhance institutional capacities in developing economies for effective data governance",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Implementation of monitoring frameworks and reporting",
-        "responsible_entity": "United Nations and member states",
-        "sector": "Human Rights and Internet Governance"
+        "timeframe": "medium-term / ongoing",
+        "measurement_method": "Capacity assessments and evidence of regional/global cooperation initiatives",
+        "responsible_entity": "Developing Country Governments, Regional Bodies, International Organizations",
+        "sector": "Data Governance"
       },
       {
-        "kpi_text": "Enhance transparency and accountability regarding human rights.",
+        "kpi_text": "Capacity-building is important in efforts to address advanced technologies. Policies for AI literacy, skills development and language resources for minority languages are needed in order to formulate a truly global approach to advanced technologies.",
         "kpi_type": "qualitative",
-        "metric_name": "Human Rights Transparency",
+        "metric_name": "AI Literacy and Skills Development",
         "target_value": null,
-        "target_description": "Ensure all stakeholders are accountable for human rights practices online.",
+        "target_description": "Develop policies and programs for AI literacy, skills development, and minority language resources",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Evaluation of compliance and reporting mechanisms",
-        "responsible_entity": "Governments and civil society",
-        "sector": "Human Rights and Internet Governance"
+        "timeframe": "ongoing",
+        "measurement_method": "Existence and implementation of AI literacy and skills programs; availability of language resources",
+        "responsible_entity": "Governments, Educational Institutions, Civil Society",
+        "sector": "Advanced Technologies / AI"
       },
       {
-        "kpi_text": "Increase awareness of cybersecurity challenges.",
+        "kpi_text": "Governments and regulators should ensure that personal data are protected, identifying the differentiated responsibilities of different stakeholders and without imposing undue burdens or responsibilities on individual users.",
         "kpi_type": "qualitative",
-        "metric_name": "Cybersecurity Awareness",
+        "metric_name": "Personal Data Protection Enforcement",
         "target_value": null,
-        "target_description": "Improve understanding of cybersecurity risks among stakeholders.",
+        "target_description": "Ensure effective personal data protection with clear stakeholder responsibilities and enforcement mechanisms",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Surveys and training program evaluations",
-        "responsible_entity": "Governments and cybersecurity organizations",
-        "sector": "Cybersecurity and Internet Governance"
+        "timeframe": "ongoing",
+        "measurement_method": "Existence and enforcement of data protection laws and oversight bodies",
+        "responsible_entity": "Governments, Regulators, Private Sector",
+        "sector": "Data Privacy and Protection"
       },
       {
-        "kpi_text": "Develop policies for AI literacy and skills development.",
+        "kpi_text": "Educational curricula should include digital literacy skills that help children to be safe online. Initiatives should involve parents, teachers and guardians.",
         "kpi_type": "qualitative",
-        "metric_name": "AI Literacy Development",
+        "metric_name": "Digital Literacy Education for Online Safety",
         "target_value": null,
-        "target_description": "Create educational policies that promote AI literacy.",
+        "target_description": "Integrate digital literacy and online safety skills into educational curricula with stakeholder involvement",
         "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Implementation and assessment of AI education programs",
-        "responsible_entity": "Educational institutions and governments",
-        "sector": "Education and Technology"
-      },
-      {
-        "kpi_text": "Ensure that privacy laws are substantial and enforceable.",
-        "kpi_type": "qualitative",
-        "metric_name": "Privacy Law Enforcement",
-        "target_value": null,
-        "target_description": "Establish robust privacy laws that protect user data.",
-        "unit": "qualitative milestone",
-        "timeframe": null,
-        "measurement_method": "Review of legal frameworks and enforcement actions",
-        "responsible_entity": "Governments and regulatory bodies",
-        "sector": "Data Protection and Internet Governance"
+        "timeframe": "ongoing",
+        "measurement_method": "Curriculum reviews and implementation reports; stakeholder engagement records",
+        "responsible_entity": "Educational Authorities, Governments, Schools",
+        "sector": "Digital Literacy / Education"
       }
     ],
-    "country_list_iso": [],
-    "responsible_entity": "UN Secretary-General",
+    "country_list_iso": [
+      "CHN",
+      "COL",
+      "DEU",
+      "ETH",
+      "JPN",
+      "KEN",
+      "LKA",
+      "SDN",
+      "UGA",
+      "USA"
+    ],
+    "responsible_entity": null,
     "sdg_alignment": [
-      "SDG 1: No Poverty",
-      "SDG 2: Zero Hunger",
-      "SDG 3: Good Health and Well-being",
       "SDG 4: Quality Education",
       "SDG 5: Gender Equality",
+      "SDG 8: Decent Work and Economic Growth",
+      "SDG 9: Industry, Innovation and Infrastructure",
       "SDG 10: Reduced Inequalities",
-      "SDG 12: Responsible Consumption and Production",
-      "SDG 13: Climate Action",
       "SDG 16: Peace, Justice and Strong Institutions",
       "SDG 17: Partnerships for the Goals"
     ]
   },
   "top_actors": [
     {
+      "name": "Governments",
+      "category": "Political Actors",
+      "relevance_score": 0.95,
+      "justification": "Governments are frequently mentioned as key actors responsible for infrastructure, regulatory frameworks, cybersecurity, data governance, and international cooperation. They play a central role in implementing policies, protecting human rights online, and participating in multistakeholder governance and international agreements."
+    },
+    {
       "name": "United Nations",
       "category": "Political Actors",
-      "relevance_score": 1.0,
-      "justification": "The United Nations is central to the discussions in the document, as it is the organization proposing the Global Digital Compact and hosting the Internet Governance Forum, making it the most prominent and influential actor."
+      "relevance_score": 0.9,
+      "justification": "The United Nations is the overarching institutional framework within which the Internet Governance Forum operates. It hosts the IGF, proposes the Global Digital Compact, and is involved in setting global agendas, norms, and standards related to Internet governance, human rights, and digital development."
     },
     {
       "name": "Civil Society Organisations",
       "category": "Civil Society Actors",
-      "relevance_score": 0.8,
-      "justification": "Civil society organizations are mentioned as key stakeholders in the multistakeholder approach to internet governance, highlighting their role in advocating for human rights and digital inclusion."
-    },
-    {
-      "name": "United Nations Officials",
-      "category": "Political Actors",
-      "relevance_score": 0.7,
-      "justification": "United Nations officials are important as they represent the organization and its initiatives, particularly in the context of the Global Digital Compact and the IGF, influencing policy and discussions."
+      "relevance_score": 0.75,
+      "justification": "Civil society organisations are highlighted as important stakeholders in multistakeholder governance, policy development, capacity building, and advocacy. They contribute to discussions on human rights, digital inclusion, cybersecurity, and content moderation, ensuring diverse voices and expertise are included."
     }
   ],
   "top_themes": [
     {
-      "name": "Data Governance",
-      "category": "Data & Governance",
-      "relevance_score": 0.9,
-      "justification": "Data governance is central to the document's main message as it addresses the critical need for effective management and protection of data in the digital age. The extensive content dedicated to this theme highlights its strategic importance in ensuring trust, security, and the ethical use of data, which are essential for achieving broader objectives like sustainable development and human rights."
-    },
-    {
       "name": "Digital Inclusion",
       "category": "Inclusion & Social Development",
-      "relevance_score": 0.85,
-      "justification": "Digital inclusion is a key theme that emphasizes the necessity of connecting all people to the Internet and safeguarding human rights. The document dedicates significant content to this theme, illustrating its importance in addressing inequalities and ensuring that marginalized communities have access to digital resources, which aligns with global commitments to inclusivity and social development."
+      "relevance_score": 0.95,
+      "justification": "Digital Inclusion is a central theme throughout the document, emphasized in the first major section and underpinning the Global Digital Compact's first principle to connect all people. The extensive discussion on digital divides, gender digital gaps, infrastructure, and meaningful access highlights its strategic importance for equitable development and human rights realization."
     },
     {
-      "name": "Artificial Intelligence",
-      "category": "Technology & Innovation",
-      "relevance_score": 0.8,
-      "justification": "Artificial intelligence is highlighted as a transformative technology that poses both opportunities and challenges. The theme's relevance is underscored by the need for governance frameworks that ensure AI is developed responsibly and ethically. The content dedicated to this theme reflects its strategic importance in shaping future technological landscapes and addressing potential risks to human rights."
+      "name": "Data Governance",
+      "category": "Data & Governance",
+      "relevance_score": 0.92,
+      "justification": "Data Governance is a major focus, with a dedicated section addressing the complexity of data flows, privacy, justice, cross-border issues, and the need for coherent global frameworks. It is strategically critical given data's role as a key resource in the digital economy and its direct impact on trust, security, and human rights."
+    },
+    {
+      "name": "Cybersecurity",
+      "category": "Data & Governance",
+      "relevance_score": 0.88,
+      "justification": "Cybersecurity is extensively covered, addressing threats, policy challenges, capacity building, and the need for multistakeholder cooperation. It is vital for ensuring a safe and resilient Internet, which is foundational to achieving the Sustainable Development Goals and maintaining trust in digital technologies."
     }
   ]
 }

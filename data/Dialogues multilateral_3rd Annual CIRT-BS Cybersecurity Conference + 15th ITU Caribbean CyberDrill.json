@@ -1,5 +1,5 @@
 {
-  "title": "3rd Annual CIRT-BS Cybersecurity Conference Summary",
+  "title": "3rd Annual CIRT-BS Cybersecurity Conference and 15th ITU Caribbean CyberDrill",
   "date": null,
   "location": null,
   "executive_summary": null,
@@ -12,23 +12,22 @@
   "actors": {},
   "practical_applications": [],
   "commitments": [],
-  "score": 44,
+  "score": 68,
   "quality_breakdown": {
-    "faithfulness": 0,
-    "consistency": 30,
-    "completeness": 44,
-    "accuracy": 100,
+    "faithfulness": 100,
+    "consistency": 85,
+    "completeness": 30,
+    "accuracy": 50,
     "issues": [
-      "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
-      "Missing important information in extraction or strategic analysis"
+      "Missing important information in extraction or strategic analysis",
+      "Potential factual errors in basic content or strategic extra data"
     ]
   },
   "extra_data": {
-    "lead_country_iso": null,
+    "lead_country_iso": "BRB",
     "agreement_type": [],
     "legal_bindingness": null,
-    "coverage_scope": "Sub-regional",
+    "coverage_scope": "Multilateral",
     "eu_policy_alignment": [],
     "review_schedule": null,
     "beneficiary_group_raw": [],
@@ -44,10 +43,10 @@
   "top_actors": [],
   "top_themes": [
     {
-      "name": "Cybersecurity",
-      "category": "Data & Governance",
+      "name": "Cybersecurity (Data & Governance)",
+      "category": "Cybersecurity",
       "relevance_score": 1.0,
-      "justification": "Cybersecurity is the central theme of the document, as it pertains directly to the focus of the conference and the discussions surrounding data protection and governance in the digital landscape."
+      "justification": "The document is centered around the 3rd Annual CIRT-BS Cybersecurity Conference and the 15th ITU Caribbean CyberDrill, indicating a primary focus on cybersecurity issues, particularly data protection and governance. The entire content and context revolve around cybersecurity strategies, governance frameworks, and collaborative efforts, making this theme the most central and strategically important."
     }
   ]
 }

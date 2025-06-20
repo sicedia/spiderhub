@@ -15,6 +15,7 @@ class AnalysisPageManager {
   }
   
   init() {
+    this.initializeData();
     this.animateSummaryCards();
     this.initializeChartPlaceholders();
     this.initializeDataGrid();
@@ -22,7 +23,19 @@ class AnalysisPageManager {
     this.initializeLegalBindingPie();
     this.initializeCountryChoropleth();
     this.initializeCoverageBar();
+    this.initializeThemeBar();
+    this.initializeThemeBeneficiaryHeatmap();
+    this.initializeActorBar();
+    this.initializeBeneficiaryBar();
   }
+
+  // Retrieve data from context
+  initializeData() {
+    this.analysisData = JSON.parse(
+      document.getElementById('analysis-data').textContent
+    );
+  }
+
   
   // Enhanced summary card animations with staggered effect
   animateSummaryCards() {
@@ -384,12 +397,7 @@ class AnalysisPageManager {
    * @returns {Object} SDG counts object
    */
   fetchSdgCounts() {
-    return {
-      sdg1: 42,  sdg2: 28, sdg3: 38, sdg4: 51, sdg5: 34,
-      sdg6: 19,  sdg7: 26, sdg8: 56, sdg9: 63, sdg10: 29,
-      sdg11: 22, sdg12: 17, sdg13: 31, sdg14: 14, sdg15: 18,
-      sdg16: 24, sdg17: 67,
-    };
+    return this.analysisData.sdg_counts
   }
 
   /**
@@ -413,11 +421,7 @@ class AnalysisPageManager {
    * @returns {Object} Legal binding counts object
    */
   fetchBindingCounts() {
-    return {
-      nonBinding: 25,
-      politicallyBinding: 18,
-      legallyBinding: 12
-    };
+    return this.analysisData.binding_counts;
   }
 
   /**
@@ -441,11 +445,7 @@ class AnalysisPageManager {
    * @returns {Object} Country counts object
    */
   fetchCountryCounts() {
-    return {
-      URY: 7, ECU: 15, BRA: 20, ARG: 9, CHL: 6, COL: 11,
-      PER: 8, MEX: 14, ESP: 25, DEU: 18, FRA: 12, ITA: 10,
-      PRT: 8, PAN: 5, GTM: 4
-    };
+    return this.analysisData.country_counts;
   }
 
   /**
@@ -463,20 +463,65 @@ class AnalysisPageManager {
       setTimeout(() => this.initializeCoverageBar(), this.CHART_RETRY_DELAY);
     }
   }
+    async initializeThemeBar() {
+  if (window.Chart) {
+      await this.initializeChart(
+        'Theme Bar',
+        window.renderThemeBar,
+        () => this.analysisData.theme_counts
+      );
+    } else {
+      setTimeout(() => this.initializeThemeBar(), this.CHART_RETRY_DELAY);
+    }
+  }
+  async initializeThemeBeneficiaryHeatmap() {
+  if (window.Chart) {
+    await this.initializeChart(
+      'Theme × Beneficiary',
+      window.renderThemeBeneficiaryHeatmap,
+      () => this.analysisData.theme_ben_matrix
+    );
+  } else {
+    setTimeout(() => this.initializeThemeBeneficiaryHeatmap(), this.CHART_RETRY_DELAY);
+  }
+}
+async initializeActorBar() {
+  if (window.Chart) {
+    await this.initializeChart(
+      'Actor Bar',
+      window.renderActorBar,
+      () => this.analysisData.actor_counts
+    );
+  } else {
+    setTimeout(() => this.initializeActorBar(), this.CHART_RETRY_DELAY);
+  }
+}
+  async initializeBeneficiaryBar() {
+  if (window.Chart) {
+    await this.initializeChart(
+      'Beneficiary Bar',
+      window.renderBeneficiaryBar,
+      () => this.analysisData.beneficiary_counts
+    );
+  } else {
+    setTimeout(() => this.initializeBeneficiaryBar(), this.CHART_RETRY_DELAY);
+  }
+}
+
+
 
   /**
    * Mock coverage scope data - in production this would fetch from API
    * @returns {Object} Coverage scope counts object
    */
   fetchScopeCounts() {
-    return {
-      bilateral: 31,
-      subRegional: 18,
-      regional: 42,
-      multilateral: 27,
-      global: 14
-    };
+    return this.analysisData.scope_counts;
   }
+  /**
+   * Initialize theme bar chart
+   */
+
+    
 }
 
 // Add modal animations
@@ -504,6 +549,5 @@ if (!document.getElementById('modal-animations')) {
 
 // Initialize analysis page manager
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Analysis page loaded');
   new AnalysisPageManager();
 });

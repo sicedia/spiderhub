@@ -1,4 +1,4 @@
-# Belize and European Union Initiate Partnership Dialogue in 2024
+# Belize and European Union Hold First Partnership Dialogue Under New Samoa Agreement
 
 **Date**: 2024-05-27
 
@@ -6,39 +6,39 @@
 
 ## Executive Summary
 
-On May 27, 2024, Belize and the European Union conducted their inaugural Partnership Dialogue in Placencia, marking a new phase under the Samoa Agreement. The discussions focused on enhancing their multifaceted relationship, emphasizing shared values and global issues such as multilateralism, good governance, and human rights. Key topics included development cooperation, updates on the EU's Global Gateway Investment Agenda, and Belize's interest in the Schengen visa waiver. The dialogue also addressed regional integration efforts and the ongoing territorial dispute with Guatemala, with the EU supporting confidence-building measures. Co-chaired by Belize's Foreign Minister Francis Fonseca and EU Ambassador Marianne Van Steen, the meeting underscored a commitment to strengthen partnerships at both regional and multilateral levels.
+On 27 May 2024, Belize and the European Union held their first Partnership Dialogue in Placencia under the new Samoa Agreement, succeeding the Cotonou Agreement. The dialogue focused on strengthening their multifaceted relationship, aligned on global issues, and promoting multilateralism. Key topics included development cooperation under the 11th European Development Fund and NDICI initiatives on green growth and border management, as well as updates on EU regional programs in environment, trade, and governance. The EU’s Global Gateway Investment Agenda and the EU-Economic Partnership Agreement were also discussed. Both parties reaffirmed commitment to multilateral cooperation, including at the SIDS conference and UNGA Summit. Belize expressed interest in Schengen visa waiver inclusion. Other discussions covered governance, human rights, regional integration, and the Guatemala territorial dispute, with EU support for confidence-building ahead of the ICJ ruling. The dialogue was co-chaired by Belize’s Foreign Minister Francis Fonseca and EU Ambassador Marianne Van Steen.
 
 ## Characteristics
 
-- The first Partnership Dialogue between Belize and the EU took place on May 27, 2024, in Placencia, under the Samoa Agreement.
-- Discussions focused on development cooperation, including projects under the 11th European Development Fund and new initiatives for green growth and border management.
-- The dialogue addressed the EU's Global Gateway Investment Agenda, aiming to enhance investment in various sectors in Belize.
-- Topics included good governance, human rights, regional integration, and Belize's interest in the Schengen visa waiver.
-- The meeting was co-chaired by Belize's Minister of Foreign Affairs and the EU Ambassador, with participation from various EU member state ambassadors.
+- Belize and the EU held their first Partnership Dialogue on 27 May 2024 in Placencia under the new Samoa Agreement, succeeding the Cotonou Agreement's Political Dialogue.
+- Discussions focused on development cooperation, including projects under the 11th European Development Fund and NDICI initiatives on green growth and border management.
+- The EU updated Belize on regional programs in environment, climate change, trade, and governance, and discussed the Global Gateway Investment Agenda targeting digital transformation, climate, transport, health, and education.
+- Both parties reaffirmed commitment to multilateralism, addressing global issues like human rights, regional integration, and geopolitical conflicts, including Guatemala's territorial claim and EU support for confidence-building measures.
+- Belize expressed interest in Schengen visa waiver inclusion, and the dialogue was co-chaired by Belize's Foreign Affairs Minister and the EU Ambassador, with participation from multiple EU member state ambassadors.
 
 ## Actors
 
 | Category | Actor |
 | --- | --- |
-| Political Actors | Belize; European Union; Honourable Francis Fonseca; H.E. Marianne Van Steen; H.E. Amalia Mai; Ayesha Borland; Alfonso Gahona; Luis Salazar; Andy Sutherland; Ambassador Johan Verkammen; Zdenĕk Kubánek; Maeve von Heynitz; Alessandro Modiano; Wilfred Mohr; Manuel Carvalho; María Clara Girbau Ronda; Anders Bengtcen; Mr. Sébastien Bulot |
-| European Union | Delegation of the European Union to Jamaica, Belize, The Bahamas, Turks and Caicos Islands and Cayman Islands |
+| Political Actors | Belize; European Union; Organisation of African, Caribbean, and Pacific States; EU Delegations; EU Member States; United Nations; Government Officials; Policy Level Representatives; Community of Latin American and Caribbean States |
 
 ## Main Themes
 
 | Category | Subcategory |
 | --- | --- |
-| Regional & International Cooperation | Global Digital Cooperation; Multilateralism; Digital & Technological Partnerships |
-| Data & Governance | Digital Governance; Good Governance |
-| Digital Transformation & Strategy | Digital Investment; Digital Policy |
+| Regional & International Cooperation | Digital & Technological Partnerships; Multilateralism |
+| Digital Transformation & Strategy | Digital Investment |
+| Data & Governance | Digital Governance |
 
 ## Practical Applications
 
-- Implementation of the Partnership Dialogue under the 'Samoa Agreement' between Belize and the European Union, focusing on development cooperation and shared values.
-- Ongoing projects funded by the 11th European Development Fund, with new initiatives under the Neighbourhood, Development and International Cooperation Instrument (NDICI) targeting green growth and border management in Belize.
-- Updates on regional programs addressing Environment and Climate Change, Trade, and Good Governance that benefit Belize and the Caribbean.
-- Implementation of the EU’s Global Gateway Investment Agenda aimed at boosting investment in Belize across sectors such as digital transformation, climate and energy, transport, health, and education.
-- Ongoing discussions regarding the EU-Economic Partnership Agreement, including its challenges and opportunities for Belize.
-- Support for confidence-building measures in the Adjacency Zone between Belize and Guatemala in relation to the ongoing case before the International Court of Justice.
+- Ongoing projects under the 11th European Development Fund supporting Belize.
+- New initiatives under the Neighbourhood, Development and International Cooperation Instrument (NDICI) focusing on green growth in the south and border management.
+- EU regional programs benefiting Belize in Environment and Climate Change, Trade, and Good Governance in the Caribbean and Central America.
+- Implementation of the EU’s Global Gateway Investment Agenda to boost investment in Belize in digital transformation, climate and energy, transport, health, and education.
+- Support for the EU-Economic Partnership Agreement with Belize, addressing challenges and opportunities.
+- EU support for confidence-building measures in the Adjacency Zone between Belize and Guatemala ahead of the International Court of Justice ruling.
+- Belize’s engagement in multilateral partnerships, including the Fourth International Conference on Small Islands Developing States (SIDS) and the UNGA Summit of the Future in 2024.
 
 ## Commitments
 

@@ -1,14 +1,10 @@
 {
   "title": null,
   "date": null,
-  "location": "Ecuador",
+  "location": null,
   "executive_summary": null,
   "characteristics": [],
-  "themes": {
-    "Regional & International Cooperation": [
-      "EU-LAC Digital Alliance"
-    ]
-  },
+  "themes": {},
   "actors": {
     "Political Actors": [
       "European Union",
@@ -17,22 +13,21 @@
   },
   "practical_applications": [],
   "commitments": [],
-  "score": 46,
+  "score": 45,
   "quality_breakdown": {
     "faithfulness": 0,
-    "consistency": 50,
-    "completeness": 46,
+    "consistency": 90,
+    "completeness": 10,
     "accuracy": 100,
     "issues": [
       "Low faithfulness - check for hallucinations in basic or strategic extra data",
-      "Internal inconsistencies detected across data sections",
       "Missing important information in extraction or strategic analysis"
     ]
   },
   "extra_data": {
     "lead_country_iso": "ECU",
     "agreement_type": [],
-    "legal_bindingness": "Politically-binding",
+    "legal_bindingness": null,
     "coverage_scope": "Bilateral",
     "eu_policy_alignment": [],
     "review_schedule": null,
@@ -51,21 +46,14 @@
       "name": "European Union",
       "category": "Political Actors",
       "relevance_score": 0.9,
-      "justification": "The European Union is a key actor in the context of bilateral political consultations, indicating its significant role in shaping policies and decisions that affect both the EU and Ecuador."
+      "justification": "The European Union is a key party in the bilateral political consultations with Ecuador, playing a central role in the mechanism and decision-making process."
     },
     {
       "name": "Ecuador",
       "category": "Political Actors",
-      "relevance_score": 0.8,
-      "justification": "Ecuador is the other principal party in the bilateral consultations, making it crucial for discussions and decisions that impact its political and economic landscape."
+      "relevance_score": 0.9,
+      "justification": "Ecuador is the counterpart in the bilateral political consultations with the European Union, equally important in the discussions and initiatives."
     }
   ],
-  "top_themes": [
-    {
-      "name": "EU-LAC Digital Alliance",
-      "category": "Regional & International Cooperation",
-      "relevance_score": 1.0,
-      "justification": "This theme is central to the document as it represents the primary focus of the bilateral political consultations between the EU and Ecuador, highlighting the importance of digital cooperation in the context of international relations."
-    }
-  ]
+  "top_themes": []
 }
