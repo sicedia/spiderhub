@@ -195,7 +195,7 @@
 
     // Build tags: location + actors + themes
     const tags = [
-      doc.country ? `<span class="doc-tag location">${doc.country}</span>` : '',
+      doc.event_country ? `<span class="doc-tag location">${doc.event_country}</span>` : '',
       ...(doc.actors || []).map(a => `<span class="doc-tag actor">${a}</span>`),
       ...(doc.themes || []).map(t => `<span class="doc-tag theme">${t}</span>`)
     ].join('');

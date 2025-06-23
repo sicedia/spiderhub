@@ -2,7 +2,7 @@ from django_filters import FilterSet, CharFilter, DateFromToRangeFilter, ModelMu
 from django.contrib.postgres.search import SearchQuery, SearchRank
 from django.db.models import Q, IntegerField
 from django.db.models.functions import Cast
-from apps.documents.models import Document, Actor, Theme, BeneficiaryGroup, SDG
+from apps.documents.models import Document, Actor, Theme, BeneficiaryGroup, SDG, Country
 
 class DocumentFilter(FilterSet):
     """
@@ -10,7 +10,7 @@ class DocumentFilter(FilterSet):
       - Full-text search across title & executive_summary
       - Date range filtering on event_date
       - Multi-select filters for actors, themes, beneficiaries & SDGs
-      - Exact-match “in” filtering for document_type, coverage_scope,
+      - Exact-match "in" filtering for document_type, coverage_scope,
         legal_bindingness, agreement_type, country & city
     """
 
@@ -24,8 +24,9 @@ class DocumentFilter(FilterSet):
     coverage_scope    = CharFilter(method='noop')
     legal_bindingness = CharFilter(method='noop')
     agreement_type    = CharFilter(method='noop')
-    country           = CharFilter(method='noop')
-    city              = CharFilter(method='noop')
+    # Updated country and city filters
+    country = ModelMultipleChoiceFilter(queryset=Country.objects.all(), field_name='event_country__iso3', to_field_name='iso3')
+    city = CharFilter(field_name='event_city__name', lookup_expr='icontains')
 
     class Meta:
         model = Document
@@ -80,7 +81,7 @@ class DocumentFilter(FilterSet):
             q_or |= Q(sdgs__number__in=sdgs)
 
         # 4) Text filters by exact match
-        for field in ['document_type','coverage_scope','legal_bindingness','agreement_type','country','city']:
+        for field in ['document_type','coverage_scope','legal_bindingness','agreement_type']:
             vals = params.getlist(field)
             if vals:
                 if field == 'agreement_type':
@@ -88,9 +89,17 @@ class DocumentFilter(FilterSet):
                 else:
                     q_or |= Q(**{f"{field}__in": vals})
 
+        # Updated country and city filtering
+        countries = params.getlist('country')
+        if countries:
+            q_or |= Q(event_country__iso3__in=countries)
+        
+        cities = params.getlist('city')  
+        if cities:
+            q_or |= Q(event_city__name__icontains=cities[0])  # Simple contains for now
+
         if q_or:
             qs = qs.filter(q_or).distinct()
-
 
         # 5) Order by search rank if applicable, otherwise by score
         if terms:

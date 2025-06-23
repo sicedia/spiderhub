@@ -43,3 +43,7 @@ str2bool
 
 #gunicorn  # WSGI HTTP server for UNIX
 waitress
+
+pycountry  # Country data for Django
+geonamescache
+django-cities-light

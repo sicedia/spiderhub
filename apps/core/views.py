@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
-from django.db.models import Count
+from django.db.models import Count, Q
 from apps.documents.models import (
-    Document, Actor, Theme, BeneficiaryGroup, SDG, CommitmentDetail
+    Document, Actor, Theme, BeneficiaryGroup, SDG, CommitmentDetail, Country
 )
 import logging
 from django.db import connection
@@ -10,56 +10,57 @@ import re
 from django.db.models import Value
 from django.db.models.functions import Coalesce
 from collections import defaultdict
-# Create your views here.
 
 logger = logging.getLogger(__name__)
 
 def health_check(request):
     """Comprehensive health check endpoint for production"""
     try:
-        # Database connectivity check
+        # Test database connection
         with connection.cursor() as cursor:
             cursor.execute("SELECT 1")
-            db_status = "healthy"
+        
+        return JsonResponse({
+            'status': 'healthy',
+            'database': 'connected',
+            'version': '1.0.0'
+        })
     except Exception as e:
-        logger.error(f"Database health check failed: {e}")
-        db_status = "unhealthy"
+        logger.error(f"Health check failed: {e}")
         return JsonResponse({
             'status': 'unhealthy',
-            'database': db_status,
             'error': str(e)
-        }, status=503)
-    
-    # Additional checks can be added here
-    return JsonResponse({
-        'status': 'healthy',
-        'database': db_status,
-        "service": "spiderhub"
-    })
+        }, status=500)
 
 def home_page(request):
+    """Home page view with recent documents"""
     template_name = 'core/home.html'
-    """Home page view"""
-    # Fetch the latest 5 documents from the database
-    recent_documents = Document.objects.all().order_by('-created_at')[:5]
-    document_count = Document.objects.count()
-    # Count unique countries from the documents
-    country_count = Document.objects.values('country').distinct().count()
     
-    # Count unique actors from the documents (assuming there's an 'actors' field)
-    actors_count = Document.objects.values('actors').distinct().count()
+    # Get recent documents with optimized queries
+    recent_documents = (
+        Document.objects
+        .select_related('event_country', 'created_by')
+        .order_by('-created_at')[:6]
+    )
     
-    themes = Document.objects.values('themes').distinct().count()
-
-    beneficiary_group_count = Document.objects.values('beneficiary_groups').distinct().count() 
+    # Count countries that have documents using Q objects to check all country relationships
+    total_countries = Country.objects.filter(
+        Q(document__isnull=False) |  
+        Q(lead_documents__isnull=False) |
+        Q(mentioned_in_documents__isnull=False)
+    ).distinct().count()
+    
+    total_beneficiary_groups = BeneficiaryGroup.objects.filter(
+        documents__isnull=False
+    ).distinct().count()
     
     context = {
         'recent_documents': recent_documents,
-        'document_count': document_count,
-        'country_count': country_count,
-        'actors_count': actors_count,
-        'themes_count': themes,
-        'beneficiary_group_count': beneficiary_group_count,
+        'total_documents': Document.objects.count(),
+        'total_countries': total_countries,
+        'total_actors': Actor.objects.count(),
+        'total_themes': Theme.objects.count(),
+        'total_beneficiary_groups': total_beneficiary_groups,
     }
 
     return render(request, template_name, context)
@@ -69,8 +70,8 @@ def about_page(request):
     return render(request, 'core/about.html')
 
 def explore_page(request):
+    """Explore page view with filters for search interface"""
     template_name = 'core/explore.html'
-    """Explore page view"""
 
     # 1) Document Type
     raw_doc_type_choices = Document.document_type.field.choices
@@ -128,19 +129,33 @@ def explore_page(request):
             entry['commitment_class'].replace('_', ' ').title(),  # label
             entry['count']) for entry in agreement_qs
     ]
-    # 3) Countries
+    
+    # 3) Countries - Use all available reverse relationships
     countries_qs = (
-        Document.objects
-                .exclude(country__isnull=True)
-                .exclude(country__exact='')
-                .values('country')
-                .annotate(count=Count('id'))
-                .order_by('-count')
+        Country.objects
+        .filter(
+            Q(lead_documents__isnull=False) |
+            Q(mentioned_in_documents__isnull=False) |
+            Q(document__isnull=False)  # Try the singular form that appears in the error
+        )
+        .annotate(
+            count=Count('lead_documents', distinct=True) + 
+                  Count('mentioned_in_documents', distinct=True) +
+                  Count('document', distinct=True)
+        )
+        .order_by('-count')
     )
-    available_countries = [
-        (entry['country'], entry['country'], entry['count'])
-        for entry in countries_qs
-    ]
+    available_countries = (
+        Country.objects
+        .filter(document__isnull=False)  # Solo países que tienen documentos
+        .annotate(
+            doc_count=Count('document', distinct=True)  # Contar documentos únicos
+        )
+        .values_list('iso3', 'name', 'doc_count')
+        .order_by('name')
+    )
+    
+    
 
     # 4) Actors: M2M → Actor with document count
     actors_qs = (
@@ -200,11 +215,21 @@ def explore_page(request):
     return render(request, template_name, context)
 
 def document_detail_page(request, pk):
+    """Document detail view"""
     template_name = 'core/document_detail.html'
-    """Document Detail page view"""
-    document = get_object_or_404(Document, pk=pk)
+    
+    document = get_object_or_404(
+        Document.objects.select_related(
+            'event_country', 'event_city', 'created_by'
+        ).prefetch_related(
+            'themes', 'actors', 'beneficiary_groups', 'sdgs',
+            'practical_applications', 'commitments', 'kpis'
+        ),
+        pk=pk
+    )
+    
     context = {
-        'document': document
+        'document': document,
     }
     return render(request, template_name, context)
 
@@ -216,20 +241,27 @@ def analysis_page(request):
         """
         Transform 'kebab-case' (p. ej. 'non-binding') to 'camelCase' ('nonBinding').
         """
-        return re.sub(r'-(\w)', lambda m: m.group(1).upper(), s)
-
-    # 1) Countries
+        parts = s.split('-')
+        return parts[0] + ''.join(word.capitalize() for word in parts[1:])
+    
+    # 1) Countries - Use available reverse relationships
     countries_qs = (
-        Document.objects
-        .exclude(country__isnull=True)
-        .exclude(country__exact='')
-        .values('country')
-        .annotate(count=Count('id'))
+        Country.objects
+        .filter(
+            Q(lead_documents__isnull=False) |
+            Q(mentioned_in_documents__isnull=False) |
+            Q(document__isnull=False)  # Try the singular form
+        )
+        .annotate(
+            count=Count('lead_documents', distinct=True) + 
+                  Count('mentioned_in_documents', distinct=True) +
+                  Count('document', distinct=True)
+        )
         .order_by('-count')
     )
     countries = {
-        entry['country'].upper()[0:3]:  entry['count']
-        for entry in countries_qs
+        country.iso3: country.count
+        for country in countries_qs
     }
 
     # 2) SDGs: M2M → SDG with document count
@@ -270,6 +302,8 @@ def analysis_page(request):
     }
 
     agreements_qs = Document.objects.filter(document_type__startswith="agreements")
+
+    # 5) Agreements by Theme (categoría)
     cat_counts_qs = (
         Theme.objects
             .filter(documents__in=agreements_qs)
@@ -362,8 +396,5 @@ def analysis_page(request):
         "actor_counts":  actor_counts,  
         "beneficiary_counts": beneficiary_counts,
         },
-
-    
-
     }
     return render(request, template_name, context)
