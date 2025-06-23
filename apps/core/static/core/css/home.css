@@ -151,8 +151,8 @@
 .carousel-nav:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  background-color: #f5f5f5;
-  color: #ccc;
+  background-color: var(--border-lighter);
+  color: var(--text-light);
 }
 
 .carousel-prev {
@@ -174,7 +174,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #ddd;
+  background-color: var(--border-light);
   border: none;
   cursor: pointer;
   transition: all var(--transition-medium);
