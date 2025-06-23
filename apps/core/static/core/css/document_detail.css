@@ -173,7 +173,7 @@
   font-style: italic;
   text-align: center;
   padding: 2rem;
-  background: #f9f9f9;
+  background: var(--bg-light);
   border-radius: var(--border-radius-small);
 }
 
@@ -185,7 +185,7 @@
 }
 
 .technical-item {
-  background: #f8f9fa;
+  background: var(--bg-light);
   border-radius: var(--border-radius-small);
   padding: 1rem;
 }
@@ -453,7 +453,7 @@
 }
 
 .kpi-row:nth-child(even):not(.kpi-header) {
-  background: #f8f9fa;
+  background: var(--bg-light);
 }
 
 /* Enhanced Countries Section */
@@ -507,7 +507,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: #f8f9fa;
+  background: var(--bg-light);
   border-radius: var(--border-radius-small);
   padding: 1rem;
   transition: transform var(--transition-medium);
@@ -603,7 +603,7 @@
 }
 
 .related-document {
-  background: #f8f9fa;
+  background: var(--bg-light);
   border-radius: var(--border-radius-small);
   padding: 1rem;
   margin-bottom: 1rem;
@@ -659,12 +659,12 @@
   border-radius: var(--border-radius-small);
   text-decoration: none;
   color: var(--text-primary);
-  background: #f8f9fa;
+  background: var(--bg-light);
   transition: all var(--transition-medium);
 }
 
 .share-button:hover {
-  background: #e9ecef;
+  background: var(--border-lighter);
   transform: translateX(4px);
 }
 

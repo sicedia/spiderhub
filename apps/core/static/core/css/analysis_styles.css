@@ -100,13 +100,13 @@
 .card-number {
   font-size: 2rem;
   font-weight: 700;
-  color: #333;
+  color: var(--text-primary);
   line-height: 1;
 }
 
 .card-label {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-muted);
   margin-top: 0.25rem;
 }
 
@@ -133,7 +133,7 @@
 
 .chart-placeholder {
   height: 300px;
-  background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f4 100%);
+  background: linear-gradient(135deg, var(--bg-light) 0%, var(--border-lighter) 100%);
   border-radius: var(--border-radius-small);
   display: flex;
   align-items: center;
@@ -146,7 +146,7 @@
 }
 
 .chart-placeholder:hover {
-  background: linear-gradient(135deg, #f0f2f5 0%, #e8eaed 100%);
+  background: linear-gradient(135deg, var(--border-lighter) 0%, var(--border-lightest) 100%);
   border-color: var(--primary-blue);
   color: var(--primary-blue);
   cursor: pointer;
@@ -207,14 +207,14 @@
   flex: 1;
   min-width: 200px;
   padding: 0.75rem 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-light);
   border-radius: 6px;
   font-size: 1rem;
 }
 
 .grid-filter {
   padding: 0.75rem 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-light);
   border-radius: 6px;
   font-size: 1rem;
   min-width: 150px;
@@ -230,32 +230,32 @@
 }
 
 .data-grid th {
-  background: #f8f9fa;
+  background: var(--bg-light);
   padding: 1rem;
   text-align: left;
   font-weight: 600;
-  color: #333;
-  border-bottom: 2px solid #e9ecef;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-lighter);
 }
 
 .data-grid td {
   padding: 1rem;
-  border-bottom: 1px solid #e9ecef;
+  border-bottom: 1px solid var(--border-lighter);
 }
 
 .data-grid tr:hover {
-  background: #f8f9fa;
+  background: var(--bg-light);
 }
 
 .btn-sm {
   padding: 0.4rem 0.8rem;
   font-size: 0.85rem;
   border: none;
-  border-radius: 4px;
-  background: #094EB2;
-  color: white;
+  border-radius: var(--border-radius-small);
+  background: var(--primary-blue);
+  color: var(--bg-white);
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background var(--transition-fast);
 }
 
 .btn-sm:hover {
