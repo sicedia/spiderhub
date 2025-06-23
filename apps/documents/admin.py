@@ -4,6 +4,7 @@ from django.utils.safestring import mark_safe
 from django.db import models
 from django.forms import Textarea, TextInput
 from .models import (
+    Country, City,    
     Theme, Actor, BeneficiaryGroup, BeneficiaryGroupRaw, SDG, Document,
     DocumentTheme, DocumentActor, DocumentBeneficiaryGroupRaw,
     PracticalApplication, Commitment, CommitmentDetail, KPI
@@ -13,6 +14,27 @@ from .models import (
 admin.site.site_header = "Spider Document Management System"
 admin.site.site_title = "Spider Admin"
 admin.site.index_title = "Welcome to Spider Administration"
+
+# -----------------------------------------------------------------------------
+# Register ISO Country & City models
+# -----------------------------------------------------------------------------
+@admin.register(Country)
+class CountryAdmin(admin.ModelAdmin):
+    list_display = ('iso3', 'iso2', 'name', 'created_at')
+    search_fields = ('iso3', 'iso2', 'name')
+    ordering = ('name',)
+    readonly_fields = ('created_at', 'updated_at')
+    list_per_page = 50
+
+@admin.register(City)
+class CityAdmin(admin.ModelAdmin):
+    list_display = ('name', 'country', 'created_at')
+    list_display_links = ('name',)
+    list_filter = ('country',)
+    search_fields = ('name', 'country__name')
+    ordering = ('name',)
+    readonly_fields = ('created_at', 'updated_at')
+    list_per_page = 50
 
 @admin.register(Theme)
 class ThemeAdmin(admin.ModelAdmin):
@@ -228,25 +250,28 @@ class KPIInline(admin.TabularInline):
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
+    # 0) Orden por defecto: scores de mayor a menor
+    ordering = ('-score',)
+
     list_display = (
         'title_display', 'document_type_badge', 'location_info', 'event_date',
         'summary_file_link', 'score_display', 'created_by', 'created_at'
     )
     list_display_links = ('title_display',)
     list_filter = (
-        'document_type', 'coverage_scope', 'legal_bindingness', 
+        'document_type', 'coverage_scope', 'legal_bindingness',
         ('event_date', admin.DateFieldListFilter),
-        'city', 'country', 'score',
         'themes__category', 'actors__category'
     )
+
     search_fields = (
-        'title', 'executive_summary', 'city', 'country',
+        'title', 'executive_summary',
         'themes__label', 'actors__label'
     )
     date_hierarchy = 'event_date'
     filter_horizontal = ('beneficiary_groups', 'sdgs')
     readonly_fields = ('created_at', 'updated_at', 'title_normalized', 'executive_summary_normalized', 'search_vector')
-    autocomplete_fields = ('created_by',)
+    autocomplete_fields = ('created_by', 'event_city', 'event_country')
     list_per_page = 20
     
     inlines = [
@@ -267,7 +292,7 @@ class DocumentAdmin(admin.ModelAdmin):
             'classes': ('wide',)
         }),
         ('🌍 Location', {
-            'fields': ('city', 'country'),
+            'fields': ('event_city', 'event_country'),
             'classes': ('wide',)
         }),
         ('⭐ Assessment', {
@@ -313,7 +338,17 @@ class DocumentAdmin(admin.ModelAdmin):
     document_type_badge.short_description = 'Type'
     
     def location_info(self, obj):
-        return format_html('🏙️ {} <br>🌍 {}', obj.city or '-', obj.country or '-')
+        event_location = ""
+        if obj.event_city and obj.event_country:
+            event_location = f"{obj.event_city}, {obj.event_country}"
+        elif obj.event_city:
+            event_location = str(obj.event_city)
+        elif obj.event_country:
+            event_location = str(obj.event_country)
+        else:
+            event_location = "-"
+        
+        return format_html('🏙️ {}', event_location)
     location_info.short_description = 'Location'
     
     def score_display(self, obj):
@@ -327,13 +362,14 @@ class DocumentAdmin(admin.ModelAdmin):
             else:
                 color = '#dc3545'  # Red
                 icon = '🔴'
-            
             return format_html(
                 '{} <span style="color: {}; font-weight: bold;">{}</span>',
                 icon, color, obj.score
             )
         return '-'
     score_display.short_description = 'Score'
+    # 1) Permitir ordenarlo haciendo click en la cabecera
+    score_display.admin_order_field = 'score'
 
     def summary_file_link(self, obj):
         if obj.summary_file:
@@ -357,6 +393,19 @@ class DocumentAdmin(admin.ModelAdmin):
         if not change and not obj.created_by:
             obj.created_by = request.user
         super().save_model(request, obj, form, change)
+
+    # 1) Pre-join these FKs in the changelist
+    list_select_related = ('event_city', 'event_country', 'created_by')
+
+    # 2) If you still need to prefetch M2M for any custom display, do it once here:
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return (
+            qs
+            .select_related('event_city', 'event_country', 'created_by')
+            .select_related('event_city__country')  # AÑADIR esta línea
+            # .prefetch_related('themes', 'actors')  # only if you display those on list
+        )
 
 # Enhanced through models for direct editing
 @admin.register(DocumentTheme)

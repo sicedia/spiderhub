@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import cache_page
 from django.db.models import Q, Prefetch
 from .models import (
-    Document, Location, Actor, Topic, Theme, BeneficiaryGroup,
+    Document, Country, City, Actor, Topic, Theme, BeneficiaryGroup,
     KPI, Commitment, SDG, PracticalApplication
 )
 
@@ -42,9 +42,10 @@ def document_detail(request, document_id):
     """Document detail view optimizada con eager loading, limitación de campos y caché."""
     qs = Document.objects.select_related(
         'created_by',
-        'metadata__location',
+        'event_country',  # Updated from 'country'
+        'event_city',     # Added if needed
     ).only(
-        'id', 'title', 'body', 'created_by_id', 'metadata__location_id'
+        'id', 'title', 'body', 'created_by_id', 'event_country_id', 'event_city_id'
     ).prefetch_related(
         Prefetch('actors', queryset=Actor.objects.only('id', 'name')),
         Prefetch('topics', queryset=Topic.objects.only('id', 'name')),
