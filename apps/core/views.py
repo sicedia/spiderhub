@@ -131,20 +131,6 @@ def explore_page(request):
     ]
     
     # 3) Countries - Use all available reverse relationships
-    countries_qs = (
-        Country.objects
-        .filter(
-            Q(lead_documents__isnull=False) |
-            Q(mentioned_in_documents__isnull=False) |
-            Q(document__isnull=False)  # Try the singular form that appears in the error
-        )
-        .annotate(
-            count=Count('lead_documents', distinct=True) + 
-                  Count('mentioned_in_documents', distinct=True) +
-                  Count('document', distinct=True)
-        )
-        .order_by('-count')
-    )
     available_countries = (
         Country.objects
         .filter(document__isnull=False)  # Solo países que tienen documentos
@@ -154,8 +140,6 @@ def explore_page(request):
         .values_list('iso3', 'name', 'doc_count')
         .order_by('name')
     )
-    
-    
 
     # 4) Actors: M2M → Actor with document count
     actors_qs = (
@@ -397,4 +381,5 @@ def analysis_page(request):
         "beneficiary_counts": beneficiary_counts,
         },
     }
+
     return render(request, template_name, context)
