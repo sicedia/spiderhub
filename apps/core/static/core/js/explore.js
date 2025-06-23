@@ -144,8 +144,6 @@ class ExplorePageManager {
       });
     });
     
-    // Make first accordion item active
-    this.elements.accordionItems[0]?.classList.add('active');
   }
   
   // Region tabs setup

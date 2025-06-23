@@ -79,7 +79,7 @@
 }
 
 .search-bar button:hover {
-  background-color: #083e8f;
+  background-color: var(--primary-green);
 }
 
 /* Filtros activos (chips) */
