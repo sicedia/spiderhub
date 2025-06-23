@@ -57,7 +57,7 @@
               <div class="document-header">
                 <div class="document-title">{{ document.title }}</div>
                 <div class="document-meta">
-                  <span>{{ document.country|default:"Unknown" }}</span>
+                  <span>{{ document.event_country.name|default:"Unknown" }}</span>
                   <span>{{ document.event_date.year|default:"N/A" }}</span>
                 </div>
               </div>
