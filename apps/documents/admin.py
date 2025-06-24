@@ -339,7 +339,7 @@ class DocumentAdmin(admin.ModelAdmin):
             'classes': ('wide',)
         }),
         ('✅ Review Status', {
-            'fields': ('ai_check_status', 'ai_check_date', 'human_check_status', 'human_check_date', 'human_reviewer'),
+            'fields': ('ai_check_status', 'ai_check_date', 'human_check_status', 'human_check_date', 'human_reviewer', 'human_notes'),
             'classes': ('wide',)
         }),
         ('🔗 Direct Relationships', {
@@ -550,7 +550,8 @@ class DocumentAdmin(admin.ModelAdmin):
         count = queryset.update(
             human_check_status=False,
             human_check_date=None,
-            human_reviewer=None
+            human_reviewer=None,
+            human_notes=""
         )
         
         self.message_user(
