@@ -1,120 +1,288 @@
-/* About Page Specific Styles */
+/**
+ * About Page Styles
+ * Dedicated styles for the about page including hero section, 
+ * methodology steps, partner cards, and team presentation.
+ * Follows WCAG 2.1 AA standards and responsive design principles.
+ */
+
+/* ========================================
+   Hero Section - Enhanced accessibility & animation
+   ======================================== */
 .about-hero {
-  background: linear-gradient(135deg, rgba(9,78,178,0.1) 0%, rgba(52,168,83,0.1) 100%);
-  padding: 5rem 5% 3rem;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--primary-blue) 10%, transparent) 0%,
+    color-mix(in srgb, var(--primary-green) 10%, transparent) 100%
+  );
+  padding: var(--space-2xl) 5% var(--space-xl);
   text-align: center;
   margin-top: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><circle cx="50" cy="50" r="2" fill="%23094EB2"/></svg>') repeat;
+  animation: float 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(25%); }
 }
 
 .about-hero h1 {
-  font-size: 2.8rem;
+  font-size: clamp(2rem, 5vw, 2.8rem);
   color: var(--primary-blue);
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-sm);
+  font-weight: 700;
+  line-height: 1.2;
+  animation: slideUp var(--animation-duration-slow) var(--animation-easing);
 }
 
 .about-hero p {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3vw, 1.2rem);
   color: var(--text-secondary);
   max-width: 800px;
   margin: 0 auto;
+  line-height: 1.6;
+  animation: slideUp var(--animation-duration-slow) var(--animation-easing) 0.2s both;
 }
 
+/* ========================================
+   Main Container & Sections
+   ======================================== */
 .about-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 5%;
+  padding: var(--space-xl) 5%;
 }
 
 .about-section {
-  margin-bottom: 4rem;
+  margin-bottom: var(--space-2xl);
+  position: relative;
 }
 
+/* Enhanced section titles with better spacing */
+.about-section h2.section-title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: var(--space-xl);
+  position: relative;
+  padding-bottom: var(--space-sm);
+}
+
+.about-section h2.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+  border-radius: 2px;
+}
+
+/* ========================================
+   Content Layout - Enhanced responsive behavior
+   ======================================== */
 .about-content {
   display: flex;
-  gap: 3rem;
+  gap: var(--space-xl);
   align-items: center;
+  margin-bottom: var(--space-lg);
 }
 
 .about-text {
   flex: 1;
+  min-width: 0; /* Prevent overflow */
+}
+
+.about-text p {
+  margin-bottom: var(--space-md);
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.about-text ul {
+  padding-left: var(--space-md);
+  margin-bottom: var(--space-md);
+  list-style-type: none;
+  position: relative;
+}
+
+.about-text li {
+  margin-bottom: var(--space-sm);
+  position: relative;
+  padding-left: var(--space-md);
+}
+
+.about-text li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-success);
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
 .about-image {
   flex: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: 300px;
 }
 
-.about-text p {
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
+/* Enhanced SVG animations */
+.connection-map {
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
 }
 
-.about-text ul {
-  padding-left: 1.5rem;
-  margin-bottom: 1.5rem;
+.pulse-circle {
+  animation: pulse 2s ease-in-out infinite;
+  transform-origin: center;
 }
 
-.about-text li {
-  margin-bottom: 0.5rem;
-}
-
-/* Methodology Section Styles */
+/* ========================================
+   Methodology Section - Improved accessibility
+   ======================================== */
 .methodology-section {
-  background-color: var(--bg-light);
-  padding: 3rem;
-  border-radius: var(--border-radius);
-  margin: 4rem 0;
+  background: linear-gradient(135deg, 
+    var(--neutral-200) 0%, 
+    color-mix(in srgb, var(--primary-blue) 5%, var(--neutral-200)) 100%
+  );
+  padding: var(--space-xl);
+  border-radius: var(--border-radius-large);
+  margin: var(--space-2xl) 0;
+  border: 1px solid var(--border-lightest);
+  position: relative;
+}
+
+.methodology-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+  border-radius: var(--border-radius-large) var(--border-radius-large) 0 0;
 }
 
 .methodology-steps {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
 }
 
 .methodology-step {
   display: flex;
-  gap: 1.5rem;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--neutral-100);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--primary-blue);
+  transition: all var(--animation-duration-medium) var(--animation-easing);
+  position: relative;
+}
+
+.methodology-step:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.methodology-step:nth-child(2) {
+  border-left-color: var(--primary-green);
+}
+
+.methodology-step:nth-child(3) {
+  border-left-color: var(--color-success);
+}
+
+.methodology-step:nth-child(4) {
+  border-left-color: var(--color-info);
 }
 
 .step-icon {
   flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  padding-top: var(--space-xs);
 }
 
 .step-content h3 {
   color: var(--primary-blue);
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-xs);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
 }
 
 .step-content p {
   color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
 }
 
-/* Partners Section Styles */
+/* ========================================
+   Partners Section - Enhanced grid & accessibility
+   ======================================== */
+.partners-section {
+  position: relative;
+}
+
 .partners-intro {
   text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
+  margin-bottom: var(--space-lg);
+  font-size: var(--font-size-lg);
   color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .partners-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
 }
 
 .partner-card {
   display: flex;
-  align-items: center;
-  background-color: var(--bg-white);
+  align-items: flex-start;
+  background: var(--neutral-100);
   border-radius: var(--border-radius);
-  padding: 1.25rem;
-  box-shadow: var(--shadow-medium);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-light);
   border: 1px solid var(--border-lightest);
-  transition: all var(--transition-medium);
+  transition: all var(--animation-duration-medium) var(--animation-easing);
+  position: relative;
+  overflow: hidden;
+  min-height: 120px;
+}
+
+.partner-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+  transform: scaleX(0);
+  transition: transform var(--animation-duration-medium) var(--animation-easing);
 }
 
 .partner-card:hover {
@@ -122,43 +290,91 @@
   box-shadow: var(--shadow-hover);
 }
 
+.partner-card:hover::before {
+  transform: scaleX(1);
+}
+
+.partner-card:focus-within {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
 .partner-logo {
-  margin-right: 1rem;
+  margin-right: var(--space-sm);
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partner-logo svg {
+  border-radius: var(--border-radius-small);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.partner-info {
+  flex: 1;
+  min-width: 0;
 }
 
 .partner-info h3 {
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
+  margin-bottom: var(--space-xs);
+  font-size: var(--font-size-base);
   font-weight: 600;
+  line-height: 1.3;
 }
 
 .partner-info p {
   color: var(--text-secondary);
-  font-size: 0.85rem;
-  line-height: 1.4;
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
   margin: 0;
 }
 
-/* Team Section Styles */
+/* Special styling for CEDIA as project lead */
+.partner-card:has(.cedia) {
+  border: 2px solid var(--primary-green);
+  background: linear-gradient(135deg, 
+    var(--neutral-100) 0%, 
+    color-mix(in srgb, var(--primary-green) 5%, var(--neutral-100)) 100%
+  );
+}
+
+/* ========================================
+   Team Section - Enhanced presentation
+   ======================================== */
+.team-section {
+  text-align: center;
+}
+
+.team-section p {
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin: 0 auto var(--space-lg);
+}
+
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
   justify-items: center;
+  margin-top: var(--space-lg);
 }
 
 .team-member {
   text-align: center;
-  background-color: var(--bg-white);
+  background: var(--neutral-100);
   border-radius: var(--border-radius);
-  padding: 1.5rem;
-  box-shadow: var(--shadow-medium);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-light);
   border: 1px solid var(--border-lightest);
-  transition: all var(--transition-medium);
+  transition: all var(--animation-duration-medium) var(--animation-easing);
   width: 100%;
-  max-width: 280px;
+  max-width: 320px;
+  position: relative;
 }
 
 .team-member:hover {
@@ -168,108 +384,124 @@
 
 .team-member h3 {
   color: var(--text-primary);
-  margin-bottom: 0.3rem;
-  font-size: 1.1rem;
+  margin-bottom: var(--space-xs);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
 }
 
 .member-role {
   color: var(--primary-blue);
   font-weight: 500;
-  margin-bottom: 0.3rem;
+  margin-bottom: var(--space-xs);
+  font-size: var(--font-size-base);
 }
 
 .member-org {
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
 }
 
 .member-photo {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-sm);
+  display: flex;
+  justify-content: center;
 }
 
-/* Contact Section Styles */
+/* ========================================
+   Contact Section - Enhanced form & accessibility
+   ======================================== */
 .contact-section {
-  background-color: var(--bg-light);
-  padding: 3rem;
+  background: linear-gradient(135deg, 
+    var(--neutral-200) 0%, 
+    color-mix(in srgb, var(--primary-blue) 8%, var(--neutral-200)) 100%
+  );
+  padding: var(--space-xl);
   border-radius: var(--border-radius-large);
-  box-shadow: var(--shadow-light);
+  box-shadow: var(--shadow-medium);
+  border: 1px solid var(--border-lightest);
 }
 
 .contact-container {
-  display: block;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .contact-info {
-  max-width: 600px;
-  margin: 0 auto;
   text-align: center;
 }
 
 .contact-info p {
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-lg);
   color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
 }
 
 .contact-detail {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  justify-content: center;
+  margin-bottom: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius-small);
+  transition: background-color var(--animation-duration-medium);
+}
+
+.contact-detail:hover {
+  background: rgba(28, 115, 119, 0.05);
 }
 
 .contact-detail svg {
-  margin-right: 0.8rem;
+  margin-right: var(--space-xs);
+  flex-shrink: 0;
 }
 
-.contact-form {
-  flex: 1;
-  background-color: var(--bg-white);
-  padding: 2rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-medium);
-  border: 1px solid var(--border-lightest);
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
+.contact-detail span {
   color: var(--text-primary);
+  font-weight: 500;
+  font-size: var(--font-size-base);
 }
 
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid var(--border-light);
-  border-radius: var(--border-radius-small);
-  font-family: 'Roboto', sans-serif;
+.contact-link {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--animation-duration-medium);
 }
 
-.form-group textarea {
-  resize: vertical;
+.contact-link:hover,
+.contact-link:focus {
+  color: var(--primary-green);
+  text-decoration: underline;
 }
 
-/* Responsive Styles */
-@media (max-width: 992px) {
+.team-description {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.team-description p {
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* ========================================
+   Responsive Design - Enhanced breakpoints
+   ======================================== */
+
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
   .about-content {
     flex-direction: column;
+    gap: var(--space-lg);
   }
   
   .about-image {
     order: -1;
-    margin-bottom: 2rem;
-  }
-  
-  .contact-container {
-    display: block;
-  }
-  
-  .contact-info {
-    margin-bottom: 0;
+    margin-bottom: var(--space-md);
   }
   
   .methodology-step {
@@ -279,28 +511,122 @@
   }
   
   .step-icon {
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-sm);
+  }
+  
+  .partners-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .about-container {
+    padding: var(--space-lg) 3%;
+  }
+  
+  .about-hero {
+    padding: var(--space-xl) 3% var(--space-lg);
+  }
+  
+  .methodology-section {
+    padding: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+  
+  .contact-section {
+    padding: var(--space-lg);
+  }
+  
+  .partner-card {
+    padding: var(--space-sm);
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .partner-logo {
+    margin-right: 0;
+    margin-bottom: var(--space-sm);
   }
   
   .partners-grid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .about-hero h1 {
-    font-size: 2.2rem;
-  }
-  
-  .partner-card {
-    padding: 1rem;
-  }
-  
-  .partner-logo {
-    margin-right: 0.75rem;
+    gap: var(--space-sm);
   }
   
   .team-member {
-    padding: 1.25rem;
+    padding: var(--space-sm);
+  }
+  
+  .contact-detail {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  
+  .contact-detail svg {
+    margin-right: 0;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .about-container {
+    padding: var(--space-md) 3%;
+  }
+  
+  .about-section {
+    margin-bottom: var(--space-lg);
+  }
+  
+  .methodology-steps {
+    gap: var(--space-md);
+  }
+  
+  .methodology-step {
+    padding: var(--space-sm);
+  }
+  
+  .about-image {
+    min-height: 200px;
+  }
+  
+  .connection-map {
+    max-width: 90%;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .partner-card,
+  .team-member,
+  .methodology-step {
+    border: 2px solid var(--text-primary);
+  }
+  
+  .about-hero {
+    background: var(--neutral-100);
+    border: 2px solid var(--primary-blue);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .about-hero::before,
+  .pulse-circle,
+  .about-hero h1,
+  .about-hero p {
+    animation: none;
+  }
+  
+  .partner-card,
+  .team-member,
+  .methodology-step {
+    transition: none;
+  }
+  
+  .partner-card:hover,
+  .team-member:hover,
+  .methodology-step:hover {
+    transform: none;
   }
 }

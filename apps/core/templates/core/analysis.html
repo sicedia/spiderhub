@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-  <main class="analysis-container">
+  <main role="main" class="analysis-container">
     <div class="analysis-hero">
       <div class="analysis-hero-content">
         <h1>Data Analysis</h1>
@@ -18,8 +18,8 @@
 
     <div class="analysis-content">
       <!-- 2.1 Overview Section -->
-      <section class="analysis-block" id="overview-section">
-        <h2 class="block-title">Overview</h2>
+      <section role="region" aria-labelledby="overview-label" class="analysis-block" id="overview-section">
+        <h2 id="overview-label" class="block-title">Overview</h2>
         
         <!-- Summary Cards -->
         <div class="summary-cards">
@@ -50,87 +50,87 @@
       </section>
 
         <!-- SDG Alignment Section -->
-      <section class="analysis-block" id="sdg-section">
-        <h2 class="block-title">SDG Alignment</h2>
+      <section role="region" aria-labelledby="sdg-label" class="analysis-block" id="sdg-section">
+        <h2 id="sdg-label" class="block-title">SDG Alignment</h2>
         
         <div class="chart-container full-width chart-radar">
-          <h3>SDG Alignment</h3>
-          <div class="chart-placeholder" id="radar-chart">
+          <h3 class="visually-hidden">SDG Alignment</h3>
+          <div class="chart-placeholder" id="radar-chart" role="img" tabindex="0" aria-label="Radar chart showing alignment with Sustainable Development Goals across different dimensions">
             <div class="placeholder-content">Radar Chart - SDG Alignment</div>
           </div>
         </div>
       </section>
       
       <!-- Geography & Coverage Section -->
-      <section class="analysis-block" id="geography-section">
-        <h2 class="block-title">Geography & Coverage</h2>
+      <section role="region" aria-labelledby="geography-label" class="analysis-block" id="geography-section">
+        <h2 id="geography-label" class="block-title">Geography & Coverage</h2>
         
         <div class="chart-container full-width">
-          <h3>Coverage Scope Distribution</h3>
-          <div class="chart-placeholder" id="coverage-bar-chart">
+          <h3 class="visually-hidden">Coverage Scope Distribution</h3>
+          <div class="chart-placeholder" id="coverage-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing the distribution of different coverage scopes across documents">
             <div class="placeholder-content">Bar Chart - Coverage Scope</div>
           </div>
         </div>
       </section>
       
       <!-- Strategic Alignment Section -->
-      <section class="analysis-block" id="strategic-section">
-        <h2 class="block-title">Strategic Alignment</h2>
+      <section role="region" aria-labelledby="strategic-label" class="analysis-block" id="strategic-section">
+        <h2 id="strategic-label" class="block-title">Strategic Alignment</h2>
         
         <div class="chart-container full-width">
-          <h3>Documents by Lead Country</h3>
-          <div class="chart-placeholder" id="choropleth-chart">
+          <h3 class="visually-hidden">Documents by Lead Country</h3>
+          <div class="chart-placeholder" id="choropleth-chart" role="img" tabindex="0" aria-label="Choropleth map showing the number of documents led by each country">
             <div class="placeholder-content">Choropleth Map - Lead Countries</div>
           </div>
         </div>
       </section>
       
       <!-- Legal Bindingness Section -->
-      <section class="analysis-block" id="legal-section">
-        <h2 class="block-title">Legal Bindingness</h2>
+      <section role="region" aria-labelledby="legal-label" class="analysis-block" id="legal-section">
+        <h2 id="legal-label" class="block-title">Legal Bindingness</h2>
         
         <div class="chart-container full-width">
-          <h3>Legal Bindingness</h3>
-          <div class="chart-placeholder" id="pie-chart">
+          <h3 class="visually-hidden">Legal Bindingness</h3>
+          <div class="chart-placeholder" id="pie-chart" role="img" tabindex="0" aria-label="Pie chart showing the distribution of legal bindingness levels across documents">
             <div class="placeholder-content">Pie Chart - Legal Bindingness</div>
           </div>
         </div>
       </section>
       
       <!-- 2.4 Thematic Focus Section -->
-      <section class="analysis-block" id="thematic-section">
-        <h2 class="block-title">Thematic Focus</h2>
+      <section role="region" aria-labelledby="thematic-label" class="analysis-block" id="thematic-section">
+        <h2 id="thematic-label" class="block-title">Thematic Focus</h2>
         
         <div class="chart-container full-width">
-          <h3>Agreements by Theme</h3>
-          <div class="chart-placeholder" id="theme-bar-chart">
+          <h3 class="visually-hidden">Agreements by Theme</h3>
+          <div class="chart-placeholder" id="theme-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing the number of agreements by thematic category">
             <div class="placeholder-content">Bar Chart - Agreements by Theme</div>
           </div>
         </div>
         
         <!-- <div class="chart-container full-width">
-          <h3>Theme × Beneficiary Matrix</h3>
-          <div class="chart-placeholder" id="heatmap-chart">
+          <h3 class="visually-hidden">Theme × Beneficiary Matrix</h3>
+          <div class="chart-placeholder" id="heatmap-chart" role="img" tabindex="0" aria-label="Heatmap showing the relationship between themes and beneficiaries">
             <div class="placeholder-content">Heatmap - Theme × Beneficiary</div>
           </div>
         </div> -->
       </section>
       
       <!-- 2.5 Actors & Beneficiaries Section -->
-      <section class="analysis-block" id="actors-section">
-        <h2 class="block-title">Actors & Beneficiaries</h2>
+      <section role="region" aria-labelledby="actors-label" class="analysis-block" id="actors-section">
+        <h2 id="actors-label" class="block-title">Actors & Beneficiaries</h2>
         
         <div class="chart-grid">
           <div class="chart-container chart-left">
-            <h3>Agreements by Actor Type</h3>
-            <div class="chart-placeholder" id="actor-bar-chart">
+            <h3 class="visually-hidden">Agreements by Actor Type</h3>
+            <div class="chart-placeholder" id="actor-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing the number of agreements by actor type">
               <div class="placeholder-content">Bar Chart - Agreements by Actor Type</div>
             </div>
           </div>
           
           <div class="chart-container chart-right">
-            <h3>Beneficiary Categories</h3>
-            <div class="chart-placeholder" id="beneficiary-bar-chart">
+            <h3 class="visually-hidden">Beneficiary Categories</h3>
+            <div class="chart-placeholder" id="beneficiary-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing the count of different beneficiary categories">
               <div class="placeholder-content">Bar Chart - Beneficiary Category Counts</div>
             </div>
           </div>

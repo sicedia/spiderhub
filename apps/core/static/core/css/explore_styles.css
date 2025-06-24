@@ -8,7 +8,11 @@
 
 /* Cabecera de búsqueda */
 .search-header {
-  background: linear-gradient(135deg, rgba(9,78,178,0.05) 0%, rgba(52,168,83,0.05) 100%);
+  background: linear-gradient(
+  135deg,
+  color-mix(in srgb, var(--primary-blue) 10%, transparent) 0%,
+  color-mix(in srgb, var(--primary-green) 10%, transparent) 100%
+);
   padding: 2.5rem 5% 2rem;
   text-align: center;
 }
@@ -128,6 +132,12 @@
 .filter-chip .remove-filter:hover {
   color: var(--primary-blue);
 }
+
+/* Chips de filtros con color semántico según tipo */
+.filter-chip--success { background: rgba(40,167,69,0.1); border-color: var(--color-success); }
+.filter-chip--warning { background: rgba(255,193,7,0.1); border-color: var(--color-warning); }
+.filter-chip--info    { background: rgba(74,144,226,0.1); border-color: var(--color-info); }
+.filter-chip--error   { background: rgba(198,40,40,0.1); border-color: var(--color-error); }
 
 /* Selector de vista (pestañas) */
 .view-selector {

@@ -5,7 +5,11 @@
 }
 
 .analysis-hero {
-  background: linear-gradient(135deg, rgba(9,78,178,0.1) 0%, rgba(52,168,83,0.1) 100%);
+  background: linear-gradient(
+  135deg,
+  color-mix(in srgb, var(--primary-blue) 10%, transparent) 0%,
+  color-mix(in srgb, var(--primary-green) 10%, transparent) 100%
+);
   padding: 4rem 5% 3rem;
   text-align: center;
   border-bottom: 1px solid var(--border-lightest);
@@ -100,13 +104,13 @@
 .card-number {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #333;
   line-height: 1;
 }
 
 .card-label {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: #666;
   margin-top: 0.25rem;
 }
 
@@ -133,7 +137,7 @@
 
 .chart-placeholder {
   height: 300px;
-  background: linear-gradient(135deg, var(--bg-light) 0%, var(--border-lighter) 100%);
+  background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f4 100%);
   border-radius: var(--border-radius-small);
   display: flex;
   align-items: center;
@@ -146,11 +150,17 @@
 }
 
 .chart-placeholder:hover {
-  background: linear-gradient(135deg, var(--border-lighter) 0%, var(--border-lightest) 100%);
+  background: linear-gradient(135deg, #f0f2f5 0%, #e8eaed 100%);
   border-color: var(--primary-blue);
   color: var(--primary-blue);
   cursor: pointer;
 }
+
+.chart-placeholder:focus {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
 
 .timeline-chart {
   height: 350px;
@@ -207,14 +217,14 @@
   flex: 1;
   min-width: 200px;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--border-light);
+  border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 1rem;
 }
 
 .grid-filter {
   padding: 0.75rem 1rem;
-  border: 1px solid var(--border-light);
+  border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 1rem;
   min-width: 150px;
@@ -230,32 +240,32 @@
 }
 
 .data-grid th {
-  background: var(--bg-light);
+  background: #f8f9fa;
   padding: 1rem;
   text-align: left;
   font-weight: 600;
-  color: var(--text-primary);
-  border-bottom: 2px solid var(--border-lighter);
+  color: #333;
+  border-bottom: 2px solid #e9ecef;
 }
 
 .data-grid td {
   padding: 1rem;
-  border-bottom: 1px solid var(--border-lighter);
+  border-bottom: 1px solid #e9ecef;
 }
 
 .data-grid tr:hover {
-  background: var(--bg-light);
+  background: #f8f9fa;
 }
 
 .btn-sm {
   padding: 0.4rem 0.8rem;
   font-size: 0.85rem;
   border: none;
-  border-radius: var(--border-radius-small);
-  background: var(--primary-blue);
-  color: var(--bg-white);
+  border-radius: 4px;
+  background: #094EB2;
+  color: white;
   cursor: pointer;
-  transition: background var(--transition-fast);
+  transition: background 0.2s;
 }
 
 .btn-sm:hover {

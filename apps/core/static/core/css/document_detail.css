@@ -10,7 +10,11 @@
 
 /* Header Section */
 .document-detail-header {
-  background: linear-gradient(135deg, rgba(9,78,178,0.05) 0%, rgba(52,168,83,0.05) 100%);
+  background: linear-gradient(
+  135deg,
+  color-mix(in srgb, var(--primary-blue) 10%, transparent) 0%,
+  color-mix(in srgb, var(--primary-green) 10%, transparent) 100%
+);
   border-radius: var(--border-radius-large);
   padding: 2rem;
   margin-bottom: 2rem;
