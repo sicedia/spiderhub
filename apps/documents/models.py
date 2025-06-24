@@ -204,6 +204,19 @@ class Document(BaseModel):
  
      title = models.CharField(max_length=300)
      event_date = models.DateField(null=True, blank=True)
+     
+     # Event format field
+     event_format = models.CharField(
+         max_length=20,
+         choices=[
+             ('presencial', 'Presencial'),
+             ('virtual', 'Virtual'),
+             ('hybrid', 'Hybrid'),
+         ],
+         null=True,
+         blank=True,
+         help_text="Format of the event (in-person, virtual, or hybrid)"
+     )
  
      # Fichero de resumen asociado
      summary_file = models.FileField(
@@ -242,6 +255,27 @@ class Document(BaseModel):
      executive_summary = models.TextField(null=True, blank=True)
      score = models.PositiveSmallIntegerField(null=True, blank=True)
      extra = models.JSONField(default=dict, blank=True)
+
+     # --- Review status fields ------------------------------------------------
+     ai_check_status = models.BooleanField(
+         default=True,
+         help_text="AI processing completed successfully"
+     )
+     ai_check_date = models.DateTimeField(auto_now_add=True)
+     
+     human_check_status = models.BooleanField(
+         default=False,
+         help_text="Human review completed"
+     )
+     human_check_date = models.DateTimeField(null=True, blank=True)
+     human_reviewer = models.ForeignKey(
+         User, 
+         on_delete=models.SET_NULL, 
+         null=True, 
+         blank=True,
+         related_name='reviewed_documents',
+         help_text="User who completed human review"
+     )
 
      # --- Many‑to‑many taxonomies ------------------------------------------------
      themes = models.ManyToManyField(Theme, through="DocumentTheme", related_name="documents")
@@ -296,10 +330,52 @@ class Document(BaseModel):
          ordering = ["-event_date", "title"]
          indexes = [
              models.Index(fields=["event_date"], name="doc_date_idx"),
+             models.Index(fields=["ai_check_status"], name="doc_ai_check_idx"),
+             models.Index(fields=["human_check_status"], name="doc_human_check_idx"),
              GinIndex(fields=['search_vector'], name='doc_search_vector_gin'),
              GinIndex(fields=['title_normalized'], opclasses=['gin_trgm_ops'], name='doc_title_norm_trgm_gin'),
              GinIndex(fields=['executive_summary_normalized'], opclasses=['gin_trgm_ops'], name='doc_exec_summary_norm_gin'),
          ]
+
+     def save(self, *args, **kwargs):
+         # Check if this is an update (not a new creation)
+         if self.pk:
+             # Get the original object from database
+             try:
+                 original = Document.objects.get(pk=self.pk)
+                 # Check if any significant field has been modified
+                 significant_fields = [
+                     'title', 'executive_summary', 'document_type', 'event_date', 
+                     'event_format', 'event_city_id', 'event_country_id', 'lead_country_id',
+                     'coverage_scope', 'legal_bindingness', 'score', 'admin_notes'
+                 ]
+                 
+                 fields_changed = any(
+                     getattr(self, field) != getattr(original, field) 
+                     for field in significant_fields
+                 )
+                 
+                 # Only reset human check if document was previously reviewed and fields have changed
+                 if fields_changed and original.human_check_status:
+                     # Mark as needing human review again
+                     self.human_check_status = False
+                     self.human_check_date = None
+                     self.human_reviewer = None
+                     
+             except Document.DoesNotExist:
+                 pass
+         
+         super().save(*args, **kwargs)
+
+     def mark_human_reviewed(self, user):
+         """Mark document as reviewed by human"""
+         from django.utils import timezone
+         self.human_check_status = True
+         self.human_check_date = timezone.now()
+         self.human_reviewer = user
+         self.save(update_fields=['human_check_status', 'human_check_date', 'human_reviewer'])
+
+    
 
      def __str__(self):
          return self.title
@@ -390,6 +466,86 @@ class Document(BaseModel):
             .values_list('commitment_class', flat=True)
             .distinct()
         )
+
+# ---------------------------------------------------------------------------
+# SOURCE FILES
+# ---------------------------------------------------------------------------
+
+class SourceFile(BaseModel):
+    """Source files associated with a document."""
+    document = models.ForeignKey(
+        Document, 
+        on_delete=models.CASCADE, 
+        related_name="source_files"
+    )
+    file = models.FileField(
+        upload_to='source_files/',
+        help_text="Original source file (PDF, Word, etc.)"
+    )
+    filename = models.CharField(
+        max_length=255,
+        help_text="Original filename"
+    )
+    file_type = models.CharField(
+        max_length=50,
+        choices=[
+            ('pdf', 'PDF'),
+            ('doc', 'Word Document'),
+            ('docx', 'Word Document (DOCX)'),
+            ('txt', 'Text File'),
+            ('html', 'HTML'),
+            ('other', 'Other'),
+        ],
+        default='other'
+    )
+    file_size = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        help_text="File size in bytes"
+    )
+    description = models.TextField(
+        blank=True,
+        help_text="Optional description of the source file"
+    )
+    external_link = models.URLField(
+        blank=True,
+        null=True,
+        help_text="External link to the source file (if applicable)"
+    )
+    upload_date = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['upload_date']
+        unique_together = ('document', 'filename')
+    
+    def __str__(self):
+        return f"{self.filename} ({self.document.title})"
+    
+    def save(self, *args, **kwargs):
+        # Auto-populate filename if not provided
+        if not self.filename and self.file:
+            self.filename = self.file.name.split('/')[-1]
+        
+        # Auto-populate file_size
+        if self.file:
+            self.file_size = self.file.size
+            
+        # Auto-detect file_type from extension
+        if self.file and not self.file_type or self.file_type == 'other':
+            extension = self.filename.split('.')[-1].lower()
+            type_mapping = {
+                'pdf': 'pdf',
+                'doc': 'doc',
+                'docx': 'docx',
+                'txt': 'txt',
+                'html': 'html',
+                'htm': 'html'
+            }
+            self.file_type = type_mapping.get(extension, 'other')
+        
+        super().save(*args, **kwargs)
+
+
 
 # ---------------------------------------------------------------------------
 # THROUGH / LINK TABLES WITH EXTRA METADATA

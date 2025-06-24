@@ -7,7 +7,7 @@ from .models import (
     Country, City,    
     Theme, Actor, BeneficiaryGroup, BeneficiaryGroupRaw, SDG, Document,
     DocumentTheme, DocumentActor, DocumentBeneficiaryGroupRaw,
-    PracticalApplication, Commitment, CommitmentDetail, KPI
+    PracticalApplication, Commitment, CommitmentDetail, KPI, SourceFile  # SourceFile was missing
 )
 
 # Custom admin site configuration
@@ -41,7 +41,7 @@ class ThemeAdmin(admin.ModelAdmin):
     list_display = ('label_display', 'category_badge', 'description_preview', 'created_at')
     list_display_links = ('label_display',)
     list_filter = ('category', 'created_at')
-    search_fields = ('label', 'description')
+    search_fields = ('label', 'description', 'category')
     ordering = ('category', 'label')
     readonly_fields = ('created_at', 'updated_at', 'label_normalized', 'search_vector')
     list_per_page = 25
@@ -68,10 +68,12 @@ class ThemeAdmin(admin.ModelAdmin):
     
     def category_badge(self, obj):
         colors = {
-            'Environment': '#28a745',
-            'Social': '#007bff', 
-            'Economic': '#ffc107',
-            'Governance': '#6f42c1'
+            'Digital Transformation & Strategy': '#28a745',
+            'Technology & Innovation': '#007bff', 
+            'Data & Governance': '#ffc107',
+            'Inclusion & Social Development': '#6f42c1',
+            'Regional & International Cooperation': '#fd7e14',
+            'Uncategorised': '#6c757d'
         }
         color = colors.get(obj.category, '#6c757d')
         return format_html(
@@ -118,11 +120,11 @@ class ActorAdmin(admin.ModelAdmin):
     
     def category_badge(self, obj):
         colors = {
-            'Government': '#dc3545',
-            'NGO': '#28a745',
-            'Private': '#007bff',
-            'Academic': '#6f42c1',
-            'International': '#fd7e14'
+            'Political Actors': '#dc3545',
+            'Research and Innovation Actors': '#28a745',
+            'Economic Actors': '#007bff',
+            'Civil Society Actors': '#6f42c1',
+            'Uncategorised': '#6c757d'
         }
         color = colors.get(obj.category, '#6c757d')
         return format_html(
@@ -152,9 +154,29 @@ class BeneficiaryGroupAdmin(admin.ModelAdmin):
     label_display.short_description = 'Label'
     
     def category_badge(self, obj):
+        colors = {
+            'SMEs / Businesses': '#dc3545',
+            'Start-ups / Innovators': '#28a745',
+            'Large Corporations': '#007bff',
+            'Researchers & Academia': '#6f42c1',
+            'Students & Youth': '#fd7e14',
+            'Migrants & Refugees': '#e83e8c',
+            'Women & Girls': '#17a2b8',
+            'Rural & Remote Communities': '#20c997',
+            'Indigenous Peoples & Ethnic Groups': '#6610f2',
+            'Persons with Disabilities': '#e74c3c',
+            'General Citizens / Consumers': '#f39c12',
+            'Public Sector / Governments': '#3498db',
+            'Civil Society / NGOs': '#2ecc71',
+            'Farmers & Primary Producers': '#27ae60',
+            'Health Sector': '#e67e22',
+            'Investors & Financial Actors': '#9b59b6',
+            'Uncategorised': '#6c757d'
+        }
+        color = colors.get(obj.category, '#6c757d')
         return format_html(
-            '<span style="background-color: #17a2b8; color: white; padding: 3px 8px; border-radius: 12px; font-size: 11px;">{}</span>',
-            obj.category
+            '<span style="background-color: {}; color: white; padding: 3px 8px; border-radius: 12px; font-size: 11px;">{}</span>',
+            color, obj.category or 'N/A'
         )
     category_badge.short_description = 'Category'
     
@@ -198,6 +220,15 @@ class SDGAdmin(admin.ModelAdmin):
     label_display.short_description = 'Label'
 
 # Enhanced Inline classes for Document
+class SourceFileInline(admin.TabularInline):
+    model = SourceFile
+    extra = 1
+    fields = ('file', 'filename', 'file_type', 'external_link', 'description')
+    classes = ('collapse',)
+    verbose_name = "Source File"
+    verbose_name_plural = "Source Files"
+    readonly_fields = ('file_size', 'upload_date')
+
 class DocumentThemeInline(admin.TabularInline):
     model = DocumentTheme
     extra = 1
@@ -206,6 +237,8 @@ class DocumentThemeInline(admin.TabularInline):
     classes = ('collapse',)
     verbose_name = "Theme Relationship"
     verbose_name_plural = "Theme Relationships"
+    
+    raw_id_fields = ('theme',)
 
 class DocumentActorInline(admin.TabularInline):
     model = DocumentActor
@@ -254,27 +287,33 @@ class DocumentAdmin(admin.ModelAdmin):
     ordering = ('-score',)
 
     list_display = (
-        'title_display', 'document_type_badge', 'location_info', 'event_date',
-        'summary_file_link', 'score_display', 'created_by', 'created_at'
+        'title_display', 'document_type_badge', 'event_format_badge', 'location_info', 'event_date',
+        'ai_status_badge', 'human_status_badge', 'summary_file_link', 'source_files_count', 
+        'score_display', 'created_by', 'created_at'
     )
     list_display_links = ('title_display',)
     list_filter = (
-        'document_type', 'coverage_scope', 'legal_bindingness',
+        'document_type', 'event_format', 'coverage_scope', 'legal_bindingness',
+        'ai_check_status', 'human_check_status',
         ('event_date', admin.DateFieldListFilter),
-        'themes__category', 'actors__category'
+        ('human_check_date', admin.DateFieldListFilter),
+        'themes__category', 'actors__category', 'lead_country', 'event_country'
     )
 
     search_fields = (
-        'title', 'executive_summary',
+        'title', 'executive_summary', 'admin_notes',
         'themes__label', 'actors__label'
     )
     date_hierarchy = 'event_date'
-    filter_horizontal = ('beneficiary_groups', 'sdgs')
-    readonly_fields = ('created_at', 'updated_at', 'title_normalized', 'executive_summary_normalized', 'search_vector')
-    autocomplete_fields = ('created_by', 'event_city', 'event_country')
+    filter_horizontal = ('beneficiary_groups', 'sdgs', 'countries_involved')
+    readonly_fields = ('created_at', 'updated_at', 'title_normalized', 'executive_summary_normalized', 'search_vector', 'ai_check_date')
+    autocomplete_fields = ('created_by', 'event_city', 'event_country', 'lead_country', 'human_reviewer')
     list_per_page = 20
     
+    actions = ['mark_as_human_reviewed', 'mark_as_needs_review']
+    
     inlines = [
+        SourceFileInline,
         DocumentThemeInline,
         DocumentActorInline,
         PracticalApplicationInline,
@@ -284,19 +323,23 @@ class DocumentAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('📄 Basic Information', {
-            'fields': ('title', 'executive_summary', 'event_date', 'summary_file'),
+            'fields': ('title', 'executive_summary', 'event_date', 'event_format', 'summary_file'),
             'classes': ('wide',)
         }),
         ('📋 Document Classification', {
             'fields': ('document_type', 'coverage_scope', 'legal_bindingness'),
             'classes': ('wide',)
         }),
-        ('🌍 Location', {
-            'fields': ('event_city', 'event_country'),
+        ('🌍 Location & Countries', {
+            'fields': ('event_city', 'event_country', 'lead_country', 'countries_involved'),
             'classes': ('wide',)
         }),
         ('⭐ Assessment', {
             'fields': ('score', 'extra'),
+            'classes': ('wide',)
+        }),
+        ('✅ Review Status', {
+            'fields': ('ai_check_status', 'ai_check_date', 'human_check_status', 'human_check_date', 'human_reviewer'),
             'classes': ('wide',)
         }),
         ('🔗 Direct Relationships', {
@@ -323,19 +366,73 @@ class DocumentAdmin(admin.ModelAdmin):
     title_display.short_description = 'Title'
     
     def document_type_badge(self, obj):
-        colors = {
-            'Policy': '#28a745',
-            'Report': '#007bff',
-            'Agreement': '#dc3545',
-            'Plan': '#ffc107',
-            'Law': '#6f42c1'
-        }
-        color = colors.get(obj.document_type, '#6c757d')
-        return format_html(
-            '<span style="background-color: {}; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">{}</span>',
-            color, obj.document_type
-        )
+        if obj.document_type:
+            colors = {
+                'dialogues_eu-lac': '#28a745',
+                'dialogues_bilateral': '#007bff',
+                'dialogues_eu-country': '#17a2b8',
+                'dialogues_multilateral': '#ffc107',
+                'agreements_eu-lac': '#dc3545',
+                'agreements_bilateral': '#6f42c1',
+                'agreements_multilateral': '#fd7e14',
+                'agreements_country_specific': '#e83e8c'
+            }
+            color = colors.get(obj.document_type, '#6c757d')
+            display_name = obj.get_document_type_display()
+            return format_html(
+                '<span style="background-color: {}; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">{}</span>',
+                color, display_name
+            )
+        return '-'
     document_type_badge.short_description = 'Type'
+    
+    def event_format_badge(self, obj):
+        if obj.event_format:
+            colors = {
+                'presencial': '#28a745',  # Green
+                'virtual': '#007bff',     # Blue
+                'hybrid': '#fd7e14'       # Orange
+            }
+            icons = {
+                'presencial': '🏢',
+                'virtual': '💻',
+                'hybrid': '🔄'
+            }
+            color = colors.get(obj.event_format, '#6c757d')
+            icon = icons.get(obj.event_format, '📅')
+            return format_html(
+                '{} <span style="background-color: {}; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">{}</span>',
+                icon, color, obj.event_format.title()
+            )
+        return '-'
+    event_format_badge.short_description = 'Format'
+    
+    def ai_status_badge(self, obj):
+        if obj.ai_check_status:
+            return format_html(
+                '<span style="background-color: #28a745; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">🤖 ✓ AI</span>'
+            )
+        else:
+            return format_html(
+                '<span style="background-color: #dc3545; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">🤖 ✗ AI</span>'
+            )
+    ai_status_badge.short_description = 'AI Status'
+    ai_status_badge.admin_order_field = 'ai_check_status'
+    
+    def human_status_badge(self, obj):
+        if obj.human_check_status:
+            reviewer_info = f" by {obj.human_reviewer.username}" if obj.human_reviewer else ""
+            return format_html(
+                '<span style="background-color: #28a745; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;" title="Reviewed{} on {}">👤 ✓</span>',
+                reviewer_info,
+                obj.human_check_date.strftime('%Y-%m-%d %H:%M') if obj.human_check_date else 'Unknown'
+            )
+        else:
+            return format_html(
+                '<span style="background-color: #ffc107; color: black; padding: 2px 6px; border-radius: 10px; font-size: 10px;" title="Needs human review">👤 ⏳</span>'
+            )
+    human_status_badge.short_description = 'Human Status'
+    human_status_badge.admin_order_field = 'human_check_status'
     
     def location_info(self, obj):
         event_location = ""
@@ -368,14 +465,99 @@ class DocumentAdmin(admin.ModelAdmin):
             )
         return '-'
     score_display.short_description = 'Score'
-    # 1) Permitir ordenarlo haciendo click en la cabecera
     score_display.admin_order_field = 'score'
 
     def summary_file_link(self, obj):
         if obj.summary_file:
-            return format_html('<a href="{}" target="_blank">Download</a>', obj.summary_file.url)
+            return format_html('<a href="{}" target="_blank">📄 Download</a>', obj.summary_file.url)
         return '-'
     summary_file_link.short_description = 'Summary File'
+
+    def source_files_count(self, obj):
+        count = obj.source_files.count()
+        if count > 0:
+            return format_html(
+                '<span style="background-color: #17a2b8; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">📎 {}</span>',
+                count
+            )
+        return '-'
+    source_files_count.short_description = 'Files'
+
+    def save_model(self, request, obj, form, change):
+        # Store original human check status before save
+        original_human_check = None
+        if change:
+            try:
+                original = Document.objects.get(pk=obj.pk)
+                original_human_check = original.human_check_status
+            except Document.DoesNotExist:
+                pass
+        
+        # Set created_by if it's a new document
+        if not change and not obj.created_by:
+            obj.created_by = request.user
+        
+        # Handle manual human check status changes
+        if change and 'human_check_status' in form.changed_data and obj.human_check_status:
+            obj.mark_human_reviewed(request.user)
+        else:
+            # Normal save which includes automatic reset logic
+            super().save_model(request, obj, form, change)
+            
+            # Check if human status was automatically reset and inform user
+            if (change and original_human_check and not obj.human_check_status 
+                and 'human_check_status' not in form.changed_data):
+                self.message_user(
+                    request,
+                    "⚠️ Document was automatically marked as needing human review because significant fields were modified.",
+                    level='warning'
+                )
+
+    def save_formset(self, request, form, formset, change):
+        """Handle changes in inline formsets (themes, actors, etc.)"""
+        super().save_formset(request, form, formset, change)
+        
+        # If any inline formsets were changed, reset human check status
+        if change and formset.has_changed():
+            obj = form.instance
+            if obj.human_check_status:
+                obj.human_check_status = False
+                obj.human_check_date = None
+                obj.human_reviewer = None
+                obj.save(update_fields=['human_check_status', 'human_check_date', 'human_reviewer'])
+                
+                self.message_user(
+                    request,
+                    f"⚠️ Document marked as needing human review because {formset.model._meta.verbose_name_plural.lower()} were modified.",
+                    level='warning'
+                )
+
+    def mark_as_human_reviewed(self, request, queryset):
+        """Action to mark selected documents as human reviewed"""
+        count = 0
+        for doc in queryset:
+            doc.mark_human_reviewed(request.user)
+            count += 1
+        
+        self.message_user(
+            request,
+            f'Successfully marked {count} document(s) as human reviewed.'
+        )
+    mark_as_human_reviewed.short_description = "Mark selected documents as human reviewed"
+    
+    def mark_as_needs_review(self, request, queryset):
+        """Action to mark selected documents as needing human review"""
+        count = queryset.update(
+            human_check_status=False,
+            human_check_date=None,
+            human_reviewer=None
+        )
+        
+        self.message_user(
+            request,
+            f'Successfully marked {count} document(s) as needing human review.'
+        )
+    mark_as_needs_review.short_description = "Mark selected documents as needing review"
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj)
@@ -386,25 +568,20 @@ class DocumentAdmin(admin.ModelAdmin):
     def get_readonly_fields(self, request, obj=None):
         readonly = list(super().get_readonly_fields(request, obj))
         if not request.user.is_superuser:
-            readonly.extend(['score', 'extra'])
+            readonly.extend(['score', 'extra', 'ai_check_status', 'human_reviewer'])
         return readonly
 
-    def save_model(self, request, obj, form, change):
-        if not change and not obj.created_by:
-            obj.created_by = request.user
-        super().save_model(request, obj, form, change)
-
     # 1) Pre-join these FKs in the changelist
-    list_select_related = ('event_city', 'event_country', 'created_by')
+    list_select_related = ('event_city', 'event_country', 'lead_country', 'created_by', 'human_reviewer')
 
     # 2) If you still need to prefetch M2M for any custom display, do it once here:
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         return (
             qs
-            .select_related('event_city', 'event_country', 'created_by')
-            .select_related('event_city__country')  # AÑADIR esta línea
-            # .prefetch_related('themes', 'actors')  # only if you display those on list
+            .select_related('event_city', 'event_country', 'lead_country', 'created_by', 'human_reviewer')
+            .select_related('event_city__country')
+            .prefetch_related('source_files')
         )
 
 # Enhanced through models for direct editing
@@ -631,3 +808,82 @@ class KPIAdmin(admin.ModelAdmin):
     def document_title(self, obj):
         return obj.document.title[:40] + "..." if len(obj.document.title) > 40 else obj.document.title
     document_title.short_description = 'Document'
+
+@admin.register(SourceFile)
+class SourceFileAdmin(admin.ModelAdmin):
+    list_display = ('filename_display', 'document_title', 'file_type_badge', 'file_size_display', 'link_display', 'upload_date', 'description_preview')
+    list_display_links = ('filename_display',)
+    list_filter = ('file_type', 'upload_date', 'document')
+    search_fields = ('filename', 'description', 'document__title', 'external_link')
+    autocomplete_fields = ('document',)
+    readonly_fields = ('file_size', 'upload_date', 'created_at', 'updated_at')
+    list_per_page = 25
+    
+    fieldsets = (
+        ('📎 File Information', {
+            'fields': ('document', 'file', 'filename', 'file_type'),
+            'classes': ('wide',)
+        }),
+        ('📝 Details', {
+            'fields': ('description', 'external_link', 'file_size', 'upload_date'),
+            'classes': ('wide',)
+        }),
+        ('🏷️ Metadata', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
+    
+    formfield_overrides = {
+        models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 80})},
+        models.CharField: {'widget': TextInput(attrs={'size': '60'})},
+    }
+    
+    def filename_display(self, obj):
+        return format_html('<strong style="color: #007cba;">📄 {}</strong>', obj.filename)
+    filename_display.short_description = 'Filename'
+    
+    def document_title(self, obj):
+        return obj.document.title[:50] + "..." if len(obj.document.title) > 50 else obj.document.title
+    document_title.short_description = 'Document'
+    
+    def file_type_badge(self, obj):
+        colors = {
+            'pdf': '#dc3545',
+            'doc': '#007bff',
+            'docx': '#007bff',
+            'txt': '#28a745',
+            'html': '#fd7e14',
+            'other': '#6c757d'
+        }
+        color = colors.get(obj.file_type, '#6c757d')
+        return format_html(
+            '<span style="background-color: {}; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">{}</span>',
+            color, obj.file_type.upper()
+        )
+    file_type_badge.short_description = 'Type'
+    
+    def file_size_display(self, obj):
+        if obj.file_size:
+            # Convert bytes to human readable format
+            if obj.file_size < 1024:
+                return f"{obj.file_size} B"
+            elif obj.file_size < 1024 * 1024:
+                return f"{obj.file_size / 1024:.1f} KB"
+            else:
+                return f"{obj.file_size / (1024 * 1024):.1f} MB"
+        return '-'
+    file_size_display.short_description = 'Size'
+    
+    def description_preview(self, obj):
+        if obj.description:
+            preview = obj.description[:60] + "..." if len(obj.description) > 60 else obj.description
+            return format_html('<div style="max-width: 200px;">{}</div>', preview)
+        return '-'
+    description_preview.short_description = 'Description'
+    
+    def link_display(self, obj):
+        if obj.external_link:
+            return format_html('<a href="{}" target="_blank" title="{}">🔗 Link</a>', obj.external_link, obj.external_link)
+        return '-'
+    link_display.short_description = 'External Link'
