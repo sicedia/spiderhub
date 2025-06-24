@@ -1,18 +1,24 @@
 {% extends "core/base.html" %}
 {% load static %}
-{% block title %}SPIDERHUB: Transformación Digital{% endblock %}
+{% block title %}SPIDERHUB: Digital Transformation{% endblock %}
 
 {% block content %}
-  
+
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
       <h1>SPIDERHUB: D1.3 – Mapping of digital dialogues and identified EU-LAC agreements</h1>
-      <p>Discover the agreements and commitments driving digital transformation in Europe and Latin America. Fostering EU - LAC Digital Transformation.</p>
+      <p>
+        Discover the 
+        <span class="tag tag-info">agreements</span>, 
+        <span class="tag tag-primary">commitments</span> and more for driving digital 
+        <span class="tag tag-accent">transformation</span> in Europe and Latin America.
+      </p>
       <a href="{% url 'core:explore' %}" class="btn btn-primary">Explore Data</a>
+      <a href="{% url 'core:about' %}"   class="btn btn-ghost">More Info</a>
     </div>
     <div class="hero-graphic" id="node-web">
-      <!-- Canvas for node web animation will be added by JS -->
+      <!-- Canvas for node-web animation injected via JS -->
     </div>
   </section>
 
@@ -42,14 +48,12 @@
   <!-- Recent Documents Section -->
   <section class="documents-section">
     <h2 class="section-title">Recent Documents</h2>
-    
     <div class="carousel-container">
       <button class="carousel-nav carousel-prev" aria-label="Previous">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
         </svg>
       </button>
-      
       <div class="carousel-wrapper">
         <div class="documents-container carousel-track">
           {% for document in recent_documents %}
@@ -60,14 +64,19 @@
                   <span>{{ document.event_country.name|default:"Unknown" }}</span>
                   <span>{{ document.event_date.year|default:"N/A" }}</span>
                 </div>
+                {% if document.status %}
+                  <span class="tag tag-info">{{ document.status }}</span>
+                {% endif %}
               </div>
               <div class="document-body">
                 <p>{{ document.executive_summary|truncatewords:25|default:"No summary available." }}</p>
               </div>
-              <a href="{% url 'core:document_detail' document.id %}" class="btn btn-secondary btn-sm">
-                View Details
-              </a>
-
+              <div class="document-footer">
+                <a href="{% url 'core:document_detail' document.id %}"
+                   class="btn btn-secondary btn-sm">
+                  View Details
+                </a>
+              </div>
             </div>
           {% empty %}
             <div class="document-card">
@@ -82,32 +91,29 @@
                 <p>No documents have been uploaded yet.</p>
               </div>
               <div class="document-footer">
-                <a href="#" class="btn btn-secondary disabled">View Details</a>
+                <a href="#" class="btn btn-secondary btn-sm disabled">View Details</a>
               </div>
             </div>
           {% endfor %}
         </div>
       </div>
-      
       <button class="carousel-nav carousel-next" aria-label="Next">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12l-4.58 4.59z" fill="currentColor"/>
         </svg>
       </button>
     </div>
-    
     <div class="carousel-indicators">
-      <!-- Indicators will be added by JavaScript -->
+      <!-- Indicators injected by JS -->
     </div>
   </section>
 
   <!-- CTA Section -->
   <section class="cta-section">
     <h2>Discover the connections driving digital transformation</h2>
-    <p>Explore the network of agreements, policies and commitments defining the digital future between Europe and Latin America. Visualise complex relationships intuitively.</p>
+    <p>Explore the network of EU-LAC agreements and commitments interactively.</p>
     <a href="{% url 'core:explore' %}" class="btn btn-secondary">View Network Relations</a>
   </section>
-
 {% endblock %}
 
 {% block extra_scripts %}

@@ -12,13 +12,13 @@
   <!-- Main Content -->
   <main class="explore-container">
     <!-- Top Search Bar -->
-    <div class="search-header">
-      <h1>Explore Digital Dialogues</h1>
+    <section class="search-header" role="region" aria-labelledby="search-heading">
+      <h1 id="search-heading">Explore Digital Dialogues</h1>
       <p>Discover the digital transformation agreements and commitments between Europe and Latin America</p>
       
 
       <div class="search-bar-container">
-        <form class="search-bar">
+        <form class="search-bar" role="search" aria-label="Search dialogues">
           <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="#666"/>
           </svg>
@@ -31,45 +31,50 @@
             style="width: 10%;"
             autofocus
             autocomplete="off"
+            aria-describedby="suggestions-list"
+            aria-expanded="false"
+            aria-autocomplete="list"
           />
           <button type="submit" id="search-button">Search</button>
         </form>
         <ul 
           id="suggestions-list" 
           class="suggestions-list"
+          role="listbox"
+          aria-label="Search suggestions"
           >
           <!-- Suggestions will be populated by JavaScript -->
         </ul>
       </div>
       
-      <div id = "active-filters" class="active-filters">
+      <div id="active-filters" class="active-filters" role="region" aria-label="Active filters">
         <!-- Here active filter chips will be shown -->
       </div>
-    </div>
+    </section>
 
     <!-- View Selector Tabs -->
-    <div class="view-selector">
-      <button class="view-tab active" data-view="list">
+    <nav class="view-selector" role="tablist" aria-label="View selector">
+      <button class="view-tab active" data-view="list" role="tab" aria-selected="true" aria-controls="list-view-panel">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3 13h18v-2H3v2zm0-7v2h18V6H3zm0 12h18v-2H3v2z" fill="currentColor"/>
         </svg>
         List
       </button>
-      <!-- <button class="view-tab" data-view="map">
+      <!-- <button class="view-tab" data-view="map" role="tab" aria-selected="false" aria-controls="map-view-panel">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z" fill="currentColor"/>
         </svg>
         Map
       </button> -->
-    </div>
+    </nav>
 
     <!-- Main Content Area with Sidebar and Results -->
     <div class="content-area">
       <!-- Filter Sidebar -->
-      <aside class="filter-sidebar">
+      <aside class="filter-sidebar" role="region" aria-labelledby="filters-heading">
         <div class="filter-header">
-          <h2>Filters</h2>
-          <button class="filter-toggle mobile-only">
+          <h2 id="filters-heading">Filters</h2>
+          <button class="filter-toggle mobile-only" aria-expanded="false" aria-controls="filter-groups" aria-label="Toggle filters">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor"/>
             </svg>
@@ -77,7 +82,7 @@
           <button id="clear-filters" class="clear-filters">Clear all</button>
         </div>
         
-        <div class="filter-groups">
+        <div id="filter-groups" class="filter-groups">
           <!-- Accordion style filters -->
           <div class="filter-accordion">
             <!-- Document Type -->
@@ -246,10 +251,12 @@
               </div>
               <div class="accordion-content">
                 <div class="search-box">
-                  <input type="text" placeholder="Search actor...">
+                  <label for="actor-search" class="sr-only">Search actors</label>
+                  <input type="text" id="actor-search" placeholder="Search actor..." aria-label="Search actors">
                 </div>
                 
-                <div class="filter-options scrollable">
+                <fieldset class="filter-options scrollable">
+                  <legend class="sr-only">Actor Options</legend>
 
                   {% for id, label, count in available_actors %}
                     <label class="filter-checkbox">
@@ -264,7 +271,7 @@
                     </label>
                   {% endfor %}
 
-                </div>
+                </fieldset>
               </div>
             </div>
             
@@ -368,9 +375,10 @@
       <!-- Results Container -->
       <div class="results-container">
         <!-- List View (default) -->
-        <div class="list-view active list-display-mode-list">
+        <section class="list-view active list-display-mode-list" id="list-view-panel" role="region" aria-labelledby="results-heading">
           <div class="results-header">
             <div class="results-summary">
+              <h2 id="results-heading" class="document-title">Search Results</h2>
               <span id="results-count" class="results-count">
                 <!-- results count set by js  -->
               </span>
@@ -380,23 +388,24 @@
             </div>
           </div>
           
-          <div class="documents-list" id="search-results-list">
+          <ul class="documents-list" id="search-results-list" role="list" aria-label="Search results">
             <!-- results populated by js -->
-          </div>
+          </ul>
 
   
           <div class="pagination-container">
-            <div id="pagination" class="pagination">
-              <!-- JS generará los botones “Anterior” / “Siguiente” u otras páginas -->
-            </div>
+            <nav id="pagination" class="pagination" role="navigation" aria-label="Search results pagination">
+              <!-- JS generará los botones "Anterior" / "Siguiente" u otras páginas -->
+            </nav>
           </div>
 
-        </div>
+        </section>
         
         <!-- Map View -->
-        <div class="map-view">
+        <section class="map-view" id="map-view-panel" role="region" aria-labelledby="map-heading">
+          <h2 id="map-heading" class="sr-only">Map View</h2>
           <div class="map-container">
-            <div id="interactive-map">
+            <div id="interactive-map" role="img" aria-label="Interactive map showing document locations">
               <!-- Mapa interactivo será renderizado por JavaScript -->
               <div class="map-placeholder">
                 <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -407,29 +416,29 @@
             </div>
             
             <!-- Map Legend -->
-            <div class="map-legend">
-              <h3>Legend</h3>
+            <aside class="map-legend" role="region" aria-labelledby="map-legend-heading">
+              <h3 id="map-legend-heading">Legend</h3>
               <ul class="legend-items">
                 <li>
-                  <span class="legend-marker" style="background-color: #094EB2;"></span>
+                  <span class="legend-marker" style="background-color: #094EB2;" aria-hidden="true"></span>
                   <span>European Union</span>
                 </li>
                 <li>
-                  <span class="legend-marker" style="background-color: #34A853;"></span>
+                  <span class="legend-marker" style="background-color: #34A853;" aria-hidden="true"></span>
                   <span>Latin America</span>
                 </li>
                 <li>
-                  <span class="legend-marker" style="background-color: #FBBC04;"></span>
+                  <span class="legend-marker" style="background-color: #FBBC04;" aria-hidden="true"></span>
                   <span>Bilateral Agreements</span>
                 </li>
                 <li>
-                  <span class="legend-marker cluster"></span>
+                  <span class="legend-marker cluster" aria-hidden="true"></span>
                   <span>Document cluster</span>
                 </li>
               </ul>
-            </div>
+            </aside>
           </div>
-        </div>
+        </section>
 
         
       </div>

@@ -1,4 +1,5 @@
-  <footer>
+{% load static %}
+<footer>
     <div class="footer-content">
       <div class="footer-col">
         <h3>SPIDERHUB</h3>
@@ -36,6 +37,18 @@
       </div>
     </div>
     <div class="copyright">
-      <p>&copy; 2025 SPIDERHUB. All rights reserved. | Powered by <a href="https://cedia.edu.ec/" style="color: inherit; text-decoration: none;">CEDIA</a></p>
+      <div class="powered-by-section">
+        <div class="powered-by-content">
+          <span class="powered-by-text">Powered by</span>
+          <div class="partner-logos">
+            <img src="{% static 'footer/Logo_Spider_negativo.png' %}" alt="SPIDER EU-LAC Digital Partnership" class="logo-spider">
+            <img src="{% static 'footer/cedia.png' %}" alt="CEDIA" class="logo-cedia">
+          </div>
+        </div>
+        <div class="eu-funding">
+          <img src="{% static 'footer/EN_FundedbytheEU_RGB_NEG.png' %}" alt="Funded by the European Union" class="logo-eu">
+        </div>
+      </div>
+      <p>&copy; 2025 SPIDERHUB. All rights reserved.</p>
     </div>
   </footer>
