@@ -276,6 +276,10 @@ class Document(BaseModel):
          related_name='reviewed_documents',
          help_text="User who completed human review"
      )
+     human_notes = models.TextField(
+         blank=True,
+         help_text="Notes added by human reviewer during review process"
+     )
 
      # --- Many‑to‑many taxonomies ------------------------------------------------
      themes = models.ManyToManyField(Theme, through="DocumentTheme", related_name="documents")
@@ -316,7 +320,7 @@ class Document(BaseModel):
 
      # Admin fields
      created_by = models.ForeignKey(
-         User, on_delete=models.SET_NULL, null=True, related_name='uploaded_documents'
+         User, on_delete=models.SET_NULL, null=True, related_name='uploaded_documents', blank=True
      )
      admin_notes = models.TextField(blank=True)
 
@@ -361,6 +365,7 @@ class Document(BaseModel):
                      self.human_check_status = False
                      self.human_check_date = None
                      self.human_reviewer = None
+                     self.human_notes = ""  # Clear human notes when resetting review status
                      
              except Document.DoesNotExist:
                  pass
