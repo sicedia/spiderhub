@@ -222,7 +222,7 @@ class EUPolicy(BaseModel):
 class Document(BaseModel):
      """AI-extracted synopsis generated from one or more source documents."""
  
-     title = models.CharField(max_length=300)
+     title = models.CharField(max_length=500)
      event_date = models.DateField(null=True, blank=True)
      
      # Event format field
@@ -368,34 +368,8 @@ class Document(BaseModel):
          ]
 
      def save(self, *args, **kwargs):
-         # Check if this is an update (not a new creation)
-         if self.pk:
-             # Get the original object from database
-             try:
-                 original = Document.objects.get(pk=self.pk)
-                 # Check if any significant field has been modified
-                 significant_fields = [
-                     'title', 'executive_summary', 'document_type', 'event_date', 
-                     'event_format', 'event_city_id', 'event_country_id', 'lead_country_id',
-                     'coverage_scope', 'legal_bindingness', 'eu_policy_alignments', 'score', 'admin_notes'
-                 ]
-                 
-                 fields_changed = any(
-                     getattr(self, field) != getattr(original, field) 
-                     for field in significant_fields
-                 )
-                 
-                 # Only reset human check if document was previously reviewed and fields have changed
-                 if fields_changed and original.human_check_status:
-                     # Mark as needing human review again
-                     self.human_check_status = False
-                     self.human_check_date = None
-                     self.human_reviewer = None
-                     self.human_notes = ""  # Clear human notes when resetting review status
-                     
-             except Document.DoesNotExist:
-                 pass
          
+    
          super().save(*args, **kwargs)
 
      def mark_human_reviewed(self, user):

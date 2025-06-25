@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import cache_page
 from django.db.models import Q, Prefetch
 from .models import (
-    Document, Country, City, Actor, Topic, Theme, BeneficiaryGroup,
+    Document, Country, City, Actor, EUPolicy, Topic, Theme, BeneficiaryGroup,
     KPI, Commitment, SDG, PracticalApplication
 )
 
@@ -30,7 +30,6 @@ def explore_documents(request):
     
     context = {
         'documents': documents,
-        'locations': Location.objects.all(),
         'actors': Actor.objects.all(),
         'topics': Topic.objects.all(),
         'query': query,
@@ -55,6 +54,8 @@ def document_detail(request, document_id):
         Prefetch('commitments', queryset=Commitment.objects.only('id', 'title')),
         Prefetch('sdgs', queryset=SDG.objects.only('id', 'title')),
         Prefetch('practical_applications', queryset=PracticalApplication.objects.only('id', 'name')),
+        # Agregado: prefetch para EU policy alignments
+        Prefetch('eu_policy_alignments', queryset=EUPolicy.objects.only('id', 'name')),
         # limitamos a 5 relacionados
         Prefetch('related_from', queryset=Document.objects.only('id', 'title')[:5]),
     )

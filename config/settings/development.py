@@ -17,3 +17,10 @@ DATABASES = {
 }
 
 
+
+
+# File upload limits (add this near the end of the file)
+FILE_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50MB  
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 20000  # Increase from default 1000
+
