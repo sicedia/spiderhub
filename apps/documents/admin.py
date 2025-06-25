@@ -298,8 +298,7 @@ class DocumentThemeInline(admin.TabularInline):
     verbose_name = "Theme Relationship"
     verbose_name_plural = "Theme Relationships"
     
-    # Remove this line - it conflicts with autocomplete_fields
-    # raw_id_fields = ('theme',)
+    max_num = 50
     
     can_delete = True
     show_change_link = True
@@ -312,6 +311,8 @@ class DocumentActorInline(admin.TabularInline):
     classes = ('collapse',)
     verbose_name = "Actor Relationship"
     verbose_name_plural = "Actor Relationships"
+    
+    max_num = 50
     
     can_delete = True
     show_change_link = True
@@ -328,6 +329,8 @@ class PracticalApplicationInline(admin.StackedInline):
         models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 80})},
     }
     
+    max_num = 50
+    
     can_delete = True
     show_change_link = True
 
@@ -342,6 +345,8 @@ class CommitmentInline(admin.StackedInline):
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 80})},
     }
+    
+    max_num = 50
     
     can_delete = True
     show_change_link = True
@@ -560,64 +565,58 @@ class DocumentAdmin(admin.ModelAdmin):
     source_files_count.short_description = 'Files'
 
     def save_model(self, request, obj, form, change):
-        if form.errors:
-            print("Form errors:", form.errors)
-        super().save_model(request, obj, form, change)
-    
-    def save_formset(self, request, form, formset, change):
-        if formset.errors:
-            print("Formset errors:", formset.errors)
-        super().save_formset(request, form, formset, change)
-
-    def save_model(self, request, obj, form, change):
-        # Store original human check status before save
-        original_human_check = None
-        if change:
-            try:
-                original = Document.objects.get(pk=obj.pk)
-                original_human_check = original.human_check_status
-            except Document.DoesNotExist:
-                pass
-        
         # Set created_by if it's a new document
         if not change and not obj.created_by:
             obj.created_by = request.user
-        
+
         # Handle manual human check status changes
-        if change and 'human_check_status' in form.changed_data and obj.human_check_status:
-            obj.mark_human_reviewed(request.user)
-        else:
-            # Normal save which includes automatic reset logic
-            super().save_model(request, obj, form, change)
-            
-            # Check if human status was automatically reset and inform user
-            if (change and original_human_check and not obj.human_check_status 
-                and 'human_check_status' not in form.changed_data):
+        if change and 'human_check_status' in form.changed_data:
+            if obj.human_check_status:
+                # User checked the human review box - save first, then mark as reviewed
+                super().save_model(request, obj, form, change)
+                try:
+                    obj.mark_human_reviewed(request.user)
+                    self.message_user(
+                        request,
+                        f"✅ Document marked as human reviewed by {request.user.username}",
+                        level='success'
+                    )
+                except Exception as e:
+                    self.message_user(
+                        request,
+                        f"⚠️ Error updating review status: {str(e)}",
+                        level='error'
+                    )
+            else:
+                # User unchecked the box - clear review data and save
+                obj.human_check_date = None
+                obj.human_reviewer = None
+                obj.human_notes = ""
+                super().save_model(request, obj, form, change)
                 self.message_user(
                     request,
-                    "⚠️ Document was automatically marked as needing human review because significant fields were modified.",
-                    level='warning'
+                    "📝 Document marked as needing human review",
+                    level='info'
                 )
+            return  # Exit early to prevent double save
+
+        # Normal save - just save without modifications
+        super().save_model(request, obj, form, change)
+            
+            # REMOVE THIS PART - it's automatically unchecking the human review
+            # Check if human status was automatically reset and inform user
+            # if (change and original_human_check and not obj.human_check_status 
+            #     and 'human_check_status' not in form.changed_data):
+            #     self.message_user(
+            #         request,
+            #         "⚠️ Document was automatically marked as needing human review because significant fields were modified.",
+            #         level='warning'
+            #     )
 
     def save_formset(self, request, form, formset, change):
         """Handle changes in inline formsets (themes, actors, etc.)"""
         super().save_formset(request, form, formset, change)
         
-        # If any inline formsets were changed, reset human check status
-        if change and formset.has_changed():
-            obj = form.instance
-            if obj.human_check_status:
-                obj.human_check_status = False
-                obj.human_check_date = None
-                obj.human_reviewer = None
-                obj.save(update_fields=['human_check_status', 'human_check_date', 'human_reviewer'])
-                
-                self.message_user(
-                    request,
-                    f"⚠️ Document marked as needing human review because {formset.model._meta.verbose_name_plural.lower()} were modified.",
-                    level='warning'
-                )
-
     def mark_as_human_reviewed(self, request, queryset):
         """Action to mark selected documents as human reviewed"""
         count = 0

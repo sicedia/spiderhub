@@ -143,29 +143,6 @@
           <h2>Technical Details</h2>
           <div class="technical-grid">
           
-            <!-- Agreement Type (from Commitment.commitment_class) -->
-            <div class="technical-item">
-              <div class="technical-label">Agreement Type</div>
-              <div class="technical-value">
-                {% with agreement_types=document.get_agreement_types %}
-                  {% if agreement_types %}
-                    {% for type in agreement_types %}
-                      <span class="agreement-type">{{ type }}</span>{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                  {% else %}
-                      <div class="country-code"></div>
-                  {% endif %}
-                {% endwith %}
-              </div>
-            </div>
-
-            <!-- Legal Character -->
-            <div class="technical-item">
-              <div class="technical-label">Legal Character</div>
-              <div class="technical-value">
-                {{ document.get_legal_bindingness_display }}
-              </div>
-            </div>
 
             <!-- Scope -->
             <div class="technical-item">
@@ -179,7 +156,7 @@
             <div class="technical-item">
               <div class="technical-label">Lead Country</div>
               <div class="technical-value">
-                {{ document.country|default:"N/A" }}
+                {{ document.lead_country|default:"N/A" }}
               </div>
             </div>
 
@@ -205,15 +182,13 @@
                 <h3>EU Policy Alignment</h3>
               </div>
               <div class="alignment-content">
-                {% with policies=document.extra.eu_policy_alignment %}
-                  {% if policies %}
-                    {% for policy in policies %}
-                      <div class="policy-tag">{{ policy }}</div>
-                    {% endfor %}
-                  {% else %}
-                    <div class="policy-tag">No EU policy alignment defined.</div>
-                  {% endif %}
-                {% endwith %}
+                {% if document.eu_policy_alignments.exists %}
+                  {% for policy in document.eu_policy_alignments.all %}
+                    <div class="policy-tag">{{ policy.name }}</div>
+                  {% endfor %}
+                {% else %}
+                  <div class="policy-tag">No EU policy alignment defined.</div>
+                {% endif %}
               </div>
             </div>
 
