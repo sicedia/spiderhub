@@ -1,16 +1,16 @@
 /**
- * Coverage Scope Bar Chart Module
- * Renders horizontal bar chart showing agreements by coverage scope
+ * Coverage Scope Polar Area Chart Module
+ * Renders polar area chart showing agreements by coverage scope
  */
 
 /**
- * Render horizontal bar chart of coverage scopes.
+ * Render polar area chart of coverage scopes.
  * @param {{bilateral:number, subRegional:number, regional:number, multilateral:number, global:number}} counts
  */
 export const renderCoverageBar = async (counts) => {
   const container = document.getElementById('coverage-bar-chart');
   if (!container) {
-    console.warn('Coverage bar chart container not found');
+    console.warn('Coverage chart container not found');
     return;
   }
 
@@ -40,126 +40,209 @@ export const renderCoverageBar = async (counts) => {
     return;
   }
 
-  // Check if chartjs-plugin-datalabels is available
-  const ChartDataLabels = window.ChartDataLabels;
-  const plugins = ChartDataLabels ? [ChartDataLabels] : [];
-
   const labels = [
-    'Regional',
-    'Bilateral', 
-    'Multilateral',
     'Global',
+    'Multilateral',
+    'Regional',
     'Sub-regional',
-    'Uncategorised',
+    'Bilateral',
   ];
 
   const data = [
-    counts.regional        ?? 0,
-    counts.bilateral       ?? 0,
-    counts.multilateral    ?? 0,
     counts.global          ?? 0,
+    counts.multilateral    ?? 0,
+    counts.regional        ?? 0,
     counts.subRegional     ?? 0,
-    counts.uncategorised   ?? 0,
+    counts.bilateral       ?? 0,
   ];
 
+  // Create gradient colors for polar area
+  const backgroundColors = [
+    '#FF6B6B', // Global - Red
+    '#4ECDC4', // Multilateral - Teal
+    '#45B7D1', // Regional - Blue
+    '#96CEB4', // Sub-regional - Green
+    '#FECA57', // Bilateral - Yellow
+  ];
+
+  const borderColors = [
+    '#FF5252',
+    '#26C6DA',
+    '#2196F3',
+    '#66BB6A',
+    '#FFC107',
+    '#9C27B0',
+  ];
+
+  // Calculate total for statistics
+  const total = data.reduce((sum, value) => sum + value, 0);
+  const maxValue = Math.max(...data);
+
   canvas.__chart = new Chart(ctx, {
-    type: 'bar',
-    plugins: plugins,
+    type: 'polarArea',
     data: {
       labels,
       datasets: [{
-        label: 'Agreements',
         data,
-        backgroundColor: [
-          '#094EB2',
-          '#0f63c9',
-          '#1680e0',
-          '#1c9cf0',
-          '#22b0ff',
-        ],
-        borderRadius: 6,
-        maxBarThickness: 28,
-        borderWidth: 0,
+        backgroundColor: backgroundColors.map(color => color + '80'), // Add transparency
+        borderColor: borderColors,
+        borderWidth: 2,
+        hoverBorderWidth: 3,
+        hoverBackgroundColor: backgroundColors.map(color => color + 'CC'),
       }],
     },
     options: {
-      indexAxis: 'y',
       responsive: true,
       maintainAspectRatio: false,
       scales: {
-        x: {
+        r: {
           beginAtZero: true,
-          ticks: { 
-            precision: 0,
+          max: maxValue > 0 ? Math.ceil(maxValue * 1.2) : 10,
+          ticks: {
+            stepSize: Math.ceil(maxValue / 5) || 1,
             font: {
               family: 'Roboto',
-              size: 12
+              size: 11
             },
-            color: '#666'
+            color: '#666',
+            backdropColor: 'rgba(255, 255, 255, 0.8)',
+            backdropPadding: 4,
           },
-          grid: { 
-            color: 'rgba(9, 78, 178, 0.1)',
-            lineWidth: 1
+          grid: {
+            color: 'rgba(0, 0, 0, 0.1)',
+            lineWidth: 1,
           },
-        },
-        y: {
-          grid: { display: false },
-          ticks: {
+          angleLines: {
+            color: 'rgba(0, 0, 0, 0.1)',
+            lineWidth: 1,
+          },
+          pointLabels: {
             font: {
               family: 'Roboto',
               size: 12,
               weight: '500'
             },
-            color: '#333'
+            color: '#333',
+            padding: 15,
           }
-        },
+        }
       },
       plugins: {
-        legend: { display: false },
-        datalabels: ChartDataLabels ? {
-          anchor: 'end',
-          align: 'right',
-          color: '#333',
-          font: { 
-            weight: '600',
-            family: 'Roboto',
-            size: 11
-          },
-          formatter: v => v,
-          padding: 4,
-        } : undefined,
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            usePointStyle: true,
+            pointStyle: 'circle',
+            padding: 20,
+            font: {
+              family: 'Roboto',
+              size: 12,
+              weight: '500'
+            },
+            color: '#333',
+            generateLabels: (chart) => {
+              const data = chart.data;
+              return data.labels.map((label, index) => {
+                const value = data.datasets[0].data[index];
+                const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : '0.0';
+                return {
+                  text: `${label}: ${value} (${percentage}%)`,
+                  fillStyle: backgroundColors[index],
+                  strokeStyle: borderColors[index],
+                  pointStyle: 'circle',
+                  hidden: false,
+                  index: index
+                };
+              });
+            }
+          }
+        },
         tooltip: {
           backgroundColor: 'rgba(255, 255, 255, 0.95)',
           titleColor: '#333',
           bodyColor: '#666',
-          borderColor: '#094EB2',
+          borderColor: '#ddd',
           borderWidth: 1,
-          cornerRadius: 6,
+          cornerRadius: 8,
           titleFont: {
             family: 'Roboto',
-            weight: '600'
+            weight: '600',
+            size: 14
           },
           bodyFont: {
-            family: 'Roboto'
+            family: 'Roboto',
+            size: 13
           },
           callbacks: {
-            title: (context) => '',
-            label: (context) => ` ${context.label}: ${context.parsed.x} agreement${context.parsed.x !== 1 ? 's' : ''}`,
+            title: (context) => context[0].label,
+            label: (context) => {
+              const value = context.parsed.r;
+              const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : '0.0';
+              return [
+                `Count: ${value} agreement${value !== 1 ? 's' : ''}`,
+                `Percentage: ${percentage}%`
+              ];
+            },
           },
+          displayColors: true,
+          padding: 12,
         },
       },
       animation: {
-        duration: 700,
-        easing: 'easeOutCubic',
+        duration: 1200,
+        easing: 'easeOutQuart',
         onComplete: () => {
           container.classList.remove('loading');
         },
       },
       interaction: {
         intersect: false,
-        mode: 'index'
+      },
+      layout: {
+        padding: {
+          left: 20,
+          right: 20,
+          top: 20,
+          bottom: 20
+        }
       }
     },
+    plugins: [{
+      id: 'centerStats',
+      beforeDraw: (chart) => {
+        if (total === 0) return;
+        
+        const { ctx, width, height } = chart;
+        const centerX = width / 2;
+        const centerY = height / 2;
+        
+        ctx.save();
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        
+        // Background circle
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, 35, 0, 2 * Math.PI);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.1)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        
+        // Total count
+        ctx.font = 'bold 18px Roboto';
+        ctx.fillStyle = '#2c3e50';
+        ctx.fillText(total.toString(), centerX, centerY - 8);
+        
+        // Label
+        ctx.font = '10px Roboto';
+        ctx.fillStyle = '#7f8c8d';
+        ctx.fillText('TOTAL', centerX, centerY + 12);
+        
+        ctx.restore();
+      }
+    }]
   });
 
   // Handle responsive resize

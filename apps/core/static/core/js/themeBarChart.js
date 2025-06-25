@@ -1,5 +1,5 @@
 /**
- * Agreements by Theme – vertical bar chart.
+ * Agreements by Theme – pie chart for better proportion visualization.
  * Recibe { "<Theme label>": <nº acuerdos>, … }
  */
 export const renderThemeBar = async (counts) => {
@@ -25,45 +25,61 @@ export const renderThemeBar = async (counts) => {
 
   const labels = Object.keys(counts);
   const data   = Object.values(counts);
+  
+  // Generate distinct colors for each theme
+  const colors = [
+    '#094EB2', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4',
+    '#FECA57', '#FF9FF3', '#54A0FF', '#5F27CD', '#00D2D3',
+    '#FF9F43', '#10AC84', '#EE5A6F', '#C44569', '#F8B500'
+  ];
 
   canvas.__chart = new Chart(ctx, {
-    type: 'bar',
+    type: 'pie',
     plugins,
     data: {
       labels,
       datasets: [{
         label: 'Agreements',
         data,
-        borderRadius: 6,
-        backgroundColor: '#094EB2',
-        maxBarThickness: 32,
+        backgroundColor: colors.slice(0, labels.length),
+        borderColor: '#fff',
+        borderWidth: 2,
+        hoverBorderWidth: 3,
+        hoverOffset: 8
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      scales: {
-        x: { grid: { display: false },
-             ticks: { font: { family: 'Roboto', size: 12 }, color: '#333' } },
-        y: { beginAtZero: true,
-             ticks: { precision: 0,
-                      font: { family: 'Roboto', size: 12 }, color: '#666' },
-             grid: { color: 'rgba(9, 78, 178, 0.1)' } }
-      },
       plugins: {
-        legend: { display: false },
+        legend: {
+          display: true,
+          position: 'right',
+          labels: {
+            padding: 20,
+            font: { family: 'Roboto', size: 12 },
+            color: '#333',
+            usePointStyle: true,
+            pointStyle: 'circle'
+          }
+        },
         datalabels: ChartDataLabels ? {
-          anchor: 'end',
-          align: 'top',
+          color: '#fff',
           font: { family: 'Roboto', weight: '600', size: 11 },
-          color: '#333',
-          formatter: v => v
+          formatter: (value, ctx) => {
+            const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+            const percentage = ((value / total) * 100).toFixed(1);
+            return percentage > 5 ? `${percentage}%` : ''; // Only show labels for segments > 5%
+          }
         } : undefined,
         tooltip: {
           callbacks: {
             title: ctx => ctx[0].label,
-            label: ctx =>
-              `${ctx.parsed.y} agreement${ctx.parsed.y === 1 ? '' : 's'}`
+            label: ctx => {
+              const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+              const percentage = ((ctx.parsed / total) * 100).toFixed(1);
+              return `${ctx.parsed} agreement${ctx.parsed === 1 ? '' : 's'} (${percentage}%)`;
+            }
           }
         }
       },

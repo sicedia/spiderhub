@@ -4,7 +4,8 @@ class AnalysisPageManager {
     this.charts = [
       'choropleth-chart', 'gantt-chart', 'review-timeline-chart', 'histogram-chart',
       'theme-bar-chart', 'heatmap-chart', 'sankey-theme-chart', 'actor-bar-chart',
-      'beneficiary-bar-chart', 'coverage-bar-chart', 'radar-chart', 'pie-chart'
+      'beneficiary-bar-chart', 'coverage-bar-chart', 'radar-chart', 'pie-chart',
+      'lead-countries-chart'  
     ];
     
     // Chart initialization constants
@@ -21,12 +22,12 @@ class AnalysisPageManager {
     this.initializeDataGrid();
     this.initializeSdgRadar();
     this.initializeLegalBindingPie();
-    this.initializeCountryChoropleth();
     this.initializeCoverageBar();
     this.initializeThemeBar();
     this.initializeThemeBeneficiaryHeatmap();
     this.initializeActorBar();
     this.initializeBeneficiaryBar();
+    this.initializeLeadCountryChart();
   }
 
   // Retrieve data from context
@@ -382,6 +383,30 @@ class AnalysisPageManager {
   }
 
   /**
+   * Initialize lead country chart
+   */
+  async initializeLeadCountryChart() {
+    console.log('=== LEAD COUNTRY CHART DEBUG ===');
+    console.log('Full analysis data:', this.analysisData);
+    console.log('Lead country counts data:', this.analysisData.lead_country_counts);
+    console.log('Type of lead_country_counts:', typeof this.analysisData.lead_country_counts);
+    
+    if (window.Chart) {
+      await this.initializeChart(
+        'Lead Country Chart',
+        window.renderLeadCountryChart,
+        () => {
+          const data = this.analysisData.lead_country_counts || {};
+          console.log('Data being passed to chart:', data);
+          return data;
+        }
+      );
+    } else {
+      setTimeout(() => this.initializeLeadCountryChart(), this.CHART_RETRY_DELAY);
+    }
+  }
+
+  /**
    * Initialize SDG Radar Chart
    */
   async initializeSdgRadar() {
@@ -424,21 +449,6 @@ class AnalysisPageManager {
     return this.analysisData.binding_counts;
   }
 
-  /**
-   * Initialize choropleth map
-   */
-  async initializeCountryChoropleth() {
-    // Wait for Chart.js to be available
-    if (window.Chart) {
-      await this.initializeChart(
-        'Country Choropleth',
-        window.renderCountryChoropleth,
-        () => this.fetchCountryCounts()
-      );
-    } else {
-      setTimeout(() => this.initializeCountryChoropleth(), this.CHART_RETRY_DELAY);
-    }
-  }
 
   /**
    * Mock country data - in production this would fetch from API
@@ -551,3 +561,4 @@ if (!document.getElementById('modal-animations')) {
 document.addEventListener('DOMContentLoaded', () => {
   new AnalysisPageManager();
 });
+

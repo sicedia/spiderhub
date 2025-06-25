@@ -75,12 +75,12 @@
       
       <!-- Strategic Alignment Section -->
       <section role="region" aria-labelledby="strategic-label" class="analysis-block" id="strategic-section">
-        <h2 id="strategic-label" class="block-title">Strategic Alignment</h2>
+        <h2 id="strategic-label" class="block-title">Lead Countries</h2>
         
         <div class="chart-container full-width">
           <h3 class="visually-hidden">Documents by Lead Country</h3>
-          <div class="chart-placeholder" id="choropleth-chart" role="img" tabindex="0" aria-label="Choropleth map showing the number of documents led by each country">
-            <div class="placeholder-content">Choropleth Map - Lead Countries</div>
+          <div class="chart-placeholder" id="lead-countries-chart" role="img" tabindex="0" aria-label="Horizontal bar chart showing the number of documents led by each country">
+            <div class="placeholder-content">Lead Countries Chart</div>
           </div>
         </div>
       </section>
@@ -156,16 +156,16 @@
 
   <script type="module">
     import { renderSdgRadar } from "{% static 'core/js/sdgRadarChart.js' %}";
-    import { renderCountryChoropleth } from "{% static 'core/js/countryChoropleth.js' %}";
     import { renderLegalBindingPie } from "{% static 'core/js/legalBindingPie.js' %}";
     import { renderCoverageBar } from "{% static 'core/js/coverageScopeBar.js' %}";
+    import { renderLeadCountryChart } from "{% static 'core/js/leadCountryChart.js' %}";
     import { renderThemeBar }           from "{% static 'core/js/themeBarChart.js' %}";
     import { renderThemeBeneficiaryHeatmap } from "{% static 'core/js/themeBeneficiaryHeatmap.js' %}";
     import { renderActorBar } from "{% static 'core/js/actorBarChart.js' %}";
     import { renderBeneficiaryBar }  from "{% static 'core/js/beneficiaryBarChart.js' %}";
     // Make it available globally for the analysis page manager
     window.renderSdgRadar = renderSdgRadar;
-    window.renderCountryChoropleth = renderCountryChoropleth;
+    window.renderLeadCountryChart = renderLeadCountryChart;
     window.renderLegalBindingPie = renderLegalBindingPie;
     window.renderCoverageBar = renderCoverageBar;
     window.renderThemeBar = renderThemeBar;
