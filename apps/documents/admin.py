@@ -7,7 +7,7 @@ from .models import (
     Country, City,    
     Theme, Actor, BeneficiaryGroup, BeneficiaryGroupRaw, SDG, Document,
     DocumentTheme, DocumentActor, DocumentBeneficiaryGroupRaw,
-    PracticalApplication, Commitment, CommitmentDetail, KPI, SourceFile  # SourceFile was missing
+    PracticalApplication, Commitment, CommitmentDetail, KPI, SourceFile, EUPolicy  # SourceFile was missing
 )
 
 # Custom admin site configuration
@@ -219,6 +219,55 @@ class SDGAdmin(admin.ModelAdmin):
         return format_html('<strong>{}</strong>', obj.label)
     label_display.short_description = 'Label'
 
+@admin.register(EUPolicy)
+class EUPolicyAdmin(admin.ModelAdmin):
+    list_display = ('name_display', 'description_preview', 'documents_count', 'created_at')
+    list_display_links = ('name_display',)
+    search_fields = ('name', 'description')
+    ordering = ('name',)
+    readonly_fields = ('created_at', 'updated_at', 'name_normalized', 'search_vector')
+    list_per_page = 25
+    
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('name', 'description'),
+            'classes': ('wide',)
+        }),
+        ('Metadata', {
+            'fields': ('created_at', 'updated_at', 'name_normalized', 'search_vector'),
+            'classes': ('collapse',)
+        }),
+    )
+    
+    formfield_overrides = {
+        models.TextField: {'widget': Textarea(attrs={'rows': 4, 'cols': 80})},
+        models.CharField: {'widget': TextInput(attrs={'size': '60'})},
+    }
+    
+    def name_display(self, obj):
+        return format_html('<strong style="color: #007cba;">🇪🇺 {}</strong>', obj.name)
+    name_display.short_description = 'Policy Name'
+    
+    def description_preview(self, obj):
+        if obj.description:
+            return obj.description[:100] + "..." if len(obj.description) > 100 else obj.description
+        return "-"
+    description_preview.short_description = 'Description Preview'
+    
+    def documents_count(self, obj):
+        count = obj.documents.count()
+        if count > 0:
+            return format_html(
+                '<span style="background-color: #28a745; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">📄 {}</span>',
+                count
+            )
+        return '-'
+    documents_count.short_description = 'Documents'
+    
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.prefetch_related('documents')
+
 # Enhanced Inline classes for Document
 class SourceFileInline(admin.TabularInline):
     model = SourceFile
@@ -305,7 +354,7 @@ class DocumentAdmin(admin.ModelAdmin):
         'themes__label', 'actors__label'
     )
     date_hierarchy = 'event_date'
-    filter_horizontal = ('beneficiary_groups', 'sdgs', 'countries_involved')
+    filter_horizontal = ('beneficiary_groups', 'sdgs', 'countries_involved', 'eu_policy_alignments')
     readonly_fields = ('created_at', 'updated_at', 'title_normalized', 'executive_summary_normalized', 'search_vector', 'ai_check_date')
     autocomplete_fields = ('created_by', 'event_city', 'event_country', 'lead_country', 'human_reviewer')
     list_per_page = 20
@@ -343,7 +392,7 @@ class DocumentAdmin(admin.ModelAdmin):
             'classes': ('wide',)
         }),
         ('🔗 Direct Relationships', {
-            'fields': ('beneficiary_groups', 'sdgs'),
+            'fields': ('beneficiary_groups', 'sdgs', 'eu_policy_alignments'),
             'classes': ('wide',)
         }),
         ('👤 Admin Fields', {

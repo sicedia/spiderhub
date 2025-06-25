@@ -1,6 +1,6 @@
 {% extends "core/base.html" %}
 {% load static %}
-{% block title %}SPIDERHUB: Explorar Diálogos - Transformación Digital UE - AL{% endblock %}
+{% block title %}SPIDERHUB: Analysis Dashboard - EU-LATAM Digital Transformation{% endblock %}
 {% block extra_head %}  
 <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
 <link rel="stylesheet" href="{% static 'core/css/home.css' %}">
@@ -9,21 +9,23 @@
 
 {% block content %}
   <main role="main" class="analysis-container">
-    <div class="analysis-hero">
+    <!-- Hero Section -->
+    <section class="analysis-hero">
       <div class="analysis-hero-content">
-        <h1>Data Analysis</h1>
-        <p>Advanced analytics and insights into EU-LAC digital transformation initiatives</p>
+        <h1>Analysis Dashboard</h1>
+        <p>Comprehensive insights into EU-LATAM digital transformation agreements, partnerships, and collaborative initiatives.</p>
       </div>
-    </div>
+    </section>
 
     <div class="analysis-content">
-      <!-- 2.1 Overview Section -->
-      <section role="region" aria-labelledby="overview-label" class="analysis-block" id="overview-section">
-        <h2 id="overview-label" class="block-title">Overview</h2>
+      <!-- 1. Executive Overview - Key Metrics -->
+      <section role="region" aria-labelledby="overview-label" class="analysis-block priority-high" id="overview-section">
+        <h2 id="overview-label" class="block-title">Executive Overview</h2>
+        <p class="section-description">Key performance indicators showing the scope and scale of EU-LATAM digital cooperation at a glance.</p>
         
-        <!-- Summary Cards -->
+        <!-- Summary Cards in logical order -->
         <div class="summary-cards">
-          <div class="summary-card">
+          <div class="summary-card" data-tooltip="Total number of analyzed policy documents, agreements, and initiatives in the system">
             <div class="card-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" fill="#094EB2"/>
@@ -35,7 +37,19 @@
             </div>
           </div>
           
-          <div class="summary-card">
+          <div class="summary-card" data-tooltip="Number of currently active bilateral and multilateral agreements between EU and LATAM countries">
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1.5V6H9V1.5L3 7V9H21ZM21 10H3V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V10Z" fill="#34A853"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-number">{{ summary.total_agreements }}</div>
+              <div class="card-label">Active Agreements</div>
+            </div>
+          </div>
+
+          <div class="summary-card" data-tooltip="Countries from both EU and LATAM regions actively participating in digital transformation initiatives">
             <div class="card-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2L2 7V10C2 16 6 20.5 12 22C18 20.5 22 16 22 10V7L12 2Z" fill="#FBBC04"/>
@@ -43,96 +57,233 @@
             </div>
             <div class="card-content">
               <div class="card-number">{{ summary.active_countries }}</div>
-              <div class="card-label">Active Countries</div>
+              <div class="card-label">Participating Countries</div>
+            </div>
+          </div>
+
+          <div class="summary-card" data-tooltip="Ongoing diplomatic conversations, policy dialogues, and strategic discussions between regions">
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 6L18.29 8.29L13.41 13.17L9.41 9.17L2 16.59L3.41 18L9.41 12L13.41 16L19.71 9.71L22 12V6H16Z" fill="#EA4335"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-number">{{ summary.total_dialogues }}</div>
+              <div class="card-label">Active Dialogues</div>
             </div>
           </div>
         </div>
       </section>
 
-        <!-- SDG Alignment Section -->
-      <section role="region" aria-labelledby="sdg-label" class="analysis-block" id="sdg-section">
-        <h2 id="sdg-label" class="block-title">SDG Alignment</h2>
-        
-        <div class="chart-container full-width chart-radar">
-          <h3 class="visually-hidden">SDG Alignment</h3>
-          <div class="chart-placeholder" id="radar-chart" role="img" tabindex="0" aria-label="Radar chart showing alignment with Sustainable Development Goals across different dimensions">
-            <div class="placeholder-content">Radar Chart - SDG Alignment</div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Geography & Coverage Section -->
-      <section role="region" aria-labelledby="geography-label" class="analysis-block" id="geography-section">
-        <h2 id="geography-label" class="block-title">Geography & Coverage</h2>
-        
-        <div class="chart-container full-width">
-          <h3 class="visually-hidden">Coverage Scope Distribution</h3>
-          <div class="chart-placeholder" id="coverage-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing the distribution of different coverage scopes across documents">
-            <div class="placeholder-content">Bar Chart - Coverage Scope</div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Strategic Alignment Section -->
-      <section role="region" aria-labelledby="strategic-label" class="analysis-block" id="strategic-section">
-        <h2 id="strategic-label" class="block-title">Lead Countries</h2>
-        
-        <div class="chart-container full-width">
-          <h3 class="visually-hidden">Documents by Lead Country</h3>
-          <div class="chart-placeholder" id="lead-countries-chart" role="img" tabindex="0" aria-label="Horizontal bar chart showing the number of documents led by each country">
-            <div class="placeholder-content">Lead Countries Chart</div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Legal Bindingness Section -->
-      <section role="region" aria-labelledby="legal-label" class="analysis-block" id="legal-section">
-        <h2 id="legal-label" class="block-title">Legal Bindingness</h2>
-        
-        <div class="chart-container full-width">
-          <h3 class="visually-hidden">Legal Bindingness</h3>
-          <div class="chart-placeholder" id="pie-chart" role="img" tabindex="0" aria-label="Pie chart showing the distribution of legal bindingness levels across documents">
-            <div class="placeholder-content">Pie Chart - Legal Bindingness</div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- 2.4 Thematic Focus Section -->
-      <section role="region" aria-labelledby="thematic-label" class="analysis-block" id="thematic-section">
-        <h2 id="thematic-label" class="block-title">Thematic Focus</h2>
-        
-        <div class="chart-container full-width">
-          <h3 class="visually-hidden">Agreements by Theme</h3>
-          <div class="chart-placeholder" id="theme-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing the number of agreements by thematic category">
-            <div class="placeholder-content">Bar Chart - Agreements by Theme</div>
-          </div>
-        </div>
-        
-        <!-- <div class="chart-container full-width">
-          <h3 class="visually-hidden">Theme × Beneficiary Matrix</h3>
-          <div class="chart-placeholder" id="heatmap-chart" role="img" tabindex="0" aria-label="Heatmap showing the relationship between themes and beneficiaries">
-            <div class="placeholder-content">Heatmap - Theme × Beneficiary</div>
-          </div>
-        </div> -->
-      </section>
-      
-      <!-- 2.5 Actors & Beneficiaries Section -->
-      <section role="region" aria-labelledby="actors-label" class="analysis-block" id="actors-section">
-        <h2 id="actors-label" class="block-title">Actors & Beneficiaries</h2>
+      <div class="section-separator"></div>
+
+      <!-- 2. Strategic Alignment - High-level insights -->
+      <section role="region" aria-labelledby="strategic-label" class="analysis-block priority-high" id="strategic-section">
+        <h2 id="strategic-label" class="block-title">Strategic Alignment</h2>
+        <p class="section-description">Analyze how current agreements align with global sustainability goals and assess their legal enforceability framework.</p>
         
         <div class="chart-grid">
-          <div class="chart-container chart-left">
-            <h3 class="visually-hidden">Agreements by Actor Type</h3>
-            <div class="chart-placeholder" id="actor-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing the number of agreements by actor type">
-              <div class="placeholder-content">Bar Chart - Agreements by Actor Type</div>
+          <div class="chart-container">
+            <div class="chart-header">
+              <h3>SDG Alignment Overview</h3>
+              <p class="chart-description">Visualizes how well EU-LATAM digital agreements align with the 17 UN Sustainable Development Goals. Higher values indicate stronger alignment.</p>
+            </div>
+            <div class="chart-placeholder chart-radar" id="radar-chart" role="img" tabindex="0" aria-label="Radar chart showing alignment with Sustainable Development Goals">
+              <div class="placeholder-content">
+                <div class="chart-icon">📊</div>
+                <div>SDG Alignment Radar</div>
+                <small>Hover to see detailed SDG breakdown</small>
+              </div>
             </div>
           </div>
           
-          <div class="chart-container chart-right">
-            <h3 class="visually-hidden">Beneficiary Categories</h3>
-            <div class="chart-placeholder" id="beneficiary-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing the count of different beneficiary categories">
-              <div class="placeholder-content">Bar Chart - Beneficiary Category Counts</div>
+          <div class="chart-container">
+            <div class="chart-header">
+              <h3>Legal Bindingness Distribution</h3>
+              <p class="chart-description">Shows the proportion of legally binding vs. non-binding agreements, indicating the enforcement strength of cooperation frameworks.</p>
             </div>
+            <div class="chart-placeholder" id="pie-chart" role="img" tabindex="0" aria-label="Pie chart showing legal bindingness distribution">
+              <div class="placeholder-content">
+                <div class="chart-icon">🥧</div>
+                <div>Legal Framework Analysis</div>
+                <small>Click segments for detailed breakdown</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Geographic & Leadership Analysis -->
+      <section role="region" aria-labelledby="geography-label" class="analysis-block priority-medium" id="geography-section">
+        <h2 id="geography-label" class="block-title">Geographic Distribution & Leadership</h2>
+        <p class="section-description">Identify regional leadership patterns and understand the geographic scope of digital cooperation initiatives.</p>
+        
+        <div class="chart-grid">
+          <div class="chart-container">
+            <div class="chart-header">
+              <h3>Lead Countries Analysis</h3>
+              <p class="chart-description">Ranks countries by the number of initiatives they lead, revealing regional leadership in digital transformation.</p>
+            </div>
+            <div class="chart-placeholder" id="lead-countries-chart" role="img" tabindex="0" aria-label="Horizontal bar chart showing documents by lead country">
+              <div class="placeholder-content">
+                <div class="chart-icon">🌍</div>
+                <div>Regional Leadership Ranking</div>
+                <small>Hover bars to see country details</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="chart-container">
+            <div class="chart-header">
+              <h3>Coverage Scope Distribution</h3>
+              <p class="chart-description">Analyzes the reach of agreements: bilateral (2 countries), multilateral (3+ countries), or regional scope.</p>
+            </div>
+            <div class="chart-placeholder" id="coverage-bar-chart" role="img" tabindex="0" aria-label="Chart showing coverage scope distribution">
+              <div class="placeholder-content">
+                <div class="chart-icon">🎯</div>
+                <div>Agreement Scope Analysis</div>
+                <small>Shows bilateral vs multilateral patterns</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Thematic Analysis -->
+      <section role="region" aria-labelledby="thematic-label" class="analysis-block priority-medium" id="thematic-section">
+        <h2 id="thematic-label" class="block-title">Thematic Focus Areas</h2>
+        <p class="section-description">Discover which digital transformation themes receive the most attention in EU-LATAM cooperation agreements.</p>
+        
+        <div class="chart-container full-width">
+          <div class="chart-header">
+            <h3>Digital Transformation Themes</h3>
+            <p class="chart-description">Distribution of agreements across key digital themes like AI, cybersecurity, digital economy, e-governance, and digital skills.</p>
+          </div>
+          <div class="chart-placeholder" id="theme-bar-chart" role="img" tabindex="0" aria-label="Chart showing agreements distribution by theme">
+            <div class="placeholder-content">
+              <div class="chart-icon">🎨</div>
+              <div>Thematic Distribution Analysis</div>
+              <small>Identify priority areas and gaps in cooperation</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Stakeholder Analysis -->
+      <section role="region" aria-labelledby="stakeholders-label" class="analysis-block priority-medium" id="stakeholders-section">
+        <h2 id="stakeholders-label" class="block-title">Stakeholder Ecosystem</h2>
+        <p class="section-description">Understand who participates in digital cooperation and who benefits from these collaborative initiatives.</p>
+        
+        <div class="chart-grid">
+          <div class="chart-container">
+            <div class="chart-header">
+              <h3>Actor Type Distribution</h3>
+              <p class="chart-description">Shows participation levels by different stakeholders: government, private sector, academia, civil society, and international organizations.</p>
+            </div>
+            <div class="chart-placeholder" id="actor-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing agreements by actor type">
+              <div class="placeholder-content">
+                <div class="chart-icon">👥</div>
+                <div>Multi-Stakeholder Engagement</div>
+                <small>Assess participation diversity across sectors</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="chart-container">
+            <div class="chart-header">
+              <h3>Beneficiary Groups Analysis</h3>
+              <p class="chart-description">Identifies who benefits most from digital cooperation: SMEs, citizens, researchers, startups, and other target groups.</p>
+            </div>
+            <div class="chart-placeholder" id="beneficiary-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing beneficiary categories">
+              <div class="placeholder-content">
+                <div class="chart-icon">🎯</div>
+                <div>Impact Distribution</div>
+                <small>Measure inclusivity and reach of initiatives</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Additional Metrics -->
+      <section role="region" aria-labelledby="metrics-label" class="analysis-block priority-low" id="additional-metrics">
+        <h2 id="metrics-label" class="block-title">Additional Insights</h2>
+        <p class="section-description">Supplementary metrics providing granular details for comprehensive policy analysis and strategic planning.</p>
+        
+        <div class="chart-grid-four">
+          <div class="summary-card" data-tooltip="Number of distinct thematic areas being addressed in current digital cooperation initiatives">
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" fill="#FF6D01"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-number">{{ summary.active_themes }}</div>
+              <div class="card-label">Active Themes</div>
+            </div>
+          </div>
+
+          <div class="summary-card" data-tooltip="Total count of unique organizations, institutions, and entities participating in digital cooperation">
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 4C18.2 4 20 5.8 20 8C20 10.2 18.2 12 16 12C13.8 12 12 10.2 12 8C12 5.8 13.8 4 16 4ZM8 4C10.2 4 12 5.8 12 8C12 10.2 10.2 12 8 12C5.8 12 4 10.2 4 8C4 5.8 5.8 4 8 4ZM8 13C10.67 13 16 14.33 16 17V20H0V17C0 14.33 5.33 13 8 13ZM16 13C16.76 13 17.57 13.11 18.4 13.3C19.1 14.03 19.6 14.9 19.9 15.9C18.9 15.65 17.8 15.5 16.8 15.5C15.6 15.5 14.6 15.65 13.8 15.9C14.1 14.9 14.6 14.03 15.3 13.3C15.6 13.15 15.8 13.05 16 13Z" fill="#9C27B0"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-number">{{ summary.total_actors }}</div>
+              <div class="card-label">Unique Actors</div>
+            </div>
+          </div>
+
+          <div class="summary-card" data-tooltip="Number of distinct beneficiary categories that receive benefits from digital transformation initiatives">
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM7.07 18.28C7.5 17.38 10.12 16.5 12 16.5C13.88 16.5 16.51 17.38 16.93 18.28C15.57 19.36 13.86 20 12 20C10.14 20 8.43 19.36 7.07 18.28ZM18.36 16.83C16.93 15.09 13.46 14.5 12 14.5C10.54 14.5 7.07 15.09 5.64 16.83C4.62 15.49 4 13.82 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 13.82 19.38 15.49 18.36 16.83ZM12 6C10.06 6 8.5 7.56 8.5 9.5C8.5 11.44 10.06 13 12 13C13.94 13 15.5 11.44 15.5 9.5C15.5 7.56 13.94 6 12 6ZM12 11C11.17 11 10.5 10.33 10.5 9.5C10.5 8.67 11.17 8 12 8C12.83 8 13.5 8.67 13.5 9.5C13.5 10.33 12.83 11 12 11Z" fill="#00BCD4"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-number">{{ summary.total_beneficiaries }}</div>
+              <div class="card-label">Beneficiary Groups</div>
+            </div>
+          </div>
+
+          <div class="summary-card" data-tooltip="Total number of specific commitments, actions, and deliverables outlined across all agreements">
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 11H7V9H9V11ZM13 11H11V9H13V11ZM17 11H15V9H17V11ZM19 4H18V2H16V4H8V2H6V4H5C3.89 4 3.01 4.9 3.01 6L3 20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4ZM19 20H5V9H19V20Z" fill="#795548"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <div class="card-number">{{ summary.total_commitments }}</div>
+              <div class="card-label">Total Commitments</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Help Section -->
+      <section class="analysis-block help-section" id="help-section">
+        <h2 class="block-title">How to Use This Dashboard</h2>
+        <div class="help-grid">
+          <div class="help-card">
+            <div class="help-icon">💡</div>
+            <h3>Getting Started</h3>
+            <p>Begin with the Executive Overview to understand the scale, then explore Strategic Alignment for policy insights.</p>
+          </div>
+          <div class="help-card">
+            <div class="help-icon">🎯</div>
+            <h3>Interactive Charts</h3>
+            <p>Hover over charts for detailed tooltips. Click on chart segments to drill down into specific data points.</p>
+          </div>
+          <div class="help-card">
+            <div class="help-icon">📊</div>
+            <h3>Data Insights</h3>
+            <p>Use geographic and thematic analysis to identify cooperation patterns and policy gaps.</p>
+          </div>
+          <div class="help-card">
+            <div class="help-icon">🔍</div>
+            <h3>Analysis Tips</h3>
+            <p>Compare stakeholder engagement with beneficiary distribution to assess inclusivity and impact.</p>
           </div>
         </div>
       </section>
@@ -142,15 +293,10 @@
 {% endblock %}
 
 {% block extra_scripts %}
-  <!-- <script src="{% static 'core/js/main.js' %}"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@2.0.0"></script>
-  
-
-  <!-- <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-geo@4.3.1/dist/chartjs-chart-geo.umd.min.js"></script> -->
-
-
+  <script src="https://d3js.org/d3.v7.min.js"></script>
   <script type="module" src="{% static 'core/js/main.js' %}"></script>
   <script type="module" src="{% static 'core/js/analysis.js' %}"></script>
 
@@ -159,11 +305,12 @@
     import { renderLegalBindingPie } from "{% static 'core/js/legalBindingPie.js' %}";
     import { renderCoverageBar } from "{% static 'core/js/coverageScopeBar.js' %}";
     import { renderLeadCountryChart } from "{% static 'core/js/leadCountryChart.js' %}";
-    import { renderThemeBar }           from "{% static 'core/js/themeBarChart.js' %}";
+    import { renderThemeBar } from "{% static 'core/js/themeBarChart.js' %}";
     import { renderThemeBeneficiaryHeatmap } from "{% static 'core/js/themeBeneficiaryHeatmap.js' %}";
     import { renderActorBar } from "{% static 'core/js/actorBarChart.js' %}";
-    import { renderBeneficiaryBar }  from "{% static 'core/js/beneficiaryBarChart.js' %}";
-    // Make it available globally for the analysis page manager
+    import { renderBeneficiaryBar } from "{% static 'core/js/beneficiaryBarChart.js' %}";
+    
+    // Make functions globally available
     window.renderSdgRadar = renderSdgRadar;
     window.renderLeadCountryChart = renderLeadCountryChart;
     window.renderLegalBindingPie = renderLegalBindingPie;
@@ -172,9 +319,79 @@
     window.renderThemeBeneficiaryHeatmap = renderThemeBeneficiaryHeatmap;
     window.renderActorBar = renderActorBar;
     window.renderBeneficiaryBar = renderBeneficiaryBar;
+
+    
+// Enhanced tooltip implementation
+document.addEventListener('DOMContentLoaded', function() {
+  const tooltipElements = document.querySelectorAll('[data-tooltip]');
+  let currentTooltip = null;
+
+  tooltipElements.forEach(element => {
+    element.addEventListener('mouseenter', function(e) {
+      // Remove any existing tooltip
+      if (currentTooltip) {
+        currentTooltip.remove();
+        currentTooltip = null;
+      }
+
+      const tooltip = document.createElement('div');
+      tooltip.className = 'tooltip';
+      tooltip.textContent = this.getAttribute('data-tooltip');
+      document.body.appendChild(tooltip);
+      currentTooltip = tooltip;
+      
+      // Better positioning logic
+      const rect = this.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+      
+      let left = rect.left + scrollLeft + (rect.width / 2) - (tooltipRect.width / 2);
+      let top = rect.top + scrollTop - tooltipRect.height - 10;
+      
+      // Ensure tooltip stays within viewport
+      if (left < 10) {
+        left = 10;
+      } else if (left + tooltipRect.width > window.innerWidth - 10) {
+        left = window.innerWidth - tooltipRect.width - 10;
+      }
+      
+      // If tooltip would go above viewport, show it below the element
+      if (top < scrollTop + 10) {
+        top = rect.bottom + scrollTop + 10;
+        // Update arrow position for bottom placement
+        tooltip.classList.add('tooltip-bottom');
+      }
+      
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = top + 'px';
+    });
+    
+    element.addEventListener('mouseleave', function() {
+      if (currentTooltip) {
+        currentTooltip.remove();
+        currentTooltip = null;
+      }
+    });
+
+    // Handle touch devices
+    element.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      this.dispatchEvent(new Event('mouseenter'));
+    });
+  });
+
+  // Remove tooltip when clicking anywhere
+  document.addEventListener('click', function() {
+    if (currentTooltip) {
+      currentTooltip.remove();
+      currentTooltip = null;
+    }
+  });
+});
   </script>
 
-  <!-- Inyect graphics data -->
+  <!-- Inject graphics data -->
   {{ analysis_data|json_script:"analysis-data" }}
 
 {% endblock %}
