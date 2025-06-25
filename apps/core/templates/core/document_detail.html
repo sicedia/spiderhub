@@ -183,9 +183,11 @@
               </div>
               <div class="alignment-content">
                 {% if document.eu_policy_alignments.exists %}
-                  {% for policy in document.eu_policy_alignments.all %}
-                    <div class="policy-tag">{{ policy.name }}</div>
-                  {% endfor %}
+                  <div class="policy-tags-grid">
+                    {% for policy in document.eu_policy_alignments.all %}
+                      <div class="policy-tag">{{ policy.name }}</div>
+                    {% endfor %}
+                  </div>
                 {% else %}
                   <div class="policy-tag">No EU policy alignment defined.</div>
                 {% endif %}
