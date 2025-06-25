@@ -1180,12 +1180,3 @@ select:focus-visible {
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-light: #1A1A1A;
-    --bg-white: #2A2A2A;
-    --text-primary: #ECECEC;
-    --text-secondary: #B0B0B0;
-    --border-light: #444;
-  }
-}

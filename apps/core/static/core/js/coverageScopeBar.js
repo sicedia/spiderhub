@@ -1,10 +1,10 @@
 /**
- * Coverage Scope Polar Area Chart Module
- * Renders polar area chart showing agreements by coverage scope
+ * Coverage Scope Horizontal Bar Chart Module
+ * Renders horizontal bar chart showing agreements by coverage scope
  */
 
 /**
- * Render polar area chart of coverage scopes.
+ * Render horizontal bar chart of coverage scopes.
  * @param {{bilateral:number, subRegional:number, regional:number, multilateral:number, global:number}} counts
  */
 export const renderCoverageBar = async (counts) => {
@@ -41,11 +41,11 @@ export const renderCoverageBar = async (counts) => {
   }
 
   const labels = [
-    'Global',
+    'Global Agreements',
     'Multilateral',
-    'Regional',
-    'Sub-regional',
-    'Bilateral',
+    'Regional Frameworks', 
+    'Sub-regional Initiatives',
+    'Bilateral Partnerships'
   ];
 
   const data = [
@@ -53,116 +53,114 @@ export const renderCoverageBar = async (counts) => {
     counts.multilateral    ?? 0,
     counts.regional        ?? 0,
     counts.subRegional     ?? 0,
-    counts.bilateral       ?? 0,
+    counts.bilateral       ?? 0
   ];
 
-  // Create gradient colors for polar area
+  // Enhanced color scheme with better accessibility
   const backgroundColors = [
-    '#FF6B6B', // Global - Red
-    '#4ECDC4', // Multilateral - Teal
-    '#45B7D1', // Regional - Blue
-    '#96CEB4', // Sub-regional - Green
-    '#FECA57', // Bilateral - Yellow
+    '#2563EB', // Global - Strong Blue
+    '#059669', // Multilateral - Emerald
+    '#DC2626', // Regional - Red
+    '#D97706', // Sub-regional - Amber
+    '#7C3AED'  // Bilateral - Purple
   ];
 
-  const borderColors = [
-    '#FF5252',
-    '#26C6DA',
-    '#2196F3',
-    '#66BB6A',
-    '#FFC107',
-    '#9C27B0',
+  const hoverColors = [
+    '#1D4ED8',
+    '#047857', 
+    '#B91C1C',
+    '#B45309',
+    '#6D28D9'
   ];
 
-  // Calculate total for statistics
+  // Calculate total and max for better scaling
   const total = data.reduce((sum, value) => sum + value, 0);
   const maxValue = Math.max(...data);
 
   canvas.__chart = new Chart(ctx, {
-    type: 'polarArea',
+    type: 'bar',
     data: {
       labels,
       datasets: [{
+        label: 'Number of Agreements',
         data,
-        backgroundColor: backgroundColors.map(color => color + '80'), // Add transparency
-        borderColor: borderColors,
-        borderWidth: 2,
-        hoverBorderWidth: 3,
-        hoverBackgroundColor: backgroundColors.map(color => color + 'CC'),
+        backgroundColor: backgroundColors,
+        hoverBackgroundColor: hoverColors,
+        borderColor: backgroundColors.map(color => color + 'DD'),
+        borderWidth: 1,
+        borderRadius: 6,
+        borderSkipped: false,
       }],
     },
     options: {
+      indexAxis: 'y', // This makes it horizontal
       responsive: true,
       maintainAspectRatio: false,
+      layout: {
+        padding: {
+          left: 10,
+          right: 20,
+          top: 10,
+          bottom: 10
+        }
+      },
       scales: {
-        r: {
+        x: {
           beginAtZero: true,
-          max: maxValue > 0 ? Math.ceil(maxValue * 1.2) : 10,
+          max: maxValue > 0 ? Math.ceil(maxValue * 1.15) : 10,
           ticks: {
-            stepSize: Math.ceil(maxValue / 5) || 1,
+            stepSize: Math.ceil(maxValue / 8) || 1,
             font: {
               family: 'Roboto',
-              size: 11
+              size: 11,
+              weight: '500'
             },
-            color: '#666',
-            backdropColor: 'rgba(255, 255, 255, 0.8)',
-            backdropPadding: 4,
+            color: '#6B7280',
+            callback: function(value) {
+              return Number.isInteger(value) ? value : '';
+            }
           },
           grid: {
-            color: 'rgba(0, 0, 0, 0.1)',
+            color: 'rgba(107, 114, 128, 0.1)',
             lineWidth: 1,
           },
-          angleLines: {
-            color: 'rgba(0, 0, 0, 0.1)',
-            lineWidth: 1,
-          },
-          pointLabels: {
+          title: {
+            display: true,
+            text: 'Number of Agreements',
+            font: {
+              family: 'Roboto',
+              size: 12,
+              weight: '600'
+            },
+            color: '#374151',
+            padding: 10
+          }
+        },
+        y: {
+          ticks: {
             font: {
               family: 'Roboto',
               size: 12,
               weight: '500'
             },
-            color: '#333',
-            padding: 15,
+            color: '#374151',
+            padding: 8,
+            maxRotation: 0,
+          },
+          grid: {
+            display: false,
           }
         }
       },
       plugins: {
         legend: {
-          display: true,
-          position: 'bottom',
-          labels: {
-            usePointStyle: true,
-            pointStyle: 'circle',
-            padding: 20,
-            font: {
-              family: 'Roboto',
-              size: 12,
-              weight: '500'
-            },
-            color: '#333',
-            generateLabels: (chart) => {
-              const data = chart.data;
-              return data.labels.map((label, index) => {
-                const value = data.datasets[0].data[index];
-                const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : '0.0';
-                return {
-                  text: `${label}: ${value} (${percentage}%)`,
-                  fillStyle: backgroundColors[index],
-                  strokeStyle: borderColors[index],
-                  pointStyle: 'circle',
-                  hidden: false,
-                  index: index
-                };
-              });
-            }
-          }
+          display: false, // Hide legend for cleaner look
         },
         tooltip: {
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          titleColor: '#333',
-          bodyColor: '#666',
-          borderColor: '#ddd',
+          backgroundColor: 'rgba(17, 24, 39, 0.95)',
+          titleColor: '#F9FAFB',
+          bodyColor: '#F3F4F6',
+          borderColor: '#4B5563',
           borderWidth: 1,
           cornerRadius: 8,
           titleFont: {
@@ -172,25 +170,41 @@ export const renderCoverageBar = async (counts) => {
           },
           bodyFont: {
             family: 'Roboto',
-            size: 13
+            size: 13,
+            weight: '400'
           },
           callbacks: {
-            title: (context) => context[0].label,
+            title: (context) => {
+              const scopeTypes = {
+                'Global Agreements': 'Global',
+                'Multilateral (3+ countries)': 'Multilateral', 
+                'Regional Frameworks': 'Regional',
+                'Sub-regional Initiatives': 'Sub-regional',
+                'Bilateral Partnerships': 'Bilateral'
+              };
+              return scopeTypes[context[0].label] || context[0].label;
+            },
             label: (context) => {
-              const value = context.parsed.r;
+              const value = context.parsed.x;
               const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : '0.0';
+              const agreementText = value === 1 ? 'agreement' : 'agreements';
+              
               return [
-                `Count: ${value} agreement${value !== 1 ? 's' : ''}`,
-                `Percentage: ${percentage}%`
+                `${value} ${agreementText}`,
+                `${percentage}% of total`,
+                total > 0 ? `${total} total agreements` : 'No data available'
               ];
             },
           },
           displayColors: true,
           padding: 12,
+          caretPadding: 8,
         },
+        // Custom plugin for value labels on bars
+        datalabels: false, // Disable chartjs-plugin-datalabels if loaded
       },
       animation: {
-        duration: 1200,
+        duration: 1000,
         easing: 'easeOutQuart',
         onComplete: () => {
           container.classList.remove('loading');
@@ -198,49 +212,61 @@ export const renderCoverageBar = async (counts) => {
       },
       interaction: {
         intersect: false,
+        mode: 'index',
       },
-      layout: {
-        padding: {
-          left: 20,
-          right: 20,
-          top: 20,
-          bottom: 20
-        }
+      onHover: (event, activeElements) => {
+        event.native.target.style.cursor = activeElements.length > 0 ? 'pointer' : 'default';
       }
     },
     plugins: [{
-      id: 'centerStats',
-      beforeDraw: (chart) => {
-        if (total === 0) return;
-        
-        const { ctx, width, height } = chart;
-        const centerX = width / 2;
-        const centerY = height / 2;
+      id: 'barLabels',
+      afterDatasetsDraw: (chart) => {
+        const { ctx, data, scales } = chart;
         
         ctx.save();
-        ctx.textAlign = 'center';
+        ctx.font = 'bold 12px Roboto';
+        ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
         
-        // Background circle
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, 35, 0, 2 * Math.PI);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-        ctx.fill();
-        ctx.strokeStyle = 'rgba(0, 0, 0, 0.1)';
-        ctx.lineWidth = 1;
-        ctx.stroke();
-        
-        // Total count
-        ctx.font = 'bold 18px Roboto';
-        ctx.fillStyle = '#2c3e50';
-        ctx.fillText(total.toString(), centerX, centerY - 8);
-        
-        // Label
-        ctx.font = '10px Roboto';
-        ctx.fillStyle = '#7f8c8d';
-        ctx.fillText('TOTAL', centerX, centerY + 12);
+        data.datasets[0].data.forEach((value, index) => {
+          if (value > 0) {
+            const y = scales.y.getPixelForTick(index);
+            const x = scales.x.getPixelForValue(value);
+            
+            // Add some padding from the bar end
+            const labelX = x + 8;
+            
+            // Use white text on dark bars, dark text on light bars
+            ctx.fillStyle = '#374151';
+            
+            // Show value and percentage
+            const percentage = total > 0 ? ((value / total) * 100).toFixed(0) : '0';
+            const label = `${value} (${percentage}%)`;
+            
+            ctx.fillText(label, labelX, y);
+          }
+        });
         
         ctx.restore();
+      }
+    }, {
+      id: 'emptyState',
+      beforeDraw: (chart) => {
+        if (total === 0) {
+          const { ctx, width, height } = chart;
+          
+          ctx.save();
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillStyle = '#9CA3AF';
+          ctx.font = '16px Roboto';
+          
+          ctx.fillText('No coverage data available', width / 2, height / 2 - 10);
+          ctx.font = '14px Roboto';
+          ctx.fillText('Data will appear here once agreements are analyzed', width / 2, height / 2 + 15);
+          
+          ctx.restore();
+        }
       }
     }]
   });
@@ -256,6 +282,14 @@ export const renderCoverageBar = async (counts) => {
   
   // Store observer for cleanup
   canvas.__resizeObserver = resizeObserver;
+
+  // Add accessibility
+  canvas.setAttribute('role', 'img');
+  canvas.setAttribute('aria-label', 
+    `Coverage scope distribution chart showing ${total} total agreements: ` +
+    `${data[0]} global, ${data[1]} multilateral, ${data[2]} regional, ` +
+    `${data[3]} sub-regional, and ${data[4]} bilateral agreements`
+  );
 };
 
 /**

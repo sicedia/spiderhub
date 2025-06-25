@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.db.models import Count, Q
 from apps.documents.models import (
-    Document, Actor, Theme, BeneficiaryGroup, SDG, CommitmentDetail, Country
+    Document, Actor, Theme, BeneficiaryGroup, SDG, CommitmentDetail, Country, Commitment
 )
 import logging
 from django.db import connection
@@ -237,6 +237,25 @@ def analysis_page(request):
             .values_list('lead_country__iso3', 'count')
         )
     
+    # Enhanced summary statistics
+    total_documents = Document.objects.count()
+    
+    # Count agreements vs dialogues
+    total_agreements = Document.objects.filter(document_type__startswith="agreements").count()
+    total_dialogues = Document.objects.filter(document_type__startswith="dialogues").count()
+    
+    # Count active themes (themes that have at least one document)
+    active_themes = Theme.objects.filter(documents__isnull=False).distinct().count()
+    
+    # Count active actors (actors that have at least one document)
+    total_actors = Actor.objects.filter(documents__isnull=False).distinct().count()
+    
+    # Count active beneficiary groups
+    total_beneficiaries = BeneficiaryGroup.objects.filter(documents__isnull=False).distinct().count()
+    
+    # Count total commitments
+    total_commitments = Commitment.objects.count()
+
     # 1) Countries - Use available reverse relationships (for general country data)
     countries_qs = (
         Country.objects
@@ -256,6 +275,8 @@ def analysis_page(request):
         country.iso3: country.count
         for country in countries_qs
     }
+    
+    active_countries = len(countries)
     
     country_names = {
         country.iso3: country.name
@@ -382,23 +403,34 @@ def analysis_page(request):
         for slug, label in BeneficiaryGroup.CATEGORY_CHOICES
     }
     
+    total_countries = Country.objects.filter(
+        Q(document__isnull=False) |  # event_country relationship (default related_name)
+        Q(lead_documents__isnull=False)   # lead_country relationship
+    ).distinct().count()
+    
     context = {
         "summary": {
-            'total_documents': Document.objects.count(),
-            'active_countries': len(countries),
+            'total_documents': total_documents,
+            'active_countries': total_countries,
+            'total_agreements': total_agreements,
+            'total_dialogues': total_dialogues,
+            'active_themes': active_themes,
+            'total_actors': total_actors,
+            'total_beneficiaries': total_beneficiaries,
+            'total_commitments': total_commitments,
         },
         "analysis_data": {
-        "sdg_counts":     sdgs,
-        "binding_counts": legal_bindingness,
-        "country_counts": countries,
-        "lead_country_counts": lead_country_counts,  # Add this line
-        "country_names": country_names,
-        
-        "scope_counts":   coverage_scope,
-        "theme_counts":   theme_counts,  
-        "theme_ben_matrix": matrix,
-        "actor_counts":  actor_counts,  
-        "beneficiary_counts": beneficiary_counts,
+            "sdg_counts":     sdgs,
+            "binding_counts": legal_bindingness,
+            "country_counts": countries,
+            "lead_country_counts": lead_country_counts,
+            "country_names": country_names,
+            
+            "scope_counts":   coverage_scope,
+            "theme_counts":   theme_counts,  
+            "theme_ben_matrix": matrix,
+            "actor_counts":  actor_counts,  
+            "beneficiary_counts": beneficiary_counts,
         },
     }
 

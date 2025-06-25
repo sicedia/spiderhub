@@ -175,47 +175,11 @@
               </div>
             </div>
 
-            <!-- Start Date -->
-            <div class="technical-item">
-              <div class="technical-label">Start Date</div>
-              <div class="technical-value">
-                {% if document.event_date %}
-                  {{ document.event_date|date:"j F Y" }}
-                {% else %}
-                  N/A
-                {% endif %}
-              </div>
-            </div>
-
-            <!-- End Date (falls back to extra.end_date if you store it there) -->
-            <div class="technical-item">
-              <div class="technical-label">End Date</div>
-              <div class="technical-value">
-                {% if document.extra.end_date %}
-                  {{ document.extra.end_date|date:"j F Y" }}
-                {% else %}
-                  N/A
-                {% endif %}
-              </div>
-            </div>
-
             <!-- Lead Country -->
             <div class="technical-item">
               <div class="technical-label">Lead Country</div>
               <div class="technical-value">
                 {{ document.country|default:"N/A" }}
-              </div>
-            </div>
-
-            <!-- Responsible Entity -->
-            <div class="technical-item">
-              <div class="technical-label">Responsible Entity</div>
-              <div class="technical-value">
-                {% if document.created_by %}
-                  {{ document.created_by.get_full_name }}
-                {% else %}
-                  N/A
-                {% endif %}
               </div>
             </div>
 

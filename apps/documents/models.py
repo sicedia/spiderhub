@@ -193,7 +193,27 @@ class SDG(BaseModel):
     def __str__(self):
         return self.label
 
+class EUPolicy(BaseModel):
+    """EU Policy Framework alignment options."""
+    name = models.CharField(max_length=200, unique=True)
+    description = models.TextField(blank=True)
 
+    # Search fields
+    name_normalized = models.TextField(editable=False, null=True, blank=True)
+    search_vector = SearchVectorField(null=True, editable=False)
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name = "EU Policy"
+        verbose_name_plural = "EU Policies"
+        indexes = [
+            GinIndex(fields=['search_vector'], name='eu_policy_search_vector_gin'),
+            GinIndex(fields=['name_normalized'], opclasses=['gin_trgm_ops'], name='eu_policy_name_norm_gin'),
+        ]
+
+    def __str__(self):
+        return self.name
+    
 # ---------------------------------------------------------------------------
 # CORE DOCUMENT MODEL
 # ---------------------------------------------------------------------------
@@ -316,6 +336,12 @@ class Document(BaseModel):
              ("uncategorised", "Uncategorised"),
          ]
      )
+     eu_policy_alignments = models.ManyToManyField(
+        EUPolicy, 
+        related_name="documents", 
+        blank=True,
+        help_text="EU policy framework alignments"
+     )
      sdgs = models.ManyToManyField(SDG, related_name="documents", blank=True)
 
      # Admin fields
@@ -351,7 +377,7 @@ class Document(BaseModel):
                  significant_fields = [
                      'title', 'executive_summary', 'document_type', 'event_date', 
                      'event_format', 'event_city_id', 'event_country_id', 'lead_country_id',
-                     'coverage_scope', 'legal_bindingness', 'score', 'admin_notes'
+                     'coverage_scope', 'legal_bindingness', 'eu_policy_alignment', 'score', 'admin_notes'
                  ]
                  
                  fields_changed = any(
