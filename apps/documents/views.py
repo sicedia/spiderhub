@@ -44,7 +44,9 @@ def document_detail(request, document_id):
         'event_country',  # Updated from 'country'
         'event_city',     # Added if needed
     ).only(
-        'id', 'title', 'body', 'created_by_id', 'event_country_id', 'event_city_id'
+        'id', 'title', 'body', 'created_by_id', 'event_country_id', 'event_city_id',
+        'executive_summary', 'event_date', 'document_type', 'coverage_scope', 
+        'lead_country_id', 'legal_bindingness', 'extra'
     ).prefetch_related(
         Prefetch('actors', queryset=Actor.objects.only('id', 'name')),
         Prefetch('topics', queryset=Topic.objects.only('id', 'name')),
