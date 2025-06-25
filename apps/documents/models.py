@@ -348,7 +348,7 @@ class Document(BaseModel):
      created_by = models.ForeignKey(
          User, on_delete=models.SET_NULL, null=True, related_name='uploaded_documents', blank=True
      )
-     admin_notes = models.TextField(blank=True)
+     admin_notes = models.TextField(blank=True, null=True, help_text="Admin notes for internal use")
 
      # Search fields
      title_normalized = models.TextField(editable=False, null=True, blank=True)
@@ -377,7 +377,7 @@ class Document(BaseModel):
                  significant_fields = [
                      'title', 'executive_summary', 'document_type', 'event_date', 
                      'event_format', 'event_city_id', 'event_country_id', 'lead_country_id',
-                     'coverage_scope', 'legal_bindingness', 'eu_policy_alignment', 'score', 'admin_notes'
+                     'coverage_scope', 'legal_bindingness', 'eu_policy_alignments', 'score', 'admin_notes'
                  ]
                  
                  fields_changed = any(

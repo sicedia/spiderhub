@@ -33,7 +33,7 @@ FROM python:3.12-slim AS runner
 
 LABEL maintainer="felipe.mendieta@cedia.org.ec" \
       org.opencontainers.image.title="spiderhub" \
-    org.opencontainers.image.version="0.1.0-beta.6" \
+    org.opencontainers.image.version="0.1.0-beta.11" \
       org.opencontainers.image.description="SpiderHub Document Management System" \
       org.opencontainers.image.source="https://github.com/sicedia/spiderhub"
 
