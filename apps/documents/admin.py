@@ -271,36 +271,54 @@ class EUPolicyAdmin(admin.ModelAdmin):
 # Enhanced Inline classes for Document
 class SourceFileInline(admin.TabularInline):
     model = SourceFile
-    extra = 1
+    extra = 0  # Change from 1 to 0 to avoid empty forms
     fields = ('file', 'filename', 'file_type', 'external_link', 'description')
     classes = ('collapse',)
     verbose_name = "Source File"
     verbose_name_plural = "Source Files"
     readonly_fields = ('file_size', 'upload_date')
+    
+    # Add these to prevent formset issues
+    can_delete = True
+    show_change_link = True
+    
+    # Override to ensure proper formset handling
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+        formset.validate_min = False
+        formset.validate_max = False
+        return formset
 
 class DocumentThemeInline(admin.TabularInline):
     model = DocumentTheme
-    extra = 1
+    extra = 0  # Change from 1 to 0
     fields = ('theme', 'is_top', 'relevance_score', 'justification')
     autocomplete_fields = ('theme',)
     classes = ('collapse',)
     verbose_name = "Theme Relationship"
     verbose_name_plural = "Theme Relationships"
     
-    raw_id_fields = ('theme',)
+    # Remove this line - it conflicts with autocomplete_fields
+    # raw_id_fields = ('theme',)
+    
+    can_delete = True
+    show_change_link = True
 
 class DocumentActorInline(admin.TabularInline):
     model = DocumentActor
-    extra = 1
+    extra = 0  # Change from 1 to 0
     fields = ('actor', 'is_top', 'relevance_score', 'justification')
     autocomplete_fields = ('actor',)
     classes = ('collapse',)
     verbose_name = "Actor Relationship"
     verbose_name_plural = "Actor Relationships"
+    
+    can_delete = True
+    show_change_link = True
 
 class PracticalApplicationInline(admin.StackedInline):
     model = PracticalApplication
-    extra = 1
+    extra = 0  # Change from 1 to 0
     fields = ('description',)
     classes = ('collapse',)
     verbose_name = "Practical Application"
@@ -309,10 +327,13 @@ class PracticalApplicationInline(admin.StackedInline):
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 80})},
     }
+    
+    can_delete = True
+    show_change_link = True
 
 class CommitmentInline(admin.StackedInline):
     model = Commitment
-    extra = 1
+    extra = 0  # Change from 1 to 0
     fields = ('text',)
     classes = ('collapse',)
     verbose_name = "Commitment"
@@ -321,14 +342,20 @@ class CommitmentInline(admin.StackedInline):
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 80})},
     }
+    
+    can_delete = True
+    show_change_link = True
 
 class KPIInline(admin.TabularInline):
     model = KPI
-    extra = 1
+    extra = 0  # Change from 1 to 0
     fields = ('metric_name', 'kpi_type', 'target_value', 'unit', 'sector')
     classes = ('collapse',)
     verbose_name = "Key Performance Indicator"
     verbose_name_plural = "Key Performance Indicators"
+    
+    can_delete = True
+    show_change_link = True
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
@@ -531,6 +558,16 @@ class DocumentAdmin(admin.ModelAdmin):
             )
         return '-'
     source_files_count.short_description = 'Files'
+
+    def save_model(self, request, obj, form, change):
+        if form.errors:
+            print("Form errors:", form.errors)
+        super().save_model(request, obj, form, change)
+    
+    def save_formset(self, request, form, formset, change):
+        if formset.errors:
+            print("Formset errors:", formset.errors)
+        super().save_formset(request, form, formset, change)
 
     def save_model(self, request, obj, form, change):
         # Store original human check status before save
