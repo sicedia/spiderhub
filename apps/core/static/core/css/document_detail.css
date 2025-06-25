@@ -256,6 +256,12 @@
   display: inline-block;
 }
 
+.policy-tags-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .sdg-tags-grid {
   display: flex;
   flex-wrap: wrap;
