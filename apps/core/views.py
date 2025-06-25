@@ -45,9 +45,8 @@ def home_page(request):
     
     # Count countries that have documents using Q objects to check all country relationships
     total_countries = Country.objects.filter(
-        Q(document__isnull=False) |  
-        Q(lead_documents__isnull=False) |
-        Q(mentioned_in_documents__isnull=False)
+        Q(document__isnull=False) |  # event_country relationship (default related_name)
+        Q(lead_documents__isnull=False)   # lead_country relationship
     ).distinct().count()
     
     total_beneficiary_groups = BeneficiaryGroup.objects.filter(
@@ -228,7 +227,17 @@ def analysis_page(request):
         parts = s.split('-')
         return parts[0] + ''.join(word.capitalize() for word in parts[1:])
     
-    # 1) Countries - Use available reverse relationships
+    def get_lead_country_counts():
+        """Get document counts by lead country"""
+        return dict(
+            Document.objects
+            .filter(lead_country__isnull=False)  # Only documents with lead countries
+            .values('lead_country__iso3')  # Get country ISO3 code instead of name
+            .annotate(count=Count('id'))
+            .values_list('lead_country__iso3', 'count')
+        )
+    
+    # 1) Countries - Use available reverse relationships (for general country data)
     countries_qs = (
         Country.objects
         .filter(
@@ -247,6 +256,14 @@ def analysis_page(request):
         country.iso3: country.count
         for country in countries_qs
     }
+    
+    country_names = {
+        country.iso3: country.name
+        for country in countries_qs
+    }
+
+    # 1.1) Lead countries specifically (for the lead country chart)
+    lead_country_counts = get_lead_country_counts()
 
     # 2) SDGs: M2M → SDG with document count
     sdgs_qs = (
@@ -374,6 +391,9 @@ def analysis_page(request):
         "sdg_counts":     sdgs,
         "binding_counts": legal_bindingness,
         "country_counts": countries,
+        "lead_country_counts": lead_country_counts,  # Add this line
+        "country_names": country_names,
+        
         "scope_counts":   coverage_scope,
         "theme_counts":   theme_counts,  
         "theme_ben_matrix": matrix,
