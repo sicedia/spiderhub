@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Countries Map - Real Database Data</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #lead-countries-chart { 
+            border: 1px solid #ccc; 
+            margin: 20px 0; 
+            min-height: 500px; 
+            background: #f8fafc;
+        }
+        .loading { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 400px; 
+            font-size: 16px; 
+            color: #666; 
+        }
+        .country { cursor: pointer; }
+        .country:hover { stroke: #007 !important; stroke-width: 2px !important; }
+        .placeholder-content { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 300px; 
+            color: #666; 
+            font-size: 16px; 
+        }
+        #data-info { 
+            background: #e8f4fd; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin: 20px 0; 
+        }
+        .test-info { color: #0066cc; }
+        .test-success { color: #006400; font-weight: bold; }
+        .data-table { 
+            margin: 20px 0; 
+            border-collapse: collapse; 
+            width: 100%; 
+        }
+        .data-table th, .data-table td { 
+            border: 1px solid #ddd; 
+            padding: 8px; 
+            text-align: left; 
+        }
+        .data-table th { 
+            background-color: #f2f2f2; 
+            font-weight: bold; 
+        }
+        button {
+            background: #059669;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #047857; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <h1>Lead Countries Map - Real Database Data Test</h1>
+    
+    <div id="data-info">
+        <h3>Database Information:</h3>
+        <div id="db-status">Loading database information...</div>
+        <button onclick="loadDatabaseInfo()">Refresh Database Info</button>
+        <button onclick="loadMap()">Refresh Map</button>
+    </div>
+    
+    <div id="lead-countries-chart"></div>
+    
+    <div id="data-details">
+        <h3>Lead Country Data:</h3>
+        <div id="lead-data-table"></div>
+    </div>
+
+    <script type="module">
+        let currentData = null;
+
+        // Load the actual chart implementation (simplified version)
+        async function loadLeadCountryMap() {
+            try {
+                console.log('Fetching lead country data from Django API...');
+                const response = await fetch('/api/lead-countries/');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const apiData = await response.json();
+                console.log('API Response:', apiData);
+                
+                currentData = apiData;
+                
+                // Update data info
+                document.getElementById('db-status').innerHTML = `
+                    <div class="test-success">✓ Successfully connected to Django database</div>
+                    <div class="test-info">Total lead countries: ${apiData.total_lead_countries}</div>
+                    <div class="test-info">Total documents with lead countries: ${apiData.total_documents}</div>
+                `;
+                
+                // Update data table
+                updateDataTable(apiData.countries);
+                
+                // Import and use the actual chart implementation
+                const module = await import('/static/core/js/leadCountryChoroplethChart.js');
+                await module.renderLeadCountryChoroplethChart(apiData.counts);
+                
+                return true;
+                
+            } catch (error) {
+                console.error('Error loading lead country data:', error);
+                document.getElementById('db-status').innerHTML = `
+                    <div style="color: red;">✗ Error: ${error.message}</div>
+                    <div class="test-info">Make sure Django server is running and the database has data</div>
+                `;
+                
+                // Show error in chart area
+                document.getElementById('lead-countries-chart').innerHTML = `
+                    <div class="placeholder-content">
+                        Error loading data: ${error.message}<br>
+                        <small>Check console for details</small>
+                    </div>
+                `;
+                
+                return false;
+            }
+        }
+
+        function updateDataTable(countries) {
+            if (!countries || countries.length === 0) {
+                document.getElementById('lead-data-table').innerHTML = '<p>No lead country data available</p>';
+                return;
+            }
+            
+            let tableHtml = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ISO3</th>
+                            <th>Country Name</th>
+                            <th>Document Count</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            const total = countries.reduce((sum, c) => sum + c.count, 0);
+            
+            countries.forEach(country => {
+                const percentage = ((country.count / total) * 100).toFixed(1);
+                tableHtml += `
+                    <tr>
+                        <td><strong>${country.iso3}</strong></td>
+                        <td>${country.name}</td>
+                        <td>${country.count}</td>
+                        <td>${percentage}%</td>
+                    </tr>
+                `;
+            });
+            
+            tableHtml += '</tbody></table>';
+            document.getElementById('lead-data-table').innerHTML = tableHtml;
+        }
+
+        // Global functions for buttons
+        window.loadDatabaseInfo = async function() {
+            document.getElementById('db-status').innerHTML = 'Loading...';
+            try {
+                const response = await fetch('/api/lead-countries/');
+                const data = await response.json();
+                currentData = data;
+                
+                document.getElementById('db-status').innerHTML = `
+                    <div class="test-success">✓ Database updated: ${new Date().toLocaleTimeString()}</div>
+                    <div class="test-info">Total lead countries: ${data.total_lead_countries}</div>
+                    <div class="test-info">Total documents: ${data.total_documents}</div>
+                `;
+                
+                updateDataTable(data.countries);
+            } catch (error) {
+                document.getElementById('db-status').innerHTML = `<div style="color: red;">Error: ${error.message}</div>`;
+            }
+        };
+
+        window.loadMap = async function() {
+            if (currentData) {
+                document.getElementById('lead-countries-chart').innerHTML = '';
+                const module = await import('/static/core/js/leadCountryChoroplethChart.js');
+                await module.renderLeadCountryChoroplethChart(currentData.counts);
+            } else {
+                await loadLeadCountryMap();
+            }
+        };
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadLeadCountryMap();
+        });
+    </script>
+</body>
+</html>

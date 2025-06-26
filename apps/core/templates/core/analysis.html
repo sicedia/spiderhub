@@ -82,8 +82,8 @@
         <h2 id="strategic-label" class="block-title">Strategic Alignment</h2>
         <p class="section-description">Analyze how current agreements align with global sustainability goals and assess their legal enforceability framework.</p>
         
-        <div class="chart-grid">
-          <div class="chart-container">
+        <div class="chart-grid strategic-grid">
+          <div class="chart-container chart-large">
             <div class="chart-header">
               <h3>SDG Alignment Overview</h3>
               <p class="chart-description">Visualizes how well EU-LATAM digital agreements align with the 17 UN Sustainable Development Goals. Higher values indicate stronger alignment.</p>
@@ -97,12 +97,12 @@
             </div>
           </div>
           
-          <div class="chart-container">
+          <div class="chart-container chart-medium">
             <div class="chart-header">
               <h3>Legal Bindingness Distribution</h3>
               <p class="chart-description">Shows the proportion of legally binding vs. non-binding agreements, indicating the enforcement strength of cooperation frameworks.</p>
             </div>
-            <div class="chart-placeholder" id="pie-chart" role="img" tabindex="0" aria-label="Pie chart showing legal bindingness distribution">
+            <div class="chart-placeholder chart-pie" id="pie-chart" role="img" tabindex="0" aria-label="Pie chart showing legal bindingness distribution">
               <div class="placeholder-content">
                 <div class="chart-icon">🥧</div>
                 <div>Legal Framework Analysis</div>
@@ -118,13 +118,13 @@
         <h2 id="geography-label" class="block-title">Geographic Distribution & Leadership</h2>
         <p class="section-description">Identify regional leadership patterns and understand the geographic scope of digital cooperation initiatives.</p>
         
-        <div class="chart-grid">
-          <div class="chart-container">
+        <div class="chart-grid geographic-grid">
+          <div class="chart-container chart-large">
             <div class="chart-header">
               <h3>Lead Countries Analysis</h3>
               <p class="chart-description">Ranks countries by the number of initiatives they lead, revealing regional leadership in digital transformation.</p>
             </div>
-            <div class="chart-placeholder" id="lead-countries-chart" role="img" tabindex="0" aria-label="Horizontal bar chart showing documents by lead country">
+            <div class="chart-placeholder chart-map world-map" id="lead-countries-chart" role="img" tabindex="0" aria-label="World choropleth map showing lead countries and all countries from database">
               <div class="placeholder-content">
                 <div class="chart-icon">🌍</div>
                 <div>Regional Leadership Ranking</div>
@@ -133,12 +133,12 @@
             </div>
           </div>
           
-          <div class="chart-container">
+          <div class="chart-container chart-medium">
             <div class="chart-header">
               <h3>Coverage Scope Distribution</h3>
               <p class="chart-description">Analyzes the reach of agreements: bilateral (2 countries), multilateral (3+ countries), or regional scope.</p>
             </div>
-            <div class="chart-placeholder" id="coverage-bar-chart" role="img" tabindex="0" aria-label="Chart showing coverage scope distribution">
+            <div class="chart-placeholder chart-bar-vertical" id="coverage-bar-chart" role="img" tabindex="0" aria-label="Chart showing coverage scope distribution">
               <div class="placeholder-content">
                 <div class="chart-icon">🎯</div>
                 <div>Agreement Scope Analysis</div>
@@ -154,12 +154,12 @@
         <h2 id="thematic-label" class="block-title">Thematic Focus Areas</h2>
         <p class="section-description">Discover which digital transformation themes receive the most attention in EU-LATAM cooperation agreements.</p>
         
-        <div class="chart-container full-width">
+        <div class="chart-container chart-fullwidth">
           <div class="chart-header">
             <h3>Digital Transformation Themes</h3>
             <p class="chart-description">Distribution of agreements across key digital themes like AI, cybersecurity, digital economy, e-governance, and digital skills.</p>
           </div>
-          <div class="chart-placeholder" id="theme-bar-chart" role="img" tabindex="0" aria-label="Chart showing agreements distribution by theme">
+          <div class="chart-placeholder chart-bar-horizontal-wide" id="theme-bar-chart" role="img" tabindex="0" aria-label="Chart showing agreements distribution by theme">
             <div class="placeholder-content">
               <div class="chart-icon">🎨</div>
               <div>Thematic Distribution Analysis</div>
@@ -174,13 +174,13 @@
         <h2 id="stakeholders-label" class="block-title">Stakeholder Ecosystem</h2>
         <p class="section-description">Understand who participates in digital cooperation and who benefits from these collaborative initiatives.</p>
         
-        <div class="chart-grid">
-          <div class="chart-container">
+        <div class="chart-grid stakeholder-grid">
+          <div class="chart-container chart-equal">
             <div class="chart-header">
               <h3>Actor Type Distribution</h3>
               <p class="chart-description">Shows participation levels by different stakeholders: government, private sector, academia, civil society, and international organizations.</p>
             </div>
-            <div class="chart-placeholder" id="actor-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing agreements by actor type">
+            <div class="chart-placeholder chart-bar-vertical" id="actor-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing agreements by actor type">
               <div class="placeholder-content">
                 <div class="chart-icon">👥</div>
                 <div>Multi-Stakeholder Engagement</div>
@@ -189,12 +189,12 @@
             </div>
           </div>
           
-          <div class="chart-container">
+          <div class="chart-container chart-equal beneficiary-chart-container">
             <div class="chart-header">
               <h3>Beneficiary Groups Analysis</h3>
-              <p class="chart-description">Identifies who benefits most from digital cooperation: SMEs, citizens, researchers, startups, and other target groups.</p>
+              <p class="chart-description">Identifies who benefits most from digital cooperation: SMEs, citizens, researchers, startups, and other target groups. Chart auto-adjusts height based on data.</p>
             </div>
-            <div class="chart-placeholder" id="beneficiary-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing beneficiary categories">
+            <div class="chart-placeholder chart-bar-vertical" id="beneficiary-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing beneficiary categories">
               <div class="placeholder-content">
                 <div class="chart-icon">🎯</div>
                 <div>Impact Distribution</div>
@@ -205,8 +205,62 @@
         </div>
       </section>
 
-      <!-- 6. Additional Metrics -->
-      <section role="region" aria-labelledby="metrics-label" class="analysis-block priority-low" id="additional-metrics">
+      <div class="section-separator"></div>
+
+      <!-- 7. Variety Analysis - Diversity & Distribution -->
+      <section role="region" aria-labelledby="variety-label" class="analysis-block priority-high variety-section" id="variety-section">
+        <h2 id="variety-label" class="block-title">Variety Analysis</h2>
+        <p class="section-description">Diversity metrics and distribution patterns revealing the breadth and inclusivity of EU-LATAM digital cooperation.</p>
+        
+        <div class="chart-grid variety-top-grid">
+          <div class="chart-container chart-special diversity-radar">
+            <div class="chart-header">
+              <h3>Cooperation Diversity Index</h3>
+              <p class="chart-description">Multi-dimensional diversity analysis across themes, actors, and geographical distribution using Shannon diversity index.</p>
+            </div>
+            <div class="chart-placeholder chart-radar-complex" id="diversity-radar-chart" role="img" tabindex="0" aria-label="Radar chart showing diversity across multiple dimensions">
+              <div class="placeholder-content">
+                <div class="chart-icon">🌈</div>
+                <div>Multi-Dimensional Diversity</div>
+                <small>Comprehensive variety assessment</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="chart-container chart-special initiative-treemap">
+            <div class="chart-header">
+              <h3>Initiative Type Distribution</h3>
+              <p class="chart-description">Treemap visualization showing the proportion and variety of different initiative types and their relative importance.</p>
+            </div>
+            <div class="chart-placeholder chart-treemap" id="initiative-treemap-chart" role="img" tabindex="0" aria-label="Treemap showing initiative type distribution">
+              <div class="placeholder-content">
+                <div class="chart-icon">🌳</div>
+                <div>Initiative Variety Matrix</div>
+                <small>Hierarchical distribution view</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-container chart-fullwidth collaboration-network">
+          <div class="chart-header">
+            <h3>Cross-Sector Collaboration Network</h3>
+            <p class="chart-description">Network visualization showing the variety and complexity of cross-sector collaborations and their interconnections.</p>
+          </div>
+          <div class="chart-placeholder chart-network" id="collaboration-network-chart" role="img" tabindex="0" aria-label="Network diagram showing cross-sector collaborations">
+            <div class="placeholder-content">
+              <div class="chart-icon">🕸️</div>
+              <div>Collaboration Network Analysis</div>
+              <small>Interactive relationship mapping</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-separator"></div>
+
+      <!-- 8. Additional Metrics -->
+      <section role="region" aria-labelledby="metrics-label" class="analysis-block priority-medium" id="additional-metrics">
         <h2 id="metrics-label" class="block-title">Additional Insights</h2>
         <p class="section-description">Supplementary metrics providing granular details for comprehensive policy analysis and strategic planning.</p>
         
@@ -297,6 +351,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@2.0.0"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson@3"></script>
   <script type="module" src="{% static 'core/js/main.js' %}"></script>
   <script type="module" src="{% static 'core/js/analysis.js' %}"></script>
 
@@ -304,21 +359,29 @@
     import { renderSdgRadar } from "{% static 'core/js/sdgRadarChart.js' %}";
     import { renderLegalBindingPie } from "{% static 'core/js/legalBindingPie.js' %}";
     import { renderCoverageBar } from "{% static 'core/js/coverageScopeBar.js' %}";
-    import { renderLeadCountryChart } from "{% static 'core/js/leadCountryChart.js' %}";
+    import { renderLeadCountryChoroplethChart } from "{% static 'core/js/leadCountryChoroplethChart.js' %}";
     import { renderThemeBar } from "{% static 'core/js/themeBarChart.js' %}";
-    import { renderThemeBeneficiaryHeatmap } from "{% static 'core/js/themeBeneficiaryHeatmap.js' %}";
     import { renderActorBar } from "{% static 'core/js/actorBarChart.js' %}";
     import { renderBeneficiaryBar } from "{% static 'core/js/beneficiaryBarChart.js' %}";
     
+  
+    import { renderDiversityRadarChart } from "{% static 'core/js/diversityRadarChart.js' %}";
+    import { renderInitiativeTreemapChart } from "{% static 'core/js/initiativeTreemapChart.js' %}";
+    import { renderCollaborationNetworkChart } from "{% static 'core/js/collaborationNetworkChart.js' %}";
+    
     // Make functions globally available
     window.renderSdgRadar = renderSdgRadar;
-    window.renderLeadCountryChart = renderLeadCountryChart;
+    window.renderLeadCountryChoroplethChart = renderLeadCountryChoroplethChart;
     window.renderLegalBindingPie = renderLegalBindingPie;
     window.renderCoverageBar = renderCoverageBar;
     window.renderThemeBar = renderThemeBar;
-    window.renderThemeBeneficiaryHeatmap = renderThemeBeneficiaryHeatmap;
     window.renderActorBar = renderActorBar;
     window.renderBeneficiaryBar = renderBeneficiaryBar;
+    
+    // Value & Variety Analysis Functions
+    window.renderDiversityRadarChart = renderDiversityRadarChart;
+    window.renderInitiativeTreemapChart = renderInitiativeTreemapChart;
+    window.renderCollaborationNetworkChart = renderCollaborationNetworkChart;
 
     
 // Enhanced tooltip implementation

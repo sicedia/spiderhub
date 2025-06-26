@@ -326,6 +326,7 @@ class Loader:
                 "document_type": document_type,
                 "coverage_scope": coverage_scope,
                 "legal_bindingness": legal_bindingness,
+                "admin_notes": "",  # Add default empty string for admin_notes
                 "extra": extra,
                 "score": score
             },
