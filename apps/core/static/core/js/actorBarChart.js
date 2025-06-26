@@ -4,11 +4,10 @@
  */
 export const renderActorBar = async (counts) => {
   const container = document.getElementById('actor-bar-chart');
-  if (!container) return console.warn('Actor bar chart container missing');
+  if (!container) return;
 
   // Wait for D3 to be available (add to HTML if not already included)
   if (typeof d3 === 'undefined') {
-    console.error('D3.js not loaded. Please include D3.js library.');
     // Fallback to Chart.js implementation
     return renderActorBarFallback(counts);
   }
@@ -267,7 +266,7 @@ const renderActorBarFallback = async (counts) => {
   container.classList.add('loading');
 
   const Chart = window.Chart;
-  if (!Chart) return console.error('Chart.js not loaded');
+  if (!Chart) return;
 
   // Sort data by value (descending)
   const sortedEntries = Object.entries(counts)

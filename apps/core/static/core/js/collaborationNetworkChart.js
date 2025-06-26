@@ -4,7 +4,7 @@
  */
 export const renderCollaborationNetworkChart = async (data) => {
   const container = document.getElementById('collaboration-network-chart');
-  if (!container) return console.warn('Collaboration network chart container missing');
+  if (!container) return;
 
   // Clear existing content
   container.innerHTML = '';
@@ -12,7 +12,6 @@ export const renderCollaborationNetworkChart = async (data) => {
 
   // Check if D3 is loaded
   if (typeof d3 === 'undefined') {
-    console.error('D3.js not loaded');
     container.innerHTML = '<div style="text-align: center; padding: 50px; color: #999;">D3.js required for network visualization</div>';
     return;
   }
@@ -156,7 +155,7 @@ export const renderCollaborationNetworkChart = async (data) => {
       hideNodeTooltip();
     })
     .on('click', function(event, d) {
-      console.log(`Clicked on: ${d.name} - implement node details`);
+      // Node click handler - implement node details
     });
 
   link

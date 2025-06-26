@@ -12,7 +12,6 @@ export const fetchCountriesFromAPI = async () => {
     const data = await response.json();
     return data.countries;
   } catch (error) {
-    console.error('Error fetching countries from API:', error);
     return [];
   }
 };
@@ -22,7 +21,6 @@ export const fetchCountriesFromAPI = async () => {
  */
 export const generateWorldMapFromDatabase = async () => {
   const countries = await fetchCountriesFromAPI();
-  console.log(`Loaded ${countries.length} countries from database:`, countries.slice(0, 5));
   
   // Try to get real coordinates using a library or service first
   try {
@@ -46,7 +44,6 @@ export const generateWorldMapFromDatabase = async () => {
           }
         };
       });
-      console.log(`Generated ${features.length} map features with real coordinates`);
       return {
         "type": "FeatureCollection",
         "features": features
@@ -75,7 +72,6 @@ export const generateWorldMapFromDatabase = async () => {
     };
   });
 
-  console.log(`Generated ${features.length} map features with simplified coordinates`);
   return {
     "type": "FeatureCollection",
     "features": features
@@ -112,11 +108,10 @@ async function loadRealCountryCoordinates() {
         }
       });
       
-      console.log(`Loaded real coordinates for ${Object.keys(coordsMap).length} countries`);
       return coordsMap;
     }
   } catch (error) {
-    console.warn('Failed to load real coordinates:', error);
+    // Failed to load real coordinates
   }
   return null;
 }

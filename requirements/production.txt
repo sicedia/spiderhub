@@ -25,3 +25,5 @@ unidecode
 pycountry  # Country data for Django
 geonamescache
 django-cities-light
+
+reportlab  # For generating reports

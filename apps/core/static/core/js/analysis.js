@@ -381,15 +381,12 @@ class AnalysisPageManager {
     if (typeof renderFunction === 'function') {
       try {
         const data = await dataFunction(); // Make sure to await the data function
-        console.log(`Chart ${chartType} - Data received:`, data);
         await renderFunction(data);
       } catch (error) {
-        console.error(`Error initializing ${chartType}:`, error);
+        // Error occurred during chart initialization
       }
     } else if (attempt < this.CHART_RETRY_MAX_ATTEMPTS) {
       setTimeout(() => this.initializeChart(chartType, renderFunction, dataFunction, attempt + 1), this.CHART_RETRY_DELAY);
-    } else {
-      console.warn(`Failed to initialize ${chartType} after ${this.CHART_RETRY_MAX_ATTEMPTS} attempts`);
     }
   }
 
@@ -397,17 +394,8 @@ class AnalysisPageManager {
    * Initialize lead country chart
    */
   async initializeLeadCountryChart() {
-    console.log('=== LEAD COUNTRY CHOROPLETH CHART DEBUG ===');
-    console.log('Full analysis data:', this.analysisData);
-    console.log('Lead country counts data:', this.analysisData.lead_country_counts);
-    console.log('Type of lead_country_counts:', typeof this.analysisData.lead_country_counts);
-    console.log('D3 available:', !!window.d3);
-    console.log('Topojson available:', !!window.topojson);
-    console.log('renderLeadCountryChoroplethChart available:', !!window.renderLeadCountryChoroplethChart);
-    
     // Check if container exists
     const container = document.getElementById('lead-countries-chart');
-    console.log('Chart container found:', !!container);
     
     // Use the choropleth chart instead of bar chart
     if (window.d3 && window.renderLeadCountryChoroplethChart) {
@@ -418,30 +406,21 @@ class AnalysisPageManager {
           async () => {
             // Try to fetch fresh data from API first
             try {
-              console.log('Fetching fresh lead country data from API...');
               const response = await fetch('/api/lead-countries/');
               if (response.ok) {
                 const apiData = await response.json();
-                console.log('Fresh API data:', apiData);
-                console.log('API data counts:', apiData.counts);
-                console.log('API data keys:', Object.keys(apiData.counts || {}));
                 return apiData.counts || {};
-              } else {
-                console.error('API response not ok:', response.status, response.statusText);
               }
             } catch (error) {
-              console.warn('Could not fetch fresh lead country data, using cached data:', error);
+              // Could not fetch fresh data, using cached data
             }
             
             // Fallback to cached data from Django context
             const data = this.analysisData.lead_country_counts || {};
-            console.log('Using cached data for choropleth chart:', data);
-            console.log('Cached data keys:', Object.keys(data));
             return data;
           }
         );
       } catch (error) {
-        console.error('Error initializing choropleth chart:', error);
         // Fallback to showing error message in container
         if (container) {
           container.innerHTML = `

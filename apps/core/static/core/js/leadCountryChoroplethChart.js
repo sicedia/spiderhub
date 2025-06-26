@@ -97,17 +97,9 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
     return;
   }
 
-  console.log('=== CHOROPLETH CHART DEBUG ===');
-  console.log('Raw counts data received:', counts);
-  console.log('Type of counts:', typeof counts);
-  console.log('Keys in counts:', Object.keys(counts || {}));
-
   // Always show the map - even if no lead countries
   const hasLeadCountryData = counts && typeof counts === 'object' && Object.keys(counts).length > 0;
   const safeCountsData = hasLeadCountryData ? counts : {};
-  
-  console.log('Has lead country data:', hasLeadCountryData);
-  console.log('Using counts data:', safeCountsData);
 
   // Clear existing content
   container.innerHTML = '';
@@ -117,15 +109,14 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
 
   // Wait for D3 to be available
   if (!window.d3) {
-    console.error('D3.js not loaded');
     container.classList.remove('loading');
     container.innerHTML = '<div class="placeholder-content">Map library not available</div>';
     return;
   }
 
-  // Set up dimensions for world map
+  // Set up dimensions for world map with better centering
   const containerRect = container.getBoundingClientRect();
-  const margin = { top: 30, right: 30, bottom: 60, left: 30 };
+  const margin = { top: 50, right: 50, bottom: 100, left: 50 }; // Márgenes más equilibrados
   const width = Math.max(800, containerRect.width) - margin.left - margin.right;
   const height = Math.max(500, width * 0.55) - margin.top - margin.bottom;
 
@@ -149,82 +140,6 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
   const g = svg.append('g')
     .attr('transform', `translate(${margin.left},${margin.top})`);
 
-  // Add reset zoom button
-  const resetButton = svg.append('g')
-    .attr('class', 'reset-zoom')
-    .attr('transform', `translate(${width - 80}, 20)`)
-    .style('cursor', 'pointer')
-    .on('click', () => {
-      svg.transition().duration(750).call(
-        zoom.transform,
-        d3.zoomIdentity
-      );
-    });
-
-  resetButton.append('rect')
-    .attr('width', 60)
-    .attr('height', 28)
-    .attr('rx', 6)
-    .style('fill', '#374151')
-    .style('opacity', 0.9);
-
-  resetButton.append('text')
-    .attr('x', 30)
-    .attr('y', 19)
-    .attr('text-anchor', 'middle')
-    .style('fill', '#ffffff')
-    .style('font-family', 'Roboto, sans-serif')
-    .style('font-size', '12px')
-    .style('font-weight', '500')
-    .text('Reset');
-
-  // Add refresh data button - positioned better
-  const refreshButton = svg.append('g')
-    .attr('class', 'refresh-data')
-    .attr('transform', `translate(${width - 160}, 20)`)
-    .style('cursor', 'pointer')
-    .on('click', async () => {
-      try {
-        console.log('Refreshing lead country data...');
-        refreshButton.select('text').text('...');
-        
-        const response = await fetch('/api/lead-countries/');
-        if (response.ok) {
-          const apiData = await response.json();
-          console.log('Refreshed data:', apiData);
-          
-          // Clear container and re-render with fresh data
-          container.innerHTML = '';
-          await renderLeadCountryChoroplethChart(apiData.counts || {});
-        } else {
-          throw new Error('Failed to fetch data');
-        }
-      } catch (error) {
-        console.error('Error refreshing data:', error);
-        refreshButton.select('text').text('Error');
-        setTimeout(() => {
-          refreshButton.select('text').text('Refresh');
-        }, 2000);
-      }
-    });
-
-  refreshButton.append('rect')
-    .attr('width', 70)
-    .attr('height', 28)
-    .attr('rx', 6)
-    .style('fill', '#059669')
-    .style('opacity', 0.9);
-
-  refreshButton.append('text')
-    .attr('x', 35)
-    .attr('y', 19)
-    .attr('text-anchor', 'middle')
-    .style('fill', '#ffffff')
-    .style('font-family', 'Roboto, sans-serif')
-    .style('font-size', '12px')
-    .style('font-weight', '500')
-    .text('Refresh');
-
   // Create tooltip
   const tooltip = d3.select('body').append('div')
     .attr('class', 'choropleth-tooltip')
@@ -243,18 +158,16 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
 
   try {
     // Load world map data (try CDN first, fallback to database)
-    console.log('Loading world map data...');
     const worldMapData = await loadWorldMapData();
-    console.log('World map loaded successfully:', worldMapData ? worldMapData.features?.length + ' countries' : 'no data');
     
     if (!worldMapData || !worldMapData.features || worldMapData.features.length === 0) {
       throw new Error('No world map data available');
     }
     
-    // Set up projection for world view
+    // Set up projection for world view - better centered
     const projection = d3.geoNaturalEarth1()
       .scale(width / 7)
-      .translate([width / 2, height / 2])
+      .translate([width / 2, height / 2 + 10]) // Ajustar para centrar mejor considerando la leyenda
       .precision(0.1);
 
     const path = d3.geoPath().projection(projection);
@@ -263,9 +176,6 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
     const values = Object.values(safeCountsData);
     const maxValue = values.length > 0 ? d3.max(values) : 0;
     const minValue = values.length > 0 ? d3.min(values.filter(v => v > 0)) : 0;
-
-    console.log('Color scale values - max:', maxValue, 'min:', minValue);
-    console.log('Countries with data:', Object.keys(safeCountsData));
 
     // Enhanced color scheme with better visual hierarchy
     const colorScheme = {
@@ -300,7 +210,6 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
     // Create countries group
     const countriesGroup = g.append('g').attr('class', 'countries');
 
-    console.log('Rendering countries...');
     // Draw countries
     const countries = countriesGroup.selectAll('path')
       .data(worldMapData.features)
@@ -313,16 +222,6 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
                      
         const count = safeCountsData[iso3] || 0;
         
-        // Debug: Log first few countries to understand the data structure
-        if (worldMapData.features.indexOf(d) < 10) {
-          console.log(`🔍 Country #${worldMapData.features.indexOf(d)}: ${d.properties.name || d.properties.NAME} - ISO3: ${iso3} - Properties:`, Object.keys(d.properties));
-        }
-        
-        // Debug: Log countries that should have data
-        if (['URY', 'ARG', 'CHL', 'ESP', 'BEL', 'USA', 'FRA', 'COL', 'BRA', 'DOM'].includes(iso3)) {
-          console.log(`� Found expected country: ${d.properties.name || d.properties.NAME || iso3} (${iso3}) - Count: ${count}`);
-        }
-        
         return `country ${count > 0 ? 'lead' : 'non-lead'}`;
       })
       .style('fill', d => {
@@ -332,11 +231,6 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
         
         // Use the enhanced color scheme
         const color = getCountryColor(count);
-        
-        // Debug: Log color assignments for key countries
-        if (['URY', 'ARG', 'CHL', 'ESP', 'BEL', 'USA', 'FRA', 'COL', 'BRA'].includes(iso3)) {
-          console.log(`🎨 ${iso3} (${count} docs): ${color}`);
-        }
         
         return color;
       })
@@ -351,10 +245,6 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
                      
         const countryName = d.properties.name || d.properties.NAME || d.properties.NAME_EN || iso3;
         const count = safeCountsData[iso3] || 0;
-        
-        // Debug logging for troubleshooting
-        console.log(`🖱️  Hover on: ${countryName} (${iso3}) - Count: ${count}`);
-        console.log(`Available properties:`, Object.keys(d.properties));
         
         // Always show border highlight on hover
         d3.select(this)
@@ -461,12 +351,12 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
           .style('opacity', 0);
       });
 
-    // Add enhanced title and subtitle
+    // Add enhanced title and subtitle - perfectly centered
     const titleGroup = g.append('g').attr('class', 'title-group');
     
     titleGroup.append('text')
       .attr('x', width / 2)
-      .attr('y', -15)
+      .attr('y', -30) // Más espacio arriba con nuevos márgenes
       .attr('text-anchor', 'middle')
       .style('font-family', 'Roboto, sans-serif')
       .style('font-size', '18px')
@@ -476,7 +366,7 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
 
     titleGroup.append('text')
       .attr('x', width / 2)
-      .attr('y', 0)
+      .attr('y', -12) // Ajustar posición del subtítulo
       .attr('text-anchor', 'middle')
       .style('font-family', 'Roboto, sans-serif')
       .style('font-size', '13px')
@@ -494,13 +384,7 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
     container.classList.remove('loading');
     
     // Add success message
-    console.log('✅ Choropleth map rendered successfully!');
-    console.log(`Countries rendered: ${worldMapData.features.length}`);
-    console.log(`Countries with data: ${Object.keys(safeCountsData).length}`);
-    console.log(`Total documents: ${Object.values(safeCountsData).reduce((sum, count) => sum + count, 0)}`);
-
   } catch (error) {
-    console.error('❌ Error rendering choropleth map:', error);
     container.classList.remove('loading');
     
     // Show detailed error message
@@ -525,8 +409,8 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
 function createLegend(g, colorScale, maxValue, width, height) {
   const legendWidth = 240;
   const legendHeight = 20;
-  const legendX = width - legendWidth - 20;
-  const legendY = height - 80;
+  const legendX = (width - legendWidth) / 2; // Centrar horizontalmente
+  const legendY = height - 40; // Ajustar para los nuevos márgenes
 
   const legend = g.append('g')
     .attr('class', 'legend')
@@ -590,29 +474,6 @@ function createLegend(g, colorScale, maxValue, width, height) {
     .style('font-weight', '600')
     .style('fill', '#374151')
     .text('Documents as Lead Country');
-
-  // Add "No Data" indicator
-  const noDataLegend = legend.append('g')
-    .attr('class', 'no-data-legend')
-    .attr('transform', `translate(${legendWidth + 15}, 0)`);
-
-  noDataLegend.append('rect')
-    .attr('width', 40)
-    .attr('height', legendHeight)
-    .style('fill', '#f3f4f6')
-    .style('stroke', '#d1d5db')
-    .style('stroke-width', 1)
-    .style('rx', 3);
-
-  noDataLegend.append('text')
-    .attr('x', 20)
-    .attr('y', legendHeight + 15)
-    .attr('text-anchor', 'middle')
-    .style('font-family', 'Roboto, sans-serif')
-    .style('font-size', '11px')
-    .style('font-weight', '600')
-    .style('fill', '#374151')
-    .text('No Data');
 }
 
 /**
@@ -758,26 +619,19 @@ function addCountryLabels(g, projection, counts, worldMapData) {
  * Load world map data - try CDN first, then database, then fallback
  */
 async function loadWorldMapData() {
-  console.log('🌍 Starting world map data loading...');
   
   try {
     // First try to load from Natural Earth CDN (real world boundaries)
-    console.log('Attempting to load world map from CDN...');
     const response = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
     if (response.ok) {
-      console.log('CDN response successful, parsing data...');
       const worldData = await response.json();
-      console.log('CDN data loaded:', worldData);
       
       // Convert topojson to geojson if needed
       if (window.topojson && worldData.objects && worldData.objects.countries) {
-        console.log('Converting topojson to geojson...');
         const countries = window.topojson.feature(worldData, worldData.objects.countries);
-        console.log(`✅ Loaded ${countries.features.length} countries from CDN (topojson)`);
         return countries;
       } else if (worldData.features) {
         // Already in GeoJSON format
-        console.log(`✅ Loaded ${worldData.features.length} countries from CDN (GeoJSON)`);
         return worldData;
       } else {
         console.warn('CDN data format not recognized:', Object.keys(worldData));
@@ -791,30 +645,21 @@ async function loadWorldMapData() {
 
   try {
     // Fallback to simplified world boundaries from CDN
-    console.log('Trying simplified world boundaries...');
     const response = await fetch('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson');
     if (response.ok) {
-      console.log('Simplified CDN response successful...');
       const worldData = await response.json();
-      console.log(`✅ Loaded ${worldData.features.length} countries from simplified CDN`);
       return worldData;
-    } else {
-      console.warn('Simplified CDN response not ok:', response.status, response.statusText);
     }
   } catch (error) {
-    console.warn('❌ Could not load simplified world map:', error);
+    // Could not load simplified world map
   }
 
   try {
     // Try the database approach
-    console.log('Trying database-generated map...');
     const { generateWorldMapFromDatabase } = await import('./worldMapData.js');
     const dbMap = await generateWorldMapFromDatabase();
     if (dbMap && dbMap.features && dbMap.features.length > 0) {
-      console.log(`✅ Generated ${dbMap.features.length} countries from database`);
       return dbMap;
-    } else {
-      console.warn('Database map generation returned no data');
     }
   } catch (error) {
     console.warn('❌ Could not generate map from database:', error);
@@ -900,7 +745,6 @@ async function loadWorldMapData() {
     ]
   };
   
-  console.log(`✅ Using fallback map with ${fallbackMap.features.length} countries`);
   return fallbackMap;
 }
 

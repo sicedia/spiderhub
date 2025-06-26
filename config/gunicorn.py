@@ -17,7 +17,7 @@ threads = int(os.getenv('GUNICORN_THREADS', 2))
 max_requests = 1000
 max_requests_jitter = 50
 preload_app = True
-timeout = int(os.getenv('GUNICORN_TIMEOUT', 30))
+timeout = int(os.getenv('GUNICORN_TIMEOUT', 120))  # Increased timeout for PDF generation
 keepalive = 2
 
 # Restart workers after this many requests to prevent memory leaks
