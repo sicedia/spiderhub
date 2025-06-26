@@ -18,7 +18,7 @@ export const renderDiversityRadarChart = async (data) => {
   container.classList.add('loading');
 
   const Chart = window.Chart;
-  if (!Chart) return console.error('Chart.js not loaded');
+  if (!Chart) return;
 
   // Use the provided data (now comes from real backend data via fetchDiversityData)
   const diversityData = data || {

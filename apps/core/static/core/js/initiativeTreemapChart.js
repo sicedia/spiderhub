@@ -4,7 +4,7 @@
  */
 export const renderInitiativeTreemapChart = async (data) => {
   const container = document.getElementById('initiative-treemap-chart');
-  if (!container) return console.warn('Initiative treemap chart container missing');
+  if (!container) return;
 
   // Clear existing content
   container.innerHTML = '';
@@ -12,7 +12,6 @@ export const renderInitiativeTreemapChart = async (data) => {
 
   // Check if D3 is loaded
   if (typeof d3 === 'undefined') {
-    console.error('D3.js not loaded');
     container.innerHTML = '<div style="text-align: center; padding: 50px; color: #999;">D3.js required for treemap visualization</div>';
     return;
   }
@@ -129,7 +128,7 @@ export const renderInitiativeTreemapChart = async (data) => {
       hideTooltip();
     })
     .on('click', function(event, d) {
-      console.log(`Clicked on: ${d.data.name} - implement drill-down`);
+      // Implement drill-down functionality
     });
 
   // Add enhanced text labels with better contrast

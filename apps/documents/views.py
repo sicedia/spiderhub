@@ -70,7 +70,6 @@ def document_detail(request, document_id):
         'related_documents': related_documents,
     })
 
-@login_required
 def export_document_pdf(request, document_id):
     """Export a single document to PDF."""
     try:

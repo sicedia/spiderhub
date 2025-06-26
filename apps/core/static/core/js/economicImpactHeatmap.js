@@ -18,7 +18,7 @@ export const renderEconomicImpactHeatmap = async (data) => {
   container.classList.add('loading');
 
   const Chart = window.Chart;
-  if (!Chart) return console.error('Chart.js not loaded');
+  if (!Chart) return;
 
   // Mock data structure for economic impact
   const mockData = data || {

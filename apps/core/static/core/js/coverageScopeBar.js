@@ -35,7 +35,6 @@ export const renderCoverageBar = async (counts) => {
   // Wait for Chart.js to be available
   const Chart = window.Chart;
   if (!Chart) {
-    console.error('Chart.js not loaded');
     container.classList.remove('loading');
     return;
   }
@@ -94,7 +93,7 @@ export const renderCoverageBar = async (counts) => {
       maintainAspectRatio: false,
       layout: {
         padding: {
-          top: 20,
+          top: 50, // Más espacio arriba para los labels de mayor/menor
           bottom: 20,
           left: 20,
           right: 20
@@ -289,21 +288,36 @@ export const renderCoverageBar = async (counts) => {
       id: 'scopeRanking',
       afterDraw: (chart) => {
         if (total > 0) {
-          // Find dominant scope
+          // Find dominant and least common scopes
           const maxIndex = data.indexOf(Math.max(...data));
           const maxValue = Math.max(...data);
           const maxLabel = labels[maxIndex];
           
+          // Find minimum value (excluding zeros)
+          const nonZeroData = data.filter(val => val > 0);
+          const minValue = nonZeroData.length > 0 ? Math.min(...nonZeroData) : 0;
+          const minIndex = data.indexOf(minValue);
+          const minLabel = labels[minIndex];
+          
+          const { ctx, width } = chart;
+          
           if (maxValue > 0) {
-            const { ctx, width } = chart;
-            
             ctx.save();
             ctx.textAlign = 'center';
+            
+            // Highest label
             ctx.fillStyle = '#059669';
             ctx.font = 'bold 11px Roboto';
+            const dominantText = `🏆 Highest: ${maxLabel.split(' ')[0]} (${maxValue})`;
+            ctx.fillText(dominantText, width / 2, 20);
             
-            const dominantText = `Dominant: ${maxLabel.split(' ')[0]} (${maxValue})`;
-            ctx.fillText(dominantText, width / 2, 25);
+            // Lowest label (only if there are multiple non-zero values)
+            if (nonZeroData.length > 1 && minValue > 0 && minValue < maxValue) {
+              ctx.fillStyle = '#dc2626';
+              ctx.font = 'bold 11px Roboto';
+              const leastText = `📊 Lowest: ${minLabel.split(' ')[0]} (${minValue})`;
+              ctx.fillText(leastText, width / 2, 35);
+            }
             
             ctx.restore();
           }

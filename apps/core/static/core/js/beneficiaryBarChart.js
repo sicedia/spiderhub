@@ -17,7 +17,7 @@ export const renderBeneficiaryBar = async (counts) => {
   container.classList.add('loading');
 
   const Chart = window.Chart;
-  if (!Chart) return console.error('Chart.js not loaded');
+  if (!Chart) return;
 
   // Sort beneficiaries by count (descending) for better visual hierarchy
   const sortedEntries = Object.entries(counts)

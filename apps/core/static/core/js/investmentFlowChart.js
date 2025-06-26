@@ -18,7 +18,7 @@ export const renderInvestmentFlowChart = async (data) => {
   container.classList.add('loading');
 
   const Chart = window.Chart;
-  if (!Chart) return console.error('Chart.js not loaded');
+  if (!Chart) return;
 
   // Mock data structure for investment flow
   const mockData = data || {
@@ -223,8 +223,7 @@ export const renderInvestmentFlowChart = async (data) => {
     if (points.length) {
       const point = points[0];
       const label = chart.data.labels[point.index];
-      console.log(`Clicked on: ${label} - implement drill-down functionality`);
-      // Here you can implement drill-down to show more detailed breakdown
+      // Implement drill-down to show more detailed breakdown
     }
   });
 

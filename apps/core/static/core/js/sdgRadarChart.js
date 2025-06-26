@@ -60,7 +60,6 @@ export const renderSdgRadar = async (counts) => {
   // Wait for Chart.js to be available
   const Chart = window.Chart;
   if (!Chart) {
-    console.error('Chart.js not loaded');
     container.classList.remove('loading');
     return;
   }
