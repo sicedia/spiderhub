@@ -9,6 +9,7 @@ from apps.core.views import health_check
 
 urlpatterns = [
     path('', include('apps.core.urls', namespace='core')),
+    path('documents/', include('apps.documents.urls', namespace='documents')),
     path('admin/', admin.site.urls),
     path('admin-panel/', include('apps.admin_panel.urls', namespace='admin-panel')),
     path('api/search/', include('apps.search.urls', namespace='search')),    

@@ -35,12 +35,12 @@
         </div>
       </div>
       <div class="document-actions">
-        <a href="{{ document.summary_file.url }}"
+        <a href="{% url 'documents:export_pdf' document.id %}"
             class="btn btn-primary document-download">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="white"/>
           </svg>
-          Download Document
+          Export PDF
         </a>
       </div>
     </div>
@@ -340,7 +340,7 @@
       <div class="related-document">
         <div class="related-title">{{ rd.title }}</div>
         <div class="related-meta">
-          {% if rd.created_by %}{{ rd.created_by.get_full_name }}{% endif %}
+          {% if rd.event_country %}{{ rd.event_country }}{% endif %}
           {% if rd.event_date %} • {{ rd.event_date|date:"Y" }}{% endif %}
         </div>
         <a href="{% url 'core:document_detail' rd.pk %}" class="btn btn-secondary btn-sm">

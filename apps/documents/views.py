@@ -1,10 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import cache_page
 from django.db.models import Q, Prefetch
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from .models import (
-    Document, Country, City, Actor, EUPolicy, Topic, Theme, BeneficiaryGroup,
+    Document, Country, City, Actor, EUPolicy, Theme, BeneficiaryGroup,
     KPI, Commitment, SDG, PracticalApplication
 )
+from .pdf_utils import export_document_to_pdf
 
 # Create your views here.
 def explore_documents(request):
@@ -18,7 +21,7 @@ def explore_documents(request):
             Q(title__icontains=query) | 
             Q(metadata__location__name__icontains=query) |
             Q(actors__actor__name__icontains=query) |
-            Q(topics__topic__name__icontains=query)
+            Q(themes__theme__name__icontains=query)
         ).distinct()
     
     # Handle filters
@@ -31,7 +34,7 @@ def explore_documents(request):
     context = {
         'documents': documents,
         'actors': Actor.objects.all(),
-        'topics': Topic.objects.all(),
+        'themes': Theme.objects.all(),
         'query': query,
     }
     return render(request, 'documents/explore.html', context)
@@ -49,7 +52,6 @@ def document_detail(request, document_id):
         'lead_country_id', 'legal_bindingness', 'extra'
     ).prefetch_related(
         Prefetch('actors', queryset=Actor.objects.only('id', 'name')),
-        Prefetch('topics', queryset=Topic.objects.only('id', 'name')),
         Prefetch('themes', queryset=Theme.objects.only('id', 'name')),
         Prefetch('beneficiary_groups', queryset=BeneficiaryGroup.objects.only('id', 'name')),
         Prefetch('kpis__responsible_entity', queryset=KPI.objects.only('id', 'title', 'responsible_entity_id')),
@@ -67,4 +69,40 @@ def document_detail(request, document_id):
         'document': document,
         'related_documents': related_documents,
     })
+
+@login_required
+def export_document_pdf(request, document_id):
+    """Export a single document to PDF."""
+    try:
+        # Get document with all related data
+        document = Document.objects.select_related(
+            'created_by',
+            'event_country',
+            'event_city',
+            'lead_country',
+            'human_reviewer'
+        ).prefetch_related(
+            'themes',
+            'actors', 
+            'beneficiary_groups',
+            'beneficiary_groups_raw',
+            'sdgs',
+            'eu_policy_alignments',
+            'countries_involved',
+            'commitments__details',
+            'kpis',
+            'practical_applications',
+            'source_files',
+            'documenttheme_set__theme',
+            'documentactor_set__actor'
+        ).get(id=document_id)
+        
+        return export_document_to_pdf(document)
+        
+    except Document.DoesNotExist:
+        raise Http404("Document not found")
+    except Exception as e:
+        # Log the error in production
+        # logger.error(f"Error exporting document {document_id} to PDF: {str(e)}")
+        raise Http404("Error generating PDF")
 

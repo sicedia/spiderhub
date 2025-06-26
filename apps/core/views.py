@@ -403,6 +403,348 @@ def analysis_page(request):
         for slug, label in BeneficiaryGroup.CATEGORY_CHOICES
     }
     
+    # 7) Initiative Treemap Data - Real data from documents
+    def get_initiative_treemap_data():
+        """Generate treemap data based on document types, themes, and coverage scope"""
+        try:
+            # Build hierarchical structure
+            initiative_data = {
+                "name": "Digital Cooperation Initiatives",
+                "children": []
+            }
+            
+            # Get main categories based on themes
+            theme_categories = Theme.objects.filter(
+                documents__isnull=False
+            ).values('category').annotate(
+                doc_count=Count('documents', distinct=True)
+            ).order_by('-doc_count')
+            
+            for theme_cat in theme_categories:
+                category_name = theme_cat['category'] or 'Other'
+                doc_count = theme_cat['doc_count']
+                
+                if doc_count > 0:
+                    # Get specific themes in this category
+                    themes_in_category = Theme.objects.filter(
+                        category=theme_cat['category'],
+                        documents__isnull=False
+                    ).values('label').annotate(
+                        count=Count('documents', distinct=True)
+                    ).order_by('-count')[:4]  # Top 4 themes per category
+                    
+                    children = []
+                    for theme in themes_in_category:
+                        theme_name = theme['label'][:25] + ("..." if len(theme['label']) > 25 else "")
+                        children.append({
+                            "name": theme_name,
+                            "value": theme['count'],
+                            "count": theme['count']
+                        })
+                    
+                    # If no specific themes found, create a default entry
+                    if not children:
+                        children.append({
+                            "name": f"{category_name} Documents",
+                            "value": doc_count,
+                            "count": doc_count
+                        })
+                    
+                    initiative_data["children"].append({
+                        "name": category_name,
+                        "children": children
+                    })
+            
+            # If no theme categories found, fall back to coverage scope
+            if not initiative_data["children"]:
+                coverage_scopes = Document.objects.values('coverage_scope').annotate(
+                    count=Count('id')
+                ).exclude(coverage_scope__isnull=True).exclude(coverage_scope='').order_by('-count')
+                
+                for scope in coverage_scopes:
+                    scope_name = scope['coverage_scope'].replace('_', ' ').title()
+                    doc_count = scope['count']
+                    
+                    initiative_data["children"].append({
+                        "name": scope_name,
+                        "children": [{
+                            "name": f"{scope_name} Documents",
+                            "value": doc_count,
+                            "count": doc_count
+                        }]
+                    })
+            
+            # If still no data, create a minimal structure
+            if not initiative_data["children"]:
+                total_docs = Document.objects.count()
+                if total_docs > 0:
+                    initiative_data["children"].append({
+                        "name": "All Documents", 
+                        "children": [{
+                            "name": "Digital Cooperation",
+                            "value": total_docs,
+                            "count": total_docs
+                        }]
+                    })
+            
+            return initiative_data
+            
+        except Exception as e:
+            logger.error(f"Error generating treemap data: {e}")
+            # Return minimal fallback structure
+            return {
+                "name": "Digital Cooperation Initiatives",
+                "children": [{
+                    "name": "Documents",
+                    "children": [{
+                        "name": "No data available",
+                        "value": 1,
+                        "count": 0
+                    }]
+                }]
+            }
+    
+    initiative_treemap_data = get_initiative_treemap_data()
+    
+    # 8) Diversity Radar Data - Real data from documents
+    def get_diversity_radar_data():
+        """Generate diversity metrics based on actual database content"""
+        import math
+        from collections import Counter
+        
+        try:
+            # Helper function to calculate Shannon diversity index
+            def calculate_shannon_index(data_dict):
+                values = list(data_dict.values())
+                total = sum(values)
+                if total == 0:
+                    return 0
+                return -sum((v/total) * math.log(v/total) for v in values if v > 0)
+            
+            # Helper function to calculate diversity score (0-100)
+            def calculate_diversity_score(data_dict, max_expected=20):
+                if not data_dict:
+                    return 0
+                    
+                shannon_index = calculate_shannon_index(data_dict)
+                category_count = len([v for v in data_dict.values() if v > 0])
+                
+                if category_count == 0:
+                    return 0
+                
+                # Normalize Shannon index (max theoretical value for even distribution)
+                max_shannon = math.log(category_count) if category_count > 1 else 1
+                normalized_shannon = shannon_index / max_shannon if max_shannon > 0 else 0
+                
+                # Combine Shannon index (70%) and category count factor (30%)
+                category_factor = min(category_count / max_expected, 1)
+                diversity_score = (normalized_shannon * 0.7 + category_factor * 0.3) * 100
+                
+                return min(100, max(0, math.floor(diversity_score)))
+            
+            # 1. Thematic Diversity - based on Theme categories and labels
+            theme_categories = {}
+            theme_labels = {}
+            
+            for theme in Theme.objects.annotate(doc_count=Count('documents')):
+                if theme.doc_count > 0:
+                    category = theme.category or 'Uncategorised'
+                    theme_categories[category] = theme_categories.get(category, 0) + theme.doc_count
+                    theme_labels[theme.label] = theme.doc_count
+            
+            thematic_diversity = {
+                'value': calculate_diversity_score(theme_categories, 6),  # 6 theme categories
+                'description': 'Distribution across digital transformation themes',
+                'categories': len(theme_categories),
+                'shannonIndex': round(calculate_shannon_index(theme_categories), 2)
+            }
+            
+            # 2. Actor Diversity - based on Actor categories
+            actor_categories = {}
+            for actor in Actor.objects.annotate(doc_count=Count('documents')):
+                if actor.doc_count > 0:
+                    category = actor.category or 'Uncategorised'
+                    actor_categories[category] = actor_categories.get(category, 0) + actor.doc_count
+            
+            actor_diversity = {
+                'value': calculate_diversity_score(actor_categories, 5),  # 5 actor categories
+                'description': 'Variety of participating stakeholders',
+                'categories': len(actor_categories),
+                'shannonIndex': round(calculate_shannon_index(actor_categories), 2)
+            }
+            
+            # 3. Geographic Spread - based on Countries
+            country_involvement = {}
+            # Count countries from all relationships
+            for country in Country.objects.annotate(
+                total_docs=Count('document', distinct=True) + 
+                          Count('lead_documents', distinct=True) +
+                          Count('mentioned_in_documents', distinct=True)
+            ):
+                if country.total_docs > 0:
+                    country_involvement[country.iso3] = country.total_docs
+            
+            geographic_diversity = {
+                'value': calculate_diversity_score(country_involvement, 30),  # Up to 30 countries
+                'description': 'Regional and country coverage',
+                'categories': len(country_involvement),
+                'shannonIndex': round(calculate_shannon_index(country_involvement), 2)
+            }
+            
+            # 4. Sector Coverage - based on Actor categories (proxy for sectors)
+            sector_diversity = {
+                'value': calculate_diversity_score(actor_categories, 5),
+                'description': 'Economic sector representation',
+                'categories': len(actor_categories),
+                'shannonIndex': round(calculate_shannon_index(actor_categories), 2)
+            }
+            
+            # 5. Initiative Types - based on document types and coverage scope
+            initiative_types = {}
+            
+            # Count by document type
+            for doc in Document.objects.values('document_type').annotate(count=Count('id')):
+                if doc['document_type'] and doc['count'] > 0:
+                    initiative_types[doc['document_type']] = doc['count']
+            
+            # Count by coverage scope
+            for doc in Document.objects.values('coverage_scope').annotate(count=Count('id')):
+                if doc['coverage_scope'] and doc['count'] > 0:
+                    scope_key = f"scope_{doc['coverage_scope']}"
+                    initiative_types[scope_key] = doc['count']
+            
+            initiative_diversity = {
+                'value': calculate_diversity_score(initiative_types, 10),  # Various initiative types
+                'description': 'Variety of cooperation formats',
+                'categories': len(initiative_types),
+                'shannonIndex': round(calculate_shannon_index(initiative_types), 2)
+            }
+            
+            # 6. Beneficiary Inclusion - based on BeneficiaryGroup categories
+            beneficiary_categories = {}
+            for ben in BeneficiaryGroup.objects.annotate(doc_count=Count('documents')):
+                if ben.doc_count > 0:
+                    category = ben.category or 'Uncategorised'
+                    beneficiary_categories[category] = beneficiary_categories.get(category, 0) + ben.doc_count
+            
+            beneficiary_diversity = {
+                'value': calculate_diversity_score(beneficiary_categories, 17),  # 17 beneficiary categories
+                'description': 'Diversity of target groups',
+                'categories': len(beneficiary_categories),
+                'shannonIndex': round(calculate_shannon_index(beneficiary_categories), 2)
+            }
+            
+            # 7. Funding Sources - combination of actor categories and coverage scope
+            funding_sources = {}
+            funding_sources.update(actor_categories)  # Actors represent funding sources
+            
+            # Add coverage scope as funding mechanism indicator
+            for doc in Document.objects.values('coverage_scope').annotate(count=Count('id')):
+                if doc['coverage_scope'] and doc['count'] > 0:
+                    funding_key = f"funding_{doc['coverage_scope']}"
+                    funding_sources[funding_key] = doc['count']
+            
+            funding_diversity = {
+                'value': calculate_diversity_score(funding_sources, 10),
+                'description': 'Financial mechanism diversity',
+                'categories': len(funding_sources),
+                'shannonIndex': round(calculate_shannon_index(funding_sources), 2)
+            }
+            
+            # 8. Temporal Distribution - based on event dates
+            temporal_distribution = {}
+            current_year = 2025
+            
+            for doc in Document.objects.filter(event_date__isnull=False):
+                if doc.event_date:
+                    year = doc.event_date.year
+                    # Group into periods
+                    if year < 2020:
+                        period = "Before 2020"
+                    elif year < 2022:
+                        period = "2020-2021"
+                    elif year < 2024:
+                        period = "2022-2023"
+                    else:
+                        period = "2024-2025"
+                    
+                    temporal_distribution[period] = temporal_distribution.get(period, 0) + 1
+            
+            # If no temporal data, use document creation dates as fallback
+            if not temporal_distribution:
+                for doc in Document.objects.all()[:100]:  # Limit for performance
+                    year = doc.created_at.year
+                    period = f"{year}"
+                    temporal_distribution[period] = temporal_distribution.get(period, 0) + 1
+            
+            temporal_diversity = {
+                'value': calculate_diversity_score(temporal_distribution, 5) if temporal_distribution else 50,
+                'description': 'Timeline and duration variety',
+                'categories': len(temporal_distribution) if temporal_distribution else 3,
+                'shannonIndex': round(calculate_shannon_index(temporal_distribution), 2) if temporal_distribution else 1.0
+            }
+            
+            return {
+                'dimensions': {
+                    'Thematic Diversity': thematic_diversity,
+                    'Actor Diversity': actor_diversity,
+                    'Geographic Spread': geographic_diversity,
+                    'Sector Coverage': sector_diversity,
+                    'Initiative Types': initiative_diversity,
+                    'Beneficiary Inclusion': beneficiary_diversity,
+                    'Funding Sources': funding_diversity,
+                    'Temporal Distribution': temporal_diversity
+                }
+            }
+            
+        except Exception as e:
+            logger.error(f"Error generating diversity data: {e}")
+            # Return minimal fallback structure
+            return {
+                'dimensions': {
+                    'Thematic Diversity': {'value': 0, 'description': 'No data available', 'categories': 0, 'shannonIndex': 0},
+                    'Actor Diversity': {'value': 0, 'description': 'No data available', 'categories': 0, 'shannonIndex': 0},
+                    'Geographic Spread': {'value': 0, 'description': 'No data available', 'categories': 0, 'shannonIndex': 0},
+                    'Sector Coverage': {'value': 0, 'description': 'No data available', 'categories': 0, 'shannonIndex': 0},
+                    'Initiative Types': {'value': 0, 'description': 'No data available', 'categories': 0, 'shannonIndex': 0},
+                    'Beneficiary Inclusion': {'value': 0, 'description': 'No data available', 'categories': 0, 'shannonIndex': 0},
+                    'Funding Sources': {'value': 0, 'description': 'No data available', 'categories': 0, 'shannonIndex': 0},
+                    'Temporal Distribution': {'value': 0, 'description': 'No data available', 'categories': 0, 'shannonIndex': 0}
+                }
+            }
+    
+    diversity_radar_data = get_diversity_radar_data()
+    
+    # Simple debug output to verify data
+    if not any(treemapData.get('children', []) for treemapData in [initiative_treemap_data]):
+        # Add some mock data if no real data exists
+        initiative_treemap_data = {
+            "name": "Digital Cooperation Initiatives",
+            "children": [
+                {
+                    "name": "Strategic Frameworks",
+                    "children": [
+                        {"name": "Digital Strategies", "value": 5, "count": 5},
+                        {"name": "Policy Documents", "value": 3, "count": 3}
+                    ]
+                },
+                {
+                    "name": "Cooperation Agreements", 
+                    "children": [
+                        {"name": "Bilateral MOUs", "value": 4, "count": 4},
+                        {"name": "Multilateral Programs", "value": 6, "count": 6}
+                    ]
+                },
+                {
+                    "name": "Innovation Initiatives",
+                    "children": [
+                        {"name": "Technology Transfer", "value": 2, "count": 2},
+                        {"name": "Research Collaboration", "value": 3, "count": 3}
+                    ]
+                }
+            ]
+        }
+    
     total_countries = Country.objects.filter(
         Q(document__isnull=False) |  # event_country relationship (default related_name)
         Q(lead_documents__isnull=False)   # lead_country relationship
@@ -431,7 +773,52 @@ def analysis_page(request):
             "theme_ben_matrix": matrix,
             "actor_counts":  actor_counts,  
             "beneficiary_counts": beneficiary_counts,
+            "initiative_treemap_data": initiative_treemap_data,
+            "diversity_radar_data": diversity_radar_data,
         },
     }
 
     return render(request, template_name, context)
+
+def api_countries(request):
+    """API endpoint to get all countries from database"""
+    countries = Country.objects.all().values('iso3', 'iso2', 'name')
+    return JsonResponse({
+        'countries': list(countries)
+    })
+
+def api_lead_countries(request):
+    """API endpoint to get document counts by lead country for choropleth map"""
+    from django.db.models import Count
+    
+    # Get lead country counts
+    lead_country_counts = (
+        Document.objects
+        .filter(lead_country__isnull=False)  # Only documents with lead countries
+        .values('lead_country__iso3', 'lead_country__name')
+        .annotate(document_count=Count('id'))
+        .order_by('-document_count')
+    )
+    
+    # Convert to the format expected by the choropleth chart: {ISO3: count}
+    counts_data = {}
+    countries_info = []
+    
+    for item in lead_country_counts:
+        iso3 = item['lead_country__iso3']
+        count = item['document_count']
+        name = item['lead_country__name']
+        
+        counts_data[iso3] = count
+        countries_info.append({
+            'iso3': iso3,
+            'name': name,
+            'count': count
+        })
+    
+    return JsonResponse({
+        'counts': counts_data,  # For the choropleth chart
+        'countries': countries_info,  # For additional details
+        'total_documents': sum(counts_data.values()),
+        'total_lead_countries': len(counts_data)
+    })
