@@ -19,7 +19,7 @@
   <main id="main-content" class="about-container" role="main">
     <!-- Project Description Section -->
     <section class="about-section" aria-labelledby="project-title">
-      <h2 id="project-title" class="section-title">Our Project</h2>
+      <h2 id="project-title" class="section-title">Our Platform</h2>
       <div class="about-content">
         <div class="about-text">
           <p>SPIDERHUB is a platform inspired by the SPIDER project, designed to analyse, connect, and visualise digital transformation agreements between Europe and Latin America. This initiative is led by CEDIA, building on the foundations of SPIDER to enhance data accessibility and interoperability across the EU-LAC digital ecosystem.</p>
@@ -36,8 +36,8 @@
           <svg width="400" height="300" viewBox="0 0 400 300" class="connection-map" role="img" aria-labelledby="map-title" aria-describedby="map-desc">
             <title id="map-title">EU-LAC Digital Connection Map</title>
             <desc id="map-desc">Visual representation showing connections between European and Latin American digital policies through SPIDERHUB platform</desc>
-            
-            <!-- Simplified world map outline focusing on EU and LATAM -->
+
+            <!-- Simplified world map outline focusing on EU and LAC -->
             <path d="M250 80 Q270 60 290 65 Q310 70 330 60 Q350 55 370 65 Q380 75 370 90 Q360 100 350 105 Q330 110 310 100 Q290 95 280 105 Q270 110 260 105 Q250 100 250 80Z" fill="#094EB2" opacity="0.15" stroke="#094EB2" stroke-width="2"/>
             <path d="M120 140 Q130 150 120 160 Q110 170 100 180 Q90 200 80 210 Q70 220 60 210 Q50 200 60 190 Q70 180 80 170 Q90 160 100 150 Q110 140 120 140Z" fill="#34A853" opacity="0.15" stroke="#34A853" stroke-width="2"/>
             
@@ -61,7 +61,9 @@
             
             <!-- Labels -->
             <text x="330" y="70" font-size="12" fill="#094EB2" font-weight="bold">Europe</text>
-            <text x="60" y="230" font-size="12" fill="#34A853" font-weight="bold">Latin America</text>
+            <text x="60" y="230" font-size="12" fill="#34A853" font-weight="bold">
+              Latin America and the Caribbean (LAC)
+            </text>
             <text x="180" y="140" font-size="14" fill="#333" font-weight="bold">SPIDERHUB</text>
             
             <!-- Legend items -->
@@ -160,11 +162,7 @@
       <div class="partners-grid" role="list">
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="40" fill="#FFFFFF"/>
-              <circle cx="40" cy="40" r="38" fill="#094EB2"/>
-              <text x="20" y="45" font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF">INMARK</text>
-            </svg>
+            <img src="{% static 'core/images/partners/inmark.jpg' %}" alt="Inmark logo">
           </div>
           <div class="partner-info">
             <h3>Inmark</h3>
@@ -174,11 +172,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="40" fill="#FFFFFF"/>
-              <circle cx="40" cy="40" r="38" fill="#34A853"/>
-              <text x="28" y="45" font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF">DLR</text>
-            </svg>
+            <img src="{% static 'core/images/partners/dlr.jpg' %}" alt="DLR logo">
           </div>
           <div class="partner-info">
             <h3>Deutsches Zentrum Für Luft - Und Raumfahrt EV</h3>
@@ -188,11 +182,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="40" fill="#FFFFFF"/>
-              <rect x="20" y="25" width="40" height="30" fill="#333333"/>
-              <text x="18" y="45" font-family="Arial" font-size="9" font-weight="bold" fill="#FFFFFF">LifeSTech</text>
-            </svg>
+            <img src="{% static 'core/images/partners/lifestech.jpeg' %}" alt="LifeSTech logo">
           </div>
           <div class="partner-info">
             <h3>Life Supporting Technologies (LifeSTech)</h3>
@@ -202,11 +192,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="40" fill="#FFFFFF"/>
-              <circle cx="40" cy="40" r="38" fill="#7C0A02"/>
-              <text x="25" y="45" font-family="Arial" font-size="10" font-weight="bold" fill="#FFFFFF">EurA</text>
-            </svg>
+            <img src="{% static 'core/images/partners/eura.png' %}" alt="EurA logo">
           </div>
           <div class="partner-info">
             <h3>Eura Unipessoal LDA</h3>
@@ -216,11 +202,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="40" fill="#FFFFFF"/>
-              <circle cx="40" cy="40" r="38" fill="#C41E3A"/>
-              <text x="18" y="45" font-family="Arial" font-size="9" font-weight="bold" fill="#FFFFFF">EIT Digital</text>
-            </svg>
+            <img src="{% static 'core/images/partners/eit-digital.png' %}" alt="EIT Digital logo">
           </div>
           <div class="partner-info">
             <h3>EIT Digital</h3>
@@ -230,11 +212,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="40" fill="#FFFFFF"/>
-              <circle cx="40" cy="40" r="38" fill="#FF6B35"/>
-              <text x="22" y="45" font-family="Arial" font-size="10" font-weight="bold" fill="#FFFFFF">REUNA</text>
-            </svg>
+            <img src="{% static 'core/images/partners/reuna.jpeg' %}" alt="REUNA logo">
           </div>
           <div class="partner-info">
             <h3>REUNA Corporación Red Universitaria Nacional</h3>
@@ -243,12 +221,8 @@
         </article>
         
         <article class="partner-card" role="listitem">
-          <div class="partner-logo cedia" aria-hidden="true">
-            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="40" fill="#FFFFFF"/>
-              <circle cx="40" cy="40" r="38" fill="#34A853"/>
-              <text x="22" y="45" font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF">CEDIA</text>
-            </svg>
+          <div class="partner-logo" aria-hidden="true">
+            <img src="{% static 'core/images/partners/cedia.png' %}" alt="CEDIA logo">
           </div>
           <div class="partner-info">
             <h3>Corporación Ecuatoriana para el Desarrollo de la Investigación y la Academia (CEDIA)</h3>
@@ -258,11 +232,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="40" fill="#FFFFFF"/>
-              <circle cx="40" cy="40" r="38" fill="#4A90E2"/>
-              <text x="28" y="45" font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF">RNP</text>
-            </svg>
+            <img src="{% static 'core/images/partners/rpn.png' %}" alt="RNP logo">
           </div>
           <div class="partner-info">
             <h3>Rede Nacional de Ensino e Pesquisa (RNP)</h3>
@@ -272,11 +242,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="40" fill="#FFFFFF"/>
-              <circle cx="40" cy="40" r="38" fill="#9C27B0"/>
-              <text x="15" y="45" font-family="Arial" font-size="9" font-weight="bold" fill="#FFFFFF">RedCONARE</text>
-            </svg>
+            <img src="{% static 'core/images/partners/conare.png' %}" alt="Red Conare logo">
           </div>
           <div class="partner-info">
             <h3>Red Conare</h3>
@@ -288,9 +254,9 @@
 
     <!-- Team Section -->
     <section class="about-section team-section" aria-labelledby="team-title">
-      <h2 id="team-title" class="section-title">Project Coordination</h2>
+      <h2 id="team-title" class="section-title">Platform Coordination</h2>
       <div class="team-description">
-        <p>The project is coordinated by an interdisciplinary team from public institutions, civil society, and academia across Europe and Latin America. Each partner brings domain expertise in governance, technology, and digital policy to ensure comprehensive analysis and meaningful insights into EU-LAC digital cooperation.</p>
+        <p>The platform is coordinated by an interdisciplinary team from public institutions, civil society, and academia across Europe and Latin America. Each partner brings domain expertise in governance, technology, and digital policy to ensure comprehensive analysis and meaningful insights into EU-LAC digital cooperation.</p>
       </div>
     </section>
 
@@ -305,8 +271,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M20 4H4C3.9 4 3 4.9 3 6L3 18C3 19.1 3.9 20 4 20H20C20.1 20 21 19.1 21 18V6C21 4.9 20.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="#094EB2"/>
               </svg>
-              <a href="mailto:planificacion@cedia.org.ec" class="contact-link">
-                <span class="sr-only">Email: </span>planificacion@cedia.org.ec
+              <a href="mailto:info@spidernetwork.org" class="contact-link">
+                <span class="sr-only">Email: </span>info@spidernetwork.org
               </a>
             </div>
             <div class="contact-detail">
@@ -319,9 +285,9 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" fill="#094EB2"/>
               </svg>
-              <a href="tel:+593998101478" class="contact-link">
-                <span class="sr-only">Phone: </span>+593998101478
-              </a>
+                <a href="https://wa.me/593998101487" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <span class="sr-only">WhatsApp: </span>+593998101487
+                </a>
             </div>
           </address>
         </div>

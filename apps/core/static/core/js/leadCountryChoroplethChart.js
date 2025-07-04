@@ -296,7 +296,7 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
                 <span style="color: #93C5FD;">as lead country</span>
               </div>
               <div style="color: #D1D5DB; font-size: 13px;">
-                <span style="color: #34D399;">${percentage}%</span> of all EU-LATAM digital initiatives
+                <span style="color: #34D399;">${percentage}%</span> of all EU-LAC digital initiatives
               </div>
             </div>
             <div style="border-top: 1px solid rgba(156, 163, 175, 0.3); padding-top: 6px; font-size: 11px; color: #9CA3AF;">
@@ -362,7 +362,7 @@ export const renderLeadCountryChoroplethChart = async (counts) => {
       .style('font-size', '18px')
       .style('font-weight', '700')
       .style('fill', '#1f2937')
-      .text('EU-LATAM Digital Cooperation Leadership');
+      .text('EU-LAC Digital Cooperation Leadership');
 
     titleGroup.append('text')
       .attr('x', width / 2)

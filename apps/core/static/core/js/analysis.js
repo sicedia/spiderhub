@@ -650,7 +650,7 @@ async initializeActorBar() {
     const multilateral = scopeData.multilateral || 0;
     const regional = scopeData.regional || 0;
     
-    // Estimate investment amounts based on document patterns (realistic EU-LATAM ranges)
+    // Estimate investment amounts based on document patterns (realistic EU-LAC ranges)
     return {
       public_funding: {
         bilateral: { 
@@ -705,7 +705,7 @@ async initializeActorBar() {
     const totalDocs = Object.values(themeData).reduce((sum, count) => sum + count, 0);
     const totalScope = Object.values(scopeData).reduce((sum, count) => sum + count, 0);
     
-    // Generate realistic timeline based on EU-LATAM cooperation patterns
+    // Generate realistic timeline based on EU-LAC cooperation patterns
     // Most agreements started around 2019-2020, increased during 2021-2023
     const baselineCommitment = totalDocs * 2500000; // ~2.5M EUR per document average
     
