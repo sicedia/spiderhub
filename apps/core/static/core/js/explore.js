@@ -673,7 +673,7 @@ class ExplorePageManager {
       { x: 320, y: 320, label: 'Argentina', count: 13, color: '#34A853' },
       { x: 350, y: 280, label: 'Colombia', count: 11, color: '#34A853' },
       { x: 310, y: 230, label: 'Mexico', count: 14, color: '#34A853' },
-      { x: 470, y: 200, label: 'EU-LATAM Agreements', count: 30, color: '#FBBC04' }
+      { x: 470, y: 200, label: 'EU-LAC Agreements', count: 30, color: '#FBBC04' }
     ];
     
     markers.forEach((marker, index) => {
