@@ -137,7 +137,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 20000  # Limit number of fields in a form submis
 CONTENT_SECURITY_POLICY = {
     'DIRECTIVES': {
         'default-src': ("'self'",),
-        'script-src': ("'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net", "https://d3js.org"),
+        'script-src': ("'self'",  "https://cdn.jsdelivr.net", "https://d3js.org"),
         'style-src': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com"),
         'style-src-elem': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com"),
         'style-src-attr': ("'self'", "'unsafe-inline'"),
@@ -146,6 +146,7 @@ CONTENT_SECURITY_POLICY = {
         'connect-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://raw.githubusercontent.com"),
         'frame-src': ("'none'",),
         'object-src': ("'none'",),
+        'frame-ancestors': ("'none'",),
         'base-uri': ("'self'",),
         # Include report URI if set
         **({ 'report-uri': (os.getenv('CSP_REPORT_URI'),) } if os.getenv('CSP_REPORT_URI') else {}),
