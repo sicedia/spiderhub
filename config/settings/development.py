@@ -32,11 +32,13 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 20000  # Increase from default 1000
 CONTENT_SECURITY_POLICY_REPORT_ONLY = {
     'DIRECTIVES': {
         'default-src': ("'self'", "'unsafe-inline'"),
-        'script-src': ("'self'", "'unsafe-inline'"),
-        'style-src': ("'self'", "'unsafe-inline'"),
+        'script-src': ("'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net", "https://d3js.org"),
+        'style-src': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com"),
+        'style-src-elem': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com"),
+        'style-src-attr': ("'self'", "'unsafe-inline'"),
         'img-src': ("'self'", "data:"),
-        'font-src': ("'self'", "data:"),
-        'connect-src': ("'self'",),
+        'font-src': ("'self'", "data:", "https://fonts.gstatic.com"),
+        'connect-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://raw.githubusercontent.com"),
         'frame-src': ("'none'",),
         'object-src': ("'none'",),
         'base-uri': ("'self'",),

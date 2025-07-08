@@ -137,11 +137,13 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 20000  # Limit number of fields in a form submis
 CONTENT_SECURITY_POLICY = {
     'DIRECTIVES': {
         'default-src': ("'self'",),
-        'script-src': ("'self'",),
-        'style-src': ("'self'",),
+        'script-src': ("'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net", "https://d3js.org"),
+        'style-src': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com"),
+        'style-src-elem': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com"),
+        'style-src-attr': ("'self'", "'unsafe-inline'"),
         'img-src': ("'self'", "data:"),
-        'font-src': ("'self'", "data:"),
-        'connect-src': ("'self'",),
+        'font-src': ("'self'", "data:", "https://fonts.gstatic.com"),
+        'connect-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://raw.githubusercontent.com"),
         'frame-src': ("'none'",),
         'object-src': ("'none'",),
         'base-uri': ("'self'",),
