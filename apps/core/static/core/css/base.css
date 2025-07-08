@@ -146,6 +146,18 @@ header {
   align-items: center;
 }
 
+.logo-image {
+  height: 30px;
+  width: auto;
+  margin-right: 10px;
+  opacity: 0.9;
+  transition: opacity var(--transition-medium);
+}
+
+.logo:hover .logo-image {
+  opacity: 1;
+}
+
 .logo svg {
   margin-right: 10px;
 }
