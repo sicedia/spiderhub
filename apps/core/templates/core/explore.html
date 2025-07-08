@@ -1,9 +1,10 @@
 {% extends "core/base.html" %}
 {% load static %}
+{% load static_tags %}
 {% block title %}SPIDERHUB: Explorar Diálogos - Transformación Digital UE - AL{% endblock %}
 {% block extra_head %}  
-<link rel="stylesheet" href="{% static 'core/css/base.css' %}">
-<link rel="stylesheet" href="{% static 'core/css/explore_styles.css' %}">
+{% css_versioned 'core/css/base.css' %}
+{% css_versioned 'core/css/explore_styles.css' %}
 {% endblock %}
 
 {% block content %}
@@ -441,8 +442,7 @@
 {% endblock %}
 
 {% block extra_scripts %}
-  <script type="module" src="{% static 'core/js/explore.js' %}"></script>
-  <script type="module" src="{% static 'core/js/main.js' %}"></script>
-  <script type="module" src="{% static 'search/js/explore.js' %}"></script>
-
+  {% js_module_versioned 'core/js/explore.js' %}
+  {% js_module_versioned 'core/js/main.js' %}
+  {% js_module_versioned 'search/js/explore.js' %}
 {% endblock %}

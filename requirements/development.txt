@@ -47,3 +47,6 @@ waitress
 pycountry  # Country data for Django
 geonamescache
 django-cities-light
+
+# Content Security Policy support for development
+django-csp
