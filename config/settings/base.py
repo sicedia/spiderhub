@@ -58,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Disable X-Frame-Options header; CSP frame-ancestors will be used
+    # so the XFrameOptionsMiddleware can be removed in production
 ]
 
 ROOT_URLCONF = 'config.urls'
