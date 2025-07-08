@@ -33,9 +33,9 @@ FROM python:3.12-slim AS runner
 
 LABEL maintainer="felipe.mendieta@cedia.org.ec" \
       org.opencontainers.image.title="spiderhub" \
-    org.opencontainers.image.version="0.1.0-beta.13" \
+    org.opencontainers.image.version="0.1.0-beta.18" \
       org.opencontainers.image.description="SpiderHub Document Management System" \
-      org.opencontainers.image.source="https://github.com/sicedia/spiderhub"
+      org.opencontainers.image.source="https://github.com/sicedia/spiderhub.git"
 
 # Production environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \

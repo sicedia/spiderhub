@@ -27,10 +27,30 @@ wait_for_service() {
 # Wait for PostgreSQL
 wait_for_service "$POSTGRES_HOST" "$POSTGRES_PORT" "PostgreSQL"
 
+# Function to check database status
+check_db_status() {
+    echo "Checking database status..."
+    # Use a more robust pipeline to avoid BrokenPipeError.
+    # The `grep` command filters the lines, and `wc -l` counts them.
+    # This ensures the entire output of `showmigrations` is processed.
+    MIGRATIONS_COUNT=$(python manage.py showmigrations --plan | grep -c "\[X\]" || true)
+    
+    if [ "$MIGRATIONS_COUNT" -gt 0 ]; then
+        echo "Database is already migrated."
+        return 0 # Migrated
+    else
+        echo "Fresh database detected. Running initial setup..."
+        return 1 # Not migrated
+    fi
+}
+
 # Check if this is first deployment
-echo "Checking database status..."
-if ! python manage.py showmigrations --plan | grep -q '\[X\]'; then
-    echo "Fresh database detected. Running initial setup..."
+check_db_status
+DB_STATUS=$?
+
+if [ "$DB_STATUS" -eq 1 ]; then
+    # Fresh database, run migrations and initial setup
+    echo "Applying database migrations..."
     python manage.py migrate --no-input
     
     # Create superuser if specified
@@ -53,6 +73,11 @@ fi
 
 echo "Collecting static files..."
 python manage.py collectstatic --no-input --clear
+
+# If Content Security Policy report URI is set, echo it
+if [ ! -z "$CSP_REPORT_URI" ]; then
+  echo "CSP reporting enabled: $CSP_REPORT_URI"
+fi
 
 # Validate Django configuration
 echo "Validating Django configuration..."

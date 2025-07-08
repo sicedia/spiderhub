@@ -27,3 +27,6 @@ geonamescache
 django-cities-light
 
 reportlab  # For generating reports
+
+# Add django-csp for Content Security Policy support
+django-csp

@@ -5,6 +5,9 @@ from .base import *
 
 DEBUG = False
 
+# Versión estática para cache busting en producción
+STATIC_VERSION = os.getenv('STATIC_VERSION', '1.0.0')
+
 # Hosts configuration
 ALLOWED_HOSTS = [h.strip() for h in os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')]
 CSRF_TRUSTED_ORIGINS = [f'https://{h}' for h in ALLOWED_HOSTS if h not in ['localhost', '127.0.0.1']]
@@ -129,3 +132,20 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@spiderhub.com')
 FILE_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50MB
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 20000  # Limit number of fields in a form submission
+
+# Content Security Policy settings (django-csp >=4.0)
+CONTENT_SECURITY_POLICY = {
+    'DIRECTIVES': {
+        'default-src': ("'self'",),
+        'script-src': ("'self'",),
+        'style-src': ("'self'",),
+        'img-src': ("'self'", "data:"),
+        'font-src': ("'self'", "data:"),
+        'connect-src': ("'self'",),
+        'frame-src': ("'none'",),
+        'object-src': ("'none'",),
+        'base-uri': ("'self'",),
+        # Include report URI if set
+        **({ 'report-uri': (os.getenv('CSP_REPORT_URI'),) } if os.getenv('CSP_REPORT_URI') else {}),
+    }
+}

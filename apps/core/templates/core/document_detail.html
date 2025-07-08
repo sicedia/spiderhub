@@ -1,10 +1,11 @@
 {% extends "core/base.html" %}
 {% load static %}
+{% load static_tags %}
 {% block title %}SPIDERHUB: Document Detail - EU - LAC Digital Transformation{% endblock %}
 {% block extra_head %}  
-<link rel="stylesheet" href="{% static 'core/css/base.css' %}">
-<link rel="stylesheet" href="{% static 'core/css/home.css' %}">
-<link rel="stylesheet" href="{% static 'core/css/document_detail.css' %}">
+{% css_versioned 'core/css/base.css' %}
+{% css_versioned 'core/css/home.css' %}
+{% css_versioned 'core/css/document_detail.css' %}
 {% endblock %}
 {% block content %}
 <!-- Document Detail Content -->
@@ -362,6 +363,6 @@
 {% endblock %}
 
 {% block extra_scripts %}
-  <script type="module" src="{% static 'core/js/main.js' %}"></script>
-  <script type="module" src="{% static 'core/js/document_detail.js' %}"></script>
+  {% js_module_versioned 'core/js/main.js' %}
+  {% js_module_versioned 'core/js/document_detail.js' %}
 {% endblock %}
