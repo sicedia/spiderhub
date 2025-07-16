@@ -40,6 +40,98 @@
   opacity: 0.8;
 }
 
+/* Project Info Section */
+.project-info-section {
+  padding: 3rem 5%;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.project-info-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 2rem;
+  background-color: var(--bg-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  border-left: 4px solid #003d82;
+}
+
+.project-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: transparent;
+  border-radius: var(--border-radius);
+  min-width: 180px;
+  text-align: center;
+}
+
+.eu-logo {
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
+}
+
+.eu-flag {
+  font-size: 1.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.funding-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.project-description {
+  flex: 1;
+}
+
+.project-description p {
+  margin: 0 0 1rem 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.project-description strong {
+  color: var(--primary-blue);
+  font-weight: 700;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all var(--transition-medium);
+  padding: 0.5rem 0;
+}
+
+.project-link:hover {
+  color: var(--primary-green);
+  transform: translateX(2px);
+}
+
+.external-icon {
+  transition: transform var(--transition-medium);
+}
+
+.project-link:hover .external-icon {
+  transform: translateX(2px) translateY(-1px);
+}
+
 /* Stats Section */
 .stats-section {
   padding: 5rem 5%;
@@ -263,6 +355,39 @@
     min-width: 200px;
     width: 100%;
     max-width: 300px;
+  }
+  
+  /* Project Info Section Mobile */
+  .project-info-section {
+    padding: 2rem 3%;
+  }
+  
+  .project-info-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .project-badge {
+    min-width: 150px;
+    padding: 0.75rem;
+  }
+  
+  .eu-logo {
+    max-width: 120px;
+  }
+  
+  .eu-flag {
+    font-size: 1.5rem;
+  }
+  
+  .funding-text {
+    font-size: 0.7rem;
+  }
+  
+  .project-description p {
+    font-size: 0.95rem;
   }
   
   /* Mobile carousel fixes */

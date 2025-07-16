@@ -154,6 +154,89 @@
 }
 
 /* ========================================
+   SPIDER Background Section
+   ======================================== */
+.spider-background-section {
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--primary-green) 5%, var(--neutral-200)) 0%, 
+    var(--neutral-200) 100%
+  );
+  padding: var(--space-xl);
+  border-radius: var(--border-radius-large);
+  margin: var(--space-xl) 0;
+  border: 1px solid var(--border-lightest);
+  position: relative;
+}
+
+.spider-background-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-green), var(--primary-blue));
+  border-radius: var(--border-radius-large) var(--border-radius-large) 0 0;
+}
+
+.spider-content {
+  max-width: 100%;
+}
+
+.spider-text p {
+  margin-bottom: var(--space-md);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+}
+
+.spider-text p:last-child {
+  margin-bottom: 0;
+}
+
+.spider-link-container {
+  margin-top: var(--space-lg);
+  text-align: center;
+}
+
+.spider-learn-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+  color: white;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  transition: all var(--animation-duration-medium) var(--animation-easing);
+  box-shadow: var(--shadow-light);
+  border: 2px solid transparent;
+}
+
+.spider-learn-more-link:hover,
+.spider-learn-more-link:focus {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+  text-decoration: none;
+  color: white;
+}
+
+.spider-learn-more-link:focus {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.spider-learn-more-link svg {
+  transition: transform var(--animation-duration-medium) var(--animation-easing);
+}
+
+.spider-learn-more-link:hover svg {
+  transform: translateX(2px);
+}
+
+/* ========================================
    Methodology Section - Improved accessibility
    ======================================== */
 .methodology-section {
@@ -232,6 +315,131 @@
   color: var(--text-secondary);
   line-height: 1.6;
   margin: 0;
+}
+
+/* ========================================
+   Administration Panel Section
+   ======================================== */
+.admin-panel-section {
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--primary-blue) 5%, var(--neutral-200)) 0%, 
+    var(--neutral-200) 100%
+  );
+  padding: var(--space-xl);
+  border-radius: var(--border-radius-large);
+  margin: var(--space-xl) 0;
+  border: 1px solid var(--border-lightest);
+  position: relative;
+}
+
+.admin-panel-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+  border-radius: var(--border-radius-large) var(--border-radius-large) 0 0;
+}
+
+.admin-content {
+  max-width: 100%;
+}
+
+.admin-text {
+  width: 100%;
+}
+
+.admin-text p {
+  margin-bottom: var(--space-md);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+}
+
+.admin-text ul {
+  padding-left: var(--space-md);
+  margin-bottom: var(--space-md);
+  list-style-type: none;
+  position: relative;
+}
+
+.admin-text li {
+  margin-bottom: var(--space-sm);
+  position: relative;
+  padding-left: var(--space-md);
+}
+
+.admin-text li::before {
+  content: '⚙️';
+  position: absolute;
+  left: 0;
+  font-size: 1em;
+}
+
+.admin-contact-container {
+  margin-top: var(--space-lg);
+  text-align: center;
+}
+
+.admin-contact-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-md) var(--space-lg);
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+  color: white;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  transition: all var(--animation-duration-medium) var(--animation-easing);
+  box-shadow: var(--shadow-light);
+  border: 2px solid transparent;
+  min-width: 280px;
+}
+
+.admin-contact-link:hover,
+.admin-contact-link:focus {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+  text-decoration: none;
+  color: white;
+}
+
+.admin-contact-link:focus {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.admin-contact-link svg {
+  transition: transform var(--animation-duration-medium) var(--animation-easing);
+}
+
+.admin-contact-link:hover svg {
+  transform: scale(1.1);
+}
+
+.contact-email {
+  font-size: var(--font-size-sm);
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+/* Responsive design for admin section */
+@media (max-width: 768px) {
+  .admin-panel-section {
+    padding: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+  
+  .admin-contact-link {
+    min-width: auto;
+    width: 100%;
+    max-width: 320px;
+  }
 }
 
 /* ========================================
