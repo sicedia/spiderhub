@@ -809,6 +809,41 @@ footer {
   object-fit: contain;
 }
 
+.logo-dlr {
+  height: 40px;
+  max-width: 80px;
+  object-fit: contain;
+}
+
+/* EU funding section */
+.eu-funding {
+  text-align: center;
+}
+
+/* EU disclaimer section - separated from logos */
+.eu-disclaimer-section {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--border-radius-small);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.eu-disclaimer {
+  color: #bbb;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+  font-style: italic;
+  text-align: center;
+}
+
+.copyright-text {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
 /* Mobile responsive styles for footer */
 @media (max-width: 768px) {
   .powered-by-section {
@@ -841,8 +876,23 @@ footer {
     max-width: 120px;
   }
   
+  .logo-dlr {
+    height: 35px;
+    max-width: 60px;
+  }
+  
   .powered-by-text {
     font-size: 0.8rem;
+  }
+  
+  .eu-disclaimer-section {
+    margin: 1rem 0;
+    padding: 0.8rem;
+  }
+  
+  .eu-disclaimer {
+    font-size: 0.65rem;
+    max-width: 400px;
   }
 }
 
@@ -869,6 +919,22 @@ footer {
   .logo-eu {
     height: 30px;
     max-width: 100px;
+  }
+  
+  .logo-dlr {
+    height: 30px;
+    max-width: 50px;
+  }
+  
+  .eu-disclaimer-section {
+    margin: 0.8rem 0;
+    padding: 0.6rem;
+  }
+  
+  .eu-disclaimer {
+    font-size: 0.6rem;
+    max-width: 280px;
+    line-height: 1.4;
   }
 }
 
