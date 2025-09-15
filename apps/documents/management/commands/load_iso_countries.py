@@ -4,10 +4,10 @@ from apps.documents.models import Country
 import pycountry
 
 class Command(BaseCommand):
-    help = "Carga catálogo ISO 3166-1 en la tabla Country."
+    help = "Load ISO 3166-1 catalog into Country table."
 
     def handle(self, *args, **opts):
-        # Truncate Country and City tables
+        # Truncate Country table
         Country.objects.all().delete()
 
         created_cnt = 0
@@ -19,12 +19,12 @@ class Command(BaseCommand):
             if created:
                 created_cnt += 1
 
-        # País/organismo especial UE (EUU)
+        # Special country EUU (European Union)
         Country.objects.get_or_create(
             iso3="EUU",
             defaults=dict(iso2=None, name="European Union"),
         )
 
         self.stdout.write(
-            self.style.SUCCESS(f"{created_cnt} países creados o actualizados.")
+            self.style.SUCCESS(f"{created_cnt} countries loaded or updated.")
         )
