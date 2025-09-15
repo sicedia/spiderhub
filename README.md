@@ -83,6 +83,8 @@ This repository implements SPIDERHUB’s core functionality:
    python manage.py createsuperuser
    
    # Load initial data (optional)
+   python manage.py load_iso_countries
+   python manage.py load_cities
    python manage.py seed
    ```
 
@@ -178,6 +180,11 @@ CSRF_COOKIE_SECURE=False
 ```
 
 ## 🗄️ Database Management
+
+### Postgresql for development purposes
+```bash
+docker compose -f postgresdev-docker-compose.yml up
+```
 
 ### Migrations
 ```bash
