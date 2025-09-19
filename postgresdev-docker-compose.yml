@@ -31,6 +31,8 @@ volumes:
 networks:
   spider_network:
     driver: bridge
+    # The subnet 172.25.0.0/16 is specified to avoid conflicts with other local networks
+    # and to ensure that containers have a predictable and isolated IP range during development.
     ipam:
       config:
         - subnet: 172.25.0.0/16 
