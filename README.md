@@ -63,7 +63,10 @@ This repository implements SPIDERHUB’s core functionality:
 4. **Environment configuration**
    ```bash
    # Copy environment template
-   cp .env.example .env
+   cp .env.production.example .env
+
+   # Windows
+   xcopy .env.production.example .env
    
    # Edit .env file with your configuration for development
    # Set DEBUG=True for development
