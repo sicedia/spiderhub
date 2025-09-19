@@ -215,7 +215,7 @@ python manage.py seed --limit 10
 
 ## Docker Deployment
 
-## Run image in local
+### Run image in local
 ```bash
 docker compose up -d --build
 # Open your browser in https://localhost/
@@ -287,6 +287,12 @@ This tagging strategy allows users to:
 - Receive minor updates automatically (`1`)
 - Always get the latest stable version (`latest`)
 
+### Docker Hub Images
+
+Pre-built Docker images are available on Docker Hub:
+- **Repository**: [sicedia/spiderhub](https://hub.docker.com/r/sicedia/spiderhub/tags)
+- **Available Tags**: Various versions including stable releases, release candidates, and pre-release versions (alpha/beta)
+
 ### Docker Build image
 ```bash
 # Semantic versioning (recommended)
@@ -305,6 +311,7 @@ docker run -d -p 8000:8000 --env-file .env.production spider:latest
 plantuml -preview architecture.puml
 
 ```
+
 
 ## 🤝 Contributing
 
