@@ -352,8 +352,8 @@ This project is licensed under the MIT License - see the [MIT License](https://o
 
 ## 📞 Contact
 
-- **Project Maintainer**: Felipe Mendieta
-- **Email**: felipe.mendieta@cedia.org.ec
+- **Project Maintainer**: Felipe Mendieta, Xavier Espinoza
+- **Email**: felipe.mendieta@cedia.org.ec, xavier.espinoza@cedia.org.ec
 - **Organization**: CEDIA
 
 ## 🙏 Acknowledgments
