@@ -351,7 +351,8 @@ This project is licensed under the MIT License - see the [MIT License](https://o
 
 
 ## 📞 Contact
-
+- **Project Maintainer**: Felipe Mendieta, Veronica Poma
+- **Email**: felipe.mendieta@cedia.org.ec, veronica.poma@cedia.org.ec
 - **Project Maintainer**: Felipe Mendieta, Jonnathan Sanango
 - **Email**: felipe.mendieta@cedia.org.ec, jonnathan.sanango@cedia.org.ec
 - **Project Maintainer**: Felipe Mendieta, Xavier Espinoza
