@@ -63,7 +63,10 @@ This repository implements SPIDERHUB’s core functionality:
 4. **Environment configuration**
    ```bash
    # Copy environment template
-   cp .env.example .env
+   cp .env.production.example .env
+
+   # Windows
+   xcopy .env.production.example .env
    
    # Edit .env file with your configuration for development
    # Set DEBUG=True for development
@@ -349,8 +352,18 @@ This project is licensed under the MIT License - see the [MIT License](https://o
 
 ## 📞 Contact
 
+<<<<<<< HEAD
 - **Project Maintainer**: Felipe Mendieta, Jonnathan Sanango
 - **Email**: felipe.mendieta@cedia.org.ec, jonnathan.sanango@cedia.org.ec
+=======
+<<<<<<< HEAD
+- **Project Maintainer**: Felipe Mendieta, Xavier Espinoza
+- **Email**: felipe.mendieta@cedia.org.ec, xavier.espinoza@cedia.org.ec
+=======
+- **Project Maintainer**: Felipe Mendieta, Monica Moscoso
+- **Email**: felipe.mendieta@cedia.org.ec, monica.mocoso@cedia.com.e
+>>>>>>> dc1205f34232bfc1178f1c6e77a21915d635133f
+>>>>>>> 4826584f190d730c0f9851e28450afd2f02fd3e0
 - **Organization**: CEDIA
 
 ## 🙏 Acknowledgments
