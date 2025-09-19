@@ -73,6 +73,10 @@ This repository implements SPIDERHUB’s core functionality:
    # Set CSRF_COOKIE_SECURE=False
    ```
 
+   **Init dev database**
+   ```bash
+      docker compose -f postgresdev-docker-compose.yml up -d
+   ```
 5. **Database setup**
    ```bash
    # Run migrations
