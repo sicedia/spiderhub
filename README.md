@@ -35,7 +35,7 @@ This repository implements SPIDERHUB’s core functionality:
 1. **Clone the repository**
    ```bash
    git clone https://github.com/sicedia/spiderhub_web
-   cd spider-web
+   cd spider_web
    ```
 
 2. **Create and activate virtual environment**
