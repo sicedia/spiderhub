@@ -65,13 +65,6 @@ This repository implements SPIDERHUB’s core functionality:
    ```bash
    # Copy environment template
    cp .env.example .env
-   
-   # Edit .env file with your configuration for development
-   # Set DEBUG=True # for development
-   # Set SECURE_SSL_REDIRECT=False
-   # Set SECURE_SSL_REDIRECT=False
-   # Set SESSION_COOKIE_SECURE=False
-   # Set CSRF_COOKIE_SECURE=False
    ```
 
 
