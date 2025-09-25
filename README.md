@@ -94,6 +94,15 @@ This repository implements SPIDERHUB’s core functionality:
 
    Access the application at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
+## 🔐 Admin Access
+
+The default admin user credentials are:
+
+- **Username**: `admin`
+- **Password**: `nb7wJ$18Ssia0`
+
+Access the admin panel at [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+
 ## 📁 Project Structure
 
 ```
