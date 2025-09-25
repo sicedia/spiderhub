@@ -51,6 +51,7 @@ This repository implements SPIDERHUB’s core functionality:
    source pyspider/bin/activate
    ```
 
+
 3. **Install dependencies**
    ```bash
    # Upgrade pip
@@ -63,22 +64,20 @@ This repository implements SPIDERHUB’s core functionality:
 4. **Environment configuration**
    ```bash
    # Copy environment template
-   cp .env.production.example .env
-
-   # Windows
-   xcopy .env.production.example .env
+   cp .env.example .env
    
    # Edit .env file with your configuration for development
-   # Set DEBUG=True for development
+   # Set DEBUG=True # for development
    # Set SECURE_SSL_REDIRECT=False
    # Set SECURE_SSL_REDIRECT=False
    # Set SESSION_COOKIE_SECURE=False
    # Set CSRF_COOKIE_SECURE=False
    ```
 
+
    **Init dev database**
    ```bash
-      docker compose -f postgresdev-docker-compose.yml up -d
+   docker compose -f postgresdev-docker-compose.yml up -d
    ```
 5. **Database setup**
    ```bash
@@ -161,30 +160,7 @@ spider-web/
 └── README.md                  # This file
 ```
 
-## 🔧 Configuration
 
-### Environment Variables
-
-Create a `.env` file based on `.env.example`:
-
-```bash
-# Django Settings
-DJANGO_SECRET_KEY=django-insecure-4*&8f
-DJANGO_DEBUG=True
-DJANGO_SETTINGS_MODULE=config.settings.development
-ALLOWED_HOSTS=spiderhub.cedia.edu.ec,localhost
-
-POSTGRES_HOST=localhost
-POSTGRES_PORT=5432
-POSTGRES_USER=spider_user
-POSTGRES_PASSWORD=spider_password
-POSTGRES_DB=spider
-
-SECURE_SSL_REDIRECT=False
-SESSION_COOKIE_SECURE=False
-CSRF_COOKIE_SECURE=False
-
-```
 
 ## 🗄️ Database Management
 
@@ -328,21 +304,6 @@ plantuml -preview architecture.puml
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-### Code Quality
-
-```bash
-# Run linting
-flake8 .
-
-# Format code
-black .
-
-# Sort imports
-isort .
-
-# Type checking
-mypy .
-```
 
 ## 📝 License
 
@@ -351,23 +312,25 @@ This project is licensed under the MIT License - see the [MIT License](https://o
 
 
 ## 📞 Contact
-- **Project Maintainer**: Felipe Mendieta, Veronica Poma
-- **Email**: felipe.mendieta@cedia.org.ec, veronica.poma@cedia.org.ec
-- **Project Maintainer**: Felipe Mendieta, Jonnathan Sanango
-- **Email**: felipe.mendieta@cedia.org.ec, jonnathan.sanango@cedia.org.ec
-- **Project Maintainer**: Felipe Mendieta, Xavier Espinoza
-- **Email**: felipe.mendieta@cedia.org.ec, xavier.espinoza@cedia.org.ec
-- **Project Maintainer**: Felipe Mendieta, Monica Moscoso
-- **Email**: felipe.mendieta@cedia.org.ec, monica.mocoso@cedia.com.e
+- **Project Maintainer Tech Lead**: Felipe Mendieta
+- **Email**: felipe.mendieta@cedia.org.ec
+- **Project Maintainer**: Veronica Poma
+- **Email**:  veronica.poma@cedia.org.ec
+- **Project Maintainer**: Jonnathan Sanango
+- **Email**: jonnathan.sanango@cedia.org.ec
+- **Project Maintainer**: Xavier Espinoza
+- **Email**: xavier.espinoza@cedia.org.ec
+- **Project Maintainer**: Monica Moscoso
+- **Email**: monica.mocoso@cedia.com.e
 - **Organization**: CEDIA
 
 ## 🙏 Acknowledgments
 
 - European Union and Latin America digital transformation initiative
-- [Spider Network](https://spidernetwork.org/)
-- Contributors and collaborators
-- Open source community
 - [CEDIA](https://cedia.edu.ec/)
+- [Spider Network](https://spidernetwork.org/)
+- Open source community
+
 ---
 
 For more detailed information about specific components, please refer to the documentation in each app's directory.docker push sicedia/spiderhub:0.1.0-alpha.1
