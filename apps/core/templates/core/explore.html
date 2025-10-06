@@ -442,7 +442,13 @@
 {% endblock %}
 
 {% block extra_scripts %}
+  {% comment %}
+  <!-- Original implementation (backup) -->
   {% js_module_versioned 'core/js/explore.js' %}
+  {% endcomment %}
+  
+  <!-- New ES6 Modular implementation -->
   {% js_module_versioned 'core/js/main.js' %}
+  {% js_module_versioned 'core/js/explore-modular.js' %}
   {% js_module_versioned 'search/js/explore.js' %}
 {% endblock %}
