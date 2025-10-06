@@ -8,8 +8,7 @@
   <title>{% block title %}SPIDERHUB: Fostering EU - LAC Digital Transformation{% endblock %}</title>
   
   <!-- CSS con versionado automático -->
-  {% css_versioned 'core/css/base.css' %}
-  {% css_versioned 'core/css/home.css' %}
+  {% css_versioned 'core/css/main.css' %}
   
   <link rel="icon" href="{% static_versioned 'favicon.ico' %}" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -26,7 +25,9 @@
   {% include "includes/header.html" %}
 
   <!-- Content -->
-  {% block content %}{% endblock %}
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
 
   <!-- Footer -->
   {% include "includes/footer.html" %}

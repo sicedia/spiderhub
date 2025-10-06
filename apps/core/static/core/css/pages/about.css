@@ -1,0 +1,457 @@
+/**
+ * About Page Styles
+ * Specific styles for the about page
+ * Following WCAG 2.2 accessibility guidelines and design system consistency
+ * Uses shared components to reduce duplication
+ */
+
+.about-page {
+  margin-top: var(--header-height);
+}
+
+/* ========================================
+   About-specific Hero Section
+   ======================================== */
+
+.about-hero {
+  /* Extends shared .hero component */
+  background: linear-gradient(
+    135deg,
+    rgba(28, 115, 119, 0.08) 0%,
+    rgba(50, 175, 175, 0.08) 100%
+  );
+}
+
+/* ========================================
+   About-specific Container
+   ======================================== */
+
+.about-container {
+  /* Uses shared .section__container pattern */
+  max-width: var(--container-7xl);
+  margin: 0 auto;
+  padding: var(--space-3xl) 5%;
+}
+
+/* ========================================
+   About-specific Content Layout
+   ======================================== */
+
+.about-content {
+  /* Uses shared .content-grid pattern */
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--space-2xl);
+  align-items: start;
+  margin-bottom: var(--space-xl);
+}
+
+.about-text {
+  /* Uses shared .content-grid__text pattern */
+  min-width: 0;
+}
+
+.about-image {
+  /* Uses shared .content-grid__sidebar pattern */
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-lg));
+  max-height: calc(100vh - var(--header-height) - var(--space-2xl));
+  overflow-y: auto;
+  text-align: center;
+}
+
+.about-image svg {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  background: var(--color-bg-primary);
+  padding: var(--space-lg);
+  transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out);
+}
+
+.about-image svg:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ========================================
+   About-specific Methodology Steps
+   ======================================== */
+
+.methodology-steps {
+  /* Uses shared .steps-grid pattern */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+.methodology-step {
+  /* Uses shared .step-card pattern */
+  background: var(--color-bg-primary);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: all var(--duration-base) var(--ease-out);
+  border: 1px solid var(--color-border-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.methodology-step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500));
+  transform: scaleX(0);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.methodology-step:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-200);
+}
+
+.methodology-step:hover::before {
+  transform: scaleX(1);
+}
+
+.methodology-step:focus-within {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.methodology-step__number {
+  /* Uses shared .step-card__number pattern */
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+  color: var(--color-text-inverse);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  margin: 0 auto var(--space-lg);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.methodology-step:hover .methodology-step__number {
+  transform: scale(1.1);
+}
+
+.methodology-step__title {
+  /* Uses shared .step-card__title pattern */
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-md);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+}
+
+.methodology-step__description {
+  /* Uses shared .step-card__description pattern */
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-base);
+}
+
+/* ========================================
+   About-specific Partners Grid
+   ======================================== */
+
+.partner-grid {
+  /* Uses shared .partners-grid pattern */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+.partner-card {
+  /* Uses shared .partner-card pattern */
+  background: var(--color-bg-primary);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: all var(--duration-base) var(--ease-out);
+  border: 1px solid var(--color-border-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.partner-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent-info), var(--color-accent-success));
+  transform: scaleX(0);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.partner-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-200);
+}
+
+.partner-card:hover::before {
+  transform: scaleX(1);
+}
+
+.partner-card:focus-within {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.partner-logo {
+  /* Uses shared .partner-card__logo pattern */
+  max-width: 140px;
+  max-height: 80px;
+  margin: 0 auto var(--space-lg);
+  object-fit: contain;
+  transition: transform var(--duration-base) var(--ease-out);
+  filter: grayscale(0.3);
+}
+
+.partner-card:hover .partner-logo {
+  transform: scale(1.05);
+  filter: grayscale(0);
+}
+
+.partner-name {
+  /* Uses shared .partner-card__name pattern */
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-tight);
+}
+
+.partner-description {
+  /* Uses shared .partner-card__description pattern */
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ========================================
+   About-specific Team Section
+   ======================================== */
+
+.team-section {
+  background: linear-gradient(135deg, rgba(28, 115, 119, 0.03) 0%, rgba(50, 175, 175, 0.03) 100%);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  margin: var(--space-3xl) 0;
+}
+
+.team-description {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.team-description p {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+}
+
+/* ========================================
+   About-specific Contact Section
+   ======================================== */
+
+.contact-section {
+  /* Uses shared .contact-section pattern */
+  background: var(--color-bg-primary);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
+}
+
+.contact-container {
+  /* Uses shared .contact-section__container pattern */
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-info p {
+  /* Uses shared .contact-section__text pattern */
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.contact-detail {
+  /* Uses shared .contact-section__detail pattern */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.contact-link {
+  /* Uses shared .contact-section__link pattern */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-primary-600);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-lg);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-base);
+  transition: all var(--duration-base) var(--ease-out);
+  border: 2px solid transparent;
+}
+
+.contact-link:hover {
+  color: var(--color-primary-700);
+  background-color: var(--color-primary-50);
+  border-color: var(--color-primary-200);
+  transform: translateY(-1px);
+}
+
+.contact-link:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.contact-email {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-600);
+}
+
+/* ========================================
+   About-specific Admin Contact
+   ======================================== */
+
+.admin-contact-container {
+  /* Uses shared .admin-contact pattern */
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  background: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-secondary-50) 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-primary-200);
+}
+
+.admin-contact-link {
+  /* Uses shared .admin-contact__link pattern */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  color: var(--color-primary-700);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-base);
+  transition: all var(--duration-base) var(--ease-out);
+  background: var(--color-bg-primary);
+  border: 2px solid var(--color-primary-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-contact-link:hover {
+  color: var(--color-primary-800);
+  background: var(--color-primary-100);
+  border-color: var(--color-primary-400);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.admin-contact-link:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.admin-contact-link svg {
+  color: var(--color-primary-600);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.admin-contact-link:hover svg {
+  transform: scale(1.1);
+}
+
+/* ========================================
+   SVG Connection Map Enhancements
+   ======================================== */
+
+.connection-map {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.pulse-circle {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* ========================================
+   About-specific Responsive Adjustments
+   ======================================== */
+
+@media (max-width: 1200px) {
+  .about-content {
+    grid-template-columns: 1fr 350px;
+    gap: var(--space-xl);
+  }
+}
+
+@media (max-width: 992px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  
+  .about-image {
+    position: static;
+    max-height: none;
+    order: -1;
+  }
+}
+
+/* ========================================
+   About-specific Accessibility
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .about-hero::before {
+    animation: none;
+  }
+  
+  .about-image svg:hover {
+    transform: none;
+  }
+  
+  .pulse-circle {
+    animation: none;
+  }
+}

@@ -1,0 +1,290 @@
+/**
+ * Explore Page Styles
+ * Specific styles for the explore/search page
+ * Following BEM methodology and design system tokens
+ * Uses shared components to reduce duplication
+ */
+
+/* ========================================
+   Explore Page Container
+   ======================================== */
+
+.explore-page {
+  margin-top: var(--header-height);
+  padding-bottom: var(--space-lg);
+}
+
+/* ========================================
+   Explore-specific Header Section
+   ======================================== */
+
+.explore-header {
+  /* Uses shared .hero pattern with custom styling */
+  background: linear-gradient(
+    135deg,
+    rgba(28, 115, 119, 0.1) 0%,
+    rgba(50, 175, 175, 0.1) 100%
+  );
+  padding: var(--space-2xl) 5% var(--space-lg);
+  text-align: center;
+  min-height: auto;
+  display: block;
+}
+
+.explore-header__title {
+  /* Uses shared .hero__title pattern */
+  font-size: var(--font-size-3xl);
+  color: var(--color-primary-500);
+  margin-bottom: var(--space-3);
+  font-weight: var(--font-weight-bold);
+}
+
+.explore-header__description {
+  /* Uses shared .hero__description pattern */
+  max-width: 800px;
+  margin: 0 auto var(--space-lg);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ========================================
+   Search Bar Container
+   ======================================== */
+
+.explore-search {
+  max-width: 800px;
+  margin: 0 auto var(--space-md);
+}
+
+/* ========================================
+   Active Filters
+   ======================================== */
+
+.explore-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 var(--space-md);
+}
+
+/* ========================================
+   View Selector
+   ======================================== */
+
+.explore-view-selector {
+  background-color: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border-light);
+  padding: var(--space-md) 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.explore-view-tabs {
+  display: flex;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-base);
+  padding: var(--space-1);
+}
+
+.explore-view-tab {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all var(--duration-base) var(--ease-out);
+  font-weight: var(--font-weight-medium);
+}
+
+.explore-view-tab:hover {
+  color: var(--color-text-primary);
+  background-color: rgba(28, 115, 119, 0.1);
+}
+
+.explore-view-tab--active {
+  background-color: var(--color-primary-500);
+  color: var(--color-text-inverse);
+}
+
+.explore-view-tab:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* ========================================
+   Explore-specific Content Layout
+   ======================================== */
+
+.explore-content {
+  /* Uses shared .content-grid pattern with custom sidebar width */
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--space-lg);
+  max-width: var(--container-7xl);
+  margin: 0 auto;
+  padding: var(--space-lg) 5%;
+  align-items: start;
+}
+
+/* ========================================
+   Explore-specific Filter Sidebar
+   ======================================== */
+
+.explore-sidebar {
+  /* Uses new filter-container component */
+  width: 100%;
+  max-width: 400px;
+}
+
+.explore-sidebar .filter-container {
+  /* Override filter container for explore page */
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-md));
+  max-height: calc(100vh - var(--header-height) - var(--space-lg));
+}
+
+/* ========================================
+   Active Filters Display
+   ======================================== */
+
+.explore-filters {
+  /* Uses new filter-chips component */
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  min-height: 60px;
+  padding: var(--space-md) 5%;
+  background-color: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.explore-filters--empty {
+  display: none;
+}
+
+/* ========================================
+   Results Area
+   ======================================== */
+
+.explore-results {
+  /* Uses shared .content-grid__text pattern */
+  min-width: 0;
+}
+
+.explore-results__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.explore-results__count {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.explore-results__sort {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+}
+
+.explore-results__grid {
+  /* Uses shared .card-grid pattern */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* ========================================
+   Explore-specific Responsive Adjustments
+   ======================================== */
+
+@media (max-width: 992px) {
+  .explore-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  .explore-sidebar {
+    max-width: none;
+    order: -1;
+  }
+  
+  .explore-sidebar .filter-container {
+    position: static;
+    max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .explore-header {
+    padding: var(--space-xl) 3% var(--space-md);
+  }
+  
+  .explore-header__title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .explore-header__description {
+    font-size: var(--font-size-base);
+  }
+  
+  .explore-content {
+    padding: var(--space-md) 3%;
+  }
+  
+  .explore-sidebar {
+    padding: var(--space-md);
+  }
+  
+  .explore-results__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-header {
+    padding: var(--space-lg) 3% var(--space-sm);
+  }
+  
+  .explore-view-selector {
+    padding: var(--space-sm) 3%;
+  }
+  
+  .explore-view-tabs {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .explore-view-tab {
+    flex: 1;
+    justify-content: center;
+    padding: var(--space-2);
+  }
+  
+  .explore-filters {
+    padding: var(--space-3) 3%;
+  }
+}
+
+/* ========================================
+   Explore-specific Accessibility
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Filter component transitions are handled in filter.css */
+}

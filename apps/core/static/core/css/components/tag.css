@@ -1,0 +1,413 @@
+/**
+ * Tag Component
+ * Flexible tag/badge system following BEM methodology
+ * Used for labels, categories, and status indicators
+ */
+
+/* ========================================
+   Base Tag Block
+   ======================================== */
+
+.tag {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  
+  /* Appearance */
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  
+  /* Typography */
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  
+  /* Interaction */
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+/* ========================================
+   Tag Variants (Modifiers)
+   ======================================== */
+
+/* Primary Tag */
+.tag--primary {
+  background-color: rgba(28, 115, 119, 0.1);
+  color: var(--color-primary-600);
+  border-color: rgba(28, 115, 119, 0.2);
+}
+
+.tag--primary.tag--solid {
+  background-color: var(--color-primary-500);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary-500);
+}
+
+/* Secondary Tag */
+.tag--secondary {
+  background-color: rgba(50, 175, 175, 0.1);
+  color: var(--color-secondary-600);
+  border-color: rgba(50, 175, 175, 0.2);
+}
+
+.tag--secondary.tag--solid {
+  background-color: var(--color-secondary-500);
+  color: var(--color-text-inverse);
+  border-color: var(--color-secondary-500);
+}
+
+/* Success Tag */
+.tag--success {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: var(--color-accent-success);
+  border-color: rgba(40, 167, 69, 0.2);
+}
+
+.tag--success.tag--solid {
+  background-color: var(--color-accent-success);
+  color: var(--color-text-inverse);
+  border-color: var(--color-accent-success);
+}
+
+/* Warning Tag */
+.tag--warning {
+  background-color: rgba(251, 188, 4, 0.15);
+  color: #8B4513;
+  border-color: rgba(251, 188, 4, 0.3);
+}
+
+.tag--warning.tag--solid {
+  background-color: var(--color-accent-warning);
+  color: var(--color-text-primary);
+  border-color: var(--color-accent-warning);
+}
+
+/* Error Tag */
+.tag--error {
+  background-color: rgba(234, 67, 53, 0.1);
+  color: var(--color-accent-error);
+  border-color: rgba(234, 67, 53, 0.2);
+}
+
+.tag--error.tag--solid {
+  background-color: var(--color-accent-error);
+  color: var(--color-text-inverse);
+  border-color: var(--color-accent-error);
+}
+
+/* Info Tag */
+.tag--info {
+  background-color: rgba(74, 144, 226, 0.1);
+  color: var(--color-accent-info);
+  border-color: rgba(74, 144, 226, 0.2);
+}
+
+.tag--info.tag--solid {
+  background-color: var(--color-accent-info);
+  color: var(--color-text-inverse);
+  border-color: var(--color-accent-info);
+}
+
+/* Neutral Tag */
+.tag--neutral {
+  background-color: var(--color-neutral-100);
+  color: var(--color-text-secondary);
+  border-color: var(--color-border-medium);
+}
+
+.tag--neutral.tag--solid {
+  background-color: var(--color-neutral-500);
+  color: var(--color-text-inverse);
+  border-color: var(--color-neutral-500);
+}
+
+/* ========================================
+   Tag Sizes (Modifiers)
+   ======================================== */
+
+.tag--small {
+  padding: 2px var(--space-2);
+  font-size: 10px;
+  gap: 2px;
+}
+
+.tag--large {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  gap: var(--space-2);
+}
+
+/* ========================================
+   Interactive Tags
+   ======================================== */
+
+.tag--interactive {
+  cursor: pointer;
+  user-select: none;
+}
+
+.tag--interactive:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.tag--interactive:active {
+  transform: translateY(0);
+}
+
+.tag--interactive:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* ========================================
+   Removable Tags
+   ======================================== */
+
+.tag--removable {
+  padding-right: var(--space-1);
+}
+
+.tag__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: var(--space-1);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  color: currentColor;
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  border: none;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.tag__remove:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.tag__remove:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
+}
+
+/* Solid tags remove button */
+.tag--solid .tag__remove {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--color-text-inverse);
+}
+
+.tag--solid .tag__remove:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ========================================
+   Tag with Icon
+   ======================================== */
+
+.tag__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.tag--large .tag__icon {
+  width: 14px;
+  height: 14px;
+}
+
+.tag--small .tag__icon {
+  width: 10px;
+  height: 10px;
+}
+
+/* ========================================
+   Status Dot Variant
+   ======================================== */
+
+.tag--status {
+  padding-left: var(--space-2);
+}
+
+.tag__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: var(--space-1);
+}
+
+.tag--success .tag__status-dot {
+  background-color: var(--color-accent-success);
+}
+
+.tag--warning .tag__status-dot {
+  background-color: var(--color-accent-warning);
+}
+
+.tag--error .tag__status-dot {
+  background-color: var(--color-accent-error);
+}
+
+.tag--info .tag__status-dot {
+  background-color: var(--color-accent-info);
+}
+
+.tag--primary .tag__status-dot {
+  background-color: var(--color-primary-500);
+}
+
+/* ========================================
+   Tag Group
+   ======================================== */
+
+.tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.tag-group--compact {
+  gap: var(--space-1);
+}
+
+.tag-group--spaced {
+  gap: var(--space-3);
+}
+
+/* ========================================
+   Document-specific Tags (Legacy Support)
+   ======================================== */
+
+.doc-tag {
+  /* Alias for .tag for backward compatibility */
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  margin-right: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.doc-tag.location {
+  background-color: rgba(28, 115, 119, 0.1);
+  color: var(--color-primary-600);
+}
+
+.doc-tag.actor {
+  background-color: rgba(50, 175, 175, 0.1);
+  color: var(--color-secondary-600);
+}
+
+.doc-tag.theme {
+  background-color: rgba(251, 188, 4, 0.15);
+  color: #8B4513;
+}
+
+/* ========================================
+   Filter Chip (Special Tag Variant)
+   ======================================== */
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-primary-500);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--duration-base) var(--ease-out);
+  cursor: pointer;
+  border: none;
+}
+
+.filter-chip:hover {
+  background-color: var(--color-primary-600);
+  transform: translateY(-1px);
+}
+
+.filter-chip__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--color-text-inverse);
+  cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease-out);
+  border: none;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.filter-chip__remove:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ========================================
+   Responsive Behavior
+   ======================================== */
+
+@media (max-width: 480px) {
+  .tag-group {
+    gap: var(--space-1);
+  }
+  
+  .tag {
+    font-size: 10px;
+    padding: 2px var(--space-2);
+  }
+  
+  .tag--large {
+    font-size: var(--font-size-xs);
+    padding: var(--space-1) var(--space-3);
+  }
+  
+  .filter-chip {
+    font-size: var(--font-size-xs);
+    padding: var(--space-1) var(--space-2);
+  }
+}
+
+/* ========================================
+   Accessibility Enhancements
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .tag--interactive,
+  .filter-chip {
+    transition: none;
+  }
+  
+  .tag--interactive:hover,
+  .filter-chip:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .tag {
+    border-width: 2px;
+  }
+  
+  .tag--solid {
+    border-width: 2px;
+  }
+}

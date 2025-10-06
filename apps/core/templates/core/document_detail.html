@@ -2,16 +2,14 @@
 {% load static %}
 {% load static_tags %}
 {% block title %}SPIDERHUB: Document Detail - EU - LAC Digital Transformation{% endblock %}
-{% block extra_head %}  
-{% css_versioned 'core/css/base.css' %}
-{% css_versioned 'core/css/home.css' %}
-{% css_versioned 'core/css/document_detail.css' %}
+{% block extra_head %}
+{% css_versioned 'core/css/main.css' %}
 {% endblock %}
 {% block content %}
 <!-- Document Detail Content -->
-  <div class="document-detail-container">
-    <div class="document-detail-header">
-      <div class="back-link">
+  <div class="document-page">
+    <div class="document-header">
+      <div class="document-back-link">
         <a href="{% url 'core:explore' %}">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="currentColor"/>
@@ -20,8 +18,8 @@
         </a>
       </div>
       <div class="document-title-container">
-        <h1 id="document-title">{{ document.title }}</h1>
-        <div class="document-meta-header">
+        <h1 id="document-title" class="document-title">{{ document.title }}</h1>
+        <div class="document-meta">
           {% if document.event_city or document.event_country %}
             <span id="document-location">{{ document.event_city|default:"" }}{% if document.event_city and document.event_country %}, {% endif %}{{ document.event_country|default:"" }}</span> • 
           {% endif %}
@@ -37,7 +35,7 @@
       </div>
       <div class="document-actions">
         <a href="{% url 'documents:export_pdf' document.id %}"
-            class="btn btn-primary document-download">
+            class="button button--primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="white"/>
           </svg>
@@ -46,11 +44,11 @@
       </div>
     </div>
 
-    <div class="document-detail-content">
-      <div class="document-main-content">
+    <div class="document-content">
+      <div class="document-main">
         {% if document.executive_summary %}
-          <section class="document-section executive-summary">
-            <h2>Executive Summary</h2>
+          <section class="document-section">
+            <h2 class="document-section__title">Executive Summary</h2>
             <div class="summary-content">
               {{ document.executive_summary|linebreaks }}
             </div>

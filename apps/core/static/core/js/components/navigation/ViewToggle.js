@@ -35,7 +35,7 @@ export class ViewToggle extends BaseComponent {
 
   cacheElements() {
     this.elements = {
-      viewTabs: this.findAll('.view-tab'),
+      viewTabs: this.findAll('.explore-view-tab'),
       viewContainers: {}
     };
 
@@ -137,7 +137,7 @@ export class ViewToggle extends BaseComponent {
       const tabView = tab.getAttribute('data-view');
       const isActive = tabView === this.currentView;
       
-      tab.classList.toggle('active', isActive);
+      tab.classList.toggle('explore-view-tab--active', isActive);
       tab.setAttribute('aria-selected', isActive.toString());
       
       if (isActive) {

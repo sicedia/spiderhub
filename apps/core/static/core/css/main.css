@@ -1,0 +1,59 @@
+/**
+ * Main CSS Entry Point
+ * Imports all CSS modules in the correct order
+ * Following ITCSS (Inverted Triangle CSS) architecture
+ */
+
+/* ========================================
+   1. Settings - Design tokens and variables
+   ======================================== */
+@import 'tokens.css';
+
+/* ========================================
+   2. Tools - Mixins and functions
+   ======================================== */
+@import 'tools/mixins.css';
+
+/* ========================================
+   3. Generic - Reset and normalize
+   ======================================== */
+@import 'reset.css';
+
+/* ========================================
+   4. Elements - Base element styles
+   ======================================== */
+@import 'base/typography.css';
+@import 'base/layout.css';
+
+/* ========================================
+   5. Objects - Layout patterns (if any)
+   ======================================== */
+/* Objects would go here if we had layout objects */
+
+/* ========================================
+   6. Components - UI components
+   ======================================== */
+@import 'components/shared.css';
+@import 'components/button.css';
+@import 'components/card.css';
+@import 'components/navigation.css';
+@import 'components/form.css';
+@import 'components/filter.css';
+@import 'components/tag.css';
+@import 'components/carousel.css';
+@import 'components/modal.css';
+@import 'components/footer.css';
+
+/* ========================================
+   7. Utilities - Helper classes
+   ======================================== */
+@import 'utilities.css';
+
+/* ========================================
+   8. Page-specific styles
+   ======================================== */
+@import 'pages/home.css';
+@import 'pages/explore.css';
+@import 'pages/analysis.css';
+@import 'pages/document-detail.css';
+@import 'pages/about.css';

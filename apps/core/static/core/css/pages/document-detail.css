@@ -1,0 +1,184 @@
+/**
+ * Document Detail Page Styles
+ * Specific styles for individual document pages
+ * Following BEM methodology and design system tokens
+ * Uses shared components to reduce duplication
+ */
+
+.document-page {
+  max-width: var(--container-7xl);
+  margin: 0 auto;
+  padding: var(--space-lg) 5%;
+  margin-top: var(--header-height);
+}
+
+/* ========================================
+   Document-specific Header Section
+   ======================================== */
+
+.document-header {
+  /* Uses shared .hero pattern with custom styling */
+  background: linear-gradient(
+    135deg,
+    rgba(28, 115, 119, 0.1) 0%,
+    rgba(50, 175, 175, 0.1) 100%
+  );
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-height: auto;
+  text-align: left;
+}
+
+.document-back-link {
+  align-self: flex-start;
+}
+
+.document-back-link a {
+  /* Uses shared link pattern with custom styling */
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-primary-500);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.document-back-link a:hover {
+  color: var(--color-primary-600);
+}
+
+.document-title {
+  /* Uses shared .hero__title pattern */
+  font-size: var(--font-size-3xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+  line-height: var(--line-height-tight);
+}
+
+.document-meta {
+  /* Uses shared .hero__description pattern */
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+}
+
+.document-actions {
+  align-self: flex-start;
+}
+
+/* ========================================
+   Document-specific Content Layout
+   ======================================== */
+
+.document-content {
+  /* Uses shared .content-grid pattern with custom sidebar width */
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.document-main {
+  /* Uses shared .content-grid__text pattern */
+  min-width: 0;
+}
+
+/* ========================================
+   Document-specific Sections
+   ======================================== */
+
+.document-section {
+  /* Uses shared .card pattern with custom styling */
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+.document-section__title {
+  /* Uses shared .card__title pattern with custom styling */
+  color: var(--color-primary-500);
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--color-border-light);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ========================================
+   Document-specific Sidebar
+   ======================================== */
+
+.document-sidebar {
+  /* Uses shared .content-grid__sidebar pattern with custom styling */
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-md));
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-base);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  max-height: calc(100vh - var(--header-height) - var(--space-lg));
+  overflow-y: auto;
+}
+
+.document-info-item {
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.document-info-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.document-info-label {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-1);
+}
+
+.document-info-value {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ========================================
+   Document-specific Responsive Adjustments
+   ======================================== */
+
+@media (max-width: 768px) {
+  .document-page {
+    padding: var(--space-md) 3%;
+  }
+  
+  .document-header {
+    padding: var(--space-md);
+  }
+  
+  .document-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .document-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  .document-sidebar {
+    position: static;
+    max-height: none;
+    order: -1;
+  }
+  
+  .document-section {
+    padding: var(--space-md);
+  }
+}

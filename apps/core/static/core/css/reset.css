@@ -1,0 +1,301 @@
+/**
+ * Modern CSS Reset
+ * Based on modern-normalize and tailored for the project
+ * Provides consistent cross-browser baseline
+ */
+
+/* ========================================
+   Document & Box Model
+   ======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Improve consistency of default fonts */
+  font-family: var(--font-family-primary);
+  /* Correct line height in all browsers */
+  line-height: var(--line-height-normal);
+  /* Prevent adjustments of font size after orientation changes in iOS */
+  -webkit-text-size-adjust: 100%;
+  /* Use a more readable tab size */
+  tab-size: 4;
+}
+
+body {
+  /* Remove default margin */
+  margin: 0;
+  /* Improve consistency of default fonts */
+  font-family: inherit;
+  /* Set base font size and line height */
+  font-size: var(--font-size-base);
+  line-height: inherit;
+  /* Set text color */
+  color: var(--color-text-primary);
+  /* Set background color */
+  background-color: var(--color-bg-secondary);
+  /* Prevent horizontal scroll */
+  overflow-x: hidden;
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Set minimum width */
+  min-width: 320px;
+}
+
+/* ========================================
+   Typography Reset
+   ======================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* Remove default margins */
+  margin: 0;
+  /* Reset font size to inherit */
+  font-size: inherit;
+  /* Reset font weight to inherit */
+  font-weight: inherit;
+  /* Set line height */
+  line-height: var(--line-height-tight);
+}
+
+p,
+blockquote,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+/* ========================================
+   List Reset
+   ======================================== */
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ========================================
+   Media Reset
+   ======================================== */
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ========================================
+   Form Reset
+   ======================================== */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  /* Remove default margins */
+  margin: 0;
+  /* Inherit font properties */
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  /* Remove default appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+button:focus,
+button:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Remove default button styles */
+button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  color: var(--color-text-muted);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* ========================================
+   Table Reset
+   ======================================== */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption {
+  text-align: left;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0;
+}
+
+th {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ========================================
+   Interactive Elements
+   ======================================== */
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+a:focus,
+a:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* ========================================
+   Accessibility Improvements
+   ======================================== */
+
+/* Hide content visually but keep it available to screen readers */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Remove focus outline for mouse users but keep it for keyboard users */
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}

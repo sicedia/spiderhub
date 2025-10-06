@@ -1,0 +1,194 @@
+/**
+ * Analysis Page Styles
+ * Specific styles for the analysis dashboard page
+ * Following BEM methodology and design system tokens
+ * Uses shared components to reduce duplication
+ */
+
+.analysis-page {
+  margin-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
+}
+
+/* ========================================
+   Analysis-specific Hero Section
+   ======================================== */
+
+.analysis-hero {
+  /* Uses shared .hero pattern with custom styling */
+  background: linear-gradient(
+    135deg,
+    rgba(28, 115, 119, 0.1) 0%,
+    rgba(50, 175, 175, 0.1) 100%
+  );
+  padding: var(--space-2xl) 5% var(--space-xl);
+  text-align: center;
+  border-bottom: 1px solid var(--color-border-light);
+  min-height: auto;
+  display: block;
+}
+
+.analysis-hero__title {
+  /* Uses shared .hero__title pattern */
+  font-size: var(--font-size-4xl);
+  color: var(--color-primary-500);
+  margin-bottom: var(--space-md);
+  font-weight: var(--font-weight-bold);
+}
+
+.analysis-hero__description {
+  /* Uses shared .hero__description pattern */
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ========================================
+   Analysis-specific Content Container
+   ======================================== */
+
+.analysis-content {
+  /* Uses shared .section__container pattern */
+  max-width: var(--container-7xl);
+  margin: 0 auto;
+  padding: var(--space-lg) 5%;
+}
+
+/* ========================================
+   Analysis-specific Blocks
+   ======================================== */
+
+.analysis-block {
+  /* Uses shared .card pattern with custom styling */
+  margin-bottom: var(--space-2xl);
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.analysis-block:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.analysis-block__title {
+  /* Uses shared .card__title pattern with custom styling */
+  font-size: var(--font-size-2xl);
+  color: var(--color-primary-500);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--color-border-light);
+  font-weight: var(--font-weight-semibold);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.analysis-block__title::before {
+  content: '';
+  width: 4px;
+  height: 24px;
+  background: var(--color-primary-500);
+  border-radius: 2px;
+}
+
+.analysis-block__description {
+  /* Uses shared .card__content pattern */
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ========================================
+   Analysis-specific Chart Components
+   ======================================== */
+
+.chart-grid {
+  /* Uses shared .card-grid pattern */
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.chart-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.chart-container {
+  /* Uses shared .card pattern with custom styling */
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-base);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border-light);
+  position: relative;
+}
+
+.chart-header {
+  margin-bottom: var(--space-md);
+}
+
+.chart-title {
+  /* Uses shared .card__title pattern */
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.chart-description {
+  /* Uses shared .card__content pattern */
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+}
+
+.chart-placeholder {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-base);
+  border: 2px dashed var(--color-border-medium);
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.chart-icon {
+  font-size: var(--font-size-3xl);
+  opacity: 0.5;
+}
+
+/* ========================================
+   Analysis-specific Responsive Adjustments
+   ======================================== */
+
+@media (max-width: 768px) {
+  .analysis-hero {
+    padding: var(--space-xl) 3% var(--space-lg);
+  }
+  
+  .analysis-hero__title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .analysis-content {
+    padding: var(--space-md) 3%;
+  }
+  
+  .analysis-block {
+    padding: var(--space-md);
+  }
+  
+  .chart-grid--2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-placeholder {
+    height: 300px;
+  }
+}

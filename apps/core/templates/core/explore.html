@@ -3,24 +3,22 @@
 {% load static_tags %}
 {% block title %}SPIDERHUB: Explorar Diálogos - Transformación Digital UE - AL{% endblock %}
 {% block extra_head %}  
-{% css_versioned 'core/css/base.css' %}
-{% css_versioned 'core/css/explore_styles.css' %}
+{% css_versioned 'core/css/main.css' %}
 {% endblock %}
 
 {% block content %}
 <!-- Main Content -->
 
   <!-- Main Content -->
-  <main class="explore-container">
+  <main class="explore-page">
     <!-- Top Search Bar -->
-    <section class="search-header" role="region" aria-labelledby="search-heading">
-      <h1 id="search-heading">Explore Digital Dialogues</h1>
-      <p>Discover the digital transformation agreements and commitments between Europe and Latin America</p>
+    <section class="explore-header" role="region" aria-labelledby="search-heading">
+      <h1 id="search-heading" class="explore-header__title">Explore Digital Dialogues</h1>
+      <p class="explore-header__description">Discover the digital transformation agreements and commitments between Europe and Latin America</p>
       
-
-      <div class="search-bar-container">
+      <div class="explore-search">
         <form class="search-bar" role="search" aria-label="Search dialogues">
-          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="search-bar__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="#666"/>
           </svg>
           <input 
@@ -28,15 +26,14 @@
             id="searchbox" 
             name="q" 
             placeholder="Search by keyword or phrase..."
-            class="w-full" 
-            style="width: 10%;"
+            class="search-bar__input" 
             autofocus
             autocomplete="off"
             aria-describedby="suggestions-list"
             aria-expanded="false"
             aria-autocomplete="list"
           />
-          <button type="submit" id="search-button">Search</button>
+          <button type="submit" id="search-button" class="search-bar__button">Search</button>
         </form>
         <ul 
           id="suggestions-list" 
@@ -48,346 +45,392 @@
         </ul>
       </div>
       
-      <div id="active-filters" class="active-filters" role="region" aria-label="Active filters">
-        <!-- Here active filter chips will be shown -->
+      <div id="active-filters" class="filter-chips explore-filters--empty" role="region" aria-label="Active filters">
+        <!-- Active filter chips will be populated by JavaScript -->
+        <button class="filter-chips__clear-all" type="button">Clear all filters</button>
       </div>
     </section>
 
     <!-- View Selector Tabs -->
-    <nav class="view-selector" role="tablist" aria-label="View selector">
-      <button class="view-tab active" data-view="list" role="tab" aria-selected="true" aria-controls="list-view-panel">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 13h18v-2H3v2zm0-7v2h18V6H3zm0 12h18v-2H3v2z" fill="currentColor"/>
-        </svg>
-        List
-      </button>
-      <!-- <button class="view-tab" data-view="map" role="tab" aria-selected="false" aria-controls="map-view-panel">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z" fill="currentColor"/>
-        </svg>
-        Map
-      </button> -->
-    </nav>
+    <section class="explore-view-selector">
+      <div class="explore-view-tabs">
+        <button class="explore-view-tab explore-view-tab--active" data-view="list" role="tab" aria-selected="true" aria-controls="list-view-panel">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 13h18v-2H3v2zm0-7v2h18V6H3zm0 12h18v-2H3v2z" fill="currentColor"/>
+          </svg>
+          List
+        </button>
+        <!-- <button class="explore-view-tab" data-view="map" role="tab" aria-selected="false" aria-controls="map-view-panel">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z" fill="currentColor"/>
+          </svg>
+          Map
+        </button> -->
+      </div>
+    </section>
 
     <!-- Main Content Area with Sidebar and Results -->
-    <div class="content-area">
+    <div class="explore-content">
       <!-- Filter Sidebar -->
-      <aside class="filter-sidebar" role="region" aria-labelledby="filters-heading">
-        <div class="filter-header">
-          <h2 id="filters-heading">Filters</h2>
-          <button class="filter-toggle mobile-only" aria-expanded="false" aria-controls="filter-groups" aria-label="Toggle filters">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor"/>
-            </svg>
-          </button>
-          <button id="clear-filters" class="clear-filters">Clear all</button>
-        </div>
-        
-        <div id="filter-groups" class="filter-groups">
+      <aside class="explore-sidebar" role="region" aria-labelledby="filters-heading">
+        <div class="filter-container filter-container--sticky">
+          <div class="filter-header">
+            <h2 id="filters-heading" class="filter-header__title">Filters</h2>
+            <div class="filter-header__actions">
+              <button class="filter-header__toggle u-md-block u-hidden" aria-expanded="false" aria-controls="filter-groups" aria-label="Toggle filters">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor"/>
+                </svg>
+              </button>
+              <button id="clear-filters" class="filter-header__clear" type="button">Clear all</button>
+            </div>
+          </div>
+          
+          <div id="filter-groups" class="filter-groups">
           <!-- Accordion style filters -->
           <div class="filter-accordion">
             <!-- Document Type -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span>Document Type</span>
-                <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="filter-group" data-filter-group="document_type">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="true" aria-controls="filter-document-type">
+                <h3 class="filter-group__title">Document Type</h3>
+                <div class="filter-group__count">{{ available_doc_types|length }}</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                 </svg>
               </div>
-              <div class="accordion-content">
-                <div class="filter-options scrollable">
-                  
-                  {% for slug, label, count in available_doc_types %}
-                    <label class="filter-checkbox">
-                      <input
-                        type="checkbox"
-                        name="document_type"
-                        value="{{ slug }}"
-                        label="{{ label }}"
-                      />
-                      <span>{{ label }}</span>
-                      <span class="count">{{ count }}</span>
-                    </label>
-                  {% endfor %}
-
+              <div class="filter-group__content" id="filter-document-type">
+                <div class="filter-group__body">
+                  <div class="filter-options">
+                    {% for slug, label, count in available_doc_types %}
+                      <div class="filter-option">
+                        <input
+                          type="checkbox"
+                          name="document_type"
+                          value="{{ slug }}"
+                          class="filter-option__checkbox"
+                          id="doc-type-{{ slug }}"
+                        />
+                        <label for="doc-type-{{ slug }}" class="filter-option__label">{{ label }}</label>
+                        <span class="filter-option__count">{{ count }}</span>
+                      </div>
+                    {% endfor %}
+                  </div>
                 </div>
               </div>
             </div>
             
             <!-- Legal Characteristics -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span>Legal Characteristics</span>
-                <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="filter-group" data-filter-group="legal_characteristics">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-legal-characteristics">
+                <h3 class="filter-group__title">Legal Characteristics</h3>
+                <div class="filter-group__count">{{ available_legal_bindingness|length|add:available_coverage_scope|length|add:available_agreement_types|length }}</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                 </svg>
               </div>
-              <div class="accordion-content">
+              <div class="filter-group__content" id="filter-legal-characteristics">
+                <div class="filter-group__body">
+                  
+                  <div class="filter-subgroup">
+                    <h4 class="filter-subgroup__title">Legal Bindingness</h4>
+                    <div class="filter-options">
+                      {% for slug, label, count in available_legal_bindingness %}
+                        <div class="filter-option">
+                          <input
+                            type="checkbox"
+                            name="legal_bindingness"
+                            value="{{ slug }}"
+                            class="filter-option__checkbox"
+                            id="legal-bindingness-{{ slug }}"
+                          />
+                          <label for="legal-bindingness-{{ slug }}" class="filter-option__label">{{ label }}</label>
+                          <span class="filter-option__count">{{ count }}</span>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  
+                  <div class="filter-subgroup">
+                    <h4 class="filter-subgroup__title">Coverage Scope</h4>
+                    <div class="filter-options">
+                      {% for slug, label, count in available_coverage_scope %}
+                        <div class="filter-option">
+                          <input
+                            type="checkbox"
+                            name="coverage_scope"
+                            value="{{ slug }}"
+                            class="filter-option__checkbox"
+                            id="coverage-scope-{{ slug }}"
+                          />
+                          <label for="coverage-scope-{{ slug }}" class="filter-option__label">{{ label }}</label>
+                          <span class="filter-option__count">{{ count }}</span>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  
+                  <div class="filter-subgroup">
+                    <h4 class="filter-subgroup__title">Agreement Type</h4>
+                    <div class="filter-options">
+                      {% for slug, label, count in available_agreement_types %}
+                        <div class="filter-option">
+                          <input
+                            type="checkbox"
+                            name="agreement_type"
+                            value="{{ slug }}"
+                            class="filter-option__checkbox"
+                            id="agreement-type-{{ slug }}"
+                          />
+                          <label for="agreement-type-{{ slug }}" class="filter-option__label">{{ label }}</label>
+                          <span class="filter-option__count">{{ count }}</span>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
 
-                <h4 class="filter-subheading">Legal Bindingness</h4>
-                <div class="filter-options">
-                  {% for slug, label, count in available_legal_bindingness %}
-                    <label class="filter-checkbox">
-                      <input
-                        type="checkbox"
-                        name="legal_bindingness"
-                        value="{{ slug }}"
-                        label="{{ label }}"
-                      />
-                      <span>{{ label }}</span>
-                      <span class="count">{{ count }}</span>
-                    </label>
-                  {% endfor %}
                 </div>
-                
-                <h4 class="filter-subheading">Coverage Scope</h4>
-                <div class="filter-options">
-                  {% for slug, label, count in available_coverage_scope %}
-                    <label class="filter-checkbox">
-                      <input
-                        type="checkbox"
-                        name="coverage_scope"
-                        value="{{ slug }}"
-                        label="{{ label }}"
-                      />
-                      <span>{{ label }}</span>
-                      <span class="count">{{ count }}</span>
-                    </label>
-                  {% endfor %}
-
-                </div>
-                
-                <h4 class="filter-subheading">Agreement Type</h4>
-                <div class="filter-options">
-                  {% for slug, label, count in available_agreement_types %}
-                    <label class="filter-checkbox">
-                      <input
-                        type="checkbox"
-                        name="agreement_type"
-                        value="{{ slug }}"
-                        label="{{ label }}"
-                      />
-                      <span>{{ label }}</span>
-                      <span class="count">{{ count }}</span>
-                    </label>
-                  {% endfor %}
-                </div>
-
               </div>
             </div>
             
             <!-- Countries -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span>Countries</span>
-                <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="filter-group" data-filter-group="countries">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-countries">
+                <h3 class="filter-group__title">Countries</h3>
+                <div class="filter-group__count">{{ available_countries|length }}</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                 </svg>
               </div>
-              <div class="accordion-content">
-                <div class="search-box">
-                  <input type="text" placeholder="Search country...">
-                </div>
-                
-                <div class="filter-options scrollable">
-
-                  {% for code, code_label, count in available_countries %}
-                    <label class="filter-checkbox">
-                      <input
-                        type="checkbox"
-                        name="country"
-                        value="{{ code }}"
-                        label="{{ code_label }}"
-                      />
-                      <span>{{ code_label }}</span>
-                      <span class="count">{{ count }}</span>
-                    </label>
-                  {% endfor %}
-
+              <div class="filter-group__content" id="filter-countries">
+                <div class="filter-group__body">
+                  <div class="filter-search">
+                    <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
+                    </svg>
+                    <input type="text" class="filter-search__input" placeholder="Search country..." aria-label="Search countries">
+                  </div>
+                  
+                  <div class="filter-options">
+                    {% for code, code_label, count in available_countries %}
+                      <div class="filter-option" data-country="{{ code_label|lower }}">
+                        <input
+                          type="checkbox"
+                          name="country"
+                          value="{{ code }}"
+                          class="filter-option__checkbox"
+                          id="country-{{ code }}"
+                        />
+                        <label for="country-{{ code }}" class="filter-option__label">{{ code_label }}</label>
+                        <span class="filter-option__count">{{ count }}</span>
+                      </div>
+                    {% endfor %}
+                  </div>
                 </div>
               </div>
             </div>
             
             <!-- Date Range -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span>Period</span>
-                <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="filter-group" data-filter-group="period">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-period">
+                <h3 class="filter-group__title">Period</h3>
+                <div class="filter-group__count">Date Range</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                 </svg>
               </div>
-              <div class="accordion-content">
-                <div class="date-range">
-                  <div class="date-field">
-                    <label for="date_from">From:</label>
-                    <input type="date" id="date_from" name="date-from">
-                  </div>
-                  <div class="date-field">
-                    <label for="date_to">Until:</label>
-                    <input type="date" id="date_to" name="date-to">
+              <div class="filter-group__content" id="filter-period">
+                <div class="filter-group__body">
+                  <div class="filter-date-range">
+                    <div class="filter-date-field">
+                      <label for="date_from" class="filter-date-field__label">From</label>
+                      <input type="date" id="date_from" name="date-from" class="filter-date-field__input">
+                    </div>
+                    <div class="filter-date-field">
+                      <label for="date_to" class="filter-date-field__label">Until</label>
+                      <input type="date" id="date_to" name="date-to" class="filter-date-field__input">
+                    </div>
                   </div>
                   
-                  <div class="date-presets">
-                    <button class="date-preset" data-years="1">Last year</button>
-                    <button class="date-preset" data-years="3">Last 3 years</button>
-                    <button class="date-preset" data-years="5">Last 5 years</button>
+                  <div class="filter-date-presets">
+                    <button class="filter-date-preset" type="button" data-years="1">Last year</button>
+                    <button class="filter-date-preset" type="button" data-years="3">Last 3 years</button>
+                    <button class="filter-date-preset" type="button" data-years="5">Last 5 years</button>
                   </div>
                 </div>
               </div>
             </div>
             
             <!-- Actors -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span>Actors</span>
-                <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="filter-group" data-filter-group="actors">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-actors">
+                <h3 class="filter-group__title">Actors</h3>
+                <div class="filter-group__count">{{ available_actors|length }}</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                 </svg>
               </div>
-              <div class="accordion-content">
-                <div class="search-box">
-                  <label for="actor-search" class="sr-only">Search actors</label>
-                  <input type="text" id="actor-search" placeholder="Search actor..." aria-label="Search actors">
+              <div class="filter-group__content" id="filter-actors">
+                <div class="filter-group__body">
+                  <div class="filter-search">
+                    <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
+                    </svg>
+                    <input type="text" id="actor-search" class="filter-search__input" placeholder="Search actor..." aria-label="Search actors">
+                  </div>
+                  
+                  <div class="filter-options">
+                    {% for id, label, count in available_actors %}
+                      <div class="filter-option" data-actor="{{ label|lower }}">
+                        <input
+                          type="checkbox"
+                          name="actor"
+                          value="{{ id }}"
+                          class="filter-option__checkbox"
+                          id="actor-{{ id }}"
+                        />
+                        <label for="actor-{{ id }}" class="filter-option__label">{{ label }}</label>
+                        <span class="filter-option__count">{{ count }}</span>
+                      </div>
+                    {% endfor %}
+                  </div>
                 </div>
-                
-                <fieldset class="filter-options scrollable">
-                  <legend class="sr-only">Actor Options</legend>
-
-                  {% for id, label, count in available_actors %}
-                    <label class="filter-checkbox">
-                      <input
-                        type="checkbox"
-                        name="actor"
-                        value="{{ id }}"
-                        label="{{ label }}"
-                      />
-                      <span>{{ label }}</span>
-                      <span class="count">{{ count }}</span>
-                    </label>
-                  {% endfor %}
-
-                </fieldset>
               </div>
             </div>
             
             <!-- Beneficiary Groups -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span>Beneficiary Groups</span>
-                <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="filter-group" data-filter-group="beneficiaries">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-beneficiaries">
+                <h3 class="filter-group__title">Beneficiary Groups</h3>
+                <div class="filter-group__count">{{ available_beneficiaries|length }}</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                 </svg>
               </div>
-              <div class="accordion-content">
-                <div class="filter-options scrollable">
-
-                  {% for id, label, count in available_beneficiaries %}
-                    <label class="filter-checkbox">
-                      <input
-                        type="checkbox"
-                        name="beneficiary"
-                        value="{{ id }}"
-                        label="{{ label }}"
-                      />
-                      <span>{{ label }}</span>
-                      <span class="count">{{ count }}</span>
-                    </label>
-                  {% endfor %}
-                  
+              <div class="filter-group__content" id="filter-beneficiaries">
+                <div class="filter-group__body">
+                  <div class="filter-options">
+                    {% for id, label, count in available_beneficiaries %}
+                      <div class="filter-option">
+                        <input
+                          type="checkbox"
+                          name="beneficiary"
+                          value="{{ id }}"
+                          class="filter-option__checkbox"
+                          id="beneficiary-{{ id }}"
+                        />
+                        <label for="beneficiary-{{ id }}" class="filter-option__label">{{ label }}</label>
+                        <span class="filter-option__count">{{ count }}</span>
+                      </div>
+                    {% endfor %}
+                  </div>
                 </div>
               </div>
             </div>
             
-            <!-- Themes -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span>Topics</span>
-                <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Topics -->
+            <div class="filter-group" data-filter-group="topics">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-topics">
+                <h3 class="filter-group__title">Topics</h3>
+                <div class="filter-group__count">{{ available_themes|length }}</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                 </svg>
               </div>
-              <div class="accordion-content">
-                <div class="search-box">
-                  <input type="text" placeholder="Search topic...">
-                </div>
-                
-                <div class="filter-options scrollable">
-
-                  {% for id, label, count in available_themes %}
-                    <label class="filter-checkbox">
-                      <input
-                        type="checkbox"
-                        name="theme"
-                        value="{{ id }}"
-                        label="{{ label }}"
-                      />
-                      <span>{{ label }}</span>
-                      <span class="count">{{ count }}</span>
-                    </label>
-                  {% endfor %}
-
+              <div class="filter-group__content" id="filter-topics">
+                <div class="filter-group__body">
+                  <div class="filter-search">
+                    <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
+                    </svg>
+                    <input type="text" class="filter-search__input" placeholder="Search topic..." aria-label="Search topics">
+                  </div>
+                  
+                  <div class="filter-options">
+                    {% for id, label, count in available_themes %}
+                      <div class="filter-option" data-topic="{{ label|lower }}">
+                        <input
+                          type="checkbox"
+                          name="theme"
+                          value="{{ id }}"
+                          class="filter-option__checkbox"
+                          id="theme-{{ id }}"
+                        />
+                        <label for="theme-{{ id }}" class="filter-option__label">{{ label }}</label>
+                        <span class="filter-option__count">{{ count }}</span>
+                      </div>
+                    {% endfor %}
+                  </div>
                 </div>
               </div>
             </div>
             
             <!-- SDG Alignments -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span>SDG Alignments</span>
-                <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="filter-group" data-filter-group="sdgs">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-sdgs">
+                <h3 class="filter-group__title">SDG Alignments</h3>
+                <div class="filter-group__count">{{ available_sdgs|length }}</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                 </svg>
               </div>
-              <div class="accordion-content">
-                <div class="filter-options">
-
-                  {% for number, label, count in available_sdgs %}
-                    <label class="filter-checkbox">
-                      <input
-                        type="checkbox"
-                        name="sdg"
-                        value="{{ number }}"
-                        label="{{ label }}"
-                      />
-                      <span>{{ label }}</span>
-                      <span class="count">{{ count }}</span>
-                    </label>
-                  {% endfor %}
-
+              <div class="filter-group__content" id="filter-sdgs">
+                <div class="filter-group__body">
+                  <div class="filter-options">
+                    {% for number, label, count in available_sdgs %}
+                      <div class="filter-option">
+                        <input
+                          type="checkbox"
+                          name="sdg"
+                          value="{{ number }}"
+                          class="filter-option__checkbox"
+                          id="sdg-{{ number }}"
+                        />
+                        <label for="sdg-{{ number }}" class="filter-option__label">{{ label }}</label>
+                        <span class="filter-option__count">{{ count }}</span>
+                      </div>
+                    {% endfor %}
+                  </div>
                 </div>
               </div>
             </div>
             
           </div>
+          </div>
         </div>
         
         <div class="filter-actions">
-          <button id="reset-filters" class="btn btn-secondary btn-reset-filters"> Reset </button>
-          <button id="apply-filters" class="btn btn-primary apply-filters"> Apply Filters </button>
+            <div class="filter-actions__secondary">
+              <button id="reset-filters" class="button button--secondary" type="button">Reset</button>
+            </div>
+            <div class="filter-actions__primary">
+              <button id="apply-filters" class="button button--primary" type="button">Apply Filters</button>
+            </div>
+          </div>
         </div>
       </aside>
 
       <!-- Results Container -->
-      <div class="results-container">
+      <div class="explore-results">
         <!-- List View (default) -->
         <section class="list-view active list-display-mode-list" id="list-view-panel" role="region" aria-labelledby="results-heading">
-          <div class="results-header">
+          <div class="explore-results__header">
             <div class="results-summary">
               <h2 id="results-heading" class="document-title">Search Results</h2>
-              <span id="results-count" class="results-count">
+              <span id="results-count" class="explore-results__count">
                 <!-- results count set by js  -->
               </span>
             </div>
             
-            <div class="results-controls">
+            <div class="explore-results__sort">
             </div>
           </div>
           
-          <ul class="documents-list" id="search-results-list" role="list" aria-label="Search results">
-            <!-- results populated by js -->
-          </ul>
+          <div class="explore-results__grid">
+            <ul class="documents-list" id="search-results-list" role="list" aria-label="Search results">
+              <!-- results populated by js -->
+            </ul>
+          </div>
 
-  
           <div class="pagination-container">
             <nav id="pagination" class="pagination" role="navigation" aria-label="Search results pagination">
               <!-- JS generará los botones "Anterior" / "Siguiente" u otras páginas -->

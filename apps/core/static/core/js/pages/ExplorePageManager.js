@@ -93,7 +93,7 @@ export class ExplorePageManager extends BaseComponent {
   cacheElements() {
     this.elements = {
       // Filter elements
-      filterSidebar: DOMUtils.getElement('.filter-sidebar'),
+      filterSidebar: DOMUtils.getElement('.explore-sidebar'),
       filterToggle: DOMUtils.getElement('.filter-toggle'),
       activeFiltersContainer: DOMUtils.getElement('#active-filters'),
       

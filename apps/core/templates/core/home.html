@@ -5,132 +5,155 @@
 {% block content %}
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Mapping EU-LAC Digital Transformation Dialogues & Agreements</h1>
-      <p>
-        Discover the 
-        <span class="tag tag-info">agreements</span>, 
-        <span class="tag tag-primary">commitments</span> and more for driving digital 
-        <span class="tag tag-accent">transformation</span> in Europe, Latin America, and the Caribbean.
-      </p>
-      <a href="{% url 'core:explore' %}" class="btn btn-primary">Explore Data</a>
-      <a href="{% url 'core:about' %}"   class="btn btn-ghost">More Info</a>
-    </div>
-    <div class="hero-graphic" id="node-web">
-      <!-- Canvas for node-web animation injected via JS -->
+  <section class="home-hero">
+    <div class="home-hero__container">
+      <div class="home-hero__content">
+        <h1 class="home-hero__title">Mapping EU-LAC Digital Transformation Dialogues & Agreements</h1>
+        <p class="home-hero__description">
+          Discover the 
+          <span class="tag tag--info">agreements</span>, 
+          <span class="tag tag--primary">commitments</span> and more for driving digital 
+          <span class="tag tag--warning">transformation</span> in Europe, Latin America, and the Caribbean.
+        </p>
+        <div class="home-hero__actions">
+          <a href="{% url 'core:explore' %}" class="button button--primary">Explore Data</a>
+          <a href="{% url 'core:about' %}" class="button button--ghost">More Info</a>
+        </div>
+      </div>
+      <div class="home-hero__graphic" id="node-web">
+        <!-- Canvas for node-web animation injected via JS -->
+      </div>
     </div>
   </section>
 
   <!-- Project Info Section -->
-  <section class="project-info-section">
-    <div class="project-info-container">
-      <div class="project-badge">
-        <img src="{% static 'footer/EN_fundedbyEU_VERTICAL_RGB_POS.png' %}" alt="Funded by the European Union" class="eu-logo">
-      </div>
-      <div class="project-description">
-        <p><strong>SPIDER</strong> strengthens collaboration between the EU and LAC on digital transformation and R&I by exploiting the BELLA network's potential and implementing outcomes from EU-LAC digital dialogues.</p>
-        <a href="https://spidernetwork.org/" target="_blank" rel="noopener noreferrer" class="project-link">
-          Learn more about SPIDER
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="external-icon">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+  <section class="home-project-info">
+    <div class="home-project-info__container">
+      <div class="home-project-info__card">
+        <div class="home-project-info__badge">
+          <img src="{% static 'footer/EN_fundedbyEU_VERTICAL_RGB_POS.png' %}" alt="Funded by the European Union" class="home-project-info__logo">
+        </div>
+        <div class="home-project-info__content">
+          <p class="home-project-info__text"><strong>SPIDER</strong> strengthens collaboration between the EU and LAC on digital transformation and R&I by exploiting the BELLA network's potential and implementing outcomes from EU-LAC digital dialogues.</p>
+          <a href="https://spidernetwork.org/" target="_blank" rel="noopener noreferrer" class="home-project-info__link">
+            Learn more about SPIDER
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="home-project-info__link-icon">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Stats Section -->
-  <section class="stats-section">
-    <h2 class="section-title">Mapping Scope</h2>
-    <div class="stats-container">
-      <div class="stat-card">
-        <div class="stat-number" data-target="{{ total_documents }}" data-suffix="+">0+</div>
-        <div class="stat-label">Documents Analysed</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number" data-target="{{ total_countries }}">0</div>
-        <div class="stat-label">Countries Involved</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number" data-target="{{ total_themes }}">0</div>
-        <div class="stat-label">Themes Involved</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number" data-target="{{ total_beneficiary_groups }}">0</div>
-        <div class="stat-label">Beneficiary Groups</div>
+  <section class="home-stats">
+    <div class="home-stats__container">
+      <h2 class="home-stats__title">Mapping Scope</h2>
+      <div class="home-stats__grid">
+        <div class="home-stats__card">
+          <div class="home-stats__number" data-target="{{ total_documents }}" data-suffix="+">0+</div>
+          <div class="home-stats__label">Documents Analysed</div>
+        </div>
+        <div class="home-stats__card">
+          <div class="home-stats__number" data-target="{{ total_countries }}">0</div>
+          <div class="home-stats__label">Countries Involved</div>
+        </div>
+        <div class="home-stats__card">
+          <div class="home-stats__number" data-target="{{ total_themes }}">0</div>
+          <div class="home-stats__label">Themes Involved</div>
+        </div>
+        <div class="home-stats__card">
+          <div class="home-stats__number" data-target="{{ total_beneficiary_groups }}">0</div>
+          <div class="home-stats__label">Beneficiary Groups</div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Recent Documents Section -->
-  <section class="documents-section">
-    <h2 class="section-title">Recent Documents</h2>
-    <div class="carousel-container">
-      <button class="carousel-nav carousel-prev" aria-label="Previous">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
-        </svg>
-      </button>
-      <div class="carousel-wrapper">
-        <div class="documents-container carousel-track">
-          {% for document in recent_documents %}
-            <div class="document-card">
-              <div class="document-header">
-                <div class="document-title">{{ document.title }}</div>
-                <div class="document-meta">
-                  <span>{{ document.event_country.name|default:"Unknown" }}</span>
-                  <span>{{ document.event_date.year|default:"N/A" }}</span>
+  <section class="home-documents">
+    <div class="home-documents__container">
+      <h2 class="home-documents__title">Recent Documents</h2>
+      <div class="carousel">
+        <div class="carousel__container">
+          <button class="carousel__nav carousel__nav--prev" aria-label="Previous">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="carousel__nav-icon">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
+            </svg>
+          </button>
+          <div class="carousel__wrapper">
+            <div class="carousel__track">
+              {% for document in recent_documents %}
+                <div class="carousel__item">
+                  <div class="card card--document">
+                    <div class="card__header">
+                      <div class="card__title">{{ document.title }}</div>
+                      <div class="card__meta">
+                        <span>{{ document.event_country.name|default:"Unknown" }}</span>
+                        <span>{{ document.event_date.year|default:"N/A" }}</span>
+                      </div>
+                      {% if document.status %}
+                        <span class="tag tag--info">{{ document.status }}</span>
+                      {% endif %}
+                    </div>
+                    <div class="card__body">
+                      <p class="card__content">{{ document.executive_summary|truncatewords:25|default:"No summary available." }}</p>
+                    </div>
+                    <div class="card__footer">
+                      <div class="card__actions">
+                        <a href="{% url 'core:document_detail' document.id %}" class="button button--secondary button--small">
+                          View Details
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                {% if document.status %}
-                  <span class="tag tag-info">{{ document.status }}</span>
-                {% endif %}
-              </div>
-              <div class="document-body">
-                <p>{{ document.executive_summary|truncatewords:25|default:"No summary available." }}</p>
-              </div>
-              <div class="document-footer">
-                <a href="{% url 'core:document_detail' document.id %}"
-                   class="btn btn-secondary btn-sm">
-                  View Details
-                </a>
-              </div>
-            </div>
-          {% empty %}
-            <div class="document-card">
-              <div class="document-header">
-                <div class="document-title">No documents available</div>
-                <div class="document-meta">
-                  <span>-</span>
-                  <span>-</span>
+              {% empty %}
+                <div class="carousel__item">
+                  <div class="card card--document">
+                    <div class="card__header">
+                      <div class="card__title">No documents available</div>
+                      <div class="card__meta">
+                        <span>-</span>
+                        <span>-</span>
+                      </div>
+                    </div>
+                    <div class="card__body">
+                      <p class="card__content">No documents have been uploaded yet.</p>
+                    </div>
+                    <div class="card__footer">
+                      <div class="card__actions">
+                        <span class="button button--secondary button--small button--disabled">View Details</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="document-body">
-                <p>No documents have been uploaded yet.</p>
-              </div>
-              <div class="document-footer">
-                <a href="#" class="btn btn-secondary btn-sm disabled">View Details</a>
-              </div>
+              {% endfor %}
             </div>
-          {% endfor %}
+          </div>
+          <button class="carousel__nav carousel__nav--next" aria-label="Next">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="carousel__nav-icon">
+              <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12l-4.58 4.59z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+        <div class="carousel__indicators">
+          <!-- Indicators injected by JS -->
         </div>
       </div>
-      <button class="carousel-nav carousel-next" aria-label="Next">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12l-4.58 4.59z" fill="currentColor"/>
-        </svg>
-      </button>
-    </div>
-    <div class="carousel-indicators">
-      <!-- Indicators injected by JS -->
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="cta-section">
-    <h2>Discover the connections driving digital transformation</h2>
-    <p>Explore the network of EU-LAC agreements and commitments interactively.</p>
-    <a href="{% url 'core:explore' %}" class="btn btn-secondary">View Network Relations</a>
+  <section class="home-cta">
+    <div class="home-cta__container">
+      <h2 class="home-cta__title">Discover the connections driving digital transformation</h2>
+      <p class="home-cta__description">Explore the network of EU-LAC agreements and commitments interactively.</p>
+      <div class="home-cta__actions">
+        <a href="{% url 'core:explore' %}" class="button button--secondary">View Network Relations</a>
+      </div>
+    </div>
   </section>
 {% endblock %}
 

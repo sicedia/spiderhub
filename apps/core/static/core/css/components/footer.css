@@ -1,0 +1,416 @@
+/**
+ * Footer Component
+ * Site footer with partner logos and EU funding information
+ * Following BEM methodology and accessibility best practices
+ */
+
+/* ========================================
+   Footer Block
+   ======================================== */
+
+.footer {
+  background-color: #222;
+  color: var(--color-text-inverse);
+  padding: var(--space-3xl) 5% var(--space-lg);
+  margin-top: auto;
+}
+
+/* ========================================
+   Footer Content Layout
+   ======================================== */
+
+.footer__content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: var(--container-6xl);
+  margin: 0 auto;
+  gap: var(--space-lg);
+}
+
+.footer__column {
+  margin-bottom: var(--space-lg);
+  min-width: 200px;
+  flex: 1;
+}
+
+.footer__column-title {
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-lg);
+  color: var(--color-secondary-500);
+  font-weight: var(--font-weight-semibold);
+}
+
+.footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__list-item {
+  margin-bottom: var(--space-2);
+}
+
+.footer__link {
+  color: #ccc;
+  text-decoration: none;
+  transition: color var(--duration-base) var(--ease-out);
+  font-size: var(--font-size-sm);
+}
+
+.footer__link:hover {
+  color: var(--color-text-inverse);
+  text-decoration: underline;
+}
+
+.footer__link:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-sm);
+}
+
+/* ========================================
+   Social Links
+   ======================================== */
+
+.footer__social {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.footer__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #333;
+  color: var(--color-text-inverse);
+  text-decoration: none;
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.footer__social-link:hover {
+  background: var(--color-primary-500);
+  transform: translateY(-2px);
+}
+
+.footer__social-link:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.footer__social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ========================================
+   Partner Logos Section
+   ======================================== */
+
+.footer__partners {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid #444;
+}
+
+.footer__partners-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer__partners-text {
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+  margin-right: var(--space-md);
+}
+
+.footer__partner-logos {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer__logo {
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.footer__logo:hover {
+  opacity: 0.8;
+}
+
+.footer__logo--spider {
+  height: 80px;
+  max-width: 120px;
+  object-fit: contain;
+}
+
+.footer__logo--cedia {
+  height: 40px;
+  max-width: 80px;
+  object-fit: contain;
+}
+
+.footer__logo--eu {
+  height: 40px;
+  max-width: 150px;
+  object-fit: contain;
+}
+
+.footer__logo--dlr {
+  height: 40px;
+  max-width: 80px;
+  object-fit: contain;
+}
+
+/* ========================================
+   EU Funding Disclaimer
+   ======================================== */
+
+.footer__eu-disclaimer {
+  margin: var(--space-md) 0;
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-base);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.footer__disclaimer-text {
+  color: #bbb;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-relaxed);
+  max-width: 600px;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+/* ========================================
+   Copyright Section
+   ======================================== */
+
+.footer__copyright {
+  text-align: center;
+  padding-top: var(--space-lg);
+  border-top: 1px solid #444;
+  margin-top: var(--space-lg);
+  color: #999;
+}
+
+.footer__copyright-text {
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+/* ========================================
+   Responsive Behavior
+   ======================================== */
+
+@media (max-width: 768px) {
+  .footer {
+    padding: var(--space-2xl) 3% var(--space-md);
+  }
+  
+  .footer__content {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .footer__column {
+    width: 100%;
+    margin-bottom: var(--space-md);
+  }
+  
+  .footer__partners {
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+  }
+  
+  .footer__partners-content {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .footer__partners-text {
+    margin-right: 0;
+    margin-bottom: var(--space-sm);
+  }
+  
+  .footer__partner-logos {
+    gap: var(--space-sm);
+  }
+  
+  .footer__logo--spider {
+    height: 60px;
+    max-width: 100px;
+  }
+  
+  .footer__logo--cedia {
+    height: 30px;
+    max-width: 60px;
+  }
+  
+  .footer__logo--eu {
+    height: 35px;
+    max-width: 120px;
+  }
+  
+  .footer__logo--dlr {
+    height: 35px;
+    max-width: 60px;
+  }
+  
+  .footer__eu-disclaimer {
+    margin: var(--space-sm) 0;
+    padding: var(--space-sm);
+  }
+  
+  .footer__disclaimer-text {
+    font-size: 11px;
+    max-width: 400px;
+  }
+  
+  .footer__social {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: var(--space-xl) 3% var(--space-sm);
+  }
+  
+  .footer__partners {
+    gap: var(--space-sm);
+    padding: var(--space-md) 0;
+  }
+  
+  .footer__partner-logos {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  
+  .footer__logo--spider {
+    height: 50px;
+    max-width: 80px;
+  }
+  
+  .footer__logo--cedia {
+    height: 25px;
+    max-width: 50px;
+  }
+  
+  .footer__logo--eu {
+    height: 30px;
+    max-width: 100px;
+  }
+  
+  .footer__logo--dlr {
+    height: 30px;
+    max-width: 50px;
+  }
+  
+  .footer__partners-text {
+    font-size: var(--font-size-xs);
+  }
+  
+  .footer__eu-disclaimer {
+    padding: var(--space-2);
+  }
+  
+  .footer__disclaimer-text {
+    font-size: 10px;
+    max-width: 280px;
+    line-height: 1.4;
+  }
+  
+  .footer__social {
+    gap: var(--space-sm);
+  }
+  
+  .footer__social-link {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .footer__social-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* ========================================
+   Accessibility Enhancements
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .footer__link,
+  .footer__social-link,
+  .footer__logo {
+    transition: none;
+  }
+  
+  .footer__social-link:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .footer {
+    border-top: 2px solid var(--color-text-inverse);
+  }
+  
+  .footer__link:hover {
+    background-color: var(--color-text-inverse);
+    color: #222;
+    padding: 2px 4px;
+    border-radius: var(--radius-sm);
+  }
+  
+  .footer__social-link {
+    border: 2px solid var(--color-text-inverse);
+  }
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+
+@media print {
+  .footer {
+    background: transparent;
+    color: black;
+    border-top: 2px solid black;
+    padding: var(--space-md) 0;
+  }
+  
+  .footer__social,
+  .footer__partners {
+    display: none;
+  }
+  
+  .footer__link {
+    color: black;
+  }
+  
+  .footer__copyright {
+    border-top: 1px solid black;
+    color: black;
+  }
+}
