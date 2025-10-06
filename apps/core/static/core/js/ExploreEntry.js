@@ -1,6 +1,6 @@
 /**
- * Explore Page - ES6 Modular Implementation
- * Uses the new modular architecture with proper ES6 imports
+ * Explore Page Entry Point - ES6 Modular Implementation
+ * Uses @js/ alias for clean imports and modular architecture
  */
 
 import { ExplorePageManager } from './pages/ExplorePageManager.js';

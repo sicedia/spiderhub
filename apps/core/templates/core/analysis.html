@@ -353,39 +353,31 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@2.0.0"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson@3"></script>
-  <script type="module" src="{% static 'core/js/main.js' %}"></script>
-  <script type="module" src="{% static 'core/js/analysis.js' %}"></script>
-
-  <script type="module">
-    import { renderSdgRadar } from "{% static 'core/js/sdgRadarChart.js' %}";
-    import { renderLegalBindingPie } from "{% static 'core/js/legalBindingPie.js' %}";
-    import { renderCoverageBar } from "{% static 'core/js/coverageScopeBar.js' %}";
-    import { renderLeadCountryChoroplethChart } from "{% static 'core/js/leadCountryChoroplethChart.js' %}";
-    import { renderThemeBar } from "{% static 'core/js/themeBarChart.js' %}";
-    import { renderActorBar } from "{% static 'core/js/actorBarChart.js' %}";
-    import { renderBeneficiaryBar } from "{% static 'core/js/beneficiaryBarChart.js' %}";
-    
+  <!-- Standalone Analysis Implementation -->
+  <script src="{% static 'core/js/AnalysisMain.js' %}" type="module"></script>
   
-    import { renderDiversityRadarChart } from "{% static 'core/js/diversityRadarChart.js' %}";
-    import { renderInitiativeTreemapChart } from "{% static 'core/js/initiativeTreemapChart.js' %}";
-    import { renderCollaborationNetworkChart } from "{% static 'core/js/collaborationNetworkChart.js' %}";
-    
-    // Make functions globally available
-    window.renderSdgRadar = renderSdgRadar;
-    window.renderLeadCountryChoroplethChart = renderLeadCountryChoroplethChart;
-    window.renderLegalBindingPie = renderLegalBindingPie;
-    window.renderCoverageBar = renderCoverageBar;
-    window.renderThemeBar = renderThemeBar;
-    window.renderActorBar = renderActorBar;
-    window.renderBeneficiaryBar = renderBeneficiaryBar;
-    
-    // Value & Variety Analysis Functions
-    window.renderDiversityRadarChart = renderDiversityRadarChart;
-    window.renderInitiativeTreemapChart = renderInitiativeTreemapChart;
-    window.renderCollaborationNetworkChart = renderCollaborationNetworkChart;
+  <!-- Fallback for older browsers -->
+  <script nomodule>
+    // Load legacy fallback for older browsers
+    var script = document.createElement('script');
+    script.src = '{% static "core/js/legacyFallback.js" %}';
+    script.onload = function() {
+      console.log('Analysis page loaded with legacy fallback');
+    };
+    script.onerror = function() {
+      console.log('Legacy fallback failed, trying bundled version...');
+      var bundleScript = document.createElement('script');
+      bundleScript.src = '{% static "core/js/analysis.bundle.js" %}';
+      bundleScript.onload = function() {
+        console.log('Analysis page loaded with bundled version');
+      };
+      document.head.appendChild(bundleScript);
+    };
+    document.head.appendChild(script);
+  </script>
 
-    
-// Enhanced tooltip implementation
+  <!-- Enhanced tooltip implementation -->
+  <script>
 document.addEventListener('DOMContentLoaded', function() {
   const tooltipElements = document.querySelectorAll('[data-tooltip]');
   let currentTooltip = null;

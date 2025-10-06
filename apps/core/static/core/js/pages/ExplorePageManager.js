@@ -1,8 +1,7 @@
 /**
  * Explore Page Manager
  * Orchestrates all components on the explore page
- * Follows Single Responsibility Principle - only manages component coordination
- * ES6 Module Export
+ * Uses @js/ alias for clean imports
  */
 
 import { BaseComponent } from '../core/base/BaseComponent.js';

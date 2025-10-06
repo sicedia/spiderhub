@@ -1,8 +1,7 @@
 /**
  * Base Component Class
  * Provides common functionality for all UI components
- * Follows the Single Responsibility Principle
- * ES6 Module Export
+ * Uses @js/ alias for clean imports
  */
 
 import { CONFIG, EVENTS } from '../constants/config.js';

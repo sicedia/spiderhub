@@ -1,40 +1,108 @@
-// Home page specific functionality
-import { Utils } from './main.js';
+/**
+ * Main Application Entry Point
+ * Initializes global utilities and shared functionality
+ * Clean modular structure with standardized imports
+ */
 
+import { DOMUtils } from './core/utils/dom.js';
+import { AnimationUtils } from './core/utils/animations.js';
+import { CONFIG } from './core/constants/config.js';
+import { MobileNav } from './components/navigation/MobileNav.js';
+
+// Global utilities object for backward compatibility
+export const Utils = {
+  // Animation and interaction constants (now imported from CONFIG)
+  ANIMATION_DURATION: CONFIG.ANIMATION.DURATION,
+  RESIZE_DEBOUNCE_DELAY: CONFIG.ANIMATION.DEBOUNCE_DELAY,
+  CAROUSEL_CARDS_PER_VIEW: CONFIG.CAROUSEL.CARDS_PER_VIEW,
+  BREAKPOINTS: CONFIG.BREAKPOINTS,
+
+  // Delegate to DOMUtils for intersection observer
+  createIntersectionObserver(callback, options = {}) {
+    return DOMUtils.createIntersectionObserver(callback, options);
+  },
+
+  // Delegate to DOMUtils for debounce
+  debounce(func, wait) {
+    return DOMUtils.debounce(func, wait);
+  },
+
+  // Delegate to AnimationUtils for counter animation
+  animateCounter(target, duration = CONFIG.ANIMATION.DURATION) {
+    return AnimationUtils.animateCounter(target, duration);
+  },
+
+  // Get responsive cards per view for carousel
+  getCardsPerView() {
+    const width = window.innerWidth;
+    if (width < CONFIG.BREAKPOINTS.MOBILE) return CONFIG.CAROUSEL.CARDS_PER_VIEW.mobile;
+    if (width < CONFIG.BREAKPOINTS.TABLET) return CONFIG.CAROUSEL.CARDS_PER_VIEW.tablet;
+    return CONFIG.CAROUSEL.CARDS_PER_VIEW.desktop;
+  },
+
+  // Mobile navigation handler - now uses the MobileNav component
+  initializeMobileNavigation(toggleSelector = '.mobile-menu-toggle', overlaySelector = '.mobile-nav-overlay') {
+    const overlay = DOMUtils.getElement(overlaySelector);
+    if (overlay) {
+      const mobileNav = new MobileNav(overlay, {
+        toggleSelector,
+        overlaySelector
+      });
+      return mobileNav;
+    }
+    return null;
+  }
+};
+
+// Initialize shared functionality when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize all home page components
-  const components = {
-    statNumbers: document.querySelectorAll('.stat-number'),
-    nodeWeb: document.getElementById('node-web'),
-    carouselTrack: document.querySelector('.carousel-track')
-  };
+  try {
+    console.log('Initializing main application utilities...');
+    
+    // Initialize shared mobile navigation using the new component
+    const mobileNav = Utils.initializeMobileNavigation();
+    if (mobileNav) {
+      console.log('✅ Mobile navigation initialized');
+    }
 
-  // Initialize stat counters if present
-  if (components.statNumbers.length > 0) {
-    initializeStatCounters(components.statNumbers);
-  }
-  
-  // Initialize node web animation if present
-  if (components.nodeWeb) {
-    createNodeWebAnimation(components.nodeWeb);
-  }
-  
-  // Initialize carousel if present
-  if (components.carouselTrack) {
-    initializeCarousel();
+    // Initialize stat counters if present
+    const statNumbers = document.querySelectorAll('.card-number[data-target]');
+    if (statNumbers.length > 0) {
+      initializeStatCounters(statNumbers);
+      console.log(`✅ Initialized ${statNumbers.length} stat counters`);
+    }
+
+    // Initialize node web animation if container exists
+    const nodeWebContainer = document.querySelector('.node-web-animation');
+    if (nodeWebContainer) {
+      createNodeWebAnimation(nodeWebContainer);
+      console.log('✅ Node web animation initialized');
+    }
+
+    // Initialize carousel if present
+    const carouselTrack = document.querySelector('.carousel-track');
+    if (carouselTrack) {
+      initializeCarousel();
+      console.log('✅ Carousel initialized');
+    }
+
+    console.log('✅ Main application utilities initialized successfully');
+
+  } catch (error) {
+    console.error('❌ Error initializing main application utilities:', error);
   }
 });
 
-// Modular stat counter initialization
+// Modular stat counter initialization using new utilities
 function initializeStatCounters(statNumbers) {
-  const observer = Utils.createIntersectionObserver((entries) => {
+  const observer = DOMUtils.createIntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        Utils.animateCounter(entry.target);
+        AnimationUtils.animateCounter(entry.target);
         observer.unobserve(entry.target);
       }
     });
-  });
+  }, { threshold: 0.5 });
   
   statNumbers.forEach(stat => observer.observe(stat));
 }
@@ -126,29 +194,29 @@ function createNodeWebAnimation(container) {
     requestAnimationFrame(animate);
   }
   
-  // Debounced resize handler
-  const handleResize = Utils.debounce(() => {
+  // Debounced resize handler using new utilities
+  const handleResize = DOMUtils.debounce(() => {
     setupCanvas();
     nodes.forEach(node => {
       node.x = Math.min(node.x, canvas.width - 20);
       node.y = Math.min(node.y, canvas.height - 20);
     });
-  }, 250);
+  }, CONFIG.ANIMATION.DEBOUNCE_DELAY);
   
   window.addEventListener('resize', handleResize);
   animate();
 }
 
-// Modern carousel implementation
+// Modern carousel implementation using new utilities
 function initializeCarousel() {
-  const track = document.querySelector('.carousel-track');
+  const track = DOMUtils.getElement('.carousel-track');
   if (!track) return;
   
   const config = {
     cards: track.querySelectorAll('.document-card'),
-    prevButton: document.querySelector('.carousel-prev'),
-    nextButton: document.querySelector('.carousel-next'),
-    indicatorsContainer: document.querySelector('.carousel-indicators'),
+    prevButton: DOMUtils.getElement('.carousel-prev'),
+    nextButton: DOMUtils.getElement('.carousel-next'),
+    indicatorsContainer: DOMUtils.getElement('.carousel-indicators'),
     currentIndex: 0
   };
   
@@ -200,13 +268,13 @@ function initializeCarousel() {
   // Touch events for mobile
   addTouchSupport(track, carouselControls);
   
-  // Resize handler
-  window.addEventListener('resize', Utils.debounce(() => {
+  // Resize handler using new utilities
+  window.addEventListener('resize', DOMUtils.debounce(() => {
     if (config.cards[0]) {
       cardWidth = config.cards[0].offsetWidth + 20;
       carouselControls.updateState();
     }
-  }, 250));
+  }, CONFIG.ANIMATION.DEBOUNCE_DELAY));
   
   // Initialize
   carouselControls.updateState();
@@ -223,22 +291,21 @@ function calculateCarouselDimensions(cards) {
   return { cardWidth, cardsPerView, maxIndex };
 }
 
-function getCardsPerView() {
-  return Utils.getCardsPerView();
-}
-
 function createCarouselIndicators(config, maxIndex) {
   if (!config.indicatorsContainer) return;
   
   config.cards.forEach((_, index) => {
     if (index <= maxIndex) {
-      const indicator = document.createElement('button');
-      indicator.classList.add('carousel-indicator');
-      indicator.setAttribute('aria-label', `Slide ${index + 1}`);
+      const indicator = DOMUtils.createElement('button', {
+        className: 'carousel-indicator',
+        'aria-label': `Slide ${index + 1}`
+      });
+      
       indicator.addEventListener('click', () => {
         config.currentIndex = index;
         updateIndicators(config);
       });
+      
       config.indicatorsContainer.appendChild(indicator);
     }
   });
@@ -249,7 +316,7 @@ function updateIndicators(config) {
   
   const indicators = config.indicatorsContainer.querySelectorAll('.carousel-indicator');
   indicators.forEach((indicator, index) => {
-    indicator.classList.toggle('active', index === config.currentIndex);
+    DOMUtils.toggleClass(indicator, 'active', index === config.currentIndex);
   });
 }
 
@@ -279,3 +346,6 @@ function addTouchSupport(track, controls) {
     }
   }
 }
+
+// Export for module systems and backward compatibility
+export default Utils;
