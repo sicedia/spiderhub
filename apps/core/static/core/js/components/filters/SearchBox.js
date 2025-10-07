@@ -143,7 +143,7 @@ export class SearchBox extends BaseComponent {
 
     // Add to filter manager if available
     if (this.options.filterManager) {
-      this.options.filterManager.addFilter(FILTER_TYPES.SEARCH, searchTerm);
+      this.options.filterManager.addFilter(FILTER_TYPES.SEARCH, searchTerm, searchTerm, 'Search');
     }
 
     // Emit search event

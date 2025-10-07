@@ -269,8 +269,23 @@ export class ExplorePageManager extends BaseComponent {
     const searchTerm = this.elements.searchInput?.value?.trim();
     
     if (searchTerm && this.components.filterManager) {
-      this.components.filterManager.addFilter(FILTER_TYPES.SEARCH, searchTerm);
-      this.elements.searchInput.value = '';
+      // Add search chip
+      this.components.filterManager.addFilter(FILTER_TYPES.SEARCH, searchTerm, searchTerm, 'Search');
+      
+      // Trigger the old search system to perform the actual search
+      // Don't clear the input - the old system needs it
+      const activeFilters = document.getElementById('active-filters');
+      if (activeFilters) {
+        const commitEvent = new CustomEvent('commitSearch', { bubbles: true });
+        activeFilters.dispatchEvent(commitEvent);
+      }
+      
+      // Clear input after search is triggered
+      setTimeout(() => {
+        if (this.elements.searchInput) {
+          this.elements.searchInput.value = '';
+        }
+      }, 100);
     }
   }
 

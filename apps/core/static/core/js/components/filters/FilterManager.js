@@ -11,10 +11,9 @@ import { EVENTS } from '../../core/constants/config.js';
 
 export class FilterManager extends BaseComponent {
   constructor(element, options = {}) {
+    // Initialize properties BEFORE calling super() to avoid overwriting values set in init()
+    // Note: In ES6, we can't access 'this' before super(), so we'll initialize in init() instead
     super(element, options);
-    
-    this.filterGroups = null;
-    this.filterChips = null;
   }
 
   getDefaultOptions() {
@@ -27,6 +26,10 @@ export class FilterManager extends BaseComponent {
   }
 
   init() {
+    // Initialize instance properties here (not in constructor after super())
+    this.filterGroups = null;
+    this.filterChips = null;
+    
     this.initializeComponents();
     this.bindEvents();
   }
@@ -39,7 +42,13 @@ export class FilterManager extends BaseComponent {
     }
 
     // Initialize filter chips
-    const filterChipsContainer = document.querySelector(this.options.filterChipsSelector);
+    // First try to use the element itself if it has the filter-chips class
+    let filterChipsContainer = this.element;
+    if (!filterChipsContainer.classList.contains('filter-chips')) {
+      // Otherwise search for it in the document
+      filterChipsContainer = document.querySelector(this.options.filterChipsSelector);
+    }
+    
     if (filterChipsContainer) {
       this.filterChips = new FilterChips(filterChipsContainer);
     }
@@ -49,6 +58,11 @@ export class FilterManager extends BaseComponent {
     // Listen for filter toggle events from filter groups
     document.addEventListener('filterToggle', (e) => {
       const { filterName, filterValue, filterLabel, filterCategory, isChecked } = e.detail;
+      
+      if (!this.filterChips) {
+        console.warn('FilterChips not initialized');
+        return;
+      }
       
       if (isChecked) {
         this.filterChips.addFilter(filterName, filterValue, filterLabel, filterCategory);
@@ -98,7 +112,6 @@ export class FilterManager extends BaseComponent {
   handleFilterChange(activeFilters) {
     // This method can be overridden by the main application
     // to handle actual filtering logic
-    console.log('Active filters changed:', activeFilters);
     
     // Emit component event
     this.emit(EVENTS.FILTER_CHANGED, { activeFilters });
@@ -108,6 +121,13 @@ export class FilterManager extends BaseComponent {
       detail: { activeFilters }
     });
     document.dispatchEvent(event);
+    
+    // Trigger commitSearch event for backward compatibility with old search system
+    const commitEvent = new CustomEvent('commitSearch', {
+      bubbles: true,
+      detail: { activeFilters }
+    });
+    this.element.dispatchEvent(commitEvent);
   }
 
   clearAllFilters() {

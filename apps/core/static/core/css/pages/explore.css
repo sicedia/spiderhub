@@ -68,58 +68,6 @@
 }
 
 /* ========================================
-   View Selector
-   ======================================== */
-
-.explore-view-selector {
-  background-color: var(--color-bg-primary);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  position: sticky;
-  top: var(--header-height);
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-}
-
-.explore-view-tabs {
-  display: flex;
-  background-color: transparent;
-  border-radius: 0;
-  padding: 0;
-}
-
-.explore-view-tab {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  background: transparent;
-  border: none;
-  border-bottom: 3px solid transparent;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  transition: all var(--duration-base) var(--ease-out);
-}
-
-.explore-view-tab:hover {
-  color: var(--color-text-primary);
-  background-color: transparent;
-}
-
-.explore-view-tab--active {
-  border-bottom-color: var(--color-primary-500);
-  color: var(--color-primary-500);
-  background-color: transparent;
-}
-
-.explore-view-tab:focus-visible {
-  outline: var(--focus-ring);
-  outline-offset: var(--focus-ring-offset);
-}
-
-/* ========================================
    Explore-specific Content Layout - Improved spacing and hierarchy
    ======================================== */
 
@@ -623,6 +571,11 @@
   min-height: 0;
   padding: 0;
   border: none;
+  display: flex !important; /* Ensure chips container is always visible for proper functionality */
+}
+
+.explore-filters--empty .filter-chips__clear-all {
+  display: none; /* Hide "Clear all" button when there are no active filters */
 }
 
 /* Filter Chips Styles */
@@ -712,10 +665,22 @@
   background-color: rgba(255, 255, 255, 0.98);
 }
 
-.explore-results__count {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  font-weight: var(--font-weight-medium);
+/* Results count at top - subtle but visible */
+.results-count-wrapper {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.results-count-top {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-normal);
+  margin: 0;
+  opacity: 0.75;
+}
+
+.pagination-container {
+  margin-top: 2rem;
 }
 
 .explore-results__sort {
@@ -1190,11 +1155,6 @@
     height: 44px;
   }
   
-  .explore-view-tab {
-    padding: 0.875rem 1.25rem;
-    font-size: 0.95rem;
-  }
-  
   .pagination {
     gap: 0.375rem;
   }
@@ -1258,11 +1218,6 @@
     width: 100%;
     justify-content: flex-end;
     margin-top: 0.5rem;
-  }
-
-  .explore-view-tab {
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
   }
 
   .pagination-btn {

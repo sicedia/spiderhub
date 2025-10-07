@@ -8,7 +8,7 @@
   const searchButton    = document.getElementById('search-button');
   const suggestionsList = document.getElementById('suggestions-list');
   const resultsBox      = document.getElementById('search-results-list');
-  const resultsCount    = document.getElementById('results-count');
+  const resultsCountTop = document.getElementById('results-count-top');
   const pager           = document.getElementById('pagination');
   const dateFromInput   = document.getElementById('date_from');
   const dateToInput     = document.getElementById('date_to');
@@ -101,6 +101,11 @@
   activeFilters.addEventListener('commitSearch', () => {
     commitSearch();
   });
+  
+  // Also listen for filterChange event from new filter system
+  document.addEventListener('filterChange', () => {
+    commitSearch();
+  });
 
   // ──────────────────────────────────────────────────────────
   // 5) GATHER filter values from DOM
@@ -172,13 +177,13 @@
   function showLoading() {
     resultsBox.innerHTML   = '<p class="loading">Loading…</p>';
     pager.innerHTML        = '';
-    resultsCount.textContent = '';
+    if (resultsCountTop) resultsCountTop.textContent = '';
   }
 
   function showError() {
     resultsBox.innerHTML   = '<p class="error">Error loading results.</p>';
     pager.innerHTML        = '';
-    resultsCount.textContent = '';
+    if (resultsCountTop) resultsCountTop.textContent = '';
   }
 
   function cardTpl(doc) {
@@ -276,7 +281,9 @@
     const start = (curr - 1) * pageSize + 1;
     const end   = Math.min(curr * pageSize, count);
 
-    resultsCount.textContent = `Showing ${start}–${end} of ${count} documents`;
+    const countText = `Showing ${start}–${end} of ${count} documents`;
+    if (resultsCountTop) resultsCountTop.textContent = countText;
+    
     resultsBox.innerHTML     = results.length
       ? results.map(cardTpl).join('')
       : '<p class="no-results">No documents match your criteria.</p>';

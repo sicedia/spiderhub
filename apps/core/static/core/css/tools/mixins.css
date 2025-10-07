@@ -1,49 +1,38 @@
 /**
- * CSS Mixins and Shared Patterns
- * Common patterns and behaviors to reduce duplication
+ * CSS Shared Patterns and Utilities
+ * Common patterns and behaviors using CSS custom properties
  * Following ITCSS architecture - Tools layer
+ * Note: These are pattern examples, not actual mixins (use as reference)
  */
 
 /* ========================================
-   Interactive Element Mixins
+   Reusable CSS Classes for Common Patterns
    ======================================== */
 
-/* Base interactive element with hover effects */
-@define-mixin interactive-element {
+/* Interactive Element Base */
+.pattern-interactive {
   transition: all var(--duration-base) var(--ease-out);
   cursor: pointer;
 }
 
-/* Hover lift effect */
-@define-mixin hover-lift {
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-  }
+/* Hover Lift Effects */
+.pattern-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 
-/* Hover lift small effect */
-@define-mixin hover-lift-sm {
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-  }
+.pattern-hover-lift-sm:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
-/* Hover lift large effect */
-@define-mixin hover-lift-lg {
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
-  }
+.pattern-hover-lift-lg:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
 }
 
-/* ========================================
-   Card Pattern Mixins
-   ======================================== */
-
-/* Base card styling */
-@define-mixin card-base {
+/* Card Base Pattern */
+.pattern-card-base {
   background-color: var(--color-bg-primary);
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-lg);
@@ -51,40 +40,48 @@
   overflow: hidden;
 }
 
-/* Interactive card with hover effects */
-@define-mixin card-interactive {
-  @mixin card-base;
-  @mixin interactive-element;
-  @mixin hover-lift;
+/* Interactive Card Pattern */
+.pattern-card-interactive {
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: all var(--duration-base) var(--ease-out);
+  cursor: pointer;
 }
 
-/* Card with top accent border */
-@define-mixin card-accent-border $color: var(--color-primary-500) {
+.pattern-card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Card with Accent Border */
+.pattern-card-accent {
   position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: $color;
-    transform: scaleX(0);
-    transition: transform var(--duration-base) var(--ease-out);
-  }
-  
-  &:hover::before {
-    transform: scaleX(1);
-  }
+}
+
+.pattern-card-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-primary-500);
+  transform: scaleX(0);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.pattern-card-accent:hover::before {
+  transform: scaleX(1);
 }
 
 /* ========================================
-   Button Pattern Mixins
+   Button Patterns
    ======================================== */
 
-/* Base button styling */
-@define-mixin button-base {
+.pattern-button-base {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -101,48 +98,44 @@
   border-radius: var(--radius-full);
 }
 
-/* Button hover effect */
-@define-mixin button-hover {
-  &:hover:not(:disabled) {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-  }
+.pattern-button-hover:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 /* ========================================
-   Layout Pattern Mixins
+   Layout Patterns
    ======================================== */
 
-/* Container with max-width and centering */
-@define-mixin container $max-width: var(--container-7xl) {
-  max-width: $max-width;
+.pattern-container {
+  max-width: var(--container-7xl);
   margin: 0 auto;
   padding: 0 5%;
 }
 
-/* Section with consistent spacing */
-@define-mixin section $padding: var(--space-3xl) {
-  padding: $padding 0;
+.pattern-section {
+  padding: var(--space-3xl) 0;
 }
 
-/* Grid layout with responsive behavior */
-@define-mixin responsive-grid $min-width: 280px {
+/* Responsive Grid Pattern */
+.pattern-responsive-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-xl);
-  
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
+  .pattern-responsive-grid {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
   }
 }
 
 /* ========================================
-   Typography Pattern Mixins
+   Typography Patterns
    ======================================== */
 
-/* Section title styling */
-@define-mixin section-title {
+.pattern-section-title {
   font-size: clamp(1.75rem, 4vw, 2.25rem);
   margin-bottom: var(--space-2xl);
   text-align: center;
@@ -151,23 +144,22 @@
   position: relative;
   padding-bottom: var(--space-md);
   line-height: var(--line-height-tight);
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500));
-    border-radius: var(--radius-sm);
-    box-shadow: 0 2px 4px rgba(28, 115, 119, 0.2);
-  }
 }
 
-/* Hero title styling */
-@define-mixin hero-title {
+.pattern-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500));
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 4px rgba(28, 115, 119, 0.2);
+}
+
+.pattern-hero-title {
   font-size: clamp(2.25rem, 5vw, 3rem);
   color: var(--color-primary-700);
   margin-bottom: var(--space-lg);
@@ -177,46 +169,40 @@
 }
 
 /* ========================================
-   Accessibility Pattern Mixins
+   Accessibility Patterns
    ======================================== */
 
-/* Focus ring for interactive elements */
-@define-mixin focus-ring {
-  &:focus-visible {
-    outline: var(--focus-ring);
-    outline-offset: var(--focus-ring-offset);
-  }
+/* Focus Ring Pattern */
+.pattern-focus-ring:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
 
-/* Reduced motion support */
-@define-mixin reduced-motion {
-  @media (prefers-reduced-motion: reduce) {
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .pattern-reduced-motion,
+  .pattern-interactive,
+  .pattern-card-interactive {
     transition: none;
-    
-    &:hover {
-      transform: none;
-    }
+  }
+  
+  .pattern-reduced-motion:hover,
+  .pattern-interactive:hover,
+  .pattern-card-interactive:hover {
+    transform: none;
   }
 }
 
-/* High contrast mode support */
-@define-mixin high-contrast {
-  @media (prefers-contrast: high) {
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .pattern-high-contrast {
     border-width: 2px;
   }
 }
 
 /* ========================================
-   Animation Pattern Mixins
+   Animation Patterns
    ======================================== */
-
-/* Fade in up animation */
-@define-mixin fade-in-up $delay: 0s {
-  animation: fade-in-up 0.6s var(--ease-out) forwards;
-  animation-delay: $delay;
-  opacity: 0;
-  transform: translateY(20px);
-}
 
 @keyframes fade-in-up {
   to {
@@ -225,9 +211,23 @@
   }
 }
 
-/* Pulse animation */
-@define-mixin pulse {
-  animation: pulse 2s ease-in-out infinite;
+.pattern-fade-in-up {
+  animation: fade-in-up 0.6s var(--ease-out) forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Animation delays */
+.pattern-fade-in-up-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.pattern-fade-in-up-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.pattern-fade-in-up-delay-3 {
+  animation-delay: 0.3s;
 }
 
 @keyframes pulse {
@@ -241,32 +241,42 @@
   }
 }
 
+.pattern-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
 /* ========================================
-   Responsive Pattern Mixins
+   Responsive Padding Patterns
    ======================================== */
 
-/* Mobile-first responsive padding */
-@define-mixin responsive-padding $mobile: var(--space-xl), $tablet: var(--space-2xl), $desktop: var(--space-3xl) {
-  padding: $mobile 3%;
-  
-  @media (min-width: 768px) {
-    padding: $tablet 5%;
-  }
-  
-  @media (min-width: 1024px) {
-    padding: $desktop 5%;
+.pattern-responsive-padding {
+  padding: var(--space-xl) 3%;
+}
+
+@media (min-width: 768px) {
+  .pattern-responsive-padding {
+    padding: var(--space-2xl) 5%;
   }
 }
 
-/* Responsive font size */
-@define-mixin responsive-font-size $mobile, $tablet, $desktop {
-  font-size: $mobile;
-  
-  @media (min-width: 768px) {
-    font-size: $tablet;
-  }
-  
-  @media (min-width: 1024px) {
-    font-size: $desktop;
+@media (min-width: 1024px) {
+  .pattern-responsive-padding {
+    padding: var(--space-3xl) 5%;
   }
 }
+
+/* ========================================
+   Documentation Comments
+   
+   Note: These are CSS classes, not actual mixins.
+   In modern CSS without preprocessors, we use:
+   
+   1. CSS Custom Properties (CSS Variables) for values
+   2. Utility classes for common patterns
+   3. Component classes following BEM methodology
+   
+   To use these patterns:
+   - Apply the pattern classes directly to HTML elements
+   - Or copy the styles into your component CSS files
+   - Prefer composition over duplication
+   ======================================== */

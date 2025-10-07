@@ -27,11 +27,13 @@ export class FilterChips {
 
     // Remove individual filter chips
     this.container.addEventListener('click', (e) => {
-      if (e.target.classList.contains('filter-chip__remove')) {
+      if (e.target.classList.contains('filter-chip__remove') || e.target.closest('.filter-chip__remove')) {
         const chip = e.target.closest('.filter-chip');
-        const filterName = chip.dataset.filterName;
-        const filterValue = chip.dataset.filterValue;
-        this.removeFilter(filterName, filterValue);
+        if (chip) {
+          const filterName = chip.dataset.type;  // Using 'type' to match createFilterChip
+          const filterValue = chip.dataset.value;  // Using 'value' to match createFilterChip
+          this.removeFilter(filterName, filterValue);
+        }
       }
     });
   }
@@ -46,6 +48,7 @@ export class FilterChips {
         category: filterCategory
       });
       this.updateDisplay();
+      this.triggerFilterChange();  // Trigger filter change after adding filter
     }
   }
 
@@ -110,8 +113,8 @@ export class FilterChips {
   createFilterChip(filter) {
     const chip = document.createElement('div');
     chip.className = 'filter-chip';
-    chip.dataset.filterName = filter.name;
-    chip.dataset.filterValue = filter.value;
+    chip.dataset.type = filter.name;  // Changed from filterName to type for backward compatibility
+    chip.dataset.value = filter.value;  // Changed from filterValue to value for backward compatibility
     
     chip.innerHTML = `
       <div class="filter-chip__label">
@@ -136,6 +139,15 @@ export class FilterChips {
       }
     });
     document.dispatchEvent(event);
+    
+    // Also trigger commitSearch event for backward compatibility with old search system
+    const commitEvent = new CustomEvent('commitSearch', {
+      bubbles: true,
+      detail: {
+        activeFilters: Array.from(this.activeFilters.values())
+      }
+    });
+    this.container.dispatchEvent(commitEvent);
   }
 
   getActiveFilters() {
