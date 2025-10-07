@@ -1367,12 +1367,21 @@
 
 /* Loading state */
 .explore-results__loading {
-  display: flex;
+  display: none; /* Hidden by default */
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 4rem 2rem;
   gap: 1rem;
+}
+
+.explore-results__loading:not([hidden]) {
+  display: flex; /* Show when not hidden */
+}
+
+/* Ensure loading state is hidden by default and when hidden attribute is present */
+.explore-results__loading[hidden] {
+  display: none !important;
 }
 
 .explore-results__spinner {

@@ -20,7 +20,7 @@ export class ResultsList extends BaseComponent {
       loadingMessage: 'Loading documents...',
       itemTemplate: null,
       enableVirtualization: false,
-      itemsPerPage: 20
+      itemsPerPage: 10
     };
   }
 
