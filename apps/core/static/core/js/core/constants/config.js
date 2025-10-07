@@ -92,7 +92,9 @@ export const EVENTS = {
   SEARCH_COMMITTED: 'commitSearch',
   VIEW_CHANGED: 'viewChanged',
   PAGE_CHANGED: 'pageChanged',
-  DATA_LOADED: 'dataLoaded'
+  DATA_LOADED: 'dataLoaded',
+  ACCORDION_OPENED: 'accordionOpened',
+  ACCORDION_CLOSED: 'accordionClosed'
 };
 
 // Default export for convenience

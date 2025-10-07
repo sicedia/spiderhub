@@ -10,6 +10,7 @@ import { DOMUtils } from '../core/utils/dom.js';
 import { FilterManager } from '../components/filters/FilterManager.js';
 import { SearchBox } from '../components/filters/SearchBox.js';
 import { ViewToggle } from '../components/navigation/ViewToggle.js';
+import { FilterAccordion } from '../components/filters/FilterAccordion.js';
 
 export class ExplorePageManager extends BaseComponent {
   constructor(element = document.body, options = {}) {
@@ -149,9 +150,26 @@ export class ExplorePageManager extends BaseComponent {
     
     // Initialize Filter Manager
     if (this.elements.activeFiltersContainer) {
-      this.components.filterManager = new FilterManager(this.elements.activeFiltersContainer, {
-        autoCommit: true,
-        showActiveFilters: true
+      try {
+        this.components.filterManager = new FilterManager(this.elements.activeFiltersContainer, {
+          autoCommit: true,
+          showActiveFilters: true
+        });
+        console.log('FilterManager created successfully');
+      } catch (error) {
+        console.error('Error creating FilterManager:', error);
+      }
+    }
+
+    // Initialize Filter Accordion with improved UX
+    const filterAccordionElement = DOMUtils.getElement('.filter-accordion');
+    if (filterAccordionElement) {
+      this.components.filterAccordion = new FilterAccordion(filterAccordionElement, {
+        allowMultiple: true,
+        defaultOpen: ['document_type'], // Open document type by default
+        animationDuration: 300,
+        saveState: true,
+        storageKey: 'explore-filter-accordion-state'
       });
     }
 
@@ -172,7 +190,6 @@ export class ExplorePageManager extends BaseComponent {
     }
 
     // Initialize other UI components
-    this.initializeAccordion();
     this.initializeRegionTabs();
     this.initializeDatePresets();
     this.initializeFilterSidebar();
@@ -221,6 +238,9 @@ export class ExplorePageManager extends BaseComponent {
       this.components.filterManager.on(EVENTS.SEARCH_COMMITTED, this.handleSearchCommitted.bind(this));
       this.components.filterManager.on(EVENTS.FILTER_CHANGED, this.handleFilterChanged.bind(this));
     }
+
+    // Setup accordion listeners
+    this.setupAccordionListeners();
 
     // Listen for view changes
     if (this.components.viewToggle) {
@@ -320,17 +340,18 @@ export class ExplorePageManager extends BaseComponent {
   }
 
   /**
-   * Initialize accordion functionality
+   * Setup accordion event listeners (delegated to FilterAccordion component)
    */
-  initializeAccordion() {
-    this.elements.accordionItems.forEach(item => {
-      const header = item.querySelector('.accordion-header');
-      if (header) {
-        this.addEventListener(header, 'click', () => {
-          item.classList.toggle('active');
-        });
-      }
-    });
+  setupAccordionListeners() {
+    if (this.components.filterAccordion) {
+      this.components.filterAccordion.on(EVENTS.ACCORDION_OPENED, (event) => {
+        console.log('Filter group opened:', event.detail.groupName);
+      });
+
+      this.components.filterAccordion.on(EVENTS.ACCORDION_CLOSED, (event) => {
+        console.log('Filter group closed:', event.detail.groupName);
+      });
+    }
   }
 
   /**

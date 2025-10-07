@@ -1,0 +1,419 @@
+/**
+ * Enhanced Document Card Component
+ * Reusable card component for displaying documents in lists
+ * Following BEM methodology and design system tokens
+ * Supports both list and grid views
+ */
+
+/* ========================================
+   Document Card Base
+   ======================================== */
+
+.document-card {
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  border: 1px solid var(--color-border-light);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-base) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.document-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--color-primary-500);
+  transform: scaleY(0);
+  transition: transform var(--duration-base) var(--ease-out);
+  transform-origin: top;
+}
+
+.document-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-primary-200);
+  transform: translateY(-2px);
+}
+
+.document-card:hover::before {
+  transform: scaleY(1);
+}
+
+/* ========================================
+   Document Card Header
+   ======================================== */
+
+.document-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.document-card__icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary-50);
+  border-radius: var(--radius-base);
+  color: var(--color-primary-600);
+}
+
+.document-card__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.document-card__header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.document-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.document-card:hover .document-card__title {
+  color: var(--color-primary-600);
+}
+
+.document-card__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ========================================
+   Document Card Body
+   ======================================== */
+
+.document-card__body {
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.document-card__description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.document-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.document-card__meta-item {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-base);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* ========================================
+   Document Card Footer
+   ======================================== */
+
+.document-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border-light);
+  margin-top: auto;
+}
+
+.document-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  flex: 1;
+}
+
+.document-card__tag {
+  font-size: var(--font-size-xs);
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.document-card__tag--primary {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+}
+
+.document-card__tag--secondary {
+  background-color: var(--color-secondary-50);
+  color: var(--color-secondary-700);
+}
+
+.document-card__tag--info {
+  background-color: var(--color-accent-info);
+  color: var(--color-text-inverse);
+}
+
+.document-card__tag--warning {
+  background-color: var(--color-accent-warning);
+  color: var(--color-text-primary);
+}
+
+.document-card__tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.document-card__actions {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  margin-left: auto;
+}
+
+/* ========================================
+   List View Variant
+   ======================================== */
+
+.document-card--list {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.document-card--list .document-card__header {
+  margin-bottom: 0;
+  flex-direction: column;
+}
+
+.document-card--list .document-card__body {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.document-card--list .document-card__footer {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0.75rem;
+}
+
+/* ========================================
+   Grid View Variant
+   ======================================== */
+
+.document-card--grid {
+  flex-direction: column;
+}
+
+.document-card--grid .document-card__header {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.document-card--grid .document-card__icon {
+  width: 56px;
+  height: 56px;
+}
+
+.document-card--grid .document-card__title {
+  font-size: 1.25rem;
+}
+
+/* ========================================
+   Compact Variant
+   ======================================== */
+
+.document-card--compact {
+  padding: 1rem;
+}
+
+.document-card--compact .document-card__icon {
+  width: 40px;
+  height: 40px;
+}
+
+.document-card--compact .document-card__title {
+  font-size: 1rem;
+}
+
+.document-card--compact .document-card__description {
+  -webkit-line-clamp: 2;
+}
+
+/* ========================================
+   Status Indicators
+   ======================================== */
+
+.document-card__status {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.document-card__status--new {
+  background-color: var(--color-primary-500);
+  color: var(--color-text-inverse);
+}
+
+.document-card__status--updated {
+  background-color: var(--color-accent-info);
+  color: var(--color-text-inverse);
+}
+
+.document-card__status--featured {
+  background-color: var(--color-accent-warning);
+  color: var(--color-text-primary);
+}
+
+/* ========================================
+   Loading State
+   ======================================== */
+
+.document-card--loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.document-card--loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (max-width: 768px) {
+  .document-card--list {
+    flex-direction: column;
+  }
+
+  .document-card--list .document-card__header {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .document-card__icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .document-card__title {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .document-card {
+    padding: 1rem;
+  }
+
+  .document-card__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .document-card__title {
+    font-size: 1rem;
+  }
+
+  .document-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .document-card__actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-left: 0;
+  }
+}
+
+/* ========================================
+   Accessibility
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .document-card,
+  .document-card::before,
+  .document-card__tag,
+  .document-card__title {
+    transition: none;
+    animation: none;
+  }
+
+  .document-card:hover {
+    transform: none;
+  }
+}
+
+.document-card:focus-within {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-contrast: high) {
+  .document-card {
+    border-width: 2px;
+  }
+}
+

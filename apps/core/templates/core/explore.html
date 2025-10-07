@@ -11,19 +11,17 @@
 <!-- Main Content -->
 
   <!-- Main Content -->
-  <main class="explore-page">
-    <!-- Top Search Bar -->
+  <main class="explore-page" id="main-content">
+    <!-- Enhanced Top Search Bar -->
     <section class="explore-header" role="region" aria-labelledby="search-heading">
-      <h1 id="search-heading" class="explore-header__title">Explore Digital Dialogues</h1>
-      <p class="explore-header__description">Discover the digital transformation agreements and commitments between Europe and Latin America</p>
-      
       <div class="explore-search">
         <form class="search-bar" role="search" aria-label="Search dialogues" autocomplete="off">
-          <svg class="search-bar__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <label for="searchbox" class="sr-only">Search dialogues by keyword or phrase</label>
+          <svg class="search-bar__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="#666"/>
           </svg>
           <input 
-            type="text" 
+            type="search" 
             id="searchbox" 
             name="q" 
             placeholder="Search by keyword or phrase..."
@@ -33,59 +31,92 @@
             aria-describedby="suggestions-list"
             aria-expanded="false"
             aria-autocomplete="list"
+            aria-controls="suggestions-list"
           />
-          <button type="submit" id="search-button" class="search-bar__button" aria-describedby="search-help">Search</button>
+          <button type="submit" id="search-button" class="search-bar__button">
+            <span>Search</span>
+          </button>
         </form>
         <ul 
           id="suggestions-list" 
           class="suggestions-list"
           role="listbox"
           aria-label="Search suggestions"
-          >
+          hidden
+        >
           <!-- Suggestions will be populated by JavaScript -->
         </ul>
       </div>
       
-      <div id="active-filters" class="filter-chips explore-filters--empty" role="region" aria-label="Active filters">
+      <div id="active-filters" class="filter-chips explore-filters--empty" role="region" aria-label="Active filters" aria-live="polite">
         <!-- Active filter chips will be populated by JavaScript -->
-        <button class="filter-chips__clear-all" type="button">Clear all filters</button>
+        <button class="filter-chips__clear-all" type="button" aria-label="Clear all active filters">Clear all filters</button>
       </div>
     </section>
 
-    <!-- View Selector Tabs -->
-    <section class="explore-view-selector">
+    <!-- View Selector Tabs - Enhanced accessibility -->
+    <nav class="explore-view-selector view-selector" role="tablist" aria-label="View options">
       <div class="explore-view-tabs">
-        <button class="explore-view-tab explore-view-tab--active" data-view="list" role="tab" aria-selected="true" aria-controls="list-view-panel">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <button 
+          class="explore-view-tab explore-view-tab--active" 
+          data-view="list" 
+          role="tab" 
+          aria-selected="true" 
+          aria-controls="list-view-panel"
+          id="list-view-tab"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M3 13h18v-2H3v2zm0-7v2h18V6H3zm0 12h18v-2H3v2z" fill="currentColor"/>
           </svg>
-          List
+          <span>List View</span>
         </button>
-        <!-- <button class="explore-view-tab" data-view="map" role="tab" aria-selected="false" aria-controls="map-view-panel">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Map view temporarily disabled 
+        <button 
+          class="explore-view-tab" 
+          data-view="map" 
+          role="tab" 
+          aria-selected="false" 
+          aria-controls="map-view-panel"
+          id="map-view-tab"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z" fill="currentColor"/>
           </svg>
-          Map
-        </button> -->
+          <span>Map View</span>
+        </button> 
+        -->
       </div>
-    </section>
+    </nav>
 
     <!-- Main Content Area with Sidebar and Results -->
     <div class="explore-content">
-      <!-- Filter Sidebar -->
-      <aside class="explore-sidebar" role="region" aria-labelledby="filters-heading">
+      <!-- Enhanced Filter Sidebar -->
+      <aside class="explore-sidebar" role="complementary" aria-labelledby="filters-heading">
         <div class="filter-container filter-container--sticky">
-          <div class="filter-header">
-            <h2 id="filters-heading" class="filter-header__title">Filters</h2>
+          <header class="filter-header">
+            <h2 id="filters-heading" class="filter-header__title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor"/>
+              </svg>
+              Filters
+            </h2>
             <div class="filter-header__actions">
-              <button class="filter-header__toggle u-md-block u-hidden" aria-expanded="false" aria-controls="filter-groups" aria-label="Toggle filters">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor"/>
+              <button 
+                class="filter-header__toggle filter-toggle mobile-only" 
+                aria-expanded="false" 
+                aria-controls="filter-groups" 
+                aria-label="Toggle filter panel"
+                type="button"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                 </svg>
               </button>
-              <button id="clear-filters" class="filter-header__clear" type="button">Clear all</button>
+              <button id="clear-filters" class="filter-header__clear" type="button" aria-label="Clear all filters">
+                Clear all
+              </button>
             </div>
-          </div>
+          </header>
           
           <div id="filter-groups" class="filter-groups">
           <!-- Accordion style filters -->
@@ -410,44 +441,73 @@
         </div>
       </aside>
 
-      <!-- Results Container -->
+      <!-- Enhanced Results Container -->
       <div class="explore-results">
         <!-- List View (default) -->
-        <section class="list-view active list-display-mode-list" id="list-view-panel" role="region" aria-labelledby="results-heading">
-          <div class="explore-results__header">
+        <section 
+          class="list-view active list-display-mode-list" 
+          id="list-view-panel" 
+          role="tabpanel" 
+          aria-labelledby="list-view-tab"
+          tabindex="0"
+        >
+          <header class="explore-results__header">
             <div class="results-summary">
-              <h2 id="results-heading" class="document-title">Search Results</h2>
-              <span id="results-count" class="explore-results__count">
+              <h2 id="results-heading" class="sr-only">Search Results</h2>
+              <p id="results-count" class="explore-results__count" aria-live="polite" aria-atomic="true">
                 <!-- results count set by js  -->
-              </span>
+              </p>
             </div>
             
             <div class="explore-results__sort">
+              <!-- Future: Add sort options here -->
             </div>
-          </div>
+          </header>
           
           <div class="explore-results__grid">
-            <ul class="documents-list" id="search-results-list" role="list" aria-label="Search results">
+            <ul class="documents-list" id="search-results-list" role="list" aria-label="Document results" aria-busy="false">
               <!-- results populated by js -->
             </ul>
+            
+            <!-- Empty state -->
+            <div class="explore-results__empty" hidden>
+              <div class="explore-results__empty-icon" aria-hidden="true">📄</div>
+              <h3 class="explore-results__empty-title">No documents found</h3>
+              <p class="explore-results__empty-description">
+                Try adjusting your search or filters to find what you're looking for.
+              </p>
+            </div>
+
+            <!-- Loading state -->
+            <div class="explore-results__loading" hidden>
+              <div class="explore-results__spinner" role="status" aria-label="Loading results"></div>
+              <p>Loading documents...</p>
+            </div>
           </div>
 
           <div class="pagination-container">
             <nav id="pagination" class="pagination" role="navigation" aria-label="Search results pagination">
-              <!-- JS generará los botones "Anterior" / "Siguiente" u otras páginas -->
+              <!-- Pagination buttons generated by JavaScript -->
             </nav>
           </div>
 
         </section>
         
-        <!-- Map View -->
-        <section class="map-view" id="map-view-panel" role="region" aria-labelledby="map-heading">
+        <!-- Map View (Future Feature) -->
+        <section 
+          class="map-view" 
+          id="map-view-panel" 
+          role="tabpanel" 
+          aria-labelledby="map-view-tab"
+          tabindex="0"
+          hidden
+        >
           <h2 id="map-heading" class="sr-only">Map View</h2>
           <div class="map-container">
             <div id="interactive-map" role="img" aria-label="Interactive map showing document locations">
-              <!-- Mapa interactivo será renderizado por JavaScript -->
+              <!-- Interactive map will be rendered by JavaScript -->
               <div class="map-placeholder">
-                <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z" fill="#094EB2"/>
                 </svg>
                 <p>Loading interactive map...</p>
@@ -455,9 +515,9 @@
             </div>
             
             <!-- Map Legend -->
-            <aside class="map-legend" role="region" aria-labelledby="map-legend-heading">
-              <h3 id="map-legend-heading">Legend</h3>
-              <ul class="legend-items">
+            <aside class="map-legend" role="complementary" aria-labelledby="map-legend-heading">
+              <h3 id="map-legend-heading">Map Legend</h3>
+              <ul class="legend-items" role="list">
                 <li>
                   <span class="legend-marker" style="background-color: #094EB2;" aria-hidden="true"></span>
                   <span>European Union</span>
@@ -490,6 +550,9 @@
   <!-- Original implementation (backup) -->
   {% js_module_versioned 'core/js/explore.js' %}
   {% endcomment %}
+  
+  <!-- Layout fix utility -->
+  {% js_module_versioned 'core/js/utils/layout-fix.js' %}
   
   <!-- New ES6 Modular implementation -->
   {% js_module_versioned 'core/js/ExploreEntry.js' %}

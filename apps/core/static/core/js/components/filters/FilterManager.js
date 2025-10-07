@@ -4,20 +4,26 @@
  * Main entry point for filter functionality
  */
 
+import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { FilterGroups } from './FilterGroups.js';
 import { FilterChips } from './FilterChips.js';
+import { EVENTS } from '../../core/constants/config.js';
 
-export class FilterManager {
-  constructor(options = {}) {
-    this.options = {
-      filterGroupsSelector: '.filter-groups',
-      filterChipsSelector: '.filter-chips',
-      ...options
-    };
+export class FilterManager extends BaseComponent {
+  constructor(element, options = {}) {
+    super(element, options);
     
     this.filterGroups = null;
     this.filterChips = null;
-    this.init();
+  }
+
+  getDefaultOptions() {
+    return {
+      filterGroupsSelector: '.filter-groups',
+      filterChipsSelector: '.filter-chips',
+      autoCommit: false,
+      showActiveFilters: true
+    };
   }
 
   init() {
@@ -94,7 +100,10 @@ export class FilterManager {
     // to handle actual filtering logic
     console.log('Active filters changed:', activeFilters);
     
-    // Dispatch a global event for other components to listen to
+    // Emit component event
+    this.emit(EVENTS.FILTER_CHANGED, { activeFilters });
+    
+    // Also dispatch a global event for other components to listen to
     const event = new CustomEvent('filtersChanged', {
       detail: { activeFilters }
     });
@@ -119,6 +128,7 @@ export class FilterManager {
   applyFilters() {
     const activeFilters = this.getActiveFilters();
     this.handleFilterChange(activeFilters);
+    this.emit(EVENTS.SEARCH_COMMITTED, { activeFilters });
   }
 
   getActiveFilters() {
@@ -176,4 +186,22 @@ export class FilterManager {
       this.filterGroups.collapseAllGroups();
     }
   }
+
+  // Methods expected by ExplorePageManager
+  addFilter(filterType, filterValue, filterLabel, filterCategory = '') {
+    this.setFilter(filterType, filterValue, filterLabel, filterCategory);
+    if (this.options.autoCommit) {
+      this.applyFilters();
+    }
+  }
+
+  clearAllFilters() {
+    this.resetFilters();
+    if (this.options.autoCommit) {
+      this.applyFilters();
+    }
+  }
 }
+
+// Default export
+export default FilterManager;

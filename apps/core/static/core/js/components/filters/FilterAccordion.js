@@ -1,0 +1,284 @@
+/**
+ * FilterAccordion Component
+ * Manages accordion-style filter groups with smooth animations
+ * Follows SOLID principles and component-based architecture
+ */
+
+import { BaseComponent } from '../../core/base/BaseComponent.js';
+import { DOMUtils } from '../../core/utils/dom.js';
+import { EVENTS } from '../../core/constants/config.js';
+
+export class FilterAccordion extends BaseComponent {
+  constructor(element, options = {}) {
+    super(element, options);
+  }
+
+  getDefaultOptions() {
+    return {
+      allowMultiple: true,
+      defaultOpen: [],
+      animationDuration: 300,
+      saveState: true,
+      storageKey: 'filter-accordion-state'
+    };
+  }
+
+  init() {
+    this.cacheElements();
+    this.restoreState();
+    this.bindEvents();
+  }
+
+  cacheElements() {
+    this.elements = {
+      groups: Array.from(DOMUtils.getElements('.filter-group', this.element) || []),
+      headers: Array.from(DOMUtils.getElements('.filter-group__header', this.element) || []),
+      contents: Array.from(DOMUtils.getElements('.filter-group__content', this.element) || [])
+    };
+  }
+
+  bindEvents() {
+    this.elements.headers.forEach((header, index) => {
+      this.addEventListener(header, 'click', () => this.toggleGroup(index));
+      this.addEventListener(header, 'keydown', (e) => this.handleKeyboard(e, index));
+    });
+  }
+
+  /**
+   * Toggle a filter group
+   */
+  toggleGroup(index) {
+    const group = this.elements.groups[index];
+    const isExpanded = group.classList.contains('filter-group--expanded');
+
+    if (!this.options.allowMultiple) {
+      this.closeAllGroups();
+    }
+
+    if (isExpanded) {
+      this.closeGroup(index);
+    } else {
+      this.openGroup(index);
+    }
+
+    this.saveState();
+  }
+
+  /**
+   * Open a specific group
+   */
+  openGroup(index) {
+    const group = this.elements.groups[index];
+    const header = this.elements.headers[index];
+    const content = this.elements.contents[index];
+
+    group.classList.add('filter-group--expanded');
+    header.setAttribute('aria-expanded', 'true');
+    
+    // Smooth height animation
+    this.animateHeight(content, 0, content.scrollHeight);
+
+    this.emit(EVENTS.ACCORDION_OPENED, { 
+      index, 
+      groupName: group.getAttribute('data-filter-group') 
+    });
+  }
+
+  /**
+   * Close a specific group
+   */
+  closeGroup(index) {
+    const group = this.elements.groups[index];
+    const header = this.elements.headers[index];
+    const content = this.elements.contents[index];
+
+    group.classList.remove('filter-group--expanded');
+    header.setAttribute('aria-expanded', 'false');
+    
+    // Smooth height animation
+    this.animateHeight(content, content.scrollHeight, 0);
+
+    this.emit(EVENTS.ACCORDION_CLOSED, { 
+      index, 
+      groupName: group.getAttribute('data-filter-group') 
+    });
+  }
+
+  /**
+   * Close all groups
+   */
+  closeAllGroups() {
+    this.elements.groups.forEach((_, index) => {
+      this.closeGroup(index);
+    });
+  }
+
+  /**
+   * Open all groups
+   */
+  openAllGroups() {
+    this.elements.groups.forEach((_, index) => {
+      this.openGroup(index);
+    });
+  }
+
+  /**
+   * Animate height transition
+   */
+  animateHeight(element, startHeight, endHeight) {
+    element.style.height = `${startHeight}px`;
+    element.style.overflow = 'hidden';
+    
+    requestAnimationFrame(() => {
+      element.style.transition = `height ${this.options.animationDuration}ms var(--ease-out)`;
+      element.style.height = `${endHeight}px`;
+      
+      setTimeout(() => {
+        element.style.height = '';
+        element.style.overflow = '';
+        element.style.transition = '';
+      }, this.options.animationDuration);
+    });
+  }
+
+  /**
+   * Handle keyboard navigation
+   */
+  handleKeyboard(event, index) {
+    switch (event.key) {
+      case 'Enter':
+      case ' ':
+        event.preventDefault();
+        this.toggleGroup(index);
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        this.focusNextHeader(index);
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        this.focusPreviousHeader(index);
+        break;
+      case 'Home':
+        event.preventDefault();
+        this.elements.headers[0]?.focus();
+        break;
+      case 'End':
+        event.preventDefault();
+        this.elements.headers[this.elements.headers.length - 1]?.focus();
+        break;
+    }
+  }
+
+  /**
+   * Focus next header
+   */
+  focusNextHeader(currentIndex) {
+    const nextIndex = (currentIndex + 1) % this.elements.headers.length;
+    this.elements.headers[nextIndex]?.focus();
+  }
+
+  /**
+   * Focus previous header
+   */
+  focusPreviousHeader(currentIndex) {
+    const prevIndex = currentIndex === 0 
+      ? this.elements.headers.length - 1 
+      : currentIndex - 1;
+    this.elements.headers[prevIndex]?.focus();
+  }
+
+  /**
+   * Save accordion state to localStorage
+   */
+  saveState() {
+    if (!this.options.saveState) return;
+
+    const state = this.elements.groups.map((group, index) => ({
+      name: group.getAttribute('data-filter-group'),
+      expanded: group.classList.contains('filter-group--expanded')
+    }));
+
+    try {
+      localStorage.setItem(this.options.storageKey, JSON.stringify(state));
+    } catch (error) {
+      console.warn('Failed to save accordion state:', error);
+    }
+  }
+
+  /**
+   * Restore accordion state from localStorage
+   */
+  restoreState() {
+    if (!this.options.saveState) {
+      // Open default groups if specified
+      this.options.defaultOpen.forEach(groupName => {
+        const index = this.elements.groups.findIndex(
+          g => g.getAttribute('data-filter-group') === groupName
+        );
+        if (index !== -1) {
+          this.openGroup(index);
+        }
+      });
+      return;
+    }
+
+    try {
+      const savedState = localStorage.getItem(this.options.storageKey);
+      if (!savedState) {
+        // Open default groups if no saved state
+        this.options.defaultOpen.forEach(groupName => {
+          const index = this.elements.groups.findIndex(
+            g => g.getAttribute('data-filter-group') === groupName
+          );
+          if (index !== -1) {
+            this.openGroup(index);
+          }
+        });
+        return;
+      }
+
+      const state = JSON.parse(savedState);
+      state.forEach(({ name, expanded }) => {
+        if (expanded) {
+          const index = this.elements.groups.findIndex(
+            g => g.getAttribute('data-filter-group') === name
+          );
+          if (index !== -1) {
+            this.openGroup(index);
+          }
+        }
+      });
+    } catch (error) {
+      console.warn('Failed to restore accordion state:', error);
+    }
+  }
+
+  /**
+   * Get current accordion state
+   */
+  getState() {
+    return this.elements.groups.map(group => ({
+      name: group.getAttribute('data-filter-group'),
+      expanded: group.classList.contains('filter-group--expanded')
+    }));
+  }
+
+  /**
+   * Reset accordion to initial state
+   */
+  reset() {
+    this.closeAllGroups();
+    this.options.defaultOpen.forEach(groupName => {
+      const index = this.elements.groups.findIndex(
+        g => g.getAttribute('data-filter-group') === groupName
+      );
+      if (index !== -1) {
+        this.openGroup(index);
+      }
+    });
+  }
+}
+
+export default FilterAccordion;
+
