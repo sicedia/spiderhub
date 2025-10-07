@@ -8,10 +8,17 @@ import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { DOMUtils } from '../../core/utils/dom.js';
 import { AnimationUtils } from '../../core/utils/animations.js';
 import { EVENT_TYPES } from '../../core/constants/enums.js';
+import { logger } from '../../core/logger/Logger.js';
 
 export class Accordion extends BaseComponent {
   constructor(element, options = {}) {
     super(element, options);
+    
+    // Create child logger with component context
+    this.logger = logger.child({
+      component: 'Accordion',
+      instance: Math.random().toString(36).substr(2, 9)
+    });
     
     this.items = [];
     this.activeItems = new Set();
@@ -46,6 +53,14 @@ export class Accordion extends BaseComponent {
     this.initializeItems();
     this.addStyles();
     super.init();
+    
+    if (this.logger) {
+      this.logger.debug('Accordion initialized', {
+        options: this.options,
+        itemsCount: this.items.length,
+        activeItemsCount: this.activeItems.size
+      });
+    }
   }
 
   /**
@@ -79,7 +94,11 @@ export class Accordion extends BaseComponent {
    */
   setupItem(item) {
     if (!item.header || !item.content) {
-      console.warn('Accordion item missing header or content:', item.element);
+      this.logger.warn('Accordion item missing header or content', {
+        itemId: item.id,
+        hasHeader: !!item.header,
+        hasContent: !!item.content
+      });
       return;
     }
 

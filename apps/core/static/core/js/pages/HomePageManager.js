@@ -40,7 +40,7 @@ export class HomePageManager extends BasePageManager {
    */
   async initializeServices() {
     // Home page doesn't need complex services
-    console.log('HomePageManager: Services initialized');
+    this.logger.debug('Services initialized');
   }
 
   /**
@@ -55,7 +55,7 @@ export class HomePageManager extends BasePageManager {
         recentUpdates: await this.loadRecentUpdates()
       };
     } catch (error) {
-      console.warn('HomePageManager: Failed to load some page data:', error);
+      this.logger.warn('Failed to load some page data', error);
       // Set fallback data
       this.pageData = {
         stats: this.getFallbackStats(),
@@ -481,7 +481,7 @@ export class HomePageManager extends BasePageManager {
         lastUpdated: new Date().toISOString()
       };
     } catch (error) {
-      console.error('Failed to load stats:', error);
+      this.logger.error('Failed to load stats', error);
       return this.getFallbackStats();
     }
   }
@@ -516,7 +516,7 @@ export class HomePageManager extends BasePageManager {
         }
       ];
     } catch (error) {
-      console.error('Failed to load featured documents:', error);
+      this.logger.error('Failed to load featured documents', error);
       return [];
     }
   }
@@ -540,7 +540,7 @@ export class HomePageManager extends BasePageManager {
         }
       ];
     } catch (error) {
-      console.error('Failed to load recent updates:', error);
+      this.logger.error('Failed to load recent updates', error);
       return [];
     }
   }
@@ -599,7 +599,7 @@ export class HomePageManager extends BasePageManager {
         window.location.href = '/about';
         break;
       default:
-        console.warn('Unknown quick action:', action);
+        this.logger.warn('Unknown quick action', { action });
     }
   }
 

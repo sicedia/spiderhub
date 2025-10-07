@@ -7,12 +7,19 @@
 import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { CONFIG, FILTER_TYPES, EVENTS } from '../../core/constants/config.js';
 import { DOMUtils } from '../../core/utils/dom.js';
+import { logger } from '../../core/logger/Logger.js';
 
 export class SearchBox extends BaseComponent {
   constructor(element, options = {}) {
     super(element, options);
     this.searchValue = '';
     this.debouncedSearch = this.debounce(this.performSearch, CONFIG.SEARCH.DEBOUNCE_DELAY);
+    
+    // Create child logger with component context
+    this.logger = logger.child({
+      component: 'SearchBox',
+      instance: Math.random().toString(36).substr(2, 9)
+    });
   }
 
   getDefaultOptions() {
@@ -37,8 +44,20 @@ export class SearchBox extends BaseComponent {
       this.find('input[type="search"], input[type="text"]');
 
     if (!this.searchInput) {
-      console.warn('SearchBox: No input element found');
+      if (this.logger) {
+        this.logger.warn('No input element found', {
+          elementTag: this.element.tagName,
+          elementId: this.element.id
+        });
+      }
       return;
+    }
+    
+    if (this.logger) {
+      this.logger.debug('SearchBox initialized', {
+        options: this.options,
+        inputElement: this.searchInput.id || this.searchInput.tagName
+      });
     }
 
     // Set placeholder if provided

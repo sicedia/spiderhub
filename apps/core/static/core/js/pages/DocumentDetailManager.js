@@ -99,7 +99,9 @@ export class DocumentDetailManager extends BasePageManager {
       };
       
     } catch (error) {
-      console.error('Failed to load document data:', error);
+      this.logger.error('Failed to load document data', error, {
+        documentId: this.documentId
+      });
       this.handleDocumentLoadError(error);
     }
   }
@@ -156,7 +158,9 @@ export class DocumentDetailManager extends BasePageManager {
       return response;
     } catch (error) {
       // Fallback to mock data for development
-      console.warn('Using mock document data');
+      this.logger.warn('Using mock document data', {
+        documentId
+      });
       return this.getMockDocumentData(documentId);
     }
   }
@@ -169,7 +173,7 @@ export class DocumentDetailManager extends BasePageManager {
       const response = await APIUtils.get(`/api/documents/${documentId}/related`);
       return response.documents || [];
     } catch (error) {
-      console.warn('Failed to load related documents:', error);
+      this.logger.warn('Failed to load related documents', error);
       return [];
     }
   }
@@ -385,7 +389,7 @@ export class DocumentDetailManager extends BasePageManager {
         shareUrl = `mailto:?subject=${title}&body=${summary}%0A%0A${url}`;
         break;
       default:
-        console.warn('Unknown sharing platform:', platform);
+        this.logger.warn('Unknown sharing platform', { platform });
         return;
     }
     
@@ -418,7 +422,7 @@ export class DocumentDetailManager extends BasePageManager {
       });
       
     } catch (error) {
-      console.error('Failed to copy link:', error);
+      this.logger.error('Failed to copy link', error);
       this.showNotification('Failed to copy link', 'error');
     }
   }
@@ -460,7 +464,7 @@ export class DocumentDetailManager extends BasePageManager {
         this.showNotification('Document bookmarked', 'success');
       }
     } catch (error) {
-      console.error('Failed to toggle bookmark:', error);
+      this.logger.error('Failed to toggle bookmark', error);
       this.showNotification('Failed to update bookmark', 'error');
     }
   }

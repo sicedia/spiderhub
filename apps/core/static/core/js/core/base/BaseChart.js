@@ -8,10 +8,17 @@
 import { BaseComponent } from './BaseComponent.js';
 import { CONFIG } from '../constants/config.js';
 import { DOMUtils } from '../utils/dom.js';
+import { logger } from '../logger/Logger.js';
 
 export class BaseChart extends BaseComponent {
   constructor(element, options = {}) {
     super(element, options);
+    
+    // Create child logger with component context
+    this.logger = logger.child({
+      component: this.constructor.name,
+      instance: Math.random().toString(36).substr(2, 9)
+    });
     
     this.chartInstance = null;
     this.data = null;
@@ -180,11 +187,18 @@ export class BaseChart extends BaseComponent {
    * Handle chart errors with retry logic
    */
   async handleError(error) {
-    console.error(`Chart error in ${this.constructor.name}:`, error);
+    this.logger.error('Chart error', error, {
+      chartName: this.constructor.name,
+      retryCount: this.retryCount,
+      maxRetries: this.options.retryAttempts
+    });
     
     if (this.retryCount < this.options.retryAttempts) {
       this.retryCount++;
-      console.log(`Retrying chart initialization (attempt ${this.retryCount}/${this.options.retryAttempts})`);
+      this.logger.info('Retrying chart initialization', {
+        attempt: this.retryCount,
+        maxAttempts: this.options.retryAttempts
+      });
       
       setTimeout(() => {
         this.retry();
@@ -263,7 +277,9 @@ export class BaseChart extends BaseComponent {
       return this.chartInstance.getDataURL(format);
     }
     
-    console.warn('Chart export not supported for this chart type');
+    this.logger.warn('Chart export not supported', {
+      chartType: this.constructor.name
+    });
     return null;
   }
 }

@@ -8,12 +8,19 @@ import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { FilterGroups } from './FilterGroups.js';
 import { FilterChips } from './FilterChips.js';
 import { EVENTS } from '../../core/constants/config.js';
+import { logger } from '../../core/logger/Logger.js';
 
 export class FilterManager extends BaseComponent {
   constructor(element, options = {}) {
     // Initialize properties BEFORE calling super() to avoid overwriting values set in init()
     // Note: In ES6, we can't access 'this' before super(), so we'll initialize in init() instead
     super(element, options);
+    
+    // Create child logger with component context
+    this.logger = logger.child({
+      component: 'FilterManager',
+      instance: Math.random().toString(36).substr(2, 9)
+    });
   }
 
   getDefaultOptions() {
@@ -29,6 +36,12 @@ export class FilterManager extends BaseComponent {
     // Initialize instance properties here (not in constructor after super())
     this.filterGroups = null;
     this.filterChips = null;
+    
+    if (this.logger) {
+      this.logger.debug('FilterManager initialized', {
+        options: this.options
+      });
+    }
     
     this.initializeComponents();
     this.bindEvents();
@@ -60,7 +73,7 @@ export class FilterManager extends BaseComponent {
       const { filterName, filterValue, filterLabel, filterCategory, isChecked } = e.detail;
       
       if (!this.filterChips) {
-        console.warn('FilterChips not initialized');
+        this.logger.warn('FilterChips not initialized');
         return;
       }
       

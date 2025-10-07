@@ -8,10 +8,17 @@
 import { BaseComponent } from './BaseComponent.js';
 import { CONFIG, EVENTS } from '../constants/config.js';
 import { DOMUtils } from '../utils/dom.js';
+import { logger } from '../logger/Logger.js';
 
 export class BasePageManager extends BaseComponent {
   constructor(element, options = {}) {
     super(element, options);
+    
+    // Create child logger with component context
+    this.logger = logger.child({
+      component: this.constructor.name,
+      instance: Math.random().toString(36).substr(2, 9)
+    });
     
     this.components = new Map();
     this.services = new Map();
@@ -36,6 +43,10 @@ export class BasePageManager extends BaseComponent {
    */
   async init() {
     try {
+      this.logger.debug('BasePageManager init started', {
+        options: this.options
+      });
+      
       this.showPageLoading();
       
       // Initialize services first
@@ -104,7 +115,9 @@ export class BasePageManager extends BaseComponent {
    */
   registerComponent(name, component) {
     if (this.components.has(name)) {
-      console.warn(`Component '${name}' is already registered. Replacing existing component.`);
+      this.logger.warn('Component already registered, replacing', {
+        componentName: name
+      });
       const existingComponent = this.components.get(name);
       if (existingComponent && typeof existingComponent.destroy === 'function') {
         existingComponent.destroy();
@@ -143,7 +156,9 @@ export class BasePageManager extends BaseComponent {
    */
   registerService(name, service) {
     if (this.services.has(name)) {
-      console.warn(`Service '${name}' is already registered. Replacing existing service.`);
+      this.logger.warn('Service already registered, replacing', {
+        serviceName: name
+      });
     }
     
     this.services.set(name, service);
@@ -204,7 +219,9 @@ export class BasePageManager extends BaseComponent {
    * Handle page-level errors
    */
   handlePageError(error) {
-    console.error(`Page error in ${this.constructor.name}:`, error);
+    this.logger.error('Page error', error, {
+      pageName: this.constructor.name
+    });
     
     this.hidePageLoading();
     

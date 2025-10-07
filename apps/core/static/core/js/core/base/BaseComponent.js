@@ -82,11 +82,11 @@ export class BaseComponent {
   /**
    * Emit custom event
    */
-  emit(eventName, detail = {}) {
+  emit(eventName, detail = {}, options = {}) {
     const event = new CustomEvent(eventName, {
       detail: { component: this, ...detail },
-      bubbles: true,
-      cancelable: true
+      bubbles: options.bubbles !== undefined ? options.bubbles : false, // Don't bubble by default to prevent loops
+      cancelable: options.cancelable !== undefined ? options.cancelable : true
     });
     
     this.element.dispatchEvent(event);

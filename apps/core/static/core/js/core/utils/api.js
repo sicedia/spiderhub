@@ -5,6 +5,10 @@
  */
 
 import { CONFIG } from '../constants/config.js';
+import { logger } from '../logger/Logger.js';
+
+// Create child logger for API utilities
+const apiLogger = logger.child({ component: 'APIUtils' });
 
 export class APIUtils {
   /**
@@ -260,7 +264,11 @@ export class APIUtils {
    * Handle API errors with user-friendly messages
    */
   static handleError(error, showToUser = true) {
-    console.error('API Error:', error);
+    apiLogger.error('API Error', error, {
+      showToUser,
+      status: error.status,
+      statusText: error.statusText
+    });
     
     let userMessage = 'An unexpected error occurred';
     
@@ -378,7 +386,11 @@ export class APIUtils {
         const delay = baseDelay * Math.pow(2, attempt);
         await new Promise(resolve => setTimeout(resolve, delay));
         
-        console.log(`Retrying request (attempt ${attempt + 2}/${maxRetries + 1}) after ${delay}ms`);
+        apiLogger.info('Retrying API request', {
+          attempt: attempt + 2,
+          maxRetries: maxRetries + 1,
+          delay: `${delay}ms`
+        });
       }
     }
     

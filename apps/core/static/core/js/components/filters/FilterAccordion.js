@@ -7,10 +7,17 @@
 import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { DOMUtils } from '../../core/utils/dom.js';
 import { EVENTS } from '../../core/constants/config.js';
+import { logger } from '../../core/logger/Logger.js';
 
 export class FilterAccordion extends BaseComponent {
   constructor(element, options = {}) {
     super(element, options);
+    
+    // Create child logger with component context
+    this.logger = logger.child({
+      component: 'FilterAccordion',
+      instance: Math.random().toString(36).substr(2, 9)
+    });
   }
 
   getDefaultOptions() {
@@ -24,6 +31,12 @@ export class FilterAccordion extends BaseComponent {
   }
 
   init() {
+    if (this.logger) {
+      this.logger.debug('FilterAccordion initialized', {
+        options: this.options
+      });
+    }
+    
     this.cacheElements();
     this.restoreState();
     this.bindEvents();
@@ -202,7 +215,7 @@ export class FilterAccordion extends BaseComponent {
     try {
       localStorage.setItem(this.options.storageKey, JSON.stringify(state));
     } catch (error) {
-      console.warn('Failed to save accordion state:', error);
+      this.logger.warn('Failed to save accordion state to localStorage', error);
     }
   }
 
@@ -250,7 +263,7 @@ export class FilterAccordion extends BaseComponent {
         }
       });
     } catch (error) {
-      console.warn('Failed to restore accordion state:', error);
+      this.logger.warn('Failed to restore accordion state from localStorage', error);
     }
   }
 

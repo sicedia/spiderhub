@@ -8,10 +8,17 @@
 import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { CONFIG, EVENTS } from '../../core/constants/config.js';
 import { DOMUtils } from '../../core/utils/dom.js';
+import { logger } from '../../core/logger/Logger.js';
 
 export class DataGridManager extends BaseComponent {
   constructor(element, options = {}) {
     super(element, options);
+    
+    // Create child logger with component context
+    this.logger = logger.child({
+      component: 'DataGridManager',
+      instance: Math.random().toString(36).substr(2, 9)
+    });
     
     this.state = {
       allRows: [],
@@ -46,6 +53,13 @@ export class DataGridManager extends BaseComponent {
     this.initializeData();
     this.bindEvents();
     this.render();
+    
+    if (this.logger) {
+      this.logger.debug('DataGridManager initialized', {
+        options: this.options,
+        rowsCount: this.state.allRows.length
+      });
+    }
   }
 
   /**
@@ -67,7 +81,7 @@ export class DataGridManager extends BaseComponent {
    */
   initializeData() {
     if (!this.options.analysisData) {
-      console.warn('DataGridManager: No analysis data provided');
+      this.logger.warn('No analysis data provided');
       return;
     }
 
@@ -467,7 +481,7 @@ export class DataGridManager extends BaseComponent {
   filterByChartData(chartData) {
     // Implement filtering based on chart selection
     // This would be called when a chart is clicked
-    console.log('Filtering by chart data:', chartData);
+    this.logger.debug('Filtering by chart data', { chartData });
   }
 
   /**

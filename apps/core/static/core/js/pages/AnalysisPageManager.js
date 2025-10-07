@@ -7,28 +7,32 @@
 import { BaseComponent } from '../core/base/BaseComponent.js';
 import { CONFIG, EVENTS } from '../core/constants/config.js';
 import { DOMUtils } from '../core/utils/dom.js';
+import { logger } from '../core/logger/Logger.js';
 
 export class AnalysisPageManager extends BaseComponent {
   constructor(element = document.body, options = {}) {
-    try {
-      super(element, options);
-      
-      this.instanceId = Math.random().toString(36).substr(2, 9);
-      this.state = {
-        isLoading: false,
-        analysisData: null,
-        chartsInitialized: false
-      };
-      
-      console.log('AnalysisPageManager: Simplified version initialized');
-      
-      // Initialize immediately
-      this.init();
-      
-    } catch (error) {
-      console.error('AnalysisPageManager: Constructor error:', error);
-      throw error;
-    }
+    super(element, options);
+    
+    this.instanceId = Math.random().toString(36).substr(2, 9);
+    
+    // Create child logger with component context
+    this.logger = logger.child({
+      component: 'AnalysisPageManager',
+      instance: this.instanceId
+    });
+    
+    this.state = {
+      isLoading: false,
+      analysisData: null,
+      chartsInitialized: false
+    };
+    
+    this.logger.info('Simplified version initialized', {
+      instanceId: this.instanceId
+    });
+    
+    // Initialize immediately
+    this.init();
   }
 
   getDefaultOptions() {
@@ -42,7 +46,7 @@ export class AnalysisPageManager extends BaseComponent {
 
   async init() {
     try {
-      console.log('AnalysisPageManager: Starting initialization...');
+      this.logger.info('Starting initialization');
       
       // Load analysis data
       await this.loadAnalysisData();
@@ -53,10 +57,10 @@ export class AnalysisPageManager extends BaseComponent {
       // Animate summary cards
       this.animateSummaryCards();
       
-      console.log('✅ AnalysisPageManager: Initialization completed');
+      this.logger.info('Initialization completed successfully');
       
     } catch (error) {
-      console.error('❌ AnalysisPageManager: Initialization failed:', error);
+      this.logger.error('Initialization failed', error);
     }
   }
 
@@ -66,14 +70,16 @@ export class AnalysisPageManager extends BaseComponent {
       const dataScript = document.getElementById('analysis-data');
       if (dataScript) {
         this.state.analysisData = JSON.parse(dataScript.textContent);
-        console.log('Analysis data loaded from page:', this.state.analysisData);
+        this.logger.debug('Analysis data loaded from page', {
+          dataKeys: Object.keys(this.state.analysisData)
+        });
       } else {
         // Fallback: create mock data for development
         this.state.analysisData = this.createMockData();
-        console.log('Using mock analysis data');
+        this.logger.warn('Using mock analysis data (no data-script found)');
       }
     } catch (error) {
-      console.error('Error loading analysis data:', error);
+      this.logger.error('Error loading analysis data', error);
       this.state.analysisData = this.createMockData();
     }
   }
@@ -110,7 +116,7 @@ export class AnalysisPageManager extends BaseComponent {
   }
 
   initializeCharts() {
-    console.log('Initializing charts...');
+    this.logger.debug('Initializing charts');
     
     // Initialize each chart type
     this.initializeSDGRadarChart();
@@ -425,7 +431,9 @@ export class AnalysisPageManager extends BaseComponent {
   }
 
   getComponent(name) {
-    console.warn(`Component "${name}" not available in simplified version`);
+    this.logger.warn('Component not available in simplified version', {
+      componentName: name
+    });
     return null;
   }
 }

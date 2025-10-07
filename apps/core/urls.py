@@ -16,6 +16,7 @@ urlpatterns = [
     path('document_detail/<int:pk>/', document_detail_page, name='document_detail'),
     path('api/countries/', api_countries, name='api_countries'),
     path('api/lead-countries/', api_lead_countries, name='api_lead_countries'),
-    # Test page for real data
+    # Test pages
     path('test-lead-countries/', lambda request: render(request, 'test_real_data.html'), name='test_lead_countries'),
+    path('test-logger/', lambda request: render(request, 'core/logger_test.html'), name='test_logger'),
 ]

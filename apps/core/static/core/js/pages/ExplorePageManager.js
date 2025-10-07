@@ -2,6 +2,7 @@
  * Explore Page Manager
  * Orchestrates all components on the explore page
  * Uses @js/ alias for clean imports
+ * Version: 2.0 - Fixed event data handling
  */
 
 import { BaseComponent } from '../core/base/BaseComponent.js';
@@ -11,30 +12,39 @@ import { FilterManager } from '../components/filters/FilterManager.js';
 import { SearchBox } from '../components/filters/SearchBox.js';
 import { ViewToggle } from '../components/navigation/ViewToggle.js';
 import { FilterAccordion } from '../components/filters/FilterAccordion.js';
+import { SearchManager } from '../components/search/SearchManager.js';
+import { SuggestionsBox } from '../components/search/SuggestionsBox.js';
+import { DocumentResults } from '../components/search/DocumentResults.js';
+import { logger } from '../core/logger/Logger.js';
 
 export class ExplorePageManager extends BaseComponent {
   constructor(element = document.body, options = {}) {
-    try {
-      super(element, options);
-      
-      this.instanceId = Math.random().toString(36).substr(2, 9);
-      this.components = {};
-      this.state = {
-        isLoading: false,
-        currentResults: [],
-        totalResults: 0
-      };
-      this.fullyInitialized = false;
-      
-      // Complete initialization asynchronously to avoid timing issues
-      setTimeout(() => {
-        this.completeInitialization();
-      }, 0);
-      
-    } catch (error) {
-      console.error('ExplorePageManager: Constructor error:', error);
-      throw error;
-    }
+    super(element, options);
+    
+    this.instanceId = Math.random().toString(36).substr(2, 9);
+    
+    // Create child logger with component context
+    this.logger = logger.child({
+      component: 'ExplorePageManager',
+      instance: this.instanceId
+    });
+    
+    this.components = {};
+    this.state = {
+      isLoading: false,
+      currentResults: [],
+      totalResults: 0
+    };
+    this.fullyInitialized = false;
+    
+    this.logger.debug('ExplorePageManager constructor started', {
+      instanceId: this.instanceId
+    });
+    
+    // Complete initialization asynchronously to avoid timing issues
+    setTimeout(() => {
+      this.completeInitialization();
+    }, 0);
   }
 
   getDefaultOptions() {
@@ -47,14 +57,25 @@ export class ExplorePageManager extends BaseComponent {
 
   init() {
     try {
+      // Logger might not exist yet if called from BaseComponent constructor
+      if (this.logger) {
+        this.logger.debug('init() started');
+      }
+      
       // Only do basic initialization here - full initialization will be done asynchronously
       this.cacheElements();
       
       // Call bindEvents directly (don't call super.init() as BaseComponent already called init())
       this.bindEvents();
       
+      if (this.logger) {
+        this.logger.debug('init() completed');
+      }
+      
     } catch (error) {
-      console.error('ExplorePageManager: init() error:', error);
+      if (this.logger) {
+        this.logger.error('init() error', error);
+      }
       throw error;
     }
   }
@@ -64,6 +85,9 @@ export class ExplorePageManager extends BaseComponent {
    */
   completeInitialization() {
     try {
+      this.logger.group('Complete Initialization');
+      this.logger.debug('Starting full initialization');
+      
       // Initialize components and setup communication
       this.initializeComponents();
       this.setupComponentCommunication();
@@ -74,9 +98,27 @@ export class ExplorePageManager extends BaseComponent {
       
       // Mark as fully initialized
       this.fullyInitialized = true;
+      this.logger.info('ExplorePageManager fully initialized', {
+        componentsCount: Object.keys(this.components).length
+      });
+      
+      // Load initial results after a short delay to ensure DOM is ready
+      const boundPerformSearch = () => {
+        try {
+          if (typeof this.performSearch === 'function') {
+            this.performSearch();
+          }
+        } catch (err) {
+          this.logger.error('Error in initial search', err);
+        }
+      };
+      
+      setTimeout(boundPerformSearch, 100);
+      this.logger.groupEnd();
       
     } catch (error) {
-      console.error('ExplorePageManager: completeInitialization() error:', error);
+      this.logger.error('Initialization error', error);
+      this.logger.groupEnd();
       throw error;
     }
   }
@@ -136,7 +178,10 @@ export class ExplorePageManager extends BaseComponent {
     
     criticalElements.forEach(elementKey => {
       if (!this.elements[elementKey]) {
-        console.warn(`ExplorePageManager: Missing critical element '${elementKey}' - functionality will be limited`);
+        this.logger.warn('Missing critical element', {
+          element: elementKey,
+          impact: 'functionality will be limited'
+        });
       }
     });
     
@@ -155,9 +200,9 @@ export class ExplorePageManager extends BaseComponent {
           autoCommit: true,
           showActiveFilters: true
         });
-        console.log('FilterManager created successfully');
+        this.logger.debug('FilterManager initialized');
       } catch (error) {
-        console.error('Error creating FilterManager:', error);
+        this.logger.error('Error creating FilterManager', error);
       }
     }
 
@@ -200,6 +245,34 @@ export class ExplorePageManager extends BaseComponent {
   }
 
   initializeSearchComponents() {
+    // Initialize Search Manager
+    this.components.searchManager = new SearchManager(document.body, {
+      apiEndpoint: '/api/search/documents/',
+      suggestEndpoint: '/api/search/suggest/',
+      debounceDelay: 300,
+      initialPageSize: 10
+    });
+
+    // Initialize Suggestions Box
+    const suggestionsList = DOMUtils.getElement('#suggestions-list');
+    if (suggestionsList && this.elements.searchBoxMain) {
+      this.components.suggestionsBox = new SuggestionsBox(suggestionsList, {
+        searchInputElement: this.elements.searchBoxMain
+      });
+    }
+
+    // Initialize Document Results
+    const resultsContainer = DOMUtils.getElement('#search-results-list');
+    const paginationElement = DOMUtils.getElement('#pagination');
+    const countElement = DOMUtils.getElement('#results-count-top');
+    
+    if (resultsContainer) {
+      this.components.documentResults = new DocumentResults(resultsContainer, {
+        paginationElement: paginationElement,
+        countElement: countElement
+      });
+    }
+
     // Main search box
     if (this.elements.searchBoxMain) {
       this.components.mainSearch = new SearchBox(this.elements.searchBoxMain, {
@@ -239,6 +312,81 @@ export class ExplorePageManager extends BaseComponent {
       this.components.filterManager.on(EVENTS.FILTER_CHANGED, this.handleFilterChanged.bind(this));
     }
 
+    // Connect Search Manager events - usando { once: false } para prevenir duplicados
+    if (this.components.searchManager) {
+      // LOADING_START: mostrar estado de carga
+      this.components.searchManager.on(EVENTS.LOADING_START, (event) => {
+        event.stopPropagation(); // Prevenir propagación
+        if (this.components.documentResults) {
+          this.components.documentResults.showLoading();
+        }
+      }, { once: false });
+
+      // SEARCH_SUCCESS: renderizar resultados
+      this.components.searchManager.on(EVENTS.SEARCH_SUCCESS, (event) => {
+        event.stopPropagation(); // Prevenir propagación
+        const eventData = event.detail;
+        if (this.components.documentResults && eventData && eventData.data) {
+          this.components.documentResults.renderResults(eventData.data);
+        }
+      });
+
+      // SEARCH_ERROR: mostrar error
+      this.components.searchManager.on(EVENTS.SEARCH_ERROR, (event) => {
+        event.stopPropagation(); // Prevenir propagación
+        const data = event.detail;
+        if (this.components.documentResults) {
+          this.components.documentResults.showError(data.error);
+        }
+      });
+
+      // Suggestions events
+      this.components.searchManager.on('suggestions:ready', (event) => {
+        event.stopPropagation();
+        const data = event.detail;
+        if (this.components.suggestionsBox) {
+          this.components.suggestionsBox.show(data.suggestions);
+        }
+      });
+
+      this.components.searchManager.on('suggestions:clear', (event) => {
+        event.stopPropagation();
+        if (this.components.suggestionsBox) {
+          this.components.suggestionsBox.hide();
+        }
+      });
+    }
+
+    // Connect Suggestions Box events
+    if (this.components.suggestionsBox) {
+      this.components.suggestionsBox.on('suggestion:selected', (data) => {
+        // Trigger search with selected suggestion
+        this.performSearch();
+      });
+    }
+
+    // Connect Document Results pagination
+    if (this.components.documentResults) {
+      this.components.documentResults.on('page:changed', (event) => {
+        if (this.components.searchManager) {
+          this.components.searchManager.goToPage(event.detail.page);
+        }
+      });
+    }
+
+    // Connect search input to get suggestions
+    if (this.elements.searchBoxMain && this.components.searchManager) {
+      this.elements.searchBoxMain.addEventListener('input', (e) => {
+        const query = e.target.value.trim();
+        this.components.searchManager.getSuggestions(query);
+      });
+    }
+
+    // Listen for filter changes to trigger search
+    document.addEventListener('filterChange', () => {
+      this.performSearch();
+    });
+
     // Setup accordion listeners
     this.setupAccordionListeners();
 
@@ -272,20 +420,58 @@ export class ExplorePageManager extends BaseComponent {
       // Add search chip
       this.components.filterManager.addFilter(FILTER_TYPES.SEARCH, searchTerm, searchTerm, 'Search');
       
-      // Trigger the old search system to perform the actual search
-      // Don't clear the input - the old system needs it
-      const activeFilters = document.getElementById('active-filters');
-      if (activeFilters) {
-        const commitEvent = new CustomEvent('commitSearch', { bubbles: true });
-        activeFilters.dispatchEvent(commitEvent);
-      }
+      // Perform search with new system
+      this.performSearch();
       
-      // Clear input after search is triggered
-      setTimeout(() => {
-        if (this.elements.searchInput) {
-          this.elements.searchInput.value = '';
-        }
-      }, 100);
+      // Clear input after search
+      if (this.elements.searchInput) {
+        this.elements.searchInput.value = '';
+      }
+    }
+  }
+
+  /**
+   * Perform search with current filters
+   */
+  performSearch() {
+    return this.executeSearch();
+  }
+
+  /**
+   * Execute search with current state
+   */
+  executeSearch() {
+    try {
+      if (!this.components.searchManager || !this.components.documentResults) {
+        this.logger.error('Search components not initialized', {
+          searchManager: !!this.components.searchManager,
+          documentResults: !!this.components.documentResults
+        });
+        return;
+      }
+
+      // Get all active filter chips
+      const activeFiltersContainer = document.getElementById('active-filters');
+      if (!activeFiltersContainer) {
+        this.logger.error('Active filters container not found');
+        return;
+      }
+
+      const filterChips = activeFiltersContainer.querySelectorAll('.filter-chip');
+      this.logger.debug('Executing search', {
+        filterCount: filterChips.length
+      });
+      
+      // Update search manager state from filter chips
+      this.components.searchManager.updateStateFromFilters(Array.from(filterChips));
+      
+      // Reset to page 1 when filters change
+      this.components.documentResults.resetPagination();
+      
+      // Perform the search
+      this.components.searchManager.performSearch();
+    } catch (err) {
+      this.logger.error('Search execution error', err);
     }
   }
 
@@ -311,8 +497,8 @@ export class ExplorePageManager extends BaseComponent {
    * Handle search committed event
    */
   handleSearchCommitted(event) {
-    // Don't call performSearch - let the existing search system handle it
-    // The FilterManager already dispatches the commitSearch event to the existing system
+    // Perform search with new modular system
+    this.performSearch();
   }
 
   /**
@@ -320,15 +506,13 @@ export class ExplorePageManager extends BaseComponent {
    */
   handleFilterChanged(event) {
     // Could be used for analytics or other side effects
-    console.log('Filter changed:', event.detail);
   }
 
   /**
    * Handle view changed event
    */
   handleViewChanged(event) {
-    const { currentView } = event.detail;
-    console.log('View changed to:', currentView);
+    // View change handled by CSS
   }
 
   /**
@@ -342,7 +526,7 @@ export class ExplorePageManager extends BaseComponent {
    * Handle search performed event
    */
   handleSearchPerformed(event) {
-    console.log('Search performed:', event.detail.query);
+    // Search performed event handled
   }
 
   /**
@@ -358,15 +542,7 @@ export class ExplorePageManager extends BaseComponent {
    * Setup accordion event listeners (delegated to FilterAccordion component)
    */
   setupAccordionListeners() {
-    if (this.components.filterAccordion) {
-      this.components.filterAccordion.on(EVENTS.ACCORDION_OPENED, (event) => {
-        console.log('Filter group opened:', event.detail.groupName);
-      });
-
-      this.components.filterAccordion.on(EVENTS.ACCORDION_CLOSED, (event) => {
-        console.log('Filter group closed:', event.detail.groupName);
-      });
-    }
+    // Accordion events handled by FilterAccordion component
   }
 
   /**
@@ -458,21 +634,6 @@ export class ExplorePageManager extends BaseComponent {
     }
   }
 
-  /**
-   * Perform search with current filters
-   * Delegates to the existing search system to avoid conflicts
-   */
-  performSearch(filters = []) {
-    // Don't interfere with the existing search system
-    // The search/js/explore.js handles the actual search and results display
-    
-    // Emit event for any listeners but don't update UI directly
-    this.emit(EVENTS.DATA_LOADED, { 
-      filters, 
-      resultCount: null, // Let the real search system handle this
-      totalResults: null 
-    });
-  }
 
   /**
    * Load more results for infinite scroll

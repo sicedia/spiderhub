@@ -8,10 +8,17 @@ import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { DOMUtils } from '../../core/utils/dom.js';
 import { EventUtils } from '../../core/utils/events.js';
 import { EVENT_TYPES } from '../../core/constants/enums.js';
+import { logger } from '../../core/logger/Logger.js';
 
 export class MobileNav extends BaseComponent {
   constructor(element, options = {}) {
     super(element, options);
+    
+    // Create child logger with component context
+    this.logger = logger.child({
+      component: 'MobileNav',
+      instance: Math.random().toString(36).substr(2, 9)
+    });
     
     this.isOpen = false;
     this.isAnimating = false;
@@ -45,6 +52,18 @@ export class MobileNav extends BaseComponent {
     this.setupInitialState();
     super.init();
     this.checkBreakpoint();
+    
+    if (this.logger) {
+      this.logger.debug('MobileNav initialized', {
+        options: this.options,
+        elementsFound: {
+          toggle: !!this.elements.toggle,
+          overlay: !!this.elements.overlay,
+          menu: !!this.elements.menu,
+          navLinksCount: this.elements.navLinks.length
+        }
+      });
+    }
   }
 
   /**
@@ -60,13 +79,19 @@ export class MobileNav extends BaseComponent {
 
     // Warn about missing elements
     if (!this.elements.toggle) {
-      console.warn('MobileNav: Toggle button not found');
+      this.logger.warn('Toggle button not found', {
+        selector: this.options.toggleSelector
+      });
     }
     if (!this.elements.overlay) {
-      console.warn('MobileNav: Overlay element not found');
+      this.logger.warn('Overlay element not found', {
+        selector: this.options.overlaySelector
+      });
     }
     if (!this.elements.menu) {
-      console.warn('MobileNav: Menu element not found');
+      this.logger.warn('Menu element not found', {
+        selector: this.options.menuSelector
+      });
     }
   }
 
