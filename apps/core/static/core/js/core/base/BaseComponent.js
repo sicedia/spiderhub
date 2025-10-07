@@ -2,10 +2,13 @@
  * Base Component Class
  * Provides common functionality for all UI components
  * Uses @js/ alias for clean imports
+ * 
+ * V2: Integrated with EventBus for centralized event management
  */
 
 import { CONFIG, EVENTS } from '../constants/config.js';
 import { DOMUtils } from '../utils/dom.js';
+import { eventBus } from '../events/EventBus.js';
 
 export class BaseComponent {
   constructor(element, options = {}) {
@@ -15,7 +18,8 @@ export class BaseComponent {
     
     this.element = element;
     this.options = { ...this.getDefaultOptions(), ...options };
-    this.eventListeners = new Map();
+    this.eventListeners = new Map(); // For DOM event listeners
+    this.eventBusUnsubscribers = []; // For EventBus subscriptions
     this.isInitialized = false;
     
     this.init();
@@ -80,24 +84,30 @@ export class BaseComponent {
   }
 
   /**
-   * Emit custom event
+   * Emit custom event using EventBus
+   * V2: Now uses centralized EventBus instead of CustomEvent
    */
-  emit(eventName, detail = {}, options = {}) {
-    const event = new CustomEvent(eventName, {
-      detail: { component: this, ...detail },
-      bubbles: options.bubbles !== undefined ? options.bubbles : false, // Don't bubble by default to prevent loops
-      cancelable: options.cancelable !== undefined ? options.cancelable : true
-    });
-    
-    this.element.dispatchEvent(event);
-    return event;
+  emit(eventName, detail = {}) {
+    eventBus.emit(eventName, detail);
   }
 
   /**
-   * Listen for custom events on this component
+   * Listen for events using EventBus
+   * V2: Now uses centralized EventBus with automatic cleanup
    */
   on(eventName, handler) {
-    return this.addEventListener(this.element, eventName, handler);
+    const unsubscribe = eventBus.on(eventName, handler, this);
+    this.eventBusUnsubscribers.push(unsubscribe);
+    return unsubscribe;
+  }
+
+  /**
+   * Listen for an event once using EventBus
+   */
+  once(eventName, handler) {
+    const unsubscribe = eventBus.once(eventName, handler, this);
+    this.eventBusUnsubscribers.push(unsubscribe);
+    return unsubscribe;
   }
 
   /**
@@ -172,14 +182,24 @@ export class BaseComponent {
 
   /**
    * Cleanup component resources
+   * V2: Now includes EventBus cleanup
    */
   destroy() {
-    // Remove all event listeners
+    // Emit destroyed event before cleanup
+    this.emit('component:destroyed');
+    
+    // Remove all DOM event listeners
     this.eventListeners.forEach((listener, key) => {
       this.removeEventListener(key);
     });
     
-    this.emit('component:destroyed');
+    // Cleanup EventBus subscriptions (context-based cleanup)
+    eventBus.offContext(this);
+    
+    // Also unsubscribe individual listeners
+    this.eventBusUnsubscribers.forEach(unsubscribe => unsubscribe());
+    this.eventBusUnsubscribers = [];
+    
     this.isInitialized = false;
   }
 

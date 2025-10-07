@@ -312,45 +312,37 @@ export class ExplorePageManager extends BaseComponent {
       this.components.filterManager.on(EVENTS.FILTER_CHANGED, this.handleFilterChanged.bind(this));
     }
 
-    // Connect Search Manager events - usando { once: false } para prevenir duplicados
+    // Connect Search Manager events - V2: Updated for EventBus
     if (this.components.searchManager) {
       // LOADING_START: mostrar estado de carga
-      this.components.searchManager.on(EVENTS.LOADING_START, (event) => {
-        event.stopPropagation(); // Prevenir propagación
+      this.components.searchManager.on(EVENTS.LOADING_START, (data) => {
         if (this.components.documentResults) {
           this.components.documentResults.showLoading();
         }
-      }, { once: false });
+      });
 
       // SEARCH_SUCCESS: renderizar resultados
-      this.components.searchManager.on(EVENTS.SEARCH_SUCCESS, (event) => {
-        event.stopPropagation(); // Prevenir propagación
-        const eventData = event.detail;
+      this.components.searchManager.on(EVENTS.SEARCH_SUCCESS, (eventData) => {
         if (this.components.documentResults && eventData && eventData.data) {
           this.components.documentResults.renderResults(eventData.data);
         }
       });
 
       // SEARCH_ERROR: mostrar error
-      this.components.searchManager.on(EVENTS.SEARCH_ERROR, (event) => {
-        event.stopPropagation(); // Prevenir propagación
-        const data = event.detail;
+      this.components.searchManager.on(EVENTS.SEARCH_ERROR, (data) => {
         if (this.components.documentResults) {
           this.components.documentResults.showError(data.error);
         }
       });
 
       // Suggestions events
-      this.components.searchManager.on('suggestions:ready', (event) => {
-        event.stopPropagation();
-        const data = event.detail;
+      this.components.searchManager.on('suggestions:ready', (data) => {
         if (this.components.suggestionsBox) {
           this.components.suggestionsBox.show(data.suggestions);
         }
       });
 
-      this.components.searchManager.on('suggestions:clear', (event) => {
-        event.stopPropagation();
+      this.components.searchManager.on('suggestions:clear', (data) => {
         if (this.components.suggestionsBox) {
           this.components.suggestionsBox.hide();
         }
@@ -367,9 +359,9 @@ export class ExplorePageManager extends BaseComponent {
 
     // Connect Document Results pagination
     if (this.components.documentResults) {
-      this.components.documentResults.on('page:changed', (event) => {
+      this.components.documentResults.on('page:changed', (data) => {
         if (this.components.searchManager) {
-          this.components.searchManager.goToPage(event.detail.page);
+          this.components.searchManager.goToPage(data.page);
         }
       });
     }

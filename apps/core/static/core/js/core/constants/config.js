@@ -87,14 +87,72 @@ export const VIEW_TYPES = {
   GRID: 'grid'
 };
 
+/**
+ * Standardized Event Names
+ * All events are namespaced for clarity and to prevent conflicts
+ * Format: category:action or category:entity:action
+ */
 export const EVENTS = {
-  FILTER_CHANGED: 'filterChanged',
-  SEARCH_COMMITTED: 'commitSearch',
-  VIEW_CHANGED: 'viewChanged',
-  PAGE_CHANGED: 'pageChanged',
-  DATA_LOADED: 'dataLoaded',
-  ACCORDION_OPENED: 'accordionOpened',
-  ACCORDION_CLOSED: 'accordionClosed'
+  // Search Events
+  SEARCH_PERFORMED: 'search:performed',
+  SEARCH_COMMITTED: 'search:committed',
+  SEARCH_CLEARED: 'search:cleared',
+  SEARCH_FOCUS: 'search:focus',
+  SEARCH_BLUR: 'search:blur',
+  SEARCH_ERROR: 'search:error',
+  SEARCH_SUCCESS: 'search:success',
+  
+  // Filter Events
+  FILTER_CHANGED: 'filter:changed',
+  FILTER_TOGGLE: 'filter:toggle',
+  FILTERS_CHANGED: 'filters:changed',
+  FILTERS_CLEARED: 'filters:cleared',
+  FILTERS_APPLIED: 'filters:applied',
+  
+  // Suggestion Events
+  SUGGESTIONS_READY: 'suggestions:ready',
+  SUGGESTIONS_CLEAR: 'suggestions:clear',
+  SUGGESTIONS_ERROR: 'suggestions:error',
+  SUGGESTIONS_SHOWN: 'suggestions:shown',
+  SUGGESTIONS_HIDDEN: 'suggestions:hidden',
+  SUGGESTION_SELECTED: 'suggestion:selected',
+  
+  // Pagination Events
+  PAGE_CHANGED: 'page:changed',
+  
+  // View Events
+  VIEW_CHANGED: 'view:changed',
+  
+  // Data Events
+  DATA_LOADED: 'data:loaded',
+  LOADING_START: 'loading:start',
+  LOADING_END: 'loading:end',
+  
+  // Accordion Events
+  ACCORDION_OPENED: 'accordion:opened',
+  ACCORDION_CLOSED: 'accordion:closed',
+  
+  // Component Registration (for PageManager)
+  COMPONENT_REGISTERED: 'component:registered',
+  COMPONENT_REMOVED: 'component:removed',
+  SERVICE_REGISTERED: 'service:registered',
+  
+  // Result Events
+  ITEMS_APPENDED: 'items:appended',
+  COUNT_UPDATED: 'count:updated',
+  
+  // Navigation Events
+  NAVIGATION_OPENED: 'navigation:opened',
+  NAVIGATION_CLOSED: 'navigation:closed',
+  
+  // Document Events  
+  DOCUMENT_LINK_COPIED: 'document:link:copied',
+  
+  // Legacy Events (to be migrated)
+  commitSearch: 'search:committed', // Legacy alias
+  filterChanged: 'filter:changed', // Legacy alias
+  filterToggle: 'filter:toggle', // Legacy alias
+  filtersChanged: 'filters:changed' // Legacy alias
 };
 
 // Default export for convenience
