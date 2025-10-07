@@ -1,9 +1,10 @@
 {% extends "core/base.html" %}
 {% load static %}
 {% load static_tags %}
-{% block title %}SPIDERHUB: Document Detail - EU - LAC Digital Transformation{% endblock %}
+{% block title %}{{ document.title }} - SPIDERHUB{% endblock %}
+{% block description %}{{ document.executive_summary|truncatewords:20|default:"EU-LAC digital transformation document details, commitments, and analysis." }}{% endblock %}
 {% block extra_head %}
-{% css_versioned 'core/css/main.css' %}
+<!-- Additional CSS for document detail page if needed -->
 {% endblock %}
 {% block content %}
 <!-- Document Detail Content -->
@@ -235,7 +236,7 @@
                       <img
                         src="{% static 'core/icons/beneficiaries/' %}{{ group.grouper|slugify }}.svg"
                         alt="{{ group.grouper }} icon"
-                        
+                        class="beneficiary-icon"
                       />
                     </div>
                     <div class="beneficiary-info">

@@ -9,31 +9,31 @@
      Color System - Semantic naming
      ======================================== */
   
-  /* Primary Brand Colors */
+  /* Primary Brand Colors - Updated to match new base.css */
   --color-primary-50: #e8f4f8;
   --color-primary-100: #b8dde6;
   --color-primary-200: #87c5d4;
   --color-primary-300: #56adc2;
   --color-primary-400: #3a9bb5;
-  --color-primary-500: #1C7377; /* Primary blue */
+  --color-primary-500: #1C7377; /* Primary blue - matching new base.css */
   --color-primary-600: #186569;
   --color-primary-700: #14575a;
   --color-primary-800: #10494c;
   --color-primary-900: #0c3b3e;
 
-  /* Secondary Brand Colors */
+  /* Secondary Brand Colors - Updated to match new base.css */
   --color-secondary-50: #e8f8f8;
   --color-secondary-100: #b8e8e8;
   --color-secondary-200: #87d8d8;
   --color-secondary-300: #56c8c8;
   --color-secondary-400: #3abcbc;
-  --color-secondary-500: #32AFAF; /* Primary green */
+  --color-secondary-500: #32AFAF; /* Primary green - matching new base.css */
   --color-secondary-600: #2d9999;
   --color-secondary-700: #288383;
   --color-secondary-800: #236d6d;
   --color-secondary-900: #1e5757;
 
-  /* Accent Colors */
+  /* Accent Colors - Updated to match new base.css */
   --color-accent-warning: #FBBC04;
   --color-accent-error: #EA4335;
   --color-accent-success: #28A745;
@@ -52,19 +52,22 @@
   --color-neutral-800: #1F2937;
   --color-neutral-900: #111827;
 
-  /* Semantic Color Assignments */
-  --color-text-primary: var(--color-neutral-800);
-  --color-text-secondary: var(--color-neutral-700);
-  --color-text-muted: var(--color-neutral-500);
-  --color-text-inverse: var(--color-neutral-0);
+  /* Semantic Color Assignments - Updated to match new base.css */
+  --color-text-primary: #333333;
+  --color-text-secondary: #555555;
+  --color-text-muted: #666666;
+  --color-text-light: #999999;
+  --color-text-inverse: #FFFFFF;
   
-  --color-bg-primary: var(--color-neutral-0);
-  --color-bg-secondary: var(--color-neutral-50);
-  --color-bg-muted: var(--color-neutral-100);
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F7F7F7;
+  --color-bg-muted: #F0F4F8;
   
-  --color-border-light: var(--color-neutral-200);
-  --color-border-medium: var(--color-neutral-300);
-  --color-border-strong: var(--color-neutral-400);
+  --color-border-light: #ddd;
+  --color-border-lighter: #eee;
+  --color-border-lightest: #f0f0f0;
+  --color-border-medium: #D9E2EC;
+  --color-border-strong: #B0BEC5;
 
   /* ========================================
      Typography System
@@ -102,7 +105,7 @@
   --line-height-loose: 1.8;
 
   /* ========================================
-     Spacing System - 8px base unit
+     Spacing System - Updated to match new base.css
      ======================================== */
   
   --space-0: 0;
@@ -119,53 +122,53 @@
   --space-20: 5rem;    /* 80px */
   --space-24: 6rem;    /* 96px */
 
-  /* Semantic Spacing */
-  --space-xs: var(--space-2);
-  --space-sm: var(--space-4);
-  --space-md: var(--space-6);
-  --space-lg: var(--space-8);
-  --space-xl: var(--space-12);
-  --space-2xl: var(--space-16);
-  --space-3xl: var(--space-20);
+  /* Semantic Spacing - Updated to match new base.css */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 5rem;
 
   /* ========================================
-     Border Radius System
+     Border Radius System - Updated to match new base.css
      ======================================== */
   
   --radius-none: 0;
-  --radius-sm: 0.25rem;   /* 4px */
-  --radius-base: 0.5rem;  /* 8px */
-  --radius-md: 0.75rem;   /* 12px */
-  --radius-lg: 1rem;      /* 16px */
+  --radius-sm: 4px;       /* --border-radius-small */
+  --radius-base: 10px;    /* --border-radius */
+  --radius-md: 10px;      /* --border-radius */
+  --radius-lg: 12px;      /* --border-radius-large */
   --radius-xl: 1.5rem;    /* 24px */
   --radius-full: 9999px;
 
   /* ========================================
-     Shadow System
+     Shadow System - Updated to match new base.css
      ======================================== */
   
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 2px 10px rgba(0,0,0,0.05);  /* --shadow-light */
+  --shadow-base: 0 5px 15px rgba(0,0,0,0.05); /* --shadow-medium */
+  --shadow-md: 0 5px 15px rgba(0,0,0,0.05);   /* --shadow-medium */
+  --shadow-lg: 0 8px 25px rgba(0,0,0,0.1);    /* --shadow-hover */
   --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
   /* ========================================
-     Animation & Transitions
+     Animation & Transitions - Updated to match new base.css
      ======================================== */
   
   /* Duration */
-  --duration-fast: 150ms;
-  --duration-base: 250ms;
-  --duration-slow: 350ms;
+  --duration-fast: 150ms;    /* --animation-duration-fast */
+  --duration-base: 300ms;    /* --animation-duration-medium */
+  --duration-slow: 500ms;    /* --animation-duration-slow */
   --duration-slower: 500ms;
 
   /* Easing Functions */
   --ease-linear: linear;
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1); /* --animation-easing */
 
   /* ========================================
      Layout & Grid System
@@ -209,7 +212,7 @@
   --z-index-tooltip: 1800;
 
   /* ========================================
-     Focus & Accessibility
+     Focus & Accessibility - Updated to match new base.css
      ======================================== */
   
   --focus-ring-color: rgba(28, 115, 119, 0.4);

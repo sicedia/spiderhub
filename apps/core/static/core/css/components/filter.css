@@ -13,12 +13,14 @@
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
+  width: 100%;
+  max-width: 320px;
 }
 
 .filter-container--sticky {
   position: sticky;
   top: calc(var(--header-height) + var(--space-md));
-  max-height: calc(100vh - var(--header-height) - var(--space-lg));
+  max-height: calc(100vh - var(--header-height) - var(--space-xl));
   overflow-y: auto;
 }
 
@@ -30,14 +32,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-lg);
-  background: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-secondary-50) 100%);
-  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: 1.5rem;
+  padding: 0;
+  background: transparent;
+  border-bottom: none;
 }
 
 .filter-header__title {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
+  font-size: 1.3rem;
   color: var(--color-text-primary);
   margin: 0;
   display: flex;
@@ -46,7 +48,7 @@
 }
 
 .filter-header__title::before {
-  content: '🔍';
+  content: '';
   font-size: var(--font-size-xl);
 }
 
@@ -73,20 +75,21 @@
 }
 
 .filter-header__clear {
-  font-size: var(--font-size-sm);
+  font-size: 0.85rem;
   color: var(--color-primary-500);
   background: none;
   border: none;
   cursor: pointer;
-  padding: var(--space-2) var(--space-3);
+  padding: 0.3rem 0.5rem;
   border-radius: var(--radius-base);
   transition: all var(--duration-base) var(--ease-out);
   font-weight: var(--font-weight-medium);
 }
 
 .filter-header__clear:hover {
-  background-color: rgba(28, 115, 119, 0.1);
+  background-color: transparent;
   color: var(--color-primary-600);
+  text-decoration: underline;
 }
 
 .filter-header__clear:disabled {
@@ -99,7 +102,10 @@
    ======================================== */
 
 .filter-groups {
-  padding: var(--space-lg);
+  max-height: calc(100vh - 250px);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .filter-groups--collapsed {
@@ -111,16 +117,19 @@
    ======================================== */
 
 .filter-group {
-  margin-bottom: var(--space-lg);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  background-color: var(--color-bg-primary);
-  transition: all var(--duration-base) var(--ease-out);
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border-lightest);
+  padding-bottom: 1.5rem;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
 }
 
 .filter-group:last-child {
+  border-bottom: none;
   margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .filter-group--expanded {
@@ -129,15 +138,7 @@
 }
 
 .filter-group__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--space-md) var(--space-lg);
-  background-color: var(--color-bg-secondary);
-  cursor: pointer;
-  user-select: none;
-  transition: all var(--duration-base) var(--ease-out);
-  border-bottom: 1px solid var(--color-border-light);
+  display: none;
 }
 
 .filter-group__header:hover {
@@ -150,13 +151,11 @@
 }
 
 .filter-group__title {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  font-size: var(--font-size-base);
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+  font-weight: 500;
+  display: block;
 }
 
 .filter-group__icon {
@@ -185,18 +184,17 @@
    ======================================== */
 
 .filter-group__content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height var(--duration-base) var(--ease-out);
+  max-height: none;
+  overflow: visible;
 }
 
 .filter-group--expanded .filter-group__content {
-  max-height: 500px;
-  overflow-y: auto;
+  max-height: none;
+  overflow: visible;
 }
 
 .filter-group__body {
-  padding: var(--space-lg);
+  padding: 0;
 }
 
 /* ========================================
@@ -246,10 +244,7 @@
 .filter-options {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  max-height: 300px;
-  overflow-y: auto;
-  padding-right: var(--space-2);
+  gap: 0.8rem;
 }
 
 .filter-options::-webkit-scrollbar {
@@ -272,17 +267,17 @@
 
 .filter-option {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-base);
   cursor: pointer;
-  transition: all var(--duration-base) var(--ease-out);
-  position: relative;
+  padding-left: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--duration-base) var(--ease-out);
 }
 
 .filter-option:hover {
-  background-color: var(--color-bg-secondary);
+  background-color: rgba(28, 115, 119, 0.05);
 }
 
 .filter-option--selected {
@@ -291,6 +286,7 @@
 }
 
 .filter-option__checkbox {
+  margin-right: 0.8rem;
   width: 18px;
   height: 18px;
   border: 2px solid var(--color-border-medium);
@@ -332,11 +328,13 @@
 }
 
 .filter-option__count {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-  background-color: var(--color-bg-muted);
-  padding: 2px var(--space-2);
-  border-radius: var(--radius-full);
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  background-color: var(--color-border-lightest);
+  padding: 0.1rem 0.4rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
   font-weight: var(--font-weight-medium);
   min-width: 24px;
   text-align: center;
@@ -438,11 +436,13 @@
 
 .filter-actions {
   display: flex;
-  gap: var(--space-3);
-  padding: var(--space-lg);
-  background-color: var(--color-bg-secondary);
-  border-top: 1px solid var(--color-border-light);
   justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border-lightest);
+  background-color: transparent;
+  padding: 0;
 }
 
 .filter-actions__primary {

@@ -1,9 +1,8 @@
 /**
- * Home Page Entry Point - Updated Modular Version
- * Uses @js/ alias for clean imports and proper separation of concerns
+ * Home Page Entry Point - Simplified Version
+ * Matches previous design functionality while maintaining clean architecture
  */
 
-import { HomePageManager } from './pages/HomePageManager.js';
 import { DOMUtils } from './core/utils/dom.js';
 import { AnimationUtils } from './core/utils/animations.js';
 import { CONFIG } from './core/constants/config.js';
@@ -11,25 +10,15 @@ import { CONFIG } from './core/constants/config.js';
 // Initialize home page when DOM is ready
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    console.log('Initializing Home Page with new modular architecture...');
+    console.log('Initializing Home Page...');
     
-    // Initialize the home page manager
-    const pageManager = new HomePageManager(document.body, {
-      autoInitialize: true,
-      enableStatCounters: true,
-      enableNodeWebAnimation: true,
-      enableCarousel: true
-    });
-    
-    // Make it globally available for debugging and backward compatibility
-    window.homePageManager = pageManager;
+    // Initialize the home page components
+    initializeHomePage();
     
     console.log('✅ Home page initialized successfully');
     
     // Emit a custom event to notify other scripts
-    document.dispatchEvent(new CustomEvent('homePageReady', {
-      detail: { pageManager }
-    }));
+    document.dispatchEvent(new CustomEvent('homePageReady'));
     
   } catch (error) {
     console.error('❌ Failed to initialize home page:', error);
@@ -38,6 +27,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     initializeBasicHomePage();
   }
 });
+
+/**
+ * Main home page initialization function
+ */
+function initializeHomePage() {
+  // Initialize all home page components
+  const components = {
+    statNumbers: document.querySelectorAll('.home-stats__number, .stat-number'),
+    nodeWeb: document.getElementById('node-web'),
+    carouselTrack: document.querySelector('.carousel__track')
+  };
+
+  // Initialize stat counters if present
+  if (components.statNumbers.length > 0) {
+    initializeStatCounters(components.statNumbers);
+    console.log(`✅ Initialized ${components.statNumbers.length} stat counters`);
+  }
+  
+  // Initialize node web animation if present
+  if (components.nodeWeb) {
+    createNodeWebAnimation(components.nodeWeb);
+    console.log('✅ Node web animation initialized');
+  }
+  
+  // Initialize carousel if present
+  if (components.carouselTrack) {
+    initializeCarousel();
+    console.log('✅ Carousel initialized');
+  }
+}
 
 /**
  * Basic fallback initialization if the modular system fails
@@ -78,18 +97,43 @@ function initializeBasicHomePage() {
   }
 }
 
-// Modular stat counter initialization using new utilities
+/**
+ * Initialize stat counters with intersection observer
+ */
 function initializeStatCounters(statNumbers) {
   const observer = DOMUtils.createIntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        AnimationUtils.animateCounter(entry.target);
+        animateCounter(entry.target);
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.5 });
   
   statNumbers.forEach(stat => observer.observe(stat));
+}
+
+/**
+ * Animate counter from 0 to target value
+ */
+function animateCounter(element) {
+  const targetValue = parseInt(element.getAttribute('data-target')) || 0;
+  const suffix = element.getAttribute('data-suffix') || '';
+  const duration = 2000; // 2 seconds
+  
+  let currentValue = 0;
+  const increment = targetValue / (duration / 16); // 60fps
+  
+  const updateCounter = () => {
+    currentValue = Math.min(currentValue + increment, targetValue);
+    element.textContent = Math.floor(currentValue) + suffix;
+    
+    if (currentValue < targetValue) {
+      requestAnimationFrame(updateCounter);
+    }
+  };
+  
+  updateCounter();
 }
 
 // Optimized node web animation with better performance
@@ -139,7 +183,7 @@ function createNodeWebAnimation(container) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     // Draw connections in batch
-    ctx.strokeStyle = 'rgba(9, 78, 178, 0.15)';
+    ctx.strokeStyle = 'rgba(28, 115, 119, 0.15)';
     ctx.lineWidth = 0.8;
     ctx.beginPath();
     
@@ -153,7 +197,7 @@ function createNodeWebAnimation(container) {
     ctx.stroke();
     
     // Update and draw nodes
-    ctx.fillStyle = 'rgba(9, 78, 178, 0.6)';
+    ctx.fillStyle = 'rgba(28, 115, 119, 0.6)';
     
     nodes.forEach(node => {
       // Update position with boundary checking
@@ -194,14 +238,14 @@ function createNodeWebAnimation(container) {
 
 // Modern carousel implementation using new utilities
 function initializeCarousel() {
-  const track = DOMUtils.getElement('.carousel-track');
+  const track = document.querySelector('.carousel__track');
   if (!track) return;
   
   const config = {
-    cards: track.querySelectorAll('.document-card'),
-    prevButton: DOMUtils.getElement('.carousel-prev'),
-    nextButton: DOMUtils.getElement('.carousel-next'),
-    indicatorsContainer: DOMUtils.getElement('.carousel-indicators'),
+    cards: track.querySelectorAll('.carousel__item'),
+    prevButton: document.querySelector('.carousel__nav--prev'),
+    nextButton: document.querySelector('.carousel__nav--next'),
+    indicatorsContainer: document.querySelector('.carousel__indicators'),
     currentIndex: 0
   };
   
@@ -253,13 +297,13 @@ function initializeCarousel() {
   // Touch events for mobile
   addTouchSupport(track, carouselControls);
   
-  // Resize handler using new utilities
+  // Resize handler
   window.addEventListener('resize', DOMUtils.debounce(() => {
     if (config.cards[0]) {
       cardWidth = config.cards[0].offsetWidth + 20;
       carouselControls.updateState();
     }
-  }, CONFIG.ANIMATION.DEBOUNCE_DELAY));
+  }, 250));
   
   // Initialize
   carouselControls.updateState();
@@ -288,10 +332,9 @@ function createCarouselIndicators(config, maxIndex) {
   
   config.cards.forEach((_, index) => {
     if (index <= maxIndex) {
-      const indicator = DOMUtils.createElement('button', {
-        className: 'carousel-indicator',
-        'aria-label': `Slide ${index + 1}`
-      });
+      const indicator = document.createElement('button');
+      indicator.classList.add('carousel__indicator');
+      indicator.setAttribute('aria-label', `Slide ${index + 1}`);
       
       indicator.addEventListener('click', () => {
         config.currentIndex = index;
@@ -306,9 +349,9 @@ function createCarouselIndicators(config, maxIndex) {
 function updateIndicators(config) {
   if (!config.indicatorsContainer) return;
   
-  const indicators = config.indicatorsContainer.querySelectorAll('.carousel-indicator');
+  const indicators = config.indicatorsContainer.querySelectorAll('.carousel__indicator');
   indicators.forEach((indicator, index) => {
-    DOMUtils.toggleClass(indicator, 'active', index === config.currentIndex);
+    indicator.classList.toggle('carousel__indicator--active', index === config.currentIndex);
   });
 }
 

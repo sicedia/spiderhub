@@ -2,8 +2,9 @@
 {% load static %}
 {% load static_tags %}
 {% block title %}SPIDERHUB: Analysis Dashboard - EU-LAC Digital Transformation{% endblock %}
-{% block extra_head %}  
-{% css_versioned 'core/css/main.css' %}
+{% block description %}Comprehensive analysis dashboard showing EU-LAC digital transformation agreements, stakeholder engagement, and policy alignment insights.{% endblock %}
+{% block extra_head %}
+<!-- Additional CSS for analysis page if needed -->
 {% endblock %}
 
 {% block content %}
@@ -346,13 +347,20 @@
 {% endblock %}
 
 {% block extra_scripts %}
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@2.0.0"></script>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/topojson@3"></script>
+  <!-- External chart libraries with integrity checks -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js" 
+          integrity="sha384-7vomZ37fOQEDrYvDu8Sseb8umpU6jUe0eLzH3jN1tFNOkMc6mXF4XbDTF6/t2za8" 
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js" 
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@2.0.0" 
+          crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v7.min.js" 
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson@3" 
+          crossorigin="anonymous"></script>
   <!-- Standalone Analysis Implementation -->
-  <script src="{% static 'core/js/AnalysisMain.js' %}" type="module"></script>
+  {% js_module_versioned 'core/js/AnalysisMain.js' %}
   
   <!-- Fallback for older browsers -->
   <script nomodule>

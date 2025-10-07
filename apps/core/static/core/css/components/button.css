@@ -36,7 +36,7 @@
   height: var(--button-height-base);
   padding: 0 var(--button-padding-x-base);
   font-size: var(--font-size-base);
-  border-radius: var(--radius-full);
+  border-radius: 50px; /* Updated to match new base.css btn style */
 }
 
 /* ========================================
@@ -53,8 +53,9 @@
 .button--primary:hover:not(:disabled) {
   background-color: var(--color-primary-600);
   border-color: var(--color-primary-600);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  color: var(--color-text-inverse);
   transition: all var(--duration-base) var(--ease-out);
 }
 
@@ -74,8 +75,9 @@
 .button--secondary:hover:not(:disabled) {
   background-color: var(--color-secondary-600);
   border-color: var(--color-secondary-600);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  color: var(--color-text-inverse);
 }
 
 .button--secondary:active:not(:disabled) {
@@ -94,7 +96,8 @@
 .button--ghost:hover:not(:disabled) {
   background-color: var(--color-primary-500);
   color: var(--color-text-inverse);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .button--ghost:active:not(:disabled) {

@@ -5,16 +5,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="{% block description %}SPIDERHUB: Mapping EU-LAC Digital Transformation Dialogues & Agreements. Discover connections driving digital transformation between Europe and Latin America.{% endblock %}">
+  <meta name="keywords" content="digital transformation, EU-LAC, agreements, policies, digital cooperation, Europe, Latin America, Caribbean">
+  <meta name="author" content="SPIDER Project">
+  <meta name="robots" content="index, follow">
   <title>{% block title %}SPIDERHUB: Fostering EU - LAC Digital Transformation{% endblock %}</title>
   
   <!-- CSS con versionado automático -->
   {% css_versioned 'core/css/main.css' %}
   
   <link rel="icon" href="{% static_versioned 'favicon.ico' %}" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <!-- Preload critical fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet" crossorigin="anonymous">
 
   {% block extra_head %}{% endblock %}
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "SPIDERHUB",
+    "description": "Mapping EU-LAC Digital Transformation Dialogues & Agreements",
+    "url": "{% url 'core:home' %}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "SPIDER Project",
+      "url": "https://spidernetwork.org/"
+    }
+  }
+  </script>
   
   <!-- JS con versionado automático -->
   {% js_module_versioned 'core/js/MainEntry.js' %}

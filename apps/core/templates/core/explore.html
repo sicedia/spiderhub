@@ -2,8 +2,9 @@
 {% load static %}
 {% load static_tags %}
 {% block title %}SPIDERHUB: Explorar Diálogos - Transformación Digital UE - AL{% endblock %}
-{% block extra_head %}  
-{% css_versioned 'core/css/main.css' %}
+{% block description %}Explore and search digital transformation dialogues between EU and LAC countries. Filter by themes, countries, actors, and commitments.{% endblock %}
+{% block extra_head %}
+<!-- Additional CSS for explore page if needed -->
 {% endblock %}
 
 {% block content %}
@@ -17,7 +18,7 @@
       <p class="explore-header__description">Discover the digital transformation agreements and commitments between Europe and Latin America</p>
       
       <div class="explore-search">
-        <form class="search-bar" role="search" aria-label="Search dialogues">
+        <form class="search-bar" role="search" aria-label="Search dialogues" autocomplete="off">
           <svg class="search-bar__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="#666"/>
           </svg>
@@ -33,7 +34,7 @@
             aria-expanded="false"
             aria-autocomplete="list"
           />
-          <button type="submit" id="search-button" class="search-bar__button">Search</button>
+          <button type="submit" id="search-button" class="search-bar__button" aria-describedby="search-help">Search</button>
         </form>
         <ul 
           id="suggestions-list" 
@@ -491,7 +492,6 @@
   {% endcomment %}
   
   <!-- New ES6 Modular implementation -->
-  {% js_module_versioned 'core/js/MainEntry.js' %}
   {% js_module_versioned 'core/js/ExploreEntry.js' %}
   {% js_module_versioned 'search/js/explore.js' %}
 {% endblock %}

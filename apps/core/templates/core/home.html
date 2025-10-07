@@ -1,6 +1,8 @@
 {% extends "core/base.html" %}
 {% load static %}
+{% load static_tags %}
 {% block title %}SPIDERHUB: Digital Transformation{% endblock %}
+{% block description %}Discover EU-LAC digital transformation agreements, commitments, and initiatives. Explore the network of digital cooperation between Europe and Latin America.{% endblock %}
 
 {% block content %}
 
@@ -158,6 +160,5 @@
 {% endblock %}
 
 {% block extra_scripts %}
-  <script type="module" src="{% static 'core/js/MainEntry.js' %}"></script>
-  <script type="module" src="{% static 'core/js/HomeEntry.js' %}"></script>
+  {% js_module_versioned 'core/js/HomeEntry.js' %}
 {% endblock %}
