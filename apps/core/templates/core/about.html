@@ -212,7 +212,7 @@
       <div class="partners-grid" role="list">
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <img src="{% static 'core/images/partners/inmark.jpg' %}" alt="Inmark logo">
+            <img src="{% static_versioned 'core/images/partners/inmark.jpg' %}" alt="Inmark logo">
           </div>
           <div class="partner-info">
             <h3>Inmark</h3>
@@ -222,7 +222,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <img src="{% static 'core/images/partners/dlr.jpg' %}" alt="DLR logo">
+            <img src="{% static_versioned 'core/images/partners/dlr.jpg' %}" alt="DLR logo">
           </div>
           <div class="partner-info">
             <h3>Deutsches Zentrum Für Luft - Und Raumfahrt EV</h3>
@@ -232,7 +232,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <img src="{% static 'core/images/partners/lifestech.jpeg' %}" alt="LifeSTech logo">
+            <img src="{% static_versioned 'core/images/partners/lifestech.jpeg' %}" alt="LifeSTech logo">
           </div>
           <div class="partner-info">
             <h3>Life Supporting Technologies (LifeSTech)</h3>
@@ -242,7 +242,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <img src="{% static 'core/images/partners/eura.png' %}" alt="EurA logo">
+            <img src="{% static_versioned 'core/images/partners/eura.png' %}" alt="EurA logo">
           </div>
           <div class="partner-info">
             <h3>Eura Unipessoal LDA</h3>
@@ -252,7 +252,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <img src="{% static 'core/images/partners/eit-digital.png' %}" alt="EIT Digital logo">
+            <img src="{% static_versioned 'core/images/partners/eit-digital.png' %}" alt="EIT Digital logo">
           </div>
           <div class="partner-info">
             <h3>EIT Digital</h3>
@@ -262,7 +262,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <img src="{% static 'core/images/partners/reuna.jpeg' %}" alt="REUNA logo">
+            <img src="{% static_versioned 'core/images/partners/reuna.jpeg' %}" alt="REUNA logo">
           </div>
           <div class="partner-info">
             <h3>REUNA Corporación Red Universitaria Nacional</h3>
@@ -272,7 +272,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <img src="{% static 'core/images/partners/cedia.png' %}" alt="CEDIA logo">
+            <img src="{% static_versioned 'core/images/partners/cedia.png' %}" alt="CEDIA logo">
           </div>
           <div class="partner-info">
             <h3>Corporación Ecuatoriana para el Desarrollo de la Investigación y la Academia (CEDIA)</h3>
@@ -282,7 +282,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <img src="{% static 'core/images/partners/rpn.png' %}" alt="RNP logo">
+            <img src="{% static_versioned 'core/images/partners/rpn.png' %}" alt="RNP logo">
           </div>
           <div class="partner-info">
             <h3>Rede Nacional de Ensino e Pesquisa (RNP)</h3>
@@ -292,7 +292,7 @@
         
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
-            <img src="{% static 'core/images/partners/conare.png' %}" alt="Red Conare logo">
+            <img src="{% static_versioned 'core/images/partners/conare.png' %}" alt="Red Conare logo">
           </div>
           <div class="partner-info">
             <h3>Red Conare</h3>
@@ -334,6 +334,5 @@
 {% endblock %}
 
 {% block extra_scripts %}
-<script type="module" src="{% static 'core/js/main.js' %}"></script>
-<script type="module" src="{% static 'core/js/about.js' %}"></script>
+{% js_module_versioned 'core/js/about.js' %}
 {% endblock %}

@@ -7,7 +7,7 @@ module.exports = {
     explore: './apps/core/static/core/js/explore-modular.js'
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[contenthash].bundle.js',
     path: path.resolve(__dirname, 'apps/core/static/core/js/'),
     clean: false, // Don't clean the entire directory
     library: {

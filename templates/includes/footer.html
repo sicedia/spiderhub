@@ -1,4 +1,5 @@
 {% load static %}
+{% load static_tags %}
 <footer class="footer">
   <div class="footer__content">
     <div class="footer__column">
@@ -39,13 +40,13 @@
       <div class="footer__partners-content">
         <span class="footer__partners-text">Powered by</span>
         <div class="footer__partner-logos">
-          <img src="{% static 'footer/Logo_Spider_negativo.png' %}" alt="SPIDER EU-LAC Digital Partnership" class="footer__logo footer__logo--spider">
-          <img src="{% static 'footer/cedia.png' %}" alt="CEDIA" class="footer__logo footer__logo--cedia">
-          <img src="{% static 'footer/dlr.svg' %}" alt="DLR" class="footer__logo footer__logo--dlr">
+          <img src="{% static_versioned 'footer/Logo_Spider_negativo.png' %}" alt="SPIDER EU-LAC Digital Partnership" class="footer__logo footer__logo--spider">
+          <img src="{% static_versioned 'footer/cedia.png' %}" alt="CEDIA" class="footer__logo footer__logo--cedia">
+          <img src="{% static_versioned 'footer/dlr.svg' %}" alt="DLR" class="footer__logo footer__logo--dlr">
         </div>
       </div>
       <div class="eu-funding">
-        <img src="{% static 'footer/EN_FundedbytheEU_RGB_NEG.png' %}" alt="Funded by the European Union" class="footer__logo footer__logo--eu">
+        <img src="{% static_versioned 'footer/EN_FundedbytheEU_RGB_NEG.png' %}" alt="Funded by the European Union" class="footer__logo footer__logo--eu">
       </div>
     </div>
     
