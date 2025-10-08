@@ -31,9 +31,9 @@ export class MobileNav extends BaseComponent {
    */
   getDefaultOptions() {
     return {
-      toggleSelector: '.mobile-menu-toggle',
-      overlaySelector: '.mobile-nav-overlay',
-      menuSelector: '.mobile-nav-menu',
+      toggleSelector: '.navigation__toggle',
+      overlaySelector: '.navigation__overlay',
+      menuSelector: '.navigation__mobile-list',
       closeOnLinkClick: true,
       closeOnOutsideClick: true,
       enableSwipeGestures: true,
@@ -74,7 +74,7 @@ export class MobileNav extends BaseComponent {
       toggle: DOMUtils.getElement(this.options.toggleSelector),
       overlay: DOMUtils.getElement(this.options.overlaySelector),
       menu: DOMUtils.getElement(this.options.menuSelector),
-      navLinks: DOMUtils.getElements('.mobile-nav-links a')
+      navLinks: DOMUtils.getElements('.navigation__mobile-link')
     };
 
     // Warn about missing elements
@@ -103,17 +103,13 @@ export class MobileNav extends BaseComponent {
     this.isOpen = false;
     
     if (this.elements.toggle) {
-      this.elements.toggle.classList.remove('active');
+      this.elements.toggle.classList.remove('navigation__toggle--active');
       this.elements.toggle.setAttribute('aria-expanded', 'false');
     }
     
     if (this.elements.overlay) {
-      this.elements.overlay.classList.remove('active');
+      this.elements.overlay.classList.remove('navigation__overlay--active');
       this.elements.overlay.style.display = 'none';
-    }
-    
-    if (this.elements.menu) {
-      this.elements.menu.classList.remove('active');
     }
   }
 
@@ -277,9 +273,9 @@ export class MobileNav extends BaseComponent {
    * Handle tab navigation (focus trap)
    */
   handleTabNavigation(event) {
-    if (!this.isOpen || !this.elements.menu) return;
+    if (!this.isOpen || !this.elements.overlay) return;
 
-    const focusableElements = this.elements.menu.querySelectorAll(
+    const focusableElements = this.elements.overlay.querySelectorAll(
       'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
     
@@ -305,12 +301,12 @@ export class MobileNav extends BaseComponent {
    * Handle focus events (focus trap)
    */
   handleFocusIn(event) {
-    if (!this.isOpen || !this.elements.menu) return;
+    if (!this.isOpen || !this.elements.overlay) return;
 
     // If focus moves outside the menu, bring it back
-    if (!this.elements.menu.contains(event.target) && 
+    if (!this.elements.overlay.contains(event.target) && 
         !this.elements.toggle.contains(event.target)) {
-      const firstFocusable = this.elements.menu.querySelector(
+      const firstFocusable = this.elements.overlay.querySelector(
         'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
       );
       if (firstFocusable) {
@@ -359,7 +355,7 @@ export class MobileNav extends BaseComponent {
 
     // Update toggle button
     if (this.elements.toggle) {
-      this.elements.toggle.classList.add('active');
+      this.elements.toggle.classList.add('navigation__toggle--active');
       this.elements.toggle.setAttribute('aria-expanded', 'true');
     }
 
@@ -369,13 +365,8 @@ export class MobileNav extends BaseComponent {
       
       // Trigger animation
       requestAnimationFrame(() => {
-        this.elements.overlay.classList.add('active');
+        this.elements.overlay.classList.add('navigation__overlay--active');
       });
-    }
-
-    // Show menu
-    if (this.elements.menu) {
-      this.elements.menu.classList.add('active');
     }
 
     // Prevent body scroll
@@ -385,7 +376,7 @@ export class MobileNav extends BaseComponent {
 
     // Focus first menu item
     setTimeout(() => {
-      const firstFocusable = this.elements.menu?.querySelector(
+      const firstFocusable = this.elements.overlay?.querySelector(
         'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
       );
       if (firstFocusable) {
@@ -412,13 +403,13 @@ export class MobileNav extends BaseComponent {
 
     // Update toggle button
     if (this.elements.toggle) {
-      this.elements.toggle.classList.remove('active');
+      this.elements.toggle.classList.remove('navigation__toggle--active');
       this.elements.toggle.setAttribute('aria-expanded', 'false');
     }
 
     // Hide overlay
     if (this.elements.overlay) {
-      this.elements.overlay.classList.remove('active');
+      this.elements.overlay.classList.remove('navigation__overlay--active');
       
       // Hide after animation
       setTimeout(() => {
@@ -426,11 +417,6 @@ export class MobileNav extends BaseComponent {
           this.elements.overlay.style.display = 'none';
         }
       }, this.options.animationDuration);
-    }
-
-    // Hide menu
-    if (this.elements.menu) {
-      this.elements.menu.classList.remove('active');
     }
 
     // Restore body scroll
@@ -487,7 +473,7 @@ export class MobileNav extends BaseComponent {
     });
 
     // Re-cache nav links
-    this.elements.navLinks = DOMUtils.getElements('.mobile-nav-links a');
+    this.elements.navLinks = DOMUtils.getElements('.navigation__mobile-link');
 
     // Re-bind link events
     if (this.options.closeOnLinkClick) {

@@ -130,8 +130,36 @@ export class ExplorePageManager extends BaseComponent {
     // Search form submission
     if (this.elements.searchForm) {
       this.addEventListener(this.elements.searchForm, 'submit', (event) => {
-        if (this.coordinators.search) {
+        event.preventDefault();
+        if (this.logger) {
+          this.logger.debug('Search form submitted');
+        }
+        
+        // Get search value from input
+        const searchValue = this.elements.searchBoxMain?.value?.trim();
+        
+        if (searchValue && this.components.mainSearch) {
+          // Trigger search through SearchBox component
+          this.components.mainSearch.handleSubmit();
+        } else if (this.coordinators.search) {
+          // If no search value, just perform search with current filters
           this.coordinators.search.handleSearchFormSubmit(event);
+        }
+      });
+    }
+    
+    // Search button click
+    const searchButton = DOMUtils.getElement('#search-button');
+    if (searchButton) {
+      this.addEventListener(searchButton, 'click', (event) => {
+        event.preventDefault();
+        if (this.logger) {
+          this.logger.debug('Search button clicked');
+        }
+        
+        // Trigger form submission
+        if (this.elements.searchForm) {
+          this.elements.searchForm.dispatchEvent(new Event('submit', { cancelable: true }));
         }
       });
     }

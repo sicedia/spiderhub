@@ -41,13 +41,11 @@ export const Utils = {
   },
 
   // Mobile navigation handler - now uses the MobileNav component
-  initializeMobileNavigation(toggleSelector = '.mobile-menu-toggle', overlaySelector = '.mobile-nav-overlay') {
-    const overlay = DOMUtils.getElement(overlaySelector);
+  initializeMobileNavigation() {
+    const overlay = DOMUtils.getElement('.navigation__overlay');
     if (overlay) {
-      const mobileNav = new MobileNav(overlay, {
-        toggleSelector,
-        overlaySelector
-      });
+      const mobileNav = new MobileNav(overlay);
+      mobileNav.init();
       return mobileNav;
     }
     return null;

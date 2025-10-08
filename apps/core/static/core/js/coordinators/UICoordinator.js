@@ -33,6 +33,7 @@ export class UICoordinator extends BaseComponent {
    */
   setupEventListeners() {
     this.setupViewToggleListeners();
+    this.setupMobileFilterToggle();
     
     this.logger.info('UI event listeners configured');
   }
@@ -80,6 +81,29 @@ export class UICoordinator extends BaseComponent {
     if (!this.mapInitialized) {
       this.initializeMap();
     }
+  }
+
+  /**
+   * Setup mobile filter toggle
+   */
+  setupMobileFilterToggle() {
+    const filterToggle = document.querySelector('.filter-header__toggle');
+    const filterSidebar = document.querySelector('.explore-sidebar');
+    
+    if (!filterToggle || !filterSidebar) {
+      this.logger.debug('Mobile filter toggle elements not found');
+      return;
+    }
+    
+    this.addEventListener(filterToggle, 'click', () => {
+      const isExpanded = filterSidebar.classList.toggle('expanded');
+      filterToggle.setAttribute('aria-expanded', isExpanded.toString());
+      filterSidebar.setAttribute('aria-expanded', isExpanded.toString());
+      
+      this.logger.debug('Filter sidebar toggled', { isExpanded });
+    });
+    
+    this.logger.debug('Mobile filter toggle setup complete');
   }
 
   /**
