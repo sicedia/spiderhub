@@ -93,7 +93,7 @@ export class AnalysisChartsCoordinator {
   }
 
   /**
-   * Render SDG alignment bar chart
+   * Render SDG alignment radar chart
    */
   async renderSDGChart(canvasId) {
     const canvas = DOMUtils.getElement(`#${canvasId}`);
@@ -107,10 +107,9 @@ export class AnalysisChartsCoordinator {
     
     const ctx = canvas.getContext('2d');
     const chart = new Chart(ctx, {
-      type: 'bar',
+      type: 'radar',
       data: data,
       options: {
-        indexAxis: 'y',
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
@@ -121,30 +120,59 @@ export class AnalysisChartsCoordinator {
             backgroundColor: 'rgba(0, 0, 0, 0.8)',
             padding: 12,
             titleFont: { size: 14, weight: 'bold' },
-            bodyFont: { size: 13 }
+            bodyFont: { size: 13 },
+            callbacks: {
+              label: function(context) {
+                return `Documents: ${context.parsed.r}`;
+              }
+            }
           }
         },
         scales: {
-          x: {
+          r: {
             beginAtZero: true,
             grid: {
-              color: 'rgba(0, 0, 0, 0.05)'
+              color: 'rgba(28, 115, 119, 0.1)',
+              circular: true
+            },
+            angleLines: {
+              color: 'rgba(28, 115, 119, 0.15)'
+            },
+            pointLabels: {
+              font: { 
+                size: 11,
+                weight: '500'
+              },
+              color: '#374151',
+              padding: 8
             },
             ticks: {
-              font: { size: 11 }
-            }
-          },
-          y: {
-            grid: {
-              display: false
+              display: true,
+              stepSize: 20,
+              font: { size: 10 },
+              backdropColor: 'rgba(255, 255, 255, 0.8)',
+              backdropPadding: 2
             },
-            ticks: {
-              font: { size: 11 }
-            }
+            suggestedMin: 0,
+            suggestedMax: 100
           }
         },
         animation: {
           duration: this.options.animationDuration
+        },
+        elements: {
+          line: {
+            borderWidth: 2,
+            borderColor: 'rgba(28, 115, 119, 0.8)'
+          },
+          point: {
+            radius: 4,
+            backgroundColor: 'rgba(28, 115, 119, 1)',
+            borderColor: '#fff',
+            borderWidth: 2,
+            hoverRadius: 6,
+            hoverBorderWidth: 3
+          }
         }
       }
     });
