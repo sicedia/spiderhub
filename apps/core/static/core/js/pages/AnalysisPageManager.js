@@ -1,439 +1,232 @@
 /**
- * Analysis Page Manager - Simplified Version
- * Simplified version that focuses on basic chart rendering without complex dependencies
- * Uses @js/ alias for clean imports
+ * Analysis Page Manager (V2 - Rebuilt from scratch)
+ * Modern, minimal dashboard for EU-LAC digital transformation analytics
+ * Built with coordinator pattern and EventBus
  */
 
-import { BaseComponent } from '../core/base/BaseComponent.js';
-import { CONFIG, EVENTS } from '../core/constants/config.js';
-import { DOMUtils } from '../core/utils/dom.js';
+import { BasePageManager } from '../core/base/BasePageManager.js';
+import { eventBus } from '../core/events/EventBus.js';
+import { EVENTS } from '../core/constants/config.js';
 import { logger } from '../core/logger/Logger.js';
 
-export class AnalysisPageManager extends BaseComponent {
+// Coordinators
+import { AnalysisDataCoordinator } from '../coordinators/AnalysisDataCoordinator.js';
+import { AnalysisChartsCoordinator } from '../coordinators/AnalysisChartsCoordinator.js';
+import { AnalysisUICoordinator } from '../coordinators/AnalysisUICoordinator.js';
+
+export class AnalysisPageManager extends BasePageManager {
   constructor(element = document.body, options = {}) {
     super(element, options);
     
-    this.instanceId = Math.random().toString(36).substr(2, 9);
-    
-    // Create child logger with component context
+    // Create child logger
     this.logger = logger.child({
       component: 'AnalysisPageManager',
-      instance: this.instanceId
+      version: '2.0'
     });
     
-    this.state = {
-      isLoading: false,
-      analysisData: null,
-      chartsInitialized: false
-    };
+    this.coordinators = {};
     
-    this.logger.info('Simplified version initialized', {
-      instanceId: this.instanceId
-    });
-    
-    // Initialize immediately
-    this.init();
+    this.logger.info('AnalysisPageManager V2 initialized');
   }
 
+  /**
+   * Get default options
+   */
   getDefaultOptions() {
     return {
-      autoInitialize: true,
+      enableAnimations: true,
       enableChartAnimations: true,
-      enableDataGrid: false, // Disabled for now
-      enableModals: false    // Disabled for now
+      autoInitialize: true,
+      dataScriptId: 'analysis-data',
+      ...super.getDefaultOptions()
     };
   }
 
-  async init() {
-    try {
-      this.logger.info('Starting initialization');
-      
-      // Load analysis data
-      await this.loadAnalysisData();
-      
-      // Initialize charts
-      this.initializeCharts();
-      
-      // Animate summary cards
-      this.animateSummaryCards();
-      
-      this.logger.info('Initialization completed successfully');
-      
-    } catch (error) {
-      this.logger.error('Initialization failed', error);
+  /**
+   * No additional services needed for now
+   */
+  async initializeServices() {
+    if (this.logger) {
+      this.logger.debug('No additional services to initialize');
     }
   }
 
-  async loadAnalysisData() {
+  /**
+   * Load page data (delegated to DataCoordinator)
+   */
+  async loadPageData() {
+    if (this.logger) {
+      this.logger.debug('Data loading delegated to AnalysisDataCoordinator');
+    }
+    // Data loading is handled by AnalysisDataCoordinator
+  }
+
+  /**
+   * Initialize coordinators
+   */
+  async initializeComponents() {
+    if (this.logger) {
+      this.logger.debug('Initializing coordinators');
+    }
+    
     try {
-      // Try to get data from the page script tag
-      const dataScript = document.getElementById('analysis-data');
-      if (dataScript) {
-        this.state.analysisData = JSON.parse(dataScript.textContent);
-        this.logger.debug('Analysis data loaded from page', {
-          dataKeys: Object.keys(this.state.analysisData)
+      // 1. Initialize Data Coordinator first
+      this.coordinators.data = new AnalysisDataCoordinator({
+        dataScriptId: this.options.dataScriptId
+      });
+      await this.coordinators.data.init();
+      
+      if (this.logger) {
+        this.logger.info('✅ AnalysisDataCoordinator initialized');
+      }
+      
+      // 2. Initialize Charts Coordinator (needs data)
+      this.coordinators.charts = new AnalysisChartsCoordinator(
+        this.coordinators.data,
+        {
+          enableAnimations: this.options.enableChartAnimations,
+          animationDuration: 800
+        }
+      );
+      await this.coordinators.charts.init();
+      
+      if (this.logger) {
+        this.logger.info('✅ AnalysisChartsCoordinator initialized');
+      }
+      
+      // 3. Initialize UI Coordinator
+      this.coordinators.ui = new AnalysisUICoordinator(
+        this.coordinators.data,
+        {
+          enableAnimations: this.options.enableAnimations,
+          counterDuration: 2000
+        }
+      );
+      await this.coordinators.ui.init();
+      
+      if (this.logger) {
+        this.logger.info('✅ AnalysisUICoordinator initialized');
+      }
+      
+      // Setup communication between coordinators
+      this.setupCoordinatorCommunication();
+      
+      if (this.logger) {
+        this.logger.info('All coordinators initialized successfully', {
+          coordinatorCount: Object.keys(this.coordinators).length
         });
-      } else {
-        // Fallback: create mock data for development
-        this.state.analysisData = this.createMockData();
-        this.logger.warn('Using mock analysis data (no data-script found)');
       }
+      
     } catch (error) {
-      this.logger.error('Error loading analysis data', error);
-      this.state.analysisData = this.createMockData();
+      if (this.logger) {
+        this.logger.error('Failed to initialize coordinators', error);
+      }
+      throw error;
     }
   }
 
-  createMockData() {
-    return {
-      sdg_counts: {
-        'SDG 1': 15, 'SDG 2': 8, 'SDG 3': 12, 'SDG 4': 25, 'SDG 5': 18,
-        'SDG 6': 10, 'SDG 7': 20, 'SDG 8': 30, 'SDG 9': 35, 'SDG 10': 22,
-        'SDG 11': 16, 'SDG 12': 14, 'SDG 13': 28, 'SDG 14': 6, 'SDG 15': 9,
-        'SDG 16': 24, 'SDG 17': 32
-      },
-      binding_counts: {
-        'Legally Binding': 45,
-        'Politically Binding': 78,
-        'Non-Binding': 32
-      },
-      country_counts: {
-        'Spain': 25, 'Germany': 22, 'France': 20, 'Brazil': 18, 'Argentina': 15,
-        'Mexico': 14, 'Colombia': 12, 'Chile': 10, 'Peru': 8, 'Ecuador': 6
-      },
-      theme_counts: {
-        'Digital Economy': 45, 'Cybersecurity': 38, 'AI & Innovation': 32,
-        'Digital Skills': 28, 'E-Government': 25, 'Digital Infrastructure': 22
-      },
-      actor_counts: {
-        'Government': 85, 'Private Sector': 65, 'Academia': 45, 
-        'Civil Society': 35, 'International Organizations': 25
-      },
-      beneficiary_counts: {
-        'SMEs': 55, 'Citizens': 48, 'Researchers': 35, 'Startups': 28, 'NGOs': 20
+  /**
+   * Setup communication between coordinators
+   */
+  setupCoordinatorCommunication() {
+    if (this.logger) {
+      this.logger.debug('Setting up coordinator communication');
+    }
+    
+    // Listen for data loaded event
+    eventBus.on(EVENTS.DATA_LOADED, (data) => {
+      if (this.logger) {
+        this.logger.debug('Data loaded event received', {
+          hasSummary: !!data.summary,
+          hasAnalysis: !!data.analysis
+        });
       }
+    }, this);
+    
+    // Listen for chart rendered events
+    eventBus.on('chart:rendered', (data) => {
+      if (this.logger) {
+        this.logger.debug('Chart rendered', {
+          chartId: data.chartId,
+          type: data.type
+        });
+      }
+    }, this);
+    
+    if (this.logger) {
+      this.logger.debug('Coordinator communication configured');
+    }
+  }
+
+  /**
+   * Get current page state
+   */
+  getState() {
+    return {
+      summary: this.coordinators.data?.getSummary(),
+      analysis: this.coordinators.data?.getAnalysisData(),
+      chartsCount: this.coordinators.charts?.chartInstances.size || 0
     };
   }
 
-  initializeCharts() {
-    this.logger.debug('Initializing charts');
+  /**
+   * Reload analysis data and charts
+   */
+  async reload() {
+    if (this.logger) {
+      this.logger.info('Reloading analysis page');
+    }
     
-    // Initialize each chart type
-    this.initializeSDGRadarChart();
-    this.initializeLegalBindingPieChart();
-    this.initializeCountryBarChart();
-    this.initializeThemeBarChart();
-    this.initializeActorBarChart();
-    this.initializeBeneficiaryBarChart();
+    try {
+      // Reload data
+      await this.coordinators.data?.loadData();
+      
+      // Refresh all charts
+      if (this.coordinators.charts) {
+        await this.coordinators.charts.initializeAllCharts();
+      }
+      
+      // Re-animate UI
+      if (this.coordinators.ui) {
+        this.coordinators.ui.animateKPICards();
+      }
+      
+      if (this.logger) {
+        this.logger.info('Analysis page reloaded successfully');
+      }
+      
+    } catch (error) {
+      if (this.logger) {
+        this.logger.error('Failed to reload analysis page', error);
+      }
+    }
+  }
+
+  /**
+   * Clean up resources
+   */
+  destroy() {
+    if (this.logger) {
+      this.logger.debug('Destroying AnalysisPageManager');
+    }
     
-    // Initialize placeholder charts for complex visualizations
-    this.initializePlaceholderCharts();
-    
-    this.state.chartsInitialized = true;
-  }
-
-  initializeSDGRadarChart() {
-    const container = DOMUtils.getElement('#radar-chart');
-    if (!container) return;
-
-    const data = this.state.analysisData.sdg_counts;
-    this.renderSimpleRadarChart(container, data, 'SDG Alignment Overview');
-  }
-
-  initializeLegalBindingPieChart() {
-    const container = DOMUtils.getElement('#pie-chart');
-    if (!container) return;
-
-    const data = this.state.analysisData.binding_counts;
-    this.renderSimplePieChart(container, data, 'Legal Bindingness Distribution');
-  }
-
-  initializeCountryBarChart() {
-    const container = DOMUtils.getElement('#lead-countries-chart');
-    if (!container) return;
-
-    const data = this.state.analysisData.country_counts;
-    this.renderSimpleBarChart(container, data, 'Lead Countries Analysis');
-  }
-
-  initializeThemeBarChart() {
-    const container = DOMUtils.getElement('#theme-bar-chart');
-    if (!container) return;
-
-    const data = this.state.analysisData.theme_counts;
-    this.renderSimpleBarChart(container, data, 'Digital Transformation Themes');
-  }
-
-  initializeActorBarChart() {
-    const container = DOMUtils.getElement('#actor-bar-chart');
-    if (!container) return;
-
-    const data = this.state.analysisData.actor_counts;
-    this.renderSimpleBarChart(container, data, 'Actor Type Distribution');
-  }
-
-  initializeBeneficiaryBarChart() {
-    const container = DOMUtils.getElement('#beneficiary-bar-chart');
-    if (!container) return;
-
-    const data = this.state.analysisData.beneficiary_counts;
-    this.renderSimpleBarChart(container, data, 'Beneficiary Groups Analysis');
-  }
-
-  initializePlaceholderCharts() {
-    // Initialize remaining charts with placeholders
-    const chartSelectors = [
-      '#coverage-bar-chart',
-      '#diversity-radar-chart', 
-      '#initiative-treemap-chart',
-      '#collaboration-network-chart'
-    ];
-
-    chartSelectors.forEach(selector => {
-      const container = DOMUtils.getElement(selector);
-      if (container) {
-        this.renderPlaceholderChart(container, 'Advanced Visualization');
+    // Destroy coordinators
+    Object.values(this.coordinators).forEach(coordinator => {
+      if (coordinator && typeof coordinator.destroy === 'function') {
+        coordinator.destroy();
       }
     });
-  }
-
-  renderSimpleBarChart(container, data, title) {
-    const entries = Object.entries(data);
-    const maxValue = Math.max(...entries.map(([_, value]) => value));
     
-    container.innerHTML = `
-      <div class="simple-chart">
-        <h4>${title}</h4>
-        <div class="bar-chart">
-          ${entries.map(([label, value]) => `
-            <div class="bar-item">
-              <div class="bar-label">${label}</div>
-              <div class="bar-container">
-                <div class="bar-fill" style="width: ${(value / maxValue) * 100}%; background-color: #094EB2;"></div>
-                <span class="bar-value">${value}</span>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    `;
-
-    // Add CSS styles if not already present
-    this.addChartStyles();
-  }
-
-  renderSimplePieChart(container, data, title) {
-    const entries = Object.entries(data);
-    const total = entries.reduce((sum, [_, value]) => sum + value, 0);
-    const colors = ['#094EB2', '#34A853', '#FBBC04', '#EA4335', '#9C27B0'];
+    this.coordinators = {};
     
-    container.innerHTML = `
-      <div class="simple-chart">
-        <h4>${title}</h4>
-        <div class="pie-chart">
-          <div class="pie-legend">
-            ${entries.map(([label, value], index) => `
-              <div class="legend-item">
-                <span class="legend-color" style="background-color: ${colors[index % colors.length]};"></span>
-                <span class="legend-label">${label}: ${value} (${Math.round((value / total) * 100)}%)</span>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-    `;
-
-    this.addChartStyles();
-  }
-
-  renderSimpleRadarChart(container, data, title) {
-    const entries = Object.entries(data);
+    // Call parent destroy
+    super.destroy();
     
-    container.innerHTML = `
-      <div class="simple-chart">
-        <h4>${title}</h4>
-        <div class="radar-chart">
-          <div class="radar-items">
-            ${entries.map(([label, value]) => `
-              <div class="radar-item">
-                <span class="radar-label">${label}</span>
-                <div class="radar-bar">
-                  <div class="radar-fill" style="width: ${Math.min((value / 40) * 100, 100)}%; background-color: #094EB2;"></div>
-                  <span class="radar-value">${value}</span>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-    `;
-
-    this.addChartStyles();
-  }
-
-  renderPlaceholderChart(container, title) {
-    container.innerHTML = `
-      <div class="simple-chart">
-        <h4>${title}</h4>
-        <div class="chart-placeholder">
-          <div class="placeholder-content">
-            <div class="placeholder-icon">📊</div>
-            <p>Advanced visualization coming soon</p>
-            <small>This chart will be implemented with D3.js or Chart.js</small>
-          </div>
-        </div>
-      </div>
-    `;
-
-    this.addChartStyles();
-  }
-
-  addChartStyles() {
-    if (document.getElementById('analysis-chart-styles')) return;
-
-    const styles = document.createElement('style');
-    styles.id = 'analysis-chart-styles';
-    styles.textContent = `
-      .simple-chart {
-        background: white;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        margin: 10px 0;
-      }
-      
-      .simple-chart h4 {
-        margin: 0 0 15px 0;
-        color: #333;
-        font-size: 16px;
-        font-weight: 600;
-      }
-      
-      .bar-chart .bar-item {
-        margin-bottom: 10px;
-      }
-      
-      .bar-label {
-        font-size: 12px;
-        color: #666;
-        margin-bottom: 4px;
-      }
-      
-      .bar-container {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      
-      .bar-fill {
-        height: 20px;
-        border-radius: 4px;
-        min-width: 20px;
-        transition: width 0.3s ease;
-      }
-      
-      .bar-value {
-        font-size: 12px;
-        font-weight: 600;
-        color: #333;
-        min-width: 30px;
-      }
-      
-      .pie-legend .legend-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 8px;
-      }
-      
-      .legend-color {
-        width: 12px;
-        height: 12px;
-        border-radius: 2px;
-      }
-      
-      .legend-label {
-        font-size: 12px;
-        color: #333;
-      }
-      
-      .radar-items .radar-item {
-        margin-bottom: 8px;
-      }
-      
-      .radar-label {
-        display: inline-block;
-        width: 80px;
-        font-size: 11px;
-        color: #666;
-      }
-      
-      .radar-bar {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        width: calc(100% - 90px);
-      }
-      
-      .radar-fill {
-        height: 16px;
-        border-radius: 3px;
-        min-width: 10px;
-        transition: width 0.3s ease;
-      }
-      
-      .radar-value {
-        font-size: 11px;
-        font-weight: 600;
-        color: #333;
-        min-width: 25px;
-      }
-      
-      .chart-placeholder {
-        text-align: center;
-        padding: 40px 20px;
-        color: #666;
-        border: 2px dashed #ddd;
-        border-radius: 8px;
-      }
-      
-      .placeholder-icon {
-        font-size: 48px;
-        margin-bottom: 16px;
-      }
-      
-      .placeholder-content p {
-        margin: 0 0 8px 0;
-        font-weight: 500;
-      }
-      
-      .placeholder-content small {
-        color: #999;
-      }
-    `;
-    
-    document.head.appendChild(styles);
-  }
-
-  animateSummaryCards() {
-    const cards = document.querySelectorAll('.summary-card');
-    cards.forEach((card, index) => {
-      setTimeout(() => {
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      }, index * 100);
-    });
-  }
-
-  // Public methods for backward compatibility
-  getAnalysisData() {
-    return this.state.analysisData;
-  }
-
-  getComponent(name) {
-    this.logger.warn('Component not available in simplified version', {
-      componentName: name
-    });
-    return null;
+    if (this.logger) {
+      this.logger.debug('AnalysisPageManager destroyed');
+    }
   }
 }
+
+export default AnalysisPageManager;
+

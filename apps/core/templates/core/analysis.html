@@ -1,459 +1,195 @@
 {% extends "core/base.html" %}
 {% load static %}
 {% load static_tags %}
-{% block title %}SPIDERHUB: Analysis Dashboard - EU-LAC Digital Transformation{% endblock %}
-{% block description %}Comprehensive analysis dashboard showing EU-LAC digital transformation agreements, stakeholder engagement, and policy alignment insights.{% endblock %}
-{% block extra_head %}
-<!-- Additional CSS for analysis page if needed -->
-{% endblock %}
+
+{% block title %}SPIDERHUB: Analysis Dashboard{% endblock %}
+{% block description %}Modern analytics dashboard for EU-LAC digital transformation insights{% endblock %}
 
 {% block content %}
-  <main role="main" class="analysis-container">
-    <!-- Hero Section -->
-    <section class="analysis-hero">
-      <div class="analysis-hero-content">
-        <h1>Analysis Dashboard</h1>
-        <p>Comprehensive insights into EU-LAC digital transformation agreements, partnerships, and collaborative initiatives.</p>
+<main id="analysis-page" class="analysis-page">
+  
+  <!-- Hero Section -->
+  <section class="analysis-hero">
+    <div class="analysis-hero__container">
+      <h1 class="analysis-hero__title">Analysis Dashboard</h1>
+      <p class="analysis-hero__description">
+        Comprehensive insights into EU-LAC digital transformation cooperation
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="analysis-content">
+    
+    <!-- KPI Cards Section -->
+    <section class="analysis-kpis">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon">📄</div>
+          <div class="kpi-value" data-target="{{ summary.total_documents }}">0</div>
+          <div class="kpi-label">Total Documents</div>
+          <div class="kpi-trend">
+            <span class="trend-icon">↗</span>
+            <span class="trend-text">Active database</span>
+          </div>
+        </div>
+        
+        <div class="kpi-card">
+          <div class="kpi-icon">🤝</div>
+          <div class="kpi-value" data-target="{{ summary.total_agreements }}">0</div>
+          <div class="kpi-label">Agreements</div>
+          <div class="kpi-trend">
+            <span class="trend-icon">↗</span>
+            <span class="trend-text">Bilateral & multilateral</span>
+          </div>
+        </div>
+        
+        <div class="kpi-card">
+          <div class="kpi-icon">🌍</div>
+          <div class="kpi-value" data-target="{{ summary.active_countries }}">0</div>
+          <div class="kpi-label">Countries</div>
+          <div class="kpi-trend">
+            <span class="trend-icon">→</span>
+            <span class="trend-text">EU & LAC regions</span>
+          </div>
+        </div>
+        
+        <div class="kpi-card">
+          <div class="kpi-icon">💬</div>
+          <div class="kpi-value" data-target="{{ summary.total_dialogues }}">0</div>
+          <div class="kpi-label">Dialogues</div>
+          <div class="kpi-trend">
+            <span class="trend-icon">↗</span>
+            <span class="trend-text">Active discussions</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <div class="analysis-content">
-      <!-- 1. Executive Overview - Key Metrics -->
-      <section role="region" aria-labelledby="overview-label" class="analysis-block priority-high" id="overview-section">
-        <h2 id="overview-label" class="block-title">Executive Overview</h2>
-        <p class="section-description">Key performance indicators showing the scope and scale of EU-LAC digital cooperation at a glance.</p>
-        
-        <!-- Summary Cards in logical order -->
-        <div class="summary-cards">
-          <div class="summary-card" data-tooltip="Total number of analyzed policy documents, agreements, and initiatives in the system">
-            <div class="card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" fill="#094EB2"/>
-              </svg>
-            </div>
-            <div class="card-content">
-              <div class="card-number">{{ summary.total_documents }}</div>
-              <div class="card-label">Total Documents</div>
-            </div>
-          </div>
-          
-          <div class="summary-card" data-tooltip="Number of currently active bilateral and multilateral agreements between EU and LAC countries">
-            <div class="card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1.5V6H9V1.5L3 7V9H21ZM21 10H3V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V10Z" fill="#34A853"/>
-              </svg>
-            </div>
-            <div class="card-content">
-              <div class="card-number">{{ summary.total_agreements }}</div>
-              <div class="card-label">Active Agreements</div>
-            </div>
-          </div>
-
-          <div class="summary-card" data-tooltip="Countries from both EU and LAC regions actively participating in digital transformation initiatives">
-            <div class="card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L2 7V10C2 16 6 20.5 12 22C18 20.5 22 16 22 10V7L12 2Z" fill="#FBBC04"/>
-              </svg>
-            </div>
-            <div class="card-content">
-              <div class="card-number">{{ summary.active_countries }}</div>
-              <div class="card-label">Participating Countries</div>
-            </div>
-          </div>
-
-          <div class="summary-card" data-tooltip="Ongoing diplomatic conversations, policy dialogues, and strategic discussions between regions">
-            <div class="card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 6L18.29 8.29L13.41 13.17L9.41 9.17L2 16.59L3.41 18L9.41 12L13.41 16L19.71 9.71L22 12V6H16Z" fill="#EA4335"/>
-              </svg>
-            </div>
-            <div class="card-content">
-              <div class="card-number">{{ summary.total_dialogues }}</div>
-              <div class="card-label">Active Dialogues</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="section-separator"></div>
-
-      <!-- 2. Strategic Alignment - High-level insights -->
-      <section role="region" aria-labelledby="strategic-label" class="analysis-block priority-high" id="strategic-section">
-        <h2 id="strategic-label" class="block-title">Strategic Alignment</h2>
-        <p class="section-description">Analyze how current agreements align with global sustainability goals and assess their legal enforceability framework.</p>
-        
-        <div class="chart-grid strategic-grid">
-          <div class="chart-container chart-large">
-            <div class="chart-header">
-              <h3>SDG Alignment Overview</h3>
-              <p class="chart-description">Visualizes how well EU-LAC digital agreements align with the 17 UN Sustainable Development Goals. Higher values indicate stronger alignment.</p>
-            </div>
-            <div class="chart-placeholder chart-radar" id="radar-chart" role="img" tabindex="0" aria-label="Radar chart showing alignment with Sustainable Development Goals">
-              <div class="placeholder-content">
-                <div class="chart-icon">📊</div>
-                <div>SDG Alignment Radar</div>
-                <small>Hover to see detailed SDG breakdown</small>
-              </div>
-            </div>
-          </div>
-          
-          <div class="chart-container chart-medium">
-            <div class="chart-header">
-              <h3>Legal Bindingness Distribution</h3>
-              <p class="chart-description">Shows the proportion of legally binding vs. non-binding agreements, indicating the enforcement strength of cooperation frameworks.</p>
-            </div>
-            <div class="chart-placeholder chart-pie" id="pie-chart" role="img" tabindex="0" aria-label="Pie chart showing legal bindingness distribution">
-              <div class="placeholder-content">
-                <div class="chart-icon">🥧</div>
-                <div>Legal Framework Analysis</div>
-                <small>Click segments for detailed breakdown</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3. Geographic & Leadership Analysis -->
-      <section role="region" aria-labelledby="geography-label" class="analysis-block priority-medium" id="geography-section">
-        <h2 id="geography-label" class="block-title">Geographic Distribution & Leadership</h2>
-        <p class="section-description">Identify regional leadership patterns and understand the geographic scope of digital cooperation initiatives.</p>
-        
-        <div class="chart-grid geographic-grid">
-          <div class="chart-container chart-large">
-            <div class="chart-header">
-              <h3>Lead Countries Analysis</h3>
-              <p class="chart-description">Ranks countries by the number of initiatives they lead, revealing regional leadership in digital transformation.</p>
-            </div>
-            <div class="chart-placeholder chart-map world-map" id="lead-countries-chart" role="img" tabindex="0" aria-label="World choropleth map showing lead countries and all countries from database">
-              <div class="placeholder-content">
-                <div class="chart-icon">🌍</div>
-                <div>Regional Leadership Ranking</div>
-                <small>Hover bars to see country details</small>
-              </div>
-            </div>
-          </div>
-          
-          <div class="chart-container chart-medium">
-            <div class="chart-header">
-              <h3>Coverage Scope Distribution</h3>
-              <p class="chart-description">Analyzes the reach of agreements: bilateral (2 countries), multilateral (3+ countries), or regional scope.</p>
-            </div>
-            <div class="chart-placeholder chart-bar-vertical" id="coverage-bar-chart" role="img" tabindex="0" aria-label="Chart showing coverage scope distribution">
-              <div class="placeholder-content">
-                <div class="chart-icon">🎯</div>
-                <div>Agreement Scope Analysis</div>
-                <small>Shows bilateral vs multilateral patterns</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 4. Thematic Analysis -->
-      <section role="region" aria-labelledby="thematic-label" class="analysis-block priority-medium" id="thematic-section">
-        <h2 id="thematic-label" class="block-title">Thematic Focus Areas</h2>
-        <p class="section-description">Discover which digital transformation themes receive the most attention in EU-LAC cooperation agreements.</p>
-        
-        <div class="chart-container chart-fullwidth">
+    <!-- Main Charts Grid -->
+    <section class="analysis-charts">
+      <h2 class="section-title">Key Insights</h2>
+      
+      <div class="charts-grid">
+        <!-- SDG Alignment Chart -->
+        <div class="chart-card" id="sdg-card">
           <div class="chart-header">
-            <h3>Digital Transformation Themes</h3>
-            <p class="chart-description">Distribution of agreements across key digital themes like AI, cybersecurity, digital economy, e-governance, and digital skills.</p>
+            <h3 class="chart-title">SDG Alignment</h3>
+            <p class="chart-subtitle">Sustainable Development Goals coverage</p>
           </div>
-          <div class="chart-placeholder chart-bar-horizontal-wide" id="theme-bar-chart" role="img" tabindex="0" aria-label="Chart showing agreements distribution by theme">
-            <div class="placeholder-content">
-              <div class="chart-icon">🎨</div>
-              <div>Thematic Distribution Analysis</div>
-              <small>Identify priority areas and gaps in cooperation</small>
-            </div>
+          <div class="chart-body">
+            <canvas id="sdg-chart" height="300"></canvas>
           </div>
         </div>
-      </section>
-
-      <!-- 5. Stakeholder Analysis -->
-      <section role="region" aria-labelledby="stakeholders-label" class="analysis-block priority-medium" id="stakeholders-section">
-        <h2 id="stakeholders-label" class="block-title">Stakeholder Ecosystem</h2>
-        <p class="section-description">Understand who participates in digital cooperation and who benefits from these collaborative initiatives.</p>
         
-        <div class="chart-grid stakeholder-grid">
-          <div class="chart-container chart-equal">
-            <div class="chart-header">
-              <h3>Actor Type Distribution</h3>
-              <p class="chart-description">Shows participation levels by different stakeholders: government, private sector, academia, civil society, and international organizations.</p>
-            </div>
-            <div class="chart-placeholder chart-bar-vertical" id="actor-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing agreements by actor type">
-              <div class="placeholder-content">
-                <div class="chart-icon">👥</div>
-                <div>Multi-Stakeholder Engagement</div>
-                <small>Assess participation diversity across sectors</small>
-              </div>
-            </div>
-          </div>
-          
-          <div class="chart-container chart-equal beneficiary-chart-container">
-            <div class="chart-header">
-              <h3>Beneficiary Groups Analysis</h3>
-              <p class="chart-description">Identifies who benefits most from digital cooperation: SMEs, citizens, researchers, startups, and other target groups. Chart auto-adjusts height based on data.</p>
-            </div>
-            <div class="chart-placeholder chart-bar-vertical" id="beneficiary-bar-chart" role="img" tabindex="0" aria-label="Bar chart showing beneficiary categories">
-              <div class="placeholder-content">
-                <div class="chart-icon">🎯</div>
-                <div>Impact Distribution</div>
-                <small>Measure inclusivity and reach of initiatives</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="section-separator"></div>
-
-      <!-- 7. Variety Analysis - Diversity & Distribution -->
-      <section role="region" aria-labelledby="variety-label" class="analysis-block priority-high variety-section" id="variety-section">
-        <h2 id="variety-label" class="block-title">Variety Analysis</h2>
-        <p class="section-description">Diversity metrics and distribution patterns revealing the breadth and inclusivity of EU-LAC digital cooperation.</p>
-        
-        <div class="chart-grid variety-top-grid">
-          <div class="chart-container chart-special diversity-radar">
-            <div class="chart-header">
-              <h3>Cooperation Diversity Index</h3>
-              <p class="chart-description">Multi-dimensional diversity analysis across themes, actors, and geographical distribution using Shannon diversity index.</p>
-            </div>
-            <div class="chart-placeholder chart-radar-complex" id="diversity-radar-chart" role="img" tabindex="0" aria-label="Radar chart showing diversity across multiple dimensions">
-              <div class="placeholder-content">
-                <div class="chart-icon">🌈</div>
-                <div>Multi-Dimensional Diversity</div>
-                <small>Comprehensive variety assessment</small>
-              </div>
-            </div>
-          </div>
-          
-          <div class="chart-container chart-special initiative-treemap">
-            <div class="chart-header">
-              <h3>Initiative Type Distribution</h3>
-              <p class="chart-description">Treemap visualization showing the proportion and variety of different initiative types and their relative importance.</p>
-            </div>
-            <div class="chart-placeholder chart-treemap" id="initiative-treemap-chart" role="img" tabindex="0" aria-label="Treemap showing initiative type distribution">
-              <div class="placeholder-content">
-                <div class="chart-icon">🌳</div>
-                <div>Initiative Variety Matrix</div>
-                <small>Hierarchical distribution view</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="chart-container chart-fullwidth collaboration-network">
+        <!-- Legal Bindingness Chart -->
+        <div class="chart-card" id="binding-card">
           <div class="chart-header">
-            <h3>Cross-Sector Collaboration Network</h3>
-            <p class="chart-description">Network visualization showing the variety and complexity of cross-sector collaborations and their interconnections.</p>
+            <h3 class="chart-title">Legal Framework</h3>
+            <p class="chart-subtitle">Agreement enforceability distribution</p>
           </div>
-          <div class="chart-placeholder chart-network" id="collaboration-network-chart" role="img" tabindex="0" aria-label="Network diagram showing cross-sector collaborations">
-            <div class="placeholder-content">
-              <div class="chart-icon">🕸️</div>
-              <div>Collaboration Network Analysis</div>
-              <small>Interactive relationship mapping</small>
-            </div>
+          <div class="chart-body">
+            <canvas id="binding-chart" height="300"></canvas>
           </div>
         </div>
-      </section>
-
-      <div class="section-separator"></div>
-
-      <!-- 8. Additional Metrics -->
-      <section role="region" aria-labelledby="metrics-label" class="analysis-block priority-medium" id="additional-metrics">
-        <h2 id="metrics-label" class="block-title">Additional Insights</h2>
-        <p class="section-description">Supplementary metrics providing granular details for comprehensive policy analysis and strategic planning.</p>
         
-        <div class="chart-grid-four">
-          <div class="summary-card" data-tooltip="Number of distinct thematic areas being addressed in current digital cooperation initiatives">
-            <div class="card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" fill="#FF6D01"/>
-              </svg>
-            </div>
-            <div class="card-content">
-              <div class="card-number">{{ summary.active_themes }}</div>
-              <div class="card-label">Active Themes</div>
-            </div>
+        <!-- Top Countries Chart -->
+        <div class="chart-card" id="countries-card">
+          <div class="chart-header">
+            <h3 class="chart-title">Leading Countries</h3>
+            <p class="chart-subtitle">Top 10 by initiated documents</p>
           </div>
-
-          <div class="summary-card" data-tooltip="Total count of unique organizations, institutions, and entities participating in digital cooperation">
-            <div class="card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 4C18.2 4 20 5.8 20 8C20 10.2 18.2 12 16 12C13.8 12 12 10.2 12 8C12 5.8 13.8 4 16 4ZM8 4C10.2 4 12 5.8 12 8C12 10.2 10.2 12 8 12C5.8 12 4 10.2 4 8C4 5.8 5.8 4 8 4ZM8 13C10.67 13 16 14.33 16 17V20H0V17C0 14.33 5.33 13 8 13ZM16 13C16.76 13 17.57 13.11 18.4 13.3C19.1 14.03 19.6 14.9 19.9 15.9C18.9 15.65 17.8 15.5 16.8 15.5C15.6 15.5 14.6 15.65 13.8 15.9C14.1 14.9 14.6 14.03 15.3 13.3C15.6 13.15 15.8 13.05 16 13Z" fill="#9C27B0"/>
-              </svg>
-            </div>
-            <div class="card-content">
-              <div class="card-number">{{ summary.total_actors }}</div>
-              <div class="card-label">Unique Actors</div>
-            </div>
-          </div>
-
-          <div class="summary-card" data-tooltip="Number of distinct beneficiary categories that receive benefits from digital transformation initiatives">
-            <div class="card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM7.07 18.28C7.5 17.38 10.12 16.5 12 16.5C13.88 16.5 16.51 17.38 16.93 18.28C15.57 19.36 13.86 20 12 20C10.14 20 8.43 19.36 7.07 18.28ZM18.36 16.83C16.93 15.09 13.46 14.5 12 14.5C10.54 14.5 7.07 15.09 5.64 16.83C4.62 15.49 4 13.82 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 13.82 19.38 15.49 18.36 16.83ZM12 6C10.06 6 8.5 7.56 8.5 9.5C8.5 11.44 10.06 13 12 13C13.94 13 15.5 11.44 15.5 9.5C15.5 7.56 13.94 6 12 6ZM12 11C11.17 11 10.5 10.33 10.5 9.5C10.5 8.67 11.17 8 12 8C12.83 8 13.5 8.67 13.5 9.5C13.5 10.33 12.83 11 12 11Z" fill="#00BCD4"/>
-              </svg>
-            </div>
-            <div class="card-content">
-              <div class="card-number">{{ summary.total_beneficiaries }}</div>
-              <div class="card-label">Beneficiary Groups</div>
-            </div>
-          </div>
-
-          <div class="summary-card" data-tooltip="Total number of specific commitments, actions, and deliverables outlined across all agreements">
-            <div class="card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 11H7V9H9V11ZM13 11H11V9H13V11ZM17 11H15V9H17V11ZM19 4H18V2H16V4H8V2H6V4H5C3.89 4 3.01 4.9 3.01 6L3 20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4ZM19 20H5V9H19V20Z" fill="#795548"/>
-              </svg>
-            </div>
-            <div class="card-content">
-              <div class="card-number">{{ summary.total_commitments }}</div>
-              <div class="card-label">Total Commitments</div>
-            </div>
+          <div class="chart-body">
+            <canvas id="countries-chart" height="300"></canvas>
           </div>
         </div>
-      </section>
-
-      <!-- Help Section -->
-      <section class="analysis-block help-section" id="help-section">
-        <h2 class="block-title">How to Use This Dashboard</h2>
-        <div class="help-grid">
-          <div class="help-card">
-            <div class="help-icon">💡</div>
-            <h3>Getting Started</h3>
-            <p>Begin with the Executive Overview to understand the scale, then explore Strategic Alignment for policy insights.</p>
+        
+        <!-- Top Themes Chart -->
+        <div class="chart-card" id="themes-card">
+          <div class="chart-header">
+            <h3 class="chart-title">Thematic Focus</h3>
+            <p class="chart-subtitle">Top digital transformation themes</p>
           </div>
-          <div class="help-card">
-            <div class="help-icon">🎯</div>
-            <h3>Interactive Charts</h3>
-            <p>Hover over charts for detailed tooltips. Click on chart segments to drill down into specific data points.</p>
-          </div>
-          <div class="help-card">
-            <div class="help-icon">📊</div>
-            <h3>Data Insights</h3>
-            <p>Use geographic and thematic analysis to identify cooperation patterns and policy gaps.</p>
-          </div>
-          <div class="help-card">
-            <div class="help-icon">🔍</div>
-            <h3>Analysis Tips</h3>
-            <p>Compare stakeholder engagement with beneficiary distribution to assess inclusivity and impact.</p>
+          <div class="chart-body">
+            <canvas id="themes-chart" height="300"></canvas>
           </div>
         </div>
-      </section>
-    </div>
-  </main>
+      </div>
+    </section>
 
+    <!-- Stakeholders Section -->
+    <section class="analysis-stakeholders">
+      <h2 class="section-title">Stakeholder Ecosystem</h2>
+      
+      <div class="stakeholders-grid">
+        <!-- Actors Chart -->
+        <div class="chart-card" id="actors-card">
+          <div class="chart-header">
+            <h3 class="chart-title">Actor Types</h3>
+            <p class="chart-subtitle">Participation by organization type</p>
+          </div>
+          <div class="chart-body">
+            <canvas id="actors-chart" height="250"></canvas>
+          </div>
+        </div>
+        
+        <!-- Beneficiaries Chart -->
+        <div class="chart-card" id="beneficiaries-card">
+          <div class="chart-header">
+            <h3 class="chart-title">Beneficiary Groups</h3>
+            <p class="chart-subtitle">Who benefits from cooperation</p>
+          </div>
+          <div class="chart-body">
+            <canvas id="beneficiaries-chart" height="250"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Additional Metrics -->
+    <section class="analysis-metrics">
+      <h2 class="section-title">Additional Insights</h2>
+      
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon">🎯</div>
+          <div class="metric-value">{{ summary.active_themes }}</div>
+          <div class="metric-label">Active Themes</div>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-icon">👥</div>
+          <div class="metric-value">{{ summary.total_actors }}</div>
+          <div class="metric-label">Unique Actors</div>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-icon">🎁</div>
+          <div class="metric-value">{{ summary.total_beneficiaries }}</div>
+          <div class="metric-label">Beneficiary Groups</div>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-icon">📋</div>
+          <div class="metric-value">{{ summary.total_commitments }}</div>
+          <div class="metric-label">Commitments</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
 {% endblock %}
 
 {% block extra_scripts %}
-  <!-- External chart libraries with integrity checks -->
+  <!-- Chart.js Library -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js" 
-          integrity="sha384-7vomZ37fOQEDrYvDu8Sseb8umpU6jUe0eLzH3jN1tFNOkMc6mXF4XbDTF6/t2za8" 
           crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js" 
-          crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@2.0.0" 
-          crossorigin="anonymous"></script>
-  <script src="https://d3js.org/d3.v7.min.js" 
-          crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/topojson@3" 
-          crossorigin="anonymous"></script>
-  <!-- Standalone Analysis Implementation -->
-  {% js_module_versioned 'core/js/AnalysisMain.js' %}
   
-  <!-- Fallback for older browsers -->
-  <script nomodule>
-    // Load legacy fallback for older browsers
-    var script = document.createElement('script');
-    script.src = '{% static "core/js/legacyFallback.js" %}';
-    script.onload = function() {
-      console.log('Analysis page loaded with legacy fallback');
-    };
-    script.onerror = function() {
-      console.log('Legacy fallback failed, trying bundled version...');
-      var bundleScript = document.createElement('script');
-      bundleScript.src = '{% static "core/js/analysis.bundle.js" %}';
-      bundleScript.onload = function() {
-        console.log('Analysis page loaded with bundled version');
-      };
-      document.head.appendChild(bundleScript);
-    };
-    document.head.appendChild(script);
-  </script>
-
-  <!-- Enhanced tooltip implementation -->
-  <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const tooltipElements = document.querySelectorAll('[data-tooltip]');
-  let currentTooltip = null;
-
-  tooltipElements.forEach(element => {
-    element.addEventListener('mouseenter', function(e) {
-      // Remove any existing tooltip
-      if (currentTooltip) {
-        currentTooltip.remove();
-        currentTooltip = null;
-      }
-
-      const tooltip = document.createElement('div');
-      tooltip.className = 'tooltip';
-      tooltip.textContent = this.getAttribute('data-tooltip');
-      document.body.appendChild(tooltip);
-      currentTooltip = tooltip;
-      
-      // Better positioning logic
-      const rect = this.getBoundingClientRect();
-      const tooltipRect = tooltip.getBoundingClientRect();
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-      
-      let left = rect.left + scrollLeft + (rect.width / 2) - (tooltipRect.width / 2);
-      let top = rect.top + scrollTop - tooltipRect.height - 10;
-      
-      // Ensure tooltip stays within viewport
-      if (left < 10) {
-        left = 10;
-      } else if (left + tooltipRect.width > window.innerWidth - 10) {
-        left = window.innerWidth - tooltipRect.width - 10;
-      }
-      
-      // If tooltip would go above viewport, show it below the element
-      if (top < scrollTop + 10) {
-        top = rect.bottom + scrollTop + 10;
-        // Update arrow position for bottom placement
-        tooltip.classList.add('tooltip-bottom');
-      }
-      
-      tooltip.style.left = left + 'px';
-      tooltip.style.top = top + 'px';
-    });
-    
-    element.addEventListener('mouseleave', function() {
-      if (currentTooltip) {
-        currentTooltip.remove();
-        currentTooltip = null;
-      }
-    });
-
-    // Handle touch devices
-    element.addEventListener('touchstart', function(e) {
-      e.preventDefault();
-      this.dispatchEvent(new Event('mouseenter'));
-    });
-  });
-
-  // Remove tooltip when clicking anywhere
-  document.addEventListener('click', function() {
-    if (currentTooltip) {
-      currentTooltip.remove();
-      currentTooltip = null;
-    }
-  });
-});
-  </script>
-
-  <!-- Inject graphics data -->
+  <!-- Analysis Page Module -->
+  {% js_module_versioned 'core/js/AnalysisEntry.js' %}
+  
+  <!-- Inject analysis data -->
   {{ analysis_data|json_script:"analysis-data" }}
-
 {% endblock %}
+
