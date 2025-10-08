@@ -1,7 +1,7 @@
 /**
  * Analysis Page Styles
- * Dashboard específico para análisis y visualización de datos
- * Siguiendo arquitectura ITCSS y metodología BEM con tokens del sistema de diseño
+ * Dashboard for data analysis and visualization
+ * ITCSS architecture with BEM methodology
  */
 
 /* ========================================
@@ -285,24 +285,6 @@
   max-height: 320px;
 }
 
-/* Radar chart specific styles */
-.chart-card--radar {
-  position: relative;
-}
-
-.chart-body--radar {
-  height: 380px;
-  min-height: 380px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-md);
-}
-
-.chart-body--radar canvas {
-  max-height: 380px !important;
-}
-
 /* ========================================
    Stakeholders Section - Optimized
    ======================================== */
@@ -537,16 +519,6 @@
   .chart-body canvas {
     max-height: 280px;
   }
-
-  .chart-body--radar {
-    height: 320px;
-    min-height: 320px;
-    padding: var(--space-sm);
-  }
-
-  .chart-body--radar canvas {
-    max-height: 320px !important;
-  }
   
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -594,16 +566,6 @@
 
   .chart-body canvas {
     max-height: 250px;
-  }
-
-  .chart-body--radar {
-    height: 280px;
-    min-height: 280px;
-    padding: var(--space-xs);
-  }
-
-  .chart-body--radar canvas {
-    max-height: 280px !important;
   }
 }
 
@@ -697,4 +659,3 @@
     display: none;
   }
 }
-

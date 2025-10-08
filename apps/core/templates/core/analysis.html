@@ -19,6 +19,34 @@
   <!-- Main Content -->
   <div class="analysis-content">
     
+    <!-- Network Visualization Section -->
+    <section class="analysis-network">
+      <h2 class="analysis-section__title">Cross-Sector Collaboration Network</h2>
+      <p class="network-description">Interactive visualization of stakeholder connections and collaboration patterns across EU-LAC digital transformation initiatives</p>
+      
+      <div class="network-container">
+        <div class="network-visualization" id="network-graph"></div>
+        <div class="network-metrics">
+          <div class="metric-item">
+            <div class="metric-item__label">Actor Types</div>
+            <div class="metric-item__value" id="network-actor-types">-</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-item__label">Active Connections</div>
+            <div class="metric-item__value" id="network-connections">-</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-item__label">Avg. Degree</div>
+            <div class="metric-item__value" id="network-avg-degree">-</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-item__label">Network Density</div>
+            <div class="metric-item__value" id="network-density">-</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
     <!-- KPI Cards Section -->
     <section class="analysis-kpis">
       <div class="kpi-grid">
@@ -182,6 +210,14 @@
 {% block extra_scripts %}
   <!-- Chart.js Library -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js" 
+          crossorigin="anonymous"></script>
+  
+  <!-- Chart.js TreeMap Plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@2.3.0/dist/chartjs-chart-treemap.min.js"
+          crossorigin="anonymous"></script>
+  
+  <!-- Vis-Network for Network Graphs -->
+  <script src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.min.js"
           crossorigin="anonymous"></script>
   
   <!-- Analysis Page Module -->

@@ -226,6 +226,8 @@ export class AnalysisDataCoordinator {
         return this.formatBindingData();
       case 'countries':
         return this.formatCountriesData();
+      case 'lead_countries':
+        return this.formatLeadCountriesData();
       case 'themes':
         return this.formatThemesData();
       case 'actors':
@@ -288,6 +290,31 @@ export class AnalysisDataCoordinator {
     
     return {
       labels: sorted.map(([country]) => country),
+      datasets: [{
+        label: 'Documents',
+        data: sorted.map(([, count]) => count),
+        backgroundColor: 'rgba(9, 78, 178, 0.7)',
+        borderColor: 'rgba(9, 78, 178, 1)',
+        borderWidth: 1
+      }]
+    };
+  }
+
+  /**
+   * Format lead countries data for chart (Top 10) - Uses ISO3 codes
+   */
+  formatLeadCountriesData() {
+    const leadCountryCounts = this.data.analysis.lead_country_counts || {};
+    const countryNames = this.data.analysis.country_names || {};
+    
+    // Sort and get top 10
+    const sorted = Object.entries(leadCountryCounts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10);
+    
+    return {
+      labels: sorted.map(([iso3]) => iso3),
+      countryNames: countryNames, // Include full country names mapping
       datasets: [{
         label: 'Documents Led',
         data: sorted.map(([, count]) => count),

@@ -1,12 +1,22 @@
 /**
  * AnalysisChartsCoordinator
  * Coordinates all chart rendering for the analysis page
+ * Refactored to use modular chart components
  */
 
 import { logger } from '../core/logger/Logger.js';
 import { eventBus } from '../core/events/EventBus.js';
 import { EVENTS } from '../core/constants/config.js';
 import { DOMUtils } from '../core/utils/dom.js';
+
+// Chart Components
+import { NetworkGraph } from '../components/charts/NetworkGraph.js';
+import { SDGRadarChart } from '../components/charts/SDGRadarChart.js';
+import { BindingDonutChart } from '../components/charts/BindingDonutChart.js';
+import { CountriesTreeMap } from '../components/charts/CountriesTreeMap.js';
+import { ThemesBarChart } from '../components/charts/ThemesBarChart.js';
+import { ActorsBarChart } from '../components/charts/ActorsBarChart.js';
+import { BeneficiariesBarChart } from '../components/charts/BeneficiariesBarChart.js';
 
 export class AnalysisChartsCoordinator {
   constructor(dataCoordinator, options = {}) {
@@ -21,8 +31,7 @@ export class AnalysisChartsCoordinator {
       ...options
     };
     
-    this.charts = {};
-    this.chartInstances = new Map();
+    this.chartComponents = new Map();
     
     this.logger.debug('AnalysisChartsCoordinator initialized');
   }
@@ -41,7 +50,7 @@ export class AnalysisChartsCoordinator {
       await this.initializeAllCharts();
       
       this.logger.info('AnalysisChartsCoordinator initialized successfully', {
-        chartsCount: this.chartInstances.size
+        chartsCount: this.chartComponents.size
       });
     } catch (error) {
       this.logger.error('Failed to initialize AnalysisChartsCoordinator', error);
@@ -70,448 +79,161 @@ export class AnalysisChartsCoordinator {
   }
 
   /**
-   * Initialize all charts
+   * Initialize all charts using modular components
    */
   async initializeAllCharts() {
     const chartConfigs = [
-      { id: 'sdg-chart', type: 'sdg', renderer: this.renderSDGChart.bind(this) },
-      { id: 'binding-chart', type: 'binding', renderer: this.renderBindingChart.bind(this) },
-      { id: 'countries-chart', type: 'countries', renderer: this.renderCountriesChart.bind(this) },
-      { id: 'themes-chart', type: 'themes', renderer: this.renderThemesChart.bind(this) },
-      { id: 'actors-chart', type: 'actors', renderer: this.renderActorsChart.bind(this) },
-      { id: 'beneficiaries-chart', type: 'beneficiaries', renderer: this.renderBeneficiariesChart.bind(this) }
+      { 
+        id: 'network-graph', 
+        type: 'network',
+        component: NetworkGraph,
+        data: {
+          actorData: this.dataCoordinator.getChartData('actors'),
+          themeData: this.dataCoordinator.getChartData('themes')
+        }
+      },
+      { 
+        id: 'sdg-chart', 
+        type: 'radar',
+        component: SDGRadarChart,
+        data: {
+          sdgData: this.dataCoordinator.getChartData('sdg')
+        }
+      },
+      { 
+        id: 'binding-chart', 
+        type: 'donut',
+        component: BindingDonutChart,
+        data: {
+          bindingData: this.dataCoordinator.getChartData('binding')
+        }
+      },
+      { 
+        id: 'countries-chart', 
+        type: 'treemap',
+        component: CountriesTreeMap,
+        data: {
+          countriesData: this.dataCoordinator.getChartData('lead_countries')
+        }
+      },
+      { 
+        id: 'themes-chart', 
+        type: 'bar',
+        component: ThemesBarChart,
+        data: {
+          themesData: this.dataCoordinator.getChartData('themes')
+        }
+      },
+      { 
+        id: 'actors-chart', 
+        type: 'bar',
+        component: ActorsBarChart,
+        data: {
+          actorsData: this.dataCoordinator.getChartData('actors')
+        }
+      },
+      { 
+        id: 'beneficiaries-chart', 
+        type: 'bar',
+        component: BeneficiariesBarChart,
+        data: {
+          beneficiariesData: this.dataCoordinator.getChartData('beneficiaries')
+        }
+      }
     ];
     
     for (const config of chartConfigs) {
       try {
-        await config.renderer(config.id);
-        this.logger.debug('Chart rendered', { chartId: config.id });
+        await this.renderChart(config);
+        this.logger.debug('Chart rendered', { chartId: config.id, type: config.type });
       } catch (error) {
-        this.logger.warn('Failed to render chart', { chartId: config.id, error });
+        this.logger.warn('Failed to render chart', { 
+          chartId: config.id, 
+          type: config.type,
+          error: error.message 
+        });
       }
     }
   }
 
   /**
-   * Render SDG alignment radar chart
+   * Render a chart using its component class
    */
-  async renderSDGChart(canvasId) {
-    const canvas = DOMUtils.getElement(`#${canvasId}`);
-    if (!canvas) {
-      this.logger.warn('SDG chart canvas not found', { canvasId });
+  async renderChart(config) {
+    const element = DOMUtils.getElement(`#${config.id}`);
+    
+    if (!element) {
+      this.logger.warn('Chart element not found', { chartId: config.id });
       return;
     }
     
-    const data = this.dataCoordinator.getChartData('sdg');
-    if (!data) return;
-    
-    const ctx = canvas.getContext('2d');
-    const chart = new Chart(ctx, {
-      type: 'radar',
-      data: data,
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            padding: 12,
-            titleFont: { size: 14, weight: 'bold' },
-            bodyFont: { size: 13 },
-            callbacks: {
-              label: function(context) {
-                return `Documents: ${context.parsed.r}`;
-              }
-            }
-          }
-        },
-        scales: {
-          r: {
-            beginAtZero: true,
-            grid: {
-              color: 'rgba(28, 115, 119, 0.1)',
-              circular: true
-            },
-            angleLines: {
-              color: 'rgba(28, 115, 119, 0.15)'
-            },
-            pointLabels: {
-              font: { 
-                size: 11,
-                weight: '500'
-              },
-              color: '#374151',
-              padding: 8
-            },
-            ticks: {
-              display: true,
-              stepSize: 20,
-              font: { size: 10 },
-              backdropColor: 'rgba(255, 255, 255, 0.8)',
-              backdropPadding: 2
-            },
-            suggestedMin: 0,
-            suggestedMax: 100
-          }
-        },
-        animation: {
-          duration: this.options.animationDuration
-        },
-        elements: {
-          line: {
-            borderWidth: 2,
-            borderColor: 'rgba(28, 115, 119, 0.8)'
-          },
-          point: {
-            radius: 4,
-            backgroundColor: 'rgba(28, 115, 119, 1)',
-            borderColor: '#fff',
-            borderWidth: 2,
-            hoverRadius: 6,
-            hoverBorderWidth: 3
-          }
-        }
-      }
+    // Create chart component instance
+    const chartComponent = new config.component(element, {
+      ...config.data,
+      ...this.options
     });
-    
-    this.chartInstances.set(canvasId, chart);
-    eventBus.emit('chart:rendered', { chartId: canvasId, type: 'sdg' });
+
+    // Initialize the chart
+    await chartComponent.init();
+
+    // Store the component
+    this.chartComponents.set(config.id, chartComponent);
   }
 
   /**
-   * Render legal bindingness donut chart
+   * Update a specific chart
    */
-  async renderBindingChart(canvasId) {
-    const canvas = DOMUtils.getElement(`#${canvasId}`);
-    if (!canvas) {
-      this.logger.warn('Binding chart canvas not found', { canvasId });
-      return;
-    }
+  async updateChart(chartId, newData) {
+    const chartComponent = this.chartComponents.get(chartId);
     
-    const data = this.dataCoordinator.getChartData('binding');
-    if (!data) return;
-    
-    const ctx = canvas.getContext('2d');
-    const chart = new Chart(ctx, {
-      type: 'doughnut',
-      data: data,
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: {
-              padding: 15,
-              font: { size: 12 }
-            }
-          },
-          tooltip: {
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            padding: 12,
-            titleFont: { size: 14, weight: 'bold' },
-            bodyFont: { size: 13 },
-            callbacks: {
-              label: function(context) {
-                const label = context.label || '';
-                const value = context.parsed || 0;
-                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                const percentage = ((value / total) * 100).toFixed(1);
-                return `${label}: ${value} (${percentage}%)`;
-              }
-            }
-          }
-        },
-        cutout: '65%',
-        animation: {
-          duration: this.options.animationDuration
-        }
-      }
-    });
-    
-    this.chartInstances.set(canvasId, chart);
-    eventBus.emit('chart:rendered', { chartId: canvasId, type: 'binding' });
-  }
-
-  /**
-   * Render top countries horizontal bar chart
-   */
-  async renderCountriesChart(canvasId) {
-    const canvas = DOMUtils.getElement(`#${canvasId}`);
-    if (!canvas) {
-      this.logger.warn('Countries chart canvas not found', { canvasId });
-      return;
-    }
-    
-    const data = this.dataCoordinator.getChartData('countries');
-    if (!data) return;
-    
-    const ctx = canvas.getContext('2d');
-    const chart = new Chart(ctx, {
-      type: 'bar',
-      data: data,
-      options: {
-        indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            padding: 12,
-            titleFont: { size: 14, weight: 'bold' },
-            bodyFont: { size: 13 }
-          }
-        },
-        scales: {
-          x: {
-            beginAtZero: true,
-            grid: {
-              color: 'rgba(0, 0, 0, 0.05)'
-            }
-          },
-          y: {
-            grid: {
-              display: false
-            }
-          }
-        },
-        animation: {
-          duration: this.options.animationDuration
-        }
-      }
-    });
-    
-    this.chartInstances.set(canvasId, chart);
-    eventBus.emit('chart:rendered', { chartId: canvasId, type: 'countries' });
-  }
-
-  /**
-   * Render top themes horizontal bar chart
-   */
-  async renderThemesChart(canvasId) {
-    const canvas = DOMUtils.getElement(`#${canvasId}`);
-    if (!canvas) {
-      this.logger.warn('Themes chart canvas not found', { canvasId });
-      return;
-    }
-    
-    const data = this.dataCoordinator.getChartData('themes');
-    if (!data) return;
-    
-    const ctx = canvas.getContext('2d');
-    const chart = new Chart(ctx, {
-      type: 'bar',
-      data: data,
-      options: {
-        indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            padding: 12,
-            titleFont: { size: 14, weight: 'bold' },
-            bodyFont: { size: 13 }
-          }
-        },
-        scales: {
-          x: {
-            beginAtZero: true,
-            grid: {
-              color: 'rgba(0, 0, 0, 0.05)'
-            }
-          },
-          y: {
-            grid: {
-              display: false
-            },
-            ticks: {
-              font: { size: 11 }
-            }
-          }
-        },
-        animation: {
-          duration: this.options.animationDuration
-        }
-      }
-    });
-    
-    this.chartInstances.set(canvasId, chart);
-    eventBus.emit('chart:rendered', { chartId: canvasId, type: 'themes' });
-  }
-
-  /**
-   * Render actors distribution bar chart
-   */
-  async renderActorsChart(canvasId) {
-    const canvas = DOMUtils.getElement(`#${canvasId}`);
-    if (!canvas) {
-      this.logger.warn('Actors chart canvas not found', { canvasId });
-      return;
-    }
-    
-    const data = this.dataCoordinator.getChartData('actors');
-    if (!data) return;
-    
-    const ctx = canvas.getContext('2d');
-    const chart = new Chart(ctx, {
-      type: 'bar',
-      data: data,
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            padding: 12,
-            titleFont: { size: 14, weight: 'bold' },
-            bodyFont: { size: 13 }
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            grid: {
-              color: 'rgba(0, 0, 0, 0.05)'
-            }
-          },
-          x: {
-            grid: {
-              display: false
-            },
-            ticks: {
-              font: { size: 11 }
-            }
-          }
-        },
-        animation: {
-          duration: this.options.animationDuration
-        }
-      }
-    });
-    
-    this.chartInstances.set(canvasId, chart);
-    eventBus.emit('chart:rendered', { chartId: canvasId, type: 'actors' });
-  }
-
-  /**
-   * Render beneficiaries distribution bar chart
-   */
-  async renderBeneficiariesChart(canvasId) {
-    const canvas = DOMUtils.getElement(`#${canvasId}`);
-    if (!canvas) {
-      this.logger.warn('Beneficiaries chart canvas not found', { canvasId });
-      return;
-    }
-    
-    const data = this.dataCoordinator.getChartData('beneficiaries');
-    if (!data) return;
-    
-    const ctx = canvas.getContext('2d');
-    const chart = new Chart(ctx, {
-      type: 'bar',
-      data: data,
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            padding: 12,
-            titleFont: { size: 14, weight: 'bold' },
-            bodyFont: { size: 13 }
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            grid: {
-              color: 'rgba(0, 0, 0, 0.05)'
-            }
-          },
-          x: {
-            grid: {
-              display: false
-            },
-            ticks: {
-              font: { size: 11 },
-              maxRotation: 45,
-              minRotation: 45
-            }
-          }
-        },
-        animation: {
-          duration: this.options.animationDuration
-        }
-      }
-    });
-    
-    this.chartInstances.set(canvasId, chart);
-    eventBus.emit('chart:rendered', { chartId: canvasId, type: 'beneficiaries' });
-  }
-
-  /**
-   * Update a specific chart with new data
-   */
-  updateChart(chartId, newData) {
-    const chart = this.chartInstances.get(chartId);
-    if (!chart) {
+    if (!chartComponent) {
       this.logger.warn('Chart not found for update', { chartId });
       return;
     }
     
-    chart.data = newData;
-    chart.update();
-    
-    this.logger.debug('Chart updated', { chartId });
-    eventBus.emit('chart:updated', { chartId });
-  }
-
-  /**
-   * Destroy a specific chart
-   */
-  destroyChart(chartId) {
-    const chart = this.chartInstances.get(chartId);
-    if (chart) {
-      chart.destroy();
-      this.chartInstances.delete(chartId);
-      this.logger.debug('Chart destroyed', { chartId });
+    try {
+      await chartComponent.updateData(newData);
+      this.logger.debug('Chart updated', { chartId });
+    } catch (error) {
+      this.logger.error('Failed to update chart', { chartId, error });
     }
   }
 
   /**
-   * Clean up all resources
+   * Destroy all charts
    */
   destroy() {
-    this.logger.debug('Destroying AnalysisChartsCoordinator');
-    
-    // Destroy all chart instances
-    this.chartInstances.forEach((chart, chartId) => {
-      chart.destroy();
-      this.logger.debug('Chart instance destroyed', { chartId });
+    this.chartComponents.forEach((component, id) => {
+      try {
+        component.destroy();
+        this.logger.debug('Chart destroyed', { chartId: id });
+      } catch (error) {
+        this.logger.warn('Error destroying chart', { chartId: id, error });
+      }
     });
     
-    this.chartInstances.clear();
-    eventBus.offContext(this);
-    
-    this.logger.debug('AnalysisChartsCoordinator destroyed');
+    this.chartComponents.clear();
+    this.logger.info('All charts destroyed');
+  }
+
+  /**
+   * Get a specific chart component
+   */
+  getChart(chartId) {
+    return this.chartComponents.get(chartId);
+  }
+
+  /**
+   * Get all chart components
+   */
+  getAllCharts() {
+    return Array.from(this.chartComponents.values());
+  }
+
+  /**
+   * Check if a chart exists
+   */
+  hasChart(chartId) {
+    return this.chartComponents.has(chartId);
   }
 }
-
-export default AnalysisChartsCoordinator;
-

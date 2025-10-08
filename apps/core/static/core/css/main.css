@@ -45,6 +45,13 @@
 @import 'components/modal.css';
 @import 'components/footer.css';
 
+/* Chart Components */
+@import 'components/charts/network-graph.css';
+@import 'components/charts/sdg-radar.css';
+@import 'components/charts/binding-donut.css';
+@import 'components/charts/countries-treemap.css';
+@import 'components/charts/bar-chart.css';
+
 /* ========================================
    7. Utilities - Helper classes
    ======================================== */
