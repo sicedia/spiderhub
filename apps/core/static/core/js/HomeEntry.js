@@ -1,391 +1,62 @@
 /**
- * Home Page Entry Point - Simplified Version
- * Matches previous design functionality while maintaining clean architecture
+ * Home Page Entry Point (V2 - Using HomePageManager with Coordinators)
+ * Initializes the home page with modular architecture
  */
 
-import { DOMUtils } from './core/utils/dom.js';
-import { AnimationUtils } from './core/utils/animations.js';
-import { CONFIG } from './core/constants/config.js';
+import { logger } from './core/logger/Logger.js';
+import HomePageManager from './pages/HomePageManager.js';
 
-// Initialize home page when DOM is ready
-document.addEventListener('DOMContentLoaded', async () => {
+// Store manager instance globally for debugging
+window.homePageManager = null;
+
+/**
+ * Initialize home page
+ */
+async function initializeHomePage() {
   try {
-    console.log('Initializing Home Page...');
+    logger.info('Initializing home page with ES6 modular architecture');
     
-    // Initialize the home page components
-    initializeHomePage();
+    const homeElement = document.querySelector('#home-page') || document.body;
     
-    console.log('✅ Home page initialized successfully');
+    // Create and initialize page manager
+    window.homePageManager = new HomePageManager(homeElement, {
+      enableHeroAnimation: true,
+      enableStatsAnimation: true,
+      enableFeaturesAnimation: true,
+      enableNodeWebAnimation: true,
+      enableCarousel: true,
+      autoPlayCarousel: true,
+      carouselInterval: 5000
+    });
     
-    // Emit a custom event to notify other scripts
-    document.dispatchEvent(new CustomEvent('homePageReady'));
+    logger.info('Home page initialized successfully');
+    
+    // Emit custom event for other scripts
+    document.dispatchEvent(new CustomEvent('homePageReady', {
+      detail: { manager: window.homePageManager }
+    }));
     
   } catch (error) {
-    console.error('❌ Failed to initialize home page:', error);
+    logger.error('Failed to initialize home page', error);
     
-    // Fallback to basic initialization
-    initializeBasicHomePage();
-  }
-});
-
-/**
- * Main home page initialization function
- */
-function initializeHomePage() {
-  // Initialize all home page components
-  const components = {
-    statNumbers: document.querySelectorAll('.home-stats__number, .stat-number'),
-    nodeWeb: document.getElementById('node-web'),
-    carouselTrack: document.querySelector('.carousel__track')
-  };
-
-  // Initialize stat counters if present
-  if (components.statNumbers.length > 0) {
-    initializeStatCounters(components.statNumbers);
-    console.log(`✅ Initialized ${components.statNumbers.length} stat counters`);
-  }
-  
-  // Initialize node web animation if present
-  if (components.nodeWeb) {
-    createNodeWebAnimation(components.nodeWeb);
-    console.log('✅ Node web animation initialized');
-  }
-  
-  // Initialize carousel if present
-  if (components.carouselTrack) {
-    initializeCarousel();
-    console.log('✅ Carousel initialized');
+    // Show user-friendly error message
+    const errorContainer = document.createElement('div');
+    errorContainer.className = 'alert alert-danger';
+    errorContainer.innerHTML = `
+      <h3>Error Loading Page</h3>
+      <p>There was an error initializing the home page. Please refresh the page.</p>
+    `;
+    document.body.insertBefore(errorContainer, document.body.firstChild);
   }
 }
 
-/**
- * Basic fallback initialization if the modular system fails
- */
-function initializeBasicHomePage() {
-  console.log('Initializing basic home page functionality...');
-  
-  try {
-    // Initialize all home page components
-    const components = {
-      statNumbers: document.querySelectorAll('.stat-number, .card-number[data-target]'),
-      nodeWeb: document.getElementById('node-web'),
-      carouselTrack: document.querySelector('.carousel-track')
-    };
-
-    // Initialize stat counters if present
-    if (components.statNumbers.length > 0) {
-      initializeStatCounters(components.statNumbers);
-      console.log(`✅ Initialized ${components.statNumbers.length} stat counters`);
-    }
-    
-    // Initialize node web animation if present
-    if (components.nodeWeb) {
-      createNodeWebAnimation(components.nodeWeb);
-      console.log('✅ Node web animation initialized');
-    }
-    
-    // Initialize carousel if present
-    if (components.carouselTrack) {
-      initializeCarousel();
-      console.log('✅ Carousel initialized');
-    }
-
-    console.log('✅ Basic home page functionality initialized');
-    
-  } catch (error) {
-    console.error('❌ Error in basic home page initialization:', error);
-  }
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeHomePage);
+} else {
+  initializeHomePage();
 }
 
-/**
- * Initialize stat counters with intersection observer
- */
-function initializeStatCounters(statNumbers) {
-  const observer = DOMUtils.createIntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  
-  statNumbers.forEach(stat => observer.observe(stat));
-}
+// Export for testing
+export { initializeHomePage };
 
-/**
- * Animate counter from 0 to target value
- */
-function animateCounter(element) {
-  const targetValue = parseInt(element.getAttribute('data-target')) || 0;
-  const suffix = element.getAttribute('data-suffix') || '';
-  const duration = 2000; // 2 seconds
-  
-  let currentValue = 0;
-  const increment = targetValue / (duration / 16); // 60fps
-  
-  const updateCounter = () => {
-    currentValue = Math.min(currentValue + increment, targetValue);
-    element.textContent = Math.floor(currentValue) + suffix;
-    
-    if (currentValue < targetValue) {
-      requestAnimationFrame(updateCounter);
-    }
-  };
-  
-  updateCounter();
-}
-
-// Optimized node web animation with better performance
-function createNodeWebAnimation(container) {
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  
-  // Canvas setup with performance optimization
-  const setupCanvas = () => {
-    canvas.width = container.offsetWidth;
-    canvas.height = container.offsetHeight;
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-  };
-  
-  setupCanvas();
-  container.appendChild(canvas);
-  
-  // Create optimized node system
-  const nodeCount = Math.min(30, Math.floor((canvas.width * canvas.height) / 8000));
-  const nodes = Array.from({ length: nodeCount }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    radius: Math.random() * 2 + 1.5,
-    vx: (Math.random() * 0.4 - 0.2) * 0.5,
-    vy: (Math.random() * 0.4 - 0.2) * 0.5
-  }));
-  
-  // Generate connections efficiently
-  const connections = [];
-  const maxDistance = 120;
-  
-  for (let i = 0; i < nodeCount; i++) {
-    for (let j = i + 1; j < nodeCount; j++) {
-      const dx = nodes[i].x - nodes[j].x;
-      const dy = nodes[i].y - nodes[j].y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      
-      if (distance < maxDistance && Math.random() > 0.85) {
-        connections.push({ from: i, to: j });
-      }
-    }
-  }
-  
-  // Animation loop with performance optimizations
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw connections in batch
-    ctx.strokeStyle = 'rgba(28, 115, 119, 0.15)';
-    ctx.lineWidth = 0.8;
-    ctx.beginPath();
-    
-    connections.forEach(({ from, to }) => {
-      const fromNode = nodes[from];
-      const toNode = nodes[to];
-      ctx.moveTo(fromNode.x, fromNode.y);
-      ctx.lineTo(toNode.x, toNode.y);
-    });
-    
-    ctx.stroke();
-    
-    // Update and draw nodes
-    ctx.fillStyle = 'rgba(28, 115, 119, 0.6)';
-    
-    nodes.forEach(node => {
-      // Update position with boundary checking
-      node.x += node.vx;
-      node.y += node.vy;
-      
-      const padding = 20;
-      if (node.x < padding || node.x > canvas.width - padding) {
-        node.vx *= -1;
-        node.x = Math.max(padding, Math.min(canvas.width - padding, node.x));
-      }
-      if (node.y < padding || node.y > canvas.height - padding) {
-        node.vy *= -1;
-        node.y = Math.max(padding, Math.min(canvas.height - padding, node.y));
-      }
-      
-      // Draw node
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-      ctx.fill();
-    });
-    
-    requestAnimationFrame(animate);
-  }
-  
-  // Debounced resize handler using new utilities
-  const handleResize = DOMUtils.debounce(() => {
-    setupCanvas();
-    nodes.forEach(node => {
-      node.x = Math.min(node.x, canvas.width - 20);
-      node.y = Math.min(node.y, canvas.height - 20);
-    });
-  }, CONFIG.ANIMATION.DEBOUNCE_DELAY);
-  
-  window.addEventListener('resize', handleResize);
-  animate();
-}
-
-// Modern carousel implementation using new utilities
-function initializeCarousel() {
-  const track = document.querySelector('.carousel__track');
-  if (!track) return;
-  
-  const config = {
-    cards: track.querySelectorAll('.carousel__item'),
-    prevButton: document.querySelector('.carousel__nav--prev'),
-    nextButton: document.querySelector('.carousel__nav--next'),
-    indicatorsContainer: document.querySelector('.carousel__indicators'),
-    currentIndex: 0
-  };
-  
-  if (!config.cards || config.cards.length === 0) return;
-  
-  let { cardWidth, cardsPerView, maxIndex } = calculateCarouselDimensions(config.cards);
-  
-  // Create indicators
-  createCarouselIndicators(config, maxIndex);
-  
-  // Carousel control functions
-  const carouselControls = {
-    updateState() {
-      cardsPerView = getCardsPerView();
-      maxIndex = Math.max(0, config.cards.length - cardsPerView);
-      config.currentIndex = Math.min(config.currentIndex, maxIndex);
-      
-      cardWidth = config.cards[0] ? config.cards[0].offsetWidth + 20 : 0;
-      track.style.transform = `translateX(-${config.currentIndex * cardWidth}px)`;
-      
-      if (config.prevButton) config.prevButton.disabled = config.currentIndex === 0;
-      if (config.nextButton) config.nextButton.disabled = config.currentIndex >= maxIndex;
-      
-      updateIndicators(config);
-    },
-    
-    goToSlide(index) {
-      config.currentIndex = Math.min(Math.max(0, index), maxIndex);
-      this.updateState();
-    },
-    
-    goToPrev() {
-      this.goToSlide(config.currentIndex - 1);
-    },
-    
-    goToNext() {
-      this.goToSlide(config.currentIndex + 1);
-    }
-  };
-  
-  // Event listeners
-  if (config.prevButton) {
-    config.prevButton.addEventListener('click', () => carouselControls.goToPrev());
-  }
-  if (config.nextButton) {
-    config.nextButton.addEventListener('click', () => carouselControls.goToNext());
-  }
-  
-  // Touch events for mobile
-  addTouchSupport(track, carouselControls);
-  
-  // Resize handler
-  window.addEventListener('resize', DOMUtils.debounce(() => {
-    if (config.cards[0]) {
-      cardWidth = config.cards[0].offsetWidth + 20;
-      carouselControls.updateState();
-    }
-  }, 250));
-  
-  // Initialize
-  carouselControls.updateState();
-}
-
-// Helper functions for carousel
-function calculateCarouselDimensions(cards) {
-  if (!cards || cards.length === 0) {
-    return { cardWidth: 0, cardsPerView: 1, maxIndex: 0 };
-  }
-  const cardWidth = cards[0].offsetWidth;
-  const cardsPerView = getCardsPerView();
-  const maxIndex = Math.max(0, cards.length - cardsPerView);
-  return { cardWidth, cardsPerView, maxIndex };
-}
-
-function getCardsPerView() {
-  const width = window.innerWidth;
-  if (width < CONFIG.BREAKPOINTS.MOBILE) return CONFIG.CAROUSEL.CARDS_PER_VIEW.mobile;
-  if (width < CONFIG.BREAKPOINTS.TABLET) return CONFIG.CAROUSEL.CARDS_PER_VIEW.tablet;
-  return CONFIG.CAROUSEL.CARDS_PER_VIEW.desktop;
-}
-
-function createCarouselIndicators(config, maxIndex) {
-  if (!config.indicatorsContainer) return;
-  
-  config.cards.forEach((_, index) => {
-    if (index <= maxIndex) {
-      const indicator = document.createElement('button');
-      indicator.classList.add('carousel__indicator');
-      indicator.setAttribute('aria-label', `Slide ${index + 1}`);
-      
-      indicator.addEventListener('click', () => {
-        config.currentIndex = index;
-        updateIndicators(config);
-      });
-      
-      config.indicatorsContainer.appendChild(indicator);
-    }
-  });
-}
-
-function updateIndicators(config) {
-  if (!config.indicatorsContainer) return;
-  
-  const indicators = config.indicatorsContainer.querySelectorAll('.carousel__indicator');
-  indicators.forEach((indicator, index) => {
-    indicator.classList.toggle('carousel__indicator--active', index === config.currentIndex);
-  });
-}
-
-function addTouchSupport(track, controls) {
-  let touchStartX = 0;
-  let touchEndX = 0;
-  
-  track.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-  
-  track.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  }, { passive: true });
-  
-  function handleSwipe() {
-    const SWIPE_THRESHOLD = 50;
-    const swipeDistance = touchStartX - touchEndX;
-    
-    if (Math.abs(swipeDistance) > SWIPE_THRESHOLD) {
-      if (swipeDistance > 0) {
-        controls.goToNext();
-      } else {
-        controls.goToPrev();
-      }
-    }
-  }
-}
-
-// Legacy compatibility exports
-export { 
-  initializeBasicHomePage,
-  initializeStatCounters,
-  createNodeWebAnimation,
-  initializeCarousel
-};

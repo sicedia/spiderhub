@@ -4,7 +4,8 @@
  * ES6 Module Export
  */
 
-import { FILTER_TYPES, EVENT_TYPES } from '../core/constants/enums.js';
+import { FILTER_TYPES } from '../core/constants/enums.js';
+import { EVENTS } from '../core/constants/config.js';
 import { EventUtils } from '../core/utils/events.js';
 
 export class FilterService {
@@ -449,7 +450,7 @@ export class FilterService {
   }
 
   emitFilterChange() {
-    this.eventBus.emit(EVENT_TYPES.FILTER_CHANGED, {
+    this.eventBus.emit(EVENTS.FILTER_CHANGED, {
       activeFilters: this.getActiveFilters(),
       filterCount: this.getFilterCount(),
       filterSummary: this.getFilterSummary()

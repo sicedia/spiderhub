@@ -65,52 +65,21 @@ export const COMPONENT_STATES = {
 
 /**
  * Event types for component communication
+ * @deprecated All components migrated to EVENTS in config.js (2025-10-08)
+ * This export is kept for reference only
+ * 
+ * Migration completed:
+ * - Accordion.js ✅
+ * - MobileNav.js ✅
+ * - Pagination.js ✅
+ * - FilterChip.js ✅
+ * - DateRangeFilter.js ✅
+ * - FilterService.js ✅
+ * - SearchService.js ✅
  */
 export const EVENT_TYPES = {
-  // Filter events
-  FILTER_CHANGED: 'filterChanged',
-  FILTER_APPLIED: 'filterApplied',
-  FILTER_CLEARED: 'filterCleared',
-  
-  // Search events
-  SEARCH_STARTED: 'searchStarted',
-  SEARCH_COMPLETED: 'searchCompleted',
-  SEARCH_CLEARED: 'searchCleared',
-  
-  // View events
-  VIEW_CHANGED: 'viewChanged',
-  VIEW_REFRESHED: 'viewRefreshed',
-  
-  // Data events
-  DATA_LOADED: 'dataLoaded',
-  DATA_UPDATED: 'dataUpdated',
-  DATA_ERROR: 'dataError',
-  
-  // Page events
-  PAGE_READY: 'pageReady',
-  PAGE_ERROR: 'pageError',
-  PAGE_REFRESHED: 'pageRefreshed',
-  
-  // Component events
-  COMPONENT_INITIALIZED: 'componentInitialized',
-  COMPONENT_DESTROYED: 'componentDestroyed',
-  COMPONENT_UPDATED: 'componentUpdated',
-  
-  // Chart events
-  CHART_RENDERED: 'chartRendered',
-  CHART_UPDATED: 'chartUpdated',
-  CHART_ERROR: 'chartError',
-  
-  // Modal events
-  MODAL_OPENED: 'modalOpened',
-  MODAL_CLOSED: 'modalClosed',
-  
-  // Navigation events
-  NAVIGATION_CHANGED: 'navigationChanged',
-  
-  // Pagination events
-  PAGE_CHANGED: 'pageChanged',
-  PAGE_SIZE_CHANGED: 'pageSizeChanged'
+  // All events have been migrated to EVENTS in config.js
+  // This object is deprecated and should not be used in new code
 };
 
 /**
@@ -284,7 +253,7 @@ export default {
   VIEW_TYPES,
   CHART_TYPES,
   COMPONENT_STATES,
-  EVENT_TYPES,
+  // EVENT_TYPES removed - use EVENTS from config.js instead
   HTTP_STATUS,
   DATA_TYPES,
   SORT_DIRECTIONS,

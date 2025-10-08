@@ -7,7 +7,7 @@
 import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { DOMUtils } from '../../core/utils/dom.js';
 import { AnimationUtils } from '../../core/utils/animations.js';
-import { EVENT_TYPES } from '../../core/constants/enums.js';
+import { EVENTS } from '../../core/constants/config.js';
 import { logger } from '../../core/logger/Logger.js';
 
 export class Accordion extends BaseComponent {
@@ -258,7 +258,7 @@ export class Accordion extends BaseComponent {
     this.animateOpen(item);
     
     // Emit event
-    this.emit(EVENT_TYPES.ACCORDION_ITEM_OPENED, {
+    this.emit(EVENTS.ACCORDION_OPENED, {
       itemId,
       item: item.element
     });
@@ -290,7 +290,7 @@ export class Accordion extends BaseComponent {
     this.animateClose(item);
     
     // Emit event
-    this.emit(EVENT_TYPES.ACCORDION_ITEM_CLOSED, {
+    this.emit(EVENTS.ACCORDION_CLOSED, {
       itemId,
       item: item.element
     });

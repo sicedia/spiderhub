@@ -4,8 +4,7 @@
  * ES6 Module Export
  */
 
-import { CONFIG } from '../core/constants/config.js';
-import { EVENT_TYPES } from '../core/constants/enums.js';
+import { CONFIG, EVENTS } from '../core/constants/config.js';
 import { EventUtils } from '../core/utils/events.js';
 import { ValidationUtils } from '../core/utils/validation.js';
 
@@ -84,7 +83,7 @@ export class SearchService {
       this.addToHistory(cleanQuery, searchResult);
       
       // Emit search event
-      this.eventBus.emit(EVENT_TYPES.SEARCH_COMPLETED, {
+      this.eventBus.emit(EVENTS.SEARCH_SUCCESS, {
         query: cleanQuery,
         resultCount: processedResults.length,
         searchTime: searchResult.searchTime
@@ -94,7 +93,7 @@ export class SearchService {
       
     } catch (error) {
       console.error('Search failed:', error);
-      this.eventBus.emit(EVENT_TYPES.SEARCH_ERROR, {
+      this.eventBus.emit(EVENTS.SEARCH_ERROR, {
         query: cleanQuery,
         error: error.message
       });

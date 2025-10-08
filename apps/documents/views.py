@@ -3,10 +3,14 @@ from django.views.decorators.cache import cache_page
 from django.db.models import Q, Prefetch
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 from .models import (
     Document, Country, City, Actor, EUPolicy, Theme, BeneficiaryGroup,
     KPI, Commitment, SDG, PracticalApplication
 )
+from .serializers import RelatedDocumentSerializer
 from .pdf_utils import export_document_to_pdf
 
 # Create your views here.
@@ -104,4 +108,38 @@ def export_document_pdf(request, document_id):
         # Log the error in production
         # logger.error(f"Error exporting document {document_id} to PDF: {str(e)}")
         raise Http404("Error generating PDF")
+
+
+@api_view(['GET'])
+@cache_page(60 * 15)  # Cache for 15 minutes
+def get_related_documents(request, document_id):
+    """
+    API endpoint to get related documents for a given document
+    GET /api/documents/{id}/related
+    
+    Returns up to 3 documents that share taxonomies with the current document
+    """
+    try:
+        # Get the document
+        document = get_object_or_404(Document, id=document_id)
+        
+        # Get related documents using the model method
+        related_docs = document.get_related_documents(top_n=3)
+        
+        # Optimize query with select_related for event_country
+        related_docs = related_docs.select_related('event_country')
+        
+        # Serialize the data
+        serializer = RelatedDocumentSerializer(related_docs, many=True)
+        
+        return Response({
+            'documents': serializer.data,
+            'count': len(serializer.data)
+        })
+        
+    except Exception as e:
+        return Response(
+            {'error': str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
 

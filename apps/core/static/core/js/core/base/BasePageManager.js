@@ -43,9 +43,11 @@ export class BasePageManager extends BaseComponent {
    */
   async init() {
     try {
-      this.logger.debug('BasePageManager init started', {
-        options: this.options
-      });
+      if (this.logger) {
+        this.logger.debug('BasePageManager init started', {
+          options: this.options
+        });
+      }
       
       this.showPageLoading();
       
@@ -115,9 +117,11 @@ export class BasePageManager extends BaseComponent {
    */
   registerComponent(name, component) {
     if (this.components.has(name)) {
-      this.logger.warn('Component already registered, replacing', {
-        componentName: name
-      });
+      if (this.logger) {
+        this.logger.warn('Component already registered, replacing', {
+          componentName: name
+        });
+      }
       const existingComponent = this.components.get(name);
       if (existingComponent && typeof existingComponent.destroy === 'function') {
         existingComponent.destroy();
@@ -156,9 +160,11 @@ export class BasePageManager extends BaseComponent {
    */
   registerService(name, service) {
     if (this.services.has(name)) {
-      this.logger.warn('Service already registered, replacing', {
-        serviceName: name
-      });
+      if (this.logger) {
+        this.logger.warn('Service already registered, replacing', {
+          serviceName: name
+        });
+      }
     }
     
     this.services.set(name, service);
@@ -219,9 +225,13 @@ export class BasePageManager extends BaseComponent {
    * Handle page-level errors
    */
   handlePageError(error) {
-    this.logger.error('Page error', error, {
-      pageName: this.constructor.name
-    });
+    if (this.logger) {
+      this.logger.error('Page error', error, {
+        pageName: this.constructor.name
+      });
+    } else {
+      console.error('Page error:', error);
+    }
     
     this.hidePageLoading();
     

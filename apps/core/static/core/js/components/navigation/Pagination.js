@@ -6,8 +6,7 @@
 
 import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { DOMUtils } from '../../core/utils/dom.js';
-import { CONFIG } from '../../core/constants/config.js';
-import { EVENT_TYPES } from '../../core/constants/enums.js';
+import { CONFIG, EVENTS } from '../../core/constants/config.js';
 
 export class Pagination extends BaseComponent {
   constructor(element, options = {}) {
@@ -381,7 +380,7 @@ export class Pagination extends BaseComponent {
     
     this.render();
     
-    this.emit(EVENT_TYPES.PAGE_CHANGED, {
+    this.emit(EVENTS.PAGE_CHANGED, {
       currentPage: this.currentPage,
       previousPage: oldPage,
       totalPages: this.totalPages,
@@ -424,7 +423,7 @@ export class Pagination extends BaseComponent {
     
     this.render();
     
-    this.emit(EVENT_TYPES.PAGE_SIZE_CHANGED, {
+    this.emit(EVENTS.PAGE_SIZE_CHANGED, {
       itemsPerPage: this.itemsPerPage,
       previousItemsPerPage: oldItemsPerPage,
       currentPage: this.currentPage,

@@ -119,9 +119,14 @@ export const EVENTS = {
   
   // Pagination Events
   PAGE_CHANGED: 'page:changed',
+  PAGE_SIZE_CHANGED: 'page:size:changed',
   
   // View Events
   VIEW_CHANGED: 'view:changed',
+  
+  // Filter Chip Events
+  FILTER_CHIP_CLICKED: 'filter:chip:clicked',
+  FILTER_CHIP_REMOVED: 'filter:chip:removed',
   
   // Data Events
   DATA_LOADED: 'data:loaded',
@@ -146,7 +151,36 @@ export const EVENTS = {
   NAVIGATION_CLOSED: 'navigation:closed',
   
   // Document Events  
+  DOCUMENT_LOADING_START: 'document:loading:start',
+  DOCUMENT_LOADED: 'document:loaded',
+  DOCUMENT_LOAD_ERROR: 'document:load:error',
+  DOCUMENT_CONTENT_READY: 'document:content:ready',
+  DOCUMENT_RELOAD_REQUESTED: 'document:reload:requested',
+  DOCUMENT_VIEWED: 'document:viewed',
+  DOCUMENT_SHARED: 'document:shared',
   DOCUMENT_LINK_COPIED: 'document:link:copied',
+  DOCUMENT_BOOKMARKED: 'document:bookmarked',
+  DOCUMENT_UNBOOKMARKED: 'document:unbookmarked',
+  DOCUMENT_PRINTED: 'document:printed',
+  DOCUMENT_TIME_TRACKED: 'document:time:tracked',
+  
+  // Navigation & Sections
+  NAVIGATION_READY: 'navigation:ready',
+  SECTION_NAVIGATED: 'section:navigated',
+  SECTION_VIEWED: 'section:viewed',
+  SCROLL_MILESTONE: 'scroll:milestone',
+  
+  // Related Documents
+  RELATED_DOCUMENTS_LOADED: 'related:documents:loaded',
+  
+  // UI Events
+  IMAGE_LOADED: 'image:loaded',
+  
+  // Home page events
+  HOME_DATA_LOADED: 'home:data:loaded',
+  HOME_SEARCH_SUBMITTED: 'home:search:submitted',
+  HOME_QUICK_ACTION: 'home:quick:action',
+  CAROUSEL_SLIDE_CHANGED: 'carousel:slide:changed',
   
   // Legacy Events (to be migrated)
   commitSearch: 'search:committed', // Legacy alias

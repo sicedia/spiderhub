@@ -7,7 +7,7 @@
 import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { DOMUtils } from '../../core/utils/dom.js';
 import { EventUtils } from '../../core/utils/events.js';
-import { EVENT_TYPES } from '../../core/constants/enums.js';
+import { EVENTS } from '../../core/constants/config.js';
 import { logger } from '../../core/logger/Logger.js';
 
 export class MobileNav extends BaseComponent {
@@ -396,7 +396,7 @@ export class MobileNav extends BaseComponent {
     }, this.options.animationDuration);
 
     // Emit event
-    this.emit(EVENT_TYPES.NAVIGATION_OPENED, {
+    this.emit(EVENTS.NAVIGATION_OPENED, {
       type: 'mobile'
     });
   }
@@ -448,7 +448,7 @@ export class MobileNav extends BaseComponent {
     }, this.options.animationDuration);
 
     // Emit event
-    this.emit(EVENT_TYPES.NAVIGATION_CLOSED, {
+    this.emit(EVENTS.NAVIGATION_CLOSED, {
       type: 'mobile'
     });
   }

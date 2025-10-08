@@ -7,7 +7,7 @@
 import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { DOMUtils } from '../../core/utils/dom.js';
 import { ValidationUtils } from '../../core/utils/validation.js';
-import { EVENT_TYPES } from '../../core/constants/enums.js';
+import { EVENTS } from '../../core/constants/config.js';
 
 export class DateRangeFilter extends BaseComponent {
   constructor(element, options = {}) {
@@ -545,7 +545,7 @@ export class DateRangeFilter extends BaseComponent {
    * Apply filter
    */
   applyFilter() {
-    this.emit(EVENT_TYPES.FILTER_APPLIED, {
+    this.emit(EVENTS.FILTERS_APPLIED, {
       startDate: this.startDate,
       endDate: this.endDate,
       isValid: this.isValid

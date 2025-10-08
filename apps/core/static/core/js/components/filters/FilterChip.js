@@ -6,7 +6,7 @@
 
 import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { DOMUtils } from '../../core/utils/dom.js';
-import { EVENT_TYPES } from '../../core/constants/enums.js';
+import { EVENTS } from '../../core/constants/config.js';
 
 export class FilterChip extends BaseComponent {
   constructor(element, options = {}) {
@@ -195,7 +195,7 @@ export class FilterChip extends BaseComponent {
       return;
     }
     
-    this.emit(EVENT_TYPES.FILTER_CHIP_CLICKED, {
+    this.emit(EVENTS.FILTER_CHIP_CLICKED, {
       filterId: this.filterId,
       filterType: this.filterType,
       filterValue: this.filterValue,
@@ -231,7 +231,7 @@ export class FilterChip extends BaseComponent {
    */
   remove() {
     // Emit remove event
-    this.emit(EVENT_TYPES.FILTER_CHIP_REMOVED, {
+    this.emit(EVENTS.FILTER_CHIP_REMOVED, {
       filterId: this.filterId,
       filterType: this.filterType,
       filterValue: this.filterValue,
