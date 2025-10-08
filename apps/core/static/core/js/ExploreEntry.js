@@ -3,6 +3,7 @@
  * Uses @js/ alias for clean imports and modular architecture
  */
 
+// V3: Refactored ExplorePageManager with Coordinators
 import { ExplorePageManager } from './pages/ExplorePageManager.js';
 import { DOMUtils } from './core/utils/dom.js';
 

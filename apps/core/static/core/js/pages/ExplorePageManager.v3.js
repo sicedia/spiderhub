@@ -144,7 +144,7 @@ export class ExplorePageManager extends BaseComponent {
     this.elements = {
       // Search elements
       searchForm: DOMUtils.getElement('#search-form'),
-      searchBoxMain: DOMUtils.getElement('#searchbox'), // Fixed: was #search-box-main
+      searchBoxMain: DOMUtils.getElement('#search-box-main'),
       
       // Filter elements
       activeFiltersContainer: DOMUtils.getElement('#active-filters'),
@@ -240,79 +240,30 @@ export class ExplorePageManager extends BaseComponent {
 
     // Initialize Suggestions Box
     const suggestionsList = DOMUtils.getElement('#suggestions-list');
-    if (this.logger) {
-      this.logger.debug('Attempting to initialize SuggestionsBox', {
-        hasSuggestionsList: !!suggestionsList,
-        hasSearchBoxMain: !!this.elements.searchBoxMain
-      });
-    }
-    
     if (suggestionsList && this.elements.searchBoxMain) {
-      try {
-        this.components.suggestionsBox = new SuggestionsBox(suggestionsList, {
-          searchInputElement: this.elements.searchBoxMain
-        });
-        if (this.logger) {
-          this.logger.info('✅ SuggestionsBox initialized');
-        }
-      } catch (error) {
-        if (this.logger) {
-          this.logger.error('❌ Error creating SuggestionsBox', error);
-        }
-      }
-    } else {
-      if (this.logger) {
-        this.logger.warn('❌ SuggestionsBox NOT initialized - missing elements');
-      }
+      this.components.suggestionsBox = new SuggestionsBox(suggestionsList, {
+        searchInputElement: this.elements.searchBoxMain
+      });
     }
 
     // Initialize Main Search Box
-    if (this.logger) {
-      this.logger.debug('Attempting to initialize MainSearch', {
-        hasSearchBoxMain: !!this.elements.searchBoxMain,
-        hasFilterManager: !!this.components.filterManager
-      });
-    }
-    
     if (this.elements.searchBoxMain) {
-      try {
-        this.components.mainSearch = new SearchBox(this.elements.searchBoxMain, {
-          minLength: 1,
-          placeholder: 'Search documents...',
-          autoSearch: false,
-          clearOnSubmit: true,
-          filterManager: this.components.filterManager
-        });
-        if (this.logger) {
-          this.logger.info('✅ MainSearch initialized');
-        }
-      } catch (error) {
-        if (this.logger) {
-          this.logger.error('❌ Error creating MainSearch', error);
-        }
-      }
-    } else {
-      if (this.logger) {
-        this.logger.warn('❌ MainSearch NOT initialized - no searchBoxMain');
-      }
+      this.components.mainSearch = new SearchBox(this.elements.searchBoxMain, {
+        minLength: 1,
+        placeholder: 'Search documents...',
+        autoSearch: false,
+        clearOnSubmit: true,
+        filterManager: this.components.filterManager
+      });
     }
 
     // Initialize View Toggle
     if (this.elements.viewToggleContainer) {
-      try {
-        this.components.viewToggle = new ViewToggle(this.elements.viewToggleContainer, {
-          defaultView: VIEW_TYPES.LIST,
-          availableViews: [VIEW_TYPES.LIST, VIEW_TYPES.MAP],
-          updateURL: true
-        });
-        if (this.logger) {
-          this.logger.info('✅ ViewToggle initialized');
-        }
-      } catch (error) {
-        if (this.logger) {
-          this.logger.error('❌ Error creating ViewToggle', error);
-        }
-      }
+      this.components.viewToggle = new ViewToggle(this.elements.viewToggleContainer, {
+        defaultView: VIEW_TYPES.LIST,
+        availableViews: [VIEW_TYPES.LIST, VIEW_TYPES.MAP],
+        updateURL: true
+      });
     }
     
     if (this.logger) {
