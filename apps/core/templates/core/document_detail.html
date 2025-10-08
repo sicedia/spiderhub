@@ -58,7 +58,7 @@
         
         {% if document.extra.characteristics %}
           <section class="document-section characteristics">
-            <h2>Characteristics</h2>
+            <h2 class="document-section__title">Characteristics</h2>
             <ul class="characteristics-list">
               {% for characteristic in document.extra.characteristics %}
                 <li>{{ characteristic }}</li>
@@ -70,7 +70,7 @@
 
         {% if document.themes.exists %}
           <section class="document-section tags-section">
-            <h2>Themes</h2>
+            <h2 class="document-section__title">Themes</h2>
             <div class="themes-container">
               {% regroup document.themes.all by category as theme_groups %}
               {% for group in theme_groups %}
@@ -91,7 +91,7 @@
 
         {% if document.actors.exists %}
           <section class="document-section actors-section">
-            <h2>Actors</h2>
+            <h2 class="document-section__title">Actors</h2>
             <div class="actors-container">
               {% regroup document.actors.all|dictsort:"category" by category as actor_groups %}
 
@@ -112,7 +112,7 @@
 
         {% if document.practical_applications.exists %}
           <section class="document-section applications">
-            <h2>Practical Applications</h2>
+            <h2 class="document-section__title">Practical Applications</h2>
             <ul class="document-list">
               {% for app in document.practical_applications.all %}
                 <li>{{ app.description }}</li>
@@ -125,7 +125,7 @@
 
         {% if document.commitments.exists %}
           <section class="document-section commitments">
-            <h2>Resulting Commitments</h2>
+            <h2 class="document-section__title">Resulting Commitments</h2>
             <ul class="document-list">
               {% for cm in document.commitments.all %}
                 <li>{{ cm.text }}</li>
@@ -134,13 +134,13 @@
           </section>
         {% else %}
           <section class="document-section commitments">
-            <h2>Resulting Commitments</h2>
+            <h2 class="document-section__title">Resulting Commitments</h2>
             <p class="no-commitments">No specific commitments identified.</p>
           </section>
         {% endif %}
 
         <section class="document-section technical-details">
-          <h2>Technical Details</h2>
+          <h2 class="document-section__title">Technical Details</h2>
           <div class="technical-grid">
           
 
@@ -166,7 +166,7 @@
 
 
         <section class="document-section alignment-section">
-          <h2>Policy & Strategic Alignment</h2>
+          <h2 class="document-section__title">Policy & Strategic Alignment</h2>
           <div class="alignment-container">
 
             <div class="alignment-card eu-policies">
@@ -225,7 +225,7 @@
 
         {% if document.beneficiary_groups.exists %}
           <section class="document-section beneficiaries">
-            <h2>Beneficiary Groups</h2>
+            <h2 class="document-section__title">Beneficiary Groups</h2>
             <div class="beneficiaries-enhanced-grid">
               {% regroup document.beneficiary_groups.all|dictsort:"category" by category as ben_groups %}
 
@@ -253,7 +253,7 @@
 
         {% if document.kpis.exists %}
           <section class="document-section kpi-section">
-            <h2>Key Performance Indicators (KPIs)</h2>
+            <h2 class="document-section__title">Key Performance Indicators (KPIs)</h2>
             <div class="kpi-enhanced-container">
               {% for kpi in document.kpis.all %}
                 <div class="kpi-card">
@@ -277,7 +277,7 @@
 
         {% if document.country %}
           <section class="document-section countries-section">
-            <h2>Participating Countries</h2>
+            <h2 class="document-section__title">Participating Countries</h2>
             <div class="countries-enhanced-container">
               <div class="country-card">
                 <div class="country-flag">
@@ -343,7 +343,7 @@
           {% if rd.event_country %}{{ rd.event_country }}{% endif %}
           {% if rd.event_date %} • {{ rd.event_date|date:"Y" }}{% endif %}
         </div>
-        <a href="{% url 'core:document_detail' rd.pk %}" class="btn btn-secondary btn-sm">
+        <a href="{% url 'core:document_detail' rd.pk %}" class="button button--secondary button--small">
           View Details
         </a>
       </div>
