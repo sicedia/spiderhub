@@ -10,10 +10,10 @@
 {% block content %}
 
   <!-- About Hero Section -->
-  <div class="about-hero" role="banner">
-    <div class="about-hero-content">
-      <h1>About SPIDERHUB</h1>
-      <p>Connecting documents and policies to drive digital transformation between Europe and Latin America</p>
+  <div class="about-hero hero" role="banner">
+    <div class="hero__content">
+      <h1 class="hero__title">About SPIDERHUB</h1>
+      <p class="hero__description">Connecting documents and policies to drive digital transformation between Europe and Latin America</p>
     </div>
   </div>
 
@@ -21,9 +21,9 @@
   <main id="main-content" class="about-container" role="main">
     <!-- Project Description Section -->
     <section class="about-section" aria-labelledby="project-title">
-      <h2 id="project-title" class="section-title">Our Platform</h2>
-      <div class="about-content">
-        <div class="about-text">
+      <h2 id="project-title" class="section__title">Our Platform</h2>
+      <div class="content-grid">
+        <div class="content-grid__text">
           <p>SPIDERHUB is a platform designed to analyse, connect, and visualise digital transformation agreements between Europe and Latin America and the Caribbean. This SPIDER initiative is led by CEDIA, building on the project's foundations to enhance data accessibility and interoperability across the EU-LAC digital ecosystem.</p>
           <p>Through the use of advanced artificial intelligence technologies, we create an interconnected network of information that allows researchers, policymakers, and the general public to understand the complex relationships that are shaping the digital future of our societies.</p>
           <p>Our main objectives are:</p>
@@ -34,7 +34,7 @@
             <li role="listitem">To facilitate informed decision-making based on concrete data.</li>
           </ul>
         </div>
-        <div class="about-image">
+        <div class="content-grid__sidebar">
           <svg width="400" height="300" viewBox="0 0 400 300" class="connection-map" role="img" aria-labelledby="map-title" aria-describedby="map-desc">
             <title id="map-title">EU-LAC Digital Connection Map</title>
             <desc id="map-desc">Visual representation showing connections between European and Latin American digital policies through SPIDERHUB platform</desc>
@@ -81,7 +81,7 @@
 
     <!-- SPIDER Project Background Section -->
     <section class="about-section spider-background-section" aria-labelledby="spider-title">
-      <h2 id="spider-title" class="section-title">About SPIDER</h2>
+      <h2 id="spider-title" class="section__title">About SPIDER</h2>
       <div class="spider-content">
         <div class="spider-text">
           <p>SPIDER is a European Union-funded project that continues the long tradition of collaboration between the European Union and Latin America and the Caribbean in digital transformation and research and innovation. The project acts as a driver for human-centred digital transformation, closing the gap between digital dialogue commitments and their practical implementation across both regions.</p>
@@ -102,10 +102,10 @@
 
     <!-- Methodology Section -->
     <section class="about-section methodology-section" aria-labelledby="methodology-title">
-      <h2 id="methodology-title" class="section-title">Our Methodology</h2>
+      <h2 id="methodology-title" class="section__title">Our Methodology</h2>
       <p>SPIDERHUB extends SPIDER's data-driven methodology to ensure transparency and accessibility of digital cooperation commitments between the EU and LAC regions.</p>
-      <div class="methodology-steps" role="list">
-        <article class="methodology-step" role="listitem">
+      <div class="steps-grid" role="list">
+        <article class="step-card" role="listitem">
           <div class="step-icon" aria-hidden="true">
             <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="12" cy="12" r="12" fill="#094EB2" opacity="0.1"/>
@@ -119,7 +119,7 @@
           </div>
         </article>
         
-        <article class="methodology-step" role="listitem">
+        <article class="step-card" role="listitem">
           <div class="step-icon" aria-hidden="true">
             <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- background circle -->
@@ -139,7 +139,7 @@
           </div>
         </article>
         
-        <article class="methodology-step" role="listitem">
+        <article class="step-card" role="listitem">
           <div class="step-icon" aria-hidden="true">
             <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="12" cy="12" r="12" fill="#34A853" opacity="0.1"/>
@@ -152,7 +152,7 @@
           </div>
         </article>
         
-        <article class="methodology-step" role="listitem">
+        <article class="step-card" role="listitem">
           <div class="step-icon" aria-hidden="true">
             <svg width="50" height="50" viewBox="0 0 24 24" fill="none"
               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -180,7 +180,7 @@
 
     <!-- Administration Panel Section -->
     <section class="about-section admin-panel-section" aria-labelledby="admin-title">
-      <h2 id="admin-title" class="section-title">Administration Panel</h2>
+      <h2 id="admin-title" class="section__title">Administration Panel</h2>
       <div class="admin-content">
         <div class="admin-text">
           <p>SPIDERHUB includes a comprehensive administration panel that allows authorized users to manage and expand the platform's content. Through this interface, administrators can add new agreements, update existing commitments, and enhance the analysis of digital transformation policies.</p>
@@ -192,8 +192,8 @@
             <li role="listitem">Reviewing and validating automated content extraction</li>
           </ul>
           <p>For access to the administration panel or to contribute new agreements and commitments analysis to the platform, please contact our planning team for more information and authorization procedures.</p>
-          <div class="admin-contact-container">
-            <a href="mailto:planificacion@cedia.org.ec" class="admin-contact-link">
+          <div class="admin-contact-container admin-contact">
+            <a href="mailto:planificacion@cedia.org.ec" class="admin-contact-link admin-contact__link">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M20 4H4C3.9 4 3 4.9 3 6L3 18C3 19.1 3.9 20 4 20H20C20.1 20 21 19.1 21 18V6C21 4.9 20.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="currentColor"/>
               </svg>
@@ -207,7 +207,7 @@
 
     <!-- Partners Section -->
     <section class="about-section partners-section" aria-labelledby="partners-title">
-      <h2 id="partners-title" class="section-title">The SPIDER Consortium</h2>
+      <h2 id="partners-title" class="section__title">The SPIDER Consortium</h2>
       <p class="partners-intro">Following a multi-stakeholder approach, SPIDER brings together relevant R&I stakeholders from the EU and LAC to set up a multidisciplinary consortium that enables the successful pursuit of the project's objectives. The SPIDER consortium combines the digital transformation and research and innovation (R&I) expertise of organizations from Spain, Portugal, Germany, Belgium, Chile, Ecuador, Brazil, and Costa Rica.</p>
       <div class="partners-grid" role="list">
         <article class="partner-card" role="listitem">
@@ -304,7 +304,7 @@
 
     <!-- Team Section -->
     <section class="about-section team-section" aria-labelledby="team-title">
-      <h2 id="team-title" class="section-title">Project Coordination</h2>
+      <h2 id="team-title" class="section__title">Project Coordination</h2>
       <div class="team-description">
         <p>The project is coordinated by an interdisciplinary team from public institutions, civil society, and academia across Europe and Latin America and the Caribbean. Each partner brings domain expertise in governance, technology, and digital policy to ensure comprehensive analysis and meaningful insights into EU-LAC digital cooperation.</p>
       </div>
@@ -312,16 +312,16 @@
 
     <!-- Contact Section -->
     <section class="about-section contact-section" aria-labelledby="contact-title">
-      <h2 id="contact-title" class="section-title">Contact</h2>
-      <div class="contact-container">
+      <h2 id="contact-title" class="section__title">Contact</h2>
+      <div class="contact-container contact-section__container">
         <div class="contact-info">
-          <p>Do you have questions about SPIDERHUB or would you like to collaborate with us? Get in touch using the following contact details:</p>
+          <p class="contact-section__text">Do you have questions about SPIDERHUB or would you like to collaborate with us? Get in touch using the following contact details:</p>
           <address>
-            <div class="contact-detail">
+            <div class="contact-detail contact-section__detail">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M20 4H4C3.9 4 3 4.9 3 6L3 18C3 19.1 3.9 20 4 20H20C20.1 20 21 19.1 21 18V6C21 4.9 20.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="#094EB2"/>
               </svg>
-              <a href="mailto:info@spidernetwork.org" class="contact-link">
+              <a href="mailto:info@spidernetwork.org" class="contact-link contact-section__link">
                 <span class="sr-only">Email: </span>info@spidernetwork.org
               </a>
             </div>

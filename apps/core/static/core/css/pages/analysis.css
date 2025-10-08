@@ -1,7 +1,7 @@
 /**
- * Analysis Page Styles (V2 - Modern Dashboard)
- * Specific styles for the new analysis dashboard
- * Following BEM methodology and design system tokens
+ * Analysis Page Styles
+ * Dashboard específico para análisis y visualización de datos
+ * Siguiendo arquitectura ITCSS y metodología BEM con tokens del sistema de diseño
  */
 
 /* ========================================
@@ -11,29 +11,57 @@
 .analysis-page {
   min-height: 100vh;
   background-color: var(--color-bg-secondary);
+  margin-top: var(--header-height);
 }
 
 /* ========================================
-   Hero Section
+   Hero Section - Dashboard Style
    ======================================== */
 
 .analysis-hero {
-  background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-secondary-500) 100%);
-  padding: var(--space-4xl) var(--space-lg);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-500) 0%,
+    var(--color-secondary-500) 100%
+  );
+  padding: var(--space-3xl) 5%;
   color: var(--color-text-inverse);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.analysis-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="50" cy="50" r="2" fill="%23FFFFFF"/></svg>') repeat;
+  animation: float 20s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes float {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(25%); }
 }
 
 .analysis-hero__container {
-  max-width: var(--container-max-width);
+  max-width: var(--container-7xl);
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .analysis-hero__title {
   font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-extrabold);
   margin-bottom: var(--space-md);
   color: var(--color-text-inverse);
+  line-height: var(--line-height-tight);
 }
 
 .analysis-hero__description {
@@ -41,6 +69,7 @@
   opacity: 0.95;
   max-width: 600px;
   margin: 0 auto;
+  line-height: var(--line-height-relaxed);
 }
 
 /* ========================================
@@ -48,9 +77,9 @@
    ======================================== */
 
 .analysis-content {
-  max-width: var(--container-max-width);
+  max-width: var(--container-7xl);
   margin: 0 auto;
-  padding: var(--space-2xl) var(--space-lg);
+  padding: var(--space-3xl) 5%;
 }
 
 /* ========================================
@@ -72,13 +101,32 @@
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-fast);
-  border: 1px solid var(--color-border-lighter);
+  transition: all var(--duration-base) var(--ease-out);
+  border: 1px solid var(--color-border-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500));
+  transform: scaleX(0);
+  transition: transform var(--duration-base) var(--ease-out);
 }
 
 .kpi-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-200);
+}
+
+.kpi-card:hover::before {
+  transform: scaleX(1);
 }
 
 .kpi-icon {
@@ -134,13 +182,26 @@
   margin-bottom: var(--space-3xl);
 }
 
-.section-title {
+/* Section titles - Uses shared .section__title pattern */
+.analysis-section__title {
   font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-700);
   margin-bottom: var(--space-xl);
   padding-bottom: var(--space-md);
-  border-bottom: 2px solid var(--color-border-lighter);
+  border-bottom: 2px solid var(--color-border-light);
+  position: relative;
+}
+
+.analysis-section__title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500));
+  border-radius: var(--radius-sm);
 }
 
 .charts-grid {
@@ -160,14 +221,14 @@
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
   box-shadow: var(--shadow-sm);
-  border: 1px solid var(--color-border-lighter);
-  transition: all var(--transition-fast);
+  border: 1px solid var(--color-border-light);
+  transition: all var(--duration-base) var(--ease-out);
   opacity: 0;
   transform: translateY(20px);
 }
 
 .chart-card.fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.6s var(--ease-out) forwards;
 }
 
 @keyframes fadeInUp {
@@ -179,6 +240,7 @@
 
 .chart-card:hover {
   box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .chart-header {
@@ -246,16 +308,18 @@
 
 .metric-card {
   background: var(--color-bg-primary);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--space-lg);
   text-align: center;
-  border: 1px solid var(--color-border-lighter);
-  transition: all var(--transition-fast);
+  border: 1px solid var(--color-border-light);
+  transition: all var(--duration-base) var(--ease-out);
+  box-shadow: var(--shadow-xs);
 }
 
 .metric-card:hover {
   border-color: var(--color-primary-500);
   box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
 }
 
 .metric-icon {
@@ -331,24 +395,34 @@
 }
 
 /* ========================================
-   Responsive Adjustments
+   Responsive Design
    ======================================== */
+
+@media (max-width: 992px) {
+  .analysis-content {
+    padding: var(--space-2xl) 3%;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 @media (max-width: 768px) {
   .analysis-hero {
-    padding: var(--space-2xl) var(--space-md);
+    padding: var(--space-2xl) 3%;
   }
   
   .analysis-hero__title {
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-3xl);
   }
   
   .analysis-hero__description {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-base);
   }
   
   .analysis-content {
-    padding: var(--space-xl) var(--space-md);
+    padding: var(--space-xl) 3%;
   }
   
   .kpi-grid {
@@ -374,6 +448,11 @@
     padding: var(--space-lg);
   }
   
+  .chart-body {
+    height: 300px;
+    min-height: 300px;
+  }
+  
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-md);
@@ -381,6 +460,18 @@
 }
 
 @media (max-width: 480px) {
+  .analysis-hero {
+    padding: var(--space-xl) 3%;
+  }
+
+  .analysis-hero__title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .analysis-content {
+    padding: var(--space-lg) 3%;
+  }
+
   .kpi-grid,
   .metrics-grid {
     grid-template-columns: 1fr;
@@ -389,6 +480,54 @@
   .kpi-icon,
   .metric-icon {
     font-size: 1.8rem;
+  }
+
+  .chart-body {
+    height: 250px;
+    min-height: 250px;
+  }
+}
+
+/* ========================================
+   Accessibility
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .analysis-hero::before {
+    animation: none;
+  }
+  
+  .kpi-card:hover,
+  .chart-card:hover,
+  .metric-card:hover {
+    transform: none;
+  }
+  
+  .kpi-value.animated {
+    animation: none;
+  }
+
+  .chart-card.fade-in-up {
+    animation: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .analysis-content.loading::after {
+    animation: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .analysis-hero {
+    border: 2px solid var(--color-text-inverse);
+  }
+  
+  .kpi-card,
+  .chart-card,
+  .metric-card {
+    border: 2px solid var(--color-text-primary);
   }
 }
 
@@ -402,6 +541,10 @@
     color: var(--color-text-primary);
     padding: var(--space-lg);
   }
+
+  .analysis-hero::before {
+    display: none;
+  }
   
   .chart-card {
     page-break-inside: avoid;
@@ -409,11 +552,22 @@
     border: 1px solid var(--color-border-light);
   }
   
+  .kpi-card,
+  .chart-card,
+  .metric-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
   .kpi-card:hover,
   .chart-card:hover,
   .metric-card:hover {
     transform: none;
     box-shadow: none;
+  }
+
+  .kpi-card::before {
+    display: none;
   }
 }
 
