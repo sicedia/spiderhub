@@ -139,6 +139,47 @@ export class FilterGroups {
   }
 
   handleSelectChange(select) {
+    // If this is the country_role select, uncheck all country checkboxes and remove chips
+    if (select.id === 'country-role-select') {
+      // Get all checked country checkboxes before unchecking
+      const countryCheckboxes = this.container.querySelectorAll('input[name="country"]:checked');
+      const countriesToRemove = [];
+      
+      countryCheckboxes.forEach(checkbox => {
+        countriesToRemove.push({
+          name: checkbox.name,
+          value: checkbox.value
+        });
+        checkbox.checked = false;
+      });
+      
+      // Remove filter chips directly
+      const activeFiltersContainer = document.getElementById('active-filters');
+      if (activeFiltersContainer && countriesToRemove.length > 0) {
+        countriesToRemove.forEach(country => {
+          const chip = activeFiltersContainer.querySelector(
+            `.filter-chip[data-type="${country.name}"][data-value="${country.value}"]`
+          );
+          if (chip) {
+            chip.remove();
+          }
+        });
+        
+        // Check if there are any remaining chips
+        const remainingChips = activeFiltersContainer.querySelectorAll('.filter-chip');
+        if (remainingChips.length === 0) {
+          activeFiltersContainer.classList.add('filter-chips--empty');
+          const clearAllBtn = activeFiltersContainer.querySelector('.filter-chips__clear-all');
+          if (clearAllBtn) {
+            clearAllBtn.style.display = 'none';
+          }
+        }
+      }
+      
+      // Update country counts with new role
+      this.updateCountryCounts(select.value);
+    }
+    
     // For select inputs, we dispatch a filter change event
     const event = new CustomEvent('filterChange', {
       detail: {
@@ -148,11 +189,6 @@ export class FilterGroups {
       }
     });
     document.dispatchEvent(event);
-    
-    // If this is the country_role select, update country counts
-    if (select.id === 'country-role-select') {
-      this.updateCountryCounts(select.value);
-    }
   }
   
   async updateCountryCounts(role) {

@@ -118,8 +118,8 @@ export class SearchManager extends BaseComponent {
     if (state.date_from) params.append('event_date_after', state.date_from);
     if (state.date_to) params.append('event_date_before', state.date_to);
     
-    // Add country role parameter if it's not the default
-    if (state.country_role && state.country_role !== 'any') {
+    // Always add country role parameter to be explicit
+    if (state.country_role) {
       params.append('country_role', state.country_role);
     }
     
