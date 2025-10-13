@@ -215,10 +215,11 @@ def document_detail_page(request, pk):
     
     document = get_object_or_404(
         Document.objects.select_related(
-            'event_country', 'event_city', 'created_by'
+            'event_country', 'event_city', 'created_by', 'lead_country'
         ).prefetch_related(
             'themes', 'actors', 'beneficiary_groups', 'sdgs',
-            'practical_applications', 'commitments', 'kpis'
+            'practical_applications', 'commitments', 'kpis',
+            'countries_involved', 'eu_policy_alignments'
         ),
         pk=pk
     )

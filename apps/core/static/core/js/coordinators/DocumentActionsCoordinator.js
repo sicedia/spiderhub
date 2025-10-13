@@ -194,6 +194,24 @@ export class DocumentActionsCoordinator {
    * Load and render related documents
    */
   async loadAndRenderRelatedDocuments() {
+    // DISABLED: Related documents are now rendered server-side in the template
+    // This prevents overwriting the improved UI/UX design from the Django template
+    this.logger.debug('Related documents rendering disabled - using server-side rendering');
+    
+    // Check if related documents exist in the DOM
+    const relatedContainer = document.querySelector('.related-documents');
+    if (relatedContainer && relatedContainer.children.length > 0) {
+      this.logger.info('Related documents already rendered server-side');
+      // Emit event to signal they're available
+      eventBus.emit(EVENTS.RELATED_DOCUMENTS_LOADED, {
+        documentId: this.documentId,
+        count: relatedContainer.querySelectorAll('.related-document').length
+      });
+    }
+    
+    return;
+    
+    /* LEGACY API-BASED CODE (COMMENTED OUT)
     try {
       this.logger.debug('Loading related documents');
       
@@ -224,6 +242,7 @@ export class DocumentActionsCoordinator {
       this.logger.debug('Related documents API not available or returned no data', error);
       // Not critical, continue without related documents
     }
+    */
   }
 
   /**

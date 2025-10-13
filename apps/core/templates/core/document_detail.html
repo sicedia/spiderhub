@@ -275,23 +275,25 @@
           </section>
         {% endif %}
 
-        {% if document.country %}
+        {% if document.countries_involved.exists %}
           <section class="document-section countries-section">
-            <h2 class="document-section__title">Participating Countries</h2>
-            <div class="countries-enhanced-container">
-              <div class="country-card">
-                <div class="country-flag">
-                  <!-- e.g. “🇵🇦” if ISO code is given -->
+            <h2 class="document-section__title">Countries Involved</h2>
+            <div class="countries-enhanced-grid">
+              {% for country in document.countries_involved.all %}
+                <div class="country-card">
+                  <div class="country-flag-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <div class="country-info">
+                    <div class="country-name">{{ country.name }}</div>
+                    {% if country.iso3 %}
+                      <div class="country-code">{{ country.iso3 }}</div>
+                    {% endif %}
+                  </div>
                 </div>
-                <div class="country-info">
-                  <div class="country-name">{{ document.country }}</div>
-                  {% if document.extra.country_code %}
-                      <div class="country-code">{{ document.extra.country_code }}</div>
-                  {% else %}
-                      <div class="country-code"></div>
-                  {% endif %}
-                </div>
-              </div>
+              {% endfor %}
             </div>
           </section>
         {% endif %}
@@ -335,16 +337,54 @@
   {% with related_docs=document.get_related_documents %}
   {% if related_docs %}
     <div class="related-documents">
-      <h3>Related Documents</h3>
+      <div class="related-documents__header">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" fill="currentColor"/>
+        </svg>
+        <h3>Related Documents</h3>
+      </div>
+      <div class="related-documents__count">
+        {{ related_docs.count }} related document{{ related_docs.count|pluralize }}
+      </div>
       {% for rd in related_docs %}
       <div class="related-document">
-        <div class="related-title">{{ rd.title }}</div>
-        <div class="related-meta">
-          {% if rd.event_country %}{{ rd.event_country }}{% endif %}
-          {% if rd.event_date %} • {{ rd.event_date|date:"Y" }}{% endif %}
+        <div class="related-document__badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" fill="currentColor"/>
+          </svg>
+          {% if rd.get_document_type_display %}
+            <span>{{ rd.get_document_type_display }}</span>
+          {% endif %}
         </div>
-        <a href="{% url 'core:document_detail' rd.pk %}" class="button button--secondary button--small">
-          View Details
+        
+        <a href="{% url 'core:document_detail' rd.pk %}" class="related-document__link">
+          <div class="related-document__content">
+            <div class="related-title">{{ rd.title|truncatewords:12 }}</div>
+            <div class="related-meta">
+              {% if rd.event_country %}
+                <span class="related-meta__item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+                  </svg>
+                  {{ rd.event_country.name }}
+                </span>
+              {% endif %}
+              {% if rd.event_date %}
+                <span class="related-meta__item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" fill="currentColor"/>
+                    <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z" fill="currentColor"/>
+                  </svg>
+                  {{ rd.event_date|date:"M Y" }}
+                </span>
+              {% endif %}
+            </div>
+          </div>
+          <div class="related-document__arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+            </svg>
+          </div>
         </a>
       </div>
       {% endfor %}
