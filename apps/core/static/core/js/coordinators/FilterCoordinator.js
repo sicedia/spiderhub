@@ -207,24 +207,129 @@ export class FilterCoordinator extends BaseComponent {
    * Initialize date presets
    */
   initializeDatePresets() {
-    const presetsContainer = this.elements.datePresets;
+    // Try different selectors for the presets container
+    const presetsContainer = this.elements.datePresets 
+      || document.querySelector('.filter-date-presets')
+      || document.querySelector('[data-date-presets]');
     
     if (!presetsContainer) {
-      this.logger.debug('No date presets found');
+      this.logger.debug('No date presets container found');
       return;
     }
     
     const presets = presetsContainer.querySelectorAll('[data-years]');
     
+    if (presets.length === 0) {
+      this.logger.warn('No date preset buttons found in container');
+      return;
+    }
+    
     presets.forEach(preset => {
       this.addEventListener(preset, 'click', (event) => {
+        event.preventDefault();
         this.handleDatePresetClick(event.target);
       });
     });
     
+    // Also initialize manual date input listeners
+    this.initializeDateInputs();
+    
     this.logger.debug('Date presets initialized', {
       count: presets.length
     });
+  }
+
+  /**
+   * Initialize manual date input listeners
+   */
+  initializeDateInputs() {
+    const dateFromInput = document.getElementById('date_from');
+    const dateToInput = document.getElementById('date_to');
+    
+    if (dateFromInput) {
+      this.addEventListener(dateFromInput, 'change', () => {
+        this.handleManualDateChange();
+      });
+    }
+    
+    if (dateToInput) {
+      this.addEventListener(dateToInput, 'change', () => {
+        this.handleManualDateChange();
+      });
+    }
+    
+    this.logger.debug('Date inputs initialized');
+  }
+
+  /**
+   * Handle manual date input change
+   */
+  handleManualDateChange() {
+    const dateFromInput = document.getElementById('date_from');
+    const dateToInput = document.getElementById('date_to');
+    
+    const dateFrom = dateFromInput?.value;
+    const dateTo = dateToInput?.value;
+    
+    // Clear active state from preset buttons since user entered manually
+    this.clearPresetButtonsState();
+    
+    // Add date filter chips if dates are provided
+    if (dateFrom || dateTo) {
+      this.addManualDateFilterChips(dateFrom, dateTo);
+    } else {
+      // Remove date filters if both are empty
+      this.removeDateFilters();
+    }
+  }
+
+  /**
+   * Clear active state from all preset buttons
+   */
+  clearPresetButtonsState() {
+    const presetsContainer = document.querySelector('.filter-date-presets');
+    if (!presetsContainer) return;
+    
+    presetsContainer.querySelectorAll('[data-years]').forEach(btn => {
+      btn.classList.remove('active', 'filter-date-preset--active');
+    });
+  }
+
+  /**
+   * Add manual date filter chips
+   */
+  addManualDateFilterChips(dateFrom, dateTo) {
+    const filterManager = this.components.filterManager;
+    
+    if (!filterManager) {
+      this.logger.warn('FilterManager not available');
+      return;
+    }
+    
+    // Remove any existing date filters first
+    this.removeDateFilters();
+    
+    // Add date_from filter if provided
+    if (dateFrom) {
+      filterManager.addFilter(
+        'date_from',
+        dateFrom,
+        `From: ${this.formatDate(dateFrom)}`,
+        'period'
+      );
+    }
+    
+    // Add date_to filter if provided
+    if (dateTo) {
+      filterManager.addFilter(
+        'date_to',
+        dateTo,
+        `Until: ${this.formatDate(dateTo)}`,
+        'period'
+      );
+    }
+    
+    this.logger.debug('Manual date filter chips added', { dateFrom, dateTo });
   }
 
   /**
@@ -234,10 +339,122 @@ export class FilterCoordinator extends BaseComponent {
     const years = parseInt(preset.dataset.years, 10);
     const dateRange = this.calculateDateRange(years);
     
+    this.logger.debug('Date preset clicked', { years, dateRange });
+    
+    // Update date input fields
+    this.updateDateInputs(dateRange);
+    
+    // Update visual state of preset buttons
+    this.updatePresetButtonsState(preset);
+    
+    // Add date filter chips to FilterManager
+    this.addDateFilterChips(dateRange, years);
+    
     // Emit event for date range change
     this.emit(EVENTS.DATE_RANGE_CHANGED, { dateRange, years });
+  }
+
+  /**
+   * Update date input fields with the calculated range
+   */
+  updateDateInputs(dateRange) {
+    const dateFromInput = document.getElementById('date_from');
+    const dateToInput = document.getElementById('date_to');
     
-    this.logger.debug('Date preset clicked', { years, dateRange });
+    if (dateFromInput) {
+      dateFromInput.value = dateRange.start;
+    }
+    
+    if (dateToInput) {
+      dateToInput.value = dateRange.end;
+    }
+    
+    this.logger.debug('Date inputs updated', dateRange);
+  }
+
+  /**
+   * Update visual state of preset buttons
+   */
+  updatePresetButtonsState(activePreset) {
+    const presetsContainer = document.querySelector('.filter-date-presets');
+    if (!presetsContainer) return;
+    
+    // Remove active class from all presets
+    presetsContainer.querySelectorAll('[data-years]').forEach(btn => {
+      btn.classList.remove('active', 'filter-date-preset--active');
+    });
+    
+    // Add active class to clicked preset
+    activePreset.classList.add('active', 'filter-date-preset--active');
+  }
+
+  /**
+   * Add date filter chips to FilterManager
+   */
+  addDateFilterChips(dateRange, years) {
+    const filterManager = this.components.filterManager;
+    
+    if (!filterManager) {
+      this.logger.warn('FilterManager not available');
+      return;
+    }
+    
+    // Remove any existing date filters first
+    this.removeDateFilters();
+    
+    // Add date_from filter
+    // Parameters: (filterType, filterValue, filterLabel, filterCategory)
+    filterManager.addFilter(
+      'date_from',
+      dateRange.start,
+      `From: ${this.formatDate(dateRange.start)}`,
+      'period'
+    );
+    
+    // Add date_to filter
+    filterManager.addFilter(
+      'date_to',
+      dateRange.end,
+      `Until: ${this.formatDate(dateRange.end)}`,
+      'period'
+    );
+    
+    this.logger.debug('Date filter chips added', { dateRange, years });
+  }
+
+  /**
+   * Remove existing date filters
+   */
+  removeDateFilters() {
+    const filterManager = this.components.filterManager;
+    if (!filterManager || !filterManager.filterChips) return;
+    
+    // Get the filter chips instance directly
+    const filterChips = filterManager.filterChips;
+    
+    // Remove date filter chips
+    const chipsToRemove = [];
+    filterChips.activeFilters.forEach((filter, key) => {
+      if (filter.name === 'date_from' || filter.name === 'date_to') {
+        chipsToRemove.push({ name: filter.name, value: filter.value });
+      }
+    });
+    
+    // Remove them
+    chipsToRemove.forEach(({ name, value }) => {
+      filterManager.removeFilter(name, value);
+    });
+    
+    this.logger.debug('Date filters removed', { count: chipsToRemove.length });
+  }
+
+  /**
+   * Format date for display
+   */
+  formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
   }
 
   /**

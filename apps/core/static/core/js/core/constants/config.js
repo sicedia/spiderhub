@@ -108,6 +108,8 @@ export const EVENTS = {
   FILTERS_CHANGED: 'filters:changed',
   FILTERS_CLEARED: 'filters:cleared',
   FILTERS_APPLIED: 'filters:applied',
+  DATE_RANGE_CHANGED: 'filter:date_range:changed',
+  REGION_CHANGED: 'filter:region:changed',
   
   // Suggestion Events
   SUGGESTIONS_READY: 'suggestions:ready',

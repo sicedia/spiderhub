@@ -64,6 +64,29 @@ export class FilterChips {
         checkbox.checked = false;
       }
       
+      // Clear date inputs if removing date filters
+      if (filterName === 'date_from') {
+        const dateFromInput = document.getElementById('date_from');
+        if (dateFromInput) dateFromInput.value = '';
+        
+        // Clear active state from date preset buttons
+        const datePresets = document.querySelectorAll('.filter-date-preset');
+        datePresets.forEach(preset => {
+          preset.classList.remove('active', 'filter-date-preset--active');
+        });
+      }
+      
+      if (filterName === 'date_to') {
+        const dateToInput = document.getElementById('date_to');
+        if (dateToInput) dateToInput.value = '';
+        
+        // Clear active state from date preset buttons
+        const datePresets = document.querySelectorAll('.filter-date-preset');
+        datePresets.forEach(preset => {
+          preset.classList.remove('active', 'filter-date-preset--active');
+        });
+      }
+      
       // Trigger filter change event
       this.triggerFilterChange();
     }
@@ -73,10 +96,25 @@ export class FilterChips {
     this.activeFilters.clear();
     this.updateDisplay();
     
-    // Uncheck all filter checkboxes
-    const checkboxes = this.container.parentElement.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-      checkbox.checked = false;
+    // Uncheck all filter checkboxes in the filter sidebar
+    const filterSidebar = document.querySelector('.filter-sidebar') || document.querySelector('.explore-sidebar');
+    if (filterSidebar) {
+      const checkboxes = filterSidebar.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+      });
+    }
+    
+    // Clear date inputs
+    const dateFromInput = document.getElementById('date_from');
+    const dateToInput = document.getElementById('date_to');
+    if (dateFromInput) dateFromInput.value = '';
+    if (dateToInput) dateToInput.value = '';
+    
+    // Clear active state from date preset buttons
+    const datePresets = document.querySelectorAll('.filter-date-preset');
+    datePresets.forEach(preset => {
+      preset.classList.remove('active', 'filter-date-preset--active');
     });
     
     // Trigger filter change event
