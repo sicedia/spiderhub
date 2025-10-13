@@ -36,6 +36,7 @@ export class DocumentResults extends BaseComponent {
     };
     this._isRenderingResults = false; // Flag to prevent recursive renderResults
     this._isShowingLoading = false; // Flag to prevent recursive showLoading
+    this._savedScrollPosition = 0; // Save scroll position during updates
     
     if (this.logger) {
       this.logger.debug('DocumentResults initialized', {
@@ -97,6 +98,17 @@ export class DocumentResults extends BaseComponent {
 
     this._isShowingLoading = true;
     try {
+      // Save current scroll position to prevent jump
+      this._savedScrollPosition = window.scrollY;
+      
+      // Get the current height to maintain layout during loading
+      const currentHeight = this.element.offsetHeight;
+      
+      // Set minimum height to prevent page collapse
+      if (currentHeight > 0) {
+        this.element.style.minHeight = `${currentHeight}px`;
+      }
+      
       this.element.innerHTML = `<p class="loading">${this.options.loadingMessage}</p>`;
       
       if (this.options.paginationElement) {
@@ -106,6 +118,9 @@ export class DocumentResults extends BaseComponent {
       if (this.options.countElement) {
         this.options.countElement.textContent = '';
       }
+      
+      // Restore scroll position immediately to prevent any jump
+      window.scrollTo(0, this._savedScrollPosition);
     } finally {
       // Don't set to false here - let renderResults clear it
       // this._isShowingLoading = false;
@@ -140,14 +155,34 @@ export class DocumentResults extends BaseComponent {
    * Show empty state
    */
   showEmpty() {
+    // Save scroll position before updating content
+    const scrollY = window.scrollY;
+    
     this.element.innerHTML = `<p class="no-results">${this.options.emptyMessage}</p>`;
+    
+    // Remove the minimum height constraint
+    this.element.style.minHeight = '';
+    
+    // Restore scroll position
+    window.scrollTo(0, scrollY);
   }
 
   /**
    * Show documents
    */
   showDocuments(documents) {
+    // Save scroll position before updating content
+    const scrollY = window.scrollY;
+    
+    // Update the content
     this.element.innerHTML = documents.map(doc => this.createDocumentCard(doc)).join('');
+    
+    // Remove the minimum height constraint set during loading
+    this.element.style.minHeight = '';
+    
+    // Restore scroll position to prevent unwanted jumps
+    // This prevents the "whiplash" effect when filters change
+    window.scrollTo(0, scrollY);
   }
 
   /**
@@ -313,11 +348,13 @@ export class DocumentResults extends BaseComponent {
   /**
    * Go to specific page
    */
-  goToPage(page) {
+  goToPage(page, shouldScroll = true) {
     this.state.currentPage = page;
     
-    // Scroll to top of results when changing pages
-    this.scrollToResults();
+    // Only scroll when explicitly requested (e.g., user clicks pagination)
+    if (shouldScroll) {
+      this.scrollToResults();
+    }
     
     this.emit('page:changed', { page });
   }
@@ -326,19 +363,17 @@ export class DocumentResults extends BaseComponent {
    * Scroll to the top of the results list
    */
   scrollToResults() {
-    // Try to find the results container
-    const resultsContainer = document.querySelector('.explore-results') 
-      || document.querySelector('#search-results-list')
-      || this.element;
+    // Find the main content area or results header to scroll to
+    const searchHeader = document.querySelector('.explore-header');
     
-    if (resultsContainer) {
-      // Scroll to the top of the results with smooth behavior
-      resultsContainer.scrollIntoView({ 
+    if (searchHeader) {
+      // Scroll to the search header area smoothly
+      searchHeader.scrollIntoView({ 
         behavior: 'smooth', 
         block: 'start' 
       });
-      
-      // Alternative: scroll to top of page if results are at top
+    } else {
+      // Fallback: scroll to top of page
       window.scrollTo({
         top: 0,
         behavior: 'smooth'

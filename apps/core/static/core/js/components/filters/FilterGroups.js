@@ -41,10 +41,12 @@ export class FilterGroups {
       }
     });
 
-    // Checkbox changes
+    // Checkbox and select changes
     this.container.addEventListener('change', (e) => {
       if (e.target.type === 'checkbox') {
         this.handleCheckboxChange(e.target);
+      } else if (e.target.tagName === 'SELECT') {
+        this.handleSelectChange(e.target);
       }
     });
   }
@@ -136,6 +138,73 @@ export class FilterGroups {
     document.dispatchEvent(event);
   }
 
+  handleSelectChange(select) {
+    // For select inputs, we dispatch a filter change event
+    const event = new CustomEvent('filterChange', {
+      detail: {
+        filterName: select.name,
+        filterValue: select.value,
+        filterLabel: select.options[select.selectedIndex].text
+      }
+    });
+    document.dispatchEvent(event);
+    
+    // If this is the country_role select, update country counts
+    if (select.id === 'country-role-select') {
+      this.updateCountryCounts(select.value);
+    }
+  }
+  
+  async updateCountryCounts(role) {
+    try {
+      const response = await fetch(`/api/countries-by-role/?role=${role}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      const countries = data.countries;
+      
+      // Create a map of iso3 -> count for quick lookup
+      const countMap = {};
+      countries.forEach(country => {
+        countMap[country.iso3] = country.count;
+      });
+      
+      // Update all country filter options
+      const countryOptions = this.container.querySelectorAll('.filter-option[data-country]');
+      countryOptions.forEach(option => {
+        const checkbox = option.querySelector('input[type="checkbox"]');
+        if (checkbox && checkbox.name === 'country') {
+          const iso3 = checkbox.value;
+          const countElement = option.querySelector('.filter-option__count');
+          
+          if (countMap[iso3]) {
+            // Country has documents in this role
+            countElement.textContent = countMap[iso3];
+            option.style.display = ''; // Show the option
+          } else {
+            // Country has no documents in this role
+            countElement.textContent = '0';
+            option.style.display = 'none'; // Hide the option
+          }
+        }
+      });
+      
+      // Update the country group count
+      const visibleCount = countries.length;
+      const countryGroup = this.container.querySelector('[data-filter-group="countries"]');
+      if (countryGroup) {
+        const countBadge = countryGroup.querySelector('.filter-group__count');
+        if (countBadge) {
+          countBadge.textContent = visibleCount;
+        }
+      }
+    } catch (error) {
+      console.error('Error updating country counts:', error);
+    }
+  }
+
   getFilterCategory(checkbox) {
     const filterGroup = checkbox.closest('.filter-group');
     const groupTitle = filterGroup.querySelector('.filter-group__title').textContent;
@@ -181,6 +250,8 @@ export class FilterGroups {
 
   getActiveFilters() {
     const activeFilters = [];
+    
+    // Get all checked checkboxes
     const checkboxes = this.container.querySelectorAll('input[type="checkbox"]:checked');
     
     checkboxes.forEach(checkbox => {
@@ -194,6 +265,21 @@ export class FilterGroups {
         value: filterValue,
         label: filterLabel,
         category: filterCategory
+      });
+    });
+    
+    // Get all select inputs (like country_role)
+    const selects = this.container.querySelectorAll('select[name]');
+    selects.forEach(select => {
+      const filterName = select.name;
+      const filterValue = select.value;
+      const filterLabel = select.options[select.selectedIndex].text;
+      
+      activeFilters.push({
+        name: filterName,
+        value: filterValue,
+        label: filterLabel,
+        category: ''
       });
     });
     

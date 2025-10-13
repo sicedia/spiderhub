@@ -8,6 +8,7 @@ from .views import home_page, \
     strategic_cabinet_page, \
     api_countries, \
     api_lead_countries, \
+    api_countries_by_role, \
     api_cabinet_summary, \
     api_cabinet_trends, \
     api_cabinet_map, \
@@ -23,6 +24,7 @@ urlpatterns = [
     path('document_detail/<int:pk>/', document_detail_page, name='document_detail'),
     path('api/countries/', api_countries, name='api_countries'),
     path('api/lead-countries/', api_lead_countries, name='api_lead_countries'),
+    path('api/countries-by-role/', api_countries_by_role, name='api_countries_by_role'),
     # Strategic Cabinet API endpoints
     path('api/cabinet/summary/', api_cabinet_summary, name='api_cabinet_summary'),
     path('api/cabinet/trends/', api_cabinet_trends, name='api_cabinet_trends'),

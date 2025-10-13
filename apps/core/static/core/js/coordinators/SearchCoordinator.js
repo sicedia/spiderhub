@@ -76,7 +76,8 @@ export class SearchCoordinator extends BaseComponent {
     // Pagination Events
     documentResults.on('page:changed', (data) => {
       this.logger.debug('Page changed', { page: data.page });
-      searchManager.goToPage(data.page);
+      // When user explicitly changes page, allow scroll
+      searchManager.goToPage(data.page, true);
     });
 
     this.logger.info('Search event listeners configured');
@@ -147,8 +148,19 @@ export class SearchCoordinator extends BaseComponent {
       // Update SearchManager state with current filters
       searchManager.updateStateFromFilters(filterChips);
       
-      // Reset to page 1 when filters change
+      // Get country_role select value and update state
+      const countryRoleSelect = document.getElementById('country-role-select');
+      if (countryRoleSelect) {
+        const countryRole = countryRoleSelect.value;
+        searchManager.setState({ country_role: countryRole });
+        this.logger.debug('Country role applied', { country_role: countryRole });
+      }
+      
+      // Reset to page 1 when filters change (no scroll)
       documentResults.resetPagination();
+      
+      // Disable scroll for filter-triggered searches
+      searchManager.shouldScrollOnResults = false;
       
       // Perform the search with updated state
       searchManager.performSearch();

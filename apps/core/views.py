@@ -129,16 +129,28 @@ def explore_page(request):
             entry['count']) for entry in agreement_qs
     ]
     
-    # 3) Countries - Use all available reverse relationships
-    available_countries = (
-        Country.objects
-        .filter(document__isnull=False)  # Solo países que tienen documentos
-        .annotate(
-            doc_count=Count('document', distinct=True)  # Contar documentos únicos
-        )
-        .values_list('iso3', 'name', 'doc_count')
-        .order_by('name')
-    )
+    # 3) Countries - Include ALL roles (event, lead, involved)
+    # Get all countries that appear in ANY role
+    countries_with_docs = Country.objects.filter(
+        Q(document__isnull=False) |  # event_country (default related_name)
+        Q(lead_documents__isnull=False) |  # lead_country
+        Q(mentioned_in_documents__isnull=False)  # countries_involved
+    ).distinct()
+    
+    # Calculate total document count for each country (across all roles)
+    available_countries = []
+    for country in countries_with_docs:
+        # Count documents where country appears in ANY role
+        doc_count = Document.objects.filter(
+            Q(event_country=country) |
+            Q(lead_country=country) |
+            Q(countries_involved=country)
+        ).distinct().count()
+        
+        available_countries.append((country.iso3, country.name, doc_count))
+    
+    # Sort by name
+    available_countries = sorted(available_countries, key=lambda x: x[1])
 
     # 4) Actors: M2M → Actor with document count
     actors_qs = (
@@ -1426,3 +1438,51 @@ def api_cabinet_top(request):
         'actors': list(top_actors),
         'sdgs': list(top_sdgs)
     })
+
+def api_countries_by_role(request):
+    """
+    API endpoint to get countries with document counts filtered by role.
+    Query params:
+    - role: 'any', 'lead', 'involved', 'event' (default: 'any')
+    """
+    role = request.GET.get('role', 'any')
+    
+    # Get all countries that appear in ANY role
+    countries_with_docs = Country.objects.filter(
+        Q(document__isnull=False) |  # event_country
+        Q(lead_documents__isnull=False) |  # lead_country
+        Q(mentioned_in_documents__isnull=False)  # countries_involved
+    ).distinct()
+    
+    # Calculate document count for each country based on role
+    countries_data = []
+    for country in countries_with_docs:
+        if role == 'lead':
+            # Only documents where country is lead_country
+            doc_count = Document.objects.filter(lead_country=country).distinct().count()
+        elif role == 'involved':
+            # Only documents where country is in countries_involved
+            doc_count = Document.objects.filter(countries_involved=country).distinct().count()
+        elif role == 'event':
+            # Only documents where country is event_country
+            doc_count = Document.objects.filter(event_country=country).distinct().count()
+        else:  # 'any' or default
+            # Documents where country appears in ANY role
+            doc_count = Document.objects.filter(
+                Q(event_country=country) |
+                Q(lead_country=country) |
+                Q(countries_involved=country)
+            ).distinct().count()
+        
+        # Only include countries with documents in this role
+        if doc_count > 0:
+            countries_data.append({
+                'iso3': country.iso3,
+                'name': country.name,
+                'count': doc_count
+            })
+    
+    # Sort by name
+    countries_data = sorted(countries_data, key=lambda x: x['name'])
+    
+    return JsonResponse({'countries': countries_data})

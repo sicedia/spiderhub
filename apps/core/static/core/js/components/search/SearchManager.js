@@ -48,6 +48,7 @@ export class SearchManager extends BaseComponent {
       coverage_scope: [],
       agreement_type: [],
       country: [],
+      country_role: 'any',  // Default to 'any' role
       actor: [],
       beneficiary: [],
       theme: [],
@@ -81,8 +82,8 @@ export class SearchManager extends BaseComponent {
 
     // Assign to state
     Object.entries(grouped).forEach(([key, values]) => {
-      if (key.startsWith('date_')) {
-        this.state[key] = values[0]; // Single value for dates
+      if (key.startsWith('date_') || key === 'country_role') {
+        this.state[key] = values[0]; // Single value for dates and country_role
       } else {
         this.state[key] = values;
       }
@@ -117,11 +118,17 @@ export class SearchManager extends BaseComponent {
     if (state.date_from) params.append('event_date_after', state.date_from);
     if (state.date_to) params.append('event_date_before', state.date_to);
     
+    // Add country role parameter if it's not the default
+    if (state.country_role && state.country_role !== 'any') {
+      params.append('country_role', state.country_role);
+    }
+    
     params.append('page', state.page);
 
     this.logger.debug('Built search params', { 
       paramCount: Array.from(params.keys()).length,
-      page: state.page
+      page: state.page,
+      country_role: state.country_role
     });
 
     return params.toString();
@@ -139,7 +146,8 @@ export class SearchManager extends BaseComponent {
     this.logger.debug('Starting search', { 
       url, 
       state: this.state,
-      params: params.substring(0, 100) + (params.length > 100 ? '...' : '')
+      params: params.substring(0, 100) + (params.length > 100 ? '...' : ''),
+      shouldScroll: this.shouldScrollOnResults
     });
 
     try {
@@ -165,11 +173,19 @@ export class SearchManager extends BaseComponent {
         page: this.state.page
       });
       
-      // Emit success event
+      // Emit success event with scroll flag
       this.logger.debug('Emitting SEARCH_SUCCESS event', {
-        resultCount: data.count
+        resultCount: data.count,
+        shouldScroll: this.shouldScrollOnResults
       });
-      this.emit(EVENTS.SEARCH_SUCCESS, { data, state: this.state });
+      this.emit(EVENTS.SEARCH_SUCCESS, { 
+        data, 
+        state: this.state,
+        shouldScroll: this.shouldScrollOnResults 
+      });
+      
+      // Reset scroll flag after use
+      this.shouldScrollOnResults = false;
       
       this.logger.groupEnd();
       return data;
@@ -233,13 +249,15 @@ export class SearchManager extends BaseComponent {
   /**
    * Go to specific page
    */
-  async goToPage(pageNumber) {
+  async goToPage(pageNumber, shouldScroll = true) {
     this.logger.debug('Navigating to page', { 
       from: this.state.page, 
-      to: pageNumber 
+      to: pageNumber,
+      shouldScroll
     });
     
     this.state.page = pageNumber;
+    this.shouldScrollOnResults = shouldScroll;
     return this.performSearch();
   }
 

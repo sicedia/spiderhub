@@ -89,10 +89,27 @@ class DocumentFilter(FilterSet):
                 else:
                     q_or |= Q(**{f"{field}__in": vals})
 
-        # Updated country and city filtering
+        # Updated country filtering with role support
         countries = params.getlist('country')
+        country_role = params.get('country_role', 'any')  # Default to 'any'
+        
         if countries:
-            q_or |= Q(event_country__iso3__in=countries)
+            if country_role == 'lead':
+                # Filter by lead_country only
+                q_or |= Q(lead_country__iso3__in=countries)
+            elif country_role == 'involved':
+                # Filter by countries_involved only
+                q_or |= Q(countries_involved__iso3__in=countries)
+            elif country_role == 'event':
+                # Filter by event_country only
+                q_or |= Q(event_country__iso3__in=countries)
+            else:  # 'any' or default
+                # Filter by any role (lead ∪ involved ∪ event)
+                q_or |= (
+                    Q(lead_country__iso3__in=countries) |
+                    Q(countries_involved__iso3__in=countries) |
+                    Q(event_country__iso3__in=countries)
+                )
         
         cities = params.getlist('city')  
         if cities:
