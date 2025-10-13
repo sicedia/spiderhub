@@ -66,7 +66,8 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 SESSION_CACHE_ALIAS = 'default'
 SESSION_COOKIE_AGE = 86400  # 24 hours
 
-# Enhanced logging
+# Logging configuration for Production
+# Minimized logging - only warnings and errors
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -83,7 +84,8 @@ LOGGING = {
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
+            'formatter': 'simple',
+            'level': 'WARNING',  # Only warnings and errors to console
         },
         'file': {
             'class': 'logging.handlers.RotatingFileHandler',
@@ -91,26 +93,27 @@ LOGGING = {
             'maxBytes': 10485760,  # 10MB
             'backupCount': 5,
             'formatter': 'verbose',
+            'level': 'WARNING',  # Only warnings and errors to file
         },
     },
     'root': {
         'handlers': ['console', 'file'],
-        'level': 'INFO',
+        'level': 'WARNING',  # Root logger only logs warnings and errors
     },
     'loggers': {
         'django': {
             'handlers': ['console', 'file'],
-            'level': 'INFO',
+            'level': 'WARNING',  # Only critical Django logs
             'propagate': False,
         },
         'gunicorn': {
             'handlers': ['console', 'file'],
-            'level': 'INFO',
+            'level': 'WARNING',  # Only gunicorn warnings/errors
             'propagate': False,
         },
         'apps': {
             'handlers': ['console', 'file'],
-            'level': 'INFO',
+            'level': 'WARNING',  # Only app warnings/errors
             'propagate': False,
         },
     },

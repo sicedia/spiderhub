@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔍 Test de Sistema de Logging</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .status-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .status-label {
+            font-size: 0.875rem;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-value {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .status-item.production {
+            border-left-color: #dc3545;
+        }
+
+        .status-item.development {
+            border-left-color: #28a745;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        button {
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-debug {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-info {
+            background: #0dcaf0;
+            color: white;
+        }
+
+        .btn-warn {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-error {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-control {
+            background: #667eea;
+            color: white;
+        }
+
+        .console-output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+
+        .console-output pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .alert-info {
+            background: #cfe2ff;
+            color: #084298;
+            border: 1px solid #b6d4fe;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            color: #664d03;
+            border: 1px solid #ffecb5;
+        }
+
+        .alert-success {
+            background: #d1e7dd;
+            color: #0f5132;
+            border: 1px solid #badbcc;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .log-count {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin-left: 0.5rem;
+        }
+
+        code {
+            background: #f8f9fa;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: #e83e8c;
+        }
+
+        .instructions {
+            background: #e7f3ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #0d6efd;
+            margin-bottom: 2rem;
+        }
+
+        .instructions h3 {
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
+
+        .instructions ol {
+            margin-left: 1.5rem;
+        }
+
+        .instructions li {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>🔍 Test de Sistema de Logging</h1>
+            <p class="subtitle">Prueba el sistema de logging en diferentes entornos</p>
+
+            <!-- Environment Status -->
+            <div class="section-title">📊 Estado del Entorno</div>
+            <div class="status-grid">
+                <div class="status-item" id="envStatus">
+                    <div class="status-label">Entorno</div>
+                    <div class="status-value" id="environment">Detectando...</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Nivel de Log</div>
+                    <div class="status-value" id="logLevel">-</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Hostname</div>
+                    <div class="status-value" id="hostname" style="font-size: 1rem;">-</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Logger Estado</div>
+                    <div class="status-value" id="loggerStatus">-</div>
+                </div>
+            </div>
+
+            <!-- Alert Messages -->
+            <div id="alertContainer"></div>
+
+            <!-- Instructions -->
+            <div class="instructions">
+                <h3>📝 Instrucciones para Probar</h3>
+                <ol>
+                    <li><strong>Desarrollo (localhost):</strong> Todos los logs (debug, info, warn, error) se mostrarán en la consola</li>
+                    <li><strong>Producción:</strong> Solo warn y error se mostrarán. Para simular, cambia el hostname o agrega <code>?debug=false</code></li>
+                    <li>Abre la consola del navegador (F12) para ver los logs con formato</li>
+                    <li>Usa los botones para generar logs de diferentes niveles</li>
+                    <li>Los logs también se guardan en el buffer interno (ver sección de logs guardados)</li>
+                </ol>
+            </div>
+
+            <!-- Test Buttons -->
+            <div class="section-title">🧪 Generar Logs de Prueba</div>
+            <div class="button-grid">
+                <button class="btn-debug" onclick="testDebug()">🔍 DEBUG Log</button>
+                <button class="btn-info" onclick="testInfo()">ℹ️ INFO Log</button>
+                <button class="btn-warn" onclick="testWarn()">⚠️ WARNING Log</button>
+                <button class="btn-error" onclick="testError()">❌ ERROR Log</button>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="section-title">🎛️ Controles del Logger</div>
+            <div class="button-grid">
+                <button class="btn-control" onclick="setLevel('debug')">Nivel: DEBUG</button>
+                <button class="btn-control" onclick="setLevel('info')">Nivel: INFO</button>
+                <button class="btn-control" onclick="setLevel('warn')">Nivel: WARN</button>
+                <button class="btn-control" onclick="setLevel('error')">Nivel: ERROR</button>
+                <button class="btn-control" onclick="toggleLogger()">Toggle ON/OFF</button>
+                <button class="btn-control" onclick="downloadLogs()">📥 Descargar Logs</button>
+                <button class="btn-control" onclick="clearLogs()">🗑️ Limpiar Logs</button>
+            </div>
+
+            <!-- Saved Logs -->
+            <div class="section-title">
+                💾 Logs Guardados en Buffer 
+                <span class="log-count" id="logCount">0</span>
+            </div>
+            <div class="console-output">
+                <pre id="logOutput">No hay logs guardados aún. Genera algunos logs usando los botones de arriba.</pre>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import logger
+        import { logger } from '/static/core/js/core/logger/Logger.js';
+
+        // Make logger available globally for button handlers
+        window.testLogger = logger;
+
+        // Update UI with logger status
+        function updateStatus() {
+            const isDev = window.location.hostname === 'localhost' 
+                || window.location.hostname === '127.0.0.1'
+                || window.location.hostname.includes('dev')
+                || window.location.search.includes('debug=true');
+
+            const envStatus = document.getElementById('envStatus');
+            const environment = document.getElementById('environment');
+            const logLevel = document.getElementById('logLevel');
+            const hostname = document.getElementById('hostname');
+            const loggerStatus = document.getElementById('loggerStatus');
+            const alertContainer = document.getElementById('alertContainer');
+
+            // Update environment
+            if (isDev) {
+                environment.textContent = '🟢 Development';
+                envStatus.classList.add('development');
+                alertContainer.innerHTML = `
+                    <div class="alert alert-success">
+                        ✅ <strong>Modo Desarrollo:</strong> Todos los logs están habilitados. 
+                        Verás mensajes debug, info, warn y error en la consola.
+                    </div>
+                `;
+            } else {
+                environment.textContent = '🔴 Production';
+                envStatus.classList.add('production');
+                alertContainer.innerHTML = `
+                    <div class="alert alert-warning">
+                        ⚠️ <strong>Modo Producción:</strong> Solo logs de WARNING y ERROR están habilitados. 
+                        Los mensajes debug e info no aparecerán.
+                    </div>
+                `;
+            }
+
+            // Update log level
+            logLevel.textContent = logger.config.level.toUpperCase();
+
+            // Update hostname
+            hostname.textContent = window.location.hostname || 'localhost';
+
+            // Update logger status
+            loggerStatus.textContent = logger.config.enabled ? '✅ Activo' : '❌ Desactivado';
+
+            updateLogDisplay();
+        }
+
+        // Update log display
+        function updateLogDisplay() {
+            const logs = logger.getLogs();
+            const logOutput = document.getElementById('logOutput');
+            const logCount = document.getElementById('logCount');
+
+            logCount.textContent = logs.length;
+
+            if (logs.length === 0) {
+                logOutput.textContent = 'No hay logs guardados aún. Genera algunos logs usando los botones de arriba.';
+                return;
+            }
+
+            const logText = logs.map(log => {
+                const time = new Date(log.timestamp).toLocaleTimeString();
+                const icon = { debug: '🔍', info: 'ℹ️', warn: '⚠️', error: '❌' }[log.level] || '📝';
+                const dataStr = log.data ? '\n  ' + JSON.stringify(log.data, null, 2) : '';
+                return `${icon} [${time}] [${log.level.toUpperCase()}] ${log.message}${dataStr}`;
+            }).join('\n\n');
+
+            logOutput.textContent = logText;
+            logOutput.scrollTop = logOutput.scrollHeight;
+        }
+
+        // Test functions
+        window.testDebug = function() {
+            logger.debug('🔍 Este es un mensaje de DEBUG', { 
+                timestamp: Date.now(), 
+                test: true,
+                details: 'Información detallada para debugging'
+            });
+            updateLogDisplay();
+            console.log('%c✅ Debug log generado', 'color: #6c757d; font-weight: bold');
+        };
+
+        window.testInfo = function() {
+            logger.info('ℹ️ Este es un mensaje de INFO', { 
+                action: 'test',
+                status: 'success',
+                duration: Math.floor(Math.random() * 1000)
+            });
+            updateLogDisplay();
+            console.log('%c✅ Info log generado', 'color: #0dcaf0; font-weight: bold');
+        };
+
+        window.testWarn = function() {
+            logger.warn('⚠️ Este es un mensaje de WARNING', { 
+                reason: 'Operación lenta detectada',
+                threshold: 5000,
+                actual: 6543
+            });
+            updateLogDisplay();
+            console.log('%c✅ Warning log generado', 'color: #ffc107; font-weight: bold');
+        };
+
+        window.testError = function() {
+            const error = new Error('Este es un error de prueba');
+            logger.error('❌ Este es un mensaje de ERROR', error, {
+                context: 'test',
+                severity: 'high'
+            });
+            updateLogDisplay();
+            console.log('%c✅ Error log generado', 'color: #dc3545; font-weight: bold');
+        };
+
+        // Control functions
+        window.setLevel = function(level) {
+            logger.setLevel(level);
+            updateStatus();
+            alert(`✅ Nivel de log cambiado a: ${level.toUpperCase()}`);
+        };
+
+        window.toggleLogger = function() {
+            if (logger.config.enabled) {
+                logger.disable();
+                alert('❌ Logger desactivado');
+            } else {
+                logger.enable();
+                alert('✅ Logger activado');
+            }
+            updateStatus();
+        };
+
+        window.downloadLogs = function() {
+            logger.downloadLogs(`spiderhub-logs-${Date.now()}.json`);
+            alert('📥 Logs descargados');
+        };
+
+        window.clearLogs = function() {
+            if (confirm('¿Estás seguro de que quieres limpiar todos los logs?')) {
+                logger.clearLogs();
+                updateLogDisplay();
+                alert('🗑️ Logs limpiados');
+            }
+        };
+
+        // Initialize
+        updateStatus();
+
+        // Log initial message
+        logger.info('🚀 Sistema de logging inicializado', {
+            environment: window.location.hostname,
+            level: logger.config.level,
+            enabled: logger.config.enabled
+        });
+
+        console.log('%c🔍 Sistema de Logging - Test Page', 'font-size: 20px; font-weight: bold; color: #667eea');
+        console.log('%cAbre esta consola para ver los logs con formato', 'font-size: 14px; color: #666');
+        console.log('%cAccede al logger con: window.testLogger o window.__logger', 'font-size: 12px; color: #999');
+    </script>
+</body>
+</html>
+

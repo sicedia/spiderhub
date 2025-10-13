@@ -35,7 +35,7 @@ export class HomePageManager extends BasePageManager {
       enableFeaturesAnimation: true,
       enableNodeWebAnimation: true,
       enableCarousel: true,
-      autoPlayCarousel: true,
+      autoPlayCarousel: false,
       carouselInterval: 5000,
       enableSearchForm: true,
       enableCTAEffects: true,
