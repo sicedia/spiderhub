@@ -103,15 +103,32 @@ export class AnalysisUICoordinator {
    * Setup scroll animations for charts
    */
   setupScrollAnimations() {
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion || !this.options.enableAnimations) {
+      this.logger.debug('Scroll animations disabled (reduced motion or disabled in options)');
+      return;
+    }
+    
     const chartCards = DOMUtils.getElements('.chart-card');
     if (chartCards.length === 0) {
       this.logger.debug('No chart cards found for scroll animation');
       return;
     }
     
+    // Add will-animate class to cards that should animate
+    chartCards.forEach(card => {
+      // Only animate cards that are not in the initial viewport
+      const rect = card.getBoundingClientRect();
+      if (rect.top > window.innerHeight * 0.5) {
+        card.classList.add('will-animate');
+      }
+    });
+    
     const observer = AnimationUtils.createScrollObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.target.classList.contains('will-animate')) {
           entry.target.classList.add('fade-in-up');
           this.logger.debug('Chart card animated', {
             chartId: entry.target.id
@@ -123,7 +140,12 @@ export class AnalysisUICoordinator {
       rootMargin: '0px 0px -50px 0px'
     });
     
-    chartCards.forEach(card => observer.observe(card));
+    chartCards.forEach(card => {
+      if (card.classList.contains('will-animate')) {
+        observer.observe(card);
+      }
+    });
+    
     this.observers.push(observer);
     
     this.logger.debug('Scroll animations setup', { cardsCount: chartCards.length });

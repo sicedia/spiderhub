@@ -57,11 +57,17 @@ export class DocumentResults extends BaseComponent {
     this._isRenderingResults = true;
     this._isShowingLoading = false; // Clear loading flag when rendering results
     try {
-      const { count, page_size: pageSize, results } = data;
+      const { count, page_size: pageSize, results, current_page } = data;
       
       this.state.documents = results;
       this.state.totalCount = count;
       this.state.pageSize = pageSize;
+      
+      // Update current page from server response if available
+      // This ensures the pagination reflects the actual page being displayed
+      if (current_page !== undefined) {
+        this.state.currentPage = current_page;
+      }
 
       // Update count display
       this.updateCountDisplay(count, pageSize);
@@ -230,7 +236,8 @@ export class DocumentResults extends BaseComponent {
     }
 
     const createButton = (page, label = page, isActive = false, isDisabled = false) => {
-      const activeClass = isActive ? 'pagination-btn--active' : '';
+      // Use both 'active' and 'pagination-btn--active' classes for compatibility
+      const activeClass = isActive ? 'pagination-btn--active active' : '';
       const disabledAttr = isDisabled ? 'disabled' : '';
       const ariaLabel = typeof page === 'number' ? `Go to page ${page}` : label;
       
@@ -308,7 +315,35 @@ export class DocumentResults extends BaseComponent {
    */
   goToPage(page) {
     this.state.currentPage = page;
+    
+    // Scroll to top of results when changing pages
+    this.scrollToResults();
+    
     this.emit('page:changed', { page });
+  }
+
+  /**
+   * Scroll to the top of the results list
+   */
+  scrollToResults() {
+    // Try to find the results container
+    const resultsContainer = document.querySelector('.explore-results') 
+      || document.querySelector('#search-results-list')
+      || this.element;
+    
+    if (resultsContainer) {
+      // Scroll to the top of the results with smooth behavior
+      resultsContainer.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+      
+      // Alternative: scroll to top of page if results are at top
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   }
 
   /**
