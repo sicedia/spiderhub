@@ -13,7 +13,7 @@ import { DOMUtils } from '../core/utils/dom.js';
 import { NetworkGraph } from '../components/charts/NetworkGraph.js';
 import { SDGRadarChart } from '../components/charts/SDGRadarChart.js';
 import { BindingDonutChart } from '../components/charts/BindingDonutChart.js';
-import { CountriesTreeMap } from '../components/charts/CountriesTreeMap.js';
+import { CountriesBarChart } from '../components/charts/CountriesBarChart.js';
 import { ThemesBarChart } from '../components/charts/ThemesBarChart.js';
 import { ActorsBarChart } from '../components/charts/ActorsBarChart.js';
 import { BeneficiariesBarChart } from '../components/charts/BeneficiariesBarChart.js';
@@ -89,7 +89,8 @@ export class AnalysisChartsCoordinator {
         component: NetworkGraph,
         data: {
           actorData: this.dataCoordinator.getChartData('actors'),
-          themeData: this.dataCoordinator.getChartData('themes')
+          themeData: this.dataCoordinator.getChartData('themes'),
+          coOccurrenceMatrix: this.dataCoordinator.getCoOccurrenceMatrix()
         }
       },
       { 
@@ -97,7 +98,8 @@ export class AnalysisChartsCoordinator {
         type: 'radar',
         component: SDGRadarChart,
         data: {
-          sdgData: this.dataCoordinator.getChartData('sdg')
+          sdgData: this.dataCoordinator.getChartData('sdg'),
+          sdgInfo: this.dataCoordinator.getSDGInfo()
         }
       },
       { 
@@ -105,13 +107,14 @@ export class AnalysisChartsCoordinator {
         type: 'donut',
         component: BindingDonutChart,
         data: {
-          bindingData: this.dataCoordinator.getChartData('binding')
+          bindingData: this.dataCoordinator.getChartData('binding'),
+          bindingInfo: this.dataCoordinator.getBindingInfo()
         }
       },
       { 
         id: 'countries-chart', 
-        type: 'treemap',
-        component: CountriesTreeMap,
+        type: 'bar',
+        component: CountriesBarChart,
         data: {
           countriesData: this.dataCoordinator.getChartData('lead_countries')
         }
@@ -121,7 +124,8 @@ export class AnalysisChartsCoordinator {
         type: 'bar',
         component: ThemesBarChart,
         data: {
-          themesData: this.dataCoordinator.getChartData('themes')
+          themesData: this.dataCoordinator.getChartData('themes'),
+          themeInfo: this.dataCoordinator.getThemeInfo()
         }
       },
       { 
@@ -129,7 +133,8 @@ export class AnalysisChartsCoordinator {
         type: 'bar',
         component: ActorsBarChart,
         data: {
-          actorsData: this.dataCoordinator.getChartData('actors')
+          actorsData: this.dataCoordinator.getChartData('actors'),
+          actorInfo: this.dataCoordinator.getActorInfo()
         }
       },
       { 
@@ -137,7 +142,8 @@ export class AnalysisChartsCoordinator {
         type: 'bar',
         component: BeneficiariesBarChart,
         data: {
-          beneficiariesData: this.dataCoordinator.getChartData('beneficiaries')
+          beneficiariesData: this.dataCoordinator.getChartData('beneficiaries'),
+          beneficiaryInfo: this.dataCoordinator.getBeneficiaryInfo()
         }
       }
     ];

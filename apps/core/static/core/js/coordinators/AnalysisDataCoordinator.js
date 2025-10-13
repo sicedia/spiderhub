@@ -163,41 +163,209 @@ export class AnalysisDataCoordinator {
     
     this.data.analysis = {
       sdg_counts: {
-        'SDG 1': 45, 'SDG 4': 89, 'SDG 8': 124, 'SDG 9': 156,
-        'SDG 10': 67, 'SDG 13': 98, 'SDG 16': 112, 'SDG 17': 178
+        'sdg1': 45, 'sdg4': 89, 'sdg5': 67, 'sdg8': 124, 'sdg9': 156,
+        'sdg10': 67, 'sdg11': 78, 'sdg13': 98, 'sdg16': 112, 'sdg17': 178
+      },
+      sdg_info: {
+        'sdg1': {'number': 1, 'name': 'No Poverty', 'description': 'End poverty in all its forms everywhere'},
+        'sdg4': {'number': 4, 'name': 'Quality Education', 'description': 'Ensure inclusive and equitable quality education'},
+        'sdg5': {'number': 5, 'name': 'Gender Equality', 'description': 'Achieve gender equality and empower all women and girls'},
+        'sdg8': {'number': 8, 'name': 'Decent Work', 'description': 'Promote sustained, inclusive economic growth and decent work'},
+        'sdg9': {'number': 9, 'name': 'Innovation', 'description': 'Build resilient infrastructure, promote innovation'},
+        'sdg10': {'number': 10, 'name': 'Reduced Inequalities', 'description': 'Reduce inequality within and among countries'},
+        'sdg11': {'number': 11, 'name': 'Sustainable Cities', 'description': 'Make cities and settlements inclusive, safe, resilient'},
+        'sdg13': {'number': 13, 'name': 'Climate Action', 'description': 'Take urgent action to combat climate change'},
+        'sdg16': {'number': 16, 'name': 'Peace & Justice', 'description': 'Promote peaceful and inclusive societies for sustainable development'},
+        'sdg17': {'number': 17, 'name': 'Partnerships', 'description': 'Strengthen global partnership for sustainable development'},
+      },
+      sdg_labels: {
+        'sdg1': 'SDG 1', 'sdg4': 'SDG 4', 'sdg5': 'SDG 5', 'sdg8': 'SDG 8', 'sdg9': 'SDG 9',
+        'sdg10': 'SDG 10', 'sdg11': 'SDG 11', 'sdg13': 'SDG 13', 'sdg16': 'SDG 16', 'sdg17': 'SDG 17'
       },
       binding_counts: {
-        'Legally Binding': 45,
-        'Politically Binding': 78,
-        'Non-Binding': 32
+        'legallyBinding': 45,
+        'politicallyBinding': 78,
+        'nonBinding': 32,
+        'uncategorised': 10
+      },
+      binding_info: {
+        'legallyBinding': {
+          'name': 'Legally Binding',
+          'description': 'Agreements with enforceable legal obligations under international law',
+          'icon': '⚖️',
+          'strength': 'Strong'
+        },
+        'politicallyBinding': {
+          'name': 'Politically Binding',
+          'description': 'Commitments based on political will without legal enforcement mechanisms',
+          'icon': '🤝',
+          'strength': 'Medium'
+        },
+        'nonBinding': {
+          'name': 'Non-Binding',
+          'description': 'Voluntary cooperation frameworks without formal obligations',
+          'icon': '📋',
+          'strength': 'Soft'
+        },
+        'uncategorised': {
+          'name': 'Uncategorised',
+          'description': 'Documents without specified binding level',
+          'icon': '❓',
+          'strength': 'Undefined'
+        }
       },
       country_counts: {
         'ESP': 45, 'DEU': 38, 'FRA': 35, 'ITA': 28, 'BRA': 52,
         'ARG': 41, 'MEX': 38, 'COL': 34, 'CHL': 29, 'PER': 24
       },
+      lead_country_counts: {
+        'ESP': 89, 'DEU': 76, 'FRA': 64, 'BRA': 98, 'ARG': 72,
+        'MEX': 67, 'COL': 54, 'CHL': 48, 'ITA': 42, 'PER': 38,
+        'NLD': 34, 'BEL': 28, 'URY': 24, 'ECU': 21, 'POL': 18
+      },
+      country_names: {
+        'ESP': 'Spain', 'DEU': 'Germany', 'FRA': 'France', 'ITA': 'Italy',
+        'BRA': 'Brazil', 'ARG': 'Argentina', 'MEX': 'Mexico', 'COL': 'Colombia',
+        'CHL': 'Chile', 'PER': 'Peru', 'NLD': 'Netherlands', 'BEL': 'Belgium',
+        'URY': 'Uruguay', 'ECU': 'Ecuador', 'POL': 'Poland'
+      },
       theme_counts: {
-        'Digital Economy': 156,
-        'AI & Emerging Tech': 134,
-        'Cybersecurity': 98,
-        'Digital Skills': 87,
-        'E-Government': 76,
-        'Digital Infrastructure': 65,
-        'Data Governance': 54
+        'Digital Transformation & Strategy': 156,
+        'Technology & Innovation': 134,
+        'Data & Governance': 98,
+        'Inclusion & Social Development': 87,
+        'Regional & International Cooperation': 76,
+        'Uncategorised': 12
+      },
+      theme_info: {
+        "Digital Transformation & Strategy": {
+          "description": "Strategic frameworks and policies for digital transformation initiatives",
+          "icon": "🚀",
+          "focus": "Strategy & Planning"
+        },
+        "Technology & Innovation": {
+          "description": "Emerging technologies, R&D, and innovation ecosystems",
+          "icon": "💡",
+          "focus": "Tech Development"
+        },
+        "Data & Governance": {
+          "description": "Data management, privacy, security, and digital governance frameworks",
+          "icon": "🔒",
+          "focus": "Governance & Security"
+        },
+        "Inclusion & Social Development": {
+          "description": "Digital inclusion, accessibility, and social impact initiatives",
+          "icon": "🤝",
+          "focus": "Social Impact"
+        },
+        "Regional & International Cooperation": {
+          "description": "Cross-border collaboration and international digital partnerships",
+          "icon": "🌍",
+          "focus": "Global Cooperation"
+        },
+        "Uncategorised": {
+          "description": "Themes without specified category",
+          "icon": "📋",
+          "focus": "Other"
+        }
       },
       actor_counts: {
-        'Government': 120,
-        'Private Sector': 85,
-        'Academia': 67,
-        'Civil Society': 43,
-        'International Org': 28
+        'Political Actors': 120,
+        'Research and Innovation Actors': 85,
+        'Economic Actors': 67,
+        'Civil Society Actors': 43,
+        'Uncategorised': 15
+      },
+      actor_info: {
+        "Political Actors": {
+          "description": "Governments, ministries, public institutions, and policy-making bodies",
+          "icon": "🏛️",
+          "role": "Policy & Governance"
+        },
+        "Research and Innovation Actors": {
+          "description": "Universities, research centers, R&D institutions, and innovation hubs",
+          "icon": "🔬",
+          "role": "Knowledge & Development"
+        },
+        "Economic Actors": {
+          "description": "Private companies, business associations, SMEs, and economic organizations",
+          "icon": "💼",
+          "role": "Business & Economy"
+        },
+        "Civil Society Actors": {
+          "description": "NGOs, foundations, community organizations, and advocacy groups",
+          "icon": "🤝",
+          "role": "Social & Community"
+        },
+        "Uncategorised": {
+          "description": "Actors without specified category",
+          "icon": "📋",
+          "role": "Other"
+        }
       },
       beneficiary_counts: {
-        'SMEs': 156,
-        'Citizens': 234,
-        'Researchers': 98,
-        'Startups': 76,
-        'Students': 145,
-        'Public Sector': 89
+        'SMEs / Businesses': 156,
+        'General Citizens / Consumers': 234,
+        'Researchers & Academia': 98,
+        'Start-ups / Innovators': 76,
+        'Students & Youth': 145,
+        'Public Sector / Governments': 89,
+        'Women & Girls': 67,
+        'Rural & Remote Communities': 45,
+        'Health Sector': 34,
+        'Civil Society / NGOs': 28
+      },
+      beneficiary_info: {
+        "SMEs / Businesses": {
+          "description": "Small and medium enterprises driving digital transformation",
+          "icon": "🏪",
+          "category": "Economic"
+        },
+        "Start-ups / Innovators": {
+          "description": "Innovative startups and entrepreneurial ventures",
+          "icon": "🚀",
+          "category": "Economic"
+        },
+        "Researchers & Academia": {
+          "description": "University researchers, scientists, and academic institutions",
+          "icon": "🎓",
+          "category": "Knowledge"
+        },
+        "Students & Youth": {
+          "description": "Young people and students benefiting from digital education",
+          "icon": "👨‍🎓",
+          "category": "Education"
+        },
+        "Women & Girls": {
+          "description": "Female population empowered through digital inclusion",
+          "icon": "👩",
+          "category": "Inclusion"
+        },
+        "Rural & Remote Communities": {
+          "description": "Communities in rural and remote areas gaining digital access",
+          "icon": "🏘️",
+          "category": "Geographic"
+        },
+        "General Citizens / Consumers": {
+          "description": "General public benefiting from digital services",
+          "icon": "👥",
+          "category": "General"
+        },
+        "Public Sector / Governments": {
+          "description": "Government entities improving digital public services",
+          "icon": "🏛️",
+          "category": "Public"
+        },
+        "Civil Society / NGOs": {
+          "description": "Non-governmental organizations leveraging digital tools",
+          "icon": "🤝",
+          "category": "Social"
+        },
+        "Health Sector": {
+          "description": "Healthcare providers and patients using digital health",
+          "icon": "🏥",
+          "category": "Health"
+        }
       }
     };
     
@@ -245,8 +413,20 @@ export class AnalysisDataCoordinator {
    */
   formatSDGData() {
     const sdgCounts = this.data.analysis.sdg_counts || {};
+    const sdgLabels = this.data.analysis.sdg_labels || {};
+    
+    // Format labels: use full labels if available, otherwise use keys
+    const labels = Object.keys(sdgCounts).map(key => {
+      if (sdgLabels[key]) {
+        return sdgLabels[key];
+      }
+      // Fallback: format sdg1 -> SDG 1
+      const number = key.replace('sdg', '');
+      return `SDG ${number}`;
+    });
+    
     return {
-      labels: Object.keys(sdgCounts),
+      labels: labels,
       datasets: [{
         label: 'Documents',
         data: Object.values(sdgCounts),
@@ -262,15 +442,18 @@ export class AnalysisDataCoordinator {
    */
   formatBindingData() {
     const bindingCounts = this.data.analysis.binding_counts || {};
+    const bindingInfo = this.data.analysis.binding_info || {};
+    
+    // Create arrays maintaining order
+    const keys = Object.keys(bindingCounts);
+    const labels = keys.map(key => bindingInfo[key]?.name || key);
+    const values = Object.values(bindingCounts);
+    
     return {
-      labels: Object.keys(bindingCounts),
+      labels: labels,
+      keys: keys, // Keep keys for mapping to bindingInfo
       datasets: [{
-        data: Object.values(bindingCounts),
-        backgroundColor: [
-          'rgba(52, 168, 83, 0.8)',   // Green - Legally Binding
-          'rgba(251, 188, 4, 0.8)',    // Yellow - Politically Binding
-          'rgba(234, 67, 53, 0.8)'     // Red - Non-Binding
-        ],
+        data: values,
         borderWidth: 2,
         borderColor: '#fff'
       }]
@@ -301,26 +484,24 @@ export class AnalysisDataCoordinator {
   }
 
   /**
-   * Format lead countries data for chart (Top 10) - Uses ISO3 codes
+   * Format lead countries data for chart (Top 15) - Uses ISO3 codes
    */
   formatLeadCountriesData() {
     const leadCountryCounts = this.data.analysis.lead_country_counts || {};
     const countryNames = this.data.analysis.country_names || {};
     
-    // Sort and get top 10
+    // Sort by count descending and get top 15
     const sorted = Object.entries(leadCountryCounts)
+      .filter(([iso3, count]) => count > 0)
       .sort((a, b) => b[1] - a[1])
-      .slice(0, 10);
+      .slice(0, 15);
     
     return {
       labels: sorted.map(([iso3]) => iso3),
       countryNames: countryNames, // Include full country names mapping
       datasets: [{
         label: 'Documents Led',
-        data: sorted.map(([, count]) => count),
-        backgroundColor: 'rgba(9, 78, 178, 0.7)',
-        borderColor: 'rgba(9, 78, 178, 1)',
-        borderWidth: 1
+        data: sorted.map(([, count]) => count)
       }]
     };
   }
@@ -372,15 +553,22 @@ export class AnalysisDataCoordinator {
   }
 
   /**
-   * Format beneficiaries data for chart
+   * Format beneficiaries data for chart (sorted by count descending)
    */
   formatBeneficiariesData() {
     const beneficiaryCounts = this.data.analysis.beneficiary_counts || {};
+    
+    // Sort by count descending and take top 10
+    const sorted = Object.entries(beneficiaryCounts)
+      .sort((a, b) => b[1] - a[1])
+      .filter(([key, value]) => value > 0)
+      .slice(0, 10);
+    
     return {
-      labels: Object.keys(beneficiaryCounts),
+      labels: sorted.map(([label]) => label),
       datasets: [{
         label: 'Benefited',
-        data: Object.values(beneficiaryCounts),
+        data: sorted.map(([, count]) => count),
         backgroundColor: 'rgba(0, 188, 212, 0.7)',
         borderColor: 'rgba(0, 188, 212, 1)',
         borderWidth: 1
@@ -400,6 +588,48 @@ export class AnalysisDataCoordinator {
    */
   getAnalysisData() {
     return this.data.analysis;
+  }
+
+  /**
+   * Get actor-theme co-occurrence matrix
+   */
+  getCoOccurrenceMatrix() {
+    return this.data.analysis?.actor_theme_matrix || null;
+  }
+
+  /**
+   * Get SDG information (names and descriptions)
+   */
+  getSDGInfo() {
+    return this.data.analysis?.sdg_info || null;
+  }
+
+  /**
+   * Get binding information (names, descriptions, icons)
+   */
+  getBindingInfo() {
+    return this.data.analysis?.binding_info || null;
+  }
+
+  /**
+   * Get theme information (descriptions, icons, focus areas)
+   */
+  getThemeInfo() {
+    return this.data.analysis?.theme_info || null;
+  }
+
+  /**
+   * Get actor information (descriptions, icons, roles)
+   */
+  getActorInfo() {
+    return this.data.analysis?.actor_info || null;
+  }
+
+  /**
+   * Get beneficiary information (descriptions, icons, categories)
+   */
+  getBeneficiaryInfo() {
+    return this.data.analysis?.beneficiary_info || null;
   }
 
   /**

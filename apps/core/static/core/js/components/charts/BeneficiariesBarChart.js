@@ -1,6 +1,6 @@
 /**
  * Beneficiaries Bar Chart Component
- * Specialized vertical bar chart for beneficiary groups
+ * Specialized horizontal bar chart for beneficiary groups
  * ES6 Module Export
  */
 
@@ -20,7 +20,24 @@ export class BeneficiariesBarChart extends BaseChart {
     return {
       ...super.getDefaultOptions(),
       beneficiariesData: null,
-      color: '#06B6D4'
+      beneficiaryInfo: null,
+      categoryColors: {
+        'Economic': '#10B981',      // Green
+        'Knowledge': '#3B82F6',     // Blue
+        'Education': '#8B5CF6',     // Purple
+        'Vulnerable': '#EF4444',    // Red
+        'Inclusion': '#EC4899',     // Pink
+        'Geographic': '#F59E0B',    // Orange
+        'Cultural': '#14B8A6',      // Teal
+        'Accessibility': '#6366F1',  // Indigo
+        'General': '#06B6D4',       // Cyan
+        'Public': '#094EB2',        // Dark Blue
+        'Social': '#F97316',        // Orange Red
+        'Agriculture': '#84CC16',   // Lime
+        'Health': '#DC2626',        // Rose
+        'Finance': '#059669',       // Emerald
+        'Other': '#9CA3AF'          // Gray
+      }
     };
   }
 
@@ -52,10 +69,18 @@ export class BeneficiariesBarChart extends BaseChart {
     const labels = this.data.labels || [];
     const values = this.data.datasets[0].data || [];
 
-    // Generate gradient colors
-    const backgroundColors = labels.map((_, index) => {
-      const opacity = 0.9 - (index * 0.1);
-      return `${this.options.color}${Math.round(opacity * 255).toString(16).padStart(2, '0')}`;
+    // Assign colors based on beneficiary category
+    const backgroundColors = labels.map(label => {
+      const beneficiaryInfo = this.options.beneficiaryInfo?.[label];
+      const category = beneficiaryInfo?.category || 'Other';
+      const color = this.options.categoryColors[category] || '#06B6D4';
+      return `${color}CC`; // 80% opacity
+    });
+    
+    const borderColors = labels.map(label => {
+      const beneficiaryInfo = this.options.beneficiaryInfo?.[label];
+      const category = beneficiaryInfo?.category || 'Other';
+      return this.options.categoryColors[category] || '#06B6D4';
     });
 
     const config = {
@@ -66,13 +91,14 @@ export class BeneficiariesBarChart extends BaseChart {
           label: 'Documents',
           data: values,
           backgroundColor: backgroundColors,
-          borderColor: this.options.color,
+          borderColor: borderColors,
           borderWidth: 1,
           borderRadius: 6,
-          barPercentage: 0.6
+          barPercentage: 0.7
         }]
       },
       options: {
+        indexAxis: 'y', // Horizontal bars for better label readability
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
@@ -86,17 +112,51 @@ export class BeneficiariesBarChart extends BaseChart {
             bodyColor: '#1C7377',
             borderColor: 'rgba(28, 115, 119, 0.2)',
             borderWidth: 1,
-            padding: 12,
-            displayColors: false,
+            padding: 16,
+            displayColors: true,
+            titleFont: {
+              size: 14,
+              weight: 'bold'
+            },
+            bodyFont: {
+              size: 12
+            },
+            footerFont: {
+              size: 10,
+              style: 'italic'
+            },
+            footerColor: 'rgba(28, 115, 119, 0.7)',
             callbacks: {
+              title: (tooltipItems) => {
+                const item = tooltipItems[0];
+                const label = item.label;
+                const beneficiaryInfo = this.options.beneficiaryInfo?.[label];
+                
+                if (beneficiaryInfo) {
+                  return `${beneficiaryInfo.icon} ${label}`;
+                }
+                return label;
+              },
               label: (context) => {
-                return `Documents: ${context.parsed.y}`;
+                return `📄 Documents: ${context.parsed.x}`;
+              },
+              afterLabel: (context) => {
+                const label = context.label;
+                const beneficiaryInfo = this.options.beneficiaryInfo?.[label];
+                
+                if (beneficiaryInfo?.description) {
+                  return `\n💡 ${beneficiaryInfo.description}\n🏷️ Category: ${beneficiaryInfo.category}`;
+                }
+                return '';
+              },
+              footer: () => {
+                return '\n🎁 Who benefits from cooperation';
               }
             }
           }
         },
         scales: {
-          y: {
+          x: {
             beginAtZero: true,
             grid: {
               color: 'rgba(0, 0, 0, 0.05)'
@@ -109,19 +169,27 @@ export class BeneficiariesBarChart extends BaseChart {
               }
             }
           },
-          x: {
+          y: {
             grid: {
               display: false
             },
             ticks: {
               color: '#1C7377',
               font: {
-                size: 11,
+                size: 10,
                 family: 'Poppins',
                 weight: '500'
               },
-              maxRotation: 45,
-              minRotation: 0
+              autoSkip: false,
+              callback: function(value, index, values) {
+                const label = this.getLabelForValue(value);
+                // Acortar labels muy largos
+                const maxLength = 22;
+                if (label.length > maxLength) {
+                  return label.substring(0, maxLength) + '...';
+                }
+                return label;
+              }
             }
           }
         },

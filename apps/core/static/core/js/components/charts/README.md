@@ -19,16 +19,13 @@ These components are currently being used in the Analysis page:
 - **BindingDonutChart.js** - Donut chart for legal bindingness distribution
   - Extends: BaseChart
   - Uses: Chart.js doughnut type
-  
-- **CountriesTreeMap.js** - TreeMap for leading countries visualization
-  - Extends: BaseChart
-  - Uses: Chart.js treemap plugin
-  - Features: EU/LAC color differentiation, fallback to bar chart
 
 ### Bar Chart Variants
-- **ThemesBarChart.js** - Horizontal bar chart for thematic focus
-- **ActorsBarChart.js** - Vertical bar chart for actor types
-- **BeneficiariesBarChart.js** - Vertical bar chart for beneficiary groups
+- **CountriesBarChart.js** - Horizontal bar chart for leading countries (top 15)
+  - Features: EU/LAC color differentiation by region, sorted by document count
+- **ThemesBarChart.js** - Horizontal bar chart for thematic focus (with color categories)
+- **ActorsBarChart.js** - Vertical bar chart for actor types (with category colors)
+- **BeneficiariesBarChart.js** - Horizontal bar chart for beneficiary groups (top 10, sorted)
 
 ## Generic Base Components (Reusable)
 
@@ -66,6 +63,5 @@ Each chart type has corresponding CSS in `apps/core/static/core/css/components/c
 - `network-graph.css` - Network visualization styles
 - `sdg-radar.css` - Radar chart styles
 - `binding-donut.css` - Donut chart styles
-- `countries-treemap.css` - TreeMap styles
-- `bar-chart.css` - Generic bar chart styles
+- `bar-chart.css` - Generic bar chart styles (includes countries, themes, actors, beneficiaries legends)
 

@@ -25,6 +25,57 @@
 }
 
 /* ========================================
+   Binding Legend
+   ======================================== */
+
+.binding-legend {
+  display: flex;
+  gap: var(--space-lg);
+  justify-content: center;
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-muted);
+  border-radius: var(--radius-sm);
+  border-top: 1px solid var(--color-border-lighter);
+  flex-wrap: wrap;
+}
+
+.binding-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.binding-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.binding-dot--legally {
+  background: #EA4335;
+  border-color: #C5342C;
+}
+
+.binding-dot--politically {
+  background: #FBBC04;
+  border-color: #E0A800;
+}
+
+.binding-dot--non {
+  background: #34A853;
+  border-color: #2D8F47;
+}
+
+.binding-legend-text {
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* ========================================
    Responsive Adjustments
    ======================================== */
 
@@ -33,12 +84,27 @@
     height: 280px;
     padding: var(--space-md);
   }
+  
+  .binding-legend {
+    gap: var(--space-md);
+  }
+  
+  .binding-legend-item {
+    font-size: var(--font-size-xs);
+  }
 }
 
 @media (max-width: 480px) {
   .chart-body--donut {
     height: 250px;
     padding: var(--space-sm);
+  }
+  
+  .binding-legend {
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: flex-start;
+    padding: var(--space-xs) var(--space-sm);
   }
 }
 

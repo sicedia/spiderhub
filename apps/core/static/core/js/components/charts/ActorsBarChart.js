@@ -20,7 +20,14 @@ export class ActorsBarChart extends BaseChart {
     return {
       ...super.getDefaultOptions(),
       actorsData: null,
-      colors: ['#094EB2', '#34A853', '#EA4335', '#FBBC04', '#9333EA']
+      actorInfo: null,
+      colors: {
+        'Political Actors': '#094EB2',                    // Blue - Government
+        'Research and Innovation Actors': '#9333EA',      // Purple - Research
+        'Economic Actors': '#10B981',                     // Green - Business
+        'Civil Society Actors': '#F59E0B',                // Orange - Civil Society
+        'Uncategorised': '#9CA3AF'                        // Gray - Other
+      }
     };
   }
 
@@ -51,6 +58,16 @@ export class ActorsBarChart extends BaseChart {
 
     const labels = this.data.labels || [];
     const values = this.data.datasets[0].data || [];
+    
+    // Assign colors based on actor labels
+    const backgroundColors = labels.map(label => 
+      this.options.colors[label] || '#094EB2'
+    );
+    
+    const borderColors = labels.map(label => {
+      const color = this.options.colors[label] || '#094EB2';
+      return this.darkenColor(color, 20);
+    });
 
     const config = {
       type: 'bar',
@@ -59,8 +76,8 @@ export class ActorsBarChart extends BaseChart {
         datasets: [{
           label: 'Documents',
           data: values,
-          backgroundColor: this.options.colors,
-          borderColor: this.options.colors.map(color => this.darkenColor(color, 20)),
+          backgroundColor: backgroundColors,
+          borderColor: borderColors,
           borderWidth: 1,
           borderRadius: 6,
           barPercentage: 0.6
@@ -80,11 +97,45 @@ export class ActorsBarChart extends BaseChart {
             bodyColor: '#1C7377',
             borderColor: 'rgba(28, 115, 119, 0.2)',
             borderWidth: 1,
-            padding: 12,
-            displayColors: false,
+            padding: 16,
+            displayColors: true,
+            titleFont: {
+              size: 14,
+              weight: 'bold'
+            },
+            bodyFont: {
+              size: 12
+            },
+            footerFont: {
+              size: 10,
+              style: 'italic'
+            },
+            footerColor: 'rgba(28, 115, 119, 0.7)',
             callbacks: {
+              title: (tooltipItems) => {
+                const item = tooltipItems[0];
+                const label = item.label;
+                const actorInfo = this.options.actorInfo?.[label];
+                
+                if (actorInfo) {
+                  return `${actorInfo.icon} ${label}`;
+                }
+                return label;
+              },
               label: (context) => {
-                return `Documents: ${context.parsed.y}`;
+                return `📄 Documents: ${context.parsed.y}`;
+              },
+              afterLabel: (context) => {
+                const label = context.label;
+                const actorInfo = this.options.actorInfo?.[label];
+                
+                if (actorInfo?.description) {
+                  return `\n💡 ${actorInfo.description}\n👥 Role: ${actorInfo.role}`;
+                }
+                return '';
+              },
+              footer: () => {
+                return '\n🤝 Stakeholder participation';
               }
             }
           }
@@ -110,12 +161,30 @@ export class ActorsBarChart extends BaseChart {
             ticks: {
               color: '#1C7377',
               font: {
-                size: 11,
+                size: 10,
                 family: 'Poppins',
                 weight: '500'
               },
               maxRotation: 45,
-              minRotation: 0
+              minRotation: 45,
+              autoSkip: false,
+              callback: function(value, index, values) {
+                const label = this.getLabelForValue(value);
+                // Acortar labels largos para mejor visualización
+                const maxLength = 18;
+                if (label.length > maxLength) {
+                  // Usar versiones cortas para las etiquetas
+                  const shortLabels = {
+                    'Political Actors': 'Political',
+                    'Research and Innovation Actors': 'Research & Innovation',
+                    'Economic Actors': 'Economic',
+                    'Civil Society Actors': 'Civil Society',
+                    'Uncategorised': 'Other'
+                  };
+                  return shortLabels[label] || label.substring(0, maxLength) + '...';
+                }
+                return label;
+              }
             }
           }
         },

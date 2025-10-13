@@ -25,6 +25,40 @@
 }
 
 /* ========================================
+   SDG Legend
+   ======================================== */
+
+.sdg-legend {
+  display: flex;
+  gap: var(--space-lg);
+  justify-content: center;
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-muted);
+  border-radius: var(--radius-sm);
+  border-top: 1px solid var(--color-border-lighter);
+}
+
+.sdg-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.sdg-legend-icon {
+  font-size: var(--font-size-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sdg-legend-text {
+  line-height: 1.4;
+}
+
+/* ========================================
    Responsive Adjustments
    ======================================== */
 
@@ -33,12 +67,26 @@
     height: 350px;
     padding: var(--space-md);
   }
+  
+  .sdg-legend {
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 480px) {
   .chart-body--radar {
     height: 300px;
     padding: var(--space-sm);
+  }
+  
+  .sdg-legend {
+    padding: var(--space-xs) var(--space-sm);
+  }
+  
+  .sdg-legend-text {
+    font-size: var(--font-size-xs);
   }
 }
 

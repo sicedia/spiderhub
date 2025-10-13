@@ -41,6 +41,166 @@
 }
 
 /* ========================================
+   Themes Legend
+   ======================================== */
+
+.themes-legend {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-muted);
+  border-radius: var(--radius-sm);
+  border-top: 1px solid var(--color-border-lighter);
+  flex-wrap: wrap;
+}
+
+.themes-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.theme-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.theme-dot--strategy {
+  background: #9333EA;
+}
+
+.theme-dot--tech {
+  background: #3B82F6;
+}
+
+.theme-dot--data {
+  background: #EF4444;
+}
+
+.theme-dot--inclusion {
+  background: #10B981;
+}
+
+.theme-dot--cooperation {
+  background: #F59E0B;
+}
+
+/* ========================================
+   Countries Legend
+   ======================================== */
+
+.countries-legend {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-muted);
+  border-radius: var(--radius-sm);
+  border-top: 1px solid var(--color-border-lighter);
+  flex-wrap: wrap;
+}
+
+.countries-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.country-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+}
+
+.country-dot--eu {
+  background: #094EB2;
+}
+
+.country-dot--lac {
+  background: #34A853;
+}
+
+/* ========================================
+   Actors Legend
+   ======================================== */
+
+.actors-legend {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-muted);
+  border-radius: var(--radius-sm);
+  border-top: 1px solid var(--color-border-lighter);
+  flex-wrap: wrap;
+}
+
+.actors-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.actor-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.actor-dot--political {
+  background: #094EB2;
+}
+
+.actor-dot--research {
+  background: #9333EA;
+}
+
+.actor-dot--economic {
+  background: #10B981;
+}
+
+.actor-dot--civil {
+  background: #F59E0B;
+}
+
+/* ========================================
+   Beneficiaries Legend
+   ======================================== */
+
+.beneficiaries-legend {
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-muted);
+  border-radius: var(--radius-sm);
+  border-top: 1px solid var(--color-border-lighter);
+}
+
+.beneficiaries-legend-note {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.legend-icon {
+  font-size: var(--font-size-base);
+  flex-shrink: 0;
+}
+
+/* ========================================
    Responsive Adjustments
    ======================================== */
 
@@ -57,6 +217,22 @@
   .chart-card--bar-vertical .chart-body--bar {
     height: 280px;
   }
+  
+  .themes-legend,
+  .actors-legend,
+  .countries-legend {
+    gap: var(--space-sm);
+  }
+  
+  .themes-legend-item,
+  .actors-legend-item,
+  .countries-legend-item {
+    font-size: var(--font-size-xs);
+  }
+  
+  .beneficiaries-legend-note {
+    font-size: var(--font-size-xs);
+  }
 }
 
 @media (max-width: 480px) {
@@ -68,6 +244,19 @@
   .chart-card--bar-horizontal .chart-body--bar,
   .chart-card--bar-vertical .chart-body--bar {
     height: 250px;
+  }
+  
+  .themes-legend,
+  .actors-legend,
+  .countries-legend {
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: flex-start;
+    padding: var(--space-xs) var(--space-sm);
+  }
+  
+  .beneficiaries-legend {
+    padding: var(--space-xs) var(--space-sm);
   }
 }
 

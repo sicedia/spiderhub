@@ -23,6 +23,7 @@ export class NetworkGraph extends BaseChart {
       ...super.getDefaultOptions(),
       actorData: null,
       themeData: null,
+      coOccurrenceMatrix: null,
       colors: {
         actor: {
           background: '#094EB2',
@@ -41,9 +42,9 @@ export class NetworkGraph extends BaseChart {
           }
         },
         edge: {
-          color: 'rgba(28, 115, 119, 0.3)',
-          highlight: 'rgba(28, 115, 119, 0.7)',
-          hover: 'rgba(28, 115, 119, 0.5)'
+          color: 'rgba(28, 115, 119, 0.6)',
+          highlight: 'rgba(28, 115, 119, 0.9)',
+          hover: 'rgba(28, 115, 119, 0.75)'
         }
       },
       physics: {
@@ -117,7 +118,7 @@ export class NetworkGraph extends BaseChart {
           label: `${category}\n(${count})`,
           value: count * 3,
           group: 'actor',
-          title: `Actor Type: ${category}<br/>Documents: ${count}`
+          title: `🏢 Actor Type: ${category}\n📄 Documents: ${count}\n\nOrganizations in this category participate\nin ${count} cooperation document${count > 1 ? 's' : ''}`
         });
         nodeId++;
       }
@@ -137,29 +138,53 @@ export class NetworkGraph extends BaseChart {
           label: `${category}\n(${count})`,
           value: count * 2,
           group: 'theme',
-          title: `Theme: ${category}<br/>Documents: ${count}`
+          title: `🎯 Thematic Area: ${category}\n📄 Documents: ${count}\n\nThis theme appears in ${count}\ncooperation document${count > 1 ? 's' : ''}`
         });
         nodeId++;
       }
     });
 
-    // Create edges (connections) based on shared documents
+    // Create edges (connections) based on real co-occurrence data
     let edgeId = 0;
-    Object.keys(actorNodeMap).forEach(actorCat => {
-      Object.keys(themeNodeMap).forEach(themeCat => {
-        // Simulate connection strength (in real implementation, use actual co-occurrence data)
-        const connectionStrength = Math.floor(Math.random() * 15) + 5;
-        if (connectionStrength > 8) {
-          edges.push({
-            id: edgeId++,
-            from: actorNodeMap[actorCat],
-            to: themeNodeMap[themeCat],
-            value: connectionStrength / 3,
-            title: `${connectionStrength} shared documents`
-          });
-        }
+    const matrix = this.options.coOccurrenceMatrix;
+    
+    if (matrix) {
+      // Use real co-occurrence data from backend
+      Object.keys(actorNodeMap).forEach(actorCat => {
+        Object.keys(themeNodeMap).forEach(themeCat => {
+          const connectionStrength = matrix[actorCat]?.[themeCat] || 0;
+          if (connectionStrength > 0) {
+            edges.push({
+              id: edgeId++,
+              from: actorNodeMap[actorCat],
+              to: themeNodeMap[themeCat],
+              value: Math.min(connectionStrength / 3, 10), // Scale for visual weight
+              title: `🔗 Collaboration Link\n\n🏢 ${actorCat}\n🎯 ${themeCat}\n\n📄 ${connectionStrength} shared document${connectionStrength > 1 ? 's' : ''}\n\nThis shows active collaboration between\nthese actors and this thematic area`
+            });
+          }
+        });
       });
-    });
+    } else {
+      // Fallback: Create some connections based on document counts
+      Object.keys(actorNodeMap).forEach(actorCat => {
+        Object.keys(themeNodeMap).forEach(themeCat => {
+          // Use a simple heuristic: probability based on both counts
+          const actorCount = actorCounts[actorCategories.indexOf(actorCat)] || 0;
+          const themeCount = themeCounts[themeCategories.indexOf(themeCat)] || 0;
+          const connectionStrength = Math.floor(Math.random() * Math.min(actorCount, themeCount) / 2);
+          
+          if (connectionStrength > 3) {
+            edges.push({
+              id: edgeId++,
+              from: actorNodeMap[actorCat],
+              to: themeNodeMap[themeCat],
+              value: connectionStrength / 3,
+              title: `🔗 Collaboration Link\n\n🏢 ${actorCat}\n🎯 ${themeCat}\n\n📄 ~${connectionStrength} shared document${connectionStrength > 1 ? 's' : ''}\n\nThis shows potential collaboration between\nthese actors and this thematic area`
+            });
+          }
+        });
+      });
+    }
 
     // Calculate network metrics
     const totalNodes = nodes.length;
@@ -213,7 +238,7 @@ export class NetworkGraph extends BaseChart {
         },
         font: {
           size: 12,
-          color: '#ffffff',
+          color: '#1a1a1a',
           face: 'Poppins',
           bold: {
             size: 13

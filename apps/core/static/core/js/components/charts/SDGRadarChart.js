@@ -20,6 +20,7 @@ export class SDGRadarChart extends BaseChart {
     return {
       ...super.getDefaultOptions(),
       sdgData: null,
+      sdgInfo: null,
       colors: {
         primary: '#094EB2',
         border: '#034092',
@@ -94,15 +95,51 @@ export class SDGRadarChart extends BaseChart {
             bodyColor: this.options.colors.text,
             borderColor: this.options.colors.gridBorder,
             borderWidth: 1,
-            padding: 12,
+            padding: 16,
             displayColors: false,
+            titleFont: {
+              size: 14,
+              weight: 'bold'
+            },
+            bodyFont: {
+              size: 12
+            },
+            footerFont: {
+              size: 10,
+              style: 'italic'
+            },
+            footerColor: 'rgba(28, 115, 119, 0.7)',
             callbacks: {
               title: (tooltipItems) => {
                 const item = tooltipItems[0];
-                return item.label;
+                const label = item.label; // e.g., "SDG 1"
+                
+                // Extract number from label (e.g., "SDG 1" -> "1")
+                const number = label.match(/\d+/)?.[0] || '';
+                const sdgKey = `sdg${number}`; // Convert to 'sdg1'
+                const sdgInfo = this.options.sdgInfo?.[sdgKey];
+                
+                if (sdgInfo) {
+                  return `🎯 SDG ${number}: ${sdgInfo.name}`;
+                }
+                return `🎯 ${label}`;
               },
               label: (context) => {
-                return `Documents: ${context.parsed.r}`;
+                return `📄 Documents: ${context.parsed.r}`;
+              },
+              afterLabel: (context) => {
+                const label = context.label; // e.g., "SDG 1"
+                const number = label.match(/\d+/)?.[0] || '';
+                const sdgKey = `sdg${number}`; // Convert to 'sdg1'
+                const sdgInfo = this.options.sdgInfo?.[sdgKey];
+                
+                if (sdgInfo?.description) {
+                  return `\n💡 About this SDG:\n   ${sdgInfo.description}`;
+                }
+                return '';
+              },
+              footer: (tooltipItems) => {
+                return '\n✨ Part of UN\'s 2030 Agenda for Sustainable Development';
               }
             }
           }

@@ -20,10 +20,12 @@ export class BindingDonutChart extends BaseChart {
     return {
       ...super.getDefaultOptions(),
       bindingData: null,
+      bindingInfo: null,
       colors: {
-        'Non-Binding': '#34A853',
-        'Binding': '#EA4335',
-        'Undefined': '#FBBC04'
+        'legallyBinding': '#EA4335',      // Red - Strong binding
+        'politicallyBinding': '#FBBC04',  // Yellow - Medium binding  
+        'nonBinding': '#34A853',          // Green - Soft binding
+        'uncategorised': '#9AA0A6'        // Gray - Undefined
       }
     };
   }
@@ -55,10 +57,11 @@ export class BindingDonutChart extends BaseChart {
 
     const labels = this.data.labels || [];
     const values = this.data.datasets[0].data || [];
+    const keys = this.data.keys || labels; // Keys for mapping to bindingInfo
     
-    // Prepare colors based on labels
-    const backgroundColors = labels.map(label => 
-      this.options.colors[label] || '#6c757d'
+    // Prepare colors based on keys
+    const backgroundColors = keys.map(key => 
+      this.options.colors[key] || '#6c757d'
     );
 
     const config = {
@@ -101,15 +104,50 @@ export class BindingDonutChart extends BaseChart {
             bodyColor: '#1C7377',
             borderColor: 'rgba(28, 115, 119, 0.2)',
             borderWidth: 1,
-            padding: 12,
+            padding: 16,
             displayColors: true,
+            titleFont: {
+              size: 14,
+              weight: 'bold'
+            },
+            bodyFont: {
+              size: 12
+            },
+            footerFont: {
+              size: 10,
+              style: 'italic'
+            },
+            footerColor: 'rgba(28, 115, 119, 0.7)',
             callbacks: {
+              title: (tooltipItems) => {
+                const item = tooltipItems[0];
+                const index = item.dataIndex;
+                const key = keys[index];
+                const bindingInfo = this.options.bindingInfo?.[key];
+                
+                if (bindingInfo) {
+                  return `${bindingInfo.icon} ${bindingInfo.name}`;
+                }
+                return item.label;
+              },
               label: (context) => {
-                const label = context.label || '';
                 const value = context.parsed || 0;
                 const total = context.dataset.data.reduce((a, b) => a + b, 0);
                 const percentage = ((value / total) * 100).toFixed(1);
-                return `${label}: ${value} (${percentage}%)`;
+                return `📄 Documents: ${value} (${percentage}%)`;
+              },
+              afterLabel: (context) => {
+                const index = context.dataIndex;
+                const key = keys[index];
+                const bindingInfo = this.options.bindingInfo?.[key];
+                
+                if (bindingInfo?.description) {
+                  return `\n💡 ${bindingInfo.description}\n📊 Strength: ${bindingInfo.strength}`;
+                }
+                return '';
+              },
+              footer: () => {
+                return '\n⚖️ Legal framework classification';
               }
             }
           }

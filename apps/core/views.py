@@ -296,6 +296,33 @@ def analysis_page(request):
         f'sdg{s.number}': s.count
         for s in sdgs_qs
     }
+    
+    # SDG descriptive information for enhanced tooltips
+    SDG_INFO = {
+        'sdg1': {'number': 1, 'name': 'No Poverty', 'description': 'End poverty in all its forms everywhere'},
+        'sdg2': {'number': 2, 'name': 'Zero Hunger', 'description': 'End hunger, achieve food security and improved nutrition'},
+        'sdg3': {'number': 3, 'name': 'Good Health', 'description': 'Ensure healthy lives and promote well-being for all'},
+        'sdg4': {'number': 4, 'name': 'Quality Education', 'description': 'Ensure inclusive and equitable quality education'},
+        'sdg5': {'number': 5, 'name': 'Gender Equality', 'description': 'Achieve gender equality and empower all women and girls'},
+        'sdg6': {'number': 6, 'name': 'Clean Water', 'description': 'Ensure availability and sustainable management of water'},
+        'sdg7': {'number': 7, 'name': 'Affordable Energy', 'description': 'Ensure access to affordable, reliable, sustainable energy'},
+        'sdg8': {'number': 8, 'name': 'Decent Work', 'description': 'Promote sustained, inclusive economic growth and decent work'},
+        'sdg9': {'number': 9, 'name': 'Innovation', 'description': 'Build resilient infrastructure, promote innovation'},
+        'sdg10': {'number': 10, 'name': 'Reduced Inequalities', 'description': 'Reduce inequality within and among countries'},
+        'sdg11': {'number': 11, 'name': 'Sustainable Cities', 'description': 'Make cities and settlements inclusive, safe, resilient'},
+        'sdg12': {'number': 12, 'name': 'Responsible Consumption', 'description': 'Ensure sustainable consumption and production patterns'},
+        'sdg13': {'number': 13, 'name': 'Climate Action', 'description': 'Take urgent action to combat climate change'},
+        'sdg14': {'number': 14, 'name': 'Life Below Water', 'description': 'Conserve and sustainably use oceans and marine resources'},
+        'sdg15': {'number': 15, 'name': 'Life on Land', 'description': 'Protect, restore and promote sustainable use of ecosystems'},
+        'sdg16': {'number': 16, 'name': 'Peace & Justice', 'description': 'Promote peaceful and inclusive societies for sustainable development'},
+        'sdg17': {'number': 17, 'name': 'Partnerships', 'description': 'Strengthen global partnership for sustainable development'},
+    }
+    
+    # Enrich SDG data with labels (format: "SDG 1", "SDG 2", etc.)
+    sdg_labels = {
+        sdg_key: f"SDG {SDG_INFO.get(sdg_key, {}).get('number', sdg_key.replace('sdg', ''))}"
+        for sdg_key in sdgs.keys()
+    }
 
     # 3) Bindingness
     raw_legal_bindingness_choices = Document.legal_bindingness.field.choices
@@ -308,6 +335,34 @@ def analysis_page(request):
     legal_bindingness = {
         hyphen_to_camel(slug): legal_bindingness_counts.get(slug, 0)
         for slug, label in raw_legal_bindingness_choices
+    }
+    
+    # Legal bindingness descriptive information for enhanced tooltips
+    BINDING_INFO = {
+        'legallyBinding': {
+            'name': 'Legally Binding',
+            'description': 'Agreements with enforceable legal obligations under international law',
+            'icon': '⚖️',
+            'strength': 'Strong'
+        },
+        'politicallyBinding': {
+            'name': 'Politically Binding',
+            'description': 'Commitments based on political will without legal enforcement mechanisms',
+            'icon': '🤝',
+            'strength': 'Medium'
+        },
+        'nonBinding': {
+            'name': 'Non-Binding',
+            'description': 'Voluntary cooperation frameworks without formal obligations',
+            'icon': '📋',
+            'strength': 'Soft'
+        },
+        'uncategorised': {
+            'name': 'Uncategorised',
+            'description': 'Documents without specified binding level',
+            'icon': '❓',
+            'strength': 'Undefined'
+        }
     }
 
     # 4) Coverage Scope
@@ -342,6 +397,41 @@ def analysis_page(request):
         label: raw_cat_counts.get(slug, 0)
         for slug, label in Theme.CATEGORY_CHOICES
     }
+    
+    # Theme descriptive information for enhanced tooltips
+    THEME_INFO = {
+        "Digital Transformation & Strategy": {
+            "description": "Strategic frameworks and policies for digital transformation initiatives",
+            "icon": "🚀",
+            "focus": "Strategy & Planning"
+        },
+        "Technology & Innovation": {
+            "description": "Emerging technologies, R&D, and innovation ecosystems",
+            "icon": "💡",
+            "focus": "Tech Development"
+        },
+        "Data & Governance": {
+            "description": "Data management, privacy, security, and digital governance frameworks",
+            "icon": "🔒",
+            "focus": "Governance & Security"
+        },
+        "Inclusion & Social Development": {
+            "description": "Digital inclusion, accessibility, and social impact initiatives",
+            "icon": "🤝",
+            "focus": "Social Impact"
+        },
+        "Regional & International Cooperation": {
+            "description": "Cross-border collaboration and international digital partnerships",
+            "icon": "🌍",
+            "focus": "Global Cooperation"
+        },
+        "Uncategorised": {
+            "description": "Themes without specified category",
+            "icon": "📋",
+            "focus": "Other"
+        }
+    }
+    
     # 6) Theme × Beneficiary-Group matrix (solo documentos "agreements_")
 
     raw_matrix_qs = (
@@ -385,6 +475,57 @@ def analysis_page(request):
         label: raw_actor_counts.get(slug, 0)
         for slug, label in Actor.CATEGORY_CHOICES
     }
+    
+    # Actor descriptive information for enhanced tooltips
+    ACTOR_INFO = {
+        "Political Actors": {
+            "description": "Governments, ministries, public institutions, and policy-making bodies",
+            "icon": "🏛️",
+            "role": "Policy & Governance"
+        },
+        "Research and Innovation Actors": {
+            "description": "Universities, research centers, R&D institutions, and innovation hubs",
+            "icon": "🔬",
+            "role": "Knowledge & Development"
+        },
+        "Economic Actors": {
+            "description": "Private companies, business associations, SMEs, and economic organizations",
+            "icon": "💼",
+            "role": "Business & Economy"
+        },
+        "Civil Society Actors": {
+            "description": "NGOs, foundations, community organizations, and advocacy groups",
+            "icon": "🤝",
+            "role": "Social & Community"
+        },
+        "Uncategorised": {
+            "description": "Actors without specified category",
+            "icon": "📋",
+            "role": "Other"
+        }
+    }
+    
+    # Actor × Theme co-occurrence matrix for network graph
+    actor_theme_matrix_qs = (
+        Document.objects
+                .filter(pk__in=agreements_qs)
+                .values(
+                    actor_cat=Coalesce('actors__category', Value('Uncategorised')),
+                    theme_cat=Coalesce('themes__category', Value('Uncategorised'))
+                )
+                .distinct()               
+                .annotate(count=Count('id'))
+    )
+    
+    # Build actor-theme matrix
+    ACTOR_CATS = [label for slug, label in Actor.CATEGORY_CHOICES]
+    actor_theme_matrix = {a: {t: 0 for t in THEME_CATS} for a in ACTOR_CATS}
+    
+    for row in actor_theme_matrix_qs:
+        actor_label = dict(Actor.CATEGORY_CHOICES).get(row['actor_cat'], 'Uncategorised')
+        theme_label = dict(Theme.CATEGORY_CHOICES).get(row['theme_cat'], 'Uncategorised')
+        actor_theme_matrix[actor_label][theme_label] = row['count']
+    
     # 6) Agreements by Beneficiary-Group (categoría)
     ben_cat_qs = (
         BeneficiaryGroup.objects
@@ -401,6 +542,95 @@ def analysis_page(request):
     beneficiary_counts = {
         label: raw_ben_counts.get(slug, 0)
         for slug, label in BeneficiaryGroup.CATEGORY_CHOICES
+    }
+    
+    # Beneficiary descriptive information for enhanced tooltips
+    BENEFICIARY_INFO = {
+        "SMEs / Businesses": {
+            "description": "Small and medium enterprises driving digital transformation",
+            "icon": "🏪",
+            "category": "Economic"
+        },
+        "Start-ups / Innovators": {
+            "description": "Innovative startups and entrepreneurial ventures",
+            "icon": "🚀",
+            "category": "Economic"
+        },
+        "Large Corporations": {
+            "description": "Major companies and multinational enterprises",
+            "icon": "🏢",
+            "category": "Economic"
+        },
+        "Researchers & Academia": {
+            "description": "University researchers, scientists, and academic institutions",
+            "icon": "🎓",
+            "category": "Knowledge"
+        },
+        "Students & Youth": {
+            "description": "Young people and students benefiting from digital education",
+            "icon": "👨‍🎓",
+            "category": "Education"
+        },
+        "Migrants & Refugees": {
+            "description": "Displaced populations accessing digital services",
+            "icon": "🌍",
+            "category": "Vulnerable"
+        },
+        "Women & Girls": {
+            "description": "Female population empowered through digital inclusion",
+            "icon": "👩",
+            "category": "Inclusion"
+        },
+        "Rural & Remote Communities": {
+            "description": "Communities in rural and remote areas gaining digital access",
+            "icon": "🏘️",
+            "category": "Geographic"
+        },
+        "Indigenous Peoples & Ethnic Groups": {
+            "description": "Indigenous communities preserving culture through digital tools",
+            "icon": "🪶",
+            "category": "Cultural"
+        },
+        "Persons with Disabilities": {
+            "description": "People with disabilities accessing assistive technologies",
+            "icon": "♿",
+            "category": "Accessibility"
+        },
+        "General Citizens / Consumers": {
+            "description": "General public benefiting from digital services",
+            "icon": "👥",
+            "category": "General"
+        },
+        "Public Sector / Governments": {
+            "description": "Government entities improving digital public services",
+            "icon": "🏛️",
+            "category": "Public"
+        },
+        "Civil Society / NGOs": {
+            "description": "Non-governmental organizations leveraging digital tools",
+            "icon": "🤝",
+            "category": "Social"
+        },
+        "Farmers & Primary Producers": {
+            "description": "Agricultural workers using digital technologies",
+            "icon": "🌾",
+            "category": "Agriculture"
+        },
+        "Health Sector": {
+            "description": "Healthcare providers and patients using digital health",
+            "icon": "🏥",
+            "category": "Health"
+        },
+        "Investors & Financial Actors": {
+            "description": "Financial institutions and investors in digital economy",
+            "icon": "💰",
+            "category": "Finance"
+        },
+        "Uncategorised": {
+            "description": "Beneficiaries without specified category",
+            "icon": "📋",
+            "category": "Other"
+        }
     }
     
     # 7) Initiative Treemap Data - Real data from documents
@@ -763,16 +993,23 @@ def analysis_page(request):
         },
         "analysis_data": {
             "sdg_counts":     sdgs,
+            "sdg_info": SDG_INFO,
+            "sdg_labels": sdg_labels,
             "binding_counts": legal_bindingness,
+            "binding_info": BINDING_INFO,
             "country_counts": countries,
             "lead_country_counts": lead_country_counts,
             "country_names": country_names,
             
             "scope_counts":   coverage_scope,
-            "theme_counts":   theme_counts,  
+            "theme_counts":   theme_counts,
+            "theme_info": THEME_INFO,  
             "theme_ben_matrix": matrix,
-            "actor_counts":  actor_counts,  
+            "actor_counts":  actor_counts,
+            "actor_info": ACTOR_INFO,
+            "actor_theme_matrix": actor_theme_matrix,  
             "beneficiary_counts": beneficiary_counts,
+            "beneficiary_info": BENEFICIARY_INFO,
             "initiative_treemap_data": initiative_treemap_data,
             "diversity_radar_data": diversity_radar_data,
         },

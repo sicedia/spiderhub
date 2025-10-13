@@ -18,13 +18,10 @@ Modular CSS styles for chart components following ITCSS architecture and BEM met
   - Donut chart container (320px)
   - Centered layout with legend spacing
   
-- **countries-treemap.css** - Leading Countries treemap
-  - TreeMap container with gradient background
-  - Height: 350px optimized for country blocks
-  
 - **bar-chart.css** - Generic bar chart styles
   - Supports both horizontal and vertical variants
-  - Modifiers: `--bar-horizontal`, `--bar-vertical`
+  - Includes legends for countries, themes, actors, and beneficiaries
+  - Color-coded items with responsive layouts
 
 ## Architecture
 
@@ -43,7 +40,6 @@ These styles are imported in `main.css`:
 @import 'components/charts/network-graph.css';
 @import 'components/charts/sdg-radar.css';
 @import 'components/charts/binding-donut.css';
-@import 'components/charts/countries-treemap.css';
 @import 'components/charts/bar-chart.css';
 ```
 
@@ -59,9 +55,9 @@ Apply chart-specific modifiers to `.chart-card` elements:
   </div>
 </div>
 
-<!-- TreeMap Chart -->
-<div class="chart-card chart-card--treemap">
-  <div class="chart-body chart-body--treemap">
+<!-- Horizontal Bar Chart -->
+<div class="chart-card">
+  <div class="chart-body">
     <canvas id="countries-chart"></canvas>
   </div>
 </div>

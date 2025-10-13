@@ -20,7 +20,15 @@ export class ThemesBarChart extends BaseChart {
     return {
       ...super.getDefaultOptions(),
       themesData: null,
-      color: '#9333EA',
+      themeInfo: null,
+      colors: {
+        'Digital Transformation & Strategy': '#9333EA',  // Purple
+        'Technology & Innovation': '#3B82F6',            // Blue
+        'Data & Governance': '#EF4444',                  // Red
+        'Inclusion & Social Development': '#10B981',     // Green
+        'Regional & International Cooperation': '#F59E0B', // Orange
+        'Uncategorised': '#9CA3AF'                       // Gray
+      },
       maxBars: 10
     };
   }
@@ -52,6 +60,16 @@ export class ThemesBarChart extends BaseChart {
 
     const labels = this.data.labels || [];
     const values = this.data.datasets[0].data || [];
+    
+    // Assign colors based on theme labels
+    const backgroundColors = labels.map(label => {
+      const color = this.options.colors[label];
+      return color ? `${color}CC` : '#9333EACC'; // 80% opacity
+    });
+    
+    const borderColors = labels.map(label => 
+      this.options.colors[label] || '#9333EA'
+    );
 
     const config = {
       type: 'bar',
@@ -60,8 +78,8 @@ export class ThemesBarChart extends BaseChart {
         datasets: [{
           label: 'Documents',
           data: values,
-          backgroundColor: `${this.options.color}CC`, // 80% opacity
-          borderColor: this.options.color,
+          backgroundColor: backgroundColors,
+          borderColor: borderColors,
           borderWidth: 1,
           borderRadius: 4,
           barPercentage: 0.7
@@ -82,11 +100,45 @@ export class ThemesBarChart extends BaseChart {
             bodyColor: '#1C7377',
             borderColor: 'rgba(28, 115, 119, 0.2)',
             borderWidth: 1,
-            padding: 12,
-            displayColors: false,
+            padding: 16,
+            displayColors: true,
+            titleFont: {
+              size: 14,
+              weight: 'bold'
+            },
+            bodyFont: {
+              size: 12
+            },
+            footerFont: {
+              size: 10,
+              style: 'italic'
+            },
+            footerColor: 'rgba(28, 115, 119, 0.7)',
             callbacks: {
+              title: (tooltipItems) => {
+                const item = tooltipItems[0];
+                const label = item.label;
+                const themeInfo = this.options.themeInfo?.[label];
+                
+                if (themeInfo) {
+                  return `${themeInfo.icon} ${label}`;
+                }
+                return label;
+              },
               label: (context) => {
-                return `Documents: ${context.parsed.x}`;
+                return `📄 Documents: ${context.parsed.x}`;
+              },
+              afterLabel: (context) => {
+                const label = context.label;
+                const themeInfo = this.options.themeInfo?.[label];
+                
+                if (themeInfo?.description) {
+                  return `\n💡 ${themeInfo.description}\n🎯 Focus: ${themeInfo.focus}`;
+                }
+                return '';
+              },
+              footer: () => {
+                return '\n🌐 Digital cooperation themes';
               }
             }
           }
