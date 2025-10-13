@@ -1059,3 +1059,279 @@ def api_lead_countries(request):
         'total_documents': sum(counts_data.values()),
         'total_lead_countries': len(counts_data)
     })
+
+def strategic_cabinet_page(request):
+    """Strategic Cabinet Country-EU Dashboard page"""
+    template_name = 'core/strategic_cabinet.html'
+    
+    # Get available years from documents
+    available_years = list(
+        Document.objects
+        .filter(event_date__isnull=False)
+        .dates('event_date', 'year')
+        .order_by('event_date')
+    )
+    
+    # Get all countries for the dropdown
+    countries = Country.objects.all().order_by('name')
+    
+    # Default country (Ecuador)
+    default_country = "ECU"
+    
+    # Get choices for filters
+    coverage_scope_choices = Document._meta.get_field('coverage_scope').choices
+    legal_bindingness_choices = Document._meta.get_field('legal_bindingness').choices
+    document_type_choices = Document._meta.get_field('document_type').choices
+    
+    context = {
+        'available_years': [year.year for year in available_years],
+        'countries': countries,
+        'default_country': default_country,
+        'coverage_scope_choices': coverage_scope_choices,
+        'legal_bindingness_choices': legal_bindingness_choices,
+        'document_type_choices': document_type_choices,
+    }
+    
+    return render(request, template_name, context)
+
+def api_cabinet_trends(request):
+    """API endpoint for Strategic Cabinet trends data"""
+    from django.db.models import Count
+    from datetime import datetime
+    import json
+    
+    # Get filters from request
+    country_iso3 = request.GET.get('country', 'ECU')
+    date_from = request.GET.get('date_from')
+    date_to = request.GET.get('date_to')
+    
+    # Base queryset
+    queryset = Document.objects.filter(
+        Q(event_country__iso3=country_iso3) | 
+        Q(lead_country__iso3=country_iso3) |
+        Q(countries_involved__iso3=country_iso3)
+    ).distinct()
+    
+    # Apply date filters
+    if date_from:
+        queryset = queryset.filter(event_date__gte=date_from)
+    if date_to:
+        queryset = queryset.filter(event_date__lte=date_to)
+    
+    # Get trends by year and legal bindingness
+    trends_data = []
+    years = queryset.dates('event_date', 'year', order='ASC')
+    
+    for year in years:
+        year_docs = queryset.filter(event_date__year=year.year)
+        
+        # Group by legal bindingness
+        for choice_slug, choice_label in Document._meta.get_field('legal_bindingness').choices:
+            count = year_docs.filter(legal_bindingness=choice_slug).count()
+            if count > 0:
+                trends_data.append({
+                    'year': year.year,
+                    'category': choice_label,
+                    'count': count
+                })
+    
+    # Get trends by year and coverage scope
+    scope_trends = []
+    for year in years:
+        year_docs = queryset.filter(event_date__year=year.year)
+        
+        for choice_slug, choice_label in Document._meta.get_field('coverage_scope').choices:
+            count = year_docs.filter(coverage_scope=choice_slug).count()
+            if count > 0:
+                scope_trends.append({
+                    'year': year.year,
+                    'category': choice_label,
+                    'count': count
+                })
+    
+    return JsonResponse({
+        'trends_by_bindingness': trends_data,
+        'trends_by_scope': scope_trends,
+        'country': country_iso3,
+        'total_documents': queryset.count()
+    })
+
+def api_cabinet_map(request):
+    """API endpoint for Strategic Cabinet map data"""
+    from django.db.models import Count
+    
+    country_iso3 = request.GET.get('country', 'ECU')
+    date_from = request.GET.get('date_from')
+    date_to = request.GET.get('date_to')
+    
+    # Base queryset for selected country
+    queryset = Document.objects.filter(
+        Q(event_country__iso3=country_iso3) | 
+        Q(lead_country__iso3=country_iso3) |
+        Q(countries_involved__iso3=country_iso3)
+    ).distinct()
+    
+    # Apply date filters
+    if date_from:
+        queryset = queryset.filter(event_date__gte=date_from)
+    if date_to:
+        queryset = queryset.filter(event_date__lte=date_to)
+    
+    # Get cooperation by country (countries involved in documents)
+    cooperation_data = []
+    
+    # Count documents per country involved
+    country_counts = (
+        queryset
+        .values('countries_involved__iso3', 'countries_involved__name')
+        .annotate(count=Count('id', distinct=True))
+        .filter(countries_involved__isnull=False)
+        .order_by('-count')
+    )
+    
+    for item in country_counts:
+        if item['countries_involved__iso3']:
+            cooperation_data.append({
+                'iso3': item['countries_involved__iso3'],
+                'name': item['countries_involved__name'],
+                'count': item['count']
+            })
+    
+    # Also include lead countries
+    lead_country_counts = (
+        queryset
+        .values('lead_country__iso3', 'lead_country__name')
+        .annotate(count=Count('id', distinct=True))
+        .filter(lead_country__isnull=False)
+        .order_by('-count')
+    )
+    
+    for item in lead_country_counts:
+        if item['lead_country__iso3']:
+            # Check if already in cooperation_data
+            existing = next((c for c in cooperation_data if c['iso3'] == item['lead_country__iso3']), None)
+            if existing:
+                existing['count'] += item['count']
+            else:
+                cooperation_data.append({
+                    'iso3': item['lead_country__iso3'],
+                    'name': item['lead_country__name'],
+                    'count': item['count']
+                })
+    
+    return JsonResponse({
+        'cooperation': cooperation_data,
+        'focus_country': country_iso3
+    })
+
+def api_cabinet_mix(request):
+    """API endpoint for Strategic Cabinet document mix data"""
+    from django.db.models import Count
+    
+    country_iso3 = request.GET.get('country', 'ECU')
+    date_from = request.GET.get('date_from')
+    date_to = request.GET.get('date_to')
+    
+    # Base queryset
+    queryset = Document.objects.filter(
+        Q(event_country__iso3=country_iso3) | 
+        Q(lead_country__iso3=country_iso3) |
+        Q(countries_involved__iso3=country_iso3)
+    ).distinct()
+    
+    # Apply date filters
+    if date_from:
+        queryset = queryset.filter(event_date__gte=date_from)
+    if date_to:
+        queryset = queryset.filter(event_date__lte=date_to)
+    
+    # Legal bindingness distribution
+    bindingness_data = []
+    for choice_slug, choice_label in Document._meta.get_field('legal_bindingness').choices:
+        count = queryset.filter(legal_bindingness=choice_slug).count()
+        if count > 0:
+            bindingness_data.append({
+                'label': choice_label,
+                'value': count
+            })
+    
+    # Document type distribution
+    type_data = []
+    for choice_slug, choice_label in Document._meta.get_field('document_type').choices:
+        count = queryset.filter(document_type=choice_slug).count()
+        if count > 0:
+            type_data.append({
+                'label': choice_label,
+                'value': count
+            })
+    
+    # Coverage scope distribution
+    scope_data = []
+    for choice_slug, choice_label in Document._meta.get_field('coverage_scope').choices:
+        count = queryset.filter(coverage_scope=choice_slug).count()
+        if count > 0:
+            scope_data.append({
+                'label': choice_label,
+                'value': count
+            })
+    
+    return JsonResponse({
+        'bindingness': bindingness_data,
+        'document_types': type_data,
+        'coverage_scope': scope_data
+    })
+
+def api_cabinet_top(request):
+    """API endpoint for Strategic Cabinet top themes and actors"""
+    from django.db.models import Count
+    
+    country_iso3 = request.GET.get('country', 'ECU')
+    date_from = request.GET.get('date_from')
+    date_to = request.GET.get('date_to')
+    limit = int(request.GET.get('limit', 10))
+    
+    # Base queryset
+    queryset = Document.objects.filter(
+        Q(event_country__iso3=country_iso3) | 
+        Q(lead_country__iso3=country_iso3) |
+        Q(countries_involved__iso3=country_iso3)
+    ).distinct()
+    
+    # Apply date filters
+    if date_from:
+        queryset = queryset.filter(event_date__gte=date_from)
+    if date_to:
+        queryset = queryset.filter(event_date__lte=date_to)
+    
+    # Top themes
+    top_themes = (
+        Theme.objects
+        .filter(documents__in=queryset)
+        .annotate(count=Count('documents', distinct=True))
+        .order_by('-count')[:limit]
+        .values('label', 'count', 'category')
+    )
+    
+    # Top actors
+    top_actors = (
+        Actor.objects
+        .filter(documents__in=queryset)
+        .annotate(count=Count('documents', distinct=True))
+        .order_by('-count')[:limit]
+        .values('label', 'count', 'category')
+    )
+    
+    # Top SDGs
+    top_sdgs = (
+        SDG.objects
+        .filter(documents__in=queryset)
+        .annotate(count=Count('documents', distinct=True))
+        .order_by('-count')[:limit]
+        .values('label', 'number', 'count')
+    )
+    
+    return JsonResponse({
+        'themes': list(top_themes),
+        'actors': list(top_actors),
+        'sdgs': list(top_sdgs)
+    })

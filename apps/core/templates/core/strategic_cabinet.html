@@ -1,0 +1,280 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load static_tags %}
+
+{% block title %}SPIDERHUB: Strategic Cabinet Country-EU{% endblock %}
+{% block description %}Strategic executive dashboard for EU-Country digital cooperation analysis{% endblock %}
+
+{% block content %}
+<main id="strategic-cabinet-page" class="strategic-cabinet-page">
+  
+  <!-- Dashboard Header -->
+  <div class="cabinet-header">
+    <div class="cabinet-header__content">
+      <h1 class="cabinet-header__title">Strategic Cabinet Country-EU</h1>
+      <p class="cabinet-header__description">Executive Dashboard for Strategic EU-Country Digital Cooperation</p>
+    </div>
+  </div>
+
+  <!-- Filters Section -->
+  <section class="cabinet-filters">
+    <div class="filters-container">
+      <div class="filter-group">
+        <label for="country-select" class="filter-label">
+          <svg class="filter-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          Focus Country
+        </label>
+        <select id="country-select" class="filter-select">
+          {% for country in countries %}
+          <option value="{{ country.iso3 }}" {% if country.iso3 == default_country %}selected{% endif %}>
+            {{ country.name }} ({{ country.iso3 }})
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="date-from" class="filter-label">
+          <svg class="filter-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          From Date
+        </label>
+        <input type="date" id="date-from" class="filter-input">
+      </div>
+
+      <div class="filter-group">
+        <label for="date-to" class="filter-label">
+          <svg class="filter-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          To Date
+        </label>
+        <input type="date" id="date-to" class="filter-input">
+      </div>
+
+      <div class="filter-group filter-group--action">
+        <button id="apply-filters" class="btn-primary">
+          <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Apply Filters
+        </button>
+        <button id="reset-filters" class="btn-secondary">
+          <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+            <path d="M21 3v5h-5"></path>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+            <path d="M3 21v-5h5"></path>
+          </svg>
+          Reset
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="cabinet-content">
+    
+    <!-- KPI Summary Cards -->
+    <section class="cabinet-kpis">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--documents">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+          </div>
+          <div class="kpi-card__content">
+            <div class="kpi-card__label">Total Documents</div>
+            <div class="kpi-card__value" id="kpi-total-docs">-</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--agreements">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7" r="4"></circle>
+              <line x1="20" y1="8" x2="20" y2="14"></line>
+              <line x1="23" y1="11" x2="17" y2="11"></line>
+            </svg>
+          </div>
+          <div class="kpi-card__content">
+            <div class="kpi-card__label">Active Partnerships</div>
+            <div class="kpi-card__value" id="kpi-partnerships">-</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--themes">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 6v6l4 2"></path>
+            </svg>
+          </div>
+          <div class="kpi-card__content">
+            <div class="kpi-card__label">Thematic Areas</div>
+            <div class="kpi-card__value" id="kpi-themes">-</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--coverage">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <div class="kpi-card__content">
+            <div class="kpi-card__label">Geographic Coverage</div>
+            <div class="kpi-card__value" id="kpi-coverage">-</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trends Section -->
+    <section class="cabinet-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+            <polyline points="17 6 23 6 23 12"></polyline>
+          </svg>
+          Cooperation Trends
+        </h2>
+        <p class="section-description">
+          Evolution of EU-Country digital cooperation agreements over time by legal framework.
+        </p>
+      </div>
+      <div class="chart-container">
+        <canvas id="trends-chart"></canvas>
+      </div>
+    </section>
+
+    <!-- Map & Mix Grid -->
+    <div class="cabinet-grid">
+      
+      <!-- Cooperation Map -->
+      <section class="cabinet-section cabinet-section--map">
+        <div class="section-header">
+          <h2 class="section-title">
+            <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="10" r="3"></circle>
+              <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"></path>
+            </svg>
+            Cooperation Network
+          </h2>
+          <p class="section-description">
+            Geographic distribution of partnerships and collaborations with the selected focus country.
+          </p>
+        </div>
+        <div id="cooperation-map" class="map-container"></div>
+        <div class="map-legend">
+          <div class="legend-item">
+            <div class="legend-marker legend-marker--high"></div>
+            <span>High cooperation (10+ docs)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-marker legend-marker--medium"></div>
+            <span>Medium cooperation (5-9 docs)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-marker legend-marker--low"></div>
+            <span>Low cooperation (1-4 docs)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Document Mix -->
+      <section class="cabinet-section cabinet-section--mix">
+        <div class="section-header">
+          <h2 class="section-title">
+            <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            Document Composition
+          </h2>
+          <p class="section-description">
+            Distribution of cooperation documents by legal bindingness and document type.
+          </p>
+        </div>
+        <div class="mix-charts-grid">
+          <div class="mix-chart-wrapper">
+            <h3 class="mix-chart-title">Legal Framework</h3>
+            <canvas id="binding-donut-chart"></canvas>
+          </div>
+          <div class="mix-chart-wrapper">
+            <h3 class="mix-chart-title">Document Types</h3>
+            <canvas id="type-donut-chart"></canvas>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Strategic Priorities -->
+    <section class="cabinet-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 20V10"></path>
+            <path d="M18 20V4"></path>
+            <path d="M6 20v-4"></path>
+          </svg>
+          Strategic Priorities
+        </h2>
+        <p class="section-description">
+          Top thematic areas and key actors in digital cooperation initiatives.
+        </p>
+      </div>
+      <div class="priorities-grid">
+        <div class="priority-chart-wrapper">
+          <h3 class="priority-chart-title">Top Themes</h3>
+          <div class="chart-container chart-container--small">
+            <canvas id="top-themes-chart"></canvas>
+          </div>
+        </div>
+        <div class="priority-chart-wrapper">
+          <h3 class="priority-chart-title">Key Actors</h3>
+          <div class="chart-container chart-container--small">
+            <canvas id="top-actors-chart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_scripts %}
+  <!-- Chart.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js" 
+          crossorigin="anonymous"></script>
+  
+  <!-- Leaflet for maps -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="anonymous"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin="anonymous"></script>
+  
+  <!-- Strategic Cabinet Page Module -->
+  {% js_module_versioned 'core/js/CabinetEntry.js' %}
+{% endblock %}
+

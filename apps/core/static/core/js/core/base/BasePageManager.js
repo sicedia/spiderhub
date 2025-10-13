@@ -76,7 +76,8 @@ export class BasePageManager extends BaseComponent {
       this.hidePageLoading();
       this.isPageReady = true;
       
-      super.init();
+      // Bind events from BaseComponent (don't call super.init() as it was already called in constructor)
+      this.bindEvents();
       this.emit('page:ready');
       
     } catch (error) {
