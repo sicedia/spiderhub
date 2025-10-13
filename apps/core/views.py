@@ -130,27 +130,44 @@ def explore_page(request):
     ]
     
     # 3) Countries - Include ALL roles (event, lead, involved)
-    # Get all countries that appear in ANY role
-    countries_with_docs = Country.objects.filter(
-        Q(document__isnull=False) |  # event_country (default related_name)
-        Q(lead_documents__isnull=False) |  # lead_country
-        Q(mentioned_in_documents__isnull=False)  # countries_involved
-    ).distinct()
+    # Optimized approach: Use a single aggregated query to get all country-document relationships
+    # Then compute counts in Python to avoid N+1 queries
     
-    # Calculate total document count for each country (across all roles)
-    available_countries = []
-    for country in countries_with_docs:
-        # Count documents where country appears in ANY role
-        doc_count = Document.objects.filter(
-            Q(event_country=country) |
-            Q(lead_country=country) |
-            Q(countries_involved=country)
-        ).distinct().count()
-        
-        available_countries.append((country.iso3, country.name, doc_count))
+    # Get all document-country relationships in a single query
+    from collections import defaultdict
+    country_doc_counts = defaultdict(set)
     
-    # Sort by name
-    available_countries = sorted(available_countries, key=lambda x: x[1])
+    # Efficiently retrieve all relationships in 3 queries instead of 193+
+    # Query 1: Event countries
+    for doc_id, country_iso3 in Document.objects.filter(
+        event_country__isnull=False
+    ).values_list('id', 'event_country__iso3'):
+        country_doc_counts[country_iso3].add(doc_id)
+    
+    # Query 2: Lead countries  
+    for doc_id, country_iso3 in Document.objects.filter(
+        lead_country__isnull=False
+    ).values_list('id', 'lead_country__iso3'):
+        country_doc_counts[country_iso3].add(doc_id)
+    
+    # Query 3: Involved countries (M2M relationship)
+    for doc_id, country_iso3 in Document.objects.filter(
+        countries_involved__isnull=False
+    ).values_list('id', 'countries_involved__iso3'):
+        country_doc_counts[country_iso3].add(doc_id)
+    
+    # Get country names in one query
+    country_names = dict(
+        Country.objects.filter(iso3__in=country_doc_counts.keys())
+        .values_list('iso3', 'name')
+    )
+    
+    # Build final list with counts
+    available_countries = sorted([
+        (iso3, country_names.get(iso3, iso3), len(doc_ids))
+        for iso3, doc_ids in country_doc_counts.items()
+        if len(doc_ids) > 0
+    ], key=lambda x: x[1])
 
     # 4) Actors: M2M → Actor with document count
     actors_qs = (

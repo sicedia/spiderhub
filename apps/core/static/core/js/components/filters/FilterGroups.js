@@ -138,49 +138,65 @@ export class FilterGroups {
     document.dispatchEvent(event);
   }
 
-  handleSelectChange(select) {
+  async handleSelectChange(select) {
     // If this is the country_role select, uncheck all country checkboxes and remove chips
     if (select.id === 'country-role-select') {
       // Get all checked country checkboxes before unchecking
       const countryCheckboxes = this.container.querySelectorAll('input[name="country"]:checked');
-      const countriesToRemove = [];
+      const hadCountriesSelected = countryCheckboxes.length > 0;
       
+      // Uncheck and dispatch removal events for each country
       countryCheckboxes.forEach(checkbox => {
-        countriesToRemove.push({
-          name: checkbox.name,
-          value: checkbox.value
-        });
         checkbox.checked = false;
+        
+        // Dispatch filterToggle event to properly remove the chip through FilterManager
+        const filterOption = checkbox.closest('.filter-option');
+        if (filterOption) {
+          const filterLabel = filterOption.querySelector('.filter-option__label')?.textContent || '';
+          const event = new CustomEvent('filterToggle', {
+            detail: {
+              filterName: checkbox.name,
+              filterValue: checkbox.value,
+              filterLabel: filterLabel,
+              filterCategory: this.getFilterCategory(checkbox),
+              isChecked: false
+            }
+          });
+          document.dispatchEvent(event);
+        }
       });
       
-      // Remove filter chips directly
-      const activeFiltersContainer = document.getElementById('active-filters');
-      if (activeFiltersContainer && countriesToRemove.length > 0) {
-        countriesToRemove.forEach(country => {
-          const chip = activeFiltersContainer.querySelector(
-            `.filter-chip[data-type="${country.name}"][data-value="${country.value}"]`
-          );
-          if (chip) {
-            chip.remove();
-          }
-        });
-        
-        // Check if there are any remaining chips
-        const remainingChips = activeFiltersContainer.querySelectorAll('.filter-chip');
-        if (remainingChips.length === 0) {
-          activeFiltersContainer.classList.add('filter-chips--empty');
-          const clearAllBtn = activeFiltersContainer.querySelector('.filter-chips__clear-all');
-          if (clearAllBtn) {
-            clearAllBtn.style.display = 'none';
-          }
+      // Clear the country search input
+      const countryGroup = this.container.querySelector('[data-filter-group="countries"]');
+      if (countryGroup) {
+        const countrySearchInput = countryGroup.querySelector('.filter-search__input');
+        if (countrySearchInput) {
+          countrySearchInput.value = '';
+          // Trigger the search to show all countries again
+          this.handleSearch(countrySearchInput);
         }
       }
       
-      // Update country counts with new role
-      this.updateCountryCounts(select.value);
+      // Update country counts with new role and wait for it to complete
+      await this.updateCountryCounts(select.value);
+      
+      // Only dispatch filter change event if there were countries selected
+      // This triggers a new search with the updated role
+      if (hadCountriesSelected) {
+        const event = new CustomEvent('filterChange', {
+          detail: {
+            filterName: select.name,
+            filterValue: select.value,
+            filterLabel: select.options[select.selectedIndex].text
+          }
+        });
+        document.dispatchEvent(event);
+      }
+      
+      return; // Early return for country_role to avoid dispatching the event below
     }
     
-    // For select inputs, we dispatch a filter change event
+    // For other select inputs, dispatch filter change event
     const event = new CustomEvent('filterChange', {
       detail: {
         filterName: select.name,
@@ -193,6 +209,17 @@ export class FilterGroups {
   
   async updateCountryCounts(role) {
     try {
+      // Get all country checkboxes first
+      const countryOptions = this.container.querySelectorAll('.filter-option[data-country]');
+      const countryCheckboxes = Array.from(countryOptions).map(opt => 
+        opt.querySelector('input[type="checkbox"][name="country"]')
+      ).filter(cb => cb !== null);
+      
+      // Temporarily disable all country checkboxes to prevent race conditions
+      countryCheckboxes.forEach(checkbox => {
+        checkbox.disabled = true;
+      });
+      
       const response = await fetch(`/api/countries-by-role/?role=${role}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -208,7 +235,6 @@ export class FilterGroups {
       });
       
       // Update all country filter options
-      const countryOptions = this.container.querySelectorAll('.filter-option[data-country]');
       countryOptions.forEach(option => {
         const checkbox = option.querySelector('input[type="checkbox"]');
         if (checkbox && checkbox.name === 'country') {
@@ -236,8 +262,19 @@ export class FilterGroups {
           countBadge.textContent = visibleCount;
         }
       }
+      
+      // Re-enable all country checkboxes after update is complete
+      countryCheckboxes.forEach(checkbox => {
+        checkbox.disabled = false;
+      });
     } catch (error) {
       console.error('Error updating country counts:', error);
+      
+      // Make sure to re-enable checkboxes even if there's an error
+      const countryCheckboxes = this.container.querySelectorAll('input[type="checkbox"][name="country"]');
+      countryCheckboxes.forEach(checkbox => {
+        checkbox.disabled = false;
+      });
     }
   }
 
