@@ -1094,8 +1094,69 @@ def strategic_cabinet_page(request):
     
     return render(request, template_name, context)
 
+def api_cabinet_summary(request):
+    """
+    API endpoint for Strategic Cabinet summary metrics (KPIs)
+    Returns global cooperation metrics using lead ∪ involved ∪ event
+    """
+    from django.db.models import Count
+    
+    country_iso3 = request.GET.get('country', 'ECU')
+    date_from = request.GET.get('date_from')
+    date_to = request.GET.get('date_to')
+    
+    # Base queryset: participación total (lead ∪ involved ∪ event)
+    queryset = Document.objects.filter(
+        Q(event_country__iso3=country_iso3) | 
+        Q(lead_country__iso3=country_iso3) |
+        Q(countries_involved__iso3=country_iso3)
+    ).distinct()
+    
+    # Apply date filters
+    if date_from:
+        queryset = queryset.filter(event_date__gte=date_from)
+    if date_to:
+        queryset = queryset.filter(event_date__lte=date_to)
+    
+    # Metric 1: Total Documents
+    total_documents = queryset.count()
+    
+    # Metric 2: Active Partnerships (distinct countries)
+    partner_countries = set()
+    
+    # Countries involved
+    involved = queryset.values_list('countries_involved__iso3', flat=True)
+    partner_countries.update([c for c in involved if c and c != country_iso3])
+    
+    # Lead countries
+    leads = queryset.values_list('lead_country__iso3', flat=True)
+    partner_countries.update([c for c in leads if c and c != country_iso3])
+    
+    # Event countries
+    events = queryset.values_list('event_country__iso3', flat=True)
+    partner_countries.update([c for c in events if c and c != country_iso3])
+    
+    active_partnerships = len(partner_countries)
+    
+    # Metric 3: Thematic Areas (distinct themes)
+    thematic_areas = Theme.objects.filter(documents__in=queryset).distinct().count()
+    
+    # Metric 4: Leadership Initiatives (documents where country is lead)
+    leadership_initiatives = queryset.filter(lead_country__iso3=country_iso3).count()
+    
+    return JsonResponse({
+        'total_documents': total_documents,
+        'active_partnerships': active_partnerships,
+        'thematic_areas': thematic_areas,
+        'leadership_initiatives': leadership_initiatives,
+        'country': country_iso3
+    })
+
 def api_cabinet_trends(request):
-    """API endpoint for Strategic Cabinet trends data"""
+    """
+    API endpoint for Strategic Cabinet trends data
+    Uses lead ∪ involved ∪ event for total diplomatic presence
+    """
     from django.db.models import Count
     from datetime import datetime
     import json
@@ -1105,7 +1166,7 @@ def api_cabinet_trends(request):
     date_from = request.GET.get('date_from')
     date_to = request.GET.get('date_to')
     
-    # Base queryset
+    # Base queryset: participación total (lead ∪ involved ∪ event)
     queryset = Document.objects.filter(
         Q(event_country__iso3=country_iso3) | 
         Q(lead_country__iso3=country_iso3) |
@@ -1157,14 +1218,17 @@ def api_cabinet_trends(request):
     })
 
 def api_cabinet_map(request):
-    """API endpoint for Strategic Cabinet map data"""
+    """
+    API endpoint for Strategic Cabinet map data
+    Uses lead ∪ involved ∪ event for nodes (visión integral de vínculos)
+    """
     from django.db.models import Count
     
     country_iso3 = request.GET.get('country', 'ECU')
     date_from = request.GET.get('date_from')
     date_to = request.GET.get('date_to')
     
-    # Base queryset for selected country
+    # Base queryset: participación total (lead ∪ involved ∪ event)
     queryset = Document.objects.filter(
         Q(event_country__iso3=country_iso3) | 
         Q(lead_country__iso3=country_iso3) |
@@ -1177,47 +1241,68 @@ def api_cabinet_map(request):
     if date_to:
         queryset = queryset.filter(event_date__lte=date_to)
     
-    # Get cooperation by country (countries involved in documents)
-    cooperation_data = []
+    # Get cooperation network: all partner countries (lead ∪ involved ∪ event)
+    country_map = {}
     
-    # Count documents per country involved
+    # 1. Countries involved
     country_counts = (
         queryset
         .values('countries_involved__iso3', 'countries_involved__name')
         .annotate(count=Count('id', distinct=True))
         .filter(countries_involved__isnull=False)
-        .order_by('-count')
     )
     
     for item in country_counts:
-        if item['countries_involved__iso3']:
-            cooperation_data.append({
-                'iso3': item['countries_involved__iso3'],
-                'name': item['countries_involved__name'],
-                'count': item['count']
-            })
+        iso3 = item['countries_involved__iso3']
+        if iso3 and iso3 != country_iso3:
+            if iso3 not in country_map:
+                country_map[iso3] = {
+                    'iso3': iso3,
+                    'name': item['countries_involved__name'],
+                    'count': 0
+                }
+            country_map[iso3]['count'] += item['count']
     
-    # Also include lead countries
-    lead_country_counts = (
+    # 2. Lead countries
+    lead_counts = (
         queryset
         .values('lead_country__iso3', 'lead_country__name')
         .annotate(count=Count('id', distinct=True))
         .filter(lead_country__isnull=False)
-        .order_by('-count')
     )
     
-    for item in lead_country_counts:
-        if item['lead_country__iso3']:
-            # Check if already in cooperation_data
-            existing = next((c for c in cooperation_data if c['iso3'] == item['lead_country__iso3']), None)
-            if existing:
-                existing['count'] += item['count']
-            else:
-                cooperation_data.append({
-                    'iso3': item['lead_country__iso3'],
+    for item in lead_counts:
+        iso3 = item['lead_country__iso3']
+        if iso3 and iso3 != country_iso3:
+            if iso3 not in country_map:
+                country_map[iso3] = {
+                    'iso3': iso3,
                     'name': item['lead_country__name'],
-                    'count': item['count']
-                })
+                    'count': 0
+                }
+            country_map[iso3]['count'] += item['count']
+    
+    # 3. Event countries
+    event_counts = (
+        queryset
+        .values('event_country__iso3', 'event_country__name')
+        .annotate(count=Count('id', distinct=True))
+        .filter(event_country__isnull=False)
+    )
+    
+    for item in event_counts:
+        iso3 = item['event_country__iso3']
+        if iso3 and iso3 != country_iso3:
+            if iso3 not in country_map:
+                country_map[iso3] = {
+                    'iso3': iso3,
+                    'name': item['event_country__name'],
+                    'count': 0
+                }
+            country_map[iso3]['count'] += item['count']
+    
+    # Convert to list and sort by count
+    cooperation_data = sorted(country_map.values(), key=lambda x: x['count'], reverse=True)
     
     return JsonResponse({
         'cooperation': cooperation_data,
@@ -1225,14 +1310,17 @@ def api_cabinet_map(request):
     })
 
 def api_cabinet_mix(request):
-    """API endpoint for Strategic Cabinet document mix data"""
+    """
+    API endpoint for Strategic Cabinet document mix data
+    Uses lead ∪ involved ∪ event for composition of instruments
+    """
     from django.db.models import Count
     
     country_iso3 = request.GET.get('country', 'ECU')
     date_from = request.GET.get('date_from')
     date_to = request.GET.get('date_to')
     
-    # Base queryset
+    # Base queryset: participación total (lead ∪ involved ∪ event)
     queryset = Document.objects.filter(
         Q(event_country__iso3=country_iso3) | 
         Q(lead_country__iso3=country_iso3) |
@@ -1282,7 +1370,10 @@ def api_cabinet_mix(request):
     })
 
 def api_cabinet_top(request):
-    """API endpoint for Strategic Cabinet top themes and actors"""
+    """
+    API endpoint for Strategic Cabinet top themes and actors
+    Uses lead ∪ involved ∪ event for relevant themes and actors
+    """
     from django.db.models import Count
     
     country_iso3 = request.GET.get('country', 'ECU')
@@ -1290,7 +1381,7 @@ def api_cabinet_top(request):
     date_to = request.GET.get('date_to')
     limit = int(request.GET.get('limit', 10))
     
-    # Base queryset
+    # Base queryset: participación total (lead ∪ involved ∪ event)
     queryset = Document.objects.filter(
         Q(event_country__iso3=country_iso3) | 
         Q(lead_country__iso3=country_iso3) |

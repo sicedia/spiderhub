@@ -112,28 +112,27 @@ export class CabinetChartsCoordinator {
   }
 
   /**
-   * Update KPI cards
+   * Update KPI cards using summary endpoint data
    */
   updateKPIs() {
-    const trendsData = this.dataCoordinator.getTrendsData();
-    const mapData = this.dataCoordinator.getMapData();
-    const topData = this.dataCoordinator.getTopData();
+    const summaryData = this.dataCoordinator.getSummaryData();
     
-    // Total documents
-    const totalDocs = trendsData?.total_documents || 0;
-    this.updateKPIValue('kpi-total-docs', totalDocs);
+    if (!summaryData) {
+      this.logger.warn('No summary data available for KPIs');
+      return;
+    }
     
-    // Active partnerships (number of countries)
-    const partnerships = mapData?.cooperation?.length || 0;
-    this.updateKPIValue('kpi-partnerships', partnerships);
+    // Total documents (participación total: lead ∪ involved ∪ event)
+    this.updateKPIValue('kpi-total-docs', summaryData.total_documents || 0);
     
-    // Thematic areas
-    const themes = topData?.themes?.length || 0;
-    this.updateKPIValue('kpi-themes', themes);
+    // Active partnerships (distinct partner countries)
+    this.updateKPIValue('kpi-partnerships', summaryData.active_partnerships || 0);
     
-    // Geographic coverage
-    const coverage = mapData?.cooperation?.length || 0;
-    this.updateKPIValue('kpi-coverage', `${coverage} countries`);
+    // Thematic areas (distinct themes)
+    this.updateKPIValue('kpi-themes', summaryData.thematic_areas || 0);
+    
+    // Leadership initiatives (documents as lead_country)
+    this.updateKPIValue('kpi-leadership', summaryData.leadership_initiatives || 0);
   }
 
   /**
@@ -287,10 +286,16 @@ export class CabinetChartsCoordinator {
     
     // Initialize map if not already done
     if (!this.map) {
-      this.map = L.map('cooperation-map').setView([20, 0], 2);
+      // Center on Atlantic to show both EU and LAC
+      this.map = L.map('cooperation-map', {
+        center: [20, -30],
+        zoom: 2,
+        minZoom: 2,
+        maxZoom: 10
+      });
       
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors',
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 18
       }).addTo(this.map);
     } else {
@@ -300,15 +305,20 @@ export class CabinetChartsCoordinator {
           this.map.removeLayer(layer);
         }
       });
+      
+      // Re-center map
+      this.map.setView([20, -30], 2);
     }
     
     // Add markers for cooperation countries
     if (mapData.cooperation && mapData.cooperation.length > 0) {
-      // You would need a country coordinates dataset
-      // For now, we'll use a placeholder approach
+      const bounds = [];
+      
       mapData.cooperation.forEach(country => {
         const coords = this.getCountryCoordinates(country.iso3);
         if (coords) {
+          bounds.push(coords);
+          
           const markerSize = this.getMarkerSize(country.count);
           const markerColor = this.getMarkerColor(country.count);
           
@@ -318,12 +328,29 @@ export class CabinetChartsCoordinator {
             color: '#fff',
             weight: 2,
             opacity: 1,
-            fillOpacity: 0.7
+            fillOpacity: 0.75
           })
-          .bindPopup(`<strong>${country.name}</strong><br>${country.count} documents`)
+          .bindPopup(`
+            <div style="text-align: center;">
+              <strong style="font-size: 14px;">${country.name}</strong><br>
+              <span style="font-size: 12px; color: #666;">${country.count} document${country.count !== 1 ? 's' : ''}</span>
+            </div>
+          `, {
+            maxWidth: 200
+          })
           .addTo(this.map);
         }
       });
+      
+      // Fit map to show all markers if we have bounds
+      if (bounds.length > 0) {
+        setTimeout(() => {
+          this.map.fitBounds(bounds, {
+            padding: [50, 50],
+            maxZoom: 4
+          });
+        }, 100);
+      }
     }
     
     this.logger.debug('Map rendered');
@@ -370,27 +397,27 @@ export class CabinetChartsCoordinator {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         cutout: '60%',
         plugins: {
           legend: {
             position: 'bottom',
             labels: {
               font: {
-                size: 10,
+                size: 11,
                 family: 'Roboto, sans-serif'
               },
-              padding: 10,
-              boxWidth: 10
+              padding: 12,
+              boxWidth: 12
             }
           },
           tooltip: {
             backgroundColor: 'rgba(0, 0, 0, 0.8)',
             titleFont: {
-              size: 11
+              size: 12
             },
             bodyFont: {
-              size: 10
+              size: 11
             }
           }
         },
@@ -448,27 +475,27 @@ export class CabinetChartsCoordinator {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         cutout: '60%',
         plugins: {
           legend: {
             position: 'bottom',
             labels: {
               font: {
-                size: 10,
+                size: 11,
                 family: 'Roboto, sans-serif'
               },
-              padding: 10,
-              boxWidth: 10
+              padding: 12,
+              boxWidth: 12
             }
           },
           tooltip: {
             backgroundColor: 'rgba(0, 0, 0, 0.8)',
             titleFont: {
-              size: 11
+              size: 12
             },
             bodyFont: {
-              size: 10
+              size: 11
             }
           }
         },
@@ -673,22 +700,77 @@ export class CabinetChartsCoordinator {
   }
 
   /**
-   * Helper: Get country coordinates (simplified)
+   * Helper: Get country coordinates (expanded dataset)
    */
   getCountryCoordinates(iso3) {
-    // Simplified coordinates mapping - in production, use a proper dataset
+    // Comprehensive coordinates mapping for all countries
     const coords = {
+      // South America
       'ECU': [-1.8312, -78.1834],
-      'ESP': [40.4637, -3.7492],
-      'DEU': [51.1657, 10.4515],
-      'FRA': [46.2276, 2.2137],
-      'ITA': [41.8719, 12.5674],
       'BRA': [-14.2350, -51.9253],
       'ARG': [-38.4161, -63.6167],
-      'MEX': [23.6345, -102.5528],
       'COL': [4.5709, -74.2973],
       'CHL': [-35.6751, -71.5430],
-      'PER': [-9.1900, -75.0152]
+      'PER': [-9.1900, -75.0152],
+      'VEN': [6.4238, -66.5897],
+      'BOL': [-16.2902, -63.5887],
+      'PRY': [-23.4425, -58.4438],
+      'URY': [-32.5228, -55.7658],
+      'GUY': [4.8604, -58.9302],
+      'SUR': [3.9193, -56.0278],
+      // Central America & Caribbean
+      'MEX': [23.6345, -102.5528],
+      'GTM': [15.7835, -90.2308],
+      'HND': [15.2000, -86.2419],
+      'SLV': [13.7942, -88.8965],
+      'NIC': [12.8654, -85.2072],
+      'CRI': [9.7489, -83.7534],
+      'PAN': [8.5380, -80.7821],
+      'CUB': [21.5218, -77.7812],
+      'DOM': [18.7357, -70.1627],
+      'HTI': [18.9712, -72.2852],
+      // Europe
+      'ESP': [40.4637, -3.7492],
+      'PRT': [39.3999, -8.2245],
+      'FRA': [46.2276, 2.2137],
+      'DEU': [51.1657, 10.4515],
+      'ITA': [41.8719, 12.5674],
+      'GBR': [55.3781, -3.4360],
+      'NLD': [52.1326, 5.2913],
+      'BEL': [50.5039, 4.4699],
+      'POL': [51.9194, 19.1451],
+      'AUT': [47.5162, 14.5501],
+      'CHE': [46.8182, 8.2275],
+      'SWE': [60.1282, 18.6435],
+      'NOR': [60.4720, 8.4689],
+      'FIN': [61.9241, 25.7482],
+      'DNK': [56.2639, 9.5018],
+      'GRC': [39.0742, 21.8243],
+      'IRL': [53.4129, -8.2439],
+      'CZE': [49.8175, 15.4730],
+      'HUN': [47.1625, 19.5033],
+      'ROU': [45.9432, 24.9668],
+      'BGR': [42.7339, 25.4858],
+      'HRV': [45.1, 15.2],
+      'SVK': [48.669, 19.699],
+      'SVN': [46.1512, 14.9955],
+      'EST': [58.5953, 25.0136],
+      'LVA': [56.8796, 24.6032],
+      'LTU': [55.1694, 23.8813],
+      'EUU': [50.8503, 4.3517], // Brussels
+      // North America
+      'USA': [37.0902, -95.7129],
+      'CAN': [56.1304, -106.3468],
+      // Asia
+      'CHN': [35.8617, 104.1954],
+      'IND': [20.5937, 78.9629],
+      'JPN': [36.2048, 138.2529],
+      'KOR': [35.9078, 127.7669],
+      // Others
+      'AUS': [-25.2744, 133.7751],
+      'ZAF': [-30.5595, 22.9375],
+      'RUS': [61.5240, 105.3188],
+      'TUR': [38.9637, 35.2433]
     };
     return coords[iso3] || null;
   }
@@ -697,18 +779,18 @@ export class CabinetChartsCoordinator {
    * Helper: Get marker size based on count
    */
   getMarkerSize(count) {
-    if (count >= 10) return 15;
-    if (count >= 5) return 10;
-    return 6;
+    if (count >= 10) return 18;
+    if (count >= 5) return 12;
+    return 8;
   }
 
   /**
    * Helper: Get marker color based on count
    */
   getMarkerColor(count) {
-    if (count >= 10) return '#094EB2';
-    if (count >= 5) return '#34A853';
-    return '#FBBC04';
+    if (count >= 10) return '#1C7377'; // Primary teal
+    if (count >= 5) return '#28A745';  // Success green
+    return '#FBBC04';  // Warning yellow
   }
 
   /**

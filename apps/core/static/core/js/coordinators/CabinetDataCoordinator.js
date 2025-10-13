@@ -27,6 +27,7 @@ export class CabinetDataCoordinator {
     
     // Cached data
     this.data = {
+      summary: null,
       trends: null,
       map: null,
       mix: null,
@@ -84,13 +85,15 @@ export class CabinetDataCoordinator {
     
     try {
       // Load all endpoints in parallel
-      const [trendsData, mapData, mixData, topData] = await Promise.all([
+      const [summaryData, trendsData, mapData, mixData, topData] = await Promise.all([
+        this.loadSummary(),
         this.loadTrends(),
         this.loadMap(),
         this.loadMix(),
         this.loadTop()
       ]);
       
+      this.data.summary = summaryData;
       this.data.trends = trendsData;
       this.data.map = mapData;
       this.data.mix = mixData;
@@ -101,6 +104,7 @@ export class CabinetDataCoordinator {
       
       // Emit data loaded event
       eventBus.emit(EVENTS.DATA_LOADED, {
+        summary: this.data.summary,
         trends: this.data.trends,
         map: this.data.map,
         mix: this.data.mix,
@@ -110,6 +114,34 @@ export class CabinetDataCoordinator {
     } catch (error) {
       this.logger.error('Failed to load cabinet data', error);
       throw error;
+    }
+  }
+
+  /**
+   * Load summary data (KPIs) from API
+   */
+  async loadSummary() {
+    try {
+      const params = new URLSearchParams({
+        country: this.filters.country,
+        ...(this.filters.dateFrom && { date_from: this.filters.dateFrom }),
+        ...(this.filters.dateTo && { date_to: this.filters.dateTo })
+      });
+      
+      const response = await fetch(`/api/cabinet/summary/?${params}`);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      
+      const data = await response.json();
+      this.logger.debug('Summary data loaded', data);
+      return data;
+    } catch (error) {
+      this.logger.error('Failed to load summary data', error);
+      return {
+        total_documents: 0,
+        active_partnerships: 0,
+        thematic_areas: 0,
+        leadership_initiatives: 0
+      };
     }
   }
 
@@ -227,6 +259,13 @@ export class CabinetDataCoordinator {
   }
 
   /**
+   * Get summary data (KPIs)
+   */
+  getSummaryData() {
+    return this.data.summary;
+  }
+
+  /**
    * Get trends data
    */
   getTrendsData() {
@@ -259,6 +298,7 @@ export class CabinetDataCoordinator {
    */
   getAllData() {
     return {
+      summary: this.data.summary,
       trends: this.data.trends,
       map: this.data.map,
       mix: this.data.mix,

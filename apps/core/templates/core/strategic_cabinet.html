@@ -12,7 +12,7 @@
   <div class="cabinet-header">
     <div class="cabinet-header__content">
       <h1 class="cabinet-header__title">Strategic Cabinet Country-EU</h1>
-      <p class="cabinet-header__description">Executive Dashboard for Strategic EU-Country Digital Cooperation</p>
+      <p class="cabinet-header__description">Executive Dashboard for Strategic EU-Country Digital Cooperation Analysis</p>
     </div>
   </div>
 
@@ -88,7 +88,7 @@
     <!-- KPI Summary Cards -->
     <section class="cabinet-kpis">
       <div class="kpi-grid">
-        <div class="kpi-card">
+        <div class="kpi-card" title="All cooperation documents involving the selected country (lead, partner, or host). Measures overall diplomatic activity level in EU-LAC cooperation.">
           <div class="kpi-card__icon kpi-card__icon--documents">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -98,10 +98,11 @@
           <div class="kpi-card__content">
             <div class="kpi-card__label">Total Documents</div>
             <div class="kpi-card__value" id="kpi-total-docs">-</div>
+            <div class="kpi-card__hint">Diplomatic activity level</div>
           </div>
         </div>
 
-        <div class="kpi-card">
+        <div class="kpi-card" title="Number of distinct partner countries appearing jointly with the selected country. Indicates the diversity of international collaboration networks.">
           <div class="kpi-card__icon kpi-card__icon--agreements">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -113,10 +114,11 @@
           <div class="kpi-card__content">
             <div class="kpi-card__label">Active Partnerships</div>
             <div class="kpi-card__value" id="kpi-partnerships">-</div>
+            <div class="kpi-card__hint">Collaboration network diversity</div>
           </div>
         </div>
 
-        <div class="kpi-card">
+        <div class="kpi-card" title="Number of unique thematic domains covered. Shows the breadth of policy or technical areas where the country engages.">
           <div class="kpi-card__icon kpi-card__icon--themes">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10"></circle>
@@ -126,20 +128,23 @@
           <div class="kpi-card__content">
             <div class="kpi-card__label">Thematic Areas</div>
             <div class="kpi-card__value" id="kpi-themes">-</div>
+            <div class="kpi-card__hint">Policy area breadth</div>
           </div>
         </div>
 
-        <div class="kpi-card">
-          <div class="kpi-card__icon kpi-card__icon--coverage">
+        <div class="kpi-card" title="Number of cooperation documents where the selected country acts as lead_country (primary responsibility and direct leadership). Measures proactive diplomacy and initiative capacity. Higher values indicate stronger leadership positioning in EU-LAC cooperation.">
+          <div class="kpi-card__icon kpi-card__icon--leadership">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
           </div>
           <div class="kpi-card__content">
-            <div class="kpi-card__label">Geographic Coverage</div>
-            <div class="kpi-card__value" id="kpi-coverage">-</div>
+            <div class="kpi-card__label">Leadership Initiatives</div>
+            <div class="kpi-card__value" id="kpi-leadership">-</div>
+            <div class="kpi-card__hint">Proactive diplomacy footprint</div>
           </div>
         </div>
       </div>
@@ -154,9 +159,16 @@
             <polyline points="17 6 23 6 23 12"></polyline>
           </svg>
           Cooperation Trends
+          <span class="tooltip-trigger" data-tooltip="Each point represents the total number of cooperation documents per year where the selected country appears as lead_country, countries_involved, or event_country. Color segments distinguish between legal nature (Legally-binding, Politically-binding, Non-binding) or coverage scope (Bilateral, Regional, Multilateral). Use this chart to assess how active the country has been in EU-LAC cooperation over time and whether its participation is shifting toward more formal or informal commitments.">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </span>
         </h2>
         <p class="section-description">
-          Evolution of EU-Country digital cooperation agreements over time by legal framework.
+          Annual evolution of cooperation documents in which the selected country <strong>participates — whether as leader, partner, or host</strong> — categorized by legal bindingness and geographic coverage. Measures the <strong>temporal intensity of cooperation</strong>. An increase indicates greater diplomatic involvement, while the bindingness breakdown helps distinguish between <strong>political commitments vs. juridical obligations</strong>.
         </p>
       </div>
       <div class="chart-container">
@@ -164,67 +176,92 @@
       </div>
     </section>
 
-    <!-- Map & Mix Grid -->
-    <div class="cabinet-grid">
-      
-      <!-- Cooperation Map -->
-      <section class="cabinet-section cabinet-section--map">
-        <div class="section-header">
-          <h2 class="section-title">
-            <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="10" r="3"></circle>
-              <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"></path>
+    <!-- Cooperation Network - Full Width -->
+    <section class="cabinet-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="10" r="3"></circle>
+            <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"></path>
+          </svg>
+          Cooperation Network
+          <span class="tooltip-trigger" data-tooltip="Each marker connects the selected country to another nation that co-participates in one or more cooperation documents. Marker size and color indicate cooperation intensity: High (10+ shared documents), Medium (5-9 shared), Low (1-4 shared). Data includes all cases where the focus country is listed as lead_country, countries_involved, or event_country. Helps identify strategic recurring partners and the density of ties with EU and Latin America.">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
             </svg>
-            Cooperation Network
-          </h2>
-          <p class="section-description">
-            Geographic distribution of partnerships and collaborations with the selected focus country.
-          </p>
+          </span>
+        </h2>
+        <p class="section-description">
+          Geographic distribution of partner countries appearing in cooperation documents involving the selected country. The map shows the <strong>network of collaborations and the intensity of connections</strong> across bilateral and multilateral agreements. Marker size represents cooperation intensity based on <strong>combined counts</strong> from participants (countries_involved), leaders (lead_country), and event hosts (event_country). Useful for visualizing the <strong>geographical amplitude of digital diplomacy</strong> and identifying strategic recurring partners.
+        </p>
+      </div>
+      <div id="cooperation-map" class="map-container map-container--large"></div>
+      <div class="map-legend">
+        <div class="legend-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Cooperation Intensity</span>
         </div>
-        <div id="cooperation-map" class="map-container"></div>
-        <div class="map-legend">
+        <div class="legend-items">
           <div class="legend-item">
             <div class="legend-marker legend-marker--high"></div>
-            <span>High cooperation (10+ docs)</span>
+            <span>High (10+ documents)</span>
           </div>
           <div class="legend-item">
             <div class="legend-marker legend-marker--medium"></div>
-            <span>Medium cooperation (5-9 docs)</span>
+            <span>Medium (5-9 documents)</span>
           </div>
           <div class="legend-item">
             <div class="legend-marker legend-marker--low"></div>
-            <span>Low cooperation (1-4 docs)</span>
+            <span>Low (1-4 documents)</span>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Document Mix -->
-      <section class="cabinet-section cabinet-section--mix">
-        <div class="section-header">
-          <h2 class="section-title">
-            <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <!-- Document Composition - Full Width -->
+    <section class="cabinet-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="16"></line>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+          Document Composition
+          <span class="tooltip-trigger" data-tooltip="Legal Bindingness indicates the legal weight of cooperation instruments: Legally-binding (formal treaty with enforceable obligations), Politically-binding (joint declaration expressing political commitment), Non-binding (informal or technical cooperation framework). Document Type classifies each record as Agreement, Dialogue, Joint Initiative, or Multilateral Framework. A portfolio with more legally-binding documents suggests consolidation of commitments, while predominance of dialogues or non-binding reflects exploratory or technical cooperation.">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="8" x2="12" y2="16"></line>
-              <line x1="8" y1="12" x2="16" y2="12"></line>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
             </svg>
-            Document Composition
-          </h2>
-          <p class="section-description">
-            Distribution of cooperation documents by legal bindingness and document type.
-          </p>
-        </div>
-        <div class="mix-charts-grid">
-          <div class="mix-chart-wrapper">
-            <h3 class="mix-chart-title">Legal Framework</h3>
+          </span>
+        </h2>
+        <p class="section-description">
+          Breakdown of all cooperation documents where the selected country participates, categorized by <strong>legal bindingness</strong> and <strong>document type</strong>. Allows evaluation of the <strong>legal-diplomatic nature and institutional maturity</strong> of cooperation. A higher proportion of legally-binding instruments suggests <strong>commitment consolidation</strong>, while non-binding or dialogue-oriented documents reflect <strong>exploratory or technical cooperation</strong> phases.
+        </p>
+      </div>
+      <div class="composition-grid">
+        <div class="composition-chart-wrapper">
+          <h3 class="composition-chart-title">Legal Framework</h3>
+          <div class="chart-container chart-container--medium">
             <canvas id="binding-donut-chart"></canvas>
           </div>
-          <div class="mix-chart-wrapper">
-            <h3 class="mix-chart-title">Document Types</h3>
+        </div>
+        <div class="composition-chart-wrapper">
+          <h3 class="composition-chart-title">Document Types</h3>
+          <div class="chart-container chart-container--medium">
             <canvas id="type-donut-chart"></canvas>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
 
     <!-- Strategic Priorities -->
     <section class="cabinet-section">
@@ -236,9 +273,16 @@
             <path d="M6 20v-4"></path>
           </svg>
           Strategic Priorities
+          <span class="tooltip-trigger" data-tooltip="Top Themes: Each bar represents a thematic area ranked by frequency and relevance across all cooperation documents. Top Actors: Displays institutional actors categorized by type (Political, Research, Economic, Civil Society), ranked by frequency and strategic importance. Hover to see document counts and relative share. Helps identify priority cooperation areas and potential allies for inter-institutional coordination.">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </span>
         </h2>
         <p class="section-description">
-          Top thematic areas and key actors in digital cooperation initiatives.
+          Ranking of <strong>top 10 thematic areas</strong> most frequently addressed and <strong>key institutional actors</strong> most actively collaborating with the selected country. Reflects <strong>where the country concentrates its digital diplomacy</strong> efforts (e.g., Data Governance, Technology & Innovation, Social Inclusion) and <strong>with whom it engages most</strong> (ministries, universities, enterprises, NGOs). Essential for identifying <strong>thematic synergies with European partners</strong> and coordinating inter-institutional policies.
         </p>
       </div>
       <div class="priorities-grid">
