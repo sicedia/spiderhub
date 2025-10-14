@@ -299,6 +299,24 @@ plantuml -preview architecture.puml
 ```
 
 
+## 📚 Technical Documentation
+
+### Development Guides
+- **[Cache Busting Guide](docs/CACHE_BUSTING.md)** - Sistema de cache busting para archivos estáticos y ES6 modules
+- **[Deployment Checklist](docs/DEPLOYMENT_CHECKLIST.md)** - Lista completa para deployments seguros
+- **[Logger Migration Guide](docs/LOGGER_MIGRATION_GUIDE.md)** - Migración al sistema de logging centralizado
+- **[EventBus Migration Guide](docs/EVENTBUS_MIGRATION_GUIDE.md)** - Migración al sistema de eventos
+
+### Testing Tools
+- **Cache Busting Test**: Accede a `/static/cache-test.html` en desarrollo para verificar headers HTTP
+- **Logging Test**: Accede a `/static/test-logging.html` para probar el sistema de logging
+
+### Important Notes
+⚠️ **Before deploying**: Always check the [Deployment Checklist](docs/DEPLOYMENT_CHECKLIST.md), especially:
+- Increment `STATIC_VERSION` if you modified JavaScript files
+- Test in incognito mode before deploying
+- Verify that dark mode works correctly in all pages
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -306,6 +324,7 @@ plantuml -preview architecture.puml
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+6. **Important**: If you modified JavaScript files, increment `STATIC_VERSION` and mention it in the PR
 
 
 ## 📝 License

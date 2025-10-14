@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cache Busting Test - SPIDERHUB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .test-item {
+            background: #f7fafc;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .test-item.success {
+            border-left-color: #48bb78;
+            background: #f0fff4;
+        }
+        
+        .test-item.error {
+            border-left-color: #f56565;
+            background: #fff5f5;
+        }
+        
+        .test-item.warning {
+            border-left-color: #ed8936;
+            background: #fffaf0;
+        }
+        
+        .test-item h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .test-item code {
+            background: #2d3748;
+            color: #68d391;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .test-item pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.loading {
+            background: #bee3f8;
+            color: #2c5282;
+        }
+        
+        .status-badge.success {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+        
+        .status-badge.error {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+        
+        .status-badge.warning {
+            background: #feebc8;
+            color: #7c2d12;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        button:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .icon {
+            font-size: 1.2rem;
+        }
+        
+        .instructions {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        
+        .instructions code {
+            background: #2d3748;
+            color: #68d391;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 Cache Busting Test</h1>
+            <p>Verifica que el sistema de cache busting esté funcionando correctamente</p>
+        </div>
+        
+        <div class="card instructions">
+            <h2>📋 Instrucciones</h2>
+            <ol>
+                <li>Esta página solo funciona en <strong>modo desarrollo</strong> (DEBUG=True)</li>
+                <li>Haz click en "Ejecutar Tests" para verificar los headers HTTP</li>
+                <li>Los archivos .js deben tener headers anti-cache muy agresivos</li>
+                <li>Si ves errores, verifica que el <code>NoCacheMiddleware</code> esté activo</li>
+                <li>En producción, verifica que <code>STATIC_VERSION</code> esté configurado</li>
+            </ol>
+        </div>
+        
+        <div class="card">
+            <h2>🧪 Tests de Headers HTTP</h2>
+            <div id="test-results">
+                <div class="test-item">
+                    <h3>
+                        <span class="icon">⏳</span>
+                        <span>Esperando inicio de tests...</span>
+                    </h3>
+                    <p>Haz click en el botón de abajo para ejecutar los tests</p>
+                </div>
+            </div>
+            <div style="margin-top: 20px; text-align: center;">
+                <button onclick="runTests()">▶️ Ejecutar Tests</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>📊 Información del Sistema</h2>
+            <div id="system-info">
+                <div class="test-item">
+                    <h3>Navegador</h3>
+                    <code id="user-agent"></code>
+                </div>
+                <div class="test-item">
+                    <h3>Fecha/Hora Actual</h3>
+                    <code id="current-time"></code>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Mostrar info del sistema
+        document.getElementById('user-agent').textContent = navigator.userAgent;
+        document.getElementById('current-time').textContent = new Date().toLocaleString();
+        
+        // Archivos JavaScript críticos para testear
+        const testFiles = [
+            '/static/core/js/AnalysisEntry.js',
+            '/static/core/js/ExploreEntry.js',
+            '/static/core/js/CabinetEntry.js',
+            '/static/core/js/core/utils/darkMode.js',
+            '/static/core/js/components/charts/NetworkGraph.js',
+            '/static/core/js/pages/ExplorePageManager.js',
+        ];
+        
+        async function testFile(url) {
+            try {
+                const response = await fetch(url, {
+                    method: 'HEAD',
+                    cache: 'no-store'
+                });
+                
+                const headers = {
+                    'Cache-Control': response.headers.get('Cache-Control'),
+                    'Pragma': response.headers.get('Pragma'),
+                    'Expires': response.headers.get('Expires'),
+                    'ETag': response.headers.get('ETag'),
+                    'Last-Modified': response.headers.get('Last-Modified'),
+                    'Clear-Site-Data': response.headers.get('Clear-Site-Data'),
+                    'Vary': response.headers.get('Vary'),
+                };
+                
+                // Verificar si los headers anti-cache están presentes
+                const hasNoCacheHeaders = headers['Cache-Control']?.includes('no-store') && 
+                                         headers['Cache-Control']?.includes('no-cache');
+                
+                const hasAggressiveHeaders = headers['Cache-Control']?.includes('proxy-revalidate') &&
+                                            headers['Clear-Site-Data'] !== null;
+                
+                let status = 'success';
+                let message = 'Headers anti-cache correctos';
+                
+                if (!hasNoCacheHeaders) {
+                    status = 'error';
+                    message = '❌ Falta Cache-Control con no-store, no-cache';
+                } else if (!hasAggressiveHeaders) {
+                    status = 'warning';
+                    message = '⚠️ Headers básicos OK, pero faltan headers agresivos (Clear-Site-Data, proxy-revalidate)';
+                } else {
+                    message = '✅ Headers anti-cache ultra-agresivos presentes';
+                }
+                
+                return {
+                    url,
+                    status,
+                    message,
+                    headers,
+                    responseStatus: response.status
+                };
+            } catch (error) {
+                return {
+                    url,
+                    status: 'error',
+                    message: `❌ Error: ${error.message}`,
+                    headers: {},
+                    responseStatus: 0
+                };
+            }
+        }
+        
+        async function runTests() {
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = '<div class="test-item"><h3><span class="icon">🔄</span> Ejecutando tests...</h3></div>';
+            
+            const results = await Promise.all(testFiles.map(file => testFile(file)));
+            
+            let html = '';
+            let allPassed = true;
+            
+            results.forEach(result => {
+                const fileName = result.url.split('/').pop();
+                
+                if (result.status === 'error') {
+                    allPassed = false;
+                }
+                
+                html += `
+                    <div class="test-item ${result.status}">
+                        <h3>
+                            <span class="icon">${result.status === 'success' ? '✅' : result.status === 'warning' ? '⚠️' : '❌'}</span>
+                            <code>${fileName}</code>
+                            <span class="status-badge ${result.status}">${result.status.toUpperCase()}</span>
+                        </h3>
+                        <p><strong>${result.message}</strong></p>
+                        <p>HTTP Status: <code>${result.responseStatus}</code></p>
+                        <pre>${JSON.stringify(result.headers, null, 2)}</pre>
+                    </div>
+                `;
+            });
+            
+            if (allPassed) {
+                html = `
+                    <div class="test-item success">
+                        <h3>
+                            <span class="icon">🎉</span>
+                            ¡Todos los tests pasaron!
+                        </h3>
+                        <p>El sistema de cache busting está funcionando correctamente</p>
+                    </div>
+                ` + html;
+            } else {
+                html = `
+                    <div class="test-item error">
+                        <h3>
+                            <span class="icon">⚠️</span>
+                            Algunos tests fallaron
+                        </h3>
+                        <p>Verifica que el middleware NoCacheMiddleware esté activo y DEBUG=True</p>
+                    </div>
+                ` + html;
+            }
+            
+            resultsDiv.innerHTML = html;
+        }
+        
+        // Auto-ejecutar tests al cargar (opcional)
+        // runTests();
+    </script>
+</body>
+</html>
+
