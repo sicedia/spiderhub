@@ -146,8 +146,9 @@
 }
 
 .filter-group--expanded .filter-group__header {
-  background-color: var(--color-primary-50);
-  border-bottom-color: var(--color-primary-200);
+  background-color: var(--color-primary-900); /* fondo oscuro para contraste */
+  border-bottom-color: var(--color-primary-400);
+  color: var(--color-text-inverse); /* texto claro */
 }
 
 .filter-group__title {

@@ -242,7 +242,7 @@ export class NetworkGraph extends BaseChart {
         },
         font: {
           size: 12,
-          color: '#1a1a1a',
+          color: getCurrentChartColors(darkModeManager).text, // color dinámico según modo
           face: 'Poppins',
           bold: {
             size: 13
