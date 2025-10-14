@@ -9,6 +9,7 @@ import { DOMUtils } from '../../core/utils/dom.js';
 import { ValidationUtils } from '../../core/utils/validation.js';
 import { EVENTS } from '../../core/constants/config.js';
 import { darkModeManager } from '../../core/utils/darkMode.js';
+import { gettext as _ } from '../../core/i18n/i18n.js';
 
 export class DateRangeFilter extends BaseComponent {
   constructor(element, options = {}) {
@@ -35,17 +36,17 @@ export class DateRangeFilter extends BaseComponent {
       showTodayButton: true,
       showPresets: true,
       presets: [
-        { label: 'Last 7 days', days: 7 },
-        { label: 'Last 30 days', days: 30 },
-        { label: 'Last 90 days', days: 90 },
-        { label: 'Last year', days: 365 }
+        { label: _('Last 7 days'), days: 7 },
+        { label: _('Last 30 days'), days: 30 },
+        { label: _('Last 90 days'), days: 90 },
+        { label: _('Last year'), days: 365 }
       ],
       labels: {
-        startDate: 'From Date',
-        endDate: 'To Date',
-        clear: 'Clear',
-        today: 'Today',
-        apply: 'Apply'
+        startDate: _('From Date'),
+        endDate: _('To Date'),
+        clear: _('Clear'),
+        today: _('Today'),
+        apply: _('Apply')
       }
     };
   }

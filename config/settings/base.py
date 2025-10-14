@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'apps.core.middleware.NoCacheMiddleware',  # Mover después de CORS
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # i18n language detection and switching
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -75,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',  # i18n context processor
             ],
         },
     },
@@ -98,8 +100,9 @@ USE_L10N = True
 USE_TZ = True
 
 LANGUAGES = [
-    ('es', 'Spanish'),
     ('en', 'English'),
+    ('es', 'Español'),
+    # ('pt', 'Português'),  # Desactivado temporalmente - archivos listos en locale/pt/
 ]
 LOCALE_PATHS = [BASE_DIR / 'locale']
 

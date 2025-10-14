@@ -8,6 +8,7 @@ import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { CONFIG, FILTER_TYPES, EVENTS } from '../../core/constants/config.js';
 import { DOMUtils } from '../../core/utils/dom.js';
 import { logger } from '../../core/logger/Logger.js';
+import { gettext as _ } from '../../core/i18n/i18n.js';
 
 export class SearchBox extends BaseComponent {
   constructor(element, options = {}) {
@@ -25,7 +26,7 @@ export class SearchBox extends BaseComponent {
   getDefaultOptions() {
     return {
       minLength: CONFIG.SEARCH.MIN_QUERY_LENGTH,
-      placeholder: 'Search documents...',
+      placeholder: _('Search documents...'),
       autoSearch: false,
       clearOnSubmit: true,
       filterManager: null

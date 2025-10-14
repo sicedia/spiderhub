@@ -299,9 +299,51 @@ plantuml -preview architecture.puml
 ```
 
 
+## 🌍 Internationalization (i18n)
+
+This project currently supports **2 active languages**: English (default) and Spanish.
+**Portuguese is ready but temporarily disabled** - see [TRANSLATIONS.md](TRANSLATIONS.md#-portugués-desactivado-temporalmente) to activate it.
+
+### Quick Start for Translations
+
+**When adding a new feature with visible text:**
+
+1. **Use translation tags in templates:**
+   ```django
+   {% load i18n %}
+   <h1>{% trans "My New Title" %}</h1>
+   ```
+
+2. **Use translation functions in JavaScript:**
+   ```javascript
+   import { gettext as _ } from '../../core/i18n/i18n.js';
+   const text = _('View Details');
+   ```
+
+3. **Extract and compile translations:**
+   ```bash
+   # Extract strings
+   python manage.py makemessages -l es -l pt --ignore=pyspider
+   python manage.py makemessages -l es -l pt -d djangojs --ignore=pyspider
+   
+   # Add translations to locale/es/LC_MESSAGES/django.po and locale/pt/LC_MESSAGES/django.po
+   
+   # Compile
+   python manage.py compilemessages
+   
+   # Restart server
+   python manage.py runserver 8001
+   ```
+
+📖 **Complete guides:**
+- **[TRANSLATIONS.md](TRANSLATIONS.md)** - ⚡ Quick reference (START HERE)
+- **[Translation Workflow Guide](docs/TRANSLATION_WORKFLOW.md)** - Detailed step-by-step guide
+- **[Translation Quick Reference](docs/TRANSLATION_QUICK_REFERENCE.md)** - Commands cheatsheet
+
 ## 📚 Technical Documentation
 
 ### Development Guides
+- **[Translation Workflow Guide](docs/TRANSLATION_WORKFLOW.md)** - ⭐ Proceso completo para agregar traducciones
 - **[Cache Busting Guide](docs/CACHE_BUSTING.md)** - Sistema de cache busting para archivos estáticos y ES6 modules
 - **[Deployment Checklist](docs/DEPLOYMENT_CHECKLIST.md)** - Lista completa para deployments seguros
 - **[Logger Migration Guide](docs/LOGGER_MIGRATION_GUIDE.md)** - Migración al sistema de logging centralizado

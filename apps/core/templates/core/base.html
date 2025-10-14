@@ -1,15 +1,16 @@
 {% load static %}
 {% load static_tags %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="{% block description %}SPIDERHUB: Mapping EU-LAC Digital Transformation Dialogues & Agreements. Discover connections driving digital transformation between Europe and Latin America.{% endblock %}">
-  <meta name="keywords" content="digital transformation, EU-LAC, agreements, policies, digital cooperation, Europe, Latin America, Caribbean">
+  <meta name="description" content="{% block description %}{% trans "SPIDERHUB: Mapping EU-LAC Digital Transformation Dialogues & Agreements. Discover connections driving digital transformation between Europe and Latin America." %}{% endblock %}">
+  <meta name="keywords" content="{% trans "digital transformation, EU-LAC, agreements, policies, digital cooperation, Europe, Latin America, Caribbean" %}">
   <meta name="author" content="SPIDER Project">
   <meta name="robots" content="index, follow">
-  <title>{% block title %}SPIDERHUB: Fostering EU - LAC Digital Transformation{% endblock %}</title>
+  <title>{% block title %}SPIDERHUB: {% trans "Fostering EU - LAC Digital Transformation" %}{% endblock %}</title>
   
   <!-- CSS con versionado automático -->
   {% css_versioned 'core/css/main.css' %}
@@ -39,6 +40,9 @@
     }
   }
   </script>
+  
+  <!-- JavaScript Catalog for i18n (must load before other scripts) -->
+  <script src="{% url 'javascript-catalog' %}"></script>
   
   <!-- JS con versionado automático -->
   {% js_module_versioned 'core/js/MainEntry.js' %}

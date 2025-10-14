@@ -1,9 +1,10 @@
 {% extends "core/base.html" %}
 {% load static %}
 {% load static_tags %}
+{% load i18n %}
 
-{% block title %}SPIDERHUB: Analysis Dashboard{% endblock %}
-{% block description %}Modern analytics dashboard for EU-LAC digital transformation insights{% endblock %}
+{% block title %}SPIDERHUB: {% trans "Analysis Dashboard" %}{% endblock %}
+{% block description %}{% trans "Modern analytics dashboard for EU-LAC digital transformation insights" %}{% endblock %}
 
 {% block content %}
 <main id="analysis-page" class="analysis-page">
@@ -11,8 +12,8 @@
   <!-- Dashboard Header - Compact -->
   <div class="analysis-header">
     <div class="analysis-header__content">
-      <h1 class="analysis-header__title">Analysis Dashboard</h1>
-      <p class="analysis-header__description">EU-LAC Digital Transformation Insights</p>
+      <h1 class="analysis-header__title">{% trans "Analysis Dashboard" %}</h1>
+      <p class="analysis-header__description">{% trans "EU-LAC Digital Transformation Insights" %}</p>
     </div>
   </div>
 
@@ -21,11 +22,13 @@
     
     <!-- Network Visualization Section -->
     <section class="analysis-network">
-      <h2 class="analysis-section__title">Cross-Sector Collaboration Network</h2>
+      <h2 class="analysis-section__title">{% trans "Cross-Sector Collaboration Network" %}</h2>
       <p class="network-description">
+        {% blocktrans trimmed %}
         This network shows how different <strong>actor types</strong> (in blue) collaborate on various <strong>thematic areas</strong> (in green) 
         within EU-LAC digital transformation initiatives. Each connection represents documents where both an actor and theme co-occur, 
         indicating active collaboration. Hover over nodes to see details, and over connections to see the number of shared documents.
+        {% endblocktrans %}
       </p>
       
       <div class="network-container">
@@ -34,33 +37,33 @@
           <div class="network-legend">
             <div class="legend-item">
               <div class="legend-dot legend-dot--actor"></div>
-              <span>Actor Types (who participates)</span>
+              <span>{% trans "Actor Types (who participates)" %}</span>
             </div>
             <div class="legend-item">
               <div class="legend-dot legend-dot--theme"></div>
-              <span>Thematic Areas (what topics)</span>
+              <span>{% trans "Thematic Areas (what topics)" %}</span>
             </div>
             <div class="legend-item">
               <div class="legend-line"></div>
-              <span>Collaboration strength (shared documents)</span>
+              <span>{% trans "Collaboration strength (shared documents)" %}</span>
             </div>
           </div>
         </div>
         <div class="network-metrics">
-          <div class="metric-item" title="Number of different actor types participating in collaborations">
-            <div class="metric-item__label">Actor Types</div>
+          <div class="metric-item" title="{% trans 'Number of different actor types participating in collaborations' %}">
+            <div class="metric-item__label">{% trans "Actor Types" %}</div>
             <div class="metric-item__value" id="network-actor-types">-</div>
           </div>
-          <div class="metric-item" title="Number of active collaborations between actors and themes">
-            <div class="metric-item__label">Active Connections</div>
+          <div class="metric-item" title="{% trans 'Number of active collaborations between actors and themes' %}">
+            <div class="metric-item__label">{% trans "Active Connections" %}</div>
             <div class="metric-item__value" id="network-connections">-</div>
           </div>
-          <div class="metric-item" title="Average number of connections per node">
-            <div class="metric-item__label">Avg. Degree</div>
+          <div class="metric-item" title="{% trans 'Average number of connections per node' %}">
+            <div class="metric-item__label">{% trans "Avg. Degree" %}</div>
             <div class="metric-item__value" id="network-avg-degree">-</div>
           </div>
-          <div class="metric-item" title="Percentage of possible connections that are active">
-            <div class="metric-item__label">Network Density</div>
+          <div class="metric-item" title="{% trans 'Percentage of possible connections that are active' %}">
+            <div class="metric-item__label">{% trans "Network Density" %}</div>
             <div class="metric-item__value" id="network-density">-</div>
           </div>
         </div>
@@ -69,20 +72,22 @@
 
     <!-- Main Charts Grid -->
     <section class="analysis-charts">
-      <h2 class="analysis-section__title">Key Insights</h2>
+      <h2 class="analysis-section__title">{% trans "Key Insights" %}</h2>
       
       <div class="charts-grid">
         <!-- SDG Alignment Chart -->
         <div class="chart-card chart-card--radar" id="sdg-card">
           <div class="chart-header">
-            <h3 class="chart-title">SDG Alignment</h3>
+            <h3 class="chart-title">{% trans "SDG Alignment" %}</h3>
             <p class="chart-subtitle">
+              {% blocktrans trimmed %}
               <strong>SDGs (Sustainable Development Goals)</strong> are the UN's 17 global objectives 
               to achieve a better and more sustainable future for all by 2030. This radar chart shows 
               how EU-LAC digital cooperation aligns with these goals. Digital transformation primarily 
               contributes to SDG 9 (Innovation), SDG 8 (Decent Work), SDG 17 (Partnerships), and SDG 4 
               (Quality Education). The distance from center indicates document count per goal. 
               <strong>Hover over each point</strong> to see the SDG's name, description, and document count.
+              {% endblocktrans %}
             </p>
           </div>
           <div class="chart-body chart-body--radar">
@@ -91,15 +96,15 @@
           <div class="sdg-legend">
             <div class="sdg-legend-item">
               <span class="sdg-legend-icon">🎯</span>
-              <span class="sdg-legend-text">Outer points = Higher alignment with that SDG</span>
+              <span class="sdg-legend-text">{% trans "Outer points = Higher alignment with that SDG" %}</span>
             </div>
             <div class="sdg-legend-item">
               <span class="sdg-legend-icon">📊</span>
-              <span class="sdg-legend-text">Shape area = Overall SDG coverage breadth</span>
+              <span class="sdg-legend-text">{% trans "Shape area = Overall SDG coverage breadth" %}</span>
             </div>
             <div class="sdg-legend-item">
               <span class="sdg-legend-icon">💡</span>
-              <span class="sdg-legend-text">Hover for SDG name and description</span>
+              <span class="sdg-legend-text">{% trans "Hover for SDG name and description" %}</span>
             </div>
           </div>
         </div>
@@ -107,13 +112,15 @@
         <!-- Legal Bindingness Chart -->
         <div class="chart-card" id="binding-card">
           <div class="chart-header">
-            <h3 class="chart-title">Legal Framework</h3>
+            <h3 class="chart-title">{% trans "Legal Framework" %}</h3>
             <p class="chart-subtitle">
+              {% blocktrans trimmed %}
               This chart shows the distribution of cooperation agreements by their <strong>legal enforceability level</strong>. 
               <strong>Legally Binding</strong> (⚖️ Strong) agreements have enforceable obligations under international law, 
               <strong>Politically Binding</strong> (🤝 Medium) commitments rely on political will, and 
               <strong>Non-Binding</strong> (📋 Soft) frameworks are voluntary. <strong>Hover over segments</strong> to see 
               detailed descriptions and document counts.
+              {% endblocktrans %}
             </p>
           </div>
           <div class="chart-body">
@@ -122,15 +129,15 @@
           <div class="binding-legend">
             <div class="binding-legend-item">
               <span class="binding-dot binding-dot--legally"></span>
-              <span class="binding-legend-text">⚖️ Legally Binding (Strong)</span>
+              <span class="binding-legend-text">{% trans "⚖️ Legally Binding (Strong)" %}</span>
             </div>
             <div class="binding-legend-item">
               <span class="binding-dot binding-dot--politically"></span>
-              <span class="binding-legend-text">🤝 Politically Binding (Medium)</span>
+              <span class="binding-legend-text">{% trans "🤝 Politically Binding (Medium)" %}</span>
             </div>
             <div class="binding-legend-item">
               <span class="binding-dot binding-dot--non"></span>
-              <span class="binding-legend-text">📋 Non-Binding (Soft)</span>
+              <span class="binding-legend-text">{% trans "📋 Non-Binding (Soft)" %}</span>
             </div>
           </div>
         </div>
@@ -138,14 +145,16 @@
         <!-- Top Countries Chart -->
         <div class="chart-card" id="countries-card">
           <div class="chart-header">
-            <h3 class="chart-title">Leading Countries</h3>
+            <h3 class="chart-title">{% trans "Leading Countries" %}</h3>
             <p class="chart-subtitle">
+              {% blocktrans trimmed %}
               This chart shows the <strong>top 15 countries</strong> leading digital cooperation initiatives, 
               sorted by the number of documents they have initiated or led. Countries are color-coded by region: 
               <strong>🇪🇺 EU countries</strong> (blue) represent European Union member states, and 
               <strong>🌎 LAC countries</strong> (green) represent Latin America & Caribbean nations. 
               This highlights the bilateral nature of EU-LAC cooperation. 
               <strong>Hover over bars</strong> to see full country names, regions, and document counts.
+              {% endblocktrans %}
             </p>
           </div>
           <div class="chart-body">
@@ -154,15 +163,15 @@
           <div class="countries-legend">
             <div class="countries-legend-item">
               <span class="country-dot country-dot--eu"></span>
-              <span>🇪🇺 European Union Countries</span>
+              <span>{% trans "🇪🇺 European Union Countries" %}</span>
             </div>
             <div class="countries-legend-item">
               <span class="country-dot country-dot--lac"></span>
-              <span>🌎 Latin America & Caribbean</span>
+              <span>{% trans "🌎 Latin America & Caribbean" %}</span>
             </div>
             <div class="countries-legend-item">
               <span class="legend-icon">📊</span>
-              <span>Showing top 15 countries by led documents</span>
+              <span>{% trans "Showing top 15 countries by led documents" %}</span>
             </div>
           </div>
         </div>
@@ -170,13 +179,15 @@
         <!-- Top Themes Chart -->
         <div class="chart-card" id="themes-card">
           <div class="chart-header">
-            <h3 class="chart-title">Thematic Focus</h3>
+            <h3 class="chart-title">{% trans "Thematic Focus" %}</h3>
             <p class="chart-subtitle">
+              {% blocktrans trimmed %}
               This chart displays the main <strong>thematic categories</strong> addressed in EU-LAC digital cooperation documents. 
               Themes range from <strong>🚀 Digital Strategy</strong> (transformation frameworks), <strong>💡 Technology & Innovation</strong> 
               (emerging tech), <strong>🔒 Data Governance</strong> (security & privacy), <strong>🤝 Social Inclusion</strong> (digital equity), 
               to <strong>🌍 International Cooperation</strong> (cross-border partnerships). <strong>Hover over bars</strong> to see detailed 
               theme descriptions and focus areas.
+              {% endblocktrans %}
             </p>
           </div>
           <div class="chart-body">
@@ -185,23 +196,23 @@
           <div class="themes-legend">
             <div class="themes-legend-item">
               <span class="theme-dot theme-dot--strategy"></span>
-              <span>🚀 Digital Strategy</span>
+              <span>{% trans "🚀 Digital Strategy" %}</span>
             </div>
             <div class="themes-legend-item">
               <span class="theme-dot theme-dot--tech"></span>
-              <span>💡 Technology & Innovation</span>
+              <span>{% trans "💡 Technology & Innovation" %}</span>
             </div>
             <div class="themes-legend-item">
               <span class="theme-dot theme-dot--data"></span>
-              <span>🔒 Data Governance</span>
+              <span>{% trans "🔒 Data Governance" %}</span>
             </div>
             <div class="themes-legend-item">
               <span class="theme-dot theme-dot--inclusion"></span>
-              <span>🤝 Social Inclusion</span>
+              <span>{% trans "🤝 Social Inclusion" %}</span>
             </div>
             <div class="themes-legend-item">
               <span class="theme-dot theme-dot--cooperation"></span>
-              <span>🌍 International Cooperation</span>
+              <span>{% trans "🌍 International Cooperation" %}</span>
             </div>
           </div>
         </div>
@@ -210,20 +221,22 @@
 
     <!-- Stakeholders Section -->
     <section class="analysis-stakeholders">
-      <h2 class="analysis-section__title">Stakeholder Ecosystem</h2>
+      <h2 class="analysis-section__title">{% trans "Stakeholder Ecosystem" %}</h2>
       
       <div class="stakeholders-grid">
         <!-- Actors Chart -->
         <div class="chart-card" id="actors-card">
           <div class="chart-header">
-            <h3 class="chart-title">Actor Types</h3>
+            <h3 class="chart-title">{% trans "Actor Types" %}</h3>
             <p class="chart-subtitle">
+              {% blocktrans trimmed %}
               This chart shows participation by <strong>organization type</strong> in EU-LAC digital cooperation. 
               <strong>🏛️ Political Actors</strong> (governments & institutions) lead policy frameworks, 
               <strong>🔬 Research & Innovation Actors</strong> (universities & R&D) drive knowledge development, 
               <strong>💼 Economic Actors</strong> (businesses & SMEs) enable implementation, and 
               <strong>🤝 Civil Society Actors</strong> (NGOs & communities) ensure social impact. 
               <strong>Hover over bars</strong> to see detailed actor descriptions and roles.
+              {% endblocktrans %}
             </p>
           </div>
           <div class="chart-body">
@@ -232,19 +245,19 @@
           <div class="actors-legend">
             <div class="actors-legend-item">
               <span class="actor-dot actor-dot--political"></span>
-              <span>🏛️ Political Actors</span>
+              <span>{% trans "🏛️ Political Actors" %}</span>
             </div>
             <div class="actors-legend-item">
               <span class="actor-dot actor-dot--research"></span>
-              <span>🔬 Research & Innovation</span>
+              <span>{% trans "🔬 Research & Innovation" %}</span>
             </div>
             <div class="actors-legend-item">
               <span class="actor-dot actor-dot--economic"></span>
-              <span>💼 Economic Actors</span>
+              <span>{% trans "💼 Economic Actors" %}</span>
             </div>
             <div class="actors-legend-item">
               <span class="actor-dot actor-dot--civil"></span>
-              <span>🤝 Civil Society</span>
+              <span>{% trans "🤝 Civil Society" %}</span>
             </div>
           </div>
         </div>
@@ -252,13 +265,15 @@
         <!-- Beneficiaries Chart -->
         <div class="chart-card" id="beneficiaries-card">
           <div class="chart-header">
-            <h3 class="chart-title">Beneficiary Groups</h3>
+            <h3 class="chart-title">{% trans "Beneficiary Groups" %}</h3>
             <p class="chart-subtitle">
+              {% blocktrans trimmed %}
               This chart shows the <strong>top 10 beneficiary groups</strong> most frequently addressed in EU-LAC digital cooperation, 
               sorted by document count. Beneficiaries range from <strong>🏪 Economic actors</strong> (SMEs, startups, businesses), 
               <strong>🎓 Knowledge sector</strong> (researchers, students), <strong>👥 Citizens</strong> (general public), 
               to <strong>vulnerable groups</strong> like 👩 women, 🏘️ rural communities, and ♿ persons with disabilities. 
               Each color represents a beneficiary category. <strong>Hover over bars</strong> to see detailed descriptions.
+              {% endblocktrans %}
             </p>
           </div>
           <div class="chart-body">
@@ -267,7 +282,7 @@
           <div class="beneficiaries-legend">
             <div class="beneficiaries-legend-note">
               <span class="legend-icon">📊</span>
-              <span>Showing top 10 groups sorted by document count. Colors represent beneficiary categories.</span>
+              <span>{% trans "Showing top 10 groups sorted by document count. Colors represent beneficiary categories." %}</span>
             </div>
           </div>
         </div>

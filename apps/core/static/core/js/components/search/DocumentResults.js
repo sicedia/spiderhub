@@ -6,6 +6,7 @@
 import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { EVENTS } from '../../core/constants/config.js';
 import { logger } from '../../core/logger/Logger.js';
+import { gettext as _ } from '../../core/i18n/i18n.js';
 
 export class DocumentResults extends BaseComponent {
   constructor(element, options = {}) {
@@ -22,8 +23,8 @@ export class DocumentResults extends BaseComponent {
     return {
       paginationElement: null,
       countElement: null,
-      emptyMessage: 'No documents match your criteria.',
-      loadingMessage: 'Loading…'
+      emptyMessage: _('No documents match your criteria.'),
+      loadingMessage: _('Loading…')
     };
   }
 
@@ -137,7 +138,7 @@ export class DocumentResults extends BaseComponent {
       return;
     }
     
-    this.element.innerHTML = '<p class="error">Error loading results.</p>';
+    this.element.innerHTML = `<p class="error">${_('Error loading results.')}</p>`;
     
     if (this.options.paginationElement) {
       this.options.paginationElement.innerHTML = '';
@@ -257,7 +258,7 @@ export class DocumentResults extends BaseComponent {
         </div>
         <div class="document-list-actions">
           <a href="/document_detail/${doc.id}/" class="btn btn-secondary btn-sm">
-            View Details
+            ${_('View Details')}
           </a>
         </div>
       </div>

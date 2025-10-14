@@ -1,8 +1,9 @@
 {% extends "core/base.html" %}
 {% load static %}
 {% load static_tags %}
-{% block title %}SPIDERHUB: Acerca de Nosotros - Transformación Digital UE - AL{% endblock %}
-{% block description %}Learn about SPIDERHUB and the SPIDER project. Discover our methodology for analyzing EU-LAC digital transformation agreements and partnerships.{% endblock %}
+{% load i18n %}
+{% block title %}SPIDERHUB: {% trans "About Us" %} - {% trans "EU - LAC Digital Transformation" %}{% endblock %}
+{% block description %}{% trans "Learn about SPIDERHUB and the SPIDER project. Discover our methodology for analyzing EU-LAC digital transformation agreements and partnerships." %}{% endblock %}
 {% block extra_head %}
 {# About page styles are included in main.css via pages/about.css #}
 {% endblock %}
@@ -12,8 +13,8 @@
   <!-- About Hero Section -->
   <div class="about-hero hero" role="banner">
     <div class="hero__content">
-      <h1 class="hero__title">About SPIDERHUB</h1>
-      <p class="hero__description">Connecting documents and policies to drive digital transformation between Europe and Latin America</p>
+      <h1 class="hero__title">{% trans "About SPIDERHUB" %}</h1>
+      <p class="hero__description">{% trans "Connecting documents and policies to drive digital transformation between Europe and Latin America" %}</p>
     </div>
   </div>
 
@@ -21,17 +22,17 @@
   <main id="main-content" class="about-container" role="main">
     <!-- Project Description Section -->
     <section class="about-section" aria-labelledby="project-title">
-      <h2 id="project-title" class="section__title">Our Platform</h2>
+      <h2 id="project-title" class="section__title">{% trans "Our Platform" %}</h2>
       <div class="content-grid">
         <div class="content-grid__text">
-          <p>SPIDERHUB is a platform designed to analyse, connect, and visualise digital transformation agreements between Europe and Latin America and the Caribbean. This SPIDER initiative is led by CEDIA, building on the project's foundations to enhance data accessibility and interoperability across the EU-LAC digital ecosystem.</p>
-          <p>Through the use of advanced artificial intelligence technologies, we create an interconnected network of information that allows researchers, policymakers, and the general public to understand the complex relationships that are shaping the digital future of our societies.</p>
-          <p>Our main objectives are:</p>
+          <p>{% trans "SPIDERHUB is a platform designed to analyse, connect, and visualise digital transformation agreements between Europe and Latin America and the Caribbean. This SPIDER initiative is led by CEDIA, building on the project's foundations to enhance data accessibility and interoperability across the EU-LAC digital ecosystem." %}</p>
+          <p>{% trans "Through the use of advanced artificial intelligence technologies, we create an interconnected network of information that allows researchers, policymakers, and the general public to understand the complex relationships that are shaping the digital future of our societies." %}</p>
+          <p>{% trans "Our main objectives are:" %}</p>
           <ul role="list">
-            <li role="listitem">To centralise relevant documentation on digital transformation between the EU and Latin America and the Caribbean.</li>
-            <li role="listitem">To automatically analyse commitments and policies using AI.</li>
-            <li role="listitem">To visualise the connections between actors, themes and commitments.</li>
-            <li role="listitem">To facilitate informed decision-making based on concrete data.</li>
+            <li role="listitem">{% trans "To centralise relevant documentation on digital transformation between the EU and Latin America and the Caribbean." %}</li>
+            <li role="listitem">{% trans "To automatically analyse commitments and policies using AI." %}</li>
+            <li role="listitem">{% trans "To visualise the connections between actors, themes and commitments." %}</li>
+            <li role="listitem">{% trans "To facilitate informed decision-making based on concrete data." %}</li>
           </ul>
         </div>
         <div class="content-grid__sidebar">
@@ -81,14 +82,14 @@
 
     <!-- SPIDER Project Background Section -->
     <section class="about-section spider-background-section" aria-labelledby="spider-title">
-      <h2 id="spider-title" class="section__title">About SPIDER</h2>
+      <h2 id="spider-title" class="section__title">{% trans "About SPIDER" %}</h2>
       <div class="spider-content">
         <div class="spider-text">
-          <p>SPIDER is a European Union-funded project that continues the long tradition of collaboration between the European Union and Latin America and the Caribbean in digital transformation and research and innovation. The project acts as a driver for human-centred digital transformation, closing the gap between digital dialogue commitments and their practical implementation across both regions.</p>
-          <p>SPIDER focuses on maximising and promoting the potential of the BELLA network for R&I cooperation and ensuring the sustainable use of the infrastructure by stimulating the adoption and use of digital transformation technologies.</p>
+          <p>{% trans "SPIDER is a European Union-funded project that continues the long tradition of collaboration between the European Union and Latin America and the Caribbean in digital transformation and research and innovation. The project acts as a driver for human-centred digital transformation, closing the gap between digital dialogue commitments and their practical implementation across both regions." %}</p>
+          <p>{% trans "SPIDER focuses on maximising and promoting the potential of the BELLA network for R&I cooperation and ensuring the sustainable use of the infrastructure by stimulating the adoption and use of digital transformation technologies." %}</p>
           <div class="spider-link-container">
             <a href="https://spidernetwork.org/" target="_blank" rel="noopener noreferrer" class="spider-learn-more-link">
-              <span>Learn more about SPIDER</span>
+              <span>{% trans "Learn more about SPIDER" %}</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M15 3H21V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -102,8 +103,8 @@
 
     <!-- Methodology Section -->
     <section class="about-section methodology-section" aria-labelledby="methodology-title">
-      <h2 id="methodology-title" class="section__title">Our Methodology</h2>
-      <p>SPIDERHUB extends SPIDER's data-driven methodology to ensure transparency and accessibility of digital cooperation commitments between the EU and LAC regions.</p>
+      <h2 id="methodology-title" class="section__title">{% trans "Our Methodology" %}</h2>
+      <p>{% trans "SPIDERHUB extends SPIDER's data-driven methodology to ensure transparency and accessibility of digital cooperation commitments between the EU and LAC regions." %}</p>
       <div class="steps-grid" role="list">
         <article class="step-card" role="listitem">
           <div class="step-icon" aria-hidden="true">
@@ -114,8 +115,8 @@
             </svg>
           </div>
           <div class="step-content">
-            <h3>1. Document Collection</h3>
-            <p>We gather official documents, agreements, policies and strategies related to digital transformation from governmental sources, international organisations and relevant private entities.</p>
+            <h3>{% trans "1. Document Collection" %}</h3>
+            <p>{% trans "We gather official documents, agreements, policies and strategies related to digital transformation from governmental sources, international organisations and relevant private entities." %}</p>
           </div>
         </article>
         
@@ -134,8 +135,8 @@
             </svg>
           </div>
           <div class="step-content">
-            <h3>2. AI Processing</h3>
-            <p>Our artificial intelligence system analyses the documents, identifying actors, commitments, key themes and relationships between different policies, extracting structured metadata.</p>
+            <h3>{% trans "2. AI Processing" %}</h3>
+            <p>{% trans "Our artificial intelligence system analyses the documents, identifying actors, commitments, key themes and relationships between different policies, extracting structured metadata." %}</p>
           </div>
         </article>
         
@@ -147,8 +148,8 @@
             </svg>
           </div>
           <div class="step-content">
-            <h3>3. Validation and Enrichment</h3>
-            <p>Experts review and validate the results of the automatic analysis, ensuring accuracy and reliability in the data. Additional contexts are added when necessary.</p>
+            <h3>{% trans "3. Validation and Enrichment" %}</h3>
+            <p>{% trans "Experts review and validate the results of the automatic analysis, ensuring accuracy and reliability in the data. Additional contexts are added when necessary." %}</p>
           </div>
         </article>
         
@@ -171,8 +172,8 @@
             </svg>
           </div>
           <div class="step-content">
-            <h3>4. Connection Visualisation</h3>
-            <p>We create visualisations and relationships between documents, allowing users to explore the complex network of policies and commitments that connect the EU and Latin America and the Caribbean.</p>
+            <h3>{% trans "4. Connection Visualisation" %}</h3>
+            <p>{% trans "We create visualisations and relationships between documents, allowing users to explore the complex network of policies and commitments that connect the EU and Latin America and the Caribbean." %}</p>
           </div>
         </article>
       </div>
@@ -180,24 +181,24 @@
 
     <!-- Administration Panel Section -->
     <section class="about-section admin-panel-section" aria-labelledby="admin-title">
-      <h2 id="admin-title" class="section__title">Administration Panel</h2>
+      <h2 id="admin-title" class="section__title">{% trans "Administration Panel" %}</h2>
       <div class="admin-content">
         <div class="admin-text">
-          <p>SPIDERHUB includes a comprehensive administration panel that allows authorized users to manage and expand the platform's content. Through this interface, administrators can add new agreements, update existing commitments, and enhance the analysis of digital transformation policies.</p>
-          <p>The administration panel provides tools for:</p>
+          <p>{% trans "SPIDERHUB includes a comprehensive administration panel that allows authorized users to manage and expand the platform's content. Through this interface, administrators can add new agreements, update existing commitments, and enhance the analysis of digital transformation policies." %}</p>
+          <p>{% trans "The administration panel provides tools for:" %}</p>
           <ul role="list">
-            <li role="listitem">Adding new bilateral and multilateral agreements between EU and LAC countries</li>
-            <li role="listitem">Managing commitment analysis and policy metadata</li>
-            <li role="listitem">Uploading new documents</li>
-            <li role="listitem">Reviewing and validating automated content extraction</li>
+            <li role="listitem">{% trans "Adding new bilateral and multilateral agreements between EU and LAC countries" %}</li>
+            <li role="listitem">{% trans "Managing commitment analysis and policy metadata" %}</li>
+            <li role="listitem">{% trans "Uploading new documents" %}</li>
+            <li role="listitem">{% trans "Reviewing and validating automated content extraction" %}</li>
           </ul>
-          <p>For access to the administration panel or to contribute new agreements and commitments analysis to the platform, please contact our planning team for more information and authorization procedures.</p>
+          <p>{% trans "For access to the administration panel or to contribute new agreements and commitments analysis to the platform, please contact our planning team for more information and authorization procedures." %}</p>
           <div class="admin-contact-container admin-contact">
             <a href="mailto:planificacion@cedia.org.ec" class="admin-contact-link admin-contact__link">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M20 4H4C3.9 4 3 4.9 3 6L3 18C3 19.1 3.9 20 4 20H20C20.1 20 21 19.1 21 18V6C21 4.9 20.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="currentColor"/>
               </svg>
-              <span>Contact Administration Team</span>
+              <span>{% trans "Contact Administration Team" %}</span>
               <span class="contact-email">planificacion@cedia.org.ec</span>
             </a>
           </div>
@@ -207,8 +208,8 @@
 
     <!-- Partners Section -->
     <section class="about-section partners-section" aria-labelledby="partners-title">
-      <h2 id="partners-title" class="section__title">The SPIDER Consortium</h2>
-      <p class="partners-intro">Following a multi-stakeholder approach, SPIDER brings together relevant R&I stakeholders from the EU and LAC to set up a multidisciplinary consortium that enables the successful pursuit of the project's objectives. The SPIDER consortium combines the digital transformation and research and innovation (R&I) expertise of organizations from Spain, Portugal, Germany, Belgium, Chile, Ecuador, Brazil, and Costa Rica.</p>
+      <h2 id="partners-title" class="section__title">{% trans "The SPIDER Consortium" %}</h2>
+      <p class="partners-intro">{% trans "Following a multi-stakeholder approach, SPIDER brings together relevant R&I stakeholders from the EU and LAC to set up a multidisciplinary consortium that enables the successful pursuit of the project's objectives. The SPIDER consortium combines the digital transformation and research and innovation (R&I) expertise of organizations from Spain, Portugal, Germany, Belgium, Chile, Ecuador, Brazil, and Costa Rica." %}</p>
       <div class="partners-grid" role="list">
         <article class="partner-card" role="listitem">
           <div class="partner-logo" aria-hidden="true">
@@ -216,7 +217,7 @@
           </div>
           <div class="partner-info">
             <h3>Inmark</h3>
-            <p>Madrid-based consulting firm specializing in human-centered digital transformation and international cooperation, with leadership experience in facilitating international dialogues and R&I collaboration.</p>
+            <p>{% trans "Madrid-based consulting firm specializing in human-centered digital transformation and international cooperation, with leadership experience in facilitating international dialogues and R&I collaboration." %}</p>
           </div>
         </article>
         
@@ -226,7 +227,7 @@
           </div>
           <div class="partner-info">
             <h3>Deutsches Zentrum Für Luft - Und Raumfahrt EV</h3>
-            <p>Germany's national aeronautics and space research center, engaging in global projects in aeronautics, space, energy, and security through its Project Management Agency.</p>
+            <p>{% trans "Germany's national aeronautics and space research center, engaging in global projects in aeronautics, space, energy, and security through its Project Management Agency." %}</p>
           </div>
         </article>
         
@@ -236,7 +237,7 @@
           </div>
           <div class="partner-info">
             <h3>Life Supporting Technologies (LifeSTech)</h3>
-            <p>Universidad Politécnica de Madrid's ICT research group focusing on e-Health and e-Inclusion, with strong collaborations with Iberoamerican institutions.</p>
+            <p>{% trans "Universidad Politécnica de Madrid's ICT research group focusing on e-Health and e-Inclusion, with strong collaborations with Iberoamerican institutions." %}</p>
           </div>
         </article>
         
@@ -246,7 +247,7 @@
           </div>
           <div class="partner-info">
             <h3>Eura Unipessoal LDA</h3>
-            <p>EurA Portugal supports innovation ecosystems across 14 European offices, connecting with over 5,000 startups and scale-ups in Europe.</p>
+            <p>{% trans "EurA Portugal supports innovation ecosystems across 14 European offices, connecting with over 5,000 startups and scale-ups in Europe." %}</p>
           </div>
         </article>
         
@@ -256,7 +257,7 @@
           </div>
           <div class="partner-info">
             <h3>EIT Digital</h3>
-            <p>Fosters digital innovation and entrepreneurship, supporting early-stage start-ups through co-funding and services with 300+ partners and 220+ ventures in Europe.</p>
+            <p>{% trans "Fosters digital innovation and entrepreneurship, supporting early-stage start-ups through co-funding and services with 300+ partners and 220+ ventures in Europe." %}</p>
           </div>
         </article>
         
@@ -266,7 +267,7 @@
           </div>
           <div class="partner-info">
             <h3>REUNA Corporación Red Universitaria Nacional</h3>
-            <p>Chile's NREN, delivering connectivity, cloud, and cybersecurity to 48 institutions. Participated in BELLA and EVALSO, enhancing scientific collaboration.</p>
+            <p>{% trans "Chile's NREN, delivering connectivity, cloud, and cybersecurity to 48 institutions. Participated in BELLA and EVALSO, enhancing scientific collaboration." %}</p>
           </div>
         </article>
         
@@ -276,7 +277,7 @@
           </div>
           <div class="partner-info">
             <h3>Corporación Ecuatoriana para el Desarrollo de la Investigación y la Academia (CEDIA)</h3>
-            <p>Leads Ecuador's academic digital infrastructure and R&I tools. A key BELLA partner, leading national innovation coalitions and implementing international R&I tools. <span class="sr-only">Project coordinator</span></p>
+            <p>{% trans "Leads Ecuador's academic digital infrastructure and R&I tools. A key BELLA partner, leading national innovation coalitions and implementing international R&I tools." %} <span class="sr-only">{% trans "Project coordinator" %}</span></p>
           </div>
         </article>
         
@@ -286,7 +287,7 @@
           </div>
           <div class="partner-info">
             <h3>Rede Nacional de Ensino e Pesquisa (RNP)</h3>
-            <p>Brazil's NREN, connecting 1500 campuses and research institutions. Supports innovation in IT and extends services to hospitals, museums, and tech parks.</p>
+            <p>{% trans "Brazil's NREN, connecting 1500 campuses and research institutions. Supports innovation in IT and extends services to hospitals, museums, and tech parks." %}</p>
           </div>
         </article>
         
@@ -296,7 +297,7 @@
           </div>
           <div class="partner-info">
             <h3>Red Conare</h3>
-            <p>Costa Rica's NREN supporting access to global scientific collaboration and RedCLARA. Leads BELLA deployments in Central America and offers advanced data science training.</p>
+            <p>{% trans "Costa Rica's NREN supporting access to global scientific collaboration and RedCLARA. Leads BELLA deployments in Central America and offers advanced data science training." %}</p>
           </div>
         </article>
       </div>
@@ -304,25 +305,25 @@
 
     <!-- Team Section -->
     <section class="about-section team-section" aria-labelledby="team-title">
-      <h2 id="team-title" class="section__title">Project Coordination</h2>
+      <h2 id="team-title" class="section__title">{% trans "Project Coordination" %}</h2>
       <div class="team-description">
-        <p>The project is coordinated by an interdisciplinary team from public institutions, civil society, and academia across Europe and Latin America and the Caribbean. Each partner brings domain expertise in governance, technology, and digital policy to ensure comprehensive analysis and meaningful insights into EU-LAC digital cooperation.</p>
+        <p>{% trans "The project is coordinated by an interdisciplinary team from public institutions, civil society, and academia across Europe and Latin America and the Caribbean. Each partner brings domain expertise in governance, technology, and digital policy to ensure comprehensive analysis and meaningful insights into EU-LAC digital cooperation." %}</p>
       </div>
     </section>
 
     <!-- Contact Section -->
     <section class="about-section contact-section" aria-labelledby="contact-title">
-      <h2 id="contact-title" class="section__title">Contact</h2>
+      <h2 id="contact-title" class="section__title">{% trans "Contact" %}</h2>
       <div class="contact-container contact-section__container">
         <div class="contact-info">
-          <p class="contact-section__text">Do you have questions about SPIDERHUB or would you like to collaborate with us? Get in touch using the following contact details:</p>
+          <p class="contact-section__text">{% trans "Do you have questions about SPIDERHUB or would you like to collaborate with us? Get in touch using the following contact details:" %}</p>
           <address>
             <div class="contact-detail contact-section__detail">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M20 4H4C3.9 4 3 4.9 3 6L3 18C3 19.1 3.9 20 4 20H20C20.1 20 21 19.1 21 18V6C21 4.9 20.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="#094EB2"/>
               </svg>
               <a href="mailto:info@spidernetwork.org" class="contact-link contact-section__link">
-                <span class="sr-only">Email: </span>info@spidernetwork.org
+                <span class="sr-only">{% trans "Email:" %} </span>info@spidernetwork.org
               </a>
             </div>
           </address>

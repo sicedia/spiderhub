@@ -7,6 +7,7 @@
 import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { DOMUtils } from '../../core/utils/dom.js';
 import { EVENTS } from '../../core/constants/config.js';
+import { gettext as _ } from '../../core/i18n/i18n.js';
 
 export class ResultsList extends BaseComponent {
   constructor(element, options = {}) {
@@ -15,9 +16,9 @@ export class ResultsList extends BaseComponent {
 
   getDefaultOptions() {
     return {
-      emptyMessage: 'No documents found',
-      emptyDescription: 'Try adjusting your search or filters to find what you\'re looking for.',
-      loadingMessage: 'Loading documents...',
+      emptyMessage: _('No documents found'),
+      emptyDescription: _('Try adjusting your search or filters to find what you\'re looking for.'),
+      loadingMessage: _('Loading documents...'),
       itemTemplate: null,
       enableVirtualization: false,
       itemsPerPage: 10
@@ -233,8 +234,8 @@ export class ResultsList extends BaseComponent {
       const viewButton = DOMUtils.createElement('a', {
         href: item.url,
         className: 'button button--sm button--primary',
-        'aria-label': `View details for ${item.title}`
-      }, 'View Details');
+        'aria-label': `${_('View details for')} ${item.title}`
+      }, _('View Details'));
       
       actions.appendChild(viewButton);
     }

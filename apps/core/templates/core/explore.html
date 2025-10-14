@@ -1,8 +1,9 @@
 {% extends "core/base.html" %}
 {% load static %}
 {% load static_tags %}
-{% block title %}SPIDERHUB: Explorar Diálogos - Transformación Digital UE - AL{% endblock %}
-{% block description %}Explore and search digital transformation dialogues between EU and LAC countries. Filter by themes, countries, actors, and commitments.{% endblock %}
+{% load i18n %}
+{% block title %}SPIDERHUB: {% trans "Explore Dialogues" %} - {% trans "EU - LAC Digital Transformation" %}{% endblock %}
+{% block description %}{% trans "Explore and search digital transformation dialogues between EU and LAC countries. Filter by themes, countries, actors, and commitments." %}{% endblock %}
 {% block extra_head %}
 <!-- Additional CSS for explore page if needed -->
 {% endblock %}
@@ -15,8 +16,8 @@
     <!-- Enhanced Top Search Bar -->
     <section class="explore-header" role="region" aria-labelledby="search-heading">
       <div class="explore-search">
-        <form id="search-form" class="search-bar" role="search" aria-label="Search dialogues" autocomplete="off">
-          <label for="searchbox" class="sr-only">Search dialogues by keyword or phrase</label>
+        <form id="search-form" class="search-bar" role="search" aria-label="{% trans "Search dialogues" %}" autocomplete="off">
+          <label for="searchbox" class="sr-only">{% trans "Search dialogues by keyword or phrase" %}</label>
           <svg class="search-bar__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="#666"/>
           </svg>
@@ -24,7 +25,7 @@
             type="search" 
             id="searchbox" 
             name="q" 
-            placeholder="Search by keyword or phrase..."
+            placeholder="{% trans "Search by keyword or phrase..." %}"
             class="search-bar__input" 
             autofocus
             autocomplete="off"
@@ -34,7 +35,7 @@
             aria-controls="suggestions-list"
           />
           <button type="submit" id="search-button" class="search-bar__button">
-            <span>Search</span>
+            <span>{% trans "Search" %}</span>
           </button>
         </form>
         <ul 
@@ -55,9 +56,9 @@
         </p>
       </div>
       
-      <div id="active-filters" class="filter-chips explore-filters--empty" role="region" aria-label="Active filters" aria-live="polite">
+      <div id="active-filters" class="filter-chips explore-filters--empty" role="region" aria-label="{% trans "Active filters" %}" aria-live="polite">
         <!-- Active filter chips will be populated by JavaScript -->
-        <button class="filter-chips__clear-all" type="button" aria-label="Clear all active filters">Clear all filters</button>
+        <button class="filter-chips__clear-all" type="button" aria-label="{% trans "Clear all active filters" %}">{% trans "Clear all filters" %}</button>
       </div>
     </section>
 
@@ -72,22 +73,22 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor"/>
               </svg>
-              Filters
+              {% trans "Filters" %}
             </h2>
             <div class="filter-header__actions">
               <button 
                 class="filter-header__toggle filter-toggle mobile-only" 
                 aria-expanded="false" 
                 aria-controls="filter-groups" 
-                aria-label="Toggle filter panel"
+                aria-label="{% trans "Toggle filter panel" %}"
                 type="button"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                 </svg>
               </button>
-              <button id="clear-filters" class="filter-header__clear" type="button" aria-label="Clear all filters">
-                Clear all
+              <button id="clear-filters" class="filter-header__clear" type="button" aria-label="{% trans "Clear all filters" %}">
+                {% trans "Clear all" %}
               </button>
             </div>
           </header>
@@ -98,7 +99,7 @@
             <!-- Document Type -->
             <div class="filter-group" data-filter-group="document_type">
               <div class="filter-group__header" role="button" tabindex="0" aria-expanded="true" aria-controls="filter-document-type">
-                <h3 class="filter-group__title">Document Type</h3>
+                <h3 class="filter-group__title">{% trans "Document Type" %}</h3>
                 <div class="filter-group__count">{{ available_doc_types|length }}</div>
                 <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
@@ -128,7 +129,7 @@
             <!-- Legal Characteristics -->
             <div class="filter-group" data-filter-group="legal_characteristics">
               <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-legal-characteristics">
-                <h3 class="filter-group__title">Legal Characteristics</h3>
+                <h3 class="filter-group__title">{% trans "Legal Characteristics" %}</h3>
                 <div class="filter-group__count">3</div>
                 <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
@@ -138,7 +139,7 @@
                 <div class="filter-group__body">
                   
                   <div class="filter-subgroup">
-                    <h4 class="filter-subgroup__title">Legal Bindingness</h4>
+                    <h4 class="filter-subgroup__title">{% trans "Legal Bindingness" %}</h4>
                     <div class="filter-options">
                       {% for slug, label, count in available_legal_bindingness %}
                         <div class="filter-option">
@@ -157,7 +158,7 @@
                   </div>
                   
                   <div class="filter-subgroup">
-                    <h4 class="filter-subgroup__title">Coverage Scope</h4>
+                    <h4 class="filter-subgroup__title">{% trans "Coverage Scope" %}</h4>
                     <div class="filter-options">
                       {% for slug, label, count in available_coverage_scope %}
                         <div class="filter-option">
@@ -176,7 +177,7 @@
                   </div>
                   
                   <div class="filter-subgroup">
-                    <h4 class="filter-subgroup__title">Agreement Type</h4>
+                    <h4 class="filter-subgroup__title">{% trans "Agreement Type" %}</h4>
                     <div class="filter-options">
                       {% for slug, label, count in available_agreement_types %}
                         <div class="filter-option">
@@ -201,7 +202,7 @@
             <!-- Countries -->
             <div class="filter-group" data-filter-group="countries">
               <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-countries">
-                <h3 class="filter-group__title">Countries</h3>
+                <h3 class="filter-group__title">{% trans "Countries" %}</h3>
                 <div class="filter-group__count">{{ available_countries|length }}</div>
                 <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
@@ -217,18 +218,18 @@
                         <polyline points="2 17 12 22 22 17" stroke="currentColor" stroke-width="2" fill="none"/>
                         <polyline points="2 12 12 17 22 12" stroke="currentColor" stroke-width="2" fill="none"/>
                       </svg>
-                      Country Role:
+                      {% trans "Country Role:" %}
                     </label>
                     <select 
                       id="country-role-select" 
                       name="country_role" 
                       class="filter-role-selector__select"
-                      aria-label="Select country participation role"
+                      aria-label="{% trans "Select country participation role" %}"
                     >
-                      <option value="any" selected>Any Role (Lead, Involved, or Event)</option>
-                      <option value="lead">Lead Country (Primary Leadership)</option>
-                      <option value="involved">Involved Country (Participant)</option>
-                      <option value="event">Event Country (Host)</option>
+                      <option value="any" selected>{% trans "Any Role (Lead, Involved, or Event)" %}</option>
+                      <option value="lead">{% trans "Lead Country (Primary Leadership)" %}</option>
+                      <option value="involved">{% trans "Involved Country (Participant)" %}</option>
+                      <option value="event">{% trans "Event Country (Host)" %}</option>
                     </select>
                   </div>
                   
@@ -236,7 +237,7 @@
                     <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
                     </svg>
-                    <input type="text" class="filter-search__input" placeholder="Search country..." aria-label="Search countries">
+                    <input type="text" class="filter-search__input" placeholder="{% trans "Search country..." %}" aria-label="{% trans "Search countries" %}">
                   </div>
                   
                   <div class="filter-options">
@@ -261,7 +262,7 @@
             <!-- Date Range -->
             <div class="filter-group" data-filter-group="period">
               <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-period">
-                <h3 class="filter-group__title">Period</h3>
+                <h3 class="filter-group__title">{% trans "Period" %}</h3>
                 <div class="filter-group__count">Date Range</div>
                 <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
@@ -271,19 +272,19 @@
                 <div class="filter-group__body">
                   <div class="filter-date-range">
                     <div class="filter-date-field">
-                      <label for="date_from" class="filter-date-field__label">From</label>
+                      <label for="date_from" class="filter-date-field__label">{% trans "From" %}</label>
                       <input type="date" id="date_from" name="date-from" class="filter-date-field__input">
                     </div>
                     <div class="filter-date-field">
-                      <label for="date_to" class="filter-date-field__label">Until</label>
+                      <label for="date_to" class="filter-date-field__label">{% trans "Until" %}</label>
                       <input type="date" id="date_to" name="date-to" class="filter-date-field__input">
                     </div>
                   </div>
                   
                   <div class="filter-date-presets">
-                    <button class="filter-date-preset" type="button" data-years="1">Last year</button>
-                    <button class="filter-date-preset" type="button" data-years="3">Last 3 years</button>
-                    <button class="filter-date-preset" type="button" data-years="5">Last 5 years</button>
+                    <button class="filter-date-preset" type="button" data-years="1">{% trans "Last year" %}</button>
+                    <button class="filter-date-preset" type="button" data-years="3">{% trans "Last 3 years" %}</button>
+                    <button class="filter-date-preset" type="button" data-years="5">{% trans "Last 5 years" %}</button>
                   </div>
                 </div>
               </div>
@@ -292,7 +293,7 @@
             <!-- Actors -->
             <div class="filter-group" data-filter-group="actors">
               <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-actors">
-                <h3 class="filter-group__title">Actors</h3>
+                <h3 class="filter-group__title">{% trans "Actors" %}</h3>
                 <div class="filter-group__count">{{ available_actors|length }}</div>
                 <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
@@ -304,7 +305,7 @@
                     <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
                     </svg>
-                    <input type="text" id="actor-search" class="filter-search__input" placeholder="Search actor..." aria-label="Search actors">
+                    <input type="text" id="actor-search" class="filter-search__input" placeholder="{% trans "Search actor..." %}" aria-label="{% trans "Search actors" %}">
                   </div>
                   
                   <div class="filter-options">
@@ -329,7 +330,7 @@
             <!-- Beneficiary Groups -->
             <div class="filter-group" data-filter-group="beneficiaries">
               <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-beneficiaries">
-                <h3 class="filter-group__title">Beneficiary Groups</h3>
+                <h3 class="filter-group__title">{% trans "Beneficiary Groups" %}</h3>
                 <div class="filter-group__count">{{ available_beneficiaries|length }}</div>
                 <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
@@ -359,7 +360,7 @@
             <!-- Topics -->
             <div class="filter-group" data-filter-group="topics">
               <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-topics">
-                <h3 class="filter-group__title">Topics</h3>
+                <h3 class="filter-group__title">{% trans "Topics" %}</h3>
                 <div class="filter-group__count">{{ available_themes|length }}</div>
                 <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
@@ -371,7 +372,7 @@
                     <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
                     </svg>
-                    <input type="text" class="filter-search__input" placeholder="Search topic..." aria-label="Search topics">
+                    <input type="text" class="filter-search__input" placeholder="{% trans "Search topic..." %}" aria-label="{% trans "Search topics" %}">
                   </div>
                   
                   <div class="filter-options">
@@ -396,7 +397,7 @@
             <!-- SDG Alignments -->
             <div class="filter-group" data-filter-group="sdgs">
               <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-sdgs">
-                <h3 class="filter-group__title">SDG Alignments</h3>
+                <h3 class="filter-group__title">{% trans "SDG Alignments" %}</h3>
                 <div class="filter-group__count">{{ available_sdgs|length }}</div>
                 <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
@@ -429,10 +430,10 @@
         
         <div class="filter-actions">
             <div class="filter-actions__secondary">
-              <button id="reset-filters" class="button button--secondary" type="button">Reset</button>
+              <button id="reset-filters" class="button button--secondary" type="button">{% trans "Reset" %}</button>
             </div>
             <div class="filter-actions__primary">
-              <button id="apply-filters" class="button button--primary" type="button">Apply Filters</button>
+              <button id="apply-filters" class="button button--primary" type="button">{% trans "Apply Filters" %}</button>
             </div>
           </div>
         </div>
@@ -456,16 +457,16 @@
             <!-- Empty state -->
             <div class="explore-results__empty" hidden>
               <div class="explore-results__empty-icon" aria-hidden="true">📄</div>
-              <h3 class="explore-results__empty-title">No documents found</h3>
+              <h3 class="explore-results__empty-title">{% trans "No documents found" %}</h3>
               <p class="explore-results__empty-description">
-                Try adjusting your search or filters to find what you're looking for.
+                {% trans "Try adjusting your search or filters to find what you're looking for." %}
               </p>
             </div>
 
             <!-- Loading state -->
             <div class="explore-results__loading" hidden>
-              <div class="explore-results__spinner" role="status" aria-label="Loading results"></div>
-              <p>Loading documents...</p>
+              <div class="explore-results__spinner" role="status" aria-label="{% trans "Loading results" %}"></div>
+              <p>{% trans "Loading documents..." %}</p>
             </div>
           </div>
 

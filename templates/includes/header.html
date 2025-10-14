@@ -1,22 +1,57 @@
 {% load static %}
 {% load static_tags %}
+{% load i18n %}
 <header class="header">
-  <a href="#main-content" class="navigation__skip-link">Skip to main content</a>
+  <a href="#main-content" class="navigation__skip-link">{% trans "Skip to main content" %}</a>
   <nav class="navigation">
     <a href="{% url 'core:home' %}" class="navigation__logo">
-      <img src="{% static_versioned 'footer/Logo_Spider_isotipo.png' %}" alt="Spider Project Logo" class="navigation__logo-image">
+      <img src="{% static_versioned 'footer/Logo_Spider_isotipo.png' %}" alt="{% trans "Spider Project Logo" %}" class="navigation__logo-image">
       SPIDERHUB
     </a>
     <div class="navigation__menu">
       <ul class="navigation__list">
-        <li class="navigation__item"><a href="{% url 'core:home' %}" class="navigation__link">Home</a></li>
-        <li class="navigation__item"><a href="{% url 'core:explore' %}" class="navigation__link">Explore Data</a></li>
-        <li class="navigation__item"><a href="{% url 'core:analysis' %}" class="navigation__link">Analysis</a></li>
-        <li class="navigation__item"><a href="{% url 'core:strategic_cabinet' %}" class="navigation__link">Strategic Cabinet</a></li>
-        <li class="navigation__item"><a href="{% url 'core:about' %}" class="navigation__link">About</a></li>
+        <li class="navigation__item"><a href="{% url 'core:home' %}" class="navigation__link">{% trans "Home" %}</a></li>
+        <li class="navigation__item"><a href="{% url 'core:explore' %}" class="navigation__link">{% trans "Explore Data" %}</a></li>
+        <li class="navigation__item"><a href="{% url 'core:analysis' %}" class="navigation__link">{% trans "Analysis" %}</a></li>
+        <li class="navigation__item"><a href="{% url 'core:strategic_cabinet' %}" class="navigation__link">{% trans "Strategic Cabinet" %}</a></li>
+        <li class="navigation__item"><a href="{% url 'core:about' %}" class="navigation__link">{% trans "About" %}</a></li>
       </ul>
+      <!-- Language Switcher -->
+      <div class="navigation__language-switcher">
+        {% get_current_language as CURRENT_LANGUAGE %}
+        <button class="language-switcher__button" 
+                type="button" 
+                aria-label="{% trans "Select language" %}"
+                aria-haspopup="true"
+                aria-expanded="false">
+          <svg class="language-switcher__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/>
+          </svg>
+          <span class="language-switcher__current">{{ CURRENT_LANGUAGE|upper }}</span>
+          <svg class="language-switcher__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="language-switcher__dropdown" role="menu">
+          {% get_available_languages as AVAILABLE_LANGUAGES %}
+          {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
+            <form action="{% url 'set_language' %}" method="post" class="language-switcher__form">
+              {% csrf_token %}
+              <input name="next" type="hidden" value="{{ request.get_full_path }}">
+              <input name="language" type="hidden" value="{{ lang_code }}">
+              <button type="submit" 
+                      class="language-switcher__option {% if lang_code == CURRENT_LANGUAGE %}language-switcher__option--active{% endif %}"
+                      role="menuitem"
+                      {% if lang_code == CURRENT_LANGUAGE %}aria-current="true"{% endif %}>
+                <span class="language-switcher__code">{{ lang_code|upper }}</span>
+                <span class="language-switcher__name">{{ lang_name }}</span>
+              </button>
+            </form>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-    <button class="navigation__toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+    <button class="navigation__toggle" aria-label="{% trans "Toggle mobile menu" %}" aria-expanded="false">
       <span class="navigation__toggle-line"></span>
       <span class="navigation__toggle-line"></span>
       <span class="navigation__toggle-line"></span>
@@ -24,11 +59,44 @@
   </nav>
   <div class="navigation__overlay">
     <ul class="navigation__mobile-list">
-      <li class="navigation__mobile-item"><a href="{% url 'core:home' %}" class="navigation__mobile-link">Home</a></li>
-      <li class="navigation__mobile-item"><a href="{% url 'core:explore' %}" class="navigation__mobile-link">Explore Data</a></li>
-      <li class="navigation__mobile-item"><a href="{% url 'core:analysis' %}" class="navigation__mobile-link">Analysis</a></li>
-      <li class="navigation__mobile-item"><a href="{% url 'core:strategic_cabinet' %}" class="navigation__mobile-link">Strategic Cabinet</a></li>
-      <li class="navigation__mobile-item"><a href="{% url 'core:about' %}" class="navigation__mobile-link">About</a></li>
+      <li class="navigation__mobile-item"><a href="{% url 'core:home' %}" class="navigation__mobile-link">{% trans "Home" %}</a></li>
+      <li class="navigation__mobile-item"><a href="{% url 'core:explore' %}" class="navigation__mobile-link">{% trans "Explore Data" %}</a></li>
+      <li class="navigation__mobile-item"><a href="{% url 'core:analysis' %}" class="navigation__mobile-link">{% trans "Analysis" %}</a></li>
+      <li class="navigation__mobile-item"><a href="{% url 'core:strategic_cabinet' %}" class="navigation__mobile-link">{% trans "Strategic Cabinet" %}</a></li>
+      <li class="navigation__mobile-item"><a href="{% url 'core:about' %}" class="navigation__mobile-link">{% trans "About" %}</a></li>
+      <!-- Language Switcher for Mobile -->
+      <li class="navigation__mobile-item navigation__mobile-language">
+        <div class="mobile-language-switcher">
+          <div class="mobile-language-switcher__header">
+            <svg class="mobile-language-switcher__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/>
+            </svg>
+            <span class="mobile-language-switcher__label">{% trans "Language" %}</span>
+          </div>
+          <div class="mobile-language-switcher__options">
+            {% get_current_language as CURRENT_LANGUAGE %}
+            {% get_available_languages as AVAILABLE_LANGUAGES %}
+            {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
+              <form action="{% url 'set_language' %}" method="post" class="mobile-language-switcher__form">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                <input name="language" type="hidden" value="{{ lang_code }}">
+                <button type="submit" 
+                        class="mobile-language-switcher__button {% if lang_code == CURRENT_LANGUAGE %}mobile-language-switcher__button--active{% endif %}"
+                        {% if lang_code == CURRENT_LANGUAGE %}aria-current="true"{% endif %}>
+                  <span class="mobile-language-switcher__code">{{ lang_code|upper }}</span>
+                  <span class="mobile-language-switcher__name">{{ lang_name }}</span>
+                  {% if lang_code == CURRENT_LANGUAGE %}
+                    <svg class="mobile-language-switcher__check" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/>
+                    </svg>
+                  {% endif %}
+                </button>
+              </form>
+            {% endfor %}
+          </div>
+        </div>
+      </li>
     </ul>
   </div>
 </header>

@@ -1,8 +1,9 @@
 {% extends "core/base.html" %}
 {% load static %}
 {% load static_tags %}
-{% block title %}SPIDERHUB: Digital Transformation{% endblock %}
-{% block description %}Discover EU-LAC digital transformation agreements, commitments, and initiatives. Explore the network of digital cooperation between Europe and Latin America.{% endblock %}
+{% load i18n %}
+{% block title %}SPIDERHUB: {% trans "Digital Transformation" %}{% endblock %}
+{% block description %}{% trans "Discover EU-LAC digital transformation agreements, commitments, and initiatives. Explore the network of digital cooperation between Europe and Latin America." %}{% endblock %}
 
 {% block content %}
 
@@ -10,16 +11,18 @@
   <section class="home-hero">
     <div class="home-hero__container">
       <div class="home-hero__content">
-        <h1 class="home-hero__title">Mapping EU-LAC Digital Transformation Dialogues & Agreements</h1>
+        <h1 class="home-hero__title">{% trans "Mapping EU-LAC Digital Transformation Dialogues & Agreements" %}</h1>
         <p class="home-hero__description">
+          {% blocktrans trimmed %}
           Discover the 
           <span class="tag tag--info">agreements</span>, 
           <span class="tag tag--primary">commitments</span> and more for driving digital 
           <span class="tag tag--warning">transformation</span> in Europe, Latin America, and the Caribbean.
+          {% endblocktrans %}
         </p>
         <div class="home-hero__actions">
-          <a href="{% url 'core:explore' %}" class="button button--primary">Explore Data</a>
-          <a href="{% url 'core:about' %}" class="button button--ghost">More Info</a>
+          <a href="{% url 'core:explore' %}" class="button button--primary">{% trans "Explore Data" %}</a>
+          <a href="{% url 'core:about' %}" class="button button--ghost">{% trans "More Info" %}</a>
         </div>
       </div>
       <div class="home-hero__graphic" id="node-web">
@@ -33,12 +36,12 @@
     <div class="home-project-info__container">
       <div class="home-project-info__card">
         <div class="home-project-info__badge">
-          <img src="{% static_versioned 'footer/EN_fundedbyEU_VERTICAL_RGB_POS.png' %}" alt="Funded by the European Union" class="home-project-info__logo">
+          <img src="{% static_versioned 'footer/EN_fundedbyEU_VERTICAL_RGB_POS.png' %}" alt="{% trans "Funded by the European Union" %}" class="home-project-info__logo">
         </div>
         <div class="home-project-info__content">
-          <p class="home-project-info__text"><strong>SPIDER</strong> strengthens collaboration between the EU and LAC on digital transformation and R&I by exploiting the BELLA network's potential and implementing outcomes from EU-LAC digital dialogues.</p>
+          <p class="home-project-info__text">{% blocktrans trimmed %}<strong>SPIDER</strong> strengthens collaboration between the EU and LAC on digital transformation and R&I by exploiting the BELLA network's potential and implementing outcomes from EU-LAC digital dialogues.{% endblocktrans %}</p>
           <a href="https://spidernetwork.org/" target="_blank" rel="noopener noreferrer" class="home-project-info__link">
-            Learn more about SPIDER
+            {% trans "Learn more about SPIDER" %}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="home-project-info__link-icon">
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -51,23 +54,23 @@
   <!-- Stats Section -->
   <section class="home-stats">
     <div class="home-stats__container">
-      <h2 class="home-stats__title">Mapping Scope</h2>
+      <h2 class="home-stats__title">{% trans "Mapping Scope" %}</h2>
       <div class="home-stats__grid">
         <div class="home-stats__card">
           <div class="home-stats__number" data-target="{{ total_documents }}" data-suffix="+">0+</div>
-          <div class="home-stats__label">Documents Analysed</div>
+          <div class="home-stats__label">{% trans "Documents Analysed" %}</div>
         </div>
         <div class="home-stats__card">
           <div class="home-stats__number" data-target="{{ total_countries }}">0</div>
-          <div class="home-stats__label">Countries Involved</div>
+          <div class="home-stats__label">{% trans "Countries Involved" %}</div>
         </div>
         <div class="home-stats__card">
           <div class="home-stats__number" data-target="{{ total_themes }}">0</div>
-          <div class="home-stats__label">Themes Involved</div>
+          <div class="home-stats__label">{% trans "Themes Involved" %}</div>
         </div>
         <div class="home-stats__card">
           <div class="home-stats__number" data-target="{{ total_beneficiary_groups }}">0</div>
-          <div class="home-stats__label">Beneficiary Groups</div>
+          <div class="home-stats__label">{% trans "Beneficiary Groups" %}</div>
         </div>
       </div>
     </div>
@@ -76,7 +79,7 @@
   <!-- Recent Documents Section -->
   <section class="home-documents">
     <div class="home-documents__container">
-      <h2 class="home-documents__title">Recent Documents</h2>
+      <h2 class="home-documents__title">{% trans "Recent Documents" %}</h2>
       <div class="carousel">
         <div class="carousel__container">
           <button class="carousel__nav carousel__nav--prev" aria-label="Previous">
@@ -105,7 +108,7 @@
                     <div class="card__footer">
                       <div class="card__actions">
                         <a href="{% url 'core:document_detail' document.id %}" class="button button--secondary button--small">
-                          View Details
+                          {% trans "View Details" %}
                         </a>
                       </div>
                     </div>
@@ -115,18 +118,18 @@
                 <div class="carousel__item">
                   <div class="card card--document">
                     <div class="card__header">
-                      <div class="card__title">No documents available</div>
+                      <div class="card__title">{% trans "No documents available" %}</div>
                       <div class="card__meta">
                         <span>-</span>
                         <span>-</span>
                       </div>
                     </div>
                     <div class="card__body">
-                      <p class="card__content">No documents have been uploaded yet.</p>
+                      <p class="card__content">{% trans "No documents have been uploaded yet." %}</p>
                     </div>
                     <div class="card__footer">
                       <div class="card__actions">
-                        <span class="button button--secondary button--small button--disabled">View Details</span>
+                        <span class="button button--secondary button--small button--disabled">{% trans "View Details" %}</span>
                       </div>
                     </div>
                   </div>
@@ -150,10 +153,10 @@
   <!-- CTA Section -->
   <section class="home-cta">
     <div class="home-cta__container">
-      <h2 class="home-cta__title">Discover the connections driving digital transformation</h2>
-      <p class="home-cta__description">Explore the network of EU-LAC agreements and commitments interactively.</p>
+      <h2 class="home-cta__title">{% trans "Discover the connections driving digital transformation" %}</h2>
+      <p class="home-cta__description">{% trans "Explore the network of EU-LAC agreements and commitments interactively." %}</p>
       <div class="home-cta__actions">
-        <a href="{% url 'core:explore' %}" class="button button--secondary">View Network Relations</a>
+        <a href="{% url 'core:explore' %}" class="button button--secondary">{% trans "View Network Relations" %}</a>
       </div>
     </div>
   </section>

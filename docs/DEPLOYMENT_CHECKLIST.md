@@ -41,9 +41,20 @@ STATIC_VERSION=1.0.5
 STATIC_VERSION=1.0.6
 ```
 
-### 4. Actualizar Documentación
+### 4. Verificar Traducciones (si agregaste nuevo contenido)
+- [ ] ¿Agregaste nuevos textos visibles?
+- [ ] ¿Usaste `{% trans %}` en templates y `_()` en JavaScript?
+- [ ] Ejecutaste `makemessages` para extraer cadenas
+- [ ] Agregaste traducciones en `locale/es/LC_MESSAGES/` y `locale/pt/LC_MESSAGES/`
+- [ ] Compilaste con `compilemessages`
+- [ ] Probaste en español (`/es/`) y portugués (`/pt/`)
+
+Ver: [Translation Workflow Guide](TRANSLATION_WORKFLOW.md)
+
+### 5. Actualizar Documentación
 - [ ] Documenta el cambio de `STATIC_VERSION` en el commit message
 - [ ] Si es un cambio mayor, actualiza el changelog
+- [ ] Si agregaste traducciones, documenta qué cadenas se agregaron
 
 ## Durante Deployment
 
@@ -51,6 +62,7 @@ STATIC_VERSION=1.0.6
 - [ ] Verifica que `.env` de producción tenga la nueva `STATIC_VERSION`
 - [ ] Verifica que `DEBUG=False` en producción
 - [ ] Verifica que `ALLOWED_HOSTS` esté configurado correctamente
+- [ ] Verifica que los archivos `.mo` compilados estén presentes en `locale/*/LC_MESSAGES/`
 
 ### 2. Build y Deploy
 ```bash
@@ -60,6 +72,9 @@ docker-compose -f docker-compose.yml up -d
 
 # Collectstatic (si es necesario)
 python manage.py collectstatic --noinput
+
+# Compilar traducciones (si agregaste nuevas)
+python manage.py compilemessages
 ```
 
 ### 3. Verificar Headers HTTP
@@ -79,6 +94,8 @@ curl -I https://tu-dominio.com/static/core/js/AnalysisEntry.js
 - [ ] No hay errores en la consola del navegador (F12)
 - [ ] El dark mode funciona correctamente
 - [ ] Los gráficos se renderizan correctamente
+- [ ] Las traducciones funcionan en `/es/` y `/pt/`
+- [ ] El selector de idioma funciona correctamente
 
 ### 2. Verificación de Cache Busting
 

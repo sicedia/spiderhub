@@ -4,10 +4,17 @@
  * Clean modular structure with standardized imports
  */
 
+import i18n from './core/i18n/i18n.js';
 import { DOMUtils } from './core/utils/dom.js';
 import { AnimationUtils } from './core/utils/animations.js';
 import { CONFIG } from './core/constants/config.js';
 import { MobileNav } from './components/navigation/MobileNav.js';
+import './components/language-switcher/LanguageSwitcher.js';
+
+// Initialize i18n system early
+i18n.init().catch(error => {
+  console.warn('[MainEntry] i18n initialization failed, using fallback:', error);
+});
 
 // Global utilities object for backward compatibility
 export const Utils = {

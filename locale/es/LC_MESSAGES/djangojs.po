@@ -1,0 +1,93 @@
+# Spanish (ES) translations for SpiderHub JavaScript.
+# Copyright (C) 2025 SPIDER Project
+# This file is distributed under the same license as the SpiderHub package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: SpiderHub 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-14 13:55-0500\n"
+"PO-Revision-Date: 2025-10-14 13:15-0500\n"
+"Last-Translator: SpiderHub Team\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Date Range Filter
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:39
+msgid "Last 7 days"
+msgstr "Últimos 7 días"
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:40
+msgid "Last 30 days"
+msgstr "Últimos 30 días"
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:41
+msgid "Last 90 days"
+msgstr "Últimos 90 días"
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:42
+msgid "Last year"
+msgstr "Último año"
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:45
+msgid "From Date"
+msgstr "Desde Fecha"
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:46
+msgid "To Date"
+msgstr "Hasta Fecha"
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:47
+msgid "Clear"
+msgstr "Limpiar"
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:48
+msgid "Today"
+msgstr "Hoy"
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:49
+msgid "Apply"
+msgstr "Aplicar"
+
+# Search Components
+#: .\apps\core\static\core\js\components\filters\SearchBox.js:29
+msgid "Search documents..."
+msgstr "Buscar documentos..."
+
+#: .\apps\core\static\core\js\components\results\ResultsList.js:19
+msgid "No documents found"
+msgstr "No se encontraron documentos"
+
+#: .\apps\core\static\core\js\components\results\ResultsList.js:20
+msgid "Try adjusting your search or filters to find what you're looking for."
+msgstr "Intenta ajustar tu búsqueda o filtros para encontrar lo que buscas."
+
+#: .\apps\core\static\core\js\components\results\ResultsList.js:21
+msgid "Loading documents..."
+msgstr "Cargando documentos..."
+
+#: .\apps\core\static\core\js\components\search\DocumentResults.js:26
+msgid "No documents match your criteria."
+msgstr "Ningún documento coincide con tus criterios."
+
+#: .\apps\core\static\core\js\components\search\DocumentResults.js:27
+msgid "Loading…"
+msgstr "Cargando…"
+
+#: .\apps\core\static\core\js\components\search\DocumentResults.js:141
+msgid "Error loading results."
+msgstr "Error al cargar resultados."
+
+# Result Actions
+#: .\apps\core\static\core\js\components\results\ResultsList.js:238
+#: .\apps\core\static\core\js\components\search\DocumentResults.js:261
+msgid "View Details"
+msgstr "Ver Detalles"
+
+#: .\apps\core\static\core\js\components\results\ResultsList.js:237
+msgid "View details for"
+msgstr "Ver detalles de"

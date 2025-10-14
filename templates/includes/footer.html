@@ -1,10 +1,11 @@
 {% load static %}
 {% load static_tags %}
+{% load i18n %}
 <footer class="footer">
   <div class="footer__content">
     <div class="footer__column">
       <h3 class="footer__column-title">SPIDERHUB</h3>
-      <p>Platform for analysis and visualisation of documents and agreements for digital transformation between the European Union and Latin America.</p>
+      <p>{% trans "Platform for analysis and visualisation of documents and agreements for digital transformation between the European Union and Latin America." %}</p>
       <div class="footer__social">
         <a href="https://www.linkedin.com/company/spider-network-eu/" class="footer__social-link" aria-label="LinkedIn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer__social-icon">
@@ -14,22 +15,22 @@
       </div>
     </div>
     <div class="footer__column">
-      <h3 class="footer__column-title">Links</h3>
+      <h3 class="footer__column-title">{% trans "Links" %}</h3>
       <ul class="footer__list">
-        <li class="footer__list-item"><a href="{% url 'core:home' %}" class="footer__link">Home</a></li>
-        <li class="footer__list-item"><a href="{% url 'core:explore' %}" class="footer__link">Explore Data</a></li>
-        <li class="footer__list-item"><a href="{% url 'core:analysis' %}" class="footer__link">Analysis</a></li>
-        <li class="footer__list-item"><a href="{% url 'core:about' %}" class="footer__link">About</a></li>
+        <li class="footer__list-item"><a href="{% url 'core:home' %}" class="footer__link">{% trans "Home" %}</a></li>
+        <li class="footer__list-item"><a href="{% url 'core:explore' %}" class="footer__link">{% trans "Explore Data" %}</a></li>
+        <li class="footer__list-item"><a href="{% url 'core:analysis' %}" class="footer__link">{% trans "Analysis" %}</a></li>
+        <li class="footer__list-item"><a href="{% url 'core:about' %}" class="footer__link">{% trans "About" %}</a></li>
       </ul>
     </div>
     <div class="footer__column">
-      <h3 class="footer__column-title">Resources</h3>
+      <h3 class="footer__column-title">{% trans "Resources" %}</h3>
       <ul class="footer__list">
-        <li class="footer__list-item"><a href="https://spidernetwork.org/news/" class="footer__link">News</a></li>
+        <li class="footer__list-item"><a href="https://spidernetwork.org/news/" class="footer__link">{% trans "News" %}</a></li>
       </ul>
     </div>
     <div class="footer__column">
-      <h3 class="footer__column-title">Contact</h3>
+      <h3 class="footer__column-title">{% trans "Contact" %}</h3>
       <ul class="footer__list">
         <li class="footer__list-item">info@spidernetwork.org</li>
       </ul>
@@ -38,22 +39,22 @@
   <div class="footer__copyright">
     <div class="footer__partners">
       <div class="footer__partners-content">
-        <span class="footer__partners-text">Powered by</span>
+        <span class="footer__partners-text">{% trans "Powered by" %}</span>
         <div class="footer__partner-logos">
-          <img src="{% static_versioned 'footer/Logo_Spider_negativo.png' %}" alt="SPIDER EU-LAC Digital Partnership" class="footer__logo footer__logo--spider">
+          <img src="{% static_versioned 'footer/Logo_Spider_negativo.png' %}" alt="{% trans "SPIDER EU-LAC Digital Partnership" %}" class="footer__logo footer__logo--spider">
           <img src="{% static_versioned 'footer/cedia.png' %}" alt="CEDIA" class="footer__logo footer__logo--cedia">
           <img src="{% static_versioned 'footer/dlr.svg' %}" alt="DLR" class="footer__logo footer__logo--dlr">
         </div>
       </div>
       <div class="eu-funding">
-        <img src="{% static_versioned 'footer/EN_FundedbytheEU_RGB_NEG.png' %}" alt="Funded by the European Union" class="footer__logo footer__logo--eu">
+        <img src="{% static_versioned 'footer/EN_FundedbytheEU_RGB_NEG.png' %}" alt="{% trans "Funded by the European Union" %}" class="footer__logo footer__logo--eu">
       </div>
     </div>
     
     <div class="footer__eu-disclaimer">
-      <p class="footer__disclaimer-text">Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the HADEA. Neither the European Union nor the granting authority can be held responsible for them.</p>
+      <p class="footer__disclaimer-text">{% trans "Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the HADEA. Neither the European Union nor the granting authority can be held responsible for them." %}</p>
     </div>
     
-    <p class="footer__copyright-text">&copy; 2025 SPIDERHUB. All rights reserved.</p>
+    <p class="footer__copyright-text">&copy; 2025 SPIDERHUB. {% trans "All rights reserved." %}</p>
   </div>
 </footer>

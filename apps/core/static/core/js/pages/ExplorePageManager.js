@@ -316,7 +316,7 @@ export class ExplorePageManager extends BaseComponent {
       try {
         this.components.mainSearch = new SearchBox(this.elements.searchBoxMain, {
           minLength: 1,
-          placeholder: 'Search documents...',
+          // placeholder uses default from SearchBox (translated)
           autoSearch: false,
           clearOnSubmit: true,
           filterManager: this.components.filterManager

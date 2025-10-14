@@ -424,7 +424,7 @@ def analysis_page(request):
 
     # b) respetar el orden definido en CATEGORY_CHOICES
     theme_counts = {
-        label: raw_cat_counts.get(slug, 0)
+        slug: raw_cat_counts.get(slug, 0)
         for slug, label in Theme.CATEGORY_CHOICES
     }
     
@@ -476,17 +476,17 @@ def analysis_page(request):
     )
 
     # 1. Lista ordenada de categorías de cada eje
-    THEME_CATS = [label for slug, label in Theme.CATEGORY_CHOICES]
-    BEN_CATS   = [label for slug, label in BeneficiaryGroup.CATEGORY_CHOICES]
+    THEME_CATS = [slug for slug, label in Theme.CATEGORY_CHOICES]
+    BEN_CATS   = [slug for slug, label in BeneficiaryGroup.CATEGORY_CHOICES]
 
     # 2. Matriz inicial (todos a 0)
     matrix = {t: {b: 0 for b in BEN_CATS} for t in THEME_CATS}
 
     # 3. Rellena con los counts reales
     for row in raw_matrix_qs:
-        theme_label = dict(Theme.CATEGORY_CHOICES).get(row['theme_cat'], 'Uncategorised')
-        ben_label   = dict(BeneficiaryGroup.CATEGORY_CHOICES).get(row['ben_cat'], 'Uncategorised')
-        matrix[theme_label][ben_label] = row['count']
+        theme_slug = row['theme_cat'] or 'Uncategorised'
+        ben_slug   = row['ben_cat'] or 'Uncategorised'
+        matrix[theme_slug][ben_slug] = row['count']
 
     # 5. Agreements by actors
     actor_cat_qs = (
@@ -502,7 +502,7 @@ def analysis_page(request):
     }
 
     actor_counts = {
-        label: raw_actor_counts.get(slug, 0)
+        slug: raw_actor_counts.get(slug, 0)
         for slug, label in Actor.CATEGORY_CHOICES
     }
     
@@ -548,13 +548,13 @@ def analysis_page(request):
     )
     
     # Build actor-theme matrix
-    ACTOR_CATS = [label for slug, label in Actor.CATEGORY_CHOICES]
+    ACTOR_CATS = [slug for slug, label in Actor.CATEGORY_CHOICES]
     actor_theme_matrix = {a: {t: 0 for t in THEME_CATS} for a in ACTOR_CATS}
     
     for row in actor_theme_matrix_qs:
-        actor_label = dict(Actor.CATEGORY_CHOICES).get(row['actor_cat'], 'Uncategorised')
-        theme_label = dict(Theme.CATEGORY_CHOICES).get(row['theme_cat'], 'Uncategorised')
-        actor_theme_matrix[actor_label][theme_label] = row['count']
+        actor_slug = row['actor_cat'] or 'Uncategorised'
+        theme_slug = row['theme_cat'] or 'Uncategorised'
+        actor_theme_matrix[actor_slug][theme_slug] = row['count']
     
     # 6) Agreements by Beneficiary-Group (categoría)
     ben_cat_qs = (
@@ -570,7 +570,7 @@ def analysis_page(request):
     }
 
     beneficiary_counts = {
-        label: raw_ben_counts.get(slug, 0)
+        slug: raw_ben_counts.get(slug, 0)
         for slug, label in BeneficiaryGroup.CATEGORY_CHOICES
     }
     

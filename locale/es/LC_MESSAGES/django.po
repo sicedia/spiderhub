@@ -1,0 +1,1732 @@
+# Spanish translations for SpiderHub.
+# Copyright (C) 2025
+# This file is distributed under the same license as the SpiderHub package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: SpiderHub 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-14 14:52-0500\n"
+"PO-Revision-Date: 2025-10-14 11:00+0000\n"
+"Last-Translator: SpiderHub Team\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# ========================================
+# ABOUT PAGE
+# ========================================
+#: .\apps\core\templates\core\about.html:5
+msgid "About Us"
+msgstr "Acerca de Nosotros"
+
+#: .\apps\core\templates\core\about.html:5
+#: .\apps\core\templates\core\explore.html:5
+msgid "EU - LAC Digital Transformation"
+msgstr "Transformación Digital UE - ALC"
+
+#: .\apps\core\templates\core\about.html:6
+msgid ""
+"Learn about SPIDERHUB and the SPIDER project. Discover our methodology for "
+"analyzing EU-LAC digital transformation agreements and partnerships."
+msgstr ""
+"Conoce SPIDERHUB y el proyecto SPIDER. Descubre nuestra metodología para "
+"analizar acuerdos y asociaciones de transformación digital UE-ALC."
+
+#: .\apps\core\templates\core\about.html:16
+msgid "About SPIDERHUB"
+msgstr "Acerca de SPIDERHUB"
+
+#: .\apps\core\templates\core\about.html:17
+msgid ""
+"Connecting documents and policies to drive digital transformation between "
+"Europe and Latin America"
+msgstr ""
+"Conectando documentos y políticas para impulsar la transformación digital "
+"entre Europa y América Latina"
+
+#: .\apps\core\templates\core\about.html:25
+msgid "Our Platform"
+msgstr "Nuestra Plataforma"
+
+#: .\apps\core\templates\core\about.html:28
+msgid ""
+"SPIDERHUB is a platform designed to analyse, connect, and visualise digital "
+"transformation agreements between Europe and Latin America and the "
+"Caribbean. This SPIDER initiative is led by CEDIA, building on the project's "
+"foundations to enhance data accessibility and interoperability across the EU-"
+"LAC digital ecosystem."
+msgstr ""
+"SPIDERHUB es una plataforma diseñada para analizar, conectar y visualizar "
+"acuerdos de transformación digital entre Europa y América Latina y el "
+"Caribe. Esta iniciativa SPIDER está liderada por CEDIA, basándose en los "
+"fundamentos del proyecto para mejorar la accesibilidad de datos y la "
+"interoperabilidad en el ecosistema digital UE-ALC."
+
+#: .\apps\core\templates\core\about.html:29
+msgid ""
+"Through the use of advanced artificial intelligence technologies, we create "
+"an interconnected network of information that allows researchers, "
+"policymakers, and the general public to understand the complex relationships "
+"that are shaping the digital future of our societies."
+msgstr ""
+"Mediante el uso de tecnologías avanzadas de inteligencia artificial, creamos "
+"una red interconectada de información que permite a investigadores, "
+"formuladores de políticas y el público en general comprender las complejas "
+"relaciones que están dando forma al futuro digital de nuestras sociedades."
+
+#: .\apps\core\templates\core\about.html:30
+msgid "Our main objectives are:"
+msgstr "Nuestros principales objetivos son:"
+
+#: .\apps\core\templates\core\about.html:32
+msgid ""
+"To centralise relevant documentation on digital transformation between the "
+"EU and Latin America and the Caribbean."
+msgstr ""
+"Centralizar la documentación relevante sobre transformación digital entre la "
+"UE y América Latina y el Caribe."
+
+#: .\apps\core\templates\core\about.html:33
+msgid "To automatically analyse commitments and policies using AI."
+msgstr "Analizar automáticamente compromisos y políticas utilizando IA."
+
+#: .\apps\core\templates\core\about.html:34
+msgid "To visualise the connections between actors, themes and commitments."
+msgstr "Visualizar las conexiones entre actores, temas y compromisos."
+
+#: .\apps\core\templates\core\about.html:35
+msgid "To facilitate informed decision-making based on concrete data."
+msgstr "Facilitar la toma de decisiones informadas basadas en datos concretos."
+
+#: .\apps\core\templates\core\about.html:85
+msgid "About SPIDER"
+msgstr "Acerca de SPIDER"
+
+#: .\apps\core\templates\core\about.html:88
+msgid ""
+"SPIDER is a European Union-funded project that continues the long tradition "
+"of collaboration between the European Union and Latin America and the "
+"Caribbean in digital transformation and research and innovation. The project "
+"acts as a driver for human-centred digital transformation, closing the gap "
+"between digital dialogue commitments and their practical implementation "
+"across both regions."
+msgstr ""
+"SPIDER es un proyecto financiado por la Unión Europea que continúa la larga "
+"tradición de colaboración entre la Unión Europea y América Latina y el "
+"Caribe en transformación digital e investigación e innovación. El proyecto "
+"actúa como impulsor de la transformación digital centrada en las personas, "
+"cerrando la brecha entre los compromisos de diálogo digital y su "
+"implementación práctica en ambas regiones."
+
+#: .\apps\core\templates\core\about.html:89
+msgid ""
+"SPIDER focuses on maximising and promoting the potential of the BELLA "
+"network for R&I cooperation and ensuring the sustainable use of the "
+"infrastructure by stimulating the adoption and use of digital transformation "
+"technologies."
+msgstr ""
+"SPIDER se enfoca en maximizar y promover el potencial de la red BELLA para "
+"la cooperación en I+D y garantizar el uso sostenible de la infraestructura "
+"estimulando la adopción y uso de tecnologías de transformación digital."
+
+#: .\apps\core\templates\core\about.html:92
+#: .\apps\core\templates\core\home.html:44
+msgid "Learn more about SPIDER"
+msgstr "Conocer más sobre SPIDER"
+
+#: .\apps\core\templates\core\about.html:106
+msgid "Our Methodology"
+msgstr "Nuestra Metodología"
+
+#: .\apps\core\templates\core\about.html:107
+msgid ""
+"SPIDERHUB extends SPIDER's data-driven methodology to ensure transparency "
+"and accessibility of digital cooperation commitments between the EU and LAC "
+"regions."
+msgstr ""
+"SPIDERHUB extiende la metodología basada en datos de SPIDER para garantizar "
+"la transparencia y accesibilidad de los compromisos de cooperación digital "
+"entre las regiones UE y ALC."
+
+#: .\apps\core\templates\core\about.html:118
+msgid "1. Document Collection"
+msgstr "1. Recopilación de Documentos"
+
+#: .\apps\core\templates\core\about.html:119
+msgid ""
+"We gather official documents, agreements, policies and strategies related to "
+"digital transformation from governmental sources, international "
+"organisations and relevant private entities."
+msgstr ""
+"Recopilamos documentos oficiales, acuerdos, políticas y estrategias "
+"relacionadas con la transformación digital de fuentes gubernamentales, "
+"organizaciones internacionales y entidades privadas relevantes."
+
+#: .\apps\core\templates\core\about.html:138
+msgid "2. AI Processing"
+msgstr "2. Procesamiento con IA"
+
+#: .\apps\core\templates\core\about.html:139
+msgid ""
+"Our artificial intelligence system analyses the documents, identifying "
+"actors, commitments, key themes and relationships between different "
+"policies, extracting structured metadata."
+msgstr ""
+"Nuestro sistema de inteligencia artificial analiza los documentos, "
+"identificando actores, compromisos, temas clave y relaciones entre "
+"diferentes políticas, extrayendo metadatos estructurados."
+
+#: .\apps\core\templates\core\about.html:151
+msgid "3. Validation and Enrichment"
+msgstr "3. Validación y Enriquecimiento"
+
+#: .\apps\core\templates\core\about.html:152
+msgid ""
+"Experts review and validate the results of the automatic analysis, ensuring "
+"accuracy and reliability in the data. Additional contexts are added when "
+"necessary."
+msgstr ""
+"Expertos revisan y validan los resultados del análisis automático, "
+"garantizando precisión y confiabilidad en los datos. Se añaden contextos "
+"adicionales cuando es necesario."
+
+#: .\apps\core\templates\core\about.html:175
+msgid "4. Connection Visualisation"
+msgstr "4. Visualización de Conexiones"
+
+#: .\apps\core\templates\core\about.html:176
+msgid ""
+"We create visualisations and relationships between documents, allowing users "
+"to explore the complex network of policies and commitments that connect the "
+"EU and Latin America and the Caribbean."
+msgstr ""
+"Creamos visualizaciones y relaciones entre documentos, permitiendo a los "
+"usuarios explorar la compleja red de políticas y compromisos que conectan a "
+"la UE con América Latina y el Caribe."
+
+#: .\apps\core\templates\core\about.html:184
+msgid "Administration Panel"
+msgstr "Panel de Administración"
+
+#: .\apps\core\templates\core\about.html:187
+msgid ""
+"SPIDERHUB includes a comprehensive administration panel that allows "
+"authorized users to manage and expand the platform's content. Through this "
+"interface, administrators can add new agreements, update existing "
+"commitments, and enhance the analysis of digital transformation policies."
+msgstr ""
+"SPIDERHUB incluye un panel de administración integral que permite a usuarios "
+"autorizados gestionar y expandir el contenido de la plataforma. A través de "
+"esta interfaz, los administradores pueden agregar nuevos acuerdos, "
+"actualizar compromisos existentes y mejorar el análisis de políticas de "
+"transformación digital."
+
+#: .\apps\core\templates\core\about.html:188
+msgid "The administration panel provides tools for:"
+msgstr "El panel de administración proporciona herramientas para:"
+
+#: .\apps\core\templates\core\about.html:190
+msgid ""
+"Adding new bilateral and multilateral agreements between EU and LAC countries"
+msgstr ""
+"Agregar nuevos acuerdos bilaterales y multilaterales entre países de la UE y "
+"ALC"
+
+#: .\apps\core\templates\core\about.html:191
+msgid "Managing commitment analysis and policy metadata"
+msgstr "Gestionar análisis de compromisos y metadatos de políticas"
+
+#: .\apps\core\templates\core\about.html:192
+msgid "Uploading new documents"
+msgstr "Cargar nuevos documentos"
+
+#: .\apps\core\templates\core\about.html:193
+msgid "Reviewing and validating automated content extraction"
+msgstr "Revisar y validar la extracción automática de contenido"
+
+#: .\apps\core\templates\core\about.html:195
+msgid ""
+"For access to the administration panel or to contribute new agreements and "
+"commitments analysis to the platform, please contact our planning team for "
+"more information and authorization procedures."
+msgstr ""
+"Para acceder al panel de administración o contribuir con nuevos análisis de "
+"acuerdos y compromisos a la plataforma, por favor contacta a nuestro equipo "
+"de planificación para más información y procedimientos de autorización."
+
+#: .\apps\core\templates\core\about.html:201
+msgid "Contact Administration Team"
+msgstr "Contactar al Equipo de Administración"
+
+#: .\apps\core\templates\core\about.html:211
+msgid "The SPIDER Consortium"
+msgstr "El Consorcio SPIDER"
+
+#: .\apps\core\templates\core\about.html:212
+msgid ""
+"Following a multi-stakeholder approach, SPIDER brings together relevant R&I "
+"stakeholders from the EU and LAC to set up a multidisciplinary consortium "
+"that enables the successful pursuit of the project's objectives. The SPIDER "
+"consortium combines the digital transformation and research and innovation "
+"(R&I) expertise of organizations from Spain, Portugal, Germany, Belgium, "
+"Chile, Ecuador, Brazil, and Costa Rica."
+msgstr ""
+"Siguiendo un enfoque multi-stakeholder, SPIDER reúne a partes interesadas "
+"relevantes en I+D de la UE y ALC para establecer un consorcio "
+"multidisciplinario que permite la consecución exitosa de los objetivos del "
+"proyecto. El consorcio SPIDER combina la experiencia en transformación "
+"digital e investigación e innovación (I+D) de organizaciones de España, "
+"Portugal, Alemania, Bélgica, Chile, Ecuador, Brasil y Costa Rica."
+
+#: .\apps\core\templates\core\about.html:220
+msgid ""
+"Madrid-based consulting firm specializing in human-centered digital "
+"transformation and international cooperation, with leadership experience in "
+"facilitating international dialogues and R&I collaboration."
+msgstr ""
+"Firma consultora con sede en Madrid especializada en transformación digital centrada en las personas y cooperación internacional, con experiencia de liderazgo en la facilitación de diálogos internacionales y colaboración en I+i."
+
+#: .\apps\core\templates\core\about.html:230
+msgid ""
+"Germany's national aeronautics and space research center, engaging in global "
+"projects in aeronautics, space, energy, and security through its Project "
+"Management Agency."
+msgstr ""
+"Centro nacional alemán de investigación aeronáutica y espacial, participando en proyectos globales de aeronáutica, espacio, energía y seguridad a través de su Agencia de Gestión de Proyectos."
+
+#: .\apps\core\templates\core\about.html:240
+msgid ""
+"Universidad Politécnica de Madrid's ICT research group focusing on e-Health "
+"and e-Inclusion, with strong collaborations with Iberoamerican institutions."
+msgstr ""
+"Grupo de investigación de TIC de la Universidad Politécnica de Madrid enfocado en e-Salud e e-Inclusión, con sólidas colaboraciones con instituciones iberoamericanas."
+
+#: .\apps\core\templates\core\about.html:250
+msgid ""
+"EurA Portugal supports innovation ecosystems across 14 European offices, "
+"connecting with over 5,000 startups and scale-ups in Europe."
+msgstr ""
+"EurA Portugal apoya los ecosistemas de innovación en 14 oficinas europeas, conectando con más de 5.000 startups y scale-ups en Europa."
+
+#: .\apps\core\templates\core\about.html:260
+msgid ""
+"Fosters digital innovation and entrepreneurship, supporting early-stage "
+"start-ups through co-funding and services with 300+ partners and 220+ "
+"ventures in Europe."
+msgstr ""
+"Fomenta la innovación digital y el emprendimiento, apoyando startups en etapa inicial a través de cofinanciación y servicios con más de 300 socios y 220 ventures en Europa."
+
+#: .\apps\core\templates\core\about.html:270
+msgid ""
+"Chile's NREN, delivering connectivity, cloud, and cybersecurity to 48 "
+"institutions. Participated in BELLA and EVALSO, enhancing scientific "
+"collaboration."
+msgstr ""
+"Red Nacional de Investigación y Educación de Chile, proporcionando conectividad, nube y ciberseguridad a 48 instituciones. Participó en BELLA y EVALSO, mejorando la colaboración científica."
+
+#: .\apps\core\templates\core\about.html:280
+msgid ""
+"Leads Ecuador's academic digital infrastructure and R&I tools. A key BELLA "
+"partner, leading national innovation coalitions and implementing "
+"international R&I tools."
+msgstr ""
+"Lidera la infraestructura digital académica y las herramientas de I+D de Ecuador. Un socio clave de BELLA, liderando coaliciones nacionales de innovación e implementando herramientas internacionales de I+D."
+
+#: .\apps\core\templates\core\about.html:280
+#, fuzzy
+#| msgid "Project Coordination"
+msgid "Project coordinator"
+msgstr "Coordinación del Proyecto"
+
+#: .\apps\core\templates\core\about.html:290
+msgid ""
+"Brazil's NREN, connecting 1500 campuses and research institutions. Supports "
+"innovation in IT and extends services to hospitals, museums, and tech parks."
+msgstr ""
+"Red Nacional de Enseñanza e Investigación de Brasil, conectando 1500 campus e instituciones de investigación. Apoya la innovación en TI y extiende servicios a hospitales, museos y parques tecnológicos."
+
+#: .\apps\core\templates\core\about.html:300
+msgid ""
+"Costa Rica's NREN supporting access to global scientific collaboration and "
+"RedCLARA. Leads BELLA deployments in Central America and offers advanced "
+"data science training."
+msgstr ""
+"Red Nacional de Investigación y Educación de Costa Rica que apoya el acceso a la colaboración científica global y RedCLARA. Lidera los despliegues de BELLA en América Central y ofrece formación avanzada en ciencia de datos."
+
+#: .\apps\core\templates\core\about.html:308
+msgid "Project Coordination"
+msgstr "Coordinación del Proyecto"
+
+#: .\apps\core\templates\core\about.html:310
+msgid ""
+"The project is coordinated by an interdisciplinary team from public "
+"institutions, civil society, and academia across Europe and Latin America "
+"and the Caribbean. Each partner brings domain expertise in governance, "
+"technology, and digital policy to ensure comprehensive analysis and "
+"meaningful insights into EU-LAC digital cooperation."
+msgstr ""
+"El proyecto es coordinado por un equipo interdisciplinario de instituciones "
+"públicas, sociedad civil y academia en Europa, América Latina y el Caribe. "
+"Cada socio aporta experiencia en gobernanza, tecnología y política digital "
+"para garantizar análisis integral y perspectivas significativas sobre la "
+"cooperación digital UE-ALC."
+
+#: .\apps\core\templates\core\about.html:316
+#: .\templates\includes\footer.html:33
+msgid "Contact"
+msgstr "Contacto"
+
+#: .\apps\core\templates\core\about.html:319
+msgid ""
+"Do you have questions about SPIDERHUB or would you like to collaborate with "
+"us? Get in touch using the following contact details:"
+msgstr ""
+"¿Tienes preguntas sobre SPIDERHUB o te gustaría colaborar con nosotros? "
+"Ponte en contacto utilizando los siguientes datos de contacto:"
+
+#: .\apps\core\templates\core\about.html:326
+msgid "Email:"
+msgstr "Correo electrónico:"
+
+# ========================================
+# ANALYSIS PAGE
+# ========================================
+#: .\apps\core\templates\core\analysis.html:6
+#: .\apps\core\templates\core\analysis.html:15
+msgid "Analysis Dashboard"
+msgstr "Panel de Análisis"
+
+#: .\apps\core\templates\core\analysis.html:7
+msgid "Modern analytics dashboard for EU-LAC digital transformation insights"
+msgstr ""
+"Panel de análisis moderno para perspectivas de transformación digital UE-ALC"
+
+#: .\apps\core\templates\core\analysis.html:16
+msgid "EU-LAC Digital Transformation Insights"
+msgstr "Perspectivas de Transformación Digital UE-ALC"
+
+#: .\apps\core\templates\core\analysis.html:25
+msgid "Cross-Sector Collaboration Network"
+msgstr "Red de Colaboración Intersectorial"
+
+#: .\apps\core\templates\core\analysis.html:27
+msgid ""
+"This network shows how different <strong>actor types</strong> (in blue) "
+"collaborate on various <strong>thematic areas</strong> (in green) within EU-"
+"LAC digital transformation initiatives. Each connection represents documents "
+"where both an actor and theme co-occur, indicating active collaboration. "
+"Hover over nodes to see details, and over connections to see the number of "
+"shared documents."
+msgstr ""
+"Esta red muestra cómo diferentes <strong>tipos de actores</strong> (en azul) "
+"colaboran en varias <strong>áreas temáticas</strong> (en verde) dentro de "
+"las iniciativas de transformación digital UE-ALC. Cada conexión representa "
+"documentos donde tanto un actor como un tema co-ocurren, indicando "
+"colaboración activa. Pase el mouse sobre los nodos para ver detalles, y "
+"sobre las conexiones para ver el número de documentos compartidos."
+
+#: .\apps\core\templates\core\analysis.html:40
+msgid "Actor Types (who participates)"
+msgstr "Tipos de Actores (quién participa)"
+
+#: .\apps\core\templates\core\analysis.html:44
+msgid "Thematic Areas (what topics)"
+msgstr "Áreas Temáticas (qué temas)"
+
+#: .\apps\core\templates\core\analysis.html:48
+msgid "Collaboration strength (shared documents)"
+msgstr "Fuerza de colaboración (documentos compartidos)"
+
+#: .\apps\core\templates\core\analysis.html:53
+msgid "Number of different actor types participating in collaborations"
+msgstr "Número de diferentes tipos de actores participando en colaboraciones"
+
+#: .\apps\core\templates\core\analysis.html:54
+#: .\apps\core\templates\core\analysis.html:230
+msgid "Actor Types"
+msgstr "Tipos de Actores"
+
+#: .\apps\core\templates\core\analysis.html:57
+msgid "Number of active collaborations between actors and themes"
+msgstr "Número de colaboraciones activas entre actores y temas"
+
+#: .\apps\core\templates\core\analysis.html:58
+msgid "Active Connections"
+msgstr "Conexiones Activas"
+
+#: .\apps\core\templates\core\analysis.html:61
+msgid "Average number of connections per node"
+msgstr "Número promedio de conexiones por nodo"
+
+#: .\apps\core\templates\core\analysis.html:62
+msgid "Avg. Degree"
+msgstr "Grado Promedio"
+
+#: .\apps\core\templates\core\analysis.html:65
+msgid "Percentage of possible connections that are active"
+msgstr "Porcentaje de conexiones posibles que están activas"
+
+#: .\apps\core\templates\core\analysis.html:66
+msgid "Network Density"
+msgstr "Densidad de Red"
+
+#: .\apps\core\templates\core\analysis.html:75
+msgid "Key Insights"
+msgstr "Perspectivas Clave"
+
+#: .\apps\core\templates\core\analysis.html:81
+#: .\apps\core\templates\core\document_detail.html:207
+msgid "SDG Alignment"
+msgstr "Alineación ODS"
+
+#: .\apps\core\templates\core\analysis.html:83
+msgid ""
+"<strong>SDGs (Sustainable Development Goals)</strong> are the UN's 17 global "
+"objectives to achieve a better and more sustainable future for all by 2030. "
+"This radar chart shows how EU-LAC digital cooperation aligns with these "
+"goals. Digital transformation primarily contributes to SDG 9 (Innovation), "
+"SDG 8 (Decent Work), SDG 17 (Partnerships), and SDG 4 (Quality Education). "
+"The distance from center indicates document count per goal. <strong>Hover "
+"over each point</strong> to see the SDG's name, description, and document "
+"count."
+msgstr ""
+"Los <strong>ODS (Objetivos de Desarrollo Sostenible)</strong> son los 17 "
+"objetivos globales de la ONU para lograr un futuro mejor y más sostenible "
+"para todos para 2030. Este gráfico de radar muestra cómo la cooperación "
+"digital UE-ALC se alinea con estos objetivos. La transformación digital "
+"contribuye principalmente al ODS 9 (Innovación), ODS 8 (Trabajo Decente), "
+"ODS 17 (Alianzas) y ODS 4 (Educación de Calidad). La distancia desde el "
+"centro indica el conteo de documentos por objetivo. <strong>Pase el mouse "
+"sobre cada punto</strong> para ver el nombre, descripción y conteo de "
+"documentos del ODS."
+
+#: .\apps\core\templates\core\analysis.html:99
+msgid "Outer points = Higher alignment with that SDG"
+msgstr "Puntos exteriores = Mayor alineación con ese ODS"
+
+#: .\apps\core\templates\core\analysis.html:103
+msgid "Shape area = Overall SDG coverage breadth"
+msgstr "Área de forma = Amplitud general de cobertura de ODS"
+
+#: .\apps\core\templates\core\analysis.html:107
+msgid "Hover for SDG name and description"
+msgstr "Pase el mouse para nombre y descripción del ODS"
+
+#: .\apps\core\templates\core\analysis.html:115
+#: .\apps\core\templates\core\strategic_cabinet.html:259
+msgid "Legal Framework"
+msgstr "Marco Legal"
+
+#: .\apps\core\templates\core\analysis.html:117
+msgid ""
+"This chart shows the distribution of cooperation agreements by their "
+"<strong>legal enforceability level</strong>. <strong>Legally Binding</"
+"strong> (⚖️ Strong) agreements have enforceable obligations under "
+"international law, <strong>Politically Binding</strong> (🤝 Medium) "
+"commitments rely on political will, and <strong>Non-Binding</strong> (📋 "
+"Soft) frameworks are voluntary. <strong>Hover over segments</strong> to see "
+"detailed descriptions and document counts."
+msgstr ""
+"Este gráfico muestra la distribución de acuerdos de cooperación por su "
+"<strong>nivel de exigibilidad legal</strong>. Los acuerdos "
+"<strong>Legalmente Vinculantes</strong> (⚖️ Fuertes) tienen obligaciones "
+"exigibles bajo derecho internacional, los compromisos <strong>Políticamente "
+"Vinculantes</strong> (🤝 Medios) dependen de la voluntad política, y los "
+"marcos <strong>No Vinculantes</strong> (📋 Suaves) son voluntarios. "
+"<strong>Pase el mouse sobre los segmentos</strong> para ver descripciones "
+"detalladas y conteos de documentos."
+
+#: .\apps\core\templates\core\analysis.html:132
+msgid "⚖️ Legally Binding (Strong)"
+msgstr "⚖️ Legalmente Vinculante (Fuerte)"
+
+# ========================================
+# LEGAL BINDINGNESS
+# ========================================
+#: .\apps\core\templates\core\analysis.html:136
+msgid "🤝 Politically Binding (Medium)"
+msgstr "🤝 Políticamente Vinculante (Medio)"
+
+#: .\apps\core\templates\core\analysis.html:140
+msgid "📋 Non-Binding (Soft)"
+msgstr "📋 No Vinculante (Suave)"
+
+#: .\apps\core\templates\core\analysis.html:148
+msgid "Leading Countries"
+msgstr "Países Líderes"
+
+#: .\apps\core\templates\core\analysis.html:150
+msgid ""
+"This chart shows the <strong>top 15 countries</strong> leading digital "
+"cooperation initiatives, sorted by the number of documents they have "
+"initiated or led. Countries are color-coded by region: <strong>🇪🇺 EU "
+"countries</strong> (blue) represent European Union member states, and "
+"<strong>🌎 LAC countries</strong> (green) represent Latin America & "
+"Caribbean nations. This highlights the bilateral nature of EU-LAC "
+"cooperation. <strong>Hover over bars</strong> to see full country names, "
+"regions, and document counts."
+msgstr ""
+"Este gráfico muestra los <strong>15 países principales</strong> que lideran "
+"iniciativas de cooperación digital, ordenados por el número de documentos "
+"que han iniciado o liderado. Los países están codificados por colores según "
+"región: los <strong>🇪🇺 países de la UE</strong> (azul) representan estados "
+"miembros de la Unión Europea, y los <strong>🌎 países de ALC</strong> "
+"(verde) representan naciones de América Latina y el Caribe. Esto resalta la "
+"naturaleza bilateral de la cooperación UE-ALC. <strong>Pase el mouse sobre "
+"las barras</strong> para ver nombres completos de países, regiones y conteos "
+"de documentos."
+
+#: .\apps\core\templates\core\analysis.html:166
+msgid "🇪🇺 European Union Countries"
+msgstr "🇪🇺 Países de la Unión Europea"
+
+#: .\apps\core\templates\core\analysis.html:170
+msgid "🌎 Latin America & Caribbean"
+msgstr "🌎 América Latina y el Caribe"
+
+#: .\apps\core\templates\core\analysis.html:174
+msgid "Showing top 15 countries by led documents"
+msgstr "Mostrando los 15 países principales por documentos liderados"
+
+#: .\apps\core\templates\core\analysis.html:182
+msgid "Thematic Focus"
+msgstr "Enfoque Temático"
+
+#: .\apps\core\templates\core\analysis.html:184
+msgid ""
+"This chart displays the main <strong>thematic categories</strong> addressed "
+"in EU-LAC digital cooperation documents. Themes range from <strong>🚀 "
+"Digital Strategy</strong> (transformation frameworks), <strong>💡 Technology "
+"& Innovation</strong> (emerging tech), <strong>🔒 Data Governance</strong> "
+"(security & privacy), <strong>🤝 Social Inclusion</strong> (digital equity), "
+"to <strong>🌍 International Cooperation</strong> (cross-border "
+"partnerships). <strong>Hover over bars</strong> to see detailed theme "
+"descriptions and focus areas."
+msgstr ""
+"Este gráfico muestra las principales <strong>categorías temáticas</strong> "
+"abordadas en documentos de cooperación digital UE-ALC. Los temas van desde "
+"<strong>🚀 Estrategia Digital</strong> (marcos de transformación), <strong>"
+"💡 Tecnología e Innovación</strong> (tecnología emergente), <strong>🔒 "
+"Gobernanza de Datos</strong> (seguridad y privacidad), <strong>🤝 Inclusión "
+"Social</strong> (equidad digital), hasta <strong>🌍 Cooperación "
+"Internacional</strong> (asociaciones transfronterizas). <strong>Pase el "
+"mouse sobre las barras</strong> para ver descripciones detalladas de temas y "
+"áreas de enfoque."
+
+#: .\apps\core\templates\core\analysis.html:199
+msgid "🚀 Digital Strategy"
+msgstr "🚀 Estrategia Digital"
+
+#: .\apps\core\templates\core\analysis.html:203
+msgid "💡 Technology & Innovation"
+msgstr "💡 Tecnología e Innovación"
+
+#: .\apps\core\templates\core\analysis.html:207
+msgid "🔒 Data Governance"
+msgstr "🔒 Gobernanza de Datos"
+
+#: .\apps\core\templates\core\analysis.html:211
+msgid "🤝 Social Inclusion"
+msgstr "🤝 Inclusión Social"
+
+#: .\apps\core\templates\core\analysis.html:215
+msgid "🌍 International Cooperation"
+msgstr "🌍 Cooperación Internacional"
+
+#: .\apps\core\templates\core\analysis.html:224
+msgid "Stakeholder Ecosystem"
+msgstr "Ecosistema de Partes Interesadas"
+
+#: .\apps\core\templates\core\analysis.html:232
+msgid ""
+"This chart shows participation by <strong>organization type</strong> in EU-"
+"LAC digital cooperation. <strong>🏛️ Political Actors</strong> (governments & "
+"institutions) lead policy frameworks, <strong>🔬 Research & Innovation "
+"Actors</strong> (universities & R&D) drive knowledge development, <strong>💼 "
+"Economic Actors</strong> (businesses & SMEs) enable implementation, and "
+"<strong>🤝 Civil Society Actors</strong> (NGOs & communities) ensure social "
+"impact. <strong>Hover over bars</strong> to see detailed actor descriptions "
+"and roles."
+msgstr ""
+"Este gráfico muestra la participación por <strong>tipo de organización</"
+"strong> en la cooperación digital UE-ALC. Los <strong>🏛️ Actores Políticos</"
+"strong> (gobiernos e instituciones) lideran marcos de políticas, los <strong>"
+"🔬 Actores de Investigación e Innovación</strong> (universidades e I+D) "
+"impulsan el desarrollo del conocimiento, los <strong>💼 Actores Económicos</"
+"strong> (empresas y PYMEs) permiten la implementación, y los <strong>🤝 "
+"Actores de la Sociedad Civil</strong> (ONGs y comunidades) aseguran el "
+"impacto social. <strong>Pase el mouse sobre las barras</strong> para ver "
+"descripciones detalladas de actores y roles."
+
+# ========================================
+# MODEL CHOICES - ACTOR CATEGORIES
+# ========================================
+#: .\apps\core\templates\core\analysis.html:248
+msgid "🏛️ Political Actors"
+msgstr "🏛️ Actores Políticos"
+
+#: .\apps\core\templates\core\analysis.html:252
+msgid "🔬 Research & Innovation"
+msgstr "🔬 Investigación e Innovación"
+
+#: .\apps\core\templates\core\analysis.html:256
+msgid "💼 Economic Actors"
+msgstr "💼 Actores Económicos"
+
+#: .\apps\core\templates\core\analysis.html:260
+msgid "🤝 Civil Society"
+msgstr "🤝 Sociedad Civil"
+
+#: .\apps\core\templates\core\analysis.html:268
+#: .\apps\core\templates\core\document_detail.html:229
+#: .\apps\core\templates\core\explore.html:333
+#: .\apps\core\templates\core\home.html:73
+msgid "Beneficiary Groups"
+msgstr "Grupos Beneficiarios"
+
+#: .\apps\core\templates\core\analysis.html:270
+msgid ""
+"This chart shows the <strong>top 10 beneficiary groups</strong> most "
+"frequently addressed in EU-LAC digital cooperation, sorted by document "
+"count. Beneficiaries range from <strong>🏪 Economic actors</strong> (SMEs, "
+"startups, businesses), <strong>🎓 Knowledge sector</strong> (researchers, "
+"students), <strong>👥 Citizens</strong> (general public), to "
+"<strong>vulnerable groups</strong> like 👩 women, 🏘️ rural communities, and "
+"♿ persons with disabilities. Each color represents a beneficiary category. "
+"<strong>Hover over bars</strong> to see detailed descriptions."
+msgstr ""
+"Este gráfico muestra los <strong>10 grupos beneficiarios principales</"
+"strong> más frecuentemente abordados en la cooperación digital UE-ALC, "
+"ordenados por conteo de documentos. Los beneficiarios van desde <strong>🏪 "
+"actores económicos</strong> (PYMEs, startups, empresas), <strong>🎓 sector "
+"del conocimiento</strong> (investigadores, estudiantes), <strong>👥 "
+"ciudadanos</strong> (público general), hasta <strong>grupos vulnerables</"
+"strong> como 👩 mujeres, 🏘️ comunidades rurales y ♿ personas con "
+"discapacidad. Cada color representa una categoría de beneficiarios. "
+"<strong>Pase el mouse sobre las barras</strong> para ver descripciones "
+"detalladas."
+
+#: .\apps\core\templates\core\analysis.html:285
+msgid ""
+"Showing top 10 groups sorted by document count. Colors represent beneficiary "
+"categories."
+msgstr ""
+"Mostrando los 10 grupos principales ordenados por conteo de documentos. Los "
+"colores representan categorías de beneficiarios."
+
+# ========================================
+# BASE & META
+# ========================================
+#: .\apps\core\templates\core\base.html:9
+msgid ""
+"SPIDERHUB: Mapping EU-LAC Digital Transformation Dialogues & Agreements. "
+"Discover connections driving digital transformation between Europe and Latin "
+"America."
+msgstr ""
+"SPIDERHUB: Mapeando Diálogos y Acuerdos de Transformación Digital UE-ALC. "
+"Descubre las conexiones que impulsan la transformación digital entre Europa "
+"y América Latina."
+
+#: .\apps\core\templates\core\base.html:10
+msgid ""
+"digital transformation, EU-LAC, agreements, policies, digital cooperation, "
+"Europe, Latin America, Caribbean"
+msgstr ""
+"transformación digital, UE-ALC, acuerdos, políticas, cooperación digital, "
+"Europa, América Latina, Caribe"
+
+#: .\apps\core\templates\core\base.html:13
+msgid "Fostering EU - LAC Digital Transformation"
+msgstr "Fomentando la Transformación Digital UE - ALC"
+
+# ========================================
+# DOCUMENT DETAIL PAGE
+# ========================================
+#: .\apps\core\templates\core\document_detail.html:19
+msgid "Back to Results"
+msgstr "Volver a Resultados"
+
+#: .\apps\core\templates\core\document_detail.html:44
+msgid "Export PDF"
+msgstr "Exportar PDF"
+
+#: .\apps\core\templates\core\document_detail.html:53
+msgid "Executive Summary"
+msgstr "Resumen Ejecutivo"
+
+#: .\apps\core\templates\core\document_detail.html:62
+msgid "Characteristics"
+msgstr "Características"
+
+#: .\apps\core\templates\core\document_detail.html:74
+msgid "Themes"
+msgstr "Temas"
+
+#: .\apps\core\templates\core\document_detail.html:95
+#: .\apps\core\templates\core\explore.html:296
+msgid "Actors"
+msgstr "Actores"
+
+#: .\apps\core\templates\core\document_detail.html:116
+msgid "Practical Applications"
+msgstr "Aplicaciones Prácticas"
+
+#: .\apps\core\templates\core\document_detail.html:129
+#: .\apps\core\templates\core\document_detail.html:138
+msgid "Resulting Commitments"
+msgstr "Compromisos Resultantes"
+
+#: .\apps\core\templates\core\document_detail.html:139
+msgid "No specific commitments identified."
+msgstr "No se identificaron compromisos específicos."
+
+#: .\apps\core\templates\core\document_detail.html:144
+msgid "Technical Details"
+msgstr "Detalles Técnicos"
+
+#: .\apps\core\templates\core\document_detail.html:150
+msgid "Scope"
+msgstr "Alcance"
+
+#: .\apps\core\templates\core\document_detail.html:158
+msgid "Lead Country"
+msgstr "País Líder"
+
+#: .\apps\core\templates\core\document_detail.html:170
+msgid "Policy & Strategic Alignment"
+msgstr "Alineación Política y Estratégica"
+
+#: .\apps\core\templates\core\document_detail.html:183
+msgid "EU Policy Alignment"
+msgstr "Alineación con Políticas UE"
+
+#: .\apps\core\templates\core\document_detail.html:257
+msgid "Key Performance Indicators (KPIs)"
+msgstr "Indicadores Clave de Rendimiento (KPIs)"
+
+#: .\apps\core\templates\core\document_detail.html:281
+#: .\apps\core\templates\core\home.html:65
+msgid "Countries Involved"
+msgstr "Países Involucrados"
+
+#: .\apps\core\templates\core\document_detail.html:307
+msgid "Basic Information"
+msgstr "Información Básica"
+
+#: .\apps\core\templates\core\document_detail.html:309
+msgid "Title"
+msgstr "Título"
+
+#: .\apps\core\templates\core\document_detail.html:314
+msgid "Date"
+msgstr "Fecha"
+
+#: .\apps\core\templates\core\document_detail.html:320
+msgid "Location"
+msgstr "Ubicación"
+
+#: .\apps\core\templates\core\document_detail.html:328
+msgid "Type"
+msgstr "Tipo"
+
+#: .\apps\core\templates\core\document_detail.html:332
+msgid "Legal Character"
+msgstr "Carácter Legal"
+
+#: .\apps\core\templates\core\document_detail.html:345
+msgid "Related Documents"
+msgstr "Documentos Relacionados"
+
+#: .\apps\core\templates\core\document_detail.html:348
+#, python-format
+msgid "%(counter)s related document"
+msgid_plural "%(counter)s related documents"
+msgstr[0] "%(counter)s documento relacionado"
+msgstr[1] "%(counter)s documentos relacionados"
+
+# ========================================
+# EXPLORE PAGE
+# ========================================
+#: .\apps\core\templates\core\explore.html:5
+msgid "Explore Dialogues"
+msgstr "Explorar Diálogos"
+
+#: .\apps\core\templates\core\explore.html:6
+msgid ""
+"Explore and search digital transformation dialogues between EU and LAC "
+"countries. Filter by themes, countries, actors, and commitments."
+msgstr ""
+"Explora y busca diálogos de transformación digital entre países de la UE y "
+"ALC. Filtra por temas, países, actores y compromisos."
+
+#: .\apps\core\templates\core\explore.html:19
+msgid "Search dialogues"
+msgstr "Buscar diálogos"
+
+#: .\apps\core\templates\core\explore.html:20
+msgid "Search dialogues by keyword or phrase"
+msgstr "Buscar diálogos por palabra clave o frase"
+
+#: .\apps\core\templates\core\explore.html:28
+msgid "Search by keyword or phrase..."
+msgstr "Buscar por palabra clave o frase..."
+
+#: .\apps\core\templates\core\explore.html:38
+msgid "Search"
+msgstr "Buscar"
+
+#: .\apps\core\templates\core\explore.html:59
+msgid "Active filters"
+msgstr "Filtros activos"
+
+#: .\apps\core\templates\core\explore.html:61
+msgid "Clear all active filters"
+msgstr "Limpiar todos los filtros activos"
+
+#: .\apps\core\templates\core\explore.html:61
+#: .\apps\core\templates\core\explore.html:90
+msgid "Clear all filters"
+msgstr "Limpiar todos los filtros"
+
+#: .\apps\core\templates\core\explore.html:76
+msgid "Filters"
+msgstr "Filtros"
+
+#: .\apps\core\templates\core\explore.html:83
+msgid "Toggle filter panel"
+msgstr "Alternar panel de filtros"
+
+#: .\apps\core\templates\core\explore.html:91
+msgid "Clear all"
+msgstr "Limpiar todo"
+
+#: .\apps\core\templates\core\explore.html:102
+msgid "Document Type"
+msgstr "Tipo de Documento"
+
+#: .\apps\core\templates\core\explore.html:132
+msgid "Legal Characteristics"
+msgstr "Características Legales"
+
+#: .\apps\core\templates\core\explore.html:142
+msgid "Legal Bindingness"
+msgstr "Carácter Vinculante Legal"
+
+#: .\apps\core\templates\core\explore.html:161
+msgid "Coverage Scope"
+msgstr "Alcance de Cobertura"
+
+#: .\apps\core\templates\core\explore.html:180
+msgid "Agreement Type"
+msgstr "Tipo de Acuerdo"
+
+#: .\apps\core\templates\core\explore.html:205
+msgid "Countries"
+msgstr "Países"
+
+#: .\apps\core\templates\core\explore.html:221
+msgid "Country Role:"
+msgstr "Rol del País:"
+
+#: .\apps\core\templates\core\explore.html:227
+msgid "Select country participation role"
+msgstr "Seleccionar rol de participación del país"
+
+#: .\apps\core\templates\core\explore.html:229
+msgid "Any Role (Lead, Involved, or Event)"
+msgstr "Cualquier Rol (Líder, Involucrado o Evento)"
+
+#: .\apps\core\templates\core\explore.html:230
+msgid "Lead Country (Primary Leadership)"
+msgstr "País Líder (Liderazgo Principal)"
+
+#: .\apps\core\templates\core\explore.html:231
+msgid "Involved Country (Participant)"
+msgstr "País Involucrado (Participante)"
+
+#: .\apps\core\templates\core\explore.html:232
+msgid "Event Country (Host)"
+msgstr "País del Evento (Anfitrión)"
+
+#: .\apps\core\templates\core\explore.html:240
+msgid "Search country..."
+msgstr "Buscar país..."
+
+#: .\apps\core\templates\core\explore.html:240
+msgid "Search countries"
+msgstr "Buscar países"
+
+#: .\apps\core\templates\core\explore.html:265
+msgid "Period"
+msgstr "Período"
+
+#: .\apps\core\templates\core\explore.html:275
+msgid "From"
+msgstr "Desde"
+
+#: .\apps\core\templates\core\explore.html:279
+msgid "Until"
+msgstr "Hasta"
+
+#: .\apps\core\templates\core\explore.html:285
+msgid "Last year"
+msgstr "Último año"
+
+#: .\apps\core\templates\core\explore.html:286
+msgid "Last 3 years"
+msgstr "Últimos 3 años"
+
+#: .\apps\core\templates\core\explore.html:287
+msgid "Last 5 years"
+msgstr "Últimos 5 años"
+
+#: .\apps\core\templates\core\explore.html:308
+msgid "Search actor..."
+msgstr "Buscar actor..."
+
+#: .\apps\core\templates\core\explore.html:308
+msgid "Search actors"
+msgstr "Buscar actores"
+
+#: .\apps\core\templates\core\explore.html:363
+msgid "Topics"
+msgstr "Temas"
+
+#: .\apps\core\templates\core\explore.html:375
+msgid "Search topic..."
+msgstr "Buscar tema..."
+
+#: .\apps\core\templates\core\explore.html:375
+msgid "Search topics"
+msgstr "Buscar temas"
+
+#: .\apps\core\templates\core\explore.html:400
+msgid "SDG Alignments"
+msgstr "Alineaciones ODS"
+
+#: .\apps\core\templates\core\explore.html:433
+#: .\apps\core\templates\core\strategic_cabinet.html:80
+msgid "Reset"
+msgstr "Restablecer"
+
+#: .\apps\core\templates\core\explore.html:436
+#: .\apps\core\templates\core\strategic_cabinet.html:71
+msgid "Apply Filters"
+msgstr "Aplicar Filtros"
+
+#: .\apps\core\templates\core\explore.html:460
+msgid "No documents found"
+msgstr "No se encontraron documentos"
+
+#: .\apps\core\templates\core\explore.html:462
+msgid "Try adjusting your search or filters to find what you're looking for."
+msgstr "Intenta ajustar tu búsqueda o filtros para encontrar lo que buscas."
+
+#: .\apps\core\templates\core\explore.html:468
+msgid "Loading results"
+msgstr "Cargando resultados"
+
+#: .\apps\core\templates\core\explore.html:469
+msgid "Loading documents..."
+msgstr "Cargando documentos..."
+
+# ========================================
+# HOME PAGE
+# ========================================
+#: .\apps\core\templates\core\home.html:5
+msgid "Digital Transformation"
+msgstr "Transformación Digital"
+
+#: .\apps\core\templates\core\home.html:6
+msgid ""
+"Discover EU-LAC digital transformation agreements, commitments, and "
+"initiatives. Explore the network of digital cooperation between Europe and "
+"Latin America."
+msgstr ""
+"Descubre acuerdos, compromisos e iniciativas de transformación digital UE-"
+"ALC. Explora la red de cooperación digital entre Europa y América Latina."
+
+#: .\apps\core\templates\core\home.html:14
+msgid "Mapping EU-LAC Digital Transformation Dialogues & Agreements"
+msgstr "Mapeando Diálogos y Acuerdos de Transformación Digital UE-ALC"
+
+#: .\apps\core\templates\core\home.html:16
+msgid ""
+"Discover the <span class=\"tag tag--info\">agreements</span>, <span "
+"class=\"tag tag--primary\">commitments</span> and more for driving digital "
+"<span class=\"tag tag--warning\">transformation</span> in Europe, Latin "
+"America, and the Caribbean."
+msgstr ""
+"Descubre los <span class=\"tag tag--info\">acuerdos</span>, <span "
+"class=\"tag tag--primary\">compromisos</span> y más que impulsan la <span "
+"class=\"tag tag--warning\">transformación</span> digital en Europa, América "
+"Latina y el Caribe."
+
+#: .\apps\core\templates\core\home.html:24 .\templates\includes\footer.html:21
+#: .\templates\includes\header.html:14 .\templates\includes\header.html:63
+msgid "Explore Data"
+msgstr "Explorar Datos"
+
+#: .\apps\core\templates\core\home.html:25
+msgid "More Info"
+msgstr "Más Información"
+
+#: .\apps\core\templates\core\home.html:39 .\templates\includes\footer.html:50
+msgid "Funded by the European Union"
+msgstr "Financiado por la Unión Europea"
+
+#: .\apps\core\templates\core\home.html:42
+msgid ""
+"<strong>SPIDER</strong> strengthens collaboration between the EU and LAC on "
+"digital transformation and R&I by exploiting the BELLA network's potential "
+"and implementing outcomes from EU-LAC digital dialogues."
+msgstr ""
+"<strong>SPIDER</strong> fortalece la colaboración entre la UE y ALC en "
+"transformación digital e I+D aprovechando el potencial de la red BELLA e "
+"implementando resultados de los diálogos digitales UE-ALC."
+
+#: .\apps\core\templates\core\home.html:57
+msgid "Mapping Scope"
+msgstr "Alcance del Mapeo"
+
+#: .\apps\core\templates\core\home.html:61
+msgid "Documents Analysed"
+msgstr "Documentos Analizados"
+
+#: .\apps\core\templates\core\home.html:69
+msgid "Themes Involved"
+msgstr "Temas Involucrados"
+
+#: .\apps\core\templates\core\home.html:82
+msgid "Recent Documents"
+msgstr "Documentos Recientes"
+
+#: .\apps\core\templates\core\home.html:111
+#: .\apps\core\templates\core\home.html:132
+msgid "View Details"
+msgstr "Ver Detalles"
+
+#: .\apps\core\templates\core\home.html:121
+msgid "No documents available"
+msgstr "No hay documentos disponibles"
+
+#: .\apps\core\templates\core\home.html:128
+msgid "No documents have been uploaded yet."
+msgstr "Aún no se han cargado documentos."
+
+#: .\apps\core\templates\core\home.html:156
+msgid "Discover the connections driving digital transformation"
+msgstr "Descubre las conexiones que impulsan la transformación digital"
+
+#: .\apps\core\templates\core\home.html:157
+msgid "Explore the network of EU-LAC agreements and commitments interactively."
+msgstr "Explora la red de acuerdos y compromisos UE-ALC de forma interactiva."
+
+#: .\apps\core\templates\core\home.html:159
+msgid "View Network Relations"
+msgstr "Ver Relaciones de Red"
+
+# ========================================
+# STRATEGIC CABINET PAGE
+# ========================================
+#: .\apps\core\templates\core\strategic_cabinet.html:6
+#: .\apps\core\templates\core\strategic_cabinet.html:15
+msgid "Strategic Cabinet Country-EU"
+msgstr "Gabinete Estratégico País-UE"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:7
+msgid ""
+"Strategic executive dashboard for EU-Country digital cooperation analysis"
+msgstr ""
+"Panel ejecutivo estratégico para análisis de cooperación digital UE-País"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:16
+msgid ""
+"Executive Dashboard for Strategic EU-Country Digital Cooperation Analysis"
+msgstr ""
+"Panel Ejecutivo para Análisis Estratégico de Cooperación Digital UE-País"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:29
+msgid "Focus Country"
+msgstr "País de Enfoque"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:48
+#, fuzzy
+#| msgid "To Date"
+msgid "From Date"
+msgstr "Hasta Fecha"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:61
+msgid "To Date"
+msgstr "Hasta Fecha"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:92
+msgid ""
+"All cooperation documents involving the selected country (lead, partner, or "
+"host). Measures overall diplomatic activity level in EU-LAC cooperation."
+msgstr ""
+"Todos los documentos de cooperación que involucran al país seleccionado "
+"(líder, socio o anfitrión). Mide el nivel general de actividad diplomática "
+"en la cooperación UE-ALC."
+
+#: .\apps\core\templates\core\strategic_cabinet.html:100
+msgid "Total Documents"
+msgstr "Total de Documentos"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:102
+msgid "Diplomatic activity level"
+msgstr "Nivel de actividad diplomática"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:106
+msgid ""
+"Number of distinct partner countries appearing jointly with the selected "
+"country. Indicates the diversity of international collaboration networks."
+msgstr ""
+"Número de países socios distintos que aparecen conjuntamente con el país "
+"seleccionado. Indica la diversidad de las redes de colaboración "
+"internacional."
+
+#: .\apps\core\templates\core\strategic_cabinet.html:116
+msgid "Active Partnerships"
+msgstr "Asociaciones Activas"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:118
+msgid "Collaboration network diversity"
+msgstr "Diversidad de red de colaboración"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:122
+msgid ""
+"Number of unique thematic domains covered. Shows the breadth of policy or "
+"technical areas where the country engages."
+msgstr ""
+"Número de dominios temáticos únicos cubiertos. Muestra la amplitud de áreas "
+"de política o técnicas en las que participa el país."
+
+#: .\apps\core\templates\core\strategic_cabinet.html:130
+msgid "Thematic Areas"
+msgstr "Áreas Temáticas"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:132
+msgid "Policy area breadth"
+msgstr "Amplitud de área política"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:136
+msgid ""
+"Number of cooperation documents where the selected country acts as "
+"lead_country (primary responsibility and direct leadership). Measures "
+"proactive diplomacy and initiative capacity. Higher values indicate stronger "
+"leadership positioning in EU-LAC cooperation."
+msgstr ""
+"Número de documentos de cooperación donde el país seleccionado actúa como "
+"país líder (responsabilidad principal y liderazgo directo). Mide la "
+"capacidad de diplomacia proactiva e iniciativa. Valores más altos indican un "
+"posicionamiento de liderazgo más fuerte en la cooperación UE-ALC."
+
+#: .\apps\core\templates\core\strategic_cabinet.html:146
+msgid "Leadership Initiatives"
+msgstr "Iniciativas de Liderazgo"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:148
+msgid "Proactive diplomacy footprint"
+msgstr "Huella diplomática proactiva"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:162
+msgid "Cooperation Trends"
+msgstr "Tendencias de Cooperación"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:163
+msgid ""
+"Each point represents the total number of cooperation documents per year "
+"where the selected country appears as lead_country, countries_involved, or "
+"event_country. Color segments distinguish between legal nature (Legally-"
+"binding, Politically-binding, Non-binding) or coverage scope (Bilateral, "
+"Regional, Multilateral). Use this chart to assess how active the country has "
+"been in EU-LAC cooperation over time and whether its participation is "
+"shifting toward more formal or informal commitments."
+msgstr ""
+"Cada punto representa el número total de documentos de cooperación por año "
+"donde el país seleccionado aparece como país_líder, países_involucrados o "
+"país_evento. Los segmentos de color distinguen entre naturaleza legal "
+"(Legalmente vinculante, Políticamente vinculante, No vinculante) o alcance "
+"de cobertura (Bilateral, Regional, Multilateral). Use este gráfico para "
+"evaluar qué tan activo ha sido el país en la cooperación UE-ALC a lo largo "
+"del tiempo y si su participación está cambiando hacia compromisos más "
+"formales o informales."
+
+#: .\apps\core\templates\core\strategic_cabinet.html:172
+msgid ""
+"Annual evolution of cooperation documents in which the selected country "
+"<strong>participates — whether as leader, partner, or host</strong> — "
+"categorized by legal bindingness and geographic coverage. Measures the "
+"<strong>temporal intensity of cooperation</strong>. An increase indicates "
+"greater diplomatic involvement, while the bindingness breakdown helps "
+"distinguish between <strong>political commitments vs. juridical obligations</"
+"strong>."
+msgstr ""
+"Evolución anual de documentos de cooperación en los que el país seleccionado "
+"<strong>participa — ya sea como líder, socio o anfitrión</strong> — "
+"categorizados por vinculación legal y cobertura geográfica. Mide la "
+"<strong>intensidad temporal de cooperación</strong>. Un aumento indica mayor "
+"participación diplomática, mientras que el desglose de vinculación ayuda a "
+"distinguir entre <strong>compromisos políticos vs. obligaciones jurídicas</"
+"strong>."
+
+#: .\apps\core\templates\core\strategic_cabinet.html:190
+msgid "Cooperation Network"
+msgstr "Red de Cooperación"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:191
+msgid ""
+"Each marker connects the selected country to another nation that co-"
+"participates in one or more cooperation documents. Marker size and color "
+"indicate cooperation intensity: High (10+ shared documents), Medium (5-9 "
+"shared), Low (1-4 shared). Data includes all cases where the focus country "
+"is listed as lead_country, countries_involved, or event_country. Helps "
+"identify strategic recurring partners and the density of ties with EU and "
+"Latin America."
+msgstr ""
+"Cada marcador conecta el país seleccionado con otra nación que co-participa "
+"en uno o más documentos de cooperación. El tamaño y color del marcador "
+"indican la intensidad de cooperación: Alta (10+ documentos compartidos), "
+"Media (5-9 compartidos), Baja (1-4 compartidos). Los datos incluyen todos "
+"los casos donde el país enfocado se lista como país_líder, "
+"países_involucrados o país_evento. Ayuda a identificar socios estratégicos "
+"recurrentes y la densidad de lazos con la UE y América Latina."
+
+#: .\apps\core\templates\core\strategic_cabinet.html:200
+msgid ""
+"Geographic distribution of partner countries appearing in cooperation "
+"documents involving the selected country. The map shows the <strong>network "
+"of collaborations and the intensity of connections</strong> across bilateral "
+"and multilateral agreements. Marker size represents cooperation intensity "
+"based on <strong>combined counts</strong> from participants "
+"(countries_involved), leaders (lead_country), and event hosts "
+"(event_country). Useful for visualizing the <strong>geographical amplitude "
+"of digital diplomacy</strong> and identifying strategic recurring partners."
+msgstr ""
+"Distribución geográfica de países socios que aparecen en documentos de "
+"cooperación que involucran al país seleccionado. El mapa muestra la "
+"<strong>red de colaboraciones y la intensidad de las conexiones</strong> a "
+"través de acuerdos bilaterales y multilaterales. El tamaño del marcador "
+"representa la intensidad de cooperación basada en <strong>conteos "
+"combinados</strong> de participantes (países_involucrados), líderes "
+"(país_líder) y anfitriones de eventos (país_evento). Útil para visualizar la "
+"<strong>amplitud geográfica de la diplomacia digital</strong> e identificar "
+"socios estratégicos recurrentes."
+
+#: .\apps\core\templates\core\strategic_cabinet.html:214
+msgid "Cooperation Intensity"
+msgstr "Intensidad de Cooperación"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:219
+msgid "High (10+ documents)"
+msgstr "Alta (10+ documentos)"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:223
+msgid "Medium (5-9 documents)"
+msgstr "Media (5-9 documentos)"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:227
+msgid "Low (1-4 documents)"
+msgstr "Baja (1-4 documentos)"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:242
+msgid "Document Composition"
+msgstr "Composición de Documentos"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:243
+msgid ""
+"Legal Bindingness indicates the legal weight of cooperation instruments: "
+"Legally-binding (formal treaty with enforceable obligations), Politically-"
+"binding (joint declaration expressing political commitment), Non-binding "
+"(informal or technical cooperation framework). Document Type classifies each "
+"record as Agreement, Dialogue, Joint Initiative, or Multilateral Framework. "
+"A portfolio with more legally-binding documents suggests consolidation of "
+"commitments, while predominance of dialogues or non-binding reflects "
+"exploratory or technical cooperation."
+msgstr ""
+"La Vinculación Legal indica el peso legal de los instrumentos de "
+"cooperación: Legalmente vinculante (tratado formal con obligaciones "
+"exigibles), Políticamente vinculante (declaración conjunta que expresa "
+"compromiso político), No vinculante (marco de cooperación informal o "
+"técnico). El Tipo de Documento clasifica cada registro como Acuerdo, "
+"Diálogo, Iniciativa Conjunta o Marco Multilateral. Una cartera con más "
+"documentos legalmente vinculantes sugiere consolidación de compromisos, "
+"mientras que el predominio de diálogos o documentos no vinculantes refleja "
+"cooperación exploratoria o técnica."
+
+#: .\apps\core\templates\core\strategic_cabinet.html:252
+msgid ""
+"Breakdown of all cooperation documents where the selected country "
+"participates, categorized by <strong>legal bindingness</strong> and "
+"<strong>document type</strong>. Allows evaluation of the <strong>legal-"
+"diplomatic nature and institutional maturity</strong> of cooperation. A "
+"higher proportion of legally-binding instruments suggests <strong>commitment "
+"consolidation</strong>, while non-binding or dialogue-oriented documents "
+"reflect <strong>exploratory or technical cooperation</strong> phases."
+msgstr ""
+"Desglose de todos los documentos de cooperación donde el país seleccionado "
+"participa, categorizados por <strong>vinculación legal</strong> y "
+"<strong>tipo de documento</strong>. Permite evaluar la <strong>naturaleza "
+"legal-diplomática y madurez institucional</strong> de la cooperación. Una "
+"proporción mayor de instrumentos legalmente vinculantes sugiere "
+"<strong>consolidación de compromisos</strong>, mientras que documentos no "
+"vinculantes u orientados al diálogo reflejan fases de <strong>cooperación "
+"exploratoria o técnica</strong>."
+
+#: .\apps\core\templates\core\strategic_cabinet.html:265
+msgid "Document Types"
+msgstr "Tipos de Documentos"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:282
+msgid "Strategic Priorities"
+msgstr "Prioridades Estratégicas"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:283
+msgid ""
+"Top Themes: Each bar represents a thematic area ranked by frequency and "
+"relevance across all cooperation documents. Top Actors: Displays "
+"institutional actors categorized by type (Political, Research, Economic, "
+"Civil Society), ranked by frequency and strategic importance. Hover to see "
+"document counts and relative share. Helps identify priority cooperation "
+"areas and potential allies for inter-institutional coordination."
+msgstr ""
+"Temas Principales: Cada barra representa un área temática clasificada por "
+"frecuencia y relevancia en todos los documentos de cooperación. Actores "
+"Clave: Muestra actores institucionales categorizados por tipo (Político, "
+"Investigación, Económico, Sociedad Civil), clasificados por frecuencia e "
+"importancia estratégica. Pase el mouse para ver conteos de documentos y "
+"participación relativa. Ayuda a identificar áreas de cooperación "
+"prioritarias y aliados potenciales para coordinación interinstitucional."
+
+#: .\apps\core\templates\core\strategic_cabinet.html:292
+msgid ""
+"Ranking of <strong>top 10 thematic areas</strong> most frequently addressed "
+"and <strong>key institutional actors</strong> most actively collaborating "
+"with the selected country. Reflects <strong>where the country concentrates "
+"its digital diplomacy</strong> efforts (e.g., Data Governance, Technology & "
+"Innovation, Social Inclusion) and <strong>with whom it engages most</strong> "
+"(ministries, universities, enterprises, NGOs). Essential for identifying "
+"<strong>thematic synergies with European partners</strong> and coordinating "
+"inter-institutional policies."
+msgstr ""
+"Clasificación de las <strong>10 áreas temáticas principales</strong> más "
+"frecuentemente abordadas y <strong>actores institucionales clave</strong> "
+"que colaboran más activamente con el país seleccionado. Refleja "
+"<strong>dónde concentra el país su diplomacia digital</strong> (ej., "
+"Gobernanza de Datos, Tecnología e Innovación, Inclusión Social) y "
+"<strong>con quién se involucra más</strong> (ministerios, universidades, "
+"empresas, ONGs). Esencial para identificar <strong>sinergias temáticas con "
+"socios europeos</strong> y coordinar políticas interinstitucionales."
+
+#: .\apps\core\templates\core\strategic_cabinet.html:299
+msgid "Top Themes"
+msgstr "Temas Principales"
+
+#: .\apps\core\templates\core\strategic_cabinet.html:305
+msgid "Key Actors"
+msgstr "Actores Clave"
+
+# ========================================
+# MODEL CHOICES - THEME CATEGORIES
+# ========================================
+#: .\apps\documents\models.py:58
+msgid "Digital Transformation & Strategy"
+msgstr "Transformación Digital y Estrategia"
+
+#: .\apps\documents\models.py:59
+msgid "Technology & Innovation"
+msgstr "Tecnología e Innovación"
+
+#: .\apps\documents\models.py:60
+msgid "Data & Governance"
+msgstr "Datos y Gobernanza"
+
+#: .\apps\documents\models.py:61
+msgid "Inclusion & Social Development"
+msgstr "Inclusión y Desarrollo Social"
+
+#: .\apps\documents\models.py:62
+msgid "Regional & International Cooperation"
+msgstr "Cooperación Regional e Internacional"
+
+#: .\apps\documents\models.py:63 .\apps\documents\models.py:93
+#: .\apps\documents\models.py:135 .\apps\documents\models.py:328
+#: .\apps\documents\models.py:337
+msgid "Uncategorised"
+msgstr "Sin categoría"
+
+# ========================================
+# MODEL CHOICES - ACTOR CATEGORIES
+# ========================================
+#: .\apps\documents\models.py:89
+msgid "Political Actors"
+msgstr "Actores Políticos"
+
+#: .\apps\documents\models.py:90
+msgid "Research and Innovation Actors"
+msgstr "Actores de Investigación e Innovación"
+
+#: .\apps\documents\models.py:91
+msgid "Economic Actors"
+msgstr "Actores Económicos"
+
+#: .\apps\documents\models.py:92
+msgid "Civil Society Actors"
+msgstr "Actores de la Sociedad Civil"
+
+# ========================================
+# MODEL CHOICES - BENEFICIARY GROUPS
+# ========================================
+#: .\apps\documents\models.py:119
+msgid "SMEs / Businesses"
+msgstr "PYMEs / Empresas"
+
+#: .\apps\documents\models.py:120
+msgid "Start-ups / Innovators"
+msgstr "Startups / Innovadores"
+
+#: .\apps\documents\models.py:121
+msgid "Large Corporations"
+msgstr "Grandes Corporaciones"
+
+#: .\apps\documents\models.py:122
+msgid "Researchers & Academia"
+msgstr "Investigadores y Academia"
+
+#: .\apps\documents\models.py:123
+msgid "Students & Youth"
+msgstr "Estudiantes y Jóvenes"
+
+#: .\apps\documents\models.py:124
+msgid "Migrants & Refugees"
+msgstr "Migrantes y Refugiados"
+
+#: .\apps\documents\models.py:125
+msgid "Women & Girls"
+msgstr "Mujeres y Niñas"
+
+#: .\apps\documents\models.py:126
+msgid "Rural & Remote Communities"
+msgstr "Comunidades Rurales y Remotas"
+
+#: .\apps\documents\models.py:127
+msgid "Indigenous Peoples & Ethnic Groups"
+msgstr "Pueblos Indígenas y Grupos Étnicos"
+
+#: .\apps\documents\models.py:128
+msgid "Persons with Disabilities"
+msgstr "Personas con Discapacidad"
+
+#: .\apps\documents\models.py:129
+msgid "General Citizens / Consumers"
+msgstr "Ciudadanos / Consumidores en General"
+
+#: .\apps\documents\models.py:130
+msgid "Public Sector / Governments"
+msgstr "Sector Público / Gobiernos"
+
+#: .\apps\documents\models.py:131
+msgid "Civil Society / NGOs"
+msgstr "Sociedad Civil / ONGs"
+
+#: .\apps\documents\models.py:132
+msgid "Farmers & Primary Producers"
+msgstr "Agricultores y Productores Primarios"
+
+#: .\apps\documents\models.py:133
+msgid "Health Sector"
+msgstr "Sector Salud"
+
+#: .\apps\documents\models.py:134
+msgid "Investors & Financial Actors"
+msgstr "Inversores y Actores Financieros"
+
+# ========================================
+# DOCUMENT EVENT FORMAT
+# ========================================
+#: .\apps\documents\models.py:233
+msgid "Presencial"
+msgstr "Presencial"
+
+#: .\apps\documents\models.py:234
+msgid "Virtual"
+msgstr "Virtual"
+
+#: .\apps\documents\models.py:235
+msgid "Hybrid"
+msgstr "Híbrido"
+
+#: .\apps\documents\models.py:239
+msgid "Format of the event (in-person, virtual, or hybrid)"
+msgstr "Formato del evento (presencial, virtual o híbrido)"
+
+#: .\apps\documents\models.py:247
+msgid "Word with summary of the document (if available)."
+msgstr "Documento Word con resumen del documento (si está disponible)."
+
+# ========================================
+# DOCUMENT TYPES
+# ========================================
+#: .\apps\documents\models.py:253
+msgid "Dialogues EU-LAC"
+msgstr "Diálogos UE-ALC"
+
+#: .\apps\documents\models.py:254
+msgid "Dialogues Bilateral"
+msgstr "Diálogos Bilaterales"
+
+#: .\apps\documents\models.py:255
+msgid "Dialogues EU-Country"
+msgstr "Diálogos UE-País"
+
+#: .\apps\documents\models.py:256
+msgid "Dialogues multilateral"
+msgstr "Diálogos multilaterales"
+
+#: .\apps\documents\models.py:257
+msgid "Agreements EU-LAC"
+msgstr "Acuerdos UE-ALC"
+
+#: .\apps\documents\models.py:258
+msgid "Agreements Bilateral"
+msgstr "Acuerdos Bilaterales"
+
+#: .\apps\documents\models.py:259
+msgid "Agreements Multilateral"
+msgstr "Acuerdos Multilaterales"
+
+#: .\apps\documents\models.py:260
+msgid "Agreements Country Specific"
+msgstr "Acuerdos Específicos de País"
+
+# ========================================
+# COVERAGE SCOPE
+# ========================================
+#: .\apps\documents\models.py:323
+msgid "Regional"
+msgstr "Regional"
+
+#: .\apps\documents\models.py:324
+msgid "Bilateral"
+msgstr "Bilateral"
+
+#: .\apps\documents\models.py:325
+msgid "Multilateral"
+msgstr "Multilateral"
+
+#: .\apps\documents\models.py:326
+msgid "Global"
+msgstr "Global"
+
+#: .\apps\documents\models.py:327
+msgid "Sub-regional"
+msgstr "Subregional"
+
+# ========================================
+# LEGAL BINDINGNESS
+# ========================================
+#: .\apps\documents\models.py:334
+msgid "Politically-binding"
+msgstr "Políticamente vinculante"
+
+#: .\apps\documents\models.py:335
+msgid "Legally-binding"
+msgstr "Legalmente vinculante"
+
+#: .\apps\documents\models.py:336
+msgid "Non-Binding"
+msgstr "No vinculante"
+
+# ========================================
+# FOOTER
+# ========================================
+#: .\templates\includes\footer.html:8
+msgid ""
+"Platform for analysis and visualisation of documents and agreements for "
+"digital transformation between the European Union and Latin America."
+msgstr ""
+"Plataforma para análisis y visualización de documentos y acuerdos de "
+"transformación digital entre la Unión Europea y América Latina."
+
+#: .\templates\includes\footer.html:18
+msgid "Links"
+msgstr "Enlaces"
+
+#: .\templates\includes\footer.html:20 .\templates\includes\header.html:13
+#: .\templates\includes\header.html:62
+msgid "Home"
+msgstr "Inicio"
+
+#: .\templates\includes\footer.html:22 .\templates\includes\header.html:15
+#: .\templates\includes\header.html:64
+msgid "Analysis"
+msgstr "Análisis"
+
+#: .\templates\includes\footer.html:23 .\templates\includes\header.html:17
+#: .\templates\includes\header.html:66
+msgid "About"
+msgstr "Acerca de"
+
+#: .\templates\includes\footer.html:27
+msgid "Resources"
+msgstr "Recursos"
+
+#: .\templates\includes\footer.html:29
+msgid "News"
+msgstr "Noticias"
+
+#: .\templates\includes\footer.html:42
+msgid "Powered by"
+msgstr "Desarrollado por"
+
+#: .\templates\includes\footer.html:44
+msgid "SPIDER EU-LAC Digital Partnership"
+msgstr "Asociación Digital SPIDER UE-ALC"
+
+#: .\templates\includes\footer.html:55
+msgid ""
+"Funded by the European Union. Views and opinions expressed are however those "
+"of the author(s) only and do not necessarily reflect those of the European "
+"Union or the HADEA. Neither the European Union nor the granting authority "
+"can be held responsible for them."
+msgstr ""
+"Financiado por la Unión Europea. Sin embargo, los puntos de vista y "
+"opiniones expresados son únicamente los del autor o autores y no reflejan "
+"necesariamente los de la Unión Europea o HADEA. Ni la Unión Europea ni la "
+"autoridad otorgante pueden ser considerados responsables de ellos."
+
+#: .\templates\includes\footer.html:58
+msgid "All rights reserved."
+msgstr "Todos los derechos reservados."
+
+# ========================================
+# NAVIGATION & HEADER
+# ========================================
+#: .\templates\includes\header.html:5
+msgid "Skip to main content"
+msgstr "Saltar al contenido principal"
+
+#: .\templates\includes\header.html:8
+msgid "Spider Project Logo"
+msgstr "Logo del Proyecto Spider"
+
+#: .\templates\includes\header.html:16 .\templates\includes\header.html:65
+msgid "Strategic Cabinet"
+msgstr "Gabinete Estratégico"
+
+#: .\templates\includes\header.html:24
+msgid "Select language"
+msgstr "Seleccionar idioma"
+
+#: .\templates\includes\header.html:54
+msgid "Toggle mobile menu"
+msgstr "Alternar menú móvil"
+
+#: .\templates\includes\header.html:74
+msgid "Language"
+msgstr "Idioma"
