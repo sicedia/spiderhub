@@ -146,9 +146,8 @@
 }
 
 .filter-group--expanded .filter-group__header {
-  background-color: var(--color-primary-900); /* fondo oscuro para contraste */
-  border-bottom-color: var(--color-primary-400);
-  color: var(--color-text-inverse); /* texto claro */
+  /* Los estilos específicos se manejan en explore.css */
+  /* No aplicar estilos globales aquí para evitar conflictos */
 }
 
 .filter-group__title {

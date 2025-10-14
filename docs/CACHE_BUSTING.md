@@ -137,3 +137,146 @@ Esto fuerza la recarga de **TODOS** los archivos estáticos, incluyendo los ES6 
 - Asegúrate de que el middleware esté activo
 - Intenta cerrar el navegador completamente y reabrir
 - Como último recurso: DevTools > Application > Clear storage > Clear site data
+
+---
+
+## 🚀 Sistema Mejorado de Cache Busting (v2.0)
+
+### ✨ Nuevas Características
+
+#### 1. **Hash de Contenido en Producción**
+El sistema ahora genera **hashes MD5 del contenido** de cada archivo en producción:
+
+```html
+<!-- Antes -->
+<script src="/static/core/js/ExploreEntry.js?v=1.0.0"></script>
+
+<!-- Ahora -->
+<script src="/static/core/js/ExploreEntry.js?v=a1b2c3d4e5f6"></script>
+```
+
+**Ventajas:**
+- ✅ Cada archivo tiene su propia versión única
+- ✅ Solo cambia cuando el contenido del archivo cambia
+- ✅ No necesitas incrementar `STATIC_VERSION` manualmente
+- ✅ Funciona automáticamente al hacer deploy
+
+#### 2. **Integración con Docker Build**
+El Dockerfile ahora captura información del build:
+
+```dockerfile
+ARG BUILD_DATE          # Fecha/hora del build
+ARG GIT_COMMIT_HASH    # Hash del commit de Git
+ARG VERSION            # Versión del proyecto
+```
+
+Estas variables están disponibles en la aplicación Django y se usan como fallback si no se puede generar el hash del archivo.
+
+#### 3. **Scripts de Build Mejorados**
+
+**Para Windows (PowerShell):**
+```powershell
+.\scripts\build-docker.ps1 -Version "0.1.0-rc.4"
+```
+
+**Para Linux/Mac (Bash):**
+```bash
+./scripts/build-docker.sh 0.1.0-rc.4
+```
+
+Estos scripts automáticamente:
+- Obtienen el hash del commit actual de Git
+- Capturan la fecha/hora del build
+- Pasan estos valores al Docker build
+- Generan versiones únicas para cache busting
+
+### 📋 Nuevo Workflow de Deploy
+
+#### Paso 1: Build de Docker
+```powershell
+# Windows
+.\scripts\build-docker.ps1 -Version "0.1.0-rc.4"
+
+# Linux/Mac  
+./scripts/build-docker.sh 0.1.0-rc.4
+```
+
+#### Paso 2: Push a Registry
+```bash
+docker push sicedia/spiderhub:0.1.0-rc.4
+docker push sicedia/spiderhub:latest
+```
+
+#### Paso 3: Deploy
+El contenedor ya incluye toda la información de cache busting:
+- Hash de Git: `GIT_COMMIT_HASH` env var
+- Fecha de build: `BUILD_DATE` env var
+- Hash de contenido: calculado automáticamente
+
+**¡No más necesidad de actualizar manualmente `STATIC_VERSION`!**
+
+### 🎯 Comportamiento del Sistema
+
+#### En Desarrollo (`DEBUG=True`)
+- Usa **timestamp de modificación** del archivo
+- Actualiza automáticamente en cada guardado
+- Headers anti-cache ultra-agresivos
+
+#### En Producción (`DEBUG=False`)
+1. **Primera opción**: Hash MD5 del contenido del archivo (12 caracteres)
+2. **Segunda opción**: Hash del commit de Git desde `GIT_COMMIT_HASH`
+3. **Tercera opción**: Timestamp del build desde `BUILD_DATE`
+4. **Fallback**: Timestamp actual
+
+### 📊 Ejemplo de Versiones Generadas
+
+```html
+<!-- CSS -->
+<link rel="stylesheet" href="/static/core/css/tokens.css?v=f3a1b2c4d5e6">
+
+<!-- JavaScript Modules -->
+<script type="module" src="/static/core/js/ExploreEntry.js?v=9d8c7b6a5f4e"></script>
+
+<!-- El hash cambia solo si el contenido del archivo cambia -->
+```
+
+### ✅ Ventajas del Nuevo Sistema
+
+1. **Automático**: No requiere intervención manual
+2. **Preciso**: Solo invalida cache de archivos modificados
+3. **Eficiente**: Archivos sin cambios mantienen su cache
+4. **Trazable**: Incluye información de Git en cada build
+5. **Confiable**: Múltiples fallbacks para garantizar versiones únicas
+
+### 🔧 Configuración Recomendada
+
+Ya no necesitas configurar `STATIC_VERSION` manualmente. El sistema lo maneja automáticamente usando:
+
+```python
+# config/settings/production.py
+STATIC_VERSION = os.getenv(
+    'STATIC_VERSION', 
+    os.getenv('GIT_COMMIT_HASH', str(int(time.time())))[:12]
+)
+```
+
+### 📝 Notas Importantes
+
+1. **Después de `collectstatic`**: Los hashes se calculan desde `STATIC_ROOT`
+2. **Cache en memoria**: Los hashes se cachean para mejor rendimiento
+3. **Invalidación automática**: Si un archivo cambia, su hash se recalcula
+4. **Compatible con WhiteNoise**: Funciona con el sistema de compresión
+
+### 🎉 Resultado
+
+**Ya no necesitas:**
+- ❌ Incrementar manualmente `STATIC_VERSION`
+- ❌ Recordar cambiar versiones antes de deploy
+- ❌ Preocuparte por cache de archivos antiguos
+- ❌ Forzar a usuarios a hacer Ctrl+Shift+R
+
+**El sistema garantiza:**
+- ✅ Usuarios siempre ven la última versión
+- ✅ Cache eficiente para archivos sin cambios
+- ✅ Trazabilidad completa de cada versión
+- ✅ Deploy más simple y confiable

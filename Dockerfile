@@ -31,18 +31,27 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 #########################
 FROM python:3.12-slim AS runner
 
+# Build arguments for versioning (cache busting)
+ARG BUILD_DATE
+ARG GIT_COMMIT_HASH
+ARG VERSION=0.1.0-rc.3
+
 LABEL maintainer="felipe.mendieta@cedia.org.ec" \
       org.opencontainers.image.title="spiderhub" \
-    org.opencontainers.image.version="0.1.0-rc.2" \
+      org.opencontainers.image.version="${VERSION}" \
       org.opencontainers.image.description="SpiderHub Document Management System" \
-      org.opencontainers.image.source="https://github.com/sicedia/spiderhub_web.git"
+      org.opencontainers.image.source="https://github.com/sicedia/spiderhub_web.git" \
+      org.opencontainers.image.created="${BUILD_DATE}" \
+      org.opencontainers.image.revision="${GIT_COMMIT_HASH}"
 
 # Production environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     DJANGO_SETTINGS_MODULE=config.settings.production \
     PYTHONPATH=/app \
-    PATH="/app/.local/bin:$PATH"
+    PATH="/app/.local/bin:$PATH" \
+    GIT_COMMIT_HASH=${GIT_COMMIT_HASH} \
+    BUILD_DATE=${BUILD_DATE}
 
 WORKDIR /app
 

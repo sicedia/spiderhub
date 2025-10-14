@@ -6,7 +6,9 @@ from .base import *
 DEBUG = False
 
 # Versión estática para cache busting en producción
-STATIC_VERSION = os.getenv('STATIC_VERSION', '1.0.0')
+# Usa timestamp de build de Docker o hash de commit de Git
+import time
+STATIC_VERSION = os.getenv('STATIC_VERSION', os.getenv('GIT_COMMIT_HASH', str(int(time.time())))[:12])
 
 # Hosts configuration
 ALLOWED_HOSTS = [h.strip() for h in os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')]
