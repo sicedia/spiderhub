@@ -202,12 +202,35 @@ export class DocumentResults extends BaseComponent {
     if (doc.event_date) metaParts.push(formatDate(doc.event_date));
     const metaText = metaParts.join(' • ');
 
-    // Build tags: location + actors + themes
-    const tags = [
-      doc.event_country ? `<span class="doc-tag location">${this.escapeHtml(doc.event_country)}</span>` : '',
-      ...(doc.actors || []).map(a => `<span class="doc-tag actor">${this.escapeHtml(a)}</span>`),
-      ...(doc.themes || []).map(t => `<span class="doc-tag theme">${this.escapeHtml(t)}</span>`)
-    ].join('');
+    // Build tags: location + actors + themes (limit to 5 with overflow indicator)
+    const MAX_VISIBLE_TAGS = 5;
+    const allTags = [
+      doc.event_country ? { text: doc.event_country, type: 'location' } : null,
+      ...(doc.actors || []).map(a => ({ text: a, type: 'actor' })),
+      ...(doc.themes || []).map(t => ({ text: t, type: 'theme' }))
+    ].filter(Boolean);
+    
+    const visibleTags = allTags.slice(0, MAX_VISIBLE_TAGS);
+    const hiddenCount = allTags.length - visibleTags.length;
+    
+    const tagsHtml = visibleTags.map(tag => {
+      if (tag.type === 'location') {
+        // Add location icon and tooltip for event country
+        return `<span class="doc-tag ${tag.type}" title="Host Country (Event Location)">
+          <svg class="doc-tag__icon" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+          </svg>
+          ${this.escapeHtml(tag.text)}
+        </span>`;
+      }
+      return `<span class="doc-tag ${tag.type}">${this.escapeHtml(tag.text)}</span>`;
+    }).join('');
+    
+    const moreIndicator = hiddenCount > 0 
+      ? `<span class="doc-tag doc-tag--more">+${hiddenCount} more</span>` 
+      : '';
+    
+    const tags = tagsHtml + moreIndicator;
 
     // Excerpt
     const excerpt = this.escapeHtml(doc.executive_summary || '');

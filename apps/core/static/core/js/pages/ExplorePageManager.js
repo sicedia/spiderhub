@@ -135,6 +135,11 @@ export class ExplorePageManager extends BaseComponent {
           this.logger.debug('Search form submitted');
         }
         
+        // Hide suggestions when form is submitted
+        if (this.components.suggestionsBox) {
+          this.components.suggestionsBox.hide();
+        }
+        
         // Get search value from input
         const searchValue = this.elements.searchBoxMain?.value?.trim();
         
@@ -155,6 +160,11 @@ export class ExplorePageManager extends BaseComponent {
         event.preventDefault();
         if (this.logger) {
           this.logger.debug('Search button clicked');
+        }
+        
+        // Hide suggestions when search button is clicked
+        if (this.components.suggestionsBox) {
+          this.components.suggestionsBox.hide();
         }
         
         // Trigger form submission
@@ -445,9 +455,11 @@ export class ExplorePageManager extends BaseComponent {
     }
 
     // Connect Suggestions selection to search
-    if (this.components.suggestionsBox && this.coordinators.search) {
+    if (this.components.suggestionsBox && this.components.mainSearch) {
       this.components.suggestionsBox.on('suggestion:selected', (data) => {
-        this.coordinators.search.performSearch();
+        // Trigger the same flow as pressing Enter in the search box
+        // This will add the filter chip and execute the search
+        this.components.mainSearch.handleSubmit();
       });
     }
     

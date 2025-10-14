@@ -51,6 +51,10 @@ export class SuggestionsBox extends BaseComponent {
             if (this.selectedIndex >= 0) {
               e.preventDefault();
               this.selectSuggestion(this.suggestions[this.selectedIndex]);
+            } else {
+              // Hide suggestions when pressing Enter without a selection
+              // This allows the search form to submit normally
+              this.hide();
             }
             break;
           case 'Escape':

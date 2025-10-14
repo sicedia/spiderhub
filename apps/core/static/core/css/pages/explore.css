@@ -961,11 +961,21 @@
   border-radius: var(--radius-full);
   font-weight: var(--font-weight-medium);
   transition: all var(--duration-base) var(--ease-out);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.doc-tag__icon {
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .doc-tag.location {
   background: var(--color-accent-info);
   color: var(--color-text-inverse);
+  cursor: help;
 }
 
 .doc-tag.actor {
@@ -978,9 +988,21 @@
   color: var(--color-text-primary);
 }
 
+.doc-tag.doc-tag--more {
+  background: var(--color-neutral-100);
+  color: var(--color-text-secondary);
+  font-style: italic;
+  cursor: default;
+}
+
 .doc-tag:hover {
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.doc-tag.doc-tag--more:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 .document-excerpt {
@@ -1672,5 +1694,25 @@
     background-color: var(--color-primary-400);
     border-color: var(--color-primary-400);
     color: var(--color-text-inverse);
+  }
+  
+  /* Doc tags in dark mode */
+  .doc-tag.actor {
+    background: var(--color-secondary-700);
+    color: var(--color-secondary-100);
+  }
+  
+  .doc-tag.theme {
+    background: var(--color-accent-warning-dark, #b8860b);
+    color: var(--color-neutral-900);
+  }
+  
+  .doc-tag.doc-tag--more {
+    background: var(--color-neutral-700);
+    color: var(--color-neutral-200);
+  }
+  
+  .doc-tag.doc-tag--more:hover {
+    background: var(--color-neutral-600);
   }
 }
