@@ -1677,6 +1677,24 @@
     color: var(--color-primary-400);
   }
   
+  /* Filter options */
+  .explore-sidebar .filter-option {
+    color: #F3F4F6;
+  }
+  
+  .explore-sidebar .filter-option:hover {
+    background-color: rgba(28, 115, 119, 0.15);
+  }
+  
+  .explore-sidebar .filter-option__label {
+    color: #F3F4F6;
+  }
+  
+  .explore-sidebar .filter-option__count {
+    background-color: rgba(86, 173, 194, 0.2);
+    color: #FFFFFF;
+  }
+  
   /* Date presets */
   .explore-sidebar .filter-date-preset {
     color: var(--color-text-primary);
@@ -1697,22 +1715,43 @@
   }
   
   /* Doc tags in dark mode */
+  .doc-tag.location {
+    background: var(--color-accent-info);
+    color: #FFFFFF;
+  }
+  
+  .doc-tag.location:hover {
+    background: #5ca1e8;
+    color: #FFFFFF;
+  }
+  
   .doc-tag.actor {
     background: var(--color-secondary-700);
-    color: var(--color-secondary-100);
+    color: #FFFFFF;
+  }
+  
+  .doc-tag.actor:hover {
+    background: var(--color-secondary-600);
+    color: #FFFFFF;
   }
   
   .doc-tag.theme {
-    background: var(--color-accent-warning-dark, #b8860b);
-    color: var(--color-neutral-900);
+    background: #d4a017;
+    color: #1F2937;
+  }
+  
+  .doc-tag.theme:hover {
+    background: #e6b82e;
+    color: #111827;
   }
   
   .doc-tag.doc-tag--more {
     background: var(--color-neutral-700);
-    color: var(--color-neutral-200);
+    color: #D1D5DB;
   }
   
   .doc-tag.doc-tag--more:hover {
     background: var(--color-neutral-600);
+    color: #F3F4F6;
   }
 }

@@ -736,13 +736,36 @@
     border: 1px solid var(--color-border-medium);
   }
   
+  .filter-option {
+    color: #F3F4F6;
+  }
+  
   .filter-option:hover {
-    background-color: rgba(28, 115, 119, 0.1);
+    background-color: rgba(28, 115, 119, 0.15);
   }
   
   .filter-option--selected {
-    background-color: var(--color-primary-100);
-    border-color: var(--color-primary-300);
+    background-color: rgba(28, 115, 119, 0.2);
+    border-color: var(--color-primary-400);
+    color: #FFFFFF;
+  }
+  
+  .filter-option__label {
+    color: #F3F4F6;
+  }
+  
+  .filter-option--selected .filter-option__label {
+    color: #FFFFFF;
+  }
+  
+  .filter-option__count {
+    background-color: rgba(86, 173, 194, 0.2);
+    color: #FFFFFF;
+  }
+  
+  .filter-option__checkbox {
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.05);
   }
   
   .filter-option__checkbox:checked {
@@ -750,16 +773,42 @@
     border-color: var(--color-primary-400);
   }
   
+  .filter-group__title {
+    color: #D1D5DB;
+  }
+  
+  .filter-search__input {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #F3F4F6;
+  }
+  
+  .filter-search__input::placeholder {
+    color: #9CA3AF;
+  }
+  
+  .filter-date-field__input {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #F3F4F6;
+  }
+  
+  .filter-date-preset {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #D1D5DB;
+  }
+  
   .filter-date-preset:hover {
-    background-color: var(--color-primary-100);
-    border-color: var(--color-primary-300);
-    color: var(--color-primary-400);
+    background-color: rgba(28, 115, 119, 0.2);
+    border-color: var(--color-primary-400);
+    color: #FFFFFF;
   }
   
   .filter-date-preset--active {
     background-color: var(--color-primary-400);
     border-color: var(--color-primary-400);
-    color: var(--color-text-inverse);
+    color: #FFFFFF;
   }
   
   .filter-chip {

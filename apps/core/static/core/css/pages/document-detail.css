@@ -932,11 +932,42 @@
   
   .doc-tag {
     background: var(--color-primary-400);
-    color: var(--color-text-inverse);
+    color: #FFFFFF;
   }
   
   .doc-tag:hover {
     background: var(--color-primary-500);
+    color: #FFFFFF;
+  }
+  
+  .doc-tag.location {
+    background: var(--color-accent-info);
+    color: #FFFFFF;
+  }
+  
+  .doc-tag.location:hover {
+    background: #5ca1e8;
+    color: #FFFFFF;
+  }
+  
+  .doc-tag.actor {
+    background: var(--color-secondary-700);
+    color: #FFFFFF;
+  }
+  
+  .doc-tag.actor:hover {
+    background: var(--color-secondary-600);
+    color: #FFFFFF;
+  }
+  
+  .doc-tag.theme {
+    background: #d4a017;
+    color: #1F2937;
+  }
+  
+  .doc-tag.theme:hover {
+    background: #e6b82e;
+    color: #111827;
   }
 }
 

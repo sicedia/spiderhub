@@ -110,6 +110,7 @@
   transition: background-color var(--duration-base) var(--ease-out);
   gap: var(--space-3);
   border-bottom: 1px solid var(--color-border-light);
+  color: var(--color-text-primary);
 }
 
 .language-switcher__option:last-child {
@@ -154,6 +155,7 @@
   letter-spacing: 0.5px;
   min-width: 32px;
   text-align: center;
+  color: var(--color-primary-700);
 }
 
 .language-switcher__option--active .language-switcher__code {
@@ -164,6 +166,7 @@
 .language-switcher__name {
   flex: 1;
   font-size: var(--font-size-sm);
+  color: inherit;
 }
 
 /* ========================================
@@ -309,16 +312,60 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   }
   
+  .language-switcher__option {
+    color: #F3F4F6;
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+  
   .language-switcher__option:hover {
     background-color: rgba(28, 115, 119, 0.15);
+    color: #FFFFFF;
+  }
+  
+  .language-switcher__option:focus-visible {
+    color: #FFFFFF;
+  }
+  
+  .language-switcher__option--active {
+    background-color: rgba(28, 115, 119, 0.2);
+    color: #FFFFFF;
+  }
+  
+  .language-switcher__option--active:hover {
+    background-color: rgba(28, 115, 119, 0.25);
+  }
+  
+  .language-switcher__name {
+    color: inherit;
+  }
+  
+  .language-switcher__code {
+    background-color: rgba(86, 173, 194, 0.3);
+    color: #FFFFFF;
+  }
+  
+  .language-switcher__option--active .language-switcher__code {
+    background-color: var(--color-primary-400);
+    color: #FFFFFF;
   }
   
   .mobile-language-switcher__button {
     border-color: var(--color-border-dark);
+    color: var(--color-text-primary);
   }
   
   .mobile-language-switcher__button:hover {
     background-color: rgba(28, 115, 119, 0.15);
+  }
+  
+  .mobile-language-switcher__code {
+    background-color: rgba(28, 115, 119, 0.25);
+    color: var(--color-text-primary);
+  }
+  
+  .mobile-language-switcher__button--active .mobile-language-switcher__code {
+    background-color: var(--color-primary-400);
+    color: var(--color-text-inverse);
   }
 }
 
