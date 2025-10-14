@@ -9,6 +9,7 @@ import { DOMUtils } from '../../core/utils/dom.js';
 import { AnimationUtils } from '../../core/utils/animations.js';
 import { EVENTS } from '../../core/constants/config.js';
 import { logger } from '../../core/logger/Logger.js';
+import { darkModeManager } from '../../core/utils/darkMode.js';
 
 export class Accordion extends BaseComponent {
   constructor(element, options = {}) {
@@ -490,7 +491,7 @@ export class Accordion extends BaseComponent {
 
     const style = document.createElement('style');
     style.id = 'accordion-styles';
-    style.textContent = `
+    style.textContent = darkModeManager.generateAdaptiveCSS(`
       .accordion {
         border: 1px solid #e5e7eb;
         border-radius: 8px;
@@ -569,7 +570,42 @@ export class Accordion extends BaseComponent {
           padding: 16px;
         }
       }
-    `;
+    `, {
+      '.accordion': {
+        'border-color': 'var(--color-border-medium)',
+        'background': 'var(--color-bg-primary)'
+      },
+      '.accordion__item': {
+        'border-bottom-color': 'var(--color-border-medium)'
+      },
+      '.accordion__item:last-child': {
+        'border-bottom': 'none'
+      },
+      '.accordion__header': {
+        'background': 'var(--color-bg-primary)',
+        'color': 'var(--color-text-primary)'
+      },
+      '.accordion__header:hover': {
+        'background': 'var(--color-bg-secondary)'
+      },
+      '.accordion__header--active': {
+        'background': 'var(--color-bg-secondary)',
+        'color': 'var(--color-primary-400)'
+      },
+      '.accordion__title': {
+        'color': 'var(--color-text-primary)'
+      },
+      '.accordion__icon': {
+        'color': 'var(--color-text-secondary)'
+      },
+      '.accordion__header--active .accordion__icon': {
+        'color': 'var(--color-primary-400)'
+      },
+      '.accordion__content': {
+        'background': 'var(--color-bg-primary)',
+        'border-top-color': 'var(--color-border-medium)'
+      }
+    });
     
     document.head.appendChild(style);
   }

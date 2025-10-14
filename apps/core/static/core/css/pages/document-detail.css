@@ -836,6 +836,111 @@
 }
 
 /* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .document-page {
+    background-color: var(--color-bg-secondary);
+  }
+  
+  .document-header {
+    background: linear-gradient(
+      135deg,
+      rgba(28, 115, 119, 0.15) 0%,
+      rgba(50, 175, 175, 0.15) 100%
+    );
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .document-content {
+    background-color: var(--color-bg-secondary);
+  }
+  
+  .document-section {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .document-section:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-primary-300);
+  }
+  
+  .document-sidebar {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .alignment-card {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .alignment-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-primary-300);
+  }
+  
+  .beneficiary-card {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .beneficiary-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-primary-300);
+  }
+  
+  .kpi-card {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .kpi-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-primary-300);
+  }
+  
+  .related-document {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .related-document:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-primary-300);
+  }
+  
+  .country-card {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .country-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-primary-300);
+  }
+  
+  .doc-tag {
+    background: var(--color-primary-400);
+    color: var(--color-text-inverse);
+  }
+  
+  .doc-tag:hover {
+    background: var(--color-primary-500);
+  }
+}
+
+/* ========================================
    Print Styles
    ======================================== */
 

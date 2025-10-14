@@ -7,6 +7,7 @@
 import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { DOMUtils } from '../../core/utils/dom.js';
 import { CONFIG, EVENTS } from '../../core/constants/config.js';
+import { darkModeManager } from '../../core/utils/darkMode.js';
 
 export class Pagination extends BaseComponent {
   constructor(element, options = {}) {
@@ -473,7 +474,7 @@ export class Pagination extends BaseComponent {
 
     const style = document.createElement('style');
     style.id = 'pagination-styles';
-    style.textContent = `
+    style.textContent = darkModeManager.generateAdaptiveCSS(`
       .pagination-component {
         display: flex;
         flex-direction: column;
@@ -644,7 +645,54 @@ export class Pagination extends BaseComponent {
           justify-content: center;
         }
       }
-    `;
+    `, {
+      '.pagination-component': {
+        'color': 'var(--color-text-primary)'
+      },
+      '.pagination-info': {
+        'color': 'var(--color-text-secondary)'
+      },
+      '.pagination-navigation': {
+        'background': 'var(--color-bg-primary)',
+        'border-color': 'var(--color-border-medium)'
+      },
+      '.pagination-button': {
+        'background': 'var(--color-bg-primary)',
+        'border-color': 'var(--color-border-medium)',
+        'color': 'var(--color-text-primary)'
+      },
+      '.pagination-button:hover': {
+        'background': 'var(--color-bg-secondary)',
+        'border-color': 'var(--color-primary-300)',
+        'color': 'var(--color-primary-400)'
+      },
+      '.pagination-button:disabled': {
+        'background': 'var(--color-bg-muted)',
+        'color': 'var(--color-text-muted)',
+        'border-color': 'var(--color-border-light)'
+      },
+      '.pagination-button--active': {
+        'background': 'var(--color-primary-400)',
+        'border-color': 'var(--color-primary-400)',
+        'color': 'var(--color-text-inverse)'
+      },
+      '.pagination-button--active:hover': {
+        'background': 'var(--color-primary-500)',
+        'border-color': 'var(--color-primary-500)'
+      },
+      '.pagination-ellipsis': {
+        'color': 'var(--color-text-muted)'
+      },
+      '.pagination-jump': {
+        'background': 'var(--color-bg-primary)',
+        'border-color': 'var(--color-border-medium)',
+        'color': 'var(--color-text-primary)'
+      },
+      '.pagination-jump:focus': {
+        'border-color': 'var(--color-primary-400)',
+        'box-shadow': '0 0 0 2px var(--focus-ring-color)'
+      }
+    });
     
     document.head.appendChild(style);
   }

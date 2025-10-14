@@ -108,3 +108,18 @@
   }
 }
 
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .binding-legend {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-border-medium);
+  }
+  
+  .binding-legend-item {
+    color: var(--color-text-secondary);
+  }
+}
+

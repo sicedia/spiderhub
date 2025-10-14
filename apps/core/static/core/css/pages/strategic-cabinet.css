@@ -839,3 +839,110 @@
   flex-wrap: wrap;
   gap: var(--space-md);
 }
+
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .strategic-cabinet-page {
+    background-color: var(--color-bg-secondary);
+  }
+  
+  .cabinet-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-700) 0%,
+      var(--color-secondary-700) 100%
+    );
+  }
+  
+  .cabinet-content {
+    background-color: var(--color-bg-secondary);
+  }
+  
+  .kpi-card {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .kpi-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border-color: var(--color-primary-300);
+  }
+  
+  .chart-card {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .chart-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .map-card {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .map-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .tooltip-trigger::after {
+    background: rgba(0, 0, 0, 0.95);
+    color: white;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+  
+  .tooltip-trigger::before {
+    border-top-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  /* Filter labels and inputs */
+  .filter-label {
+    color: var(--color-text-primary);
+  }
+  
+  .filter-select,
+  .filter-input {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    color: var(--color-text-primary);
+  }
+  
+  .filter-select:hover,
+  .filter-input:hover {
+    border-color: var(--color-primary-300);
+  }
+  
+  .filter-select:focus,
+  .filter-input:focus {
+    border-color: var(--color-primary-400);
+    box-shadow: 0 0 0 3px var(--focus-ring-color);
+  }
+  
+  /* Chart titles and labels */
+  .chart-title {
+    color: var(--color-text-primary);
+  }
+  
+  .chart-subtitle {
+    color: var(--color-text-secondary);
+  }
+  
+  .kpi-card__label {
+    color: var(--color-text-secondary);
+  }
+  
+  .participation-type__label {
+    color: var(--color-text-secondary);
+  }
+  
+  .legend-header {
+    color: var(--color-text-secondary);
+  }
+}

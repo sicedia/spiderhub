@@ -342,6 +342,36 @@
   }
 }
 
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .navigation__link:hover,
+  .navigation__link--active {
+    background-color: rgba(28, 115, 119, 0.15);
+    color: var(--color-primary-400);
+  }
+  
+  .navigation__toggle:hover {
+    background-color: rgba(28, 115, 119, 0.15);
+  }
+  
+  .navigation__toggle-line {
+    background-color: var(--color-text-primary);
+  }
+  
+  .navigation__overlay {
+    background-color: var(--color-bg-primary);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+  
+  .navigation__mobile-link:hover,
+  .navigation__mobile-link--active {
+    color: var(--color-primary-400);
+  }
+}
+
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .navigation__link:hover,

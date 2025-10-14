@@ -8,17 +8,21 @@
 import { BaseChart } from '../../core/base/BaseChart.js';
 import { DOMUtils } from '../../core/utils/dom.js';
 import { eventBus } from '../../core/events/EventBus.js';
+import { darkModeManager, getCurrentChartColors } from '../../core/utils/darkMode.js';
 
 export class NetworkGraph extends BaseChart {
   constructor(element, options = {}) {
     super(element, options);
     this.network = null;
+    this.setupDarkModeListener();
   }
 
   /**
    * Default options for network graphs
    */
   getDefaultOptions() {
+    const colors = getCurrentChartColors(darkModeManager);
+    
     return {
       ...super.getDefaultOptions(),
       actorData: null,
@@ -26,25 +30,25 @@ export class NetworkGraph extends BaseChart {
       coOccurrenceMatrix: null,
       colors: {
         actor: {
-          background: '#094EB2',
-          border: '#034092',
+          background: darkModeManager.isDarkMode ? '#4FD1C7' : '#094EB2',
+          border: darkModeManager.isDarkMode ? '#2DD4BF' : '#034092',
           highlight: {
-            background: '#0D5FD9',
-            border: '#034092'
+            background: darkModeManager.isDarkMode ? '#5EEAD4' : '#0D5FD9',
+            border: darkModeManager.isDarkMode ? '#2DD4BF' : '#034092'
           }
         },
         theme: {
-          background: '#34A853',
-          border: '#2D8F47',
+          background: darkModeManager.isDarkMode ? '#34D399' : '#34A853',
+          border: darkModeManager.isDarkMode ? '#10B981' : '#2D8F47',
           highlight: {
-            background: '#41C863',
-            border: '#2D8F47'
+            background: darkModeManager.isDarkMode ? '#6EE7B7' : '#41C863',
+            border: darkModeManager.isDarkMode ? '#10B981' : '#2D8F47'
           }
         },
         edge: {
-          color: 'rgba(28, 115, 119, 0.6)',
-          highlight: 'rgba(28, 115, 119, 0.9)',
-          hover: 'rgba(28, 115, 119, 0.75)'
+          color: darkModeManager.isDarkMode ? 'rgba(79, 209, 199, 0.6)' : 'rgba(28, 115, 119, 0.6)',
+          highlight: darkModeManager.isDarkMode ? 'rgba(79, 209, 199, 0.9)' : 'rgba(28, 115, 119, 0.9)',
+          hover: darkModeManager.isDarkMode ? 'rgba(79, 209, 199, 0.75)' : 'rgba(28, 115, 119, 0.75)'
         }
       },
       physics: {
@@ -300,6 +304,69 @@ export class NetworkGraph extends BaseChart {
       nodes: nodes.length, 
       edges: edges.length
     });
+  }
+
+  /**
+   * Setup dark mode change listener
+   */
+  setupDarkModeListener() {
+    window.addEventListener('darkModeChange', () => {
+      if (this.network) {
+        this.updateColors();
+      }
+    });
+  }
+
+  /**
+   * Update network colors for dark mode
+   */
+  updateColors() {
+    if (!this.network) return;
+
+    const colors = getCurrentChartColors(darkModeManager);
+    const networkData = this.network.getData();
+    
+    // Update node colors
+    const nodes = networkData.nodes.map(node => {
+      if (node.group === 'actor') {
+        return {
+          ...node,
+          color: {
+            background: colors.primary,
+            border: colors.primary,
+            highlight: {
+              background: colors.accent,
+              border: colors.primary
+            }
+          }
+        };
+      } else if (node.group === 'theme') {
+        return {
+          ...node,
+          color: {
+            background: colors.success,
+            border: colors.success,
+            highlight: {
+              background: colors.warning,
+              border: colors.success
+            }
+          }
+        };
+      }
+      return node;
+    });
+
+    // Update edge colors
+    const edges = networkData.edges.map(edge => ({
+      ...edge,
+      color: {
+        color: colors.primary + '60',
+        highlight: colors.primary + '90',
+        hover: colors.primary + '75'
+      }
+    }));
+
+    this.network.setData({ nodes, edges });
   }
 
   /**

@@ -561,6 +561,57 @@
   }
 }
 
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .search-bar {
+    background: var(--color-bg-primary);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .search-bar__input {
+    color: var(--color-text-primary);
+  }
+  
+  .search-bar__input::placeholder {
+    color: var(--color-text-muted);
+  }
+  
+  .search-bar__icon {
+    color: var(--color-text-muted);
+  }
+  
+  .suggestions-list {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+  
+  .suggestions-list__item:hover,
+  .suggestions-list__item--highlighted {
+    background-color: var(--color-bg-secondary);
+  }
+  
+  .suggestions-list__item--selected {
+    background-color: var(--color-primary-400);
+    color: var(--color-text-inverse);
+  }
+  
+  .input-group__addon {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-border-medium);
+    color: var(--color-text-secondary);
+  }
+  
+  .form__checkbox-input:checked,
+  .form__radio-input:checked {
+    background-color: var(--color-primary-400);
+    border-color: var(--color-primary-400);
+  }
+}
+
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .form__input,

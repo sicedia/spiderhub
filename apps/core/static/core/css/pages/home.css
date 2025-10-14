@@ -486,6 +486,44 @@
 }
 
 /* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .home-project-info {
+    background: linear-gradient(135deg, var(--color-neutral-800) 0%, var(--color-neutral-700) 100%);
+    border-bottom-color: var(--color-border-medium);
+  }
+  
+  .home-project-info__card {
+    background-color: var(--color-bg-primary);
+    border-left-color: var(--color-primary-400);
+  }
+  
+  .home-stats {
+    background-color: var(--color-bg-primary);
+  }
+  
+  .home-stats__card {
+    background: var(--color-bg-primary);
+    border-top-color: var(--color-accent-info);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .home-stats__card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+  
+  .home-documents {
+    background-color: var(--color-bg-secondary);
+  }
+  
+  .home-cta {
+    background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-secondary-600) 100%);
+  }
+}
+
+/* ========================================
    Home-specific Accessibility
    ======================================== */
 

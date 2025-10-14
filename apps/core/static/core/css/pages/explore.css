@@ -1541,3 +1541,136 @@
 .explore-sidebar::-webkit-scrollbar-thumb:hover {
   background: var(--color-border-strong);
 }
+
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .explore-page {
+    background-color: var(--color-bg-secondary);
+  }
+  
+  .explore-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-700) 0%,
+      var(--color-secondary-700) 100%
+    );
+  }
+  
+  .explore-content {
+    background-color: var(--color-bg-secondary);
+  }
+  
+  .explore-sidebar {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .explore-main {
+    background-color: var(--color-bg-secondary);
+  }
+  
+  .document-list-item {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .document-list-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-primary-300);
+  }
+  
+  .document-list-item--featured {
+    background: linear-gradient(
+      135deg,
+      rgba(28, 115, 119, 0.1) 0%,
+      rgba(50, 175, 175, 0.1) 100%
+    );
+    border-color: var(--color-primary-300);
+  }
+  
+  .document-list-item--featured:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    border-color: var(--color-primary-200);
+  }
+  
+  .document-meta {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-border-medium);
+  }
+  
+  .document-tags {
+    background: var(--color-bg-secondary);
+  }
+  
+  .document-tag {
+    background: var(--color-primary-400);
+    color: var(--color-text-inverse);
+  }
+  
+  .document-tag:hover {
+    background: var(--color-primary-500);
+  }
+  
+  .explore-results__spinner {
+    border-color: var(--color-border-medium);
+    border-top-color: var(--color-primary-400);
+  }
+  
+  .explore-sidebar::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+  }
+  
+  .explore-sidebar::-webkit-scrollbar-thumb {
+    background: var(--color-border-medium);
+  }
+  
+  .explore-sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-border-strong);
+  }
+  
+  /* Filter headers and titles */
+  .explore-sidebar .filter-header__title {
+    color: var(--color-text-primary);
+  }
+  
+  .explore-sidebar .filter-group__title {
+    color: var(--color-text-primary);
+  }
+  
+  .explore-sidebar .filter-group__header {
+    color: var(--color-text-primary);
+  }
+  
+  .explore-sidebar .filter-group__header:hover {
+    background-color: rgba(28, 115, 119, 0.1);
+    color: var(--color-primary-400);
+  }
+  
+  .explore-sidebar .filter-group--expanded .filter-group__header {
+    color: var(--color-primary-400);
+  }
+  
+  /* Date presets */
+  .explore-sidebar .filter-date-preset {
+    color: var(--color-text-primary);
+    border-color: var(--color-border-medium);
+  }
+  
+  .explore-sidebar .filter-date-preset:hover {
+    background-color: rgba(28, 115, 119, 0.1);
+    border-color: var(--color-primary-300);
+    color: var(--color-primary-400);
+  }
+  
+  .explore-sidebar .filter-date-preset.active,
+  .explore-sidebar .filter-date-preset--active {
+    background-color: var(--color-primary-400);
+    border-color: var(--color-primary-400);
+    color: var(--color-text-inverse);
+  }
+}

@@ -7,6 +7,7 @@
 import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { DOMUtils } from '../../core/utils/dom.js';
 import { EVENTS } from '../../core/constants/config.js';
+import { darkModeManager } from '../../core/utils/darkMode.js';
 
 export class FilterChip extends BaseComponent {
   constructor(element, options = {}) {
@@ -312,7 +313,7 @@ export class FilterChip extends BaseComponent {
 
     const style = document.createElement('style');
     style.id = 'filter-chip-styles';
-    style.textContent = `
+    style.textContent = darkModeManager.generateAdaptiveCSS(`
       .filter-chip {
         display: inline-flex;
         align-items: center;
@@ -489,7 +490,62 @@ export class FilterChip extends BaseComponent {
           max-width: 100px;
         }
       }
-    `;
+    `, {
+      '.filter-chip': {
+        'background-color': 'var(--color-bg-primary)',
+        'color': 'var(--color-text-primary)',
+        'border-color': 'var(--color-border-medium)'
+      },
+      '.filter-chip:hover': {
+        'background-color': 'var(--color-bg-secondary)',
+        'border-color': 'var(--color-primary-300)'
+      },
+      '.filter-chip--primary': {
+        'background-color': 'var(--color-primary-400)',
+        'color': 'var(--color-text-inverse)',
+        'border-color': 'var(--color-primary-400)'
+      },
+      '.filter-chip--primary:hover': {
+        'background-color': 'var(--color-primary-500)',
+        'border-color': 'var(--color-primary-500)'
+      },
+      '.filter-chip--secondary': {
+        'background-color': 'var(--color-secondary-400)',
+        'color': 'var(--color-text-inverse)',
+        'border-color': 'var(--color-secondary-400)'
+      },
+      '.filter-chip--secondary:hover': {
+        'background-color': 'var(--color-secondary-500)',
+        'border-color': 'var(--color-secondary-500)'
+      },
+      '.filter-chip--success': {
+        'background-color': 'var(--color-accent-success)',
+        'color': 'var(--color-text-inverse)',
+        'border-color': 'var(--color-accent-success)'
+      },
+      '.filter-chip--success:hover': {
+        'background-color': 'var(--color-accent-success)',
+        'opacity': '0.9'
+      },
+      '.filter-chip--warning': {
+        'background-color': 'var(--color-accent-warning)',
+        'color': 'var(--color-text-inverse)',
+        'border-color': 'var(--color-accent-warning)'
+      },
+      '.filter-chip--warning:hover': {
+        'background-color': 'var(--color-accent-warning)',
+        'opacity': '0.9'
+      },
+      '.filter-chip--danger': {
+        'background-color': 'var(--color-accent-error)',
+        'color': 'var(--color-text-inverse)',
+        'border-color': 'var(--color-accent-error)'
+      },
+      '.filter-chip--danger:hover': {
+        'background-color': 'var(--color-accent-error)',
+        'opacity': '0.9'
+      }
+    });
     
     document.head.appendChild(style);
   }

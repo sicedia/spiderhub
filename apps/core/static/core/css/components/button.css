@@ -353,6 +353,29 @@
   }
 }
 
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .button--ghost {
+    color: var(--color-primary-400);
+    border-color: var(--color-primary-400);
+  }
+  
+  .button--ghost:hover:not(:disabled) {
+    background-color: var(--color-primary-400);
+    color: var(--color-text-inverse);
+  }
+  
+  .button:disabled,
+  .button--disabled {
+    background-color: var(--color-neutral-600);
+    color: var(--color-text-muted);
+    border-color: var(--color-neutral-600);
+  }
+}
+
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .button {

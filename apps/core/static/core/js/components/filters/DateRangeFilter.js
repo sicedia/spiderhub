@@ -8,6 +8,7 @@ import { BaseComponent } from '../../core/base/BaseComponent.js';
 import { DOMUtils } from '../../core/utils/dom.js';
 import { ValidationUtils } from '../../core/utils/validation.js';
 import { EVENTS } from '../../core/constants/config.js';
+import { darkModeManager } from '../../core/utils/darkMode.js';
 
 export class DateRangeFilter extends BaseComponent {
   constructor(element, options = {}) {
@@ -611,7 +612,7 @@ export class DateRangeFilter extends BaseComponent {
 
     const style = document.createElement('style');
     style.id = 'date-range-filter-styles';
-    style.textContent = `
+    style.textContent = darkModeManager.generateAdaptiveCSS(`
       .date-range-filter {
         background: white;
         border: 1px solid #d1d5db;
@@ -779,7 +780,76 @@ export class DateRangeFilter extends BaseComponent {
           justify-content: center;
         }
       }
-    `;
+    `, {
+      '.date-range-filter': {
+        'background': 'var(--color-bg-primary)',
+        'border-color': 'var(--color-border-medium)'
+      },
+      '.date-input-label': {
+        'color': 'var(--color-text-primary)'
+      },
+      '.date-input': {
+        'background-color': 'var(--color-bg-primary)',
+        'border-color': 'var(--color-border-medium)',
+        'color': 'var(--color-text-primary)'
+      },
+      '.date-input:focus': {
+        'border-color': 'var(--color-primary-400)',
+        'box-shadow': '0 0 0 2px var(--focus-ring-color)'
+      },
+      '.date-input--error': {
+        'border-color': 'var(--color-accent-error)'
+      },
+      '.date-input--error:focus': {
+        'border-color': 'var(--color-accent-error)',
+        'box-shadow': '0 0 0 2px rgba(239, 68, 68, 0.2)'
+      },
+      '.presets-title': {
+        'color': 'var(--color-text-secondary)'
+      },
+      '.preset-button': {
+        'background': 'var(--color-bg-secondary)',
+        'border-color': 'var(--color-border-medium)',
+        'color': 'var(--color-text-primary)'
+      },
+      '.preset-button:hover': {
+        'background': 'var(--color-bg-muted)',
+        'border-color': 'var(--color-border-strong)'
+      },
+      '.preset-button:active': {
+        'background': 'var(--color-bg-muted)'
+      },
+      '.preset-button--active': {
+        'background': 'var(--color-primary-400)',
+        'border-color': 'var(--color-primary-400)',
+        'color': 'var(--color-text-inverse)'
+      },
+      '.preset-button--active:hover': {
+        'background': 'var(--color-primary-500)',
+        'border-color': 'var(--color-primary-500)'
+      },
+      '.date-range-filter__actions': {
+        'border-top-color': 'var(--color-border-medium)'
+      },
+      '.date-range-filter__button': {
+        'background': 'var(--color-primary-400)',
+        'border-color': 'var(--color-primary-400)',
+        'color': 'var(--color-text-inverse)'
+      },
+      '.date-range-filter__button:hover': {
+        'background': 'var(--color-primary-500)',
+        'border-color': 'var(--color-primary-500)'
+      },
+      '.date-range-filter__button--secondary': {
+        'background': 'var(--color-bg-primary)',
+        'border-color': 'var(--color-border-medium)',
+        'color': 'var(--color-text-primary)'
+      },
+      '.date-range-filter__button--secondary:hover': {
+        'background': 'var(--color-bg-secondary)',
+        'border-color': 'var(--color-border-strong)'
+      }
+    });
     
     document.head.appendChild(style);
   }

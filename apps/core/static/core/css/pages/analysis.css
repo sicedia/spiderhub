@@ -615,6 +615,79 @@
 }
 
 /* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .analysis-page {
+    background-color: var(--color-bg-secondary);
+  }
+  
+  .analysis-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-700) 0%,
+      var(--color-secondary-700) 100%
+    );
+  }
+  
+  .analysis-content {
+    background-color: var(--color-bg-secondary);
+  }
+  
+  .kpi-card {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .kpi-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border-color: var(--color-primary-300);
+  }
+  
+  .chart-card {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .chart-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .metric-card {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .metric-card:hover {
+    border-color: var(--color-primary-300);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .error-message {
+    background: var(--color-bg-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Chart text and labels */
+  .chart-title {
+    color: var(--color-text-primary);
+  }
+  
+  .chart-subtitle {
+    color: var(--color-text-secondary);
+  }
+  
+  /* Network graph specific */
+  .network-description {
+    color: var(--color-text-secondary);
+  }
+}
+
+/* ========================================
    Print Styles
    ======================================== */
 

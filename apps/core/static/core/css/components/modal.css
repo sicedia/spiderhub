@@ -372,6 +372,51 @@ body.modal-open {
   }
 }
 
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .modal-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .modal-overlay--light {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal {
+    background-color: var(--color-bg-primary);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal__close {
+    border-color: var(--color-border-medium);
+    color: var(--color-text-secondary);
+  }
+  
+  .modal__close:hover {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-border-strong);
+    color: var(--color-text-primary);
+  }
+  
+  .modal--confirm.modal--success .modal__icon {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: var(--color-accent-success);
+  }
+  
+  .modal--confirm.modal--warning .modal__icon {
+    background-color: rgba(251, 188, 4, 0.2);
+    color: var(--color-accent-warning);
+  }
+  
+  .modal--confirm.modal--error .modal__icon {
+    background-color: rgba(234, 67, 53, 0.2);
+    color: var(--color-accent-error);
+  }
+}
+
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .modal {

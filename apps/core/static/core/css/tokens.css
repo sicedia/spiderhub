@@ -257,19 +257,47 @@
    Dark Mode Support (Future Enhancement)
    ======================================== */
 
+/* ========================================
+   Dark Mode Support - Enhanced Implementation
+   ======================================== */
+
 @media (prefers-color-scheme: dark) {
   :root {
+    /* Text Colors - Enhanced contrast for dark mode */
     --color-text-primary: var(--color-neutral-100);
     --color-text-secondary: var(--color-neutral-300);
     --color-text-muted: var(--color-neutral-400);
+    --color-text-light: var(--color-neutral-500);
     
+    /* Background Colors - Layered dark theme */
     --color-bg-primary: var(--color-neutral-900);
     --color-bg-secondary: var(--color-neutral-800);
     --color-bg-muted: var(--color-neutral-700);
     
+    /* Border Colors - Subtle but visible */
     --color-border-light: var(--color-neutral-700);
+    --color-border-lighter: var(--color-neutral-600);
+    --color-border-lightest: var(--color-neutral-500);
     --color-border-medium: var(--color-neutral-600);
     --color-border-strong: var(--color-neutral-500);
+    
+    /* Component-specific dark mode tokens */
+    --card-bg: var(--color-neutral-800);
+    --card-border: var(--color-neutral-700);
+    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.4);
+    
+    /* Input dark mode */
+    --input-bg: var(--color-neutral-800);
+    --input-border: var(--color-neutral-600);
+    --input-border-focus: var(--color-primary-400);
+    
+    /* Header dark mode */
+    --header-bg: var(--color-neutral-900);
+    --header-border: var(--color-neutral-700);
+    
+    /* Focus ring for dark mode */
+    --focus-ring-color: rgba(28, 115, 119, 0.6);
   }
 }
 

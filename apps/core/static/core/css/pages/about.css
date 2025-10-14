@@ -516,6 +516,76 @@
 }
 
 /* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .about-page {
+    background-color: var(--color-bg-secondary);
+  }
+  
+  .about-hero {
+    background: linear-gradient(
+      135deg,
+      rgba(28, 115, 119, 0.15) 0%,
+      rgba(50, 175, 175, 0.15) 100%
+    );
+  }
+  
+  .methodology-section {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .partners-section {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .spider-background-section {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .admin-panel-section {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .team-section {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .spider-learn-more-link {
+    background: var(--color-primary-400);
+    color: var(--color-text-inverse);
+    border-color: var(--color-primary-400);
+  }
+  
+  .spider-learn-more-link:hover {
+    background: var(--color-primary-500);
+    border-color: var(--color-primary-500);
+  }
+  
+  .admin-contact-link {
+    background: var(--color-secondary-400);
+    color: var(--color-text-inverse);
+    border-color: var(--color-secondary-400);
+  }
+  
+  .admin-contact-link:hover {
+    background: var(--color-secondary-500);
+    border-color: var(--color-secondary-500);
+  }
+}
+
+/* ========================================
    Print Styles
    ======================================== */
 

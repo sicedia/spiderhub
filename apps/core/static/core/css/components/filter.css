@@ -726,6 +726,56 @@
   }
 }
 
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .filter-container {
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-border-medium);
+  }
+  
+  .filter-option:hover {
+    background-color: rgba(28, 115, 119, 0.1);
+  }
+  
+  .filter-option--selected {
+    background-color: var(--color-primary-100);
+    border-color: var(--color-primary-300);
+  }
+  
+  .filter-option__checkbox:checked {
+    background-color: var(--color-primary-400);
+    border-color: var(--color-primary-400);
+  }
+  
+  .filter-date-preset:hover {
+    background-color: var(--color-primary-100);
+    border-color: var(--color-primary-300);
+    color: var(--color-primary-400);
+  }
+  
+  .filter-date-preset--active {
+    background-color: var(--color-primary-400);
+    border-color: var(--color-primary-400);
+    color: var(--color-text-inverse);
+  }
+  
+  .filter-chip {
+    background-color: var(--color-primary-400);
+  }
+  
+  .filter-chip:hover {
+    background-color: var(--color-primary-500);
+  }
+  
+  .filter-chips__clear-all:hover {
+    background-color: var(--color-bg-muted);
+    color: var(--color-text-primary);
+  }
+}
+
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .filter-group {

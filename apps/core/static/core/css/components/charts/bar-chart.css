@@ -260,3 +260,24 @@
   }
 }
 
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .themes-legend,
+  .countries-legend,
+  .actors-legend,
+  .beneficiaries-legend {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-border-medium);
+  }
+  
+  .themes-legend-item,
+  .countries-legend-item,
+  .actors-legend-item,
+  .beneficiaries-legend-note {
+    color: var(--color-text-secondary);
+  }
+}
+

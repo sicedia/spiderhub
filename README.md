@@ -70,6 +70,7 @@ This repository implements SPIDERHUB’s core functionality:
 
    **Init dev database**
    ```bash
+   # Init your docker in your desktop and after:
    docker compose -f postgresdev-docker-compose.yml up -d
    ```
 5. **Database setup**

@@ -378,6 +378,25 @@
   }
 }
 
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .card--document .card__header {
+    background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-secondary-600) 100%);
+  }
+  
+  .card--summary {
+    background: linear-gradient(135deg, rgba(28, 115, 119, 0.1) 0%, rgba(50, 175, 175, 0.1) 100%);
+    border-color: var(--color-neutral-600);
+  }
+  
+  .card--summary:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  }
+}
+
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .card {

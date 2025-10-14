@@ -90,3 +90,18 @@
   }
 }
 
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .sdg-legend {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-border-medium);
+  }
+  
+  .sdg-legend-item {
+    color: var(--color-text-secondary);
+  }
+}
+
