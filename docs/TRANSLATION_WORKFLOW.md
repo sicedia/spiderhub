@@ -1,48 +1,48 @@
-# Guía de Flujo de Trabajo para Traducciones
+# Translation Workflow Guide
 
-Esta guía explica paso a paso cómo trabajar con traducciones cada vez que agregues una nueva feature o modifiques el contenido de la aplicación.
+This guide explains step-by-step how to work with translations every time you add a new feature or modify application content.
 
-## 📋 Tabla de Contenidos
+## 📋 Table of Contents
 
-1. [Idiomas Soportados](#idiomas-soportados)
-2. [Estructura de Archivos](#estructura-de-archivos)
-3. [Agregar Traducciones a Templates HTML](#agregar-traducciones-a-templates-html)
-4. [Agregar Traducciones a JavaScript](#agregar-traducciones-a-javascript)
-5. [Proceso Completo: Nueva Feature](#proceso-completo-nueva-feature)
-6. [Comandos Importantes](#comandos-importantes)
-7. [Solución de Problemas](#solución-de-problemas)
+1. [Supported Languages](#supported-languages)
+2. [File Structure](#file-structure)
+3. [Adding Translations to HTML Templates](#adding-translations-to-html-templates)
+4. [Adding Translations to JavaScript](#adding-translations-to-javascript)
+5. [Complete Process: New Feature](#complete-process-new-feature)
+6. [Important Commands](#important-commands)
+7. [Troubleshooting](#troubleshooting)
 
 ---
 
-## 🌍 Idiomas Soportados
+## 🌍 Supported Languages
 
-El proyecto actualmente tiene 2 idiomas activos + 1 preparado:
+The project currently has 2 active languages + 1 prepared:
 
-- **EN** (English) - Idioma por defecto ✅ Activo
-- **ES** (Español) - ✅ Activo
-- **PT** (Português) - 🔶 Preparado pero desactivado
+- **EN** (English) - Default language ✅ Active
+- **ES** (Spanish) - ✅ Active
+- **PT** (Portuguese) - 🔶 Prepared but disabled
 
-### Estado del Portugués
+### Portuguese Status
 
-Los archivos de traducción al portugués están **completos y compilados** en `locale/pt/`, pero el idioma está temporalmente desactivado en la configuración.
+Portuguese translation files are **complete and compiled** in `locale/pt/`, but the language is temporarily disabled in configuration.
 
-**Para activar el portugués:**
-1. Edita `config/settings/base.py`
-2. Descomenta la línea de portugués:
+**To enable Portuguese:**
+1. Edit `config/settings/base.py`
+2. Uncomment the Portuguese line:
    ```python
    LANGUAGES = [
        ('en', 'English'),
        ('es', 'Español'),
-       ('pt', 'Português'),  # ← Descomentar
+       ('pt', 'Português'),  # ← Uncomment
    ]
    ```
-3. Reinicia el servidor Django
+3. Restart Django server
 
-Configuración actual en: `config/settings/base.py`
+Current configuration in: `config/settings/base.py`
 
 ---
 
-## 📁 Estructura de Archivos
+## 📁 File Structure
 
 ```
 locale/
@@ -50,10 +50,10 @@ locale/
 │   └── LC_MESSAGES/
 ├── es/
 │   └── LC_MESSAGES/
-│       ├── django.po      # Traducciones de templates HTML
-│       ├── django.mo      # Archivo compilado (NO editar)
-│       ├── djangojs.po    # Traducciones de JavaScript
-│       └── djangojs.mo    # Archivo compilado (NO editar)
+│       ├── django.po      # HTML template translations
+│       ├── django.mo      # Compiled file (DO NOT EDIT)
+│       ├── djangojs.po    # JavaScript translations
+│       └── djangojs.mo    # Compiled file (DO NOT EDIT)
 └── pt/
     └── LC_MESSAGES/
         ├── django.po
@@ -62,35 +62,35 @@ locale/
         └── djangojs.mo
 ```
 
-**IMPORTANTE:**
-- ✅ Edita archivos `.po`
-- ❌ NUNCA edites archivos `.mo` (son archivos compilados binarios)
+**IMPORTANT:**
+- ✅ Edit `.po` files
+- ❌ NEVER edit `.mo` files (they are binary compiled files)
 
 ---
 
-## 🔤 Agregar Traducciones a Templates HTML
+## 🔤 Adding Translations to HTML Templates
 
-### 1. Cargar el tag de i18n
+### 1. Load the i18n tag
 
-Al inicio de tu template:
+At the beginning of your template:
 
 ```django
 {% load i18n %}
 ```
 
-### 2. Marcar texto para traducción
+### 2. Mark text for translation
 
-**Texto simple:**
+**Simple text:**
 ```django
 {% trans "Hello World" %}
 ```
 
-**Texto con variables:**
+**Text with variables:**
 ```django
 {% blocktrans %}Welcome {{ username }}{% endblocktrans %}
 ```
 
-**Texto multilínea:**
+**Multiline text:**
 ```django
 {% blocktrans %}
 This is a longer text that spans
@@ -98,13 +98,13 @@ multiple lines and will be translated.
 {% endblocktrans %}
 ```
 
-**Atributos HTML:**
+**HTML attributes:**
 ```django
 <img alt="{% trans 'Logo image' %}" src="...">
 <button aria-label="{% trans 'Close dialog' %}">X</button>
 ```
 
-### 3. Ejemplo completo
+### 3. Complete example
 
 ```django
 {% load i18n %}
@@ -122,27 +122,27 @@ multiple lines and will be translated.
 
 ---
 
-## 💻 Agregar Traducciones a JavaScript
+## 💻 Adding Translations to JavaScript
 
-### 1. Importar el módulo de i18n
+### 1. Import the i18n module
 
 ```javascript
 import { gettext as _ } from '../../core/i18n/i18n.js';
 ```
 
-### 2. Usar en tu código
+### 2. Use in your code
 
-**Texto simple:**
+**Simple text:**
 ```javascript
 const message = _('View Details');
 ```
 
-**Con interpolación:**
+**With interpolation:**
 ```javascript
 const title = `${_('View details for')} ${documentTitle}`;
 ```
 
-### 3. Ejemplo completo
+### 3. Complete example
 
 ```javascript
 import { gettext as _ } from '../../core/i18n/i18n.js';
@@ -162,115 +162,115 @@ export class DocumentCard {
 
 ---
 
-## 🔄 Proceso Completo: Nueva Feature
+## 🔄 Complete Process: New Feature
 
-Sigue estos pasos **CADA VEZ** que agregues una nueva feature con texto visible:
+Follow these steps **EVERY TIME** you add a new feature with visible text:
 
-### Paso 1: Desarrollar con traducciones desde el inicio
+### Step 1: Develop with translations from the start
 
-✅ **Mientras desarrollas:**
+✅ **While developing:**
 ```django
-<!-- CORRECTO -->
+<!-- CORRECT -->
 <h1>{% trans "New Feature Title" %}</h1>
 
-<!-- INCORRECTO -->
+<!-- INCORRECT -->
 <h1>New Feature Title</h1>
 ```
 
-### Paso 2: Extraer nuevas cadenas de traducción
+### Step 2: Extract new translation strings
 
-Después de terminar tu feature, extrae las cadenas:
+After finishing your feature, extract the strings:
 
 ```bash
-# Activar entorno virtual
+# Activate virtual environment
 .\pyspider\Scripts\activate
 
-# Extraer cadenas de templates HTML
+# Extract strings from HTML templates
 python manage.py makemessages -l es -l pt --ignore=pyspider
 
-# Extraer cadenas de JavaScript
+# Extract strings from JavaScript
 python manage.py makemessages -l es -l pt -d djangojs --ignore=pyspider
 ```
 
-### Paso 3: Agregar traducciones a los archivos .po
+### Step 3: Add translations to .po files
 
-Abre los archivos y agrega las traducciones:
+Open the files and add the translations:
 
-**Para Español:** `locale/es/LC_MESSAGES/django.po`
+**For Spanish:** `locale/es/LC_MESSAGES/django.po`
 ```po
 #: .\apps\core\templates\core\nueva_pagina.html:10
 msgid "New Feature Title"
 msgstr "Título de Nueva Funcionalidad"
 ```
 
-**Para Português:** `locale/pt/LC_MESSAGES/django.po`
+**For Portuguese:** `locale/pt/LC_MESSAGES/django.po`
 ```po
 #: .\apps\core\templates\core\nueva_pagina.html:10
 msgid "New Feature Title"
 msgstr "Título da Nova Funcionalidade"
 ```
 
-### Paso 4: Compilar las traducciones
+### Step 4: Compile translations
 
-**En Windows (con gettext instalado):**
+**On Windows (with gettext installed):**
 
 ```bash
-# Compilar TODOS los idiomas
+# Compile ALL languages
 python manage.py compilemessages
 
-# O usar msgfmt directamente:
+# Or use msgfmt directly:
 & "C:\Program Files\gettext-iconv\bin\msgfmt.exe" -o locale\es\LC_MESSAGES\django.mo locale\es\LC_MESSAGES\django.po
 & "C:\Program Files\gettext-iconv\bin\msgfmt.exe" -o locale\pt\LC_MESSAGES\django.mo locale\pt\LC_MESSAGES\django.po
 ```
 
-**En Linux/Mac:**
+**On Linux/Mac:**
 ```bash
 python manage.py compilemessages
 ```
 
-### Paso 5: Reiniciar el servidor
+### Step 5: Restart the server
 
 ```bash
-# Detener el servidor (Ctrl+C)
-# Iniciar de nuevo
+# Stop the server (Ctrl+C)
+# Start again
 python manage.py runserver 8001
 ```
 
-### Paso 6: Verificar en el navegador
+### Step 6: Verify in browser
 
-- Accede a `http://localhost:8001/es/` (Español)
-- Accede a `http://localhost:8001/pt/` (Português)
-- Usa el selector de idioma en el header
+- Access `http://localhost:8001/es/` (Spanish)
+- Access `http://localhost:8001/pt/` (Portuguese)
+- Use the language selector in the header
 
 ---
 
-## 📝 Comandos Importantes
+## 📝 Important Commands
 
-### Extraer nuevas cadenas
+### Extract new strings
 
 ```bash
-# HTML/Templates - Español y Portugués
+# HTML/Templates - Spanish and Portuguese
 python manage.py makemessages -l es -l pt --ignore=pyspider
 
-# JavaScript - Español y Portugués
+# JavaScript - Spanish and Portuguese
 python manage.py makemessages -l es -l pt -d djangojs --ignore=pyspider
 
-# Actualizar solo un idioma
+# Update only one language
 python manage.py makemessages -l es
 ```
 
-### Compilar traducciones
+### Compile translations
 
 ```bash
-# Compilar todos los idiomas
+# Compile all languages
 python manage.py compilemessages
 
-# Windows - Compilar manualmente con msgfmt
+# Windows - Compile manually with msgfmt
 & "C:\Program Files\gettext-iconv\bin\msgfmt.exe" -o locale\es\LC_MESSAGES\django.mo locale\es\LC_MESSAGES\django.po
 & "C:\Program Files\gettext-iconv\bin\msgfmt.exe" -o locale\pt\LC_MESSAGES\django.mo locale\pt\LC_MESSAGES\django.po
 ```
 
-### Verificar archivos compilados
+### Verify compiled files
 
 ```bash
 # Windows PowerShell
@@ -282,82 +282,82 @@ find locale -name "*.mo" -exec ls -lh {} \;
 
 ---
 
-## 🔍 Dónde Agregar las Traducciones
+## 🔍 Where to Add Translations
 
-### Templates HTML → `locale/{lang}/LC_MESSAGES/django.po`
+### HTML Templates → `locale/{lang}/LC_MESSAGES/django.po`
 
-Busca la cadena en inglés y agrega la traducción:
+Find the English string and add the translation:
 
 ```po
 #: .\apps\core\templates\core\about.html:25
 msgid "Our Platform"
-msgstr "Nossa Plataforma"  # Portugués
+msgstr "Nossa Plataforma"  # Portuguese
 ```
 
 ### JavaScript → `locale/{lang}/LC_MESSAGES/djangojs.po`
 
-Busca la cadena en inglés y agrega la traducción:
+Find the English string and add the translation:
 
 ```po
 #: .\apps\core\static\core\js\components\search\DocumentResults.js:261
 msgid "View Details"
-msgstr "Ver Detalhes"  # Portugués
+msgstr "Ver Detalhes"  # Portuguese
 ```
 
-### Encontrar rápidamente una cadena
+### Quickly find a string
 
 ```bash
-# En PowerShell
+# In PowerShell
 Select-String -Path "locale\es\LC_MESSAGES\django.po" -Pattern "Our Platform"
 
-# En Linux/Mac
+# In Linux/Mac
 grep -n "Our Platform" locale/es/LC_MESSAGES/django.po
 ```
 
 ---
 
-## 🐛 Solución de Problemas
+## 🐛 Troubleshooting
 
-### Problema: Las traducciones no aparecen
+### Problem: Translations don't appear
 
-**Solución:**
-1. ✅ Verifica que compilaste los archivos `.mo`
-2. ✅ Reinicia el servidor Django
-3. ✅ Limpia caché del navegador (Ctrl+Shift+R)
-4. ✅ Verifica la URL: `http://localhost:8001/es/` o `/pt/`
+**Solution:**
+1. ✅ Verify you compiled the `.mo` files
+2. ✅ Restart the Django server
+3. ✅ Clear browser cache (Ctrl+Shift+R)
+4. ✅ Verify the URL: `http://localhost:8001/es/` or `/pt/`
 
-### Problema: Error "Can't find msgfmt"
+### Problem: Error "Can't find msgfmt"
 
-**Solución en Windows:**
-1. Instala gettext desde: https://mlocati.github.io/articles/gettext-iconv-windows.html
-2. O usa la guía en: `docs/INSTALL_GETTEXT_WINDOWS.md`
+**Solution on Windows:**
+1. Install gettext from: https://mlocati.github.io/articles/gettext-iconv-windows.html
+2. Or use the guide in: `docs/INSTALL_GETTEXT_WINDOWS.md`
 
-### Problema: Archivo .mo no se actualiza
+### Problem: .mo file doesn't update
 
-**Solución:**
+**Solution:**
 ```bash
-# Elimina archivos .mo
+# Delete .mo files
 Remove-Item locale\es\LC_MESSAGES\*.mo
 Remove-Item locale\pt\LC_MESSAGES\*.mo
 
-# Recompila
+# Recompile
 python manage.py compilemessages
 ```
 
-### Problema: Traducciones vacías después de makemessages
+### Problem: Empty translations after makemessages
 
-**Solución:**
+**Solution:**
 ```po
-# Busca esta línea en el .po
+# Find this line in the .po
 #, fuzzy
 
-# ELIMÍNALA para que Django use las traducciones
+# DELETE IT so Django uses the translations
 ```
 
-### Problema: El selector de idioma no aparece
+### Problem: Language selector doesn't appear
 
-**Solución:**
-Verifica que `{% load i18n %}` esté en el template header:
+**Solution:**
+Verify that `{% load i18n %}` is in the header template:
 
 ```django
 {% load i18n %}
@@ -367,34 +367,34 @@ Verifica que `{% load i18n %}` esté en el template header:
 
 ---
 
-## ✅ Checklist para Nueva Feature
+## ✅ New Feature Checklist
 
-Usa este checklist cada vez que agregues una nueva feature:
+Use this checklist every time you add a new feature:
 
-- [ ] Todos los textos visibles usan `{% trans %}` o `_()` 
-- [ ] Ejecuté `makemessages` para extraer las cadenas
-- [ ] Agregué traducciones al español en `locale/es/LC_MESSAGES/django.po`
-- [ ] Agregué traducciones al portugués en `locale/pt/LC_MESSAGES/django.po`
-- [ ] Si hay JavaScript, traduje en `djangojs.po`
-- [ ] Compilé con `compilemessages` o `msgfmt`
-- [ ] Reinicié el servidor Django
-- [ ] Probé en español: `http://localhost:8001/es/`
-- [ ] Probé en portugués: `http://localhost:8001/pt/`
-- [ ] Probé el selector de idioma
+- [ ] All visible texts use `{% trans %}` or `_()` 
+- [ ] Ran `makemessages` to extract strings
+- [ ] Added Spanish translations in `locale/es/LC_MESSAGES/django.po`
+- [ ] Added Portuguese translations in `locale/pt/LC_MESSAGES/django.po`
+- [ ] If there's JavaScript, translated in `djangojs.po`
+- [ ] Compiled with `compilemessages` or `msgfmt`
+- [ ] Restarted Django server
+- [ ] Tested in Spanish: `http://localhost:8001/es/`
+- [ ] Tested in Portuguese: `http://localhost:8001/pt/`
+- [ ] Tested the language selector
 
 ---
 
-## 📚 Recursos Adicionales
+## 📚 Additional Resources
 
-- [Documentación oficial de Django i18n](https://docs.djangoproject.com/en/stable/topics/i18n/)
+- [Official Django i18n Documentation](https://docs.djangoproject.com/en/stable/topics/i18n/)
 - [GNU gettext Manual](https://www.gnu.org/software/gettext/manual/)
-- Ver también: `docs/MULTILINGUAL_IMPLEMENTATION_PROGRESS.md`
+- See also: `docs/MULTILINGUAL_IMPLEMENTATION_PROGRESS.md`
 
 ---
 
-## 🎯 Ejemplo Completo: Agregando una Nueva Página
+## 🎯 Complete Example: Adding a New Page
 
-### 1. Crear el template con traducciones
+### 1. Create template with translations
 
 `apps/core/templates/core/nueva_pagina.html`:
 ```django
@@ -411,13 +411,13 @@ Usa este checklist cada vez que agregues una nueva feature:
 {% endblock %}
 ```
 
-### 2. Extraer cadenas
+### 2. Extract strings
 
 ```bash
 python manage.py makemessages -l es -l pt
 ```
 
-### 3. Traducir en `locale/es/LC_MESSAGES/django.po`
+### 3. Translate in `locale/es/LC_MESSAGES/django.po`
 
 ```po
 msgid "New Page Title"
@@ -430,7 +430,7 @@ msgid "This is a description of the new feature."
 msgstr "Esta es una descripción de la nueva funcionalidad."
 ```
 
-### 4. Traducir en `locale/pt/LC_MESSAGES/django.po`
+### 4. Translate in `locale/pt/LC_MESSAGES/django.po`
 
 ```po
 msgid "New Page Title"
@@ -443,24 +443,23 @@ msgid "This is a description of the new feature."
 msgstr "Esta é uma descrição da nova funcionalidade."
 ```
 
-### 5. Compilar y probar
+### 5. Compile and test
 
 ```bash
 python manage.py compilemessages
 python manage.py runserver 8001
 ```
 
-Visita:
+Visit:
 - `http://localhost:8001/es/nueva-pagina/`
 - `http://localhost:8001/pt/nova-pagina/`
 
 ---
 
-## 📞 Contacto
+## 📞 Contact
 
-Si tienes problemas con las traducciones, contacta al equipo de desarrollo o revisa la documentación en `docs/`.
+If you have problems with translations, contact the development team or review the documentation in `docs/`.
 
 ---
 
-**Última actualización:** 14 de Octubre, 2025
-
+**Last updated:** October 14, 2025

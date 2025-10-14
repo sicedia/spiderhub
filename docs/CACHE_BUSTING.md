@@ -1,234 +1,234 @@
-# Cache Busting para Archivos Estáticos
+# Cache Busting for Static Files
 
-## Problema
-Los navegadores cachean archivos CSS, JS e imágenes. Cuando modificas estos archivos, los usuarios deben hacer Ctrl+Shift+R para ver los cambios.
+## Problem
+Browsers cache CSS, JS, and image files. When you modify these files, users need to do Ctrl+Shift+R to see the changes.
 
-### ⚠️ Problema Específico con ES6 Modules
-Los navegadores modernos (Chrome, Firefox, Edge) tienen un **cache extremadamente agresivo** para ES6 modules (`import`/`export`). Esto significa que:
+### ⚠️ Specific Problem with ES6 Modules
+Modern browsers (Chrome, Firefox, Edge) have an **extremely aggressive cache** for ES6 modules (`import`/`export`). This means that:
 
-- El entry point puede tener versionado: `AnalysisEntry.js?v=123456` ✅
-- Pero los imports internos NO: `import { darkModeManager } from './darkMode.js'` ❌
-- El navegador cachea `darkMode.js` sin importar si cambias la versión del entry point
-- Resultado: Los usuarios deben hacer **Ctrl+Shift+R** (hard refresh) para ver cambios en dark mode, gráficos, filtros, etc.
+- The entry point can have versioning: `AnalysisEntry.js?v=123456` ✅
+- But internal imports DON'T: `import { darkModeManager } from './darkMode.js'` ❌
+- The browser caches `darkMode.js` regardless of whether you change the entry point version
+- Result: Users need to do **Ctrl+Shift+R** (hard refresh) to see changes in dark mode, charts, filters, etc.
 
-**Archivos afectados comúnmente:**
-- `darkMode.js` - Cambios en estilos de dark mode
-- `NetworkGraph.js` - Cambios en el grafo de red
-- `ExplorePageManager.js` - Cambios en filtros de explore
-- `CabinetPageManager.js` - Cambios en combo box de países de Strategic Cabinet
+**Commonly affected files:**
+- `darkMode.js` - Dark mode style changes
+- `NetworkGraph.js` - Network graph changes
+- `ExplorePageManager.js` - Explore filter changes
+- `CabinetPageManager.js` - Strategic Cabinet country combo box changes
 
-## Solución Implementada
+## Implemented Solution
 
-### Para Development
-- **Middleware anti-cache mejorado**: Headers HTTP extra agresivos específicamente para archivos `.js`
-- **Versionado automático**: Usa la fecha de modificación del archivo como versión
-- **Template tags personalizados**: `{% static_versioned %}`, `{% css_versioned %}`, `{% js_versioned %}`
-- **Headers especiales para ES6 modules**: `Clear-Site-Data`, `Vary`, `no-store`, `proxy-revalidate`
+### For Development
+- **Improved anti-cache middleware**: Extra aggressive HTTP headers specifically for `.js` files
+- **Automatic versioning**: Uses file modification date as version
+- **Custom template tags**: `{% static_versioned %}`, `{% css_versioned %}`, `{% js_versioned %}`
+- **Special headers for ES6 modules**: `Clear-Site-Data`, `Vary`, `no-store`, `proxy-revalidate`
 
-### Para Production
-- **Versión estática**: Usa variable de entorno `STATIC_VERSION`
-- **Cache del navegador habilitado**: Para mejor rendimiento
-- **IMPORTANTE**: Al hacer deploy, **SIEMPRE incrementa `STATIC_VERSION`** para forzar recarga de todos los modules
+### For Production
+- **Static version**: Uses `STATIC_VERSION` environment variable
+- **Browser cache enabled**: For better performance
+- **IMPORTANT**: When deploying, **ALWAYS increment `STATIC_VERSION`** to force reload of all modules
 
-## Uso
+## Usage
 
-### En Templates
+### In Templates
 ```html
 {% load static_tags %}
 
-<!-- CSS con versionado -->
+<!-- CSS with versioning -->
 {% css_versioned 'core/css/base.css' %}
 
-<!-- JavaScript normal con versionado -->
+<!-- Regular JavaScript with versioning -->
 {% js_versioned 'core/js/script.js' %}
 
-<!-- JavaScript de módulo con versionado -->
+<!-- Module JavaScript with versioning -->
 {% js_module_versioned 'core/js/main.js' %}
 
-<!-- Archivos estáticos con versionado -->
+<!-- Static files with versioning -->
 <img src="{% static_versioned 'images/logo.png' %}" alt="Logo">
 ```
 
-### Comandos de Gestión
+### Management Commands
 ```bash
-# Generar nueva versión para producción
+# Generate new version for production
 python manage.py update_static_version
 
-# Usar versión específica
+# Use specific version
 python manage.py update_static_version --version "2.1.0"
 ```
 
-## Resultados
+## Results
 
 ### Development
-- URL: `/static/core/css/base.css?v=1672854123` (timestamp de modificación)
-- Headers anti-cache automáticos ultra-agresivos para archivos `.js`
-- **Debería** funcionar sin Ctrl+Shift+R en la mayoría de casos
-- Si aún ves cache: Cierra y reabre el navegador, o usa modo incógnito para testing
+- URL: `/static/core/css/base.css?v=1672854123` (modification timestamp)
+- Automatic ultra-aggressive anti-cache headers for `.js` files
+- **Should** work without Ctrl+Shift+R in most cases
+- If you still see cache: Close and reopen browser, or use incognito mode for testing
 
 ### Production
-- URL: `/static/core/css/base.css?v=1.0.0` (versión configurada)
-- Cache del navegador habilitado para rendimiento
-- Actualizar `STATIC_VERSION` para nuevas versiones
+- URL: `/static/core/css/base.css?v=1.0.0` (configured version)
+- Browser cache enabled for performance
+- Update `STATIC_VERSION` for new versions
 
-## Configuración de Variables de Entorno
+## Environment Variable Configuration
 
-### Producción
+### Production
 ```env
 STATIC_VERSION=1.0.0
 ```
 
-**⚠️ IMPORTANTE para deployments:**
+**⚠️ IMPORTANT for deployments:**
 
-Cuando hagas deploy con cambios en JavaScript (especialmente dark mode, componentes, utils), **SIEMPRE incrementa `STATIC_VERSION`**:
+When deploying with JavaScript changes (especially dark mode, components, utils), **ALWAYS increment `STATIC_VERSION`**:
 
 ```bash
-# Ejemplo de incremento de versión
-# Antes
+# Version increment example
+# Before
 STATIC_VERSION=1.0.0
 
-# Después (cambios menores - bugfixes, dark mode, estilos)
+# After (minor changes - bugfixes, dark mode, styles)
 STATIC_VERSION=1.0.1
 
-# O (cambios mayores - nuevas features)
+# Or (major changes - new features)
 STATIC_VERSION=1.1.0
 ```
 
-Esto fuerza la recarga de **TODOS** los archivos estáticos, incluyendo los ES6 modules importados.
+This forces reload of **ALL** static files, including imported ES6 modules.
 
-## Mejores Prácticas
+## Best Practices
 
-### Durante Desarrollo
-1. **Si ves cache persistente**: Cierra TODAS las pestañas del sitio y reabre
-2. **Para testing limpio**: Usa modo incógnito (Ctrl+Shift+N)
-3. **DevTools abierto**: En Chrome DevTools > Network, marca "Disable cache" durante desarrollo
-4. **Verifica headers**: En Network tab, verifica que los archivos `.js` tengan `Cache-Control: no-store`
+### During Development
+1. **If you see persistent cache**: Close ALL site tabs and reopen
+2. **For clean testing**: Use incognito mode (Ctrl+Shift+N)
+3. **DevTools open**: In Chrome DevTools > Network, check "Disable cache" during development
+4. **Verify headers**: In Network tab, verify that `.js` files have `Cache-Control: no-store`
 
-### Antes de hacer Deploy
-1. ✅ **SIEMPRE incrementa `STATIC_VERSION`** si tocaste archivos JavaScript
-2. ✅ Verifica que `config/settings/production.py` usa `STATIC_VERSION` correctamente
-3. ✅ Prueba en modo incógnito antes de deployar
-4. ✅ Documenta el cambio de versión en el commit/PR
+### Before Deploying
+1. ✅ **ALWAYS increment `STATIC_VERSION`** if you touched JavaScript files
+2. ✅ Verify that `config/settings/production.py` uses `STATIC_VERSION` correctly
+3. ✅ Test in incognito mode before deploying
+4. ✅ Document the version change in commit/PR
 
-### Archivos que SIEMPRE requieren increment de versión
-- ❗ `darkMode.js` - Afecta a TODOS los gráficos y componentes
-- ❗ `Logger.js` - Usado por toda la aplicación
-- ❗ Cualquier archivo en `/core/utils/` - Son compartidos
-- ❗ Componentes de charts (`NetworkGraph.js`, etc.)
+### Files that ALWAYS require version increment
+- ❗ `darkMode.js` - Affects ALL charts and components
+- ❗ `Logger.js` - Used by the entire application
+- ❗ Any file in `/core/utils/` - They are shared
+- ❗ Chart components (`NetworkGraph.js`, etc.)
 - ❗ Page managers (`ExplorePageManager.js`, `CabinetPageManager.js`, `AnalysisPageManager.js`)
 
 ## Troubleshooting
 
-### "Actualicé STATIC_VERSION pero sigo viendo la versión vieja"
-- Verifica que el .env de producción tenga el valor correcto
-- Haz restart del servidor/contenedor para que cargue la nueva variable
-- Limpia la cache de nginx/proxy si usas uno
-- Verifica en el HTML source que el `?v=` tenga el nuevo valor
+### "I updated STATIC_VERSION but still see the old version"
+- Verify that production .env has the correct value
+- Restart server/container to load the new variable
+- Clear nginx/proxy cache if using one
+- Verify in HTML source that `?v=` has the new value
 
-### "En desarrollo sigo necesitando Ctrl+Shift+R"
-- Cierra TODAS las pestañas del sitio
-- Usa modo incógnito para testing
-- Verifica que `DEBUG=True` en settings
-- Verifica que el middleware `NoCacheMiddleware` esté en `MIDDLEWARE` en settings
-- Revisa DevTools > Network para confirmar que los headers sean `no-store, no-cache`
+### "In development I still need Ctrl+Shift+R"
+- Close ALL site tabs
+- Use incognito mode for testing
+- Verify that `DEBUG=True` in settings
+- Verify that `NoCacheMiddleware` middleware is in `MIDDLEWARE` in settings
+- Check DevTools > Network to confirm headers are `no-store, no-cache`
 
-### "Solo algunos archivos .js tienen problemas de cache"
-- Es normal con ES6 modules - Chrome tiene cache por archivo
-- Asegúrate de que el middleware esté activo
-- Intenta cerrar el navegador completamente y reabrir
-- Como último recurso: DevTools > Application > Clear storage > Clear site data
+### "Only some .js files have cache problems"
+- It's normal with ES6 modules - Chrome has per-file cache
+- Make sure middleware is active
+- Try closing the browser completely and reopening
+- As a last resort: DevTools > Application > Clear storage > Clear site data
 
 ---
 
-## 🚀 Sistema Mejorado de Cache Busting (v2.0)
+## 🚀 Improved Cache Busting System (v2.0)
 
-### ✨ Nuevas Características
+### ✨ New Features
 
-#### 1. **Hash de Contenido en Producción**
-El sistema ahora genera **hashes MD5 del contenido** de cada archivo en producción:
+#### 1. **Content Hash in Production**
+The system now generates **MD5 content hashes** for each file in production:
 
 ```html
-<!-- Antes -->
+<!-- Before -->
 <script src="/static/core/js/ExploreEntry.js?v=1.0.0"></script>
 
-<!-- Ahora -->
+<!-- Now -->
 <script src="/static/core/js/ExploreEntry.js?v=a1b2c3d4e5f6"></script>
 ```
 
-**Ventajas:**
-- ✅ Cada archivo tiene su propia versión única
-- ✅ Solo cambia cuando el contenido del archivo cambia
-- ✅ No necesitas incrementar `STATIC_VERSION` manualmente
-- ✅ Funciona automáticamente al hacer deploy
+**Advantages:**
+- ✅ Each file has its own unique version
+- ✅ Only changes when file content changes
+- ✅ No need to manually increment `STATIC_VERSION`
+- ✅ Works automatically on deploy
 
-#### 2. **Integración con Docker Build**
-El Dockerfile ahora captura información del build:
+#### 2. **Docker Build Integration**
+The Dockerfile now captures build information:
 
 ```dockerfile
-ARG BUILD_DATE          # Fecha/hora del build
-ARG GIT_COMMIT_HASH    # Hash del commit de Git
-ARG VERSION            # Versión del proyecto
+ARG BUILD_DATE          # Build date/time
+ARG GIT_COMMIT_HASH    # Git commit hash
+ARG VERSION            # Project version
 ```
 
-Estas variables están disponibles en la aplicación Django y se usan como fallback si no se puede generar el hash del archivo.
+These variables are available in the Django application and used as fallback if file hash cannot be generated.
 
-#### 3. **Scripts de Build Mejorados**
+#### 3. **Improved Build Scripts**
 
-**Para Windows (PowerShell):**
+**For Windows (PowerShell):**
 ```powershell
-.\scripts\build-docker.ps1 -Version "0.1.0-rc.4"
+.\scripts\build-docker.ps1 -Version "0.1.0-rc.5"
 ```
 
-**Para Linux/Mac (Bash):**
+**For Linux/Mac (Bash):**
 ```bash
-./scripts/build-docker.sh 0.1.0-rc.4
+./scripts/build-docker.sh 0.1.0-rc.5
 ```
 
-Estos scripts automáticamente:
-- Obtienen el hash del commit actual de Git
-- Capturan la fecha/hora del build
-- Pasan estos valores al Docker build
-- Generan versiones únicas para cache busting
+These scripts automatically:
+- Get current Git commit hash
+- Capture build date/time
+- Pass these values to Docker build
+- Generate unique versions for cache busting
 
-### 📋 Nuevo Workflow de Deploy
+### 📋 New Deploy Workflow
 
-#### Paso 1: Build de Docker
+#### Step 1: Docker Build
 ```powershell
 # Windows
-.\scripts\build-docker.ps1 -Version "0.1.0-rc.4"
+.\scripts\build-docker.ps1 -Version "0.1.0-rc.5"
 
 # Linux/Mac  
-./scripts/build-docker.sh 0.1.0-rc.4
+./scripts/build-docker.sh 0.1.0-rc.5
 ```
 
-#### Paso 2: Push a Registry
+#### Step 2: Push to Registry
 ```bash
-docker push sicedia/spiderhub:0.1.0-rc.4
+docker push sicedia/spiderhub:0.1.0-rc.5
 docker push sicedia/spiderhub:latest
 ```
 
-#### Paso 3: Deploy
-El contenedor ya incluye toda la información de cache busting:
-- Hash de Git: `GIT_COMMIT_HASH` env var
-- Fecha de build: `BUILD_DATE` env var
-- Hash de contenido: calculado automáticamente
+#### Step 3: Deploy
+The container already includes all cache busting information:
+- Git hash: `GIT_COMMIT_HASH` env var
+- Build date: `BUILD_DATE` env var
+- Content hash: calculated automatically
 
-**¡No más necesidad de actualizar manualmente `STATIC_VERSION`!**
+**No more need to manually update `STATIC_VERSION`!**
 
-### 🎯 Comportamiento del Sistema
+### 🎯 System Behavior
 
-#### En Desarrollo (`DEBUG=True`)
-- Usa **timestamp de modificación** del archivo
-- Actualiza automáticamente en cada guardado
-- Headers anti-cache ultra-agresivos
+#### In Development (`DEBUG=True`)
+- Uses file **modification timestamp**
+- Updates automatically on each save
+- Ultra-aggressive anti-cache headers
 
-#### En Producción (`DEBUG=False`)
-1. **Primera opción**: Hash MD5 del contenido del archivo (12 caracteres)
-2. **Segunda opción**: Hash del commit de Git desde `GIT_COMMIT_HASH`
-3. **Tercera opción**: Timestamp del build desde `BUILD_DATE`
-4. **Fallback**: Timestamp actual
+#### In Production (`DEBUG=False`)
+1. **First option**: MD5 hash of file content (12 characters)
+2. **Second option**: Git commit hash from `GIT_COMMIT_HASH`
+3. **Third option**: Build timestamp from `BUILD_DATE`
+4. **Fallback**: Current timestamp
 
-### 📊 Ejemplo de Versiones Generadas
+### 📊 Example of Generated Versions
 
 ```html
 <!-- CSS -->
@@ -237,20 +237,20 @@ El contenedor ya incluye toda la información de cache busting:
 <!-- JavaScript Modules -->
 <script type="module" src="/static/core/js/ExploreEntry.js?v=9d8c7b6a5f4e"></script>
 
-<!-- El hash cambia solo si el contenido del archivo cambia -->
+<!-- Hash only changes if file content changes -->
 ```
 
-### ✅ Ventajas del Nuevo Sistema
+### ✅ Advantages of the New System
 
-1. **Automático**: No requiere intervención manual
-2. **Preciso**: Solo invalida cache de archivos modificados
-3. **Eficiente**: Archivos sin cambios mantienen su cache
-4. **Trazable**: Incluye información de Git en cada build
-5. **Confiable**: Múltiples fallbacks para garantizar versiones únicas
+1. **Automatic**: No manual intervention required
+2. **Precise**: Only invalidates cache of modified files
+3. **Efficient**: Unchanged files keep their cache
+4. **Traceable**: Includes Git information in each build
+5. **Reliable**: Multiple fallbacks to ensure unique versions
 
-### 🔧 Configuración Recomendada
+### 🔧 Recommended Configuration
 
-Ya no necesitas configurar `STATIC_VERSION` manualmente. El sistema lo maneja automáticamente usando:
+You no longer need to manually configure `STATIC_VERSION`. The system handles it automatically using:
 
 ```python
 # config/settings/production.py
@@ -260,23 +260,23 @@ STATIC_VERSION = os.getenv(
 )
 ```
 
-### 📝 Notas Importantes
+### 📝 Important Notes
 
-1. **Después de `collectstatic`**: Los hashes se calculan desde `STATIC_ROOT`
-2. **Cache en memoria**: Los hashes se cachean para mejor rendimiento
-3. **Invalidación automática**: Si un archivo cambia, su hash se recalcula
-4. **Compatible con WhiteNoise**: Funciona con el sistema de compresión
+1. **After `collectstatic`**: Hashes are calculated from `STATIC_ROOT`
+2. **In-memory cache**: Hashes are cached for better performance
+3. **Automatic invalidation**: If a file changes, its hash is recalculated
+4. **WhiteNoise compatible**: Works with compression system
 
-### 🎉 Resultado
+### 🎉 Result
 
-**Ya no necesitas:**
-- ❌ Incrementar manualmente `STATIC_VERSION`
-- ❌ Recordar cambiar versiones antes de deploy
-- ❌ Preocuparte por cache de archivos antiguos
-- ❌ Forzar a usuarios a hacer Ctrl+Shift+R
+**You no longer need to:**
+- ❌ Manually increment `STATIC_VERSION`
+- ❌ Remember to change versions before deploy
+- ❌ Worry about old file cache
+- ❌ Force users to do Ctrl+Shift+R
 
-**El sistema garantiza:**
-- ✅ Usuarios siempre ven la última versión
-- ✅ Cache eficiente para archivos sin cambios
-- ✅ Trazabilidad completa de cada versión
-- ✅ Deploy más simple y confiable
+**The system guarantees:**
+- ✅ Users always see the latest version
+- ✅ Efficient cache for unchanged files
+- ✅ Complete traceability of each version
+- ✅ Simpler and more reliable deploy

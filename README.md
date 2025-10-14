@@ -343,15 +343,15 @@ This project currently supports **2 active languages**: English (default) and Sp
 ## 📚 Technical Documentation
 
 ### Development Guides
-- **[Translation Workflow Guide](docs/TRANSLATION_WORKFLOW.md)** - ⭐ Proceso completo para agregar traducciones
-- **[Cache Busting Guide](docs/CACHE_BUSTING.md)** - Sistema de cache busting para archivos estáticos y ES6 modules
-- **[Deployment Checklist](docs/DEPLOYMENT_CHECKLIST.md)** - Lista completa para deployments seguros
-- **[Logger Migration Guide](docs/LOGGER_MIGRATION_GUIDE.md)** - Migración al sistema de logging centralizado
-- **[EventBus Migration Guide](docs/EVENTBUS_MIGRATION_GUIDE.md)** - Migración al sistema de eventos
+- **[Translation Workflow Guide](docs/TRANSLATION_WORKFLOW.md)** - ⭐ Complete process for adding translations
+- **[Cache Busting Guide](docs/CACHE_BUSTING.md)** - Cache busting system for static files and ES6 modules
+- **[Deployment Checklist](docs/DEPLOYMENT_CHECKLIST.md)** - Complete checklist for safe deployments
+- **[Logger Migration Guide](docs/LOGGER_MIGRATION_GUIDE.md)** - Centralized logging system migration
+- **[EventBus Migration Guide](docs/EVENTBUS_MIGRATION_GUIDE.md)** - Event system migration
 
 ### Testing Tools
-- **Cache Busting Test**: Accede a `/static/cache-test.html` en desarrollo para verificar headers HTTP
-- **Logging Test**: Accede a `/static/test-logging.html` para probar el sistema de logging
+- **Cache Busting Test**: Access `/static/cache-test.html` in development to verify HTTP headers
+- **Logging Test**: Access `/static/test-logging.html` to test the logging system
 
 ### Important Notes
 ⚠️ **Before deploying**: Always check the [Deployment Checklist](docs/DEPLOYMENT_CHECKLIST.md), especially:

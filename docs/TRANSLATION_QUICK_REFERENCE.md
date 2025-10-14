@@ -1,123 +1,122 @@
-# 🌍 Referencia Rápida de Traducciones
+# 🌍 Translation Quick Reference
 
-## Comandos Esenciales
+## Essential Commands
 
-### 1. Extraer cadenas nuevas
+### 1. Extract new strings
 ```bash
-# Activar entorno virtual
+# Activate virtual environment
 .\pyspider\Scripts\activate
 
-# Extraer de templates HTML
+# Extract from HTML templates
 python manage.py makemessages -l es -l pt --ignore=pyspider
 
-# Extraer de JavaScript
+# Extract from JavaScript
 python manage.py makemessages -l es -l pt -d djangojs --ignore=pyspider
 ```
 
-### 2. Compilar traducciones
+### 2. Compile translations
 ```bash
-# Opción 1: Usando Django (requiere gettext en PATH)
+# Option 1: Using Django (requires gettext in PATH)
 python manage.py compilemessages
 
-# Opción 2: Windows - msgfmt directo
+# Option 2: Windows - direct msgfmt
 & "C:\Program Files\gettext-iconv\bin\msgfmt.exe" -o locale\es\LC_MESSAGES\django.mo locale\es\LC_MESSAGES\django.po
 & "C:\Program Files\gettext-iconv\bin\msgfmt.exe" -o locale\pt\LC_MESSAGES\django.mo locale\pt\LC_MESSAGES\django.po
 & "C:\Program Files\gettext-iconv\bin\msgfmt.exe" -o locale\es\LC_MESSAGES\djangojs.mo locale\es\LC_MESSAGES\djangojs.po
 & "C:\Program Files\gettext-iconv\bin\msgfmt.exe" -o locale\pt\LC_MESSAGES\djangojs.mo locale\pt\LC_MESSAGES\djangojs.po
 ```
 
-### 3. Reiniciar servidor
+### 3. Restart server
 ```bash
-# Detener (Ctrl+C) y reiniciar
+# Stop (Ctrl+C) and restart
 python manage.py runserver 8001
 ```
 
 ---
 
-## 📝 Sintaxis Rápida
+## 📝 Quick Syntax
 
-### En Templates HTML
+### In HTML Templates
 
 ```django
 {% load i18n %}
 
-{# Texto simple #}
+{# Simple text #}
 <h1>{% trans "Title" %}</h1>
 
-{# Con variables #}
+{# With variables #}
 {% blocktrans %}Hello {{ name }}{% endblocktrans %}
 
-{# Atributos #}
+{# Attributes #}
 <img alt="{% trans 'Logo' %}">
 ```
 
-### En JavaScript
+### In JavaScript
 
 ```javascript
 import { gettext as _ } from '../../core/i18n/i18n.js';
 
-// Uso básico
+// Basic usage
 const text = _('View Details');
 
-// Con interpolación
+// With interpolation
 const msg = `${_('Welcome')} ${userName}`;
 ```
 
 ---
 
-## 📂 Archivos a Editar
+## 📂 Files to Edit
 
-| Tipo | Archivo Español | Archivo Português |
-|------|----------------|-------------------|
-| Templates HTML | `locale/es/LC_MESSAGES/django.po` | `locale/pt/LC_MESSAGES/django.po` |
-| JavaScript | `locale/es/LC_MESSAGES/djangojs.po` | `locale/pt/LC_MESSAGES/djangojs.po` |
-
----
-
-## ✅ Checklist Nueva Feature
-
-```
-[ ] Agregué {% trans %} en todos los textos del template
-[ ] Agregué _() en todos los textos de JavaScript
-[ ] Ejecuté makemessages para extraer cadenas
-[ ] Traduje al español en locale/es/LC_MESSAGES/
-[ ] Traduje al portugués en locale/pt/LC_MESSAGES/
-[ ] Compilé con compilemessages o msgfmt
-[ ] Reinicié el servidor
-[ ] Probé /es/ en el navegador
-[ ] Probé /pt/ en el navegador
-```
+|| Type | Spanish File | Portuguese File |
+||------|-------------|-----------------|
+|| HTML Templates | `locale/es/LC_MESSAGES/django.po` | `locale/pt/LC_MESSAGES/django.po` |
+|| JavaScript | `locale/es/LC_MESSAGES/djangojs.po` | `locale/pt/LC_MESSAGES/djangojs.po` |
 
 ---
 
-## 🔧 Editar Archivos .po
+## ✅ New Feature Checklist
 
-### Formato:
+```
+[ ] Added {% trans %} to all template texts
+[ ] Added _() to all JavaScript texts
+[ ] Ran makemessages to extract strings
+[ ] Translated to Spanish in locale/es/LC_MESSAGES/
+[ ] Translated to Portuguese in locale/pt/LC_MESSAGES/
+[ ] Compiled with compilemessages or msgfmt
+[ ] Restarted server
+[ ] Tested /es/ in browser
+[ ] Tested /pt/ in browser
+```
+
+---
+
+## 🔧 Editing .po Files
+
+### Format:
 ```po
 #: .\apps\core\templates\core\about.html:25
 msgid "Our Platform"
 msgstr "Nossa Plataforma"
 ```
 
-### Reglas:
-- ✅ `msgid` = texto en inglés (NO EDITAR)
-- ✅ `msgstr` = tu traducción
-- ✅ Mantén comillas y formato
-- ❌ NO edites las líneas que empiezan con `#:`
+### Rules:
+- ✅ `msgid` = text in English (DO NOT EDIT)
+- ✅ `msgstr` = your translation
+- ✅ Keep quotes and format
+- ❌ DO NOT edit lines starting with `#:`
 
 ---
 
-## 🚀 URLs para Probar
+## 🚀 URLs for Testing
 
-- **Inglés:** `http://localhost:8001/en/`
-- **Español:** `http://localhost:8001/es/`
-- **Português:** `http://localhost:8001/pt/` (desactivado - ver TRANSLATIONS.md para activar)
+- **English:** `http://localhost:8001/en/`
+- **Spanish:** `http://localhost:8001/es/`
+- **Portuguese:** `http://localhost:8001/pt/` (disabled - see TRANSLATIONS.md to enable)
 
-O usa el selector de idioma (icono de globo) en el header.
+Or use the language selector (globe icon) in the header.
 
-**Nota:** Actualmente solo EN y ES están activos. PT está preparado pero desactivado en `config/settings/base.py`.
+**Note:** Currently only EN and ES are active. PT is ready but disabled in `config/settings/base.py`.
 
 ---
 
-Ver guía completa: [TRANSLATION_WORKFLOW.md](TRANSLATION_WORKFLOW.md)
-
+See complete guide: [TRANSLATION_WORKFLOW.md](TRANSLATION_WORKFLOW.md)

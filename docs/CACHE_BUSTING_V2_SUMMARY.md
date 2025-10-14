@@ -1,240 +1,245 @@
-# 🚀 Cache Busting V2.0 - Resumen Ejecutivo
+# 🚀 Cache Busting V2.0 - Executive Summary
 
-## 📋 Problema Identificado
+## 📋 Identified Problem
 
-El sistema de cache busting anterior usaba una versión estática fija en producción (`STATIC_VERSION=1.0.0`), lo que causaba que:
+The previous cache busting system used a fixed static version in production (`STATIC_VERSION=1.0.0`), which caused:
 
-- ❌ Los cambios en archivos JavaScript y CSS no se reflejaban en clientes
-- ❌ Era necesario forzar recarga (Ctrl+Shift+R) en cada dispositivo
-- ❌ Usuarios en móviles y otras computadoras veían versiones antiguas
-- ❌ Había que recordar incrementar manualmente `STATIC_VERSION` en cada deploy
+- ❌ Changes in JavaScript and CSS files were not reflected on clients
+- ❌ Force reload (Ctrl+Shift+R) was necessary on each device
+- ❌ Users on mobile and other computers saw old versions
+- ❌ Had to remember to manually increment `STATIC_VERSION` on each deploy
 
-## ✅ Solución Implementada
+## ✅ Implemented Solution
 
-### 1. **Hash de Contenido Automático**
+### 1. **Automatic Content Hash**
 
-El sistema ahora genera un hash MD5 único del contenido de cada archivo:
+The system now generates a unique MD5 hash of each file's content:
 
 ```python
-# Antes
+# Before
 /static/core/js/DocumentResults.js?v=1.0.0
 
-# Ahora  
+# Now  
 /static/core/js/DocumentResults.js?v=a1b2c3d4e5f6
 ```
 
-**Beneficios:**
-- Cada archivo tiene su propia versión única
-- La versión cambia solo cuando el contenido cambia
-- Automático, no requiere intervención manual
+**Benefits:**
+- Each file has its own unique version
+- Version changes only when content changes
+- Automatic, requires no manual intervention
 
-### 2. **Integración con Docker y Git**
+### 2. **Docker and Git Integration**
 
-El Dockerfile ahora captura:
-- Hash del commit de Git
-- Fecha/hora del build
-- Versión del proyecto
+The Dockerfile now captures:
+- Git commit hash
+- Build date/time
+- Project version
 
-Estas variables se usan automáticamente para cache busting.
+These variables are used automatically for cache busting.
 
-### 3. **Scripts de Build Automatizados**
+### 3. **Automated Build Scripts**
 
 **Windows (PowerShell):**
 ```powershell
-.\scripts\build-docker.ps1 -Version "0.1.0-rc.4"
+.\scripts\build-docker.ps1 -Version "0.1.0-rc.5"
 ```
 
 **Linux/Mac (Bash):**
 ```bash
-./scripts/build-docker.sh 0.1.0-rc.4
+./scripts/build-docker.sh 0.1.0-rc.5
 ```
 
-## 📁 Archivos Modificados
+These scripts automatically:
+- Get current Git commit hash
+- Capture build date/time
+- Pass these values to Docker build
+- Generate unique versions for cache busting
 
-### Archivos del Sistema de Cache Busting
+## 📁 Modified Files
+
+### Cache Busting System Files
 
 1. **`apps/core/templatetags/static_tags.py`**
-   - ✨ Nueva función `get_file_hash()` con soporte para MD5
-   - ✨ Cache en memoria de hashes para mejor rendimiento
-   - ✨ Búsqueda inteligente en STATIC_ROOT para producción
-   - ✨ Fallbacks múltiples: contenido → Git hash → timestamp
+   - ✨ New `get_file_hash()` function with MD5 support
+   - ✨ In-memory hash cache for better performance
+   - ✨ Smart search in STATIC_ROOT for production
+   - ✨ Multiple fallbacks: content → Git hash → timestamp
 
 2. **`config/settings/production.py`**
-   - ✨ `STATIC_VERSION` ahora usa `GIT_COMMIT_HASH` o timestamp
-   - ✨ Configuración automática sin intervención manual
+   - ✨ `STATIC_VERSION` now uses `GIT_COMMIT_HASH` or timestamp
+   - ✨ Automatic configuration without manual intervention
 
 3. **`Dockerfile`**
-   - ✨ Nuevos build args: `BUILD_DATE`, `GIT_COMMIT_HASH`, `VERSION`
-   - ✨ Labels de imagen con información de trazabilidad
-   - ✨ Variables de entorno para Django
+   - ✨ New build args: `BUILD_DATE`, `GIT_COMMIT_HASH`, `VERSION`
+   - ✨ Image labels with traceability information
+   - ✨ Environment variables for Django
 
-### Scripts de Automatización
+### Automation Scripts
 
-4. **`scripts/build-docker.ps1`** (NUEVO)
-   - Script PowerShell para Windows
-   - Captura automática de Git hash y timestamp
-   - Build de Docker con parámetros de cache busting
+4. **`scripts/build-docker.ps1`** (NEW)
+   - PowerShell script for Windows
+   - Automatic Git hash and timestamp capture
+   - Docker build with cache busting parameters
 
-5. **`scripts/build-docker.sh`** (NUEVO)
-   - Script Bash para Linux/Mac
-   - Funcionalidad idéntica a la versión Windows
+5. **`scripts/build-docker.sh`** (NEW)
+   - Bash script for Linux/Mac
+   - Identical functionality to Windows version
 
-### Documentación
+### Documentation
 
 6. **`docs/CACHE_BUSTING.md`**
-   - ✨ Nueva sección "Sistema Mejorado de Cache Busting (v2.0)"
-   - ✨ Guía completa del nuevo workflow
-   - ✨ Ejemplos y troubleshooting actualizado
+   - ✨ New section "Improved Cache Busting System (v2.0)"
+   - ✨ Complete guide for new workflow
+   - ✨ Updated examples and troubleshooting
 
-7. **`docs/CACHE_BUSTING_V2_SUMMARY.md`** (NUEVO)
-   - Este archivo - resumen ejecutivo
+7. **`docs/CACHE_BUSTING_V2_SUMMARY.md`** (NEW)
+   - This file - executive summary
 
-## 🔄 Nuevo Workflow de Deploy
+## 🔄 New Deploy Workflow
 
-### Antes (Manual y Propenso a Errores)
+### Before (Manual and Error-Prone)
 ```bash
-# 1. Modificar archivos JS/CSS
-# 2. Recordar incrementar STATIC_VERSION en .env ⚠️
-# 3. Build de Docker
-docker build -t sicedia/spiderhub:0.1.0-rc.3 .
+# 1. Modify JS/CSS files
+# 2. Remember to increment STATIC_VERSION in .env ⚠️
+# 3. Docker build
+docker build -t sicedia/spiderhub:0.1.0-rc.5 .
 # 4. Push
-docker push sicedia/spiderhub:0.1.0-rc.3
-# 5. Usuarios aún ven versiones antiguas si olvidaste step 2 ❌
+docker push sicedia/spiderhub:0.1.0-rc.5
+# 5. Users still see old versions if you forgot step 2 ❌
 ```
 
-### Ahora (Automático y Confiable)
+### Now (Automatic and Reliable)
 ```powershell
-# 1. Modificar archivos JS/CSS
-# 2. Build automático con cache busting
-.\scripts\build-docker.ps1 -Version "0.1.0-rc.4"
+# 1. Modify JS/CSS files
+# 2. Automatic build with cache busting
+.\scripts\build-docker.ps1 -Version "0.1.0-rc.5"
 # 3. Push
-docker push sicedia/spiderhub:0.1.0-rc.4
-# 4. ✅ Usuarios automáticamente ven la nueva versión
+docker push sicedia/spiderhub:0.1.0-rc.5
+# 4. ✅ Users automatically see new version
 ```
 
-## 🎯 Cómo Funciona
+## 🎯 How It Works
 
-### En Desarrollo (DEBUG=True)
+### In Development (DEBUG=True)
 ```
-Modificas DocumentResults.js
+Modify DocumentResults.js
 ↓
-Sistema detecta cambio en mtime
+System detects change in mtime
 ↓
-Nueva versión: ?v=1729000000
+New version: ?v=1729000000
 ↓
-Navegador carga nueva versión automáticamente
-```
-
-### En Producción (DEBUG=False)
-```
-Build de Docker con Git hash
-↓
-collectstatic copia archivos a STATIC_ROOT
-↓
-Sistema calcula MD5 de cada archivo
-↓
-Versiones únicas: ?v=a1b2c3d4e5f6
-↓
-Usuarios cargan nueva versión automáticamente
+Browser loads new version automatically
 ```
 
-## ✅ Checklist de Deploy
+### In Production (DEBUG=False)
+```
+Docker build with Git hash
+↓
+collectstatic copies files to STATIC_ROOT
+↓
+System calculates MD5 of each file
+↓
+Unique versions: ?v=a1b2c3d4e5f6
+↓
+Users load new version automatically
+```
 
-### Primera vez (Setup)
-- [ ] Hacer commit de los cambios
-- [ ] Ejecutar script de build: `.\scripts\build-docker.ps1 -Version "X.X.X"`
-- [ ] Push de la imagen a registry
-- [ ] Deploy del contenedor
+## ✅ Deploy Checklist
 
-### Siguientes deploys
-- [ ] Hacer commit de los cambios
-- [ ] Ejecutar script de build con nueva versión
-- [ ] Push y deploy
+### First time (Setup)
+- [ ] Commit changes
+- [ ] Run build script: `.\scripts\build-docker.ps1 -Version "X.X.X"`
+- [ ] Push image to registry
+- [ ] Deploy container
 
-**¡Ya no necesitas recordar incrementar versiones manualmente!**
+### Subsequent deploys
+- [ ] Commit changes
+- [ ] Run build script with new version
+- [ ] Push and deploy
 
-## 🧪 Pruebas
+**You no longer need to remember to manually increment versions!**
 
-### Verificar que Funciona
+## 🧪 Tests
 
-1. **En tu máquina principal:**
+### Verify It Works
+
+1. **On your main machine:**
    ```bash
-   # Inspeccionar HTML source
-   # Buscar: <script type="module" src="/static/core/js/ExploreEntry.js?v=
-   # Debería ver un hash único
+   # Inspect HTML source
+   # Search for: <script type="module" src="/static/core/js/ExploreEntry.js?v=
+   # Should see a unique hash
    ```
 
-2. **En tu celular u otra computadora:**
+2. **On your phone or another computer:**
    ```bash
-   # Abrir la aplicación
-   # Los cambios se reflejan automáticamente sin Ctrl+Shift+R
+   # Open the application
+   # Changes reflect automatically without Ctrl+Shift+R
    ```
 
-3. **Después de un cambio:**
+3. **After a change:**
    ```bash
-   # Modificar DocumentResults.js
-   # Build nueva imagen
+   # Modify DocumentResults.js
+   # Build new image
    # Deploy
-   # El hash en ?v= debería cambiar
+   # Hash in ?v= should change
    ```
 
-## 📊 Ventajas Medibles
+## 📊 Measurable Advantages
 
-| Aspecto | Antes | Ahora |
-|---------|-------|-------|
-| **Versiones manuales** | ✋ Sí, propensas a errores | ✅ No, automáticas |
-| **Cache en producción** | ❌ Indefinido (v=1.0.0) | ✅ Por archivo (MD5) |
-| **Usuarios ven cambios** | ❌ Solo con Ctrl+Shift+R | ✅ Automáticamente |
-| **Trazabilidad** | ❌ Limitada | ✅ Git hash + timestamp |
-| **Riesgo de error** | ⚠️ Alto | ✅ Muy bajo |
-| **Eficiencia** | ⚠️ Invalida todo | ✅ Solo archivos modificados |
+|| Aspect | Before | Now |
+||---------|-------|-------|
+|| **Manual versions** | ✋ Yes, error-prone | ✅ No, automatic |
+|| **Cache in production** | ❌ Indefinite (v=1.0.0) | ✅ Per file (MD5) |
+|| **Users see changes** | ❌ Only with Ctrl+Shift+R | ✅ Automatically |
+|| **Traceability** | ❌ Limited | ✅ Git hash + timestamp |
+|| **Error risk** | ⚠️ High | ✅ Very low |
+|| **Efficiency** | ⚠️ Invalidates everything | ✅ Only modified files |
 
-## 🎉 Resultado Final
+## 🎉 Final Result
 
-**Para ti (Desarrollador):**
-- ✅ Deploy más simple y confiable
-- ✅ Sin pasos manuales que olvidar
-- ✅ Trazabilidad completa de cada versión
-- ✅ Menos soporte a usuarios por "no veo los cambios"
+**For you (Developer):**
+- ✅ Simpler and more reliable deploy
+- ✅ No manual steps to forget
+- ✅ Complete traceability of each version
+- ✅ Less support to users for "I don't see the changes"
 
-**Para usuarios finales:**
-- ✅ Siempre ven la última versión
-- ✅ No necesitan Ctrl+Shift+R
-- ✅ Funciona en todos los dispositivos
-- ✅ Experiencia consistente
+**For end users:**
+- ✅ Always see the latest version
+- ✅ Don't need Ctrl+Shift+R
+- ✅ Works on all devices
+- ✅ Consistent experience
 
-## 🚀 Próximos Pasos
+## 🚀 Next Steps
 
-1. **Probar en desarrollo:**
-   - Modificar un archivo JS
-   - Verificar que el hash cambia
+1. **Test in development:**
+   - Modify a JS file
+   - Verify the hash changes
 
-2. **Build de nueva imagen:**
+2. **Build new image:**
    ```powershell
-   .\scripts\build-docker.ps1 -Version "0.1.0-rc.4"
+   .\scripts\build-docker.ps1 -Version "0.1.0-rc.5"
    ```
 
-3. **Deploy a producción:**
+3. **Deploy to production:**
    ```bash
-   docker push sicedia/spiderhub:0.1.0-rc.4
-   # Actualizar docker-compose o k8s con nueva versión
+   docker push sicedia/spiderhub:0.1.0-rc.5
+   # Update docker-compose or k8s with new version
    ```
 
-4. **Verificar:**
-   - Revisar en dispositivos múltiples
-   - Confirmar que cambios se reflejan automáticamente
+4. **Verify:**
+   - Check on multiple devices
+   - Confirm changes reflect automatically
 
-## 📞 Soporte
+## 📞 Support
 
-Si encuentras algún problema:
+If you encounter any problems:
 
-1. **Verificar logs del contenedor** para ver el `GIT_COMMIT_HASH`
-2. **Inspeccionar HTML source** para ver las versiones `?v=`
-3. **Revisar** `docs/CACHE_BUSTING.md` para troubleshooting detallado
+1. **Check container logs** to see the `GIT_COMMIT_HASH`
+2. **Inspect HTML source** to see the `?v=` versions
+3. **Review** `docs/CACHE_BUSTING.md` for detailed troubleshooting
 
 ---
 
-**Autor:** Sistema automatizado de cache busting  
-**Fecha:** 2025-10-14  
-**Versión:** 2.0  
-
+**Author:** Automated cache busting system  
+**Date:** 2025-10-14  
+**Version:** 2.0

@@ -1,162 +1,162 @@
-# Sistema de Logging - Configuración por Entorno
+# Logging System - Environment Configuration
 
-## 📋 Resumen
+## 📋 Summary
 
-Este proyecto implementa un sistema de logging dual:
-- **Backend (Python/Django)**: Configuración por entorno en settings
-- **Frontend (JavaScript)**: Logger.js con detección automática de entorno
+This project implements a dual logging system:
+- **Backend (Python/Django)**: Environment-based configuration in settings
+- **Frontend (JavaScript)**: Logger.js with automatic environment detection
 
-## 🔧 Configuración Backend (Django)
+## 🔧 Backend Configuration (Django)
 
-### **Desarrollo (development.py)**
+### **Development (development.py)**
 ```python
 LOGGING level: DEBUG
 Handlers: console
-Muestra: TODO (debug, info, warning, error)
-SQL queries: Habilitado
+Shows: ALL (debug, info, warning, error)
+SQL queries: Enabled
 ```
 
-**Características:**
-- ✅ Logs detallados de todas las operaciones
-- ✅ SQL queries visibles para debugging
-- ✅ Logs de aplicaciones en nivel DEBUG
-- ✅ Formato verbose con función y timestamp
+**Features:**
+- ✅ Detailed logs of all operations
+- ✅ SQL queries visible for debugging
+- ✅ Application logs at DEBUG level
+- ✅ Verbose format with function and timestamp
 
-### **Producción (production.py)**
+### **Production (production.py)**
 ```python
 LOGGING level: WARNING
 Handlers: console + file (/app/logs/django.log)
-Muestra: Solo warnings y errors
+Shows: Only warnings and errors
 ```
 
-**Características:**
-- ⚠️ Solo logs de WARNING y ERROR
-- 📁 Logs guardados en archivo rotativo (10MB, 5 backups)
-- 🔒 Formato simple en consola, verbose en archivo
-- 🚀 Optimizado para rendimiento
+**Features:**
+- ⚠️ Only WARNING and ERROR logs
+- 📁 Logs saved in rotating file (10MB, 5 backups)
+- 🔒 Simple format in console, verbose in file
+- 🚀 Optimized for performance
 
-## 🌐 Configuración Frontend (Logger.js)
+## 🌐 Frontend Configuration (Logger.js)
 
-### **Detección Automática de Entorno**
+### **Automatic Environment Detection**
 
-El logger detecta automáticamente el entorno basado en:
+The logger automatically detects the environment based on:
 ```javascript
-// Líneas 50-58 de Logger.js
+// Lines 50-58 of Logger.js
 const isDev = window.location.hostname === 'localhost' 
   || window.location.hostname === '127.0.0.1'
   || window.location.hostname.includes('dev')
   || window.location.search.includes('debug=true');
 ```
 
-### **Desarrollo**
+### **Development**
 ```
 Level: debug
-Muestra: debug, info, warn, error
-Handler: console con estilos y emojis
+Shows: debug, info, warn, error
+Handler: console with styles and emojis
 ```
 
-### **Producción**
+### **Production**
 ```
 Level: warn
-Muestra: Solo warn y error
-Handler: console (sin debug/info)
+Shows: Only warn and error
+Handler: console (no debug/info)
 ```
 
-## 📊 Comparación de Niveles
+## 📊 Level Comparison
 
-| Entorno | Backend Python | Frontend JS | SQL Queries | Archivo Log |
-|---------|---------------|-------------|-------------|-------------|
-| **Development** | DEBUG | debug | ✅ Sí | ❌ No |
-| **Production** | WARNING | warn | ❌ No | ✅ Sí |
+|| Environment | Backend Python | Frontend JS | SQL Queries | Log File |
+||---------|---------------|-------------|-------------|----------|
+|| **Development** | DEBUG | debug | ✅ Yes | ❌ No |
+|| **Production** | WARNING | warn | ❌ No | ✅ Yes |
 
-## 🚀 Uso en Producción
+## 🚀 Production Usage
 
 ### Backend
-Los logs en producción solo mostrarán:
-- ⚠️ Warnings importantes
-- ❌ Errores críticos
-- 🔥 Excepciones no manejadas
+Logs in production will only show:
+- ⚠️ Important warnings
+- ❌ Critical errors
+- 🔥 Unhandled exceptions
 
-Ejemplo:
+Example:
 ```python
 import logging
 
 logger = logging.getLogger('apps.myapp')
 
-# ❌ NO aparecerá en producción
+# ❌ Will NOT appear in production
 logger.debug('Debug message')
 logger.info('Info message')
 
-# ✅ SÍ aparecerá en producción
+# ✅ WILL appear in production
 logger.warning('Warning: slow query detected')
 logger.error('Error processing request', exc_info=True)
 ```
 
 ### Frontend
-Los logs en producción solo mostrarán:
+Logs in production will only show:
 ```javascript
 import { logger } from '@js/core/logger/Logger.js';
 
-// ❌ NO aparecerá en producción
+// ❌ Will NOT appear in production
 logger.debug('Debug info');
 logger.info('Operation completed');
 
-// ✅ SÍ aparecerá en producción
+// ✅ WILL appear in production
 logger.warn('Slow API response', { duration: 5000 });
 logger.error('API request failed', error);
 ```
 
-## 🔍 Testing de Configuración
+## 🔍 Testing Configuration
 
-### Verificar Backend
+### Verify Backend
 ```bash
 # Development
 python manage.py shell
 >>> import logging
->>> logging.getLogger().level  # Debería ser 10 (DEBUG)
+>>> logging.getLogger().level  # Should be 10 (DEBUG)
 
 # Production
 DJANGO_SETTINGS_MODULE=config.settings.production python manage.py shell
 >>> import logging
->>> logging.getLogger().level  # Debería ser 30 (WARNING)
+>>> logging.getLogger().level  # Should be 30 (WARNING)
 ```
 
-### Verificar Frontend
+### Verify Frontend
 ```javascript
-// En consola del navegador
+// In browser console
 console.log(window.__logger.config.level);
 
 // Development (localhost): 'debug'
 // Production (domain): 'warn'
 ```
 
-## 📁 Archivos de Log en Producción
+## 📁 Production Log Files
 
-Los logs de producción se guardan en:
+Production logs are saved in:
 ```
 /app/logs/django.log
 ```
 
-**Configuración de rotación:**
-- Tamaño máximo: 10MB
-- Backups: 5 archivos
-- Total espacio máximo: ~50MB
+**Rotation configuration:**
+- Maximum size: 10MB
+- Backups: 5 files
+- Total maximum space: ~50MB
 
-**Formato:**
+**Format:**
 ```
 [WARNING] 2025-01-15 10:30:45 apps.search 1234 5678 Slow query detected
 [ERROR] 2025-01-15 10:31:12 django.request 1234 5679 Internal Server Error
 ```
 
-## 🛠️ Override Manual (Debugging en Producción)
+## 🛠️ Manual Override (Debugging in Production)
 
 ### Backend
-Agregar al `.env` de producción:
+Add to production `.env`:
 ```env
-DJANGO_LOG_LEVEL=INFO  # Temporal para debugging
+DJANGO_LOG_LEVEL=INFO  # Temporary for debugging
 ```
 
-Luego modificar en `production.py`:
+Then modify in `production.py`:
 ```python
 'root': {
     'level': os.getenv('DJANGO_LOG_LEVEL', 'WARNING'),
@@ -164,61 +164,60 @@ Luego modificar en `production.py`:
 ```
 
 ### Frontend
-En consola del navegador:
+In browser console:
 ```javascript
-// Habilitar debug temporalmente
+// Enable debug temporarily
 window.__logger.setLevel('debug');
 
-// Verificar logs
+// Check logs
 window.__logger.getLogs();
 
-// Descargar logs
+// Download logs
 window.__logger.downloadLogs('production-debug.json');
 
-// Volver a normal
+// Return to normal
 window.__logger.setLevel('warn');
 ```
 
-## 📖 Referencias
+## 📖 References
 
 - **Backend Logging**: `config/settings/production.py`, `config/settings/development.py`
 - **Frontend Logger**: `apps/core/static/core/js/core/logger/Logger.js`
-- **Guía de Migración**: `docs/LOGGER_MIGRATION_GUIDE.md`
+- **Migration Guide**: `docs/LOGGER_MIGRATION_GUIDE.md`
 - **Django Logging**: https://docs.djangoproject.com/en/4.2/topics/logging/
 
-## ✅ Checklist Pre-Despliegue
+## ✅ Pre-Deployment Checklist
 
-Antes de pasar a producción, verificar:
+Before going to production, verify:
 
-- [ ] Variable `DJANGO_SETTINGS_MODULE=config.settings.production` configurada
-- [ ] Directorio `/app/logs/` existe y tiene permisos de escritura
-- [ ] No hay `console.log` sin migrar a `logger`
-- [ ] Logs sensibles (passwords, tokens) no se registran
-- [ ] Logs de producción no incluyen información de debug
-- [ ] Test de logs con `logger.warning()` funciona
-- [ ] Rotación de logs configurada correctamente
+- [ ] Variable `DJANGO_SETTINGS_MODULE=config.settings.production` configured
+- [ ] Directory `/app/logs/` exists and has write permissions
+- [ ] No unmigrated `console.log` to `logger`
+- [ ] Sensitive logs (passwords, tokens) are not logged
+- [ ] Production logs don't include debug information
+- [ ] Test logs with `logger.warning()` works
+- [ ] Log rotation configured correctly
 
-## 🎯 Beneficios de esta Configuración
+## 🎯 Benefits of this Configuration
 
-### Desarrollo
-- 🐛 Debugging completo con SQL queries
-- 🔍 Información detallada de todas las operaciones
-- ⚡ Feedback inmediato en consola
+### Development
+- 🐛 Complete debugging with SQL queries
+- 🔍 Detailed information of all operations
+- ⚡ Immediate feedback in console
 
-### Producción
-- 🚀 Rendimiento optimizado (menos I/O)
-- 💾 Uso de disco controlado (rotación)
-- 🔒 Información sensible no expuesta
-- 📊 Solo eventos importantes registrados
-- 💰 Menor coste en logs de servicios cloud
+### Production
+- 🚀 Optimized performance (less I/O)
+- 💾 Controlled disk usage (rotation)
+- 🔒 Sensitive information not exposed
+- 📊 Only important events logged
+- 💰 Lower cost in cloud logging services
 
-## 🔄 Migración Futura
+## 🔄 Future Migration
 
-El sistema está preparado para integrarse con:
-- **Sentry**: Tracking de errores en tiempo real
-- **LogRocket**: Session replay con logs
-- **CloudWatch/ELK**: Agregación centralizada de logs
-- **Datadog/New Relic**: Monitoreo APM
+The system is prepared to integrate with:
+- **Sentry**: Real-time error tracking
+- **LogRocket**: Session replay with logs
+- **CloudWatch/ELK**: Centralized log aggregation
+- **Datadog/New Relic**: APM monitoring
 
-Ver `Logger.js` líneas 268-307 para implementación de remote handler.
-
+See `Logger.js` lines 268-307 for remote handler implementation.

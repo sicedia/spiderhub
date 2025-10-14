@@ -1,177 +1,176 @@
-# Instalación de GNU Gettext en Windows
+# Installing GNU Gettext on Windows
 
-## Problema
+## Problem
 
-Los archivos de traducción de Django (`.po`) necesitan ser compilados a formato binario (`.mo`) para que las traducciones funcionen. El comando `python manage.py compilemessages` requiere **GNU gettext tools** instalados en el sistema.
+Django translation files (`.po`) need to be compiled to binary format (`.mo`) for translations to work. The command `python manage.py compilemessages` requires **GNU gettext tools** installed on the system.
 
-## Error Actual
+## Current Error
 
 ```
 CommandError: Can't find msgfmt. Make sure you have GNU gettext tools 0.19 or newer installed.
 ```
 
-O si se compila con script personalizado:
+Or if compiled with custom script:
 ```
 UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 13
 ```
 
-## Soluciones
+## Solutions
 
-### Opción 1: Instalación con Chocolatey (Recomendado)
+### Option 1: Installation with Chocolatey (Recommended)
 
-Si tienes [Chocolatey](https://chocolatey.org/) instalado:
+If you have [Chocolatey](https://chocolatey.org/) installed:
 
 ```powershell
-# Como administrador
+# As administrator
 choco install gettext -y
 ```
 
-Después de instalar, cierra y vuelve a abrir el terminal, luego:
+After installing, close and reopen terminal, then:
 
 ```powershell
-# Activar entorno virtual
+# Activate virtual environment
 .\pyspider\Scripts\Activate.ps1
 
-# Compilar mensajes
+# Compile messages
 python manage.py compilemessages
 
-# Reiniciar servidor
+# Restart server
 python manage.py runserver 8001
 ```
 
-### Opción 2: Descarga Manual (Más Simple)
+### Option 2: Manual Download (Simpler)
 
-1. **Descargar gettext para Windows**:
-   - Ir a: https://mlocati.github.io/articles/gettext-iconv-windows.html
-   - Descargar la versión "static" (64-bit)
-   - O usar este link directo: https://github.com/mlocati/gettext-iconv-windows/releases
+1. **Download gettext for Windows**:
+   - Go to: https://mlocati.github.io/articles/gettext-iconv-windows.html
+   - Download the "static" version (64-bit)
+   - Or use this direct link: https://github.com/mlocati/gettext-iconv-windows/releases
 
-2. **Extraer los archivos**:
-   - Descomprimir el archivo ZIP
-   - Copiar todo el contenido a una carpeta, ej: `C:\gettext`
+2. **Extract the files**:
+   - Unzip the file
+   - Copy all contents to a folder, e.g.: `C:\gettext`
 
-3. **Agregar al PATH**:
-   - Buscar "Edit the system environment variables" en Windows
+3. **Add to PATH**:
+   - Search "Edit the system environment variables" in Windows
    - Click "Environment Variables"
-   - En "System variables", seleccionar "Path" y click "Edit"
-   - Click "New" y agregar: `C:\gettext\bin` (o la ruta donde copiaste)
-   - Click "OK" en todas las ventanas
+   - In "System variables", select "Path" and click "Edit"
+   - Click "New" and add: `C:\gettext\bin` (or the path where you copied)
+   - Click "OK" in all windows
 
-4. **Verificar instalación**:
+4. **Verify installation**:
    ```powershell
-   # Abrir un NUEVO terminal
+   # Open a NEW terminal
    msgfmt --version
    
-   # Deberías ver algo como:
+   # You should see something like:
    # msgfmt (GNU gettext-tools) 0.21
    ```
 
-5. **Compilar mensajes**:
+5. **Compile messages**:
    ```powershell
    cd C:\Projects\spiderhub_web
    .\pyspider\Scripts\Activate.ps1
    python manage.py compilemessages
    ```
 
-### Opción 3: Usar Scripts Personalizados (Temporal)
+### Option 3: Use Custom Scripts (Temporary)
 
-Si no puedes instalar gettext, puedes usar nuestros scripts Python:
+If you can't install gettext, you can use our Python scripts:
 
 ```powershell
-# Este script NO funciona actualmente debido a problemas con Python 3.13
+# This script does NOT currently work due to issues with Python 3.13
 # python scripts\compile_po.py
 ```
 
-**⚠️ Problema**: Los scripts personalizados generan archivos .mo que Python 3.13 no puede leer correctamente debido a un bug de encoding en Windows.
+**⚠️ Problem**: Custom scripts generate .mo files that Python 3.13 can't read correctly due to an encoding bug on Windows.
 
-### Opción 4: WSL (Windows Subsystem for Linux)
+### Option 4: WSL (Windows Subsystem for Linux)
 
-Si tienes WSL instalado:
+If you have WSL installed:
 
 ```bash
-# En WSL
+# In WSL
 cd /mnt/c/Projects/spiderhub_web
-source pyspider/bin/activate  # o el path correcto de tu venv
+source pyspider/bin/activate  # or correct path of your venv
 python manage.py compilemessages
 ```
 
-## Verificación
+## Verification
 
-Después de compilar exitosamente, deberías ver:
+After successfully compiling, you should see:
 
 ```
 processing file locale\es\LC_MESSAGES\django.po
 processing file locale\pt\LC_MESSAGES\django.po
 ```
 
-Y los archivos `.mo` creados:
+And the created `.mo` files:
 ```
 locale/
 ├── es/
 │   └── LC_MESSAGES/
 │       ├── django.po
-│       └── django.mo  ← Archivo compilado
+│       └── django.mo  ← Compiled file
 ├── pt/
 │   └── LC_MESSAGES/
 │       ├── django.po
-│       └── django.mo  ← Archivo compilado
+│       └── django.mo  ← Compiled file
 ```
 
-## Estado Actual del Proyecto
+## Current Project Status
 
-**Sin archivos .mo compilados:**
-- ✅ El sistema multilenguaje está configurado
-- ✅ Los templates tienen marcas de traducción ({% trans %})
-- ✅ Los modelos usan gettext_lazy
-- ✅ El selector de idioma funciona
-- ⚠️ Los textos aparecen en inglés porque faltan los .mo
+**Without compiled .mo files:**
+- ✅ Multilingual system is configured
+- ✅ Templates have translation marks ({% trans %})
+- ✅ Models use gettext_lazy
+- ✅ Language selector works
+- ⚠️ Texts appear in English because .mo files are missing
 
-**Con archivos .mo compilados:**
-- ✅ Todos los textos se traducen automáticamente
-- ✅ 219+ mensajes en español disponibles
-- ✅ Sistema 100% funcional en ES, EN, PT
+**With compiled .mo files:**
+- ✅ All texts translate automatically
+- ✅ 219+ messages available in Spanish
+- ✅ System 100% functional in ES, EN, PT
 
-## Testing Rápido
+## Quick Testing
 
-Una vez compilados los mensajes:
+Once messages are compiled:
 
 ```powershell
-# Iniciar servidor
+# Start server
 python manage.py runserver 8001
 
-# Abrir en navegador:
-# http://localhost:8001/es/   ← Debería mostrar todo en español
-# http://localhost:8001/en/   ← Todo en inglés
-# http://localhost:8001/pt/   ← Português (cuando esté traducido)
+# Open in browser:
+# http://localhost:8001/es/   ← Should show everything in Spanish
+# http://localhost:8001/en/   ← Everything in English
+# http://localhost:8001/pt/   ← Portuguese (when translated)
 ```
 
 ## Troubleshooting
 
 ### Error: "Can't find msgfmt"
-- gettext no está instalado o no está en el PATH
-- Solución: Seguir Opción 1 o 2 arriba
+- gettext is not installed or not in PATH
+- Solution: Follow Option 1 or 2 above
 
 ### Error: "UnicodeDecodeError"
-- Archivo .mo tiene problemas de codificación
-- Solución: Eliminar .mo y recompilar con gettext oficial
+- .mo file has encoding problems
+- Solution: Delete .mo and recompile with official gettext
 ```powershell
 Remove-Item locale\es\LC_MESSAGES\django.mo -Force
 python manage.py compilemessages
 ```
 
-### Traducciones no aparecen
-1. Verificar que existe `locale/es/LC_MESSAGES/django.mo`
-2. Reiniciar el servidor Django
-3. Limpiar caché del navegador (Ctrl+F5)
-4. Verificar que la URL tiene el prefijo correcto: `/es/`
+### Translations don't appear
+1. Verify that `locale/es/LC_MESSAGES/django.mo` exists
+2. Restart Django server
+3. Clear browser cache (Ctrl+F5)
+4. Verify URL has correct prefix: `/es/`
 
-## Recursos
+## Resources
 
 - **Django i18n docs**: https://docs.djangoproject.com/en/5.2/topics/i18n/
 - **Gettext Windows**: https://mlocati.github.io/articles/gettext-iconv-windows.html
 - **Chocolatey**: https://chocolatey.org/
 
-## Contacto
+## Contact
 
-Para soporte con la instalación, contacta al equipo de desarrollo.
-
+For installation support, contact the development team.

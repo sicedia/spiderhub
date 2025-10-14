@@ -1,203 +1,203 @@
 # Deployment Checklist - SPIDERHUB
 
-## Pre-Deployment (Desarrollo Local)
+## Pre-Deployment (Local Development)
 
-### 1. Verificar Cambios en JavaScript
-- [ ] ¿Modificaste algún archivo `.js`?
-- [ ] ¿Cambiaste `darkMode.js`?
-- [ ] ¿Actualizaste componentes de charts (`NetworkGraph.js`, etc.)?
-- [ ] ¿Modificaste page managers (`ExplorePageManager.js`, `CabinetPageManager.js`, `AnalysisPageManager.js`)?
-- [ ] ¿Cambiaste archivos en `/core/utils/`?
+### 1. Verify JavaScript Changes
+- [ ] Did you modify any `.js` files?
+- [ ] Did you change `darkMode.js`?
+- [ ] Did you update chart components (`NetworkGraph.js`, etc.)?
+- [ ] Did you modify page managers (`ExplorePageManager.js`, `CabinetPageManager.js`, `AnalysisPageManager.js`)?
+- [ ] Did you change files in `/core/utils/`?
 
-### 2. Testing en Modo Incógnito
-- [ ] Abre el sitio en modo incógnito (Ctrl+Shift+N)
-- [ ] Verifica que el dark mode funcione correctamente
-- [ ] Prueba el network graph en la página de análisis
-- [ ] Prueba los filtros en explore data
-- [ ] Prueba el combo box de países en strategic cabinet
-- [ ] Verifica que NO hay errores en la consola del navegador
+### 2. Testing in Incognito Mode
+- [ ] Open the site in incognito mode (Ctrl+Shift+N)
+- [ ] Verify that dark mode works correctly
+- [ ] Test the network graph on the analysis page
+- [ ] Test filters in explore data
+- [ ] Test the country combo box in strategic cabinet
+- [ ] Verify there are NO errors in the browser console
 
-### 3. Preparar Versión Estática
+### 3. Prepare Static Version
 
-Si modificaste archivos JavaScript:
+If you modified JavaScript files:
 
 ```bash
-# Incrementar STATIC_VERSION
-# En tu .env de producción o docker-compose.yml
+# Increment STATIC_VERSION
+# In your production .env or docker-compose.yml
 
-# Para cambios menores (bugfixes, dark mode, estilos)
+# For minor changes (bugfixes, dark mode, styles)
 STATIC_VERSION=X.Y.(Z+1)
 
-# Para cambios mayores (nuevas features)
+# For major changes (new features)
 STATIC_VERSION=X.(Y+1).0
 ```
 
-Ejemplo:
+Example:
 ```bash
-# Antes
+# Before
 STATIC_VERSION=1.0.5
 
-# Después de cambios en darkMode.js
+# After changes in darkMode.js
 STATIC_VERSION=1.0.6
 ```
 
-### 4. Verificar Traducciones (si agregaste nuevo contenido)
-- [ ] ¿Agregaste nuevos textos visibles?
-- [ ] ¿Usaste `{% trans %}` en templates y `_()` en JavaScript?
-- [ ] Ejecutaste `makemessages` para extraer cadenas
-- [ ] Agregaste traducciones en `locale/es/LC_MESSAGES/` y `locale/pt/LC_MESSAGES/`
-- [ ] Compilaste con `compilemessages`
-- [ ] Probaste en español (`/es/`) y portugués (`/pt/`)
+### 4. Verify Translations (if you added new content)
+- [ ] Did you add new visible texts?
+- [ ] Did you use `{% trans %}` in templates and `_()` in JavaScript?
+- [ ] Did you run `makemessages` to extract strings
+- [ ] Did you add translations in `locale/es/LC_MESSAGES/` and `locale/pt/LC_MESSAGES/`
+- [ ] Did you compile with `compilemessages`
+- [ ] Did you test in Spanish (`/es/`) and Portuguese (`/pt/`)
 
-Ver: [Translation Workflow Guide](TRANSLATION_WORKFLOW.md)
+See: [Translation Workflow Guide](TRANSLATION_WORKFLOW.md)
 
-### 5. Actualizar Documentación
-- [ ] Documenta el cambio de `STATIC_VERSION` en el commit message
-- [ ] Si es un cambio mayor, actualiza el changelog
-- [ ] Si agregaste traducciones, documenta qué cadenas se agregaron
+### 5. Update Documentation
+- [ ] Document the `STATIC_VERSION` change in the commit message
+- [ ] If it's a major change, update the changelog
+- [ ] If you added translations, document which strings were added
 
-## Durante Deployment
+## During Deployment
 
-### 1. Configuración de Producción
-- [ ] Verifica que `.env` de producción tenga la nueva `STATIC_VERSION`
-- [ ] Verifica que `DEBUG=False` en producción
-- [ ] Verifica que `ALLOWED_HOSTS` esté configurado correctamente
-- [ ] Verifica que los archivos `.mo` compilados estén presentes en `locale/*/LC_MESSAGES/`
+### 1. Production Configuration
+- [ ] Verify that production `.env` has the new `STATIC_VERSION`
+- [ ] Verify that `DEBUG=False` in production
+- [ ] Verify that `ALLOWED_HOSTS` is configured correctly
+- [ ] Verify that compiled `.mo` files are present in `locale/*/LC_MESSAGES/`
 
-### 2. Build y Deploy
+### 2. Build and Deploy
 ```bash
-# Si usas Docker
+# If using Docker
 docker-compose -f docker-compose.yml build --no-cache
 docker-compose -f docker-compose.yml up -d
 
-# Collectstatic (si es necesario)
+# Collectstatic (if necessary)
 python manage.py collectstatic --noinput
 
-# Compilar traducciones (si agregaste nuevas)
+# Compile translations (if you added new ones)
 python manage.py compilemessages
 ```
 
-### 3. Verificar Headers HTTP
+### 3. Verify HTTP Headers
 ```bash
-# Verifica que los archivos JS tengan cache habilitado en producción
-curl -I https://tu-dominio.com/static/core/js/AnalysisEntry.js
+# Verify that JS files have cache enabled in production
+curl -I https://your-domain.com/static/core/js/AnalysisEntry.js
 
-# Deberías ver:
+# You should see:
 # Cache-Control: public, max-age=31536000
-# (en producción con whitenoise/nginx)
+# (in production with whitenoise/nginx)
 ```
 
 ## Post-Deployment
 
-### 1. Verificación Básica
-- [ ] El sitio carga sin errores 500/404
-- [ ] No hay errores en la consola del navegador (F12)
-- [ ] El dark mode funciona correctamente
-- [ ] Los gráficos se renderizan correctamente
-- [ ] Las traducciones funcionan en `/es/` y `/pt/`
-- [ ] El selector de idioma funciona correctamente
+### 1. Basic Verification
+- [ ] Site loads without 500/404 errors
+- [ ] No errors in browser console (F12)
+- [ ] Dark mode works correctly
+- [ ] Charts render correctly
+- [ ] Translations work in `/es/` and `/pt/`
+- [ ] Language selector works correctly
 
-### 2. Verificación de Cache Busting
+### 2. Cache Busting Verification
 
-#### Opción A: Verificar en HTML Source
-1. Abre el sitio en modo incógnito
-2. Click derecho > "Ver código fuente" (Ctrl+U)
-3. Busca `AnalysisEntry.js` o `ExploreEntry.js`
-4. Verifica que tenga `?v=` con la nueva versión
+#### Option A: Verify in HTML Source
+1. Open the site in incognito mode
+2. Right click > "View page source" (Ctrl+U)
+3. Search for `AnalysisEntry.js` or `ExploreEntry.js`
+4. Verify it has `?v=` with the new version
 
 ```html
-<!-- Debería verse así: -->
+<!-- Should look like this: -->
 <script type="module" src="/static/core/js/AnalysisEntry.js?v=1.0.6"></script>
 ```
 
-#### Opción B: Verificar en Network Tab
-1. Abre DevTools (F12) > Network tab
-2. Recarga la página (F5)
-3. Busca archivos `.js` en la lista
-4. Verifica que:
-   - Tengan `?v=X.Y.Z` en la URL
-   - El status sea `200` (no `304 Not Modified` ni `(memory cache)`)
+#### Option B: Verify in Network Tab
+1. Open DevTools (F12) > Network tab
+2. Reload the page (F5)
+3. Search for `.js` files in the list
+4. Verify that:
+   - They have `?v=X.Y.Z` in the URL
+   - Status is `200` (not `304 Not Modified` or `(memory cache)`)
 
-### 3. Verificación de Funcionalidad
-- [ ] **Network Graph**: Abre página de análisis, verifica que el grafo se renderice con colores correctos en dark/light mode
-- [ ] **Explore Filters**: Abre explore data, aplica filtros, verifica que funcionen
-- [ ] **Strategic Cabinet**: Abre strategic cabinet, cambia el país en el combo box, verifica que actualice los datos
-- [ ] **Dark Mode Toggle**: Cambia entre light/dark mode, verifica que todos los componentes se actualicen
+### 3. Functionality Verification
+- [ ] **Network Graph**: Open analysis page, verify graph renders with correct colors in dark/light mode
+- [ ] **Explore Filters**: Open explore data, apply filters, verify they work
+- [ ] **Strategic Cabinet**: Open strategic cabinet, change country in combo box, verify it updates data
+- [ ] **Dark Mode Toggle**: Switch between light/dark mode, verify all components update
 
-### 4. Si Algo Sale Mal
+### 4. If Something Goes Wrong
 
-#### Síntoma: "Los usuarios siguen viendo la versión vieja"
+#### Symptom: "Users still see the old version"
 ```bash
-# 1. Verifica la versión en el HTML
-curl https://tu-dominio.com/analysis/ | grep "AnalysisEntry.js"
+# 1. Verify version in HTML
+curl https://your-domain.com/analysis/ | grep "AnalysisEntry.js"
 
-# 2. Reinicia el servidor
+# 2. Restart server
 docker-compose restart web
 
-# 3. Limpia cache de nginx (si aplica)
+# 3. Clear nginx cache (if applicable)
 docker-compose exec nginx nginx -s reload
 
-# 4. Verifica que la variable de entorno se cargó
+# 4. Verify environment variable loaded
 docker-compose exec web env | grep STATIC_VERSION
 ```
 
-#### Síntoma: "Errores en consola después del deploy"
+#### Symptom: "Errors in console after deploy"
 ```bash
-# 1. Verifica que todos los archivos JS se copiaron correctamente
+# 1. Verify all JS files copied correctly
 docker-compose exec web ls -la staticfiles/core/js/
 
-# 2. Re-ejecuta collectstatic
+# 2. Re-run collectstatic
 docker-compose exec web python manage.py collectstatic --noinput --clear
 
-# 3. Verifica permisos
+# 3. Verify permissions
 docker-compose exec web ls -la staticfiles/
 ```
 
-#### Síntoma: "El dark mode no funciona"
+#### Symptom: "Dark mode doesn't work"
 ```bash
-# 1. Verifica que darkMode.js esté presente
-curl https://tu-dominio.com/static/core/js/core/utils/darkMode.js
+# 1. Verify darkMode.js is present
+curl https://your-domain.com/static/core/js/core/utils/darkMode.js
 
-# 2. Verifica la consola del navegador por errores de import
+# 2. Check browser console for import errors
 # F12 > Console tab
 
-# 3. Verifica que la versión del entry point haya cambiado
-# View Source > buscar "ExploreEntry.js?v="
+# 3. Verify entry point version changed
+# View Source > search for "ExploreEntry.js?v="
 ```
 
-## Rollback Rápido
+## Quick Rollback
 
-Si necesitas revertir:
+If you need to revert:
 
 ```bash
-# 1. Vuelve a la versión anterior en git
+# 1. Go back to previous version in git
 git checkout HEAD~1
 
-# 2. Rebuild (opcional si solo cambió .env)
+# 2. Rebuild (optional if only .env changed)
 docker-compose build web
 
 # 3. Restart
 docker-compose restart web
 
-# 4. O simplemente cambia STATIC_VERSION a la versión anterior
-# En .env:
-STATIC_VERSION=1.0.5  # versión que funcionaba
+# 4. Or simply change STATIC_VERSION to previous version
+# In .env:
+STATIC_VERSION=1.0.5  # version that worked
 
-# Y reinicia:
+# And restart:
 docker-compose restart web
 ```
 
-## Notas Importantes
+## Important Notes
 
 ### ⚠️ Chrome Memory Cache
-Chrome tiene un "memory cache" muy agresivo para módulos JavaScript. Incluso con cache busting correcto, los usuarios que tienen pestañas abiertas pueden necesitar:
-1. Cerrar TODAS las pestañas del sitio
-2. Reabrir en una nueva pestaña
+Chrome has a very aggressive "memory cache" for JavaScript modules. Even with correct cache busting, users who have open tabs may need to:
+1. Close ALL site tabs
+2. Reopen in a new tab
 
 ### ⚠️ Service Workers
-Si en el futuro implementas service workers, necesitarás invalidar su cache también:
+If you implement service workers in the future, you'll need to invalidate their cache too:
 ```javascript
-// En el service worker
+// In the service worker
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -210,5 +210,4 @@ self.addEventListener('activate', event => {
 ```
 
 ### ✅ Best Practice
-**Siempre incremente `STATIC_VERSION` cuando toque archivos JavaScript**, incluso para cambios menores. Es mejor ser conservador y forzar reload que tener usuarios con versiones mezcladas (entry point nuevo pero modules viejos).
-
+**Always increment `STATIC_VERSION` when you touch JavaScript files**, even for minor changes. It's better to be conservative and force reload than to have users with mixed versions (new entry point but old modules).

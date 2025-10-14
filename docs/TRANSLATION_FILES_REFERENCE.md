@@ -1,74 +1,74 @@
-# 📂 Referencia de Archivos de Traducción
+# 📂 Translation Files Reference
 
-## Estructura de Directorios
+## Directory Structure
 
 ```
 locale/
 ├── en/
-│   └── LC_MESSAGES/          # Inglés (solo estructura, sin archivos .po/.mo)
+│   └── LC_MESSAGES/          # English (structure only, no .po/.mo files)
 ├── es/
 │   └── LC_MESSAGES/
-│       ├── django.po         # ✏️ EDITAR: Traducciones de templates HTML
-│       ├── django.mo         # ⚠️ NO EDITAR: Archivo compilado
-│       ├── djangojs.po       # ✏️ EDITAR: Traducciones de JavaScript
-│       └── djangojs.mo       # ⚠️ NO EDITAR: Archivo compilado
+│       ├── django.po         # ✏️ EDIT: HTML template translations
+│       ├── django.mo         # ⚠️ DO NOT EDIT: Compiled file
+│       ├── djangojs.po       # ✏️ EDIT: JavaScript translations
+│       └── djangojs.mo       # ⚠️ DO NOT EDIT: Compiled file
 └── pt/
     └── LC_MESSAGES/
-        ├── django.po         # ✏️ EDITAR: Traducciones de templates HTML
-        ├── django.mo         # ⚠️ NO EDITAR: Archivo compilado
-        ├── djangojs.po       # ✏️ EDITAR: Traducciones de JavaScript
-        └── djangojs.mo       # ⚠️ NO EDITAR: Archivo compilado
+        ├── django.po         # ✏️ EDIT: HTML template translations
+        ├── django.mo         # ⚠️ DO NOT EDIT: Compiled file
+        ├── djangojs.po       # ✏️ EDIT: JavaScript translations
+        └── djangojs.mo       # ⚠️ DO NOT EDIT: Compiled file
 ```
 
 ---
 
-## 📋 Qué Archivo Editar
+## 📋 Which File to Edit
 
-| Necesito traducir... | Archivo a editar |
-|---------------------|------------------|
-| Texto de template HTML (`.html`) | `locale/{lang}/LC_MESSAGES/django.po` |
-| Texto de JavaScript (`.js`) | `locale/{lang}/LC_MESSAGES/djangojs.po` |
-| Texto del admin de Django | `locale/{lang}/LC_MESSAGES/django.po` |
-| Mensajes de error de Django | `locale/{lang}/LC_MESSAGES/django.po` |
+|| I need to translate... | File to edit |
+||------------------------|--------------|
+|| HTML template text (`.html`) | `locale/{lang}/LC_MESSAGES/django.po` |
+|| JavaScript text (`.js`) | `locale/{lang}/LC_MESSAGES/djangojs.po` |
+|| Django admin text | `locale/{lang}/LC_MESSAGES/django.po` |
+|| Django error messages | `locale/{lang}/LC_MESSAGES/django.po` |
 
 ---
 
-## 🔍 Cómo Encontrar Qué Traducir
+## 🔍 How to Find What to Translate
 
-### Después de ejecutar `makemessages`:
+### After running `makemessages`:
 
-1. **Abre el archivo `.po` correspondiente**
-2. **Busca cadenas con `msgstr ""`** (vacías)
-3. **Busca el marcador `#, fuzzy`** (traducciones que necesitan revisión)
+1. **Open the corresponding `.po` file**
+2. **Search for strings with `msgstr ""`** (empty)
+3. **Search for the `#, fuzzy` marker** (translations needing review)
 
-### Ejemplo:
+### Example:
 
 ```po
-# NUEVO - Necesita traducción
+# NEW - Needs translation
 #: .\apps\core\templates\core\nueva_pagina.html:10
 msgid "New Feature Title"
-msgstr ""                    # ← VACÍO: agregar traducción aquí
+msgstr ""                    # ← EMPTY: add translation here
 
-# YA TRADUCIDO
+# ALREADY TRANSLATED
 #: .\apps\core\templates\core\about.html:25
 msgid "Our Platform"
-msgstr "Nossa Plataforma"    # ← Ya tiene traducción
+msgstr "Nossa Plataforma"    # ← Already has translation
 ```
 
 ---
 
-## 📝 Formato de Archivos .po
+## 📝 .po File Format
 
-### Estructura básica:
+### Basic structure:
 
 ```po
-# Comentario (ubicación del texto original)
+# Comment (location of original text)
 #: .\apps\core\templates\core\about.html:25
 msgid "Original English text"
-msgstr "Texto traducido"
+msgstr "Translated text"
 ```
 
-### Texto multilínea:
+### Multiline text:
 
 ```po
 #: .\apps\core\templates\core\about.html:28
@@ -92,57 +92,57 @@ msgstr[1] "%(count)d documentos"
 
 ---
 
-## 🛠️ Scripts Disponibles
+## 🛠️ Available Scripts
 
 ### Windows PowerShell
 
 ```powershell
-# Extraer y compilar todo
+# Extract and compile everything
 .\scripts\update_translations.ps1
 
-# Solo extraer
+# Extract only
 .\scripts\update_translations.ps1 -Extract
 
-# Solo compilar
+# Compile only
 .\scripts\update_translations.ps1 -Compile
 ```
 
 ### Linux/Mac
 
 ```bash
-# Extraer y compilar todo
+# Extract and compile everything
 ./scripts/update_translations.sh --all
 
-# Solo extraer
+# Extract only
 ./scripts/update_translations.sh --extract
 
-# Solo compilar
+# Compile only
 ./scripts/update_translations.sh --compile
 ```
 
 ---
 
-## 🔄 Flujo de Trabajo Típico
+## 🔄 Typical Workflow
 
 ```
-1. Desarrollar feature con {% trans %} y _()
+1. Develop feature with {% trans %} and _()
    ↓
-2. Ejecutar: update_translations.ps1 -Extract
+2. Run: update_translations.ps1 -Extract
    ↓
-3. Editar archivos .po (agregar traducciones)
+3. Edit .po files (add translations)
    ↓
-4. Ejecutar: update_translations.ps1 -Compile
+4. Run: update_translations.ps1 -Compile
    ↓
-5. Reiniciar servidor Django
+5. Restart Django server
    ↓
-6. Probar en /es/ y /pt/
+6. Test in /es/ and /pt/
 ```
 
 ---
 
-## 📊 Verificar Estado de Traducciones
+## 📊 Check Translation Status
 
-### Ver cadenas sin traducir:
+### View untranslated strings:
 
 ```bash
 # PowerShell
@@ -152,7 +152,7 @@ Select-String -Path "locale\es\LC_MESSAGES\django.po" -Pattern 'msgstr ""' | Mea
 grep -c 'msgstr ""' locale/es/LC_MESSAGES/django.po
 ```
 
-### Ver última compilación:
+### View last compilation:
 
 ```bash
 # PowerShell
@@ -164,43 +164,42 @@ find locale -name "*.mo" -exec ls -lh {} \;
 
 ---
 
-## ⚠️ Errores Comunes
+## ⚠️ Common Errors
 
 ### Error: "Can't find msgfmt"
 
-**Solución:**
-- Windows: Instala gettext desde https://mlocati.github.io/articles/gettext-iconv-windows.html
+**Solution:**
+- Windows: Install gettext from https://mlocati.github.io/articles/gettext-iconv-windows.html
 - Linux: `sudo apt-get install gettext`
 - Mac: `brew install gettext`
 
-### Error: Las traducciones no aparecen
+### Error: Translations not appearing
 
 **Checklist:**
-1. ✅ ¿Compilaste los archivos .po a .mo?
-2. ✅ ¿Reiniciaste el servidor Django?
-3. ✅ ¿Estás accediendo a la URL correcta? (`/es/` o `/pt/`)
-4. ✅ ¿Limpiaste la caché del navegador?
+1. ✅ Did you compile .po files to .mo?
+2. ✅ Did you restart the Django server?
+3. ✅ Are you accessing the correct URL? (`/es/` or `/pt/`)
+4. ✅ Did you clear browser cache?
 
-### Error: Traducciones parciales
+### Error: Partial translations
 
-**Causa:** Algunos archivos .po tienen el flag `#, fuzzy`
+**Cause:** Some .po files have the `#, fuzzy` flag
 
-**Solución:** Edita el .po y elimina las líneas `#, fuzzy`
-
----
-
-## 🌐 Idiomas del Proyecto
-
-| Código | Nombre | Carpeta | Estado |
-|--------|--------|---------|--------|
-| `en` | English | `locale/en/` | ✅ Por defecto |
-| `es` | Español | `locale/es/` | ✅ Completo |
-| `pt` | Português | `locale/pt/` | ✅ Activo |
+**Solution:** Edit the .po and remove the `#, fuzzy` lines
 
 ---
 
-Ver también:
-- [TRANSLATIONS.md](../TRANSLATIONS.md) - Guía rápida
-- [TRANSLATION_WORKFLOW.md](TRANSLATION_WORKFLOW.md) - Guía completa
-- [TRANSLATION_QUICK_REFERENCE.md](TRANSLATION_QUICK_REFERENCE.md) - Comandos
+## 🌐 Project Languages
 
+|| Code | Name | Folder | Status |
+||------|------|--------|--------|
+|| `en` | English | `locale/en/` | ✅ Default |
+|| `es` | Spanish | `locale/es/` | ✅ Complete |
+|| `pt` | Portuguese | `locale/pt/` | ✅ Active |
+
+---
+
+See also:
+- [TRANSLATIONS.md](../TRANSLATIONS.md) - Quick guide
+- [TRANSLATION_WORKFLOW.md](TRANSLATION_WORKFLOW.md) - Complete guide
+- [TRANSLATION_QUICK_REFERENCE.md](TRANSLATION_QUICK_REFERENCE.md) - Commands
