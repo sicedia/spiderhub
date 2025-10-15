@@ -4,6 +4,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
+# In development (without nginx), Django handles security headers
+# These are inherited from base.py:
+# - SECURE_CONTENT_TYPE_NOSNIFF = True
+# - SECURE_BROWSER_XSS_FILTER = True
+
 # Cache busting para development - usar DummyCache para evitar cache
 CACHES = {
     'default': {

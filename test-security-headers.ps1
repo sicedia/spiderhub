@@ -14,10 +14,12 @@ Write-Host "1️⃣  Testing ROOT endpoint (/):" -ForegroundColor Yellow
 Write-Host "-------------------------------------------"
 try {
     $response = Invoke-WebRequest -Uri "$Url/" -Method Head -SkipCertificateCheck -ErrorAction Stop
-    $response.Headers['Strict-Transport-Security']
-    $response.Headers['X-Content-Type-Options']
-    $response.Headers['X-Frame-Options']
-    $response.Headers['X-XSS-Protection']
+    Write-Host "Strict-Transport-Security: $($response.Headers['Strict-Transport-Security'])"
+    Write-Host "X-Content-Type-Options: $($response.Headers['X-Content-Type-Options'])"
+    Write-Host "X-Frame-Options: $($response.Headers['X-Frame-Options'])"
+    Write-Host "X-XSS-Protection: $($response.Headers['X-XSS-Protection'])"
+    Write-Host "Referrer-Policy: $($response.Headers['Referrer-Policy'])"
+    Write-Host "Permissions-Policy: $($response.Headers['Permissions-Policy'])"
 } catch {
     Write-Host "Error: $_" -ForegroundColor Red
 }
@@ -27,10 +29,12 @@ Write-Host "2️⃣  Testing STATIC files (/static/favicon.ico):" -ForegroundCol
 Write-Host "-------------------------------------------"
 try {
     $response = Invoke-WebRequest -Uri "$Url/static/favicon.ico" -Method Head -SkipCertificateCheck -ErrorAction Stop
-    $response.Headers['Strict-Transport-Security']
-    $response.Headers['X-Content-Type-Options']
-    $response.Headers['X-Frame-Options']
-    $response.Headers['X-XSS-Protection']
+    Write-Host "Strict-Transport-Security: $($response.Headers['Strict-Transport-Security'])"
+    Write-Host "X-Content-Type-Options: $($response.Headers['X-Content-Type-Options'])"
+    Write-Host "X-Frame-Options: $($response.Headers['X-Frame-Options'])"
+    Write-Host "X-XSS-Protection: $($response.Headers['X-XSS-Protection'])"
+    Write-Host "Referrer-Policy: $($response.Headers['Referrer-Policy'])"
+    Write-Host "Permissions-Policy: $($response.Headers['Permissions-Policy'])"
 } catch {
     Write-Host "Error: $_" -ForegroundColor Red
 }
@@ -51,8 +55,13 @@ Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host "Verificación completa" -ForegroundColor Cyan
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "✅ El header DEBE incluir:" -ForegroundColor Green
+Write-Host "✅ Los headers DEBEN incluir:" -ForegroundColor Green
 Write-Host "   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload"
+Write-Host "   X-Content-Type-Options: nosniff"
+Write-Host "   X-Frame-Options: DENY"
+Write-Host "   X-XSS-Protection: 1; mode=block"
+Write-Host "   Referrer-Policy: strict-origin-when-cross-origin"
+Write-Host "   Permissions-Policy: geolocation=(), microphone=(), camera=()"
 Write-Host ""
 Write-Host "Si no ves estos headers, el problema puede ser:" -ForegroundColor Yellow
 Write-Host "  1. Nginx no se reinició correctamente"

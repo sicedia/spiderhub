@@ -37,11 +37,20 @@ SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT", "False") == "True"
 SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE", "False") == "True"
 CSRF_COOKIE_SECURE = os.getenv("CSRF_COOKIE_SECURE", "False") == "True"
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-# HSTS is handled by nginx to avoid duplicate headers
+
+# Security headers are managed by nginx in production to avoid duplicates
+# This is more efficient and ensures consistent headers across all responses
+# including static files, media files, and dynamic content
+# HSTS is handled by nginx
 # SECURE_HSTS_SECONDS = int(os.getenv("SECURE_HSTS_SECONDS", "31536000"))
 # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 # SECURE_HSTS_PRELOAD = True
-SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+# X-Content-Type-Options is handled by nginx
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+# X-XSS-Protection is handled by nginx  
+# SECURE_BROWSER_XSS_FILTER = True
+# Referrer-Policy is handled by nginx
+# SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 # Static files
 STATIC_ROOT = BASE_DIR / 'staticfiles'

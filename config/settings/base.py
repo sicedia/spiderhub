@@ -92,12 +92,16 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Security Headers
+# Security Headers - Only for development (without nginx)
+# In production, all security headers are managed by nginx
+# to avoid duplicates and ensure consistency
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 
-# Silence HSTS warning - HSTS is handled by nginx for performance
-SILENCED_SYSTEM_CHECKS = ['security.W004']
+# Silence security warnings - these are handled by nginx in production
+SILENCED_SYSTEM_CHECKS = [
+    'security.W004',  # HSTS is handled by nginx
+]
 
 # Internationalization
 LANGUAGE_CODE = 'en'
