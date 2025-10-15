@@ -381,7 +381,7 @@ class DocumentPDFExporter:
         if self.document.sdgs.exists():
             content.append(Paragraph("Sustainable Development Goals (SDGs)", self.styles['SubSection']))
             for sdg in self.document.sdgs.all():
-                sdg_text = f"• <b>SDG {sdg.number}:</b> {sdg.label}" if sdg.number else f"• {sdg.label}"
+                sdg_text = f"• {sdg.label}"
                 content.append(Paragraph(sdg_text, self.styles['InfoStyle']))
         
         # EU Policy Alignments
