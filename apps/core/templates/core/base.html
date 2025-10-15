@@ -42,7 +42,7 @@
   </script>
   
   <!-- JavaScript Catalog for i18n (must load before other scripts) -->
-  <script src="{% url 'javascript-catalog' %}"></script>
+  {% js_catalog_nonce %}
   
   <!-- JS con versionado automático -->
   {% js_module_versioned 'core/js/MainEntry.js' %}

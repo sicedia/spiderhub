@@ -7,6 +7,7 @@ import hashlib
 from django import template
 from django.conf import settings
 from django.templatetags.static import static
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 
 register = template.Library()
@@ -126,34 +127,71 @@ def static_versioned(path):
     return f"{static_url}?v={version}"
 
 
-@register.simple_tag
-def css_versioned(path):
+@register.simple_tag(takes_context=True)
+def css_versioned(context, path):
     """
-    Genera un tag <link> completo para CSS con versionado automático
+    Genera un tag <link> completo para CSS con versionado automático y CSP nonce
     
     Uso: {% css_versioned 'core/css/base.css' %}
     """
     versioned_url = static_versioned(path)
-    return mark_safe(f'<link rel="stylesheet" href="{versioned_url}">')
+    # Get CSP nonce from request if available
+    request = context.get('request')
+    nonce = getattr(request, 'csp_nonce', '') if request else ''
+    nonce_attr = f' nonce="{nonce}"' if nonce else ''
+    return mark_safe(f'<link rel="stylesheet" href="{versioned_url}"{nonce_attr}>')
 
 
-@register.simple_tag
-def js_versioned(path):
+@register.simple_tag(takes_context=True)
+def js_versioned(context, path):
     """
-    Genera un tag <script> completo para JavaScript con versionado automático
+    Genera un tag <script> completo para JavaScript con versionado automático y CSP nonce
     
     Uso: {% js_versioned 'core/js/main.js' %}
     """
     versioned_url = static_versioned(path)
-    return mark_safe(f'<script src="{versioned_url}"></script>')
+    # Get CSP nonce from request if available
+    request = context.get('request')
+    nonce = getattr(request, 'csp_nonce', '') if request else ''
+    nonce_attr = f' nonce="{nonce}"' if nonce else ''
+    return mark_safe(f'<script src="{versioned_url}"{nonce_attr}></script>')
 
 
-@register.simple_tag
-def js_module_versioned(path):
+@register.simple_tag(takes_context=True)
+def js_module_versioned(context, path):
     """
-    Genera un tag <script type="module"> para JavaScript modules con versionado automático
+    Genera un tag <script type="module"> para JavaScript modules con versionado automático y CSP nonce
     
     Uso: {% js_module_versioned 'core/js/main.js' %}
     """
     versioned_url = static_versioned(path)
-    return mark_safe(f'<script type="module" src="{versioned_url}"></script>')
+    # Get CSP nonce from request if available
+    request = context.get('request')
+    nonce = getattr(request, 'csp_nonce', '') if request else ''
+    nonce_attr = f' nonce="{nonce}"' if nonce else ''
+    return mark_safe(f'<script type="module" src="{versioned_url}"{nonce_attr}></script>')
+
+
+@register.simple_tag(takes_context=True)
+def js_catalog_nonce(context):
+    """
+    Genera un tag <script> para Django's JavaScript catalog con CSP nonce
+    
+    Uso: {% js_catalog_nonce %}
+    
+    Este tag es necesario para que el catálogo de traducciones de Django
+    funcione correctamente con Content Security Policy sin 'unsafe-inline'.
+    """
+    # Get CSP nonce from request if available
+    request = context.get('request')
+    nonce = getattr(request, 'csp_nonce', '') if request else ''
+    nonce_attr = f' nonce="{nonce}"' if nonce else ''
+    
+    # Generate URL for JavaScript catalog
+    try:
+        url = reverse('javascript-catalog')
+    except Exception:
+        # Fallback if javascript-catalog URL is not configured
+        url = '/jsi18n/'
+    
+    return mark_safe(f'<script src="{url}"{nonce_attr}></script>')

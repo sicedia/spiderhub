@@ -73,11 +73,14 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50MB  
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 20000  # Increase from default 1000
 
-# Content Security Policy settings for development (django-csp >=4.0 report-only)
-CONTENT_SECURITY_POLICY_REPORT_ONLY = {
+# Content Security Policy settings for development
+# More permissive than production but still uses nonces for scripts
+CONTENT_SECURITY_POLICY = {
     'DIRECTIVES': {
-        'default-src': ("'self'", "'unsafe-inline'"),
-        'script-src': ("'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://unpkg.com"),
+        'default-src': ("'self'",),
+        # Scripts use nonces in development to match production behavior
+        'script-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://unpkg.com"),
+        # Styles allow unsafe-inline in development for easier debugging
         'style-src': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),
         'style-src-elem': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),
         'style-src-attr': ("'self'", "'unsafe-inline'"),
@@ -87,8 +90,13 @@ CONTENT_SECURITY_POLICY_REPORT_ONLY = {
         'frame-src': ("'none'",),
         'object-src': ("'none'",),
         'base-uri': ("'self'",),
+        'form-action': ("'self'",),
         # Include report URI if provided
         **({ 'report-uri': (os.getenv('CSP_REPORT_URI'),) } if os.getenv('CSP_REPORT_URI') else {}),
     }
 }
+
+# Enable CSP nonces for scripts to match production behavior
+# This ensures development and production behave similarly
+CSP_INCLUDE_NONCE_IN = ['script-src']
 

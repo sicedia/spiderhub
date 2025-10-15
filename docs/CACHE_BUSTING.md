@@ -176,12 +176,12 @@ These variables are available in the Django application and used as fallback if 
 
 **For Windows (PowerShell):**
 ```powershell
-.\scripts\build-docker.ps1 -Version "0.1.0-rc.5"
+.\scripts\build-docker.ps1 -Version "0.1.0-rc.6"
 ```
 
 **For Linux/Mac (Bash):**
 ```bash
-./scripts/build-docker.sh 0.1.0-rc.5
+./scripts/build-docker.sh 0.1.0-rc.6
 ```
 
 These scripts automatically:
@@ -195,15 +195,15 @@ These scripts automatically:
 #### Step 1: Docker Build
 ```powershell
 # Windows
-.\scripts\build-docker.ps1 -Version "0.1.0-rc.5"
+.\scripts\build-docker.ps1 -Version "0.1.0-rc.6"
 
 # Linux/Mac  
-./scripts/build-docker.sh 0.1.0-rc.5
+./scripts/build-docker.sh 0.1.0-rc.6
 ```
 
 #### Step 2: Push to Registry
 ```bash
-docker push sicedia/spiderhub:0.1.0-rc.5
+docker push sicedia/spiderhub:0.1.0-rc.6
 docker push sicedia/spiderhub:latest
 ```
 

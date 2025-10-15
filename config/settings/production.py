@@ -139,21 +139,32 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50MB
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 20000  # Limit number of fields in a form submission
 
 # Content Security Policy settings (django-csp >=4.0)
+# Secure CSP configuration without 'unsafe-inline' - uses nonces instead
 CONTENT_SECURITY_POLICY = {
     'DIRECTIVES': {
         'default-src': ("'self'",),
-        'script-src': ("'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://unpkg.com"),
-        'style-src': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),
-        'style-src-elem': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),
-        'style-src-attr': ("'self'", "'unsafe-inline'"),
+        # Remove 'unsafe-inline', rely on nonces for inline scripts
+        'script-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://unpkg.com"),
+        # Remove 'unsafe-inline' from styles, use nonces
+        'style-src': ("'self'", "https://fonts.googleapis.com", "https://unpkg.com"),
+        'style-src-elem': ("'self'", "https://fonts.googleapis.com", "https://unpkg.com"),
+        # Allow style attributes with nonce fallback
+        'style-src-attr': ("'self'",),
         'img-src': ("'self'", "data:", "https://*.tile.openstreetmap.org", "https://unpkg.com"),
         'font-src': ("'self'", "data:", "https://fonts.gstatic.com"),
         'connect-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://raw.githubusercontent.com", "https://unpkg.com", "https://leafletjs.com"),
         'frame-src': ("'none'",),
         'object-src': ("'none'",),
         'base-uri': ("'self'",),
+        'form-action': ("'self'",),  # Add form action restriction
+        'frame-ancestors': ("'none'",),  # Add frame ancestors restriction
         
         # Include report URI if set
         **({ 'report-uri': (os.getenv('CSP_REPORT_URI'),) } if os.getenv('CSP_REPORT_URI') else {}),
     }
 }
+
+# Enable CSP nonces for scripts and styles
+# The django-csp middleware will automatically generate a unique nonce per request
+# and add it to the CSP header and make it available as request.csp_nonce
+CSP_INCLUDE_NONCE_IN = ['script-src', 'style-src', 'style-src-elem', 'style-src-attr']

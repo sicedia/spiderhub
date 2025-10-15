@@ -2,7 +2,7 @@
 # Genera versiones unicas basadas en el commit de Git y la fecha de build
 
 param(
-    [string]$Version = "0.1.0-rc.5"
+    [string]$Version = "0.1.0-rc.6"
 )
 
 # Configuracion
