@@ -84,6 +84,7 @@ COPY --chown=appuser:appuser config/ ./config/
 COPY --chown=appuser:appuser apps/ ./apps/
 COPY --chown=appuser:appuser templates/ ./templates/
 COPY --chown=appuser:appuser static/ ./static/
+COPY --chown=appuser:appuser locale/ ./locale/
 COPY --chown=appuser:appuser entrypoint.sh ./
 
 # Make entrypoint executable

@@ -1,0 +1,91 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-15 14:25-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:39
+msgid "Last 7 days"
+msgstr ""
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:40
+msgid "Last 30 days"
+msgstr ""
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:41
+msgid "Last 90 days"
+msgstr ""
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:42
+msgid "Last year"
+msgstr ""
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:45
+msgid "From Date"
+msgstr ""
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:46
+msgid "To Date"
+msgstr ""
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:47
+msgid "Clear"
+msgstr ""
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:48
+msgid "Today"
+msgstr ""
+
+#: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:49
+msgid "Apply"
+msgstr ""
+
+#: .\apps\core\static\core\js\components\filters\SearchBox.js:29
+msgid "Search documents..."
+msgstr ""
+
+#: .\apps\core\static\core\js\components\results\ResultsList.js:19
+msgid "No documents found"
+msgstr ""
+
+#: .\apps\core\static\core\js\components\results\ResultsList.js:20
+msgid "Try adjusting your search or filters to find what you're looking for."
+msgstr ""
+
+#: .\apps\core\static\core\js\components\results\ResultsList.js:21
+msgid "Loading documents..."
+msgstr ""
+
+#: .\apps\core\static\core\js\components\results\ResultsList.js:237
+msgid "View details for"
+msgstr ""
+
+#: .\apps\core\static\core\js\components\results\ResultsList.js:238
+#: .\apps\core\static\core\js\components\search\DocumentResults.js:261
+msgid "View Details"
+msgstr ""
+
+#: .\apps\core\static\core\js\components\search\DocumentResults.js:26
+msgid "No documents match your criteria."
+msgstr ""
+
+#: .\apps\core\static\core\js\components\search\DocumentResults.js:27
+msgid "Loading…"
+msgstr ""
+
+#: .\apps\core\static\core\js\components\search\DocumentResults.js:141
+msgid "Error loading results."
+msgstr ""

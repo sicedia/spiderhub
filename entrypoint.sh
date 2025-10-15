@@ -74,6 +74,9 @@ fi
 echo "Collecting static files..."
 python manage.py collectstatic --no-input --clear
 
+echo "Compiling translation messages..."
+python manage.py compilemessages --ignore=node_modules --ignore=pyspider
+
 # If Content Security Policy report URI is set, echo it
 if [ ! -z "$CSP_REPORT_URI" ]; then
   echo "CSP reporting enabled: $CSP_REPORT_URI"
