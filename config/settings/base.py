@@ -96,6 +96,9 @@ AUTH_PASSWORD_VALIDATORS = [
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 
+# Silence HSTS warning - HSTS is handled by nginx for performance
+SILENCED_SYSTEM_CHECKS = ['security.W004']
+
 # Internationalization
 LANGUAGE_CODE = 'en'
 TIME_ZONE = 'UTC'
