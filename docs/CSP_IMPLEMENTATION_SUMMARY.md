@@ -101,14 +101,17 @@ Content-Security-Policy: script-src 'self' 'nonce-abc123xyz' https://cdn.jsdeliv
 
 ## Production CSP Configuration
 
+**Updated 2025-10-16:** Added `'unsafe-hashes'` to style directives for vis-network compatibility.
+
 ```python
 CONTENT_SECURITY_POLICY = {
     'DIRECTIVES': {
         'default-src': ("'self'",),
         'script-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://unpkg.com"),
-        'style-src': ("'self'", "https://fonts.googleapis.com", "https://unpkg.com"),
-        'style-src-elem': ("'self'", "https://fonts.googleapis.com", "https://unpkg.com"),
-        'style-src-attr': ("'self'",),
+        # Note: 'unsafe-hashes' required for vis-network dynamic styles
+        'style-src': ("'self'", "'unsafe-hashes'", "https://fonts.googleapis.com", "https://unpkg.com"),
+        'style-src-elem': ("'self'", "'unsafe-hashes'", "https://fonts.googleapis.com", "https://unpkg.com"),
+        'style-src-attr': ("'self'", "'unsafe-hashes'"),
         'img-src': ("'self'", "data:", "https://*.tile.openstreetmap.org", "https://unpkg.com"),
         'font-src': ("'self'", "data:", "https://fonts.gstatic.com"),
         'connect-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://raw.githubusercontent.com", "https://unpkg.com", "https://leafletjs.com"),
@@ -122,6 +125,11 @@ CONTENT_SECURITY_POLICY = {
 
 CSP_INCLUDE_NONCE_IN = ['script-src', 'style-src', 'style-src-elem', 'style-src-attr']
 ```
+
+**Why 'unsafe-hashes'?**
+- More secure than `'unsafe-inline'` - only allows specific hashed styles
+- Required for vis-network library which injects styles dynamically
+- Does not compromise script security (scripts still use nonces)
 
 ## Testing Instructions
 

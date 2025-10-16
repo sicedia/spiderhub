@@ -147,25 +147,28 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50MB
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 20000  # Limit number of fields in a form submission
 
 # Content Security Policy settings (django-csp >=4.0)
-# Secure CSP configuration without 'unsafe-inline' - uses nonces instead
+# Note: vis-network requires 'unsafe-inline' for dynamically injected <style> elements
+# This is a necessary security trade-off for this third-party library
 CONTENT_SECURITY_POLICY = {
     'DIRECTIVES': {
         'default-src': ("'self'",),
-        # Remove 'unsafe-inline', rely on nonces for inline scripts
+        # Scripts remain secure with nonces only
         'script-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://unpkg.com"),
-        # Remove 'unsafe-inline' from styles, use nonces
+        # style-src: Keep nonces for our own styles
         'style-src': ("'self'", "https://fonts.googleapis.com", "https://unpkg.com"),
-        'style-src-elem': ("'self'", "https://fonts.googleapis.com", "https://unpkg.com"),
-        # Allow style attributes with nonce fallback
-        'style-src-attr': ("'self'",),
+        # style-src-elem: Must allow 'unsafe-inline' for vis-network's dynamic <style> injection
+        # vis-network creates <style> elements at runtime which cannot use nonces
+        'style-src-elem': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),
+        # style-src-attr: Keep 'unsafe-hashes' for inline style attributes
+        'style-src-attr': ("'self'", "'unsafe-hashes'"),
         'img-src': ("'self'", "data:", "https://*.tile.openstreetmap.org", "https://unpkg.com"),
         'font-src': ("'self'", "data:", "https://fonts.gstatic.com"),
         'connect-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://raw.githubusercontent.com", "https://unpkg.com", "https://leafletjs.com"),
         'frame-src': ("'none'",),
         'object-src': ("'none'",),
         'base-uri': ("'self'",),
-        'form-action': ("'self'",),  # Add form action restriction
-        'frame-ancestors': ("'none'",),  # Add frame ancestors restriction
+        'form-action': ("'self'",),
+        'frame-ancestors': ("'none'",),
         
         # Include report URI if set
         **({ 'report-uri': (os.getenv('CSP_REPORT_URI'),) } if os.getenv('CSP_REPORT_URI') else {}),

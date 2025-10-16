@@ -31,7 +31,7 @@ grep -n "HSTS is handled by nginx" config/settings/production.py
 # 42:# HSTS is handled by nginx to avoid duplicate headers
 
 # 4. Reconstruir la imagen web si usas imagen local
-# (Si usas sicedia/spiderhub:0.1.0-rc.7, necesitas crear una nueva versión)
+# (Si usas sicedia/spiderhub:0.1.0-rc.8, necesitas crear una nueva versión)
 docker compose build web
 
 # 5. Reiniciar los servicios
