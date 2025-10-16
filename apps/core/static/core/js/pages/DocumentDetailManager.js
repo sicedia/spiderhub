@@ -8,6 +8,7 @@ import { BasePageManager } from '../core/base/BasePageManager.js';
 import { DOMUtils } from '../core/utils/dom.js';
 import { eventBus } from '../core/events/EventBus.js';
 import { EVENTS } from '../core/constants/config.js';
+import { buildI18nUrl } from '../core/utils/i18n.js';
 
 // Coordinators
 import { DocumentContentCoordinator } from '../coordinators/DocumentContentCoordinator.js';
@@ -243,7 +244,7 @@ export class DocumentDetailManager extends BasePageManager {
       errorContainer.innerHTML = `
         <h3>Document Not Found</h3>
         <p>The requested document could not be found. It may have been moved or deleted.</p>
-        <a href="/explore" class="btn btn-primary">Browse Documents</a>
+        <a href="${buildI18nUrl('explore')}" class="btn btn-primary">Browse Documents</a>
       `;
     } else {
       errorContainer.innerHTML = `

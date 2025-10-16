@@ -7,6 +7,7 @@ import { logger } from '../core/logger/Logger.js';
 import { eventBus } from '../core/events/EventBus.js';
 import { EVENTS } from '../core/constants/config.js';
 import { DOMUtils } from '../core/utils/dom.js';
+import { navigateI18n } from '../core/utils/i18n.js';
 import { AnimationUtils } from '../core/utils/animations.js';
 
 export class HomeInteractionCoordinator {
@@ -69,8 +70,8 @@ export class HomeInteractionCoordinator {
         // Emit event
         eventBus.emit(EVENTS.HOME_SEARCH_SUBMITTED, { query });
         
-        // Redirect to explore page with search query
-        window.location.href = `/explore?search=${encodeURIComponent(query)}`;
+        // Redirect to explore page with search query (with i18n prefix)
+        navigateI18n(`explore?search=${encodeURIComponent(query)}`);
       }
     });
     
@@ -143,13 +144,13 @@ export class HomeInteractionCoordinator {
     
     switch (action) {
       case 'explore':
-        window.location.href = '/explore';
+        navigateI18n('explore');
         break;
       case 'analysis':
-        window.location.href = '/analysis';
+        navigateI18n('analysis');
         break;
       case 'about':
-        window.location.href = '/about';
+        navigateI18n('about');
         break;
       default:
         this.logger.warn('Unknown quick action', { action });
