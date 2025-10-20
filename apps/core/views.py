@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
-from django.db.models import Count, Q
+from django.db.models import Count, Q, Avg
 from apps.documents.models import (
-    Document, Actor, Theme, BeneficiaryGroup, SDG, CommitmentDetail, Country, Commitment
+    Document, Actor, Theme, BeneficiaryGroup, SDG, CommitmentDetail, Country, Commitment, DocumentSDG
 )
 import logging
 from django.db import connection
@@ -316,7 +316,7 @@ def analysis_page(request):
     # 1.1) Lead countries specifically (for the lead country chart)
     lead_country_counts = get_lead_country_counts()
 
-    # 2) SDGs: M2M → SDG with document count
+    # 2) SDGs: M2M → SDG with document count AND average relevance
     sdgs_qs = (
         SDG.objects
            .annotate(count=Count('documents'))
@@ -325,6 +325,18 @@ def analysis_page(request):
     sdgs = {
         f'sdg{s.number}': s.count
         for s in sdgs_qs
+    }
+
+    # Calculate average relevance per SDG
+    sdg_relevance_qs = (
+        DocumentSDG.objects
+        .values('sdg__number')
+        .annotate(avg_relevance=Avg('relevance_score'))
+        .order_by('sdg__number')
+    )
+    sdg_relevance = {
+        f'sdg{item["sdg__number"]}': round(item['avg_relevance'] or 0, 3)
+        for item in sdg_relevance_qs
     }
     
     # SDG descriptive information for enhanced tooltips
@@ -1023,6 +1035,7 @@ def analysis_page(request):
         },
         "analysis_data": {
             "sdg_counts":     sdgs,
+            "sdg_relevance":  sdg_relevance,
             "sdg_info": SDG_INFO,
             "sdg_labels": sdg_labels,
             "binding_counts": legal_bindingness,

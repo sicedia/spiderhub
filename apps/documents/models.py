@@ -343,7 +343,7 @@ class Document(BaseModel):
         blank=True,
         help_text="EU policy framework alignments"
     )
-    sdgs = models.ManyToManyField(SDG, related_name="documents", blank=True)
+    sdgs = models.ManyToManyField(SDG, through="DocumentSDG", related_name="documents", blank=True)
 
     # Admin fields
     created_by = models.ForeignKey(
@@ -599,6 +599,31 @@ class DocumentBeneficiaryGroupRaw(BaseModel):
     class Meta:
         unique_together = ("document", "raw_group")
         verbose_name = "Raw Beneficiary Link"
+
+
+class DocumentSDG(BaseModel):
+    """Relación intermedia entre Document y SDG con relevancia."""
+    document = models.ForeignKey("Document", on_delete=models.CASCADE)
+    sdg = models.ForeignKey("SDG", on_delete=models.CASCADE)
+    relevance_score = models.FloatField(null=True, blank=True, default=1.0)
+    justification = models.TextField(null=True, blank=True)
+
+    # Search fields
+    justification_normalized = models.TextField(editable=False, null=True, blank=True)
+    search_vector = SearchVectorField(null=True, editable=False)
+
+    class Meta:
+        db_table = "documents_document_sdgs"  # Reuse existing table
+        unique_together = ("document", "sdg")
+        indexes = [
+            GinIndex(fields=['search_vector'], name='doc_sdg_search_vector_gin'),
+            GinIndex(fields=['justification_normalized'], opclasses=['gin_trgm_ops'], name='doc_sdg_just_norm_gin'),
+        ]
+        verbose_name = "Document–SDG Link"
+        verbose_name_plural = "Document–SDG Links"
+
+    def __str__(self):
+        return f"{self.document.title[:50]} – {self.sdg.label} ({self.relevance_score or 0:.2f})"
 
 
 # ---------------------------------------------------------------------------

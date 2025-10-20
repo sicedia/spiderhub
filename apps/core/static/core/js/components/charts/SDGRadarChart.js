@@ -58,35 +58,33 @@ export class SDGRadarChart extends BaseChart {
     }
 
     const labels = this.data.labels || [];
-    const values = this.data.datasets[0].data || [];
+    const datasets = this.data.datasets || [];
 
-    // Calculate max value if not provided
-    const maxValue = this.options.maxValue || Math.max(...values, 10);
+    // For normalized data, max is always 100%
+    const maxValue = 100;
 
     const config = {
       type: 'radar',
       data: {
         labels: labels,
-        datasets: [{
-          label: 'SDG Coverage',
-          data: values,
-          backgroundColor: `${this.options.colors.primary}33`, // 20% opacity
-          borderColor: this.options.colors.border,
-          borderWidth: 2,
-          pointBackgroundColor: this.options.colors.primary,
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: this.options.colors.border,
-          pointRadius: 4,
-          pointHoverRadius: 6
-        }]
+        datasets: datasets
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false
+            display: true,
+            position: 'bottom',
+            labels: {
+              color: this.options.colors.text,
+              font: {
+                size: 11,
+                family: 'Poppins'
+              },
+              padding: 12,
+              usePointStyle: true
+            }
           },
           tooltip: {
             enabled: true,
@@ -125,7 +123,17 @@ export class SDGRadarChart extends BaseChart {
                 return `🎯 ${label}`;
               },
               label: (context) => {
-                return `📄 Documents: ${context.parsed.r}`;
+                const datasetLabel = context.dataset.label;
+                const dataIndex = context.dataIndex;
+                const rawData = context.dataset.rawData || [];
+                const absoluteValue = rawData[dataIndex];
+                
+                if (datasetLabel === 'Document Frequency') {
+                  return `📄 Documents: ${absoluteValue}`;
+                } else if (datasetLabel === 'Avg Importance') {
+                  return `⭐ Avg Relevance: ${absoluteValue.toFixed(3)} (${(absoluteValue * 100).toFixed(1)}%)`;
+                }
+                return `${datasetLabel}: ${absoluteValue}`;
               },
               afterLabel: (context) => {
                 const label = context.label; // e.g., "SDG 1"
@@ -150,12 +158,15 @@ export class SDGRadarChart extends BaseChart {
             max: maxValue,
             beginAtZero: true,
             ticks: {
-              stepSize: Math.ceil(maxValue / 5),
+              stepSize: 20,
               color: this.options.colors.text,
               backdropColor: 'transparent',
               font: {
                 size: 10,
                 family: 'Poppins'
+              },
+              callback: function(value) {
+                return value + '%';
               }
             },
             grid: {
@@ -193,7 +204,10 @@ export class SDGRadarChart extends BaseChart {
     this.chartInstance = this.chart;
     
     eventBus.emit('chart:rendered', { chartId: this.element.id, type: 'radar' });
-    this.logger.info('SDG Radar chart rendered', { sdgs: labels.length });
+    this.logger.info('SDG Radar chart rendered', { 
+      sdgs: labels.length,
+      datasets: datasets.length 
+    });
   }
 
   /**
@@ -202,12 +216,11 @@ export class SDGRadarChart extends BaseChart {
   async updateData(newData) {
     if (this.chart && newData) {
       this.chart.data.labels = newData.labels;
-      this.chart.data.datasets[0].data = newData.datasets[0].data;
+      this.chart.data.datasets = newData.datasets;
       
-      // Recalculate max value
-      const maxValue = Math.max(...newData.datasets[0].data, 10);
-      this.chart.options.scales.r.max = maxValue;
-      this.chart.options.scales.r.ticks.stepSize = Math.ceil(maxValue / 5);
+      // For normalized data, max is always 100%
+      this.chart.options.scales.r.max = 100;
+      this.chart.options.scales.r.ticks.stepSize = 20;
       
       this.chart.update();
     }

@@ -6,8 +6,8 @@ from django.forms import Textarea, TextInput
 from .models import (
     Country, City,    
     Theme, Actor, BeneficiaryGroup, BeneficiaryGroupRaw, SDG, Document,
-    DocumentTheme, DocumentActor, DocumentBeneficiaryGroupRaw,
-    PracticalApplication, Commitment, CommitmentDetail, KPI, SourceFile, EUPolicy  # SourceFile was missing
+    DocumentTheme, DocumentActor, DocumentBeneficiaryGroupRaw, DocumentSDG,
+    PracticalApplication, Commitment, CommitmentDetail, KPI, SourceFile, EUPolicy
 )
 
 # Custom admin site configuration
@@ -317,6 +317,20 @@ class DocumentActorInline(admin.TabularInline):
     can_delete = True
     show_change_link = True
 
+class DocumentSDGInline(admin.TabularInline):
+    model = DocumentSDG
+    extra = 0
+    fields = ('sdg', 'relevance_score', 'justification')
+    autocomplete_fields = ('sdg',)
+    classes = ('collapse',)
+    verbose_name = "SDG Relationship"
+    verbose_name_plural = "SDG Relationships"
+    
+    max_num = 17  # Maximum 17 SDGs
+    
+    can_delete = True
+    show_change_link = True
+
 class PracticalApplicationInline(admin.StackedInline):
     model = PracticalApplication
     extra = 0  # Change from 1 to 0
@@ -386,7 +400,7 @@ class DocumentAdmin(admin.ModelAdmin):
         'themes__label', 'actors__label'
     )
     date_hierarchy = 'event_date'
-    filter_horizontal = ('beneficiary_groups', 'sdgs', 'countries_involved', 'eu_policy_alignments')
+    filter_horizontal = ('beneficiary_groups', 'countries_involved', 'eu_policy_alignments')
     readonly_fields = ('created_at', 'updated_at', 'title_normalized', 'executive_summary_normalized', 'search_vector', 'ai_check_date')
     autocomplete_fields = ('created_by', 'event_city', 'event_country', 'lead_country', 'human_reviewer')
     list_per_page = 20
@@ -397,6 +411,7 @@ class DocumentAdmin(admin.ModelAdmin):
         SourceFileInline,
         DocumentThemeInline,
         DocumentActorInline,
+        DocumentSDGInline,
         PracticalApplicationInline,
         CommitmentInline,
         KPIInline
@@ -424,7 +439,7 @@ class DocumentAdmin(admin.ModelAdmin):
             'classes': ('wide',)
         }),
         ('🔗 Direct Relationships', {
-            'fields': ('beneficiary_groups', 'sdgs', 'eu_policy_alignments'),
+            'fields': ('beneficiary_groups', 'eu_policy_alignments'),
             'classes': ('wide',)
         }),
         ('👤 Admin Fields', {
@@ -747,6 +762,134 @@ class DocumentBeneficiaryGroupRawAdmin(admin.ModelAdmin):
     def raw_group_display(self, obj):
         return format_html('<strong style="color: #17a2b8;">{}</strong>', obj.raw_group.name)
     raw_group_display.short_description = 'Beneficiary Group'
+
+@admin.register(DocumentSDG)
+class DocumentSDGAdmin(admin.ModelAdmin):
+    list_display = ('document_title', 'sdg_display', 'relevance_score_badge', 'justification_preview', 'created_at')
+    list_display_links = ('document_title',)
+    list_filter = ('sdg__number', 'relevance_score', 'created_at')
+    search_fields = ('document__title', 'sdg__label', 'justification')
+    autocomplete_fields = ('document', 'sdg')
+    readonly_fields = ('created_at', 'updated_at', 'justification_normalized', 'search_vector')
+    list_per_page = 25
+    
+    fieldsets = (
+        ('🔗 Relationship', {
+            'fields': ('document', 'sdg'),
+            'classes': ('wide',)
+        }),
+        ('⭐ Relevance', {
+            'fields': ('relevance_score', 'justification'),
+            'classes': ('wide',),
+            'description': 'Relevance score from 0.0 (not relevant) to 1.0 (highly relevant)'
+        }),
+        ('🏷️ Metadata', {
+            'fields': ('created_at', 'updated_at', 'justification_normalized', 'search_vector'),
+            'classes': ('collapse',)
+        }),
+    )
+    
+    formfield_overrides = {
+        models.TextField: {'widget': Textarea(attrs={'rows': 4, 'cols': 80})},
+        models.FloatField: {'widget': TextInput(attrs={'size': '10'})},
+    }
+    
+    actions = ['set_high_relevance', 'set_medium_relevance', 'set_low_relevance', 'randomize_relevance']
+    
+    def document_title(self, obj):
+        return obj.document.title[:50] + "..." if len(obj.document.title) > 50 else obj.document.title
+    document_title.short_description = 'Document'
+    
+    def sdg_display(self, obj):
+        return format_html(
+            '<span style="background-color: #e83e8c; color: white; padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: bold;">SDG {}</span> <strong>{}</strong>',
+            obj.sdg.number, obj.sdg.label
+        )
+    sdg_display.short_description = 'SDG'
+    
+    def relevance_score_badge(self, obj):
+        if obj.relevance_score is not None:
+            # Color coding based on relevance
+            if obj.relevance_score >= 0.8:
+                color = '#28a745'  # Green - High
+                icon = '🟢'
+                level = 'High'
+            elif obj.relevance_score >= 0.6:
+                color = '#ffc107'  # Yellow - Medium
+                icon = '🟡'
+                level = 'Medium'
+            else:
+                color = '#dc3545'  # Red - Low
+                icon = '🔴'
+                level = 'Low'
+            
+            # Format the score before passing to format_html
+            score_formatted = f'{obj.relevance_score:.3f}'
+            percentage = int(obj.relevance_score * 100)
+            
+            return format_html(
+                '{} <span style="background-color: {}; color: white; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold;">{} ({}%)</span> <small style="color: {};">{}</small>',
+                icon, color, score_formatted, percentage, color, level
+            )
+        return '-'
+    relevance_score_badge.short_description = 'Relevance Score'
+    relevance_score_badge.admin_order_field = 'relevance_score'
+    
+    def justification_preview(self, obj):
+        if obj.justification:
+            preview = obj.justification[:80] + "..." if len(obj.justification) > 80 else obj.justification
+            return format_html('<div style="max-width: 250px;">{}</div>', preview)
+        return '-'
+    justification_preview.short_description = 'Justification'
+    
+    # Custom admin actions
+    def set_high_relevance(self, request, queryset):
+        """Set relevance to 0.9 (high)"""
+        import random
+        count = 0
+        for obj in queryset:
+            obj.relevance_score = round(random.uniform(0.85, 1.0), 2)
+            obj.save(update_fields=['relevance_score'])
+            count += 1
+        self.message_user(request, f'Set {count} SDG link(s) to HIGH relevance (0.85-1.0)')
+    set_high_relevance.short_description = "Set to HIGH relevance (0.85-1.0)"
+    
+    def set_medium_relevance(self, request, queryset):
+        """Set relevance to 0.7 (medium)"""
+        import random
+        count = 0
+        for obj in queryset:
+            obj.relevance_score = round(random.uniform(0.6, 0.85), 2)
+            obj.save(update_fields=['relevance_score'])
+            count += 1
+        self.message_user(request, f'Set {count} SDG link(s) to MEDIUM relevance (0.6-0.85)')
+    set_medium_relevance.short_description = "Set to MEDIUM relevance (0.6-0.85)"
+    
+    def set_low_relevance(self, request, queryset):
+        """Set relevance to 0.5 (low)"""
+        import random
+        count = 0
+        for obj in queryset:
+            obj.relevance_score = round(random.uniform(0.3, 0.6), 2)
+            obj.save(update_fields=['relevance_score'])
+            count += 1
+        self.message_user(request, f'Set {count} SDG link(s) to LOW relevance (0.3-0.6)')
+    set_low_relevance.short_description = "Set to LOW relevance (0.3-0.6)"
+    
+    def randomize_relevance(self, request, queryset):
+        """Randomize relevance scores"""
+        import random
+        count = 0
+        for obj in queryset:
+            obj.relevance_score = round(random.uniform(0.5, 1.0), 2)
+            obj.save(update_fields=['relevance_score'])
+            count += 1
+        self.message_user(request, f'Randomized {count} SDG link(s) relevance scores (0.5-1.0)')
+    randomize_relevance.short_description = "Randomize relevance (0.5-1.0)"
+    
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.select_related('document', 'sdg')
 
 @admin.register(PracticalApplication)
 class PracticalApplicationAdmin(admin.ModelAdmin):

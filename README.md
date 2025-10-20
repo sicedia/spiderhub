@@ -100,6 +100,7 @@ This repository implements SPIDERHUB’s core functionality:
 The default admin user credentials are:
 
 - **Username**: `admin`
+- **email**: `admin@example.org.ec`
 - **Password**: `nb7wJ$18Ssia0`
 
 Access the admin panel at [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)

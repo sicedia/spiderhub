@@ -166,6 +166,10 @@ export class AnalysisDataCoordinator {
         'sdg1': 45, 'sdg4': 89, 'sdg5': 67, 'sdg8': 124, 'sdg9': 156,
         'sdg10': 67, 'sdg11': 78, 'sdg13': 98, 'sdg16': 112, 'sdg17': 178
       },
+      sdg_relevance: {
+        'sdg1': 0.67, 'sdg4': 0.85, 'sdg5': 0.73, 'sdg8': 0.91, 'sdg9': 0.95,
+        'sdg10': 0.78, 'sdg11': 0.82, 'sdg13': 0.88, 'sdg16': 0.79, 'sdg17': 0.93
+      },
       sdg_info: {
         'sdg1': {'number': 1, 'name': 'No Poverty', 'description': 'End poverty in all its forms everywhere'},
         'sdg4': {'number': 4, 'name': 'Quality Education', 'description': 'Ensure inclusive and equitable quality education'},
@@ -409,31 +413,76 @@ export class AnalysisDataCoordinator {
   }
 
   /**
-   * Format SDG data for chart
+   * Format SDG data for chart with dual datasets (document count + relevance)
+   * Both normalized to 0-100% scale for visual comparison
    */
   formatSDGData() {
     const sdgCounts = this.data.analysis.sdg_counts || {};
+    const sdgRelevance = this.data.analysis.sdg_relevance || {};
     const sdgLabels = this.data.analysis.sdg_labels || {};
     
-    // Format labels: use full labels if available, otherwise use keys
-    const labels = Object.keys(sdgCounts).map(key => {
+    // Get ordered SDG keys (sdg1, sdg2, etc.)
+    const sdgKeys = Object.keys(sdgCounts).sort((a, b) => {
+      const numA = parseInt(a.replace('sdg', ''));
+      const numB = parseInt(b.replace('sdg', ''));
+      return numA - numB;
+    });
+    
+    // Format labels
+    const labels = sdgKeys.map(key => {
       if (sdgLabels[key]) {
         return sdgLabels[key];
       }
-      // Fallback: format sdg1 -> SDG 1
       const number = key.replace('sdg', '');
       return `SDG ${number}`;
     });
     
+    // Extract raw values
+    const rawCounts = sdgKeys.map(key => sdgCounts[key] || 0);
+    const rawRelevance = sdgKeys.map(key => sdgRelevance[key] || 0);
+    
+    // Normalize both to 0-100% scale for visual comparison
+    const maxCount = Math.max(...rawCounts, 1);
+    const maxRelevance = Math.max(...rawRelevance, 0.01);
+    
+    const normalizedCounts = rawCounts.map(val => (val / maxCount) * 100);
+    const normalizedRelevance = rawRelevance.map(val => (val / maxRelevance) * 100);
+    
     return {
       labels: labels,
-      datasets: [{
-        label: 'Documents',
-        data: Object.values(sdgCounts),
-        backgroundColor: 'rgba(9, 78, 178, 0.8)',
-        borderColor: 'rgba(9, 78, 178, 1)',
-        borderWidth: 1
-      }]
+      datasets: [
+        {
+          label: 'Document Frequency',
+          data: normalizedCounts,
+          rawData: rawCounts,  // Store original values for tooltips
+          backgroundColor: 'rgba(9, 78, 178, 0.2)',
+          borderColor: 'rgba(9, 78, 178, 1)',
+          borderWidth: 2,
+          pointBackgroundColor: 'rgba(9, 78, 178, 1)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(9, 78, 178, 1)',
+          pointRadius: 4,
+          pointHoverRadius: 6
+        },
+        {
+          label: 'Avg Importance',
+          data: normalizedRelevance,
+          rawData: rawRelevance,  // Store original values for tooltips
+          backgroundColor: 'rgba(52, 168, 83, 0.2)',
+          borderColor: 'rgba(52, 168, 83, 1)',
+          borderWidth: 2,
+          pointBackgroundColor: 'rgba(52, 168, 83, 1)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(52, 168, 83, 1)',
+          pointRadius: 4,
+          pointHoverRadius: 6
+        }
+      ],
+      // Store max values for tooltip calculations
+      maxCount: maxCount,
+      maxRelevance: maxRelevance
     };
   }
 
