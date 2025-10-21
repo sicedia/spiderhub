@@ -67,6 +67,72 @@ def create_documentsdg_if_not_exists(apps, schema_editor):
             END $$;
         """)
         
+        # Agregar columnas si no existen (para tablas existentes sin estas columnas)
+        cursor.execute("""
+            DO $$ 
+            BEGIN
+                -- Agregar relevance_score si no existe
+                IF NOT EXISTS (
+                    SELECT 1 FROM information_schema.columns 
+                    WHERE table_name = 'documents_document_sdgs' 
+                    AND column_name = 'relevance_score'
+                ) THEN
+                    ALTER TABLE documents_document_sdgs 
+                    ADD COLUMN relevance_score double precision DEFAULT 1.0;
+                END IF;
+                
+                -- Agregar justification si no existe
+                IF NOT EXISTS (
+                    SELECT 1 FROM information_schema.columns 
+                    WHERE table_name = 'documents_document_sdgs' 
+                    AND column_name = 'justification'
+                ) THEN
+                    ALTER TABLE documents_document_sdgs 
+                    ADD COLUMN justification text;
+                END IF;
+                
+                -- Agregar justification_normalized si no existe
+                IF NOT EXISTS (
+                    SELECT 1 FROM information_schema.columns 
+                    WHERE table_name = 'documents_document_sdgs' 
+                    AND column_name = 'justification_normalized'
+                ) THEN
+                    ALTER TABLE documents_document_sdgs 
+                    ADD COLUMN justification_normalized text;
+                END IF;
+                
+                -- Agregar search_vector si no existe
+                IF NOT EXISTS (
+                    SELECT 1 FROM information_schema.columns 
+                    WHERE table_name = 'documents_document_sdgs' 
+                    AND column_name = 'search_vector'
+                ) THEN
+                    ALTER TABLE documents_document_sdgs 
+                    ADD COLUMN search_vector tsvector;
+                END IF;
+                
+                -- Agregar created_at si no existe
+                IF NOT EXISTS (
+                    SELECT 1 FROM information_schema.columns 
+                    WHERE table_name = 'documents_document_sdgs' 
+                    AND column_name = 'created_at'
+                ) THEN
+                    ALTER TABLE documents_document_sdgs 
+                    ADD COLUMN created_at timestamp with time zone DEFAULT NOW();
+                END IF;
+                
+                -- Agregar updated_at si no existe
+                IF NOT EXISTS (
+                    SELECT 1 FROM information_schema.columns 
+                    WHERE table_name = 'documents_document_sdgs' 
+                    AND column_name = 'updated_at'
+                ) THEN
+                    ALTER TABLE documents_document_sdgs 
+                    ADD COLUMN updated_at timestamp with time zone DEFAULT NOW();
+                END IF;
+            END $$;
+        """)
+        
         # Agregar unique constraint solo si no existe
         cursor.execute("""
             DO $$ 
@@ -82,7 +148,7 @@ def create_documentsdg_if_not_exists(apps, schema_editor):
             END $$;
         """)
         
-        # Agregar índices solo si no existen
+        # Agregar índices solo si no existen (ahora que sabemos que las columnas existen)
         cursor.execute("""
             CREATE INDEX IF NOT EXISTS doc_sdg_search_vector_gin 
             ON documents_document_sdgs USING gin(search_vector);
@@ -107,15 +173,50 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        # Crear la tabla y sus constraints de forma resiliente
-        migrations.RunPython(
-            create_documentsdg_if_not_exists,
-            reverse_create_documentsdg
-        ),
-        # Actualizar el campo ManyToManyField para usar el through model
-        migrations.AlterField(
-            model_name='document',
-            name='sdgs',
-            field=models.ManyToManyField(blank=True, related_name='documents', through='documents.DocumentSDG', to='documents.sdg'),
+        # Usar SeparateDatabaseAndState para manejar estado y DB por separado
+        migrations.SeparateDatabaseAndState(
+            # Operaciones de estado (lo que Django piensa que existe)
+            state_operations=[
+                migrations.CreateModel(
+                    name='DocumentSDG',
+                    fields=[
+                        ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                        ('created_at', models.DateTimeField(auto_now_add=True)),
+                        ('updated_at', models.DateTimeField(auto_now=True)),
+                        ('relevance_score', models.FloatField(blank=True, default=1.0, null=True)),
+                        ('justification', models.TextField(blank=True, null=True)),
+                        ('justification_normalized', models.TextField(blank=True, editable=False, null=True)),
+                        ('search_vector', django.contrib.postgres.search.SearchVectorField(editable=False, null=True)),
+                        ('document', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='documents.document')),
+                        ('sdg', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='documents.sdg')),
+                    ],
+                    options={
+                        'verbose_name': 'Document–SDG Link',
+                        'verbose_name_plural': 'Document–SDG Links',
+                        'db_table': 'documents_document_sdgs',
+                        'unique_together': {('document', 'sdg')},
+                    },
+                ),
+                migrations.AlterField(
+                    model_name='document',
+                    name='sdgs',
+                    field=models.ManyToManyField(blank=True, related_name='documents', through='documents.DocumentSDG', to='documents.sdg'),
+                ),
+                migrations.AddIndex(
+                    model_name='documentsdg',
+                    index=django.contrib.postgres.indexes.GinIndex(fields=['search_vector'], name='doc_sdg_search_vector_gin'),
+                ),
+                migrations.AddIndex(
+                    model_name='documentsdg',
+                    index=django.contrib.postgres.indexes.GinIndex(fields=['justification_normalized'], name='doc_sdg_just_norm_gin', opclasses=['gin_trgm_ops']),
+                ),
+            ],
+            # Operaciones de base de datos (lo que realmente se ejecuta en PostgreSQL)
+            database_operations=[
+                migrations.RunPython(
+                    create_documentsdg_if_not_exists,
+                    reverse_create_documentsdg
+                ),
+            ],
         ),
     ]
