@@ -405,7 +405,7 @@ class DocumentAdmin(admin.ModelAdmin):
     autocomplete_fields = ('created_by', 'event_city', 'event_country', 'lead_country', 'human_reviewer')
     list_per_page = 20
     
-    actions = ['mark_as_human_reviewed', 'mark_as_needs_review']
+    actions = ['mark_as_human_reviewed', 'mark_as_needs_review', 'calculate_sdg_relevance_action']
     
     inlines = [
         SourceFileInline,
@@ -659,6 +659,90 @@ class DocumentAdmin(admin.ModelAdmin):
             f'Successfully marked {count} document(s) as needing human review.'
         )
     mark_as_needs_review.short_description = "Mark selected documents as needing review"
+    
+    def calculate_sdg_relevance_action(self, request, queryset):
+        """Action to calculate SDG relevance scores for selected documents using LLM."""
+        from apps.documents.services.sdg_relevance_service import (
+            process_batch_documents,
+            validate_configuration
+        )
+        
+        # Validate LLM configuration first
+        is_valid, error_msg = validate_configuration()
+        if not is_valid:
+            self.message_user(
+                request,
+                f'❌ LLM configuration error: {error_msg}. '
+                'Please configure your .env file with LLM credentials.',
+                level='error'
+            )
+            return
+        
+        # Check if documents have SDG links
+        documents_with_sdgs = queryset.filter(sdgs__isnull=False).distinct()
+        
+        if not documents_with_sdgs.exists():
+            self.message_user(
+                request,
+                '⚠️ None of the selected documents have SDG links. '
+                'Please link SDGs to documents first.',
+                level='warning'
+            )
+            return
+        
+        count = documents_with_sdgs.count()
+        
+        if count != queryset.count():
+            skipped = queryset.count() - count
+            self.message_user(
+                request,
+                f'ℹ️ Skipping {skipped} document(s) with no SDG links.',
+                level='info'
+            )
+        
+        # Process documents
+        try:
+            self.message_user(
+                request,
+                f'🔄 Starting SDG relevance calculation for {count} document(s)...',
+                level='info'
+            )
+            
+            stats = process_batch_documents(documents_with_sdgs, force=False)
+            
+            # Display results
+            if stats['success'] > 0:
+                self.message_user(
+                    request,
+                    f'✅ Successfully processed {stats["success"]} SDG link(s) '
+                    f'across {stats["documents_processed"]} document(s).',
+                    level='success'
+                )
+            
+            if stats['failed'] > 0:
+                self.message_user(
+                    request,
+                    f'❌ Failed to process {stats["failed"]} SDG link(s). '
+                    f'Check logs/failed_sdg_scores.log for details.',
+                    level='error'
+                )
+            
+            if stats['success'] == 0 and stats['failed'] == 0:
+                self.message_user(
+                    request,
+                    '✓ All selected documents already have SDG relevance scores. '
+                    'Use the management command with --force to recalculate.',
+                    level='info'
+                )
+        
+        except Exception as e:
+            self.message_user(
+                request,
+                f'❌ Error during processing: {str(e)}',
+                level='error'
+            )
+    
+    calculate_sdg_relevance_action.short_description = "🤖 Calculate SDG relevance scores (LLM)"
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj)

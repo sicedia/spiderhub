@@ -53,3 +53,16 @@ django-csp
 
 # PDF generation
 reportlab
+
+
+# LLM Integration
+langchain>=0.1.0
+langchain-openai
+langchain-anthropic
+langchain-community
+openai>=1.0.0
+anthropic
+
+# Text Extraction
+PyMuPDF  # fitz for PDF extraction
+python-docx  # DOCX extraction
