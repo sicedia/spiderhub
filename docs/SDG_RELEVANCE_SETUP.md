@@ -255,3 +255,11 @@ For issues or questions:
 3. Validate configuration: Run with `--doc ID` on a test document
 4. Check LangChain documentation: https://python.langchain.com/docs/
 
+---
+
+**Document Version:** v1.0  
+**Created:** October 21, 2025  
+**Last Updated:** October 21, 2025  
+**Category:** AI & SDG Analysis - Setup  
+**Related:** SDG_RELEVANCE_QUICKSTART.md, PROXY_LLM_SETUP.md
+

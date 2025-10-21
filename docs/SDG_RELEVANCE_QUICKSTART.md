@@ -269,3 +269,11 @@ tail -50 logs/sdg_ingestion.log
 
 **Happy analyzing!** 🕸️
 
+---
+
+**Document Version:** v1.0  
+**Created:** October 21, 2025  
+**Last Updated:** October 21, 2025  
+**Category:** AI & SDG Analysis - Quick Start  
+**Related:** SDG_RELEVANCE_SETUP.md, PROXY_LLM_SETUP.md
+

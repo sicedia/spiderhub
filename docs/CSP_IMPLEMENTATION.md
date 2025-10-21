@@ -353,3 +353,11 @@ If issues arise, you can temporarily revert CSP to a more permissive policy:
 
 **Not recommended for production**, but useful for emergency debugging.
 
+---
+
+**Document Version:** v1.1  
+**Created:** October 15, 2025  
+**Last Updated:** October 16, 2025  
+**Category:** Security & CSP  
+**Related:** CSP_TESTING_GUIDE.md, SECURITY_CSP_QUICKSTART.md
+

@@ -167,3 +167,11 @@ Portuguese support is **ready but disabled**.
    ```
 3. Restart server
 4. Access: `http://localhost:8001/pt/`
+
+---
+
+**Document Version:** v1.0  
+**Created:** September 2025  
+**Last Updated:** October 2025  
+**Category:** Internationalization (i18n)  
+**Related:** TRANSLATION_WORKFLOW.md, TRANSLATION_QUICK_REFERENCE.md

@@ -174,3 +174,12 @@ python manage.py compilemessages
 ## Contact
 
 For installation support, contact the development team.
+
+---
+
+**Document Version:** v1.0  
+**Created:** October 13, 2025  
+**Last Updated:** October 13, 2025  
+**Category:** Setup & Installation  
+**Platform:** Windows  
+**Related:** TRANSLATIONS.md, TRANSLATION_WORKFLOW.md

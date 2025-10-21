@@ -211,3 +211,10 @@ self.addEventListener('activate', event => {
 
 ### ✅ Best Practice
 **Always increment `STATIC_VERSION` when you touch JavaScript files**, even for minor changes. It's better to be conservative and force reload than to have users with mixed versions (new entry point but old modules).
+
+---
+
+**Document Version:** v1.2  
+**Created:** September 2025  
+**Last Updated:** October 2025  
+**Category:** Deployment & Operations

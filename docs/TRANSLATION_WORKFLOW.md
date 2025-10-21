@@ -462,4 +462,8 @@ If you have problems with translations, contact the development team or review t
 
 ---
 
-**Last updated:** October 14, 2025
+**Document Version:** v1.1  
+**Created:** September 2025  
+**Last Updated:** October 14, 2025  
+**Category:** Internationalization (i18n)  
+**Related:** TRANSLATIONS.md, TRANSLATION_QUICK_REFERENCE.md, TRANSLATION_FILES_REFERENCE.md

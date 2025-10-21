@@ -120,3 +120,11 @@ Or use the language selector (globe icon) in the header.
 ---
 
 See complete guide: [TRANSLATION_WORKFLOW.md](TRANSLATION_WORKFLOW.md)
+
+---
+
+**Document Version:** v1.0  
+**Created:** October 13, 2025  
+**Last Updated:** October 13, 2025  
+**Category:** Internationalization (i18n) - Reference  
+**Related:** TRANSLATIONS.md, TRANSLATION_WORKFLOW.md

@@ -268,3 +268,11 @@ Si algo no funciona:
 - Este guide: `docs/LOGGER_MIGRATION_GUIDE.md`
 - Ejemplo: `apps/core/static/core/js/components/search/SearchManager.js`
 
+---
+
+**Document Version:** v1.0  
+**Created:** October 2024  
+**Last Updated:** October 2024  
+**Category:** Migration & Architecture  
+**Related:** EVENTBUS_MIGRATION_GUIDE.md, LOGGING_CONFIGURATION.md
+

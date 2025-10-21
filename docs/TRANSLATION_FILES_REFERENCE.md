@@ -203,3 +203,11 @@ See also:
 - [TRANSLATIONS.md](../TRANSLATIONS.md) - Quick guide
 - [TRANSLATION_WORKFLOW.md](TRANSLATION_WORKFLOW.md) - Complete guide
 - [TRANSLATION_QUICK_REFERENCE.md](TRANSLATION_QUICK_REFERENCE.md) - Commands
+
+---
+
+**Document Version:** v1.0  
+**Created:** October 13, 2025  
+**Last Updated:** October 13, 2025  
+**Category:** Internationalization (i18n) - Reference  
+**Related:** TRANSLATIONS.md, TRANSLATION_WORKFLOW.md

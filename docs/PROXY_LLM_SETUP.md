@@ -409,6 +409,10 @@ python manage.py ingest_sdg_relevance --all
 
 ---
 
-**Fecha**: Octubre 21, 2025  
-**Versión**: 1.0 con soporte para Proxy LLM
+**Document Version:** v1.1  
+**Created:** October 21, 2025  
+**Last Updated:** October 21, 2025  
+**Category:** AI & LLM Configuration  
+**Status:** Production Ready ✅  
+**Related:** SDG_RELEVANCE_SETUP.md, SDG_RELEVANCE_QUICKSTART.md
 

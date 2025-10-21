@@ -424,4 +424,8 @@ eventBus.on(EVENTS.FILTER_CHANGED, this.handleFilter, this);
 
 ---
 
-*Last Updated: October 7, 2025*
+**Document Version:** v1.0  
+**Created:** October 2024  
+**Last Updated:** October 7, 2024  
+**Category:** Migration & Architecture  
+**Related:** LOGGER_MIGRATION_GUIDE.md

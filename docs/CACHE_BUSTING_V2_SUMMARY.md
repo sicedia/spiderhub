@@ -240,6 +240,10 @@ If you encounter any problems:
 
 ---
 
-**Author:** Automated cache busting system  
-**Date:** 2025-10-14  
-**Version:** 2.0
+---
+
+**Document Version:** v2.0  
+**Created:** October 14, 2025  
+**Last Updated:** October 14, 2025  
+**Category:** Deployment & Cache Management  
+**Supersedes:** CACHE_BUSTING.md v1.0
