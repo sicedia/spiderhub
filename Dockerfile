@@ -34,7 +34,7 @@ FROM python:3.12-slim AS runner
 # Build arguments for versioning (cache busting)
 ARG BUILD_DATE
 ARG GIT_COMMIT_HASH
-ARG VERSION=0.1.0-rc.8
+ARG VERSION=0.1.0-rc.9
 
 LABEL maintainer="felipe.mendieta@cedia.org.ec" \
       org.opencontainers.image.title="spiderhub" \
