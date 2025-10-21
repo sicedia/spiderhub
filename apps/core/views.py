@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
-from django.db.models import Count, Q, Avg
+from django.db.models import Count, Q, Avg, Sum
 from apps.documents.models import (
     Document, Actor, Theme, BeneficiaryGroup, SDG, CommitmentDetail, Country, Commitment, DocumentSDG
 )
@@ -10,6 +10,7 @@ import re
 from django.db.models import Value
 from django.db.models.functions import Coalesce
 from collections import defaultdict
+from django.utils.translation import gettext_lazy as _
 
 logger = logging.getLogger(__name__)
 
@@ -327,37 +328,58 @@ def analysis_page(request):
         for s in sdgs_qs
     }
 
-    # Calculate average relevance per SDG
-    sdg_relevance_qs = (
-        DocumentSDG.objects
-        .values('sdg__number')
-        .annotate(avg_relevance=Avg('relevance_score'))
-        .order_by('sdg__number')
-    )
-    sdg_relevance = {
-        f'sdg{item["sdg__number"]}': round(item['avg_relevance'] or 0, 3)
-        for item in sdg_relevance_qs
-    }
+    # Calculate TWO types of relevance metrics per SDG:
+    # 1. Avg Relevance: Average among documents that INCLUDE this SDG (intensity/depth)
+    # 2. Global Relevance: Average across ALL documents, counting those without SDG as 0 (general impact)
+    
+    total_documents = Document.objects.count()
+    
+    sdg_avg_relevance = {}  # For documents that have the SDG
+    sdg_global_relevance = {}  # For all documents (includes zeros)
+    
+    for sdg in SDG.objects.all():
+        # Get documents that have this SDG
+        doc_sdg_qs = DocumentSDG.objects.filter(sdg=sdg)
+        count_with_sdg = doc_sdg_qs.count()
+        
+        # Sum of relevance scores
+        total_relevance = doc_sdg_qs.aggregate(
+            total=Sum('relevance_score')
+        )['total'] or 0
+        
+        # Avg Relevance: Only among documents that HAVE this SDG
+        if count_with_sdg > 0:
+            avg_relevance = total_relevance / count_with_sdg
+        else:
+            avg_relevance = 0
+        sdg_avg_relevance[f'sdg{sdg.number}'] = round(avg_relevance, 3)
+        
+        # Global Relevance: Across ALL documents (those without SDG count as 0)
+        if total_documents > 0:
+            global_relevance = total_relevance / total_documents
+        else:
+            global_relevance = 0
+        sdg_global_relevance[f'sdg{sdg.number}'] = round(global_relevance, 3)
     
     # SDG descriptive information for enhanced tooltips
     SDG_INFO = {
-        'sdg1': {'number': 1, 'name': 'No Poverty', 'description': 'End poverty in all its forms everywhere'},
-        'sdg2': {'number': 2, 'name': 'Zero Hunger', 'description': 'End hunger, achieve food security and improved nutrition'},
-        'sdg3': {'number': 3, 'name': 'Good Health', 'description': 'Ensure healthy lives and promote well-being for all'},
-        'sdg4': {'number': 4, 'name': 'Quality Education', 'description': 'Ensure inclusive and equitable quality education'},
-        'sdg5': {'number': 5, 'name': 'Gender Equality', 'description': 'Achieve gender equality and empower all women and girls'},
-        'sdg6': {'number': 6, 'name': 'Clean Water', 'description': 'Ensure availability and sustainable management of water'},
-        'sdg7': {'number': 7, 'name': 'Affordable Energy', 'description': 'Ensure access to affordable, reliable, sustainable energy'},
-        'sdg8': {'number': 8, 'name': 'Decent Work', 'description': 'Promote sustained, inclusive economic growth and decent work'},
-        'sdg9': {'number': 9, 'name': 'Innovation', 'description': 'Build resilient infrastructure, promote innovation'},
-        'sdg10': {'number': 10, 'name': 'Reduced Inequalities', 'description': 'Reduce inequality within and among countries'},
-        'sdg11': {'number': 11, 'name': 'Sustainable Cities', 'description': 'Make cities and settlements inclusive, safe, resilient'},
-        'sdg12': {'number': 12, 'name': 'Responsible Consumption', 'description': 'Ensure sustainable consumption and production patterns'},
-        'sdg13': {'number': 13, 'name': 'Climate Action', 'description': 'Take urgent action to combat climate change'},
-        'sdg14': {'number': 14, 'name': 'Life Below Water', 'description': 'Conserve and sustainably use oceans and marine resources'},
-        'sdg15': {'number': 15, 'name': 'Life on Land', 'description': 'Protect, restore and promote sustainable use of ecosystems'},
-        'sdg16': {'number': 16, 'name': 'Peace & Justice', 'description': 'Promote peaceful and inclusive societies for sustainable development'},
-        'sdg17': {'number': 17, 'name': 'Partnerships', 'description': 'Strengthen global partnership for sustainable development'},
+        'sdg1': {'number': 1, 'name': _('No Poverty'), 'description': _('End poverty in all its forms everywhere')},
+        'sdg2': {'number': 2, 'name': _('Zero Hunger'), 'description': _('End hunger, achieve food security and improved nutrition')},
+        'sdg3': {'number': 3, 'name': _('Good Health'), 'description': _('Ensure healthy lives and promote well-being for all')},
+        'sdg4': {'number': 4, 'name': _('Quality Education'), 'description': _('Ensure inclusive and equitable quality education')},
+        'sdg5': {'number': 5, 'name': _('Gender Equality'), 'description': _('Achieve gender equality and empower all women and girls')},
+        'sdg6': {'number': 6, 'name': _('Clean Water'), 'description': _('Ensure availability and sustainable management of water')},
+        'sdg7': {'number': 7, 'name': _('Affordable Energy'), 'description': _('Ensure access to affordable, reliable, sustainable energy')},
+        'sdg8': {'number': 8, 'name': _('Decent Work'), 'description': _('Promote sustained, inclusive economic growth and decent work')},
+        'sdg9': {'number': 9, 'name': _('Innovation'), 'description': _('Build resilient infrastructure, promote innovation')},
+        'sdg10': {'number': 10, 'name': _('Reduced Inequalities'), 'description': _('Reduce inequality within and among countries')},
+        'sdg11': {'number': 11, 'name': _('Sustainable Cities'), 'description': _('Make cities and settlements inclusive, safe, resilient')},
+        'sdg12': {'number': 12, 'name': _('Responsible Consumption'), 'description': _('Ensure sustainable consumption and production patterns')},
+        'sdg13': {'number': 13, 'name': _('Climate Action'), 'description': _('Take urgent action to combat climate change')},
+        'sdg14': {'number': 14, 'name': _('Life Below Water'), 'description': _('Conserve and sustainably use oceans and marine resources')},
+        'sdg15': {'number': 15, 'name': _('Life on Land'), 'description': _('Protect, restore and promote sustainable use of ecosystems')},
+        'sdg16': {'number': 16, 'name': _('Peace & Justice'), 'description': _('Promote peaceful and inclusive societies for sustainable development')},
+        'sdg17': {'number': 17, 'name': _('Partnerships'), 'description': _('Strengthen global partnership for sustainable development')},
     }
     
     # Enrich SDG data with labels (format: "SDG 1", "SDG 2", etc.)
@@ -987,6 +1009,48 @@ def analysis_page(request):
     
     diversity_radar_data = get_diversity_radar_data()
     
+    # 9) Timeline data - Documents evolution by year
+    def get_timeline_data():
+        """Generate temporal evolution data for documents by year"""
+        from collections import defaultdict
+        from django.db.models.functions import ExtractYear
+        
+        try:
+            # Get documents grouped by year
+            timeline_qs = (
+                Document.objects
+                .filter(event_date__isnull=False)
+                .annotate(year=ExtractYear('event_date'))
+                .values('year')
+                .annotate(
+                    total=Count('id'),
+                    agreements=Count('id', filter=Q(document_type__startswith='agreements')),
+                    dialogues=Count('id', filter=Q(document_type__startswith='dialogues'))
+                )
+                .order_by('year')
+            )
+            
+            # Build timeline dictionary
+            timeline_data = {}
+            for entry in timeline_qs:
+                year = str(entry['year'])
+                timeline_data[year] = {
+                    'total': entry['total'],
+                    'agreements': entry['agreements'],
+                    'dialogues': entry['dialogues']
+                }
+            
+            return timeline_data
+            
+        except Exception as e:
+            logger.error(f"Error generating timeline data: {e}")
+            # Return minimal fallback data
+            return {
+                '2020': {'total': 0, 'agreements': 0, 'dialogues': 0}
+            }
+    
+    timeline_data = get_timeline_data()
+    
     # Simple debug output to verify data
     if not any(treemapData.get('children', []) for treemapData in [initiative_treemap_data]):
         # Add some mock data if no real data exists
@@ -1035,7 +1099,8 @@ def analysis_page(request):
         },
         "analysis_data": {
             "sdg_counts":     sdgs,
-            "sdg_relevance":  sdg_relevance,
+            "sdg_avg_relevance":  sdg_avg_relevance,  # Intensity: avg among docs that HAVE the SDG
+            "sdg_global_relevance":  sdg_global_relevance,  # Impact: avg across ALL docs (includes zeros)
             "sdg_info": SDG_INFO,
             "sdg_labels": sdg_labels,
             "binding_counts": legal_bindingness,
@@ -1046,7 +1111,8 @@ def analysis_page(request):
             
             "scope_counts":   coverage_scope,
             "theme_counts":   theme_counts,
-            "theme_info": THEME_INFO,  
+            "theme_info": THEME_INFO,
+            "timeline_data": timeline_data,  
             "theme_ben_matrix": matrix,
             "actor_counts":  actor_counts,
             "actor_info": ACTOR_INFO,

@@ -166,9 +166,13 @@ export class AnalysisDataCoordinator {
         'sdg1': 45, 'sdg4': 89, 'sdg5': 67, 'sdg8': 124, 'sdg9': 156,
         'sdg10': 67, 'sdg11': 78, 'sdg13': 98, 'sdg16': 112, 'sdg17': 178
       },
-      sdg_relevance: {
+      sdg_avg_relevance: {
         'sdg1': 0.67, 'sdg4': 0.85, 'sdg5': 0.73, 'sdg8': 0.91, 'sdg9': 0.95,
         'sdg10': 0.78, 'sdg11': 0.82, 'sdg13': 0.88, 'sdg16': 0.79, 'sdg17': 0.93
+      },
+      sdg_global_relevance: {
+        'sdg1': 0.23, 'sdg4': 0.41, 'sdg5': 0.29, 'sdg8': 0.58, 'sdg9': 0.71,
+        'sdg10': 0.34, 'sdg11': 0.38, 'sdg13': 0.48, 'sdg16': 0.52, 'sdg17': 0.82
       },
       sdg_info: {
         'sdg1': {'number': 1, 'name': 'No Poverty', 'description': 'End poverty in all its forms everywhere'},
@@ -394,6 +398,8 @@ export class AnalysisDataCoordinator {
     switch (chartType) {
       case 'sdg':
         return this.formatSDGData();
+      case 'sdg_global':
+        return this.formatSDGGlobalData();
       case 'binding':
         return this.formatBindingData();
       case 'countries':
@@ -402,6 +408,8 @@ export class AnalysisDataCoordinator {
         return this.formatLeadCountriesData();
       case 'themes':
         return this.formatThemesData();
+      case 'timeline':
+        return this.formatTimelineData();
       case 'actors':
         return this.formatActorsData();
       case 'beneficiaries':
@@ -413,12 +421,13 @@ export class AnalysisDataCoordinator {
   }
 
   /**
-   * Format SDG data for chart with dual datasets (document count + relevance)
-   * Both normalized to 0-100% scale for visual comparison
+   * Format SDG data for dual radar chart (Coverage + Intensity)
+   * Coverage is normalized to 0-100% relative to max
+   * Intensity is converted to absolute percentage (0-100% based on 0-1 scale)
    */
   formatSDGData() {
     const sdgCounts = this.data.analysis.sdg_counts || {};
-    const sdgRelevance = this.data.analysis.sdg_relevance || {};
+    const sdgAvgRelevance = this.data.analysis.sdg_avg_relevance || {};
     const sdgLabels = this.data.analysis.sdg_labels || {};
     
     // Get ordered SDG keys (sdg1, sdg2, etc.)
@@ -439,22 +448,23 @@ export class AnalysisDataCoordinator {
     
     // Extract raw values
     const rawCounts = sdgKeys.map(key => sdgCounts[key] || 0);
-    const rawRelevance = sdgKeys.map(key => sdgRelevance[key] || 0);
+    const rawRelevance = sdgKeys.map(key => sdgAvgRelevance[key] || 0);
     
-    // Normalize both to 0-100% scale for visual comparison
+    // Normalize counts to 0-100% relative to max count
     const maxCount = Math.max(...rawCounts, 1);
-    const maxRelevance = Math.max(...rawRelevance, 0.01);
-    
     const normalizedCounts = rawCounts.map(val => (val / maxCount) * 100);
-    const normalizedRelevance = rawRelevance.map(val => (val / maxRelevance) * 100);
+    
+    // Convert intensity to absolute percentage (0-1 → 0-100%)
+    // No normalization to max! Just multiply by 100 to get percentage
+    const absoluteIntensity = rawRelevance.map(val => val * 100);
     
     return {
       labels: labels,
       datasets: [
         {
-          label: 'Document Frequency',
+          label: 'Document Count',
           data: normalizedCounts,
-          rawData: rawCounts,  // Store original values for tooltips
+          rawData: rawCounts,  // Store original for tooltips
           backgroundColor: 'rgba(9, 78, 178, 0.2)',
           borderColor: 'rgba(9, 78, 178, 1)',
           borderWidth: 2,
@@ -466,9 +476,9 @@ export class AnalysisDataCoordinator {
           pointHoverRadius: 6
         },
         {
-          label: 'Avg Importance',
-          data: normalizedRelevance,
-          rawData: rawRelevance,  // Store original values for tooltips
+          label: 'Avg Intensity',
+          data: absoluteIntensity,
+          rawData: rawRelevance,  // Store original 0-1 values for tooltips
           backgroundColor: 'rgba(52, 168, 83, 0.2)',
           borderColor: 'rgba(52, 168, 83, 1)',
           borderWidth: 2,
@@ -479,10 +489,53 @@ export class AnalysisDataCoordinator {
           pointRadius: 4,
           pointHoverRadius: 6
         }
-      ],
-      // Store max values for tooltip calculations
-      maxCount: maxCount,
-      maxRelevance: maxRelevance
+      ]
+    };
+  }
+
+  /**
+   * Format SDG global relevance data for bar chart
+   * Shows overall impact considering all documents (includes zeros)
+   */
+  formatSDGGlobalData() {
+    const sdgGlobalRelevance = this.data.analysis.sdg_global_relevance || {};
+    const sdgLabels = this.data.analysis.sdg_labels || {};
+    
+    // Get ordered SDG keys (sdg1, sdg2, etc.)
+    const sdgKeys = Object.keys(sdgGlobalRelevance).sort((a, b) => {
+      const numA = parseInt(a.replace('sdg', ''));
+      const numB = parseInt(b.replace('sdg', ''));
+      return numA - numB;
+    });
+    
+    // Format labels (short version for bar chart)
+    const labels = sdgKeys.map(key => {
+      const number = key.replace('sdg', '');
+      return `SDG ${number}`;
+    });
+    
+    // Extract global relevance scores
+    const values = sdgKeys.map(key => sdgGlobalRelevance[key] || 0);
+    
+    // Get full SDG info for tooltips
+    const sdgInfo = sdgKeys.map(key => {
+      const number = key.replace('sdg', '');
+      return this.data.analysis.sdg_info?.[key] || { number, name: `SDG ${number}` };
+    });
+    
+    return {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Global Relevance',
+          data: values,
+          sdgInfo: sdgInfo,  // Store for tooltips
+          backgroundColor: 'rgba(28, 115, 119, 0.8)',
+          borderColor: 'rgba(28, 115, 119, 1)',
+          borderWidth: 1,
+          hoverBackgroundColor: 'rgba(28, 115, 119, 0.95)'
+        }
+      ]
     };
   }
 
@@ -575,6 +628,39 @@ export class AnalysisDataCoordinator {
         borderColor: 'rgba(156, 39, 176, 1)',
         borderWidth: 1
       }]
+    };
+  }
+
+  /**
+   * Format timeline data for evolution chart
+   */
+  formatTimelineData() {
+    const timelineData = this.data.analysis.timeline_data || {};
+    
+    // Get years sorted
+    const years = Object.keys(timelineData).sort();
+    
+    // Extract data for each series
+    const totalData = years.map(year => timelineData[year]?.total || 0);
+    const agreementsData = years.map(year => timelineData[year]?.agreements || 0);
+    const dialoguesData = years.map(year => timelineData[year]?.dialogues || 0);
+    
+    return {
+      labels: years,
+      datasets: [
+        {
+          label: 'Total',
+          data: totalData
+        },
+        {
+          label: 'Agreements',
+          data: agreementsData
+        },
+        {
+          label: 'Dialogues',
+          data: dialoguesData
+        }
+      ]
     };
   }
 

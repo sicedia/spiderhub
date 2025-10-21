@@ -12,11 +12,13 @@ import { DOMUtils } from '../core/utils/dom.js';
 // Chart Components
 import { NetworkGraph } from '../components/charts/NetworkGraph.js';
 import { SDGRadarChart } from '../components/charts/SDGRadarChart.js';
+import { SDGGlobalBarChart } from '../components/charts/SDGGlobalBarChart.js';
 import { BindingDonutChart } from '../components/charts/BindingDonutChart.js';
 import { CountriesBarChart } from '../components/charts/CountriesBarChart.js';
 import { ThemesBarChart } from '../components/charts/ThemesBarChart.js';
 import { ActorsBarChart } from '../components/charts/ActorsBarChart.js';
 import { BeneficiariesBarChart } from '../components/charts/BeneficiariesBarChart.js';
+import { TimelineChart } from '../components/charts/TimelineChart.js';
 
 export class AnalysisChartsCoordinator {
   constructor(dataCoordinator, options = {}) {
@@ -103,6 +105,15 @@ export class AnalysisChartsCoordinator {
         }
       },
       { 
+        id: 'sdg-global-chart', 
+        type: 'bar',
+        component: SDGGlobalBarChart,
+        data: {
+          sdgGlobalData: this.dataCoordinator.getChartData('sdg_global'),
+          sdgInfo: this.dataCoordinator.getSDGInfo()
+        }
+      },
+      { 
         id: 'binding-chart', 
         type: 'donut',
         component: BindingDonutChart,
@@ -126,6 +137,14 @@ export class AnalysisChartsCoordinator {
         data: {
           themesData: this.dataCoordinator.getChartData('themes'),
           themeInfo: this.dataCoordinator.getThemeInfo()
+        }
+      },
+      { 
+        id: 'timeline-chart', 
+        type: 'line',
+        component: TimelineChart,
+        data: {
+          timelineData: this.dataCoordinator.getChartData('timeline')
         }
       },
       { 

@@ -1,0 +1,116 @@
+/**
+ * Timeline Chart Styles
+ * Styles for temporal evolution line/area charts
+ */
+
+/* ========================================
+   Timeline Chart Container
+   ======================================== */
+
+.chart-card--timeline {
+  position: relative;
+}
+
+.chart-body--timeline {
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+}
+
+.chart-body--timeline canvas {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* ========================================
+   Timeline Legend
+   ======================================== */
+
+.timeline-legend {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-muted);
+  border-radius: var(--radius-sm);
+  border-top: 1px solid var(--color-border-lighter);
+  flex-wrap: wrap;
+}
+
+.timeline-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.timeline-line {
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.timeline-line--total {
+  background: #1C7377;
+}
+
+.timeline-line--agreements {
+  background: #094EB2;
+}
+
+.timeline-line--dialogues {
+  background: #34A853;
+}
+
+/* ========================================
+   Responsive Adjustments
+   ======================================== */
+
+@media (max-width: 768px) {
+  .chart-body--timeline {
+    height: 300px;
+    padding: var(--space-md);
+  }
+  
+  .timeline-legend {
+    gap: var(--space-sm);
+  }
+  
+  .timeline-legend-item {
+    font-size: var(--font-size-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-body--timeline {
+    height: 250px;
+    padding: var(--space-sm);
+  }
+  
+  .timeline-legend {
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: flex-start;
+    padding: var(--space-xs) var(--space-sm);
+  }
+}
+
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .timeline-legend {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-border-medium);
+  }
+  
+  .timeline-legend-item {
+    color: var(--color-text-secondary);
+  }
+}
+

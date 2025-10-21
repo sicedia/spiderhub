@@ -51,6 +51,7 @@
 @import 'components/charts/sdg-radar.css';
 @import 'components/charts/binding-donut.css';
 @import 'components/charts/bar-chart.css';
+@import 'components/charts/timeline-chart.css';
 
 /* ========================================
    7. Utilities - Helper classes

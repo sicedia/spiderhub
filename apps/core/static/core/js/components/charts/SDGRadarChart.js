@@ -6,6 +6,7 @@
 
 import { BaseChart } from '../../core/base/BaseChart.js';
 import { eventBus } from '../../core/events/EventBus.js';
+import { gettext } from '../../core/i18n/i18n.js';
 
 export class SDGRadarChart extends BaseChart {
   constructor(element, options = {}) {
@@ -60,7 +61,7 @@ export class SDGRadarChart extends BaseChart {
     const labels = this.data.labels || [];
     const datasets = this.data.datasets || [];
 
-    // For normalized data, max is always 100%
+    // For dual normalized datasets, max is always 100%
     const maxValue = 100;
 
     const config = {
@@ -126,12 +127,14 @@ export class SDGRadarChart extends BaseChart {
                 const datasetLabel = context.dataset.label;
                 const dataIndex = context.dataIndex;
                 const rawData = context.dataset.rawData || [];
-                const absoluteValue = rawData[dataIndex];
+                const absoluteValue = rawData[dataIndex] || 0;
+                const displayValue = context.parsed.r; // Normalized/converted value shown on chart
                 
-                if (datasetLabel === 'Document Frequency') {
-                  return `📄 Documents: ${absoluteValue}`;
-                } else if (datasetLabel === 'Avg Importance') {
-                  return `⭐ Avg Relevance: ${absoluteValue.toFixed(3)} (${(absoluteValue * 100).toFixed(1)}%)`;
+                if (datasetLabel === 'Document Count') {
+                  return `📄 ${gettext('Documents')}: ${absoluteValue} (${displayValue.toFixed(1)}% ${gettext('of max')})`;
+                } else if (datasetLabel === 'Avg Intensity') {
+                  // Show as absolute percentage (0-1 scale)
+                  return `⭐ ${gettext('Avg Intensity')}: ${absoluteValue.toFixed(3)} (${(absoluteValue * 100).toFixed(1)}%)`;
                 }
                 return `${datasetLabel}: ${absoluteValue}`;
               },
@@ -142,12 +145,12 @@ export class SDGRadarChart extends BaseChart {
                 const sdgInfo = this.options.sdgInfo?.[sdgKey];
                 
                 if (sdgInfo?.description) {
-                  return `\n💡 About this SDG:\n   ${sdgInfo.description}`;
+                  return `\n💡 ${gettext('About this SDG')}:\n   ${sdgInfo.description}`;
                 }
                 return '';
               },
               footer: (tooltipItems) => {
-                return '\n✨ Part of UN\'s 2030 Agenda for Sustainable Development';
+                return `\n✨ ${gettext("Part of UN's 2030 Agenda for Sustainable Development")}`;
               }
             }
           }
@@ -218,7 +221,7 @@ export class SDGRadarChart extends BaseChart {
       this.chart.data.labels = newData.labels;
       this.chart.data.datasets = newData.datasets;
       
-      // For normalized data, max is always 100%
+      // For normalized dual datasets, max is always 100%
       this.chart.options.scales.r.max = 100;
       this.chart.options.scales.r.ticks.stepSize = 20;
       

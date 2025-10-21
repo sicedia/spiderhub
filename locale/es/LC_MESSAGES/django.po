@@ -545,6 +545,210 @@ msgid "⚖️ Legally Binding (Strong)"
 msgstr "⚖️ Legalmente Vinculante (Fuerte)"
 
 # ========================================
+# SDG NAMES AND DESCRIPTIONS
+# ========================================
+
+#: .\apps\core\views.py:365
+msgid "No Poverty"
+msgstr "Fin de la Pobreza"
+
+#: .\apps\core\views.py:365
+msgid "End poverty in all its forms everywhere"
+msgstr "Poner fin a la pobreza en todas sus formas en todo el mundo"
+
+#: .\apps\core\views.py:366
+msgid "Zero Hunger"
+msgstr "Hambre Cero"
+
+#: .\apps\core\views.py:366
+msgid "End hunger, achieve food security and improved nutrition"
+msgstr "Poner fin al hambre, lograr la seguridad alimentaria y mejorar la nutrición"
+
+#: .\apps\core\views.py:367
+msgid "Good Health"
+msgstr "Salud y Bienestar"
+
+#: .\apps\core\views.py:367
+msgid "Ensure healthy lives and promote well-being for all"
+msgstr "Garantizar una vida sana y promover el bienestar para todos"
+
+#: .\apps\core\views.py:368
+msgid "Quality Education"
+msgstr "Educación de Calidad"
+
+#: .\apps\core\views.py:368
+msgid "Ensure inclusive and equitable quality education"
+msgstr "Garantizar una educación inclusiva y equitativa de calidad"
+
+#: .\apps\core\views.py:369
+msgid "Gender Equality"
+msgstr "Igualdad de Género"
+
+#: .\apps\core\views.py:369
+msgid "Achieve gender equality and empower all women and girls"
+msgstr "Lograr la igualdad de género y empoderar a todas las mujeres y niñas"
+
+#: .\apps\core\views.py:370
+msgid "Clean Water"
+msgstr "Agua Limpia y Saneamiento"
+
+#: .\apps\core\views.py:370
+msgid "Ensure availability and sustainable management of water"
+msgstr "Garantizar la disponibilidad y gestión sostenible del agua"
+
+#: .\apps\core\views.py:371
+msgid "Affordable Energy"
+msgstr "Energía Asequible y No Contaminante"
+
+#: .\apps\core\views.py:371
+msgid "Ensure access to affordable, reliable, sustainable energy"
+msgstr "Garantizar el acceso a energía asequible, confiable y sostenible"
+
+#: .\apps\core\views.py:372
+msgid "Decent Work"
+msgstr "Trabajo Decente y Crecimiento Económico"
+
+#: .\apps\core\views.py:372
+msgid "Promote sustained, inclusive economic growth and decent work"
+msgstr "Promover el crecimiento económico sostenido, inclusivo y trabajo decente"
+
+#: .\apps\core\views.py:373
+msgid "Innovation"
+msgstr "Industria, Innovación e Infraestructura"
+
+#: .\apps\core\views.py:373
+msgid "Build resilient infrastructure, promote innovation"
+msgstr "Construir infraestructuras resilientes, promover la innovación"
+
+#: .\apps\core\views.py:374
+msgid "Reduced Inequalities"
+msgstr "Reducción de las Desigualdades"
+
+#: .\apps\core\views.py:374
+msgid "Reduce inequality within and among countries"
+msgstr "Reducir la desigualdad dentro de y entre países"
+
+#: .\apps\core\views.py:375
+msgid "Sustainable Cities"
+msgstr "Ciudades y Comunidades Sostenibles"
+
+#: .\apps\core\views.py:375
+msgid "Make cities and settlements inclusive, safe, resilient"
+msgstr "Lograr que las ciudades y asentamientos sean inclusivos, seguros y resilientes"
+
+#: .\apps\core\views.py:376
+msgid "Responsible Consumption"
+msgstr "Producción y Consumo Responsables"
+
+#: .\apps\core\views.py:376
+msgid "Ensure sustainable consumption and production patterns"
+msgstr "Garantizar modalidades de consumo y producción sostenibles"
+
+#: .\apps\core\views.py:377
+msgid "Climate Action"
+msgstr "Acción por el Clima"
+
+#: .\apps\core\views.py:377
+msgid "Take urgent action to combat climate change"
+msgstr "Adoptar medidas urgentes para combatir el cambio climático"
+
+#: .\apps\core\views.py:378
+msgid "Life Below Water"
+msgstr "Vida Submarina"
+
+#: .\apps\core\views.py:378
+msgid "Conserve and sustainably use oceans and marine resources"
+msgstr "Conservar y utilizar sosteniblemente los océanos y recursos marinos"
+
+#: .\apps\core\views.py:379
+msgid "Life on Land"
+msgstr "Vida de Ecosistemas Terrestres"
+
+#: .\apps\core\views.py:379
+msgid "Protect, restore and promote sustainable use of ecosystems"
+msgstr "Proteger, restaurar y promover el uso sostenible de los ecosistemas"
+
+#: .\apps\core\views.py:380
+msgid "Peace & Justice"
+msgstr "Paz, Justicia e Instituciones Sólidas"
+
+#: .\apps\core\views.py:380
+msgid "Promote peaceful and inclusive societies for sustainable development"
+msgstr "Promover sociedades pacíficas e inclusivas para el desarrollo sostenible"
+
+#: .\apps\core\views.py:381
+msgid "Partnerships"
+msgstr "Alianzas para Lograr los Objetivos"
+
+#: .\apps\core\views.py:381
+msgid "Strengthen global partnership for sustainable development"
+msgstr "Fortalecer la alianza mundial para el desarrollo sostenible"
+
+# ========================================
+# SDG CHARTS
+# ========================================
+
+#: .\apps\core\templates\core\analysis.html:81
+msgid "SDG Coverage & Intensity"
+msgstr "Cobertura e Intensidad de ODS"
+
+#: .\apps\core\templates\core\analysis.html:83
+msgid ""
+"This radar chart compares two perspectives of SDG alignment: "
+"<strong>Document Count</strong> (blue) shows how many documents address each SDG, while "
+"<strong>Avg Intensity</strong> (green) shows how relevant each SDG is within the documents that mention it (0-1 scale). "
+"Together, they reveal both coverage and depth of SDG engagement. "
+"<strong>Hover over each point</strong> to see detailed metrics."
+msgstr ""
+"Este gráfico de radar compara dos perspectivas de alineamiento con los ODS: "
+"<strong>Conteo de Documentos</strong> (azul) muestra cuántos documentos abordan cada ODS, mientras que "
+"<strong>Intensidad Promedio</strong> (verde) muestra qué tan relevante es cada ODS dentro de los documentos que lo mencionan (escala 0-1). "
+"Juntos, revelan tanto la cobertura como la profundidad del compromiso con los ODS. "
+"<strong>Pase el mouse sobre cada punto</strong> para ver métricas detalladas."
+
+#: .\apps\core\templates\core\analysis.html:98
+msgid "Blue = Document frequency (coverage)"
+msgstr "Azul = Frecuencia de documentos (cobertura)"
+
+#: .\apps\core\templates\core\analysis.html:102
+msgid "Green = Avg intensity (depth when mentioned)"
+msgstr "Verde = Intensidad promedio (profundidad al mencionarse)"
+
+#: .\apps\core\templates\core\analysis.html:106
+msgid "Hover for detailed metrics"
+msgstr "Pase el mouse para métricas detalladas"
+
+#: .\apps\core\templates\core\analysis.html:114
+msgid "SDG Global Relevance"
+msgstr "Relevancia Global de ODS"
+
+#: .\apps\core\templates\core\analysis.html:116
+msgid ""
+"This chart shows the <strong>overall impact</strong> of each SDG across the entire document corpus. "
+"The score considers both frequency and intensity: documents without a specific SDG are counted as 0. "
+"This metric answers: \"How important is this SDG to the EU-LAC digital cooperation as a whole?\" "
+"Higher values indicate SDGs that are both frequently mentioned and highly relevant. "
+"<strong>Hover over bars</strong> to see detailed SDG information and global relevance scores."
+msgstr ""
+"Este gráfico muestra el <strong>impacto general</strong> de cada ODS en todo el corpus de documentos. "
+"La puntuación considera tanto frecuencia como intensidad: los documentos sin un ODS específico se cuentan como 0. "
+"Esta métrica responde: \"¿Qué tan importante es este ODS para la cooperación digital UE-ALC en su conjunto?\" "
+"Valores más altos indican ODS que son tanto frecuentemente mencionados como altamente relevantes. "
+"<strong>Pase el mouse sobre las barras</strong> para ver información detallada del ODS y puntuaciones de relevancia global."
+
+#: .\apps\core\templates\core\analysis.html:131
+msgid "Global Relevance = (Total SDG Relevance Score) / (All Documents)"
+msgstr "Relevancia Global = (Puntuación Total de Relevancia ODS) / (Todos los Documentos)"
+
+#: .\apps\core\templates\core\analysis.html:135
+msgid "Documents without an SDG are counted as 0"
+msgstr "Los documentos sin un ODS se cuentan como 0"
+
+#: .\apps\core\templates\core\analysis.html:139
+msgid "Bars colored by official UN SDG colors"
+msgstr "Barras coloreadas con los colores oficiales de ODS de la ONU"
+
+# ========================================
 # LEGAL BINDINGNESS
 # ========================================
 #: .\apps\core\templates\core\analysis.html:136
@@ -595,6 +799,37 @@ msgstr "Mostrando los 15 países principales por documentos liderados"
 #: .\apps\core\templates\core\analysis.html:182
 msgid "Thematic Focus"
 msgstr "Enfoque Temático"
+
+msgid "Temporal Evolution"
+msgstr "Evolución Temporal"
+
+msgid ""
+"This chart shows the <strong>temporal evolution</strong> of EU-LAC digital "
+"cooperation over time. The <strong>Total Documents</strong> line (teal) "
+"shows overall activity, while <strong>Agreements</strong> (blue) and "
+"<strong>Dialogues</strong> (green) reveal the nature of cooperation. "
+"Tracking these trends helps identify <strong>growth patterns</strong>, "
+"<strong>peak periods</strong>, and the balance between policy discussion and "
+"concrete commitments. <strong>Hover over points</strong> to see detailed "
+"yearly metrics and percentages."
+msgstr ""
+"Este gráfico muestra la <strong>evolución temporal</strong> de la cooperación "
+"digital UE-ALC a lo largo del tiempo. La línea de <strong>Documentos Totales</strong> "
+"(verde azulado) muestra la actividad general, mientras que <strong>Acuerdos</strong> "
+"(azul) y <strong>Diálogos</strong> (verde) revelan la naturaleza de la cooperación. "
+"El seguimiento de estas tendencias ayuda a identificar <strong>patrones de crecimiento</strong>, "
+"<strong>períodos pico</strong> y el equilibrio entre discusión política y compromisos "
+"concretos. <strong>Pase el cursor sobre los puntos</strong> para ver métricas anuales "
+"detalladas y porcentajes."
+
+msgid "📊 Total Documents"
+msgstr "📊 Documentos Totales"
+
+msgid "📜 Agreements"
+msgstr "📜 Acuerdos"
+
+msgid "💬 Dialogues"
+msgstr "💬 Diálogos"
 
 #: .\apps\core\templates\core\analysis.html:184
 msgid ""
