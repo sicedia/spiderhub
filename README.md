@@ -303,7 +303,7 @@ plantuml -preview architecture.puml
 ## 🌍 Internationalization (i18n)
 
 This project currently supports **2 active languages**: English (default) and Spanish.
-**Portuguese is ready but temporarily disabled** - see [TRANSLATIONS.md](TRANSLATIONS.md#-portugués-desactivado-temporalmente) to activate it.
+**Portuguese is ready but temporarily disabled** - see [TRANSLATIONS_v1.0.md](docs/TRANSLATIONS_v1.0.md) to activate it.
 
 ### Quick Start for Translations
 
@@ -337,28 +337,65 @@ This project currently supports **2 active languages**: English (default) and Sp
    ```
 
 📖 **Complete guides:**
-- **[TRANSLATIONS.md](TRANSLATIONS.md)** - ⚡ Quick reference (START HERE)
-- **[Translation Workflow Guide](docs/TRANSLATION_WORKFLOW.md)** - Detailed step-by-step guide
-- **[Translation Quick Reference](docs/TRANSLATION_QUICK_REFERENCE.md)** - Commands cheatsheet
+- **[TRANSLATIONS_v1.0.md](docs/TRANSLATIONS_v1.0.md)** - ⚡ Quick reference (START HERE)
+- **[Translation Workflow Guide v1.1](docs/TRANSLATION_WORKFLOW_v1.1.md)** - Detailed step-by-step guide
+- **[Translation Quick Reference v1.0](docs/TRANSLATION_QUICK_REFERENCE_v1.0.md)** - Commands cheatsheet
 
 ## 📚 Technical Documentation
 
-### Development Guides
-- **[Translation Workflow Guide](docs/TRANSLATION_WORKFLOW.md)** - ⭐ Complete process for adding translations
-- **[Cache Busting Guide](docs/CACHE_BUSTING.md)** - Cache busting system for static files and ES6 modules
-- **[Deployment Checklist](docs/DEPLOYMENT_CHECKLIST.md)** - Complete checklist for safe deployments
-- **[Logger Migration Guide](docs/LOGGER_MIGRATION_GUIDE.md)** - Centralized logging system migration
-- **[EventBus Migration Guide](docs/EVENTBUS_MIGRATION_GUIDE.md)** - Event system migration
+### 📖 Documentation Index
+All documentation files now include **version numbers** for easy identification:
+- **[Complete Documentation Index (README_v3.0.md)](docs/README_v3.0.md)** - Full documentation catalog with categories
+- **[Document Version Index (DOCUMENT_VERSION_INDEX_v1.0.md)](docs/DOCUMENT_VERSION_INDEX_v1.0.md)** - Chronological version tracking
+
+### 🚀 Deployment & Operations
+- **[Deployment Checklist v1.2](docs/DEPLOYMENT_CHECKLIST_v1.2.md)** - Complete checklist for safe deployments
+- **[Cache Busting v2.0](docs/CACHE_BUSTING_V2_SUMMARY_v2.0.md)** - Automatic content hash system for static files
+
+### 🔒 Security
+- **[CSP Implementation v1.1](docs/CSP_IMPLEMENTATION_v1.1.md)** - Content Security Policy implementation
+- **[CSP Testing Guide v1.0](docs/CSP_TESTING_GUIDE_v1.0.md)** - Security testing procedures
+- **[CSP Quick Start v1.0](docs/SECURITY_CSP_QUICKSTART_v1.0.md)** - Quick security setup
+
+### 🌍 Internationalization (i18n)
+- **[TRANSLATIONS v1.0](docs/TRANSLATIONS_v1.0.md)** - ⭐ Quick translations guide (START HERE)
+- **[Translation Workflow v1.1](docs/TRANSLATION_WORKFLOW_v1.1.md)** - Complete step-by-step guide
+- **[Translation Quick Reference v1.0](docs/TRANSLATION_QUICK_REFERENCE_v1.0.md)** - Commands cheatsheet
+- **[Translation Files Reference v1.0](docs/TRANSLATION_FILES_REFERENCE_v1.0.md)** - File structure guide
+- **[Install Gettext Windows v1.0](docs/INSTALL_GETTEXT_WINDOWS_v1.0.md)** - Windows setup guide
+
+### 🛠️ Migration & Architecture
+- **[Logger Migration Guide v1.0](docs/LOGGER_MIGRATION_GUIDE_v1.0.md)** - Centralized logging system migration
+- **[EventBus Migration Guide v1.0](docs/EVENTBUS_MIGRATION_GUIDE_v1.0.md)** - Event system migration
+- **[Logging Configuration v1.0](docs/LOGGING_CONFIGURATION_v1.0.md)** - Logging setup
+
+### 🎯 AI & SDG Analysis
+- **[SDG Relevance Quick Start v1.0](docs/SDG_RELEVANCE_QUICKSTART_v1.0.md)** - ⭐ 5-minute setup guide
+- **[SDG Relevance Setup v1.0](docs/SDG_RELEVANCE_SETUP_v1.0.md)** - Complete configuration guide
+- **[Proxy LLM Setup v1.1](docs/PROXY_LLM_SETUP_v1.1.md)** - Corporate proxy LLM configuration
+- **[SDG Charts v1.0](docs/SDG_CHARTS_STANDARDIZATION_SUMMARY_v1.0.md)** - Visualization standardization
+
+### 🧪 Testing
+- **[Jest Setup v1.0](docs/JEST_SETUP_v1.0.md)** - Unit testing configuration
+
+### 📊 Backend
+- **[Strategic Cabinet Logic v1.0](docs/STRATEGIC_CABINET_BACKEND_LOGIC_v1.0.md)** - Backend logic documentation
 
 ### Testing Tools
 - **Cache Busting Test**: Access `/static/cache-test.html` in development to verify HTTP headers
 - **Logging Test**: Access `/static/test-logging.html` to test the logging system
 
 ### Important Notes
-⚠️ **Before deploying**: Always check the [Deployment Checklist](docs/DEPLOYMENT_CHECKLIST.md), especially:
+⚠️ **Before deploying**: Always check the [Deployment Checklist v1.2](docs/DEPLOYMENT_CHECKLIST_v1.2.md), especially:
 - Increment `STATIC_VERSION` if you modified JavaScript files
 - Test in incognito mode before deploying
 - Verify that dark mode works correctly in all pages
+
+### Documentation Versioning
+All documentation files now include version numbers in their filenames (e.g., `TRANSLATIONS_v1.0.md`). This makes it easy to:
+- 📂 Identify document versions at a glance
+- 📊 Track documentation evolution
+- 🔍 Find the latest version quickly
 
 ## 🤝 Contributing
 
@@ -367,7 +404,10 @@ This project currently supports **2 active languages**: English (default) and Sp
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-6. **Important**: If you modified JavaScript files, increment `STATIC_VERSION` and mention it in the PR
+6. **Important**: 
+   - If you modified JavaScript files, increment `STATIC_VERSION` and mention it in the PR
+   - If you create or update documentation, add version numbers to filenames (e.g., `NEW_DOC_v1.0.md`)
+   - Update the [Documentation Index](docs/README_v3.0.md) with your new documentation
 
 
 ## 📝 License

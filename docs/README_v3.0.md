@@ -6,103 +6,110 @@ This folder contains technical documentation and development guides for SPIDERHU
 
 ### 🚀 Deployment and Configuration
 
-- **[DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md)** - Complete checklist for safe deployments
+- **[DEPLOYMENT_CHECKLIST_v1.2.md](DEPLOYMENT_CHECKLIST_v1.2.md)** - Complete checklist for safe deployments
   - JavaScript changes verification
   - Incognito mode testing
   - Deployment process and post-deployment verification
   
-- **[CACHE_BUSTING_V2_SUMMARY.md](CACHE_BUSTING_V2_SUMMARY.md)** - v2.0 cache busting system
+- **[CACHE_BUSTING_V2_SUMMARY_v2.0.md](CACHE_BUSTING_V2_SUMMARY_v2.0.md)** - v2.0 cache busting system
   - Automatic content hash
   - Docker and Git integration
   - New deployment workflow
 
 ### 🔒 Security
 
-- **[CSP_IMPLEMENTATION.md](CSP_IMPLEMENTATION.md)** - Content Security Policy implementation
+- **[CSP_IMPLEMENTATION_v1.1.md](CSP_IMPLEMENTATION_v1.1.md)** - Content Security Policy implementation
   - Nonce-based script execution
   - Security improvements and configuration
   - Template tag usage and best practices
 
-- **[CSP_TESTING_GUIDE.md](CSP_TESTING_GUIDE.md)** - CSP testing procedures
+- **[CSP_TESTING_GUIDE_v1.0.md](CSP_TESTING_GUIDE_v1.0.md)** - CSP testing procedures
   - Complete testing checklist
   - Browser verification steps
   - Troubleshooting guide
 
-- **[SECURITY_CSP_QUICKSTART.md](SECURITY_CSP_QUICKSTART.md)** - Quick start guide for CSP
+- **[SECURITY_CSP_QUICKSTART_v1.0.md](SECURITY_CSP_QUICKSTART_v1.0.md)** - Quick start guide for CSP
   - Essential security configuration
   - Quick setup steps
 
 ### 🌍 Translation System
 
-- **[TRANSLATIONS.md](TRANSLATIONS.md)** - ⭐ Quick translations guide (START HERE)
+- **[TRANSLATIONS_v1.0.md](TRANSLATIONS_v1.0.md)** - ⭐ Quick translations guide (START HERE)
   - Quick commands
   - Code syntax
   - Quick checklist
 
-- **[TRANSLATION_WORKFLOW.md](TRANSLATION_WORKFLOW.md)** - Complete step-by-step guide
+- **[TRANSLATION_WORKFLOW_v1.1.md](TRANSLATION_WORKFLOW_v1.1.md)** - Complete step-by-step guide
   - Complete process for new features
   - Adding translations to HTML templates and JavaScript
   - Troubleshooting
 
-- **[TRANSLATION_QUICK_REFERENCE.md](TRANSLATION_QUICK_REFERENCE.md)** - Commands cheatsheet
+- **[TRANSLATION_QUICK_REFERENCE_v1.0.md](TRANSLATION_QUICK_REFERENCE_v1.0.md)** - Commands cheatsheet
   - Important commands
   - Available scripts
   - Quick shortcuts
 
-- **[TRANSLATION_FILES_REFERENCE.md](TRANSLATION_FILES_REFERENCE.md)** - Files reference
+- **[TRANSLATION_FILES_REFERENCE_v1.0.md](TRANSLATION_FILES_REFERENCE_v1.0.md)** - Files reference
   - Directory structure
   - Which file to edit for each case
   - .po files format
 
 ### 🛠️ Migration Guides
 
-- **[LOGGER_MIGRATION_GUIDE.md](LOGGER_MIGRATION_GUIDE.md)** - Centralized logging system migration
+- **[LOGGER_MIGRATION_GUIDE_v1.0.md](LOGGER_MIGRATION_GUIDE_v1.0.md)** - Centralized logging system migration
   - Log levels (debug, info, warn, error)
   - Logger with context (Child Logger)
   - Environment configuration
 
-- **[EVENTBUS_MIGRATION_GUIDE.md](EVENTBUS_MIGRATION_GUIDE.md)** - Event system migration
+- **[EVENTBUS_MIGRATION_GUIDE_v1.0.md](EVENTBUS_MIGRATION_GUIDE_v1.0.md)** - Event system migration
   - Event centralization
   - Automatic memory leak prevention
   - Debugging with EventBus
 
-- **[LOGGING_CONFIGURATION.md](LOGGING_CONFIGURATION.md)** - Logging configuration
+- **[LOGGING_CONFIGURATION_v1.0.md](LOGGING_CONFIGURATION_v1.0.md)** - Logging configuration
   - Backend configuration (Django)
   - Frontend configuration (JavaScript)
   - Levels per environment
 
 ### 🎯 SDG Relevance & AI Analysis
 
-- **[SDG_RELEVANCE_QUICKSTART.md](SDG_RELEVANCE_QUICKSTART.md)** - Quick start guide (5 minutes)
+- **[SDG_RELEVANCE_QUICKSTART_v1.0.md](SDG_RELEVANCE_QUICKSTART_v1.0.md)** - Quick start guide (5 minutes)
   - Prerequisites and setup
   - Usage instructions
   - Troubleshooting common issues
 
-- **[SDG_RELEVANCE_SETUP.md](SDG_RELEVANCE_SETUP.md)** - Complete setup guide
+- **[SDG_RELEVANCE_SETUP_v1.0.md](SDG_RELEVANCE_SETUP_v1.0.md)** - Complete setup guide
   - Environment configuration
   - Provider options (OpenAI, Anthropic, Ollama)
   - Command-line usage and examples
 
-- **[PROXY_LLM_SETUP.md](PROXY_LLM_SETUP.md)** - Corporate proxy LLM configuration
+- **[PROXY_LLM_SETUP_v1.1.md](PROXY_LLM_SETUP_v1.1.md)** - Corporate proxy LLM configuration
   - CEDIA proxy setup
   - Multi-provider support
   - Troubleshooting proxy connections
 
-- **[SDG_CHARTS_STANDARDIZATION_SUMMARY.md](SDG_CHARTS_STANDARDIZATION_SUMMARY.md)** - SDG visualization charts
+- **[SDG_CHARTS_STANDARDIZATION_SUMMARY_v1.0.md](SDG_CHARTS_STANDARDIZATION_SUMMARY_v1.0.md)** - SDG visualization charts
   - Radar chart dual-dataset configuration
   - Bar chart standardization
   - Official UN colors implementation
 
 ### 🔧 Configuration and Setup
 
-- **[INSTALL_GETTEXT_WINDOWS.md](INSTALL_GETTEXT_WINDOWS.md)** - GNU Gettext installation on Windows
+- **[INSTALL_GETTEXT_WINDOWS_v1.0.md](INSTALL_GETTEXT_WINDOWS_v1.0.md)** - GNU Gettext installation on Windows
   - Installation options (Chocolatey, manual, WSL)
   - Translation files compilation
   - Troubleshooting
 
+### 🧪 Testing
+
+- **[JEST_SETUP_v1.0.md](JEST_SETUP_v1.0.md)** - Jest unit testing configuration
+  - Jest and Babel setup
+  - Test structure and examples
+  - NPM scripts for testing
+
 ### 📊 Backend Documentation
 
-- **[STRATEGIC_CABINET_BACKEND_LOGIC.md](STRATEGIC_CABINET_BACKEND_LOGIC.md)** - Strategic Cabinet backend logic
+- **[STRATEGIC_CABINET_BACKEND_LOGIC_v1.0.md](STRATEGIC_CABINET_BACKEND_LOGIC_v1.0.md)** - Strategic Cabinet backend logic
   - Participation types
   - Endpoints and their logic
   - Filters and data consistency
@@ -110,6 +117,12 @@ This folder contains technical documentation and development guides for SPIDERHU
 ---
 
 ## 🗑️ Cleanup History
+
+### October 21, 2025 - Third Update: File Versioning
+- ✅ **Added version numbers to all filenames** (21 files)
+- ✅ Format: `DOCUMENT_NAME_v1.0.md`
+- ✅ Easy identification of latest versions
+- ✅ Clear historical tracking
 
 ### October 21, 2025 - Second Cleanup (19 files removed)
 
@@ -174,9 +187,10 @@ Documents were removed if they met one or more of these criteria:
 
 ---
 
-## 📌 Current Documentation (19 files)
+## 📌 Current Documentation (21 files)
 
 All maintained documents are:
+- ✅ **Versioned filenames** for easy identification
 - ✅ Referenced in the index above
 - ✅ Current and relevant technical guides
 - ✅ Useful development references
@@ -188,7 +202,7 @@ All maintained documents are:
 ## 📋 Document Version Tracking
 
 For complete version history and chronological order of all documentation:
-- **[DOCUMENT_VERSION_INDEX.md](DOCUMENT_VERSION_INDEX.md)** - Complete version index with chronological timeline
+- **[DOCUMENT_VERSION_INDEX_v1.0.md](DOCUMENT_VERSION_INDEX_v1.0.md)** - Complete version index with chronological timeline
 
 ## 🔗 References
 
@@ -199,9 +213,27 @@ For more information, see:
 
 ---
 
-**Document Version:** v3.0  
+## 📝 File Naming Convention
+
+**Format:** `DOCUMENT_NAME_v[MAJOR].[MINOR].md`
+
+**Examples:**
+- `README_v3.0.md` - Major version 3.0
+- `TRANSLATIONS_v1.0.md` - Initial version 1.0
+- `CSP_IMPLEMENTATION_v1.1.md` - Minor update to 1.1
+
+**Benefits:**
+- 📂 Instant version identification in file explorer
+- 🔍 Easy to find latest versions
+- 📊 Clear historical tracking
+- 🗂️ Sortable by name shows version progression
+
+---
+
+**Document Version:** v3.1  
 **Last Updated:** October 21, 2025  
 **Change Log:**
+- v3.1 (Oct 21, 2025): Added version numbers to filenames
 - v3.0 (Oct 21, 2025): Major cleanup - Removed 19 obsolete files
 - v2.0 (Oct 14, 2025): Initial cleanup - Removed 14 obsolete files
 - v1.0 (Initial): Created documentation index

@@ -1,26 +1,26 @@
 # Logger Migration Guide
 
-## 📋 Objetivo
+## 📋 Objective
 
-Reemplazar todos los `console.log`, `console.warn`, `console.error` con nuestro sistema de logging centralizado.
+Replace all `console.log`, `console.warn`, `console.error` calls with our centralized logging system.
 
-## 🎯 Beneficios
+## 🎯 Benefits
 
-- ✅ Control de niveles por entorno (dev/prod)
-- ✅ Metadata automática (timestamp, context)
-- ✅ Búsqueda y filtrado de logs
-- ✅ Export/download de logs
-- ✅ Integración futura con servicios remotos (Sentry, LogRocket)
+- ✅ Environment-based level control (dev/prod)
+- ✅ Automatic metadata (timestamp, context)
+- ✅ Log search and filtering
+- ✅ Log export/download capabilities
+- ✅ Future integration with remote services (Sentry, LogRocket)
 
-## 📦 Importación
+## 📦 Import
 
 ```javascript
 import { logger } from '@js/core/logger/Logger.js';
 ```
 
-## 🔄 Migración Rápida
+## 🔄 Quick Migration
 
-### Antes (console.log)
+### Before (console.log)
 ```javascript
 console.log('SearchManager: Performing search', { url, state });
 console.log('⏳ Emitting LOADING_START event');
@@ -29,7 +29,7 @@ console.error('❌ Search error:', error);
 console.warn('⚠️ showError() called with no error');
 ```
 
-### Después (logger)
+### After (logger)
 ```javascript
 logger.debug('Performing search', { url, state });
 logger.debug('Emitting LOADING_START event');
@@ -38,10 +38,10 @@ logger.error('Search failed', error);
 logger.warn('showError() called without error object');
 ```
 
-## 📊 Niveles de Log
+## 📊 Log Levels
 
 ### `logger.debug(message, data, context)`
-**Cuándo usar:** Información detallada para debugging
+**When to use:** Detailed information for debugging
 
 ```javascript
 logger.debug('Building search params', { state: this.state });
@@ -50,7 +50,7 @@ logger.debug('Component initialized', { options: this.options });
 ```
 
 ### `logger.info(message, data, context)`
-**Cuándo usar:** Eventos importantes del flujo normal
+**When to use:** Important events in normal flow
 
 ```javascript
 logger.info('Search completed', { count: data.results.length, duration: 450 });
@@ -59,7 +59,7 @@ logger.info('Filter applied', { filterType, filterValue });
 ```
 
 ### `logger.warn(message, data, context)`
-**Cuándo usar:** Situaciones anormales que no son errores
+**When to use:** Abnormal situations that are not errors
 
 ```javascript
 logger.warn('Slow API response', { duration: 5000, endpoint });
@@ -68,7 +68,7 @@ logger.warn('Deprecated method used', { method: 'oldMethod' });
 ```
 
 ### `logger.error(message, error, context)`
-**Cuándo usar:** Errores reales
+**When to use:** Actual errors
 
 ```javascript
 try {
@@ -82,9 +82,9 @@ try {
 }
 ```
 
-## 🏗️ Logger con Contexto (Child Logger)
+## 🏗️ Logger with Context (Child Logger)
 
-Para componentes, crea un child logger con contexto:
+For components, create a child logger with context:
 
 ```javascript
 export class SearchManager extends BaseComponent {
@@ -113,13 +113,13 @@ export class SearchManager extends BaseComponent {
 }
 ```
 
-**Output en consola:**
+**Console output:**
 ```
 🔍 [10:30:45] [SearchManager] Starting search { state: {...} }
 ℹ️ [10:30:46] [SearchManager] Search completed { count: 42 }
 ```
 
-## 📊 Log Groups (para operaciones complejas)
+## 📊 Log Groups (for complex operations)
 
 ```javascript
 async performComplexOperation() {
@@ -134,17 +134,17 @@ async performComplexOperation() {
 }
 ```
 
-## 🔧 Configuración por Entorno
+## 🔧 Environment Configuration
 
-El logger detecta automáticamente el entorno:
+Logger automatically detects the environment:
 
 - **Development** (localhost, 127.0.0.1, *dev*, ?debug=true):
-  - Level: `debug` (muestra todo)
+  - Level: `debug` (shows everything)
   
-- **Production** (otros dominios):
-  - Level: `warn` (solo warnings y errors)
+- **Production** (other domains):
+  - Level: `warn` (only warnings and errors)
 
-### Override manual:
+### Manual override:
 
 ```javascript
 // Force debug mode
@@ -157,9 +157,9 @@ logger.disable();
 logger.enable();
 ```
 
-## 🔍 Inspección de Logs
+## 🔍 Log Inspection
 
-### En consola del navegador:
+### In browser console:
 
 ```javascript
 // Access logger
@@ -181,65 +181,65 @@ window.__logger.getLogs({ search: 'search' })
 window.__logger.downloadLogs('debug-logs.json')
 ```
 
-## 📝 Checklist de Migración
+## 📝 Migration Checklist
 
-Para cada archivo:
+For each file:
 
-- [ ] Importar logger: `import { logger } from '@js/core/logger/Logger.js';`
-- [ ] Crear child logger si es un componente
-- [ ] Reemplazar `console.log` → `logger.debug`
-- [ ] Reemplazar `console.info` → `logger.info`
-- [ ] Reemplazar `console.warn` → `logger.warn`
-- [ ] Reemplazar `console.error` → `logger.error`
-- [ ] Remover emojis de mensajes (el logger los añade automáticamente)
-- [ ] Añadir data relevante como segundo parámetro
-- [ ] Añadir context como tercer parámetro si es necesario
-- [ ] Testear que los logs aparecen correctamente
+- [ ] Import logger: `import { logger } from '@js/core/logger/Logger.js';`
+- [ ] Create child logger if it's a component
+- [ ] Replace `console.log` → `logger.debug`
+- [ ] Replace `console.info` → `logger.info`
+- [ ] Replace `console.warn` → `logger.warn`
+- [ ] Replace `console.error` → `logger.error`
+- [ ] Remove emojis from messages (logger adds them automatically)
+- [ ] Add relevant data as second parameter
+- [ ] Add context as third parameter if needed
+- [ ] Test that logs appear correctly
 
-## 🎨 Estilos de Mensajes
+## 🎨 Message Styles
 
-### ✅ Buenos mensajes
+### ✅ Good messages
 
 ```javascript
-// Claro y conciso
+// Clear and concise
 logger.info('Search completed', { count: 10, duration: 450 });
 
-// Con contexto útil
+// With useful context
 logger.error('API request failed', error, {
   endpoint: '/api/search',
   params: { q: 'test' },
   retries: 3
 });
 
-// Acción + resultado
+// Action + result
 logger.debug('Emitting event', { 
   event: EVENTS.SEARCH_SUCCESS, 
   data: { count: 10 } 
 });
 ```
 
-### ❌ Malos mensajes
+### ❌ Bad messages
 
 ```javascript
-// Demasiado vago
+// Too vague
 logger.info('Success');
 
-// Demasiado largo
+// Too long
 logger.debug('Now we are going to perform a search with the following parameters that the user provided...');
 
-// Con emoji (el logger los añade)
+// With emoji (logger adds them)
 logger.error('❌ Search failed', error);
 
-// Solo data sin mensaje
+// Only data without message
 logger.info(null, { count: 10 });
 ```
 
-## 🚀 Integración Futura
+## 🚀 Future Integration
 
-El logger está preparado para integrarse con servicios externos:
+The logger is prepared to integrate with external services:
 
 ```javascript
-// Ejemplo: Enviar errors a Sentry
+// Example: Send errors to Sentry
 logger.addHandler(logger.createRemoteHandler('https://api.sentry.io/logs', {
   headers: {
     'Authorization': 'Bearer YOUR_TOKEN'
@@ -249,24 +249,24 @@ logger.addHandler(logger.createRemoteHandler('https://api.sentry.io/logs', {
 }));
 ```
 
-## 📊 Ejemplo Completo: SearchManager
+## 📊 Complete Example: SearchManager
 
-Mira `SearchManager.js` para ver un ejemplo completo de migración.
+See `SearchManager.js` for a complete migration example.
 
 ## 🐛 Debugging
 
-Si algo no funciona:
+If something doesn't work:
 
-1. Verifica que el logger está importado correctamente
-2. Chequea el nivel de log: `logger.config.level`
-3. Verifica que está habilitado: `logger.config.enabled`
-4. Usa `window.__logger` en consola para inspeccionar
+1. Verify the logger is imported correctly
+2. Check the log level: `logger.config.level`
+3. Verify it's enabled: `logger.config.enabled`
+4. Use `window.__logger` in console to inspect
 
-## 📚 Recursos
+## 📚 Resources
 
 - Logger.js: `apps/core/static/core/js/core/logger/Logger.js`
-- Este guide: `docs/LOGGER_MIGRATION_GUIDE.md`
-- Ejemplo: `apps/core/static/core/js/components/search/SearchManager.js`
+- This guide: `docs/LOGGER_MIGRATION_GUIDE_v1.0.md`
+- Example: `apps/core/static/core/js/components/search/SearchManager.js`
 
 ---
 
@@ -274,5 +274,5 @@ Si algo no funciona:
 **Created:** October 2024  
 **Last Updated:** October 2024  
 **Category:** Migration & Architecture  
-**Related:** EVENTBUS_MIGRATION_GUIDE.md, LOGGING_CONFIGURATION.md
+**Related:** EVENTBUS_MIGRATION_GUIDE_v1.0.md, LOGGING_CONFIGURATION_v1.0.md
 
