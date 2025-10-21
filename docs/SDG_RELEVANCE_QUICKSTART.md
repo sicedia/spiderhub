@@ -35,8 +35,8 @@ Add these lines to your `.env` file:
 ```bash
 # LLM Configuration
 LLM_PROVIDER=openai
-OPENAI_API_KEY=sk-SuGVigyKh-Ejf0BDMDR5bw  # Key del proxy
-LLM_BASE_URL=https://api.cedia.org.ec/v1   # URL del proxy
+OPENAI_API_KEY=sk...  # Key del proxy
+LLM_BASE_URL=https://api.example.org.ec/v1   # URL del proxy
 LLM_MODEL=openai/gpt-4o-mini               # Modelo con prefijo
 LLM_TEMPERATURE=0.1
 LLM_MAX_TOKENS=500

@@ -126,7 +126,7 @@ if provider == 'openai':
 **Propósito**: URL base del proxy LLM corporativo
 
 **Valores**:
-- **Con proxy CEDIA**: `https://api.cedia.org.ec/v1`
+- **Con proxy CEDIA**: `https://api.example.org.ec/v1`
 - **Con OpenAI directo**: *(dejar vacío o no configurar)*
 - **Con Azure OpenAI**: `https://your-resource.openai.azure.com/`
 - **Otros proxies**: URL del proxy compatible OpenAI
@@ -141,16 +141,16 @@ if provider == 'openai':
 
 ```bash
 LLM_PROVIDER=openai
-OPENAI_API_KEY=sk-SuGVigyKh-Ejf0BDMDR5bw
-LLM_BASE_URL=https://api.cedia.org.ec/v1
+OPENAI_API_KEY=sk...
+LLM_BASE_URL=https://api.example.org.ec/v1
 LLM_MODEL=openai/gpt-4o-mini
 ```
 
 **Comportamiento**:
 - Usa ChatOpenAI de LangChain
-- Conecta a `https://api.cedia.org.ec/v1`
+- Conecta a `https://api.example.org.ec/v1`
 - Modelo: `openai/gpt-4o-mini` (con prefijo del proveedor)
-- Log: "Using custom LLM base URL: https://api.cedia.org.ec/v1"
+- Log: "Using custom LLM base URL: https://api.example.org.ec/v1"
 
 ---
 
@@ -175,8 +175,8 @@ LLM_MODEL=gpt-4o
 
 ```bash
 LLM_PROVIDER=openai  # Sí, 'openai' porque el proxy es compatible
-OPENAI_API_KEY=sk-SuGVigyKh-Ejf0BDMDR5bw
-LLM_BASE_URL=https://api.cedia.org.ec/v1
+OPENAI_API_KEY=sk...
+LLM_BASE_URL=https://api.example.org.ec/v1
 LLM_MODEL=gemini/gemini-2.5-flash-lite-preview-09-2025
 ```
 
@@ -217,7 +217,7 @@ Cualquier proxy/gateway que implemente la **API de OpenAI** funciona:
 
 | Proxy | Compatible | Base URL Ejemplo |
 |-------|-----------|------------------|
-| **CEDIA** | ✅ | `https://api.cedia.org.ec/v1` |
+| **CEDIA** | ✅ | `https://api.example.org.ec/v1` |
 | **Azure OpenAI** | ✅ | `https://your-resource.openai.azure.com/` |
 | **LiteLLM** | ✅ | `https://your-litellm-instance.com/v1` |
 | **OpenRouter** | ✅ | `https://openrouter.ai/api/v1` |
@@ -259,7 +259,7 @@ python manage.py ingest_sdg_relevance --doc 1
 **Salida esperada** (con proxy):
 ```
 [2025-10-21 10:30:15] INFO - llm_service - LLM service initialized: openai / openai/gpt-4o-mini
-[2025-10-21 10:30:15] INFO - llm_service - Using custom LLM base URL: https://api.cedia.org.ec/v1
+[2025-10-21 10:30:15] INFO - llm_service - Using custom LLM base URL: https://api.example.org.ec/v1
 ```
 
 ### Test 3: Validación de Config
@@ -356,7 +356,7 @@ Agregar tracking de:
 Si ya tienes el módulo funcionando con OpenAI directo y quieres migrar a proxy:
 
 - [ ] Obtener API key del proxy CEDIA
-- [ ] Agregar `LLM_BASE_URL=https://api.cedia.org.ec/v1` a `.env`
+- [ ] Agregar `LLM_BASE_URL=https://api.example.org.ec/v1` a `.env`
 - [ ] Actualizar `OPENAI_API_KEY` con la key del proxy
 - [ ] Cambiar `LLM_MODEL` a formato con prefijo (ej: `openai/gpt-4o-mini`)
 - [ ] Reiniciar aplicación Django

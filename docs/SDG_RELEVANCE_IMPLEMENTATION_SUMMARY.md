@@ -293,8 +293,8 @@ cat logs/failed_sdg_scores.log
    **Option A - Corporate Proxy** (e.g., CEDIA):
    ```bash
    LLM_PROVIDER=openai
-   OPENAI_API_KEY=sk-SuGVigyKh-Ejf0BDMDR5bw
-   LLM_BASE_URL=https://api.cedia.org.ec/v1
+   OPENAI_API_KEY=sk...
+   LLM_BASE_URL=https://api.example.org.ec/v1
    LLM_MODEL=openai/gpt-4o-mini
    LLM_TEMPERATURE=0.1
    ```

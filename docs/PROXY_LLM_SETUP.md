@@ -14,7 +14,7 @@ Un proxy LLM es un servicio corporativo que:
 
 ### Ejemplo: Proxy CEDIA
 ```
-Base URL: https://api.cedia.org.ec/v1
+Base URL: https://api.example.org.ec/v1
 API Key: 
 Modelos disponibles:
   - openai/gpt-4o-mini
@@ -89,7 +89,7 @@ LLM_MAX_RETRIES=3
 
 | Aspecto | Proxy LLM | OpenAI Directo |
 |---------|-----------|----------------|
-| **LLM_BASE_URL** | `https://api.cedia.org.ec/v1` | (vacío) |
+| **LLM_BASE_URL** | `https://api.example.org.ec/v1` | (vacío) |
 | **LLM_MODEL** | `openai/gpt-4o-mini` | `gpt-4o` |
 | **OPENAI_API_KEY** | Clave del proxy | Clave de OpenAI |
 | **Costos** | Gestionado por empresa | Facturado a ti |
@@ -105,7 +105,7 @@ LLM_MAX_RETRIES=3
 # .env
 LLM_PROVIDER=openai
 OPENAI_API_KEY=
-LLM_BASE_URL=https://api.cedia.org.ec/v1
+LLM_BASE_URL=https://api.example.org.ec/v1
 LLM_MODEL=openai/gpt-4o-mini
 LLM_TEMPERATURE=0.1
 ```
@@ -118,7 +118,7 @@ LLM_TEMPERATURE=0.1
 # .env
 LLM_PROVIDER=openai  # Sí, 'openai' porque el proxy es compatible OpenAI
 OPENAI_API_KEY=
-LLM_BASE_URL=https://api.cedia.org.ec/v1
+LLM_BASE_URL=https://api.example.org.ec/v1
 LLM_MODEL=gemini/gemini-2.5-flash-lite-preview-09-2025
 LLM_TEMPERATURE=0.1
 ```
@@ -162,7 +162,7 @@ python manage.py shell
 ```
 Provider: openai
 API Key: sk-SuGVigyKh-E...
-Base URL: https://api.cedia.org.ec/v1
+Base URL: https://api.example.org.ec/v1
 Model: openai/gpt-4o-mini
 ```
 
@@ -277,7 +277,7 @@ sudo systemctl restart spiderhub
 LLM_BASE_URL=api.cedia.org.ec/v1
 
 # ✅ Correcto
-LLM_BASE_URL=https://api.cedia.org.ec/v1
+LLM_BASE_URL=https://api.example.org.ec/v1
 ```
 
 ### Error: "Invalid API Key"
@@ -298,7 +298,7 @@ LLM_BASE_URL=https://api.cedia.org.ec/v1
 2. Actualiza `LLM_MODEL` con un modelo válido
 3. Contacta al administrador del proxy
 
-### Logs muestran "Using custom LLM base URL: https://api.cedia.org.ec/v1"
+### Logs muestran "Using custom LLM base URL: https://api.example.org.ec/v1"
 
 **Estado**: ✅ **Correcto**
 

@@ -34,8 +34,8 @@ LLM_PROVIDER=openai
 # ==============================================================================
 # OPTION 1: Corporate Proxy LLM (e.g., CEDIA)
 # ==============================================================================
-OPENAI_API_KEY=sk-SuGVigyKh-Ejf0BDMDR5bw
-LLM_BASE_URL=https://api.cedia.org.ec/v1
+OPENAI_API_KEY=sk...
+LLM_BASE_URL=https://api.example.org.ec/v1
 LLM_MODEL=openai/gpt-4o-mini  # Use provider prefix (openai/, gemini/, etc.)
 
 # ==============================================================================
@@ -74,8 +74,8 @@ If your organization has an LLM proxy/gateway (like CEDIA):
 
 ```bash
 LLM_PROVIDER=openai
-OPENAI_API_KEY=sk-SuGVigyKh-Ejf0BDMDR5bw  # Proxy API key
-LLM_BASE_URL=https://api.cedia.org.ec/v1   # Proxy base URL
+OPENAI_API_KEY=sk...  # Proxy API key
+LLM_BASE_URL=https://api.example.org.ec/v1   # Proxy base URL
 LLM_MODEL=openai/gpt-4o-mini               # Model with provider prefix
 LLM_TEMPERATURE=0.1
 ```
