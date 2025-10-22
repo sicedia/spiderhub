@@ -37,28 +37,28 @@ def health_check(request):
 
 def csp_report_view(request):
     """
-    Endpoint para recibir reportes de Content Security Policy
-    Maneja reportes CSP en formato JSON y los loggea para análisis
+    Endpoint to receive Content Security Policy reports
+    Handles CSP reports in JSON format and logs them for analysis
     """
     if request.method != 'POST':
         return HttpResponse(status=405)  # Method Not Allowed
     
     try:
-        # Parsear el JSON del reporte CSP
+        # Parse the CSP report JSON
         report_data = json.loads(request.body)
         
-        # Extraer información relevante del reporte
+        # Extract relevant information from the report
         report_type = report_data.get('type', 'unknown')
         report_body = report_data.get('body', {})
         
-        # Información del reporte CSP
+        # CSP report information
         blocked_uri = report_body.get('blocked-uri', 'unknown')
         violated_directive = report_body.get('violated-directive', 'unknown')
         source_file = report_body.get('source-file', 'unknown')
         line_number = report_body.get('line-number', 'unknown')
         column_number = report_body.get('column-number', 'unknown')
         
-        # Loggear el reporte CSP
+        # Log the CSP report
         logger.warning(
             f"CSP Violation Report - Type: {report_type}, "
             f"Blocked URI: {blocked_uri}, "
@@ -68,11 +68,11 @@ def csp_report_view(request):
             f"IP: {request.META.get('REMOTE_ADDR', 'unknown')}"
         )
         
-        # En modo DEBUG, también loggear el reporte completo
+        # In DEBUG mode, also log the complete report
         if settings.DEBUG:
             logger.debug(f"Full CSP Report: {json.dumps(report_data, indent=2)}")
         
-        # Retornar 204 No Content (éxito sin contenido)
+        # Return 204 No Content (success without content)
         return HttpResponse(status=204)
         
     except json.JSONDecodeError as e:

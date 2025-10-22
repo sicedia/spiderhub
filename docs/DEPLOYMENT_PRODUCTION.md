@@ -243,6 +243,7 @@ docker exec -it spider_db psql -U spider_user -d spider
 1. **Endpoint CSP Report**: `/csp-report/` para recibir y loggear violaciones CSP
 2. **CSP Admin Middleware**: Política CSP relajada específicamente para Django Admin
 3. **Configuración CSP mejorada**: Separación entre política principal y admin
+4. **Sistema de limpieza de logs**: Comando automático para gestionar logs antiguos
 
 ---
 
@@ -261,5 +262,39 @@ docker logs spider_web --tail=30
 
 ---
 
-**¡Listo para deployment! 🚀**
+## Log Management
+
+### Automatic log cleanup configuration
+
+To configure automatic log cleanup in production:
+
+```bash
+# On the production server
+chmod +x scripts/setup_log_rotation.sh
+sudo ./scripts/setup_log_rotation.sh
+```
+
+### Manual cleanup commands
+
+```bash
+# Basic cleanup (last 14 days, keep 5 files)
+docker exec spider_web python manage.py cleanup_logs --days=14 --keep=5
+
+# Simulate cleanup without deleting files
+docker exec spider_web python manage.py cleanup_logs --days=14 --keep=5 --dry-run
+
+# More aggressive cleanup (last 7 days, keep 3 files)
+docker exec spider_web python manage.py cleanup_logs --days=7 --keep=3
+```
+
+### Automatic configuration
+
+The system will automatically configure:
+- **Logrotate**: Daily log rotation with compression
+- **Cron job**: Automatic cleanup every Sunday at 2:00 AM
+- **Retention**: 14 days for normal logs, 30 days for CSP logs
+
+---
+
+**Ready for deployment!**
 

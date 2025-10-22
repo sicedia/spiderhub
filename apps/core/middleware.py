@@ -1,17 +1,17 @@
 """
-Middleware para evitar el cache del navegador en archivos estáticos durante development
-y para manejar CSP específico para Django Admin
+Middleware to prevent browser caching of static files during development
+and to handle CSP specific to Django Admin
 """
 from django.conf import settings
 
 
 class NoCacheMiddleware:
     """
-    Middleware que añade headers para evitar el cache del navegador
-    en archivos estáticos durante el desarrollo.
+    Middleware that adds headers to prevent browser caching
+    of static files during development.
     
-    IMPORTANTE: Los ES6 modules tienen un cache muy agresivo en navegadores modernos.
-    Este middleware usa headers HTTP muy estrictos para forzar la recarga.
+    IMPORTANT: ES6 modules have very aggressive caching in modern browsers.
+    This middleware uses very strict HTTP headers to force reload.
     """
     
     def __init__(self, get_response):
@@ -20,47 +20,47 @@ class NoCacheMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         
-        # Solo aplicar en development
+        # Only apply in development
         if settings.DEBUG:
-            # Detectar si es un archivo JavaScript (incluyendo ES6 modules)
+            # Detect if it's a JavaScript file (including ES6 modules)
             is_js_file = request.path.endswith('.js')
             
-            # Debug: imprimir cuando procesamos archivos JS
+            # Debug: print when processing JS files
             if is_js_file:
                 print(f"[NoCacheMiddleware] Processing: {request.path}")
             
-            # Aplicar a archivos estáticos y media
+            # Apply to static and media files
             if (request.path.startswith(settings.STATIC_URL) or 
                 request.path.startswith(settings.MEDIA_URL)):
                 
                 if is_js_file:
-                    # Headers extra agresivos para ES6 modules
-                    # Chrome, Firefox y Edge cachean agresivamente los modules
+                    # Extra aggressive headers for ES6 modules
+                    # Chrome, Firefox and Edge aggressively cache modules
                     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0'
                     response['Pragma'] = 'no-cache'
                     response['Expires'] = '0'
                     response['Last-Modified'] = ''
                     response['ETag'] = ''
-                    # Header adicional para prevenir el "memory cache" de Chrome
+                    # Additional header to prevent Chrome's "memory cache"
                     response['Clear-Site-Data'] = '"cache"'
-                    # Vary header para asegurar que cada request sea única
+                    # Vary header to ensure each request is unique
                     response['Vary'] = '*'
-                    print(f"[NoCacheMiddleware] ✅ Applied aggressive headers to: {request.path}")
+                    print(f"[NoCacheMiddleware] Applied aggressive headers to: {request.path}")
                 else:
-                    # Headers normales para CSS, imágenes, etc.
+                    # Normal headers for CSS, images, etc.
                     response['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0'
                     response['Pragma'] = 'no-cache'
                     response['Expires'] = '0'
                     response['Last-Modified'] = ''
                     response['ETag'] = ''
             
-            # También aplicar a archivos CSS, JS específicos por extensión fuera de /static/
+            # Also apply to CSS, JS files by extension outside /static/
             elif (request.path.endswith('.css') or 
                   request.path.endswith('.js') or 
                   request.path.endswith('.ico')):
                 
                 if is_js_file:
-                    # Headers extra agresivos para JavaScript
+                    # Extra aggressive headers for JavaScript
                     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0'
                     response['Pragma'] = 'no-cache'
                     response['Expires'] = '0'
@@ -76,8 +76,8 @@ class NoCacheMiddleware:
 
 class AdminCSPMiddleware:
     """
-    Middleware que aplica políticas CSP relajadas específicamente para Django Admin
-    para resolver violaciones CSP con estilos inline que Django Admin requiere
+    Middleware that applies relaxed CSP policies specifically for Django Admin
+    to resolve CSP violations with inline styles that Django Admin requires
     """
     
     def __init__(self, get_response):
@@ -86,15 +86,15 @@ class AdminCSPMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         
-        # Verificar si la request es para Django Admin
+        # Check if the request is for Django Admin
         if self._is_admin_request(request):
-            # Aplicar política CSP relajada para admin
+            # Apply relaxed CSP policy for admin
             self._apply_admin_csp_headers(response)
         
         return response
     
     def _is_admin_request(self, request):
-        """Detectar si la request es para Django Admin"""
+        """Detect if the request is for Django Admin"""
         path = request.path
         return (
             path.startswith('/admin/') or 
@@ -104,12 +104,12 @@ class AdminCSPMiddleware:
         )
     
     def _apply_admin_csp_headers(self, response):
-        """Aplicar headers CSP relajados para Django Admin"""
-        # Obtener CSP_ADMIN_POLICY de settings si está definida
+        """Apply relaxed CSP headers for Django Admin"""
+        # Get CSP_ADMIN_POLICY from settings if defined
         admin_policy = getattr(settings, 'CSP_ADMIN_POLICY', None)
         
         if admin_policy:
-            # Construir header CSP con políticas relajadas
+            # Build CSP header with relaxed policies
             csp_directives = []
             
             for directive, sources in admin_policy.items():

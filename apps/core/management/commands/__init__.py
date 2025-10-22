@@ -1,1 +1,1 @@
-# Archivo necesario para que Python reconozca este directorio como un módulo
+# Django management commands for core app
