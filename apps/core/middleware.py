@@ -105,18 +105,54 @@ class RelaxedCSPMiddleware:
     
     def _apply_relaxed_csp_headers(self, response):
         """Apply relaxed CSP headers for admin pages that need inline styles"""
-        # Get CSP_RELAXED_POLICY from settings if defined
-        relaxed_policy = getattr(settings, 'CSP_RELAXED_POLICY', None)
+        # Build CSP header with relaxed policies for admin
+        csp_directives = []
         
-        if relaxed_policy:
-            # Build CSP header with relaxed policies
-            csp_directives = []
-            
-            for directive, sources in relaxed_policy.items():
-                if sources:
-                    sources_str = ' '.join(f"'{s}'" if s.startswith("'") else s for s in sources)
-                    csp_directives.append(f"{directive} {sources_str}")
-            
-            if csp_directives:
-                csp_header = '; '.join(csp_directives)
-                response['Content-Security-Policy'] = csp_header
+        # Default sources
+        if hasattr(settings, 'CSP_DEFAULT_SRC'):
+            csp_directives.append(f"default-src {' '.join(settings.CSP_DEFAULT_SRC)}")
+        
+        # Script sources - allow self and external CDNs
+        if hasattr(settings, 'CSP_SCRIPT_SRC'):
+            csp_directives.append(f"script-src {' '.join(settings.CSP_SCRIPT_SRC)}")
+        
+        # Style sources - allow unsafe-inline for Django admin
+        csp_directives.append("style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com")
+        csp_directives.append("style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com")
+        csp_directives.append("style-src-attr 'self' 'unsafe-inline'")
+        
+        # Image sources
+        if hasattr(settings, 'CSP_IMG_SRC'):
+            csp_directives.append(f"img-src {' '.join(settings.CSP_IMG_SRC)}")
+        
+        # Font sources
+        if hasattr(settings, 'CSP_FONT_SRC'):
+            csp_directives.append(f"font-src {' '.join(settings.CSP_FONT_SRC)}")
+        
+        # Connect sources
+        if hasattr(settings, 'CSP_CONNECT_SRC'):
+            csp_directives.append(f"connect-src {' '.join(settings.CSP_CONNECT_SRC)}")
+        
+        # Frame sources
+        if hasattr(settings, 'CSP_FRAME_SRC'):
+            csp_directives.append(f"frame-src {' '.join(settings.CSP_FRAME_SRC)}")
+        
+        # Object sources
+        if hasattr(settings, 'CSP_OBJECT_SRC'):
+            csp_directives.append(f"object-src {' '.join(settings.CSP_OBJECT_SRC)}")
+        
+        # Base URI
+        if hasattr(settings, 'CSP_BASE_URI'):
+            csp_directives.append(f"base-uri {' '.join(settings.CSP_BASE_URI)}")
+        
+        # Form action
+        if hasattr(settings, 'CSP_FORM_ACTION'):
+            csp_directives.append(f"form-action {' '.join(settings.CSP_FORM_ACTION)}")
+        
+        # Frame ancestors
+        if hasattr(settings, 'CSP_FRAME_ANCESTORS'):
+            csp_directives.append(f"frame-ancestors {' '.join(settings.CSP_FRAME_ANCESTORS)}")
+        
+        if csp_directives:
+            csp_header = '; '.join(csp_directives)
+            response['Content-Security-Policy'] = csp_header

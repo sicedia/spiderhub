@@ -26,7 +26,7 @@ services:
 
   web:
     container_name: "spider_web"
-    image: sicedia/spiderhub:0.1.0-rc.14
+    image: sicedia/spiderhub:0.1.0-rc.16
     env_file:
       - .env.production
     expose:

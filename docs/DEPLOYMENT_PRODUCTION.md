@@ -1,6 +1,6 @@
 # 🚀 Guía Rápida de Deployment a Producción
 
-**Imagen actual:** `sicedia/spiderhub:0.1.0-rc.14`  
+**Imagen actual:** `sicedia/spiderhub:0.1.0-rc.16`  
 **Fecha:** 21 de Octubre, 2025
 
 ---
@@ -36,14 +36,14 @@
 ```powershell
 # 1. Exportar la imagen a un archivo comprimido
 cd C:\Projects\spiderhub_web
-docker save sicedia/spiderhub:0.1.0-rc.14 | gzip > spiderhub-0.1.0-rc.14.tar.gz
+docker save sicedia/spiderhub:0.1.0-rc.16 | gzip > spiderhub-0.1.0-rc.16.tar.gz
 ```
 
 ### Transferir a producción:
 
 ```powershell
 # Usar SCP, WinSCP, o el método que prefieras
-scp spiderhub-0.1.0-rc.14.tar.gz cedia@ubuntu24:~/spiderhub/
+scp spiderhub-0.1.0-rc.16.tar.gz cedia@ubuntu24:~/spiderhub/
 ```
 
 ### En el servidor de producción (ubuntu24):
@@ -53,10 +53,10 @@ scp spiderhub-0.1.0-rc.14.tar.gz cedia@ubuntu24:~/spiderhub/
 cd ~/spiderhub
 
 # 2. Cargar la imagen
-docker load < spiderhub-0.1.0-rc.14.tar.gz
+docker load < spiderhub-0.1.0-rc.16.tar.gz
 
 # 3. Actualizar docker-compose.yml
-# Editar y cambiar la versión de la imagen a: sicedia/spiderhub:0.1.0-rc.14
+# Editar y cambiar la versión de la imagen a: sicedia/spiderhub:0.1.0-rc.16
 
 # 4. Detener servicios
 docker-compose down
@@ -82,7 +82,7 @@ docker logs spider_web --tail=100
 docker login
 
 # 2. Push la imagen
-docker push sicedia/spiderhub:0.1.0-rc.14
+docker push sicedia/spiderhub:0.1.0-rc.16
 docker push sicedia/spiderhub:latest
 ```
 
@@ -93,7 +93,7 @@ docker push sicedia/spiderhub:latest
 cd ~/spiderhub
 
 # 2. Actualizar docker-compose.yml para usar la nueva versión
-# image: sicedia/spiderhub:0.1.0-rc.14
+# image: sicedia/spiderhub:0.1.0-rc.16
 
 # 3. Pull la nueva imagen
 docker-compose pull web
@@ -157,7 +157,7 @@ Asegúrate de que tu `docker-compose.yml` en producción tenga:
 ```yaml
 web:
   container_name: "spider_web"
-  image: sicedia/spiderhub:0.1.0-rc.14  # <-- Versión actualizada
+  image: sicedia/spiderhub:0.1.0-rc.16  # <-- Versión actualizada
   tmpfs:
     - /tmp:noexec,nosuid,size=100m
     - /app/tmp:noexec,nosuid,size=100m

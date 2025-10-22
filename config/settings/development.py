@@ -80,28 +80,45 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 20000  # Increase from default 1000
 
 # Content Security Policy settings for development
 # More permissive than production but still uses nonces for scripts
+
+# Use the new CONTENT_SECURITY_POLICY format as suggested by django-csp
 CONTENT_SECURITY_POLICY = {
     'DIRECTIVES': {
-        'default-src': ("'self'",),
-        # Scripts use nonces in development to match production behavior
-        'script-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://unpkg.com"),
-        # Styles allow unsafe-inline in development for easier debugging
-        'style-src': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),
-        'style-src-elem': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),
-        'style-src-attr': ("'self'", "'unsafe-inline'"),
-        'img-src': ("'self'", "data:", "https://*.tile.openstreetmap.org", "https://unpkg.com"),
-        'font-src': ("'self'", "data:", "https://fonts.gstatic.com"),
-        'connect-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://raw.githubusercontent.com", "https://unpkg.com", "https://leafletjs.com"),
-        'frame-src': ("'none'",),
-        'object-src': ("'none'",),
-        'base-uri': ("'self'",),
-        'form-action': ("'self'",),
-        # Include report URI if provided
-        **({ 'report-uri': (os.getenv('CSP_REPORT_URI'),) } if os.getenv('CSP_REPORT_URI') else {}),
+        'base-uri': ["'self'"],
+        'connect-src': ["'self'",
+                        'https://cdn.jsdelivr.net',
+                        'https://d3js.org',
+                        'https://raw.githubusercontent.com',
+                        'https://unpkg.com',
+                        'https://leafletjs.com'],
+        'default-src': ["'self'"],
+        'font-src': ["'self'", 'data:', 'https://fonts.gstatic.com'],
+        'form-action': ["'self'"],
+        'frame-src': ["'none'"],
+        'img-src': ["'self'",
+                    'data:',
+                    'https://*.tile.openstreetmap.org',
+                    'https://unpkg.com'],
+        'object-src': ["'none'"],
+        'script-src': ["'self'",
+                       'https://cdn.jsdelivr.net',
+                       'https://d3js.org',
+                       'https://unpkg.com'],
+        'style-src': ["'self'",
+                      "'unsafe-inline'",
+                      'https://fonts.googleapis.com',
+                      'https://unpkg.com'],
+        'style-src-attr': ["'self'", "'unsafe-inline'"],
+        'style-src-elem': ["'self'",
+                           "'unsafe-inline'",
+                           'https://fonts.googleapis.com',
+                           'https://unpkg.com'],
+        'frame-ancestors': ["'none'"],
     }
 }
 
-# Enable CSP nonces for scripts to match production behavior
-# This ensures development and production behave similarly
-CSP_INCLUDE_NONCE_IN = ['script-src']
+# Include report URI if provided
+if os.getenv('CSP_REPORT_URI'):
+    CONTENT_SECURITY_POLICY['DIRECTIVES']['report-uri'] = os.getenv('CSP_REPORT_URI')
+
 

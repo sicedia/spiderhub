@@ -15,7 +15,7 @@ GIT_COMMIT_HASH=$(git rev-parse --short=12 HEAD 2>/dev/null || echo "unknown")
 BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
 
 # Obtener versión del proyecto (o usar argumento)
-VERSION=${1:-"0.1.0-rc.14"}
+VERSION=${1:-"0.1.0-rc.16"}
 
 # Nombre de la imagen
 IMAGE_NAME="sicedia/spiderhub"

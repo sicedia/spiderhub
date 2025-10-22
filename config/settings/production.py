@@ -149,54 +149,44 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 20000  # Limit number of fields in a form submis
 # Content Security Policy settings (django-csp >=4.0)
 # Note: vis-network requires 'unsafe-inline' for dynamically injected <style> elements
 # This is a necessary security trade-off for this third-party library
+
+# Use the new CONTENT_SECURITY_POLICY format as suggested by django-csp
 CONTENT_SECURITY_POLICY = {
     'DIRECTIVES': {
-        'default-src': ("'self'",),
-        # Scripts remain secure with nonces only
-        'script-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://unpkg.com"),
-        # style-src: Keep nonces for our own styles
-        'style-src': ("'self'", "https://fonts.googleapis.com", "https://unpkg.com"),
-        # style-src-elem: Must allow 'unsafe-inline' for vis-network's dynamic <style> injection
-        # vis-network creates <style> elements at runtime which cannot use nonces
-        'style-src-elem': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),
-        # style-src-attr: Keep 'unsafe-hashes' for inline style attributes (strict for main site)
-        'style-src-attr': ("'self'", "'unsafe-hashes'"),
-        'img-src': ("'self'", "data:", "https://*.tile.openstreetmap.org", "https://unpkg.com"),
-        'font-src': ("'self'", "data:", "https://fonts.gstatic.com"),
-        'connect-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://raw.githubusercontent.com", "https://unpkg.com", "https://leafletjs.com"),
-        'frame-src': ("'none'",),
-        'object-src': ("'none'",),
-        'base-uri': ("'self'",),
-        'form-action': ("'self'",),
-        'frame-ancestors': ("'none'",),
-        
-        # Include report URI if set - debe ser URL completa con https://
-        **({ 'report-uri': (os.getenv('CSP_REPORT_URI'),) } if os.getenv('CSP_REPORT_URI') else {}),
+        'base-uri': ["'self'"],
+        'connect-src': ["'self'",
+                        'https://cdn.jsdelivr.net',
+                        'https://d3js.org',
+                        'https://raw.githubusercontent.com',
+                        'https://unpkg.com',
+                        'https://leafletjs.com'],
+        'default-src': ["'self'"],
+        'font-src': ["'self'", 'data:', 'https://fonts.gstatic.com'],
+        'form-action': ["'self'"],
+        'frame-src': ["'none'"],
+        'img-src': ["'self',
+                    'data:',
+                    'https://*.tile.openstreetmap.org',
+                    'https://unpkg.com'],
+        'object-src': ["'none'"],
+        'script-src': ["'self',
+                       'https://cdn.jsdelivr.net',
+                       'https://d3js.org',
+                       'https://unpkg.com'],
+        'style-src': ["'self',
+                      "'unsafe-inline'",
+                      'https://fonts.googleapis.com',
+                      'https://unpkg.com'],
+        'style-src-attr': ["'self'", "'unsafe-inline'"],
+        'style-src-elem': ["'self',
+                           "'unsafe-inline'",
+                           'https://fonts.googleapis.com',
+                           'https://unpkg.com'],
+        'frame-ancestors': ["'none'"],
     }
 }
 
-# CSP Policy específica para Django Admin
-# Permite estilos inline que Django Admin requiere para funcionar correctamente
-CSP_RELAXED_POLICY = {
-    'default-src': ("'self'",),
-    'script-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://unpkg.com"),
-    'style-src': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),
-    'style-src-elem': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),
-    'style-src-attr': ("'self'", "'unsafe-inline'"),  # Relajado para Django Admin
-    'img-src': ("'self'", "data:", "https://*.tile.openstreetmap.org", "https://unpkg.com"),
-    'font-src': ("'self'", "data:", "https://fonts.gstatic.com"),
-    'connect-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://raw.githubusercontent.com", "https://unpkg.com", "https://leafletjs.com"),
-    'frame-src': ("'none'",),
-    'object-src': ("'none'",),
-    'base-uri': ("'self'",),
-    'form-action': ("'self'",),
-    'frame-ancestors': ("'none'",),
-    
-    # Include report URI if set - debe ser URL completa con https://
-    **({ 'report-uri': (os.getenv('CSP_REPORT_URI'),) } if os.getenv('CSP_REPORT_URI') else {}),
-}
+# Include report URI if set
+if os.getenv('CSP_REPORT_URI'):
+    CONTENT_SECURITY_POLICY['DIRECTIVES']['report-uri'] = os.getenv('CSP_REPORT_URI')
 
-# Enable CSP nonces for scripts and styles
-# The django-csp middleware will automatically generate a unique nonce per request
-# and add it to the CSP header and make it available as request.csp_nonce
-CSP_INCLUDE_NONCE_IN = ['script-src', 'style-src', 'style-src-elem', 'style-src-attr']
