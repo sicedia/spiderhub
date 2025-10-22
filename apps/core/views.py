@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from django.db.models import Count, Q, Avg, Sum
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 from apps.documents.models import (
     Document, Actor, Theme, BeneficiaryGroup, SDG, CommitmentDetail, Country, Commitment, DocumentSDG
 )
@@ -35,6 +36,7 @@ def health_check(request):
             'error': str(e)
         }, status=500)
 
+@csrf_exempt
 def csp_report_view(request):
     """
     Endpoint to receive Content Security Policy reports

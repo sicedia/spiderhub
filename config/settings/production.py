@@ -177,7 +177,7 @@ CONTENT_SECURITY_POLICY = {
 
 # CSP Policy específica para Django Admin
 # Permite estilos inline que Django Admin requiere para funcionar correctamente
-CSP_ADMIN_POLICY = {
+CSP_RELAXED_POLICY = {
     'default-src': ("'self'",),
     'script-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://unpkg.com"),
     'style-src': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),

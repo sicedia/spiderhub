@@ -41,12 +41,12 @@ These variables are used automatically for cache busting.
 
 **Windows (PowerShell):**
 ```powershell
-.\scripts\build-docker.ps1 -Version "0.1.0-rc.9"
+.\scripts\build-docker.ps1 -Version "0.1.0-rc.14"
 ```
 
 **Linux/Mac (Bash):**
 ```bash
-./scripts/build-docker.sh 0.1.0-rc.9
+./scripts/build-docker.sh 0.1.0-rc.14
 ```
 
 These scripts automatically:
@@ -102,9 +102,9 @@ These scripts automatically:
 # 1. Modify JS/CSS files
 # 2. Remember to increment STATIC_VERSION in .env ⚠️
 # 3. Docker build
-docker build -t sicedia/spiderhub:0.1.0-rc.9 .
+docker build -t sicedia/spiderhub:0.1.0-rc.14 .
 # 4. Push
-docker push sicedia/spiderhub:0.1.0-rc.9
+docker push sicedia/spiderhub:0.1.0-rc.14
 # 5. Users still see old versions if you forgot step 2 ❌
 ```
 
@@ -112,9 +112,9 @@ docker push sicedia/spiderhub:0.1.0-rc.9
 ```powershell
 # 1. Modify JS/CSS files
 # 2. Automatic build with cache busting
-.\scripts\build-docker.ps1 -Version "0.1.0-rc.9"
+.\scripts\build-docker.ps1 -Version "0.1.0-rc.14"
 # 3. Push
-docker push sicedia/spiderhub:0.1.0-rc.9
+docker push sicedia/spiderhub:0.1.0-rc.14
 # 4. ✅ Users automatically see new version
 ```
 
@@ -217,12 +217,12 @@ Users load new version automatically
 
 2. **Build new image:**
    ```powershell
-   .\scripts\build-docker.ps1 -Version "0.1.0-rc.9"
+   .\scripts\build-docker.ps1 -Version "0.1.0-rc.14"
    ```
 
 3. **Deploy to production:**
    ```bash
-   docker push sicedia/spiderhub:0.1.0-rc.9
+   docker push sicedia/spiderhub:0.1.0-rc.14
    # Update docker-compose or k8s with new version
    ```
 

@@ -74,9 +74,9 @@ class NoCacheMiddleware:
         return response
 
 
-class AdminCSPMiddleware:
+class RelaxedCSPMiddleware:
     """
-    Middleware that applies relaxed CSP policies specifically for Django Admin
+    Middleware that applies relaxed CSP policies for Django Admin
     to resolve CSP violations with inline styles that Django Admin requires
     """
     
@@ -86,15 +86,15 @@ class AdminCSPMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         
-        # Check if the request is for Django Admin
-        if self._is_admin_request(request):
-            # Apply relaxed CSP policy for admin
-            self._apply_admin_csp_headers(response)
+        # Check if the request is for pages that need relaxed CSP
+        if self._needs_relaxed_csp(request):
+            # Apply relaxed CSP policy for admin pages
+            self._apply_relaxed_csp_headers(response)
         
         return response
     
-    def _is_admin_request(self, request):
-        """Detect if the request is for Django Admin"""
+    def _needs_relaxed_csp(self, request):
+        """Detect if the request is for pages that need relaxed CSP policies"""
         path = request.path
         return (
             path.startswith('/admin/') or 
@@ -103,16 +103,16 @@ class AdminCSPMiddleware:
             path.startswith('/pt/admin/')
         )
     
-    def _apply_admin_csp_headers(self, response):
-        """Apply relaxed CSP headers for Django Admin"""
-        # Get CSP_ADMIN_POLICY from settings if defined
-        admin_policy = getattr(settings, 'CSP_ADMIN_POLICY', None)
+    def _apply_relaxed_csp_headers(self, response):
+        """Apply relaxed CSP headers for admin pages that need inline styles"""
+        # Get CSP_RELAXED_POLICY from settings if defined
+        relaxed_policy = getattr(settings, 'CSP_RELAXED_POLICY', None)
         
-        if admin_policy:
+        if relaxed_policy:
             # Build CSP header with relaxed policies
             csp_directives = []
             
-            for directive, sources in admin_policy.items():
+            for directive, sources in relaxed_policy.items():
                 if sources:
                     sources_str = ' '.join(f"'{s}'" if s.startswith("'") else s for s in sources)
                     csp_directives.append(f"{directive} {sources_str}")

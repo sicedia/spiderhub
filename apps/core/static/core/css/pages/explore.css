@@ -1451,6 +1451,68 @@
 }
 
 /* ========================================
+   Map Legend Styles
+   ======================================== */
+
+.map-legend {
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
+  margin-top: var(--space-lg);
+}
+
+.map-legend h3 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-md) 0;
+}
+
+.legend-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.legend-items li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.legend-marker {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.legend-marker.eu-color {
+  background-color: #094EB2;
+}
+
+.legend-marker.latam-color {
+  background-color: #34A853;
+}
+
+.legend-marker.bilateral-color {
+  background-color: #FBBC04;
+}
+
+.legend-marker.cluster {
+  background-color: #666;
+  border: 2px solid #333;
+}
+
+/* ========================================
    Utility Classes
    ======================================== */
 

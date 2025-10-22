@@ -1,0 +1,25 @@
+/* Map Legend Colors - CSS classes instead of inline styles */
+.legend-marker {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    margin-right: 8px;
+}
+
+.legend-marker.eu-color {
+    background-color: #094EB2;
+}
+
+.legend-marker.latam-color {
+    background-color: #34A853;
+}
+
+.legend-marker.bilateral-color {
+    background-color: #FBBC04;
+}
+
+.legend-marker.cluster {
+    background-color: #666;
+    border: 2px solid #333;
+}
