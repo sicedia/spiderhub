@@ -183,7 +183,29 @@ class Command(BaseCommand):
         
         except Exception as e:
             logger.error(f"Command execution failed: {str(e)}", exc_info=True)
-            raise CommandError(f"Processing failed: {str(e)}")
+            
+            # Provide user-friendly error messages
+            error_str = str(e).lower()
+            if 'connection' in error_str or 'timeout' in error_str or 'network' in error_str:
+                raise CommandError(
+                    f"Network connectivity issue: {str(e)}\n\n"
+                    "This appears to be a network connectivity problem. Please check:\n"
+                    "  - Internet connection\n"
+                    "  - Firewall settings\n"
+                    "  - Proxy configuration (if applicable)\n"
+                    "  - LLM service availability\n\n"
+                    "The system will use fallback calculations when possible."
+                )
+            elif 'authentication' in error_str or 'api key' in error_str:
+                raise CommandError(
+                    f"Authentication error: {str(e)}\n\n"
+                    "Please verify your API credentials in the .env file:\n"
+                    "  - OPENAI_API_KEY\n"
+                    "  - ANTHROPIC_API_KEY (if using Anthropic)\n"
+                    "  - Other provider-specific credentials"
+                )
+            else:
+                raise CommandError(f"Processing failed: {str(e)}")
         
         self.stdout.write("\n" + "="*80)
         self.stdout.write("Processing complete!")
@@ -240,6 +262,14 @@ class Command(BaseCommand):
                 "[!] Some SDG analyses failed. Review the logs for details:\n"
                 "    - logs/sdg_ingestion.log (general processing log)\n"
                 "    - logs/failed_sdg_scores.log (failed document/SDG pairs)\n"
+            ))
+        
+        # Check for fallback usage
+        fallback_count = stats.get('fallback_used', 0)
+        if fallback_count > 0:
+            self.stdout.write(self.style.WARNING(
+                f"[i] {fallback_count} SDG analyses used fallback calculations due to connectivity issues.\n"
+                "    These scores should be reviewed manually when the LLM service is restored.\n"
             ))
         
         if success_count == 0 and failed_count == 0:

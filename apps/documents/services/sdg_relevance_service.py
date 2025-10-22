@@ -17,6 +17,9 @@ from .text_extraction import extract_all_document_text
 from .llm_service import get_llm_service
 from .logger import get_logger, log_failure
 from .utils import validate_llm_config
+from .exceptions import SDGRelevanceError, SDGProcessingError, LLMServiceError, LLMConnectionError, LLMTimeoutError
+from .fallback_service import SDGRelevanceFallback
+from .fallback_tracker import FallbackTracker
 
 logger = get_logger(__name__)
 
@@ -95,9 +98,71 @@ def calculate_sdg_relevance(
         
         return True, None
     
+    except LLMConnectionError as e:
+        logger.warning(f"Document {document.id} / SDG {sdg.id}: Network connectivity issue, using fallback")
+        FallbackTracker.increment_fallback('connection', document.id, sdg.id)
+        
+        # Use fallback strategy for connection errors
+        try:
+            fallback_result = SDGRelevanceFallback.calculate_fallback_score(
+                document.title,
+                document_text,
+                sdg.number,
+                sdg.label,
+                fallback_strategy="keyword_match"
+            )
+            
+            # Update with fallback result
+            doc_sdg_instance.relevance_score = fallback_result['score']
+            doc_sdg_instance.justification = fallback_result['justification']
+            doc_sdg_instance.save(update_fields=['relevance_score', 'justification', 'updated_at'])
+            
+            logger.info(f"✓ Fallback calculation successful for DocumentSDG {doc_sdg_instance.id}")
+            return True, None
+            
+        except Exception as fallback_error:
+            error_msg = f"Both LLM and fallback failed: {str(fallback_error)}"
+            logger.error(f"Document {document.id} / SDG {sdg.id}: {error_msg}")
+            log_failure(document.id, sdg.id, error_msg)
+            return False, error_msg
+    
+    except LLMTimeoutError as e:
+        logger.warning(f"Document {document.id} / SDG {sdg.id}: Request timeout, using fallback")
+        FallbackTracker.increment_fallback('timeout', document.id, sdg.id)
+        
+        # Use fallback strategy for timeout errors
+        try:
+            fallback_result = SDGRelevanceFallback.calculate_fallback_score(
+                document.title,
+                document_text,
+                sdg.number,
+                sdg.label,
+                fallback_strategy="conservative"
+            )
+            
+            # Update with fallback result
+            doc_sdg_instance.relevance_score = fallback_result['score']
+            doc_sdg_instance.justification = fallback_result['justification']
+            doc_sdg_instance.save(update_fields=['relevance_score', 'justification', 'updated_at'])
+            
+            logger.info(f"✓ Fallback calculation successful for DocumentSDG {doc_sdg_instance.id}")
+            return True, None
+            
+        except Exception as fallback_error:
+            error_msg = f"Both LLM and fallback failed: {str(fallback_error)}"
+            logger.error(f"Document {document.id} / SDG {sdg.id}: {error_msg}")
+            log_failure(document.id, sdg.id, error_msg)
+            return False, error_msg
+    
+    except LLMServiceError as e:
+        error_msg = f"LLM service error: {str(e)}"
+        logger.error(f"Document {document.id} / SDG {sdg.id}: {error_msg}")
+        log_failure(document.id, sdg.id, error_msg)
+        return False, error_msg
+    
     except Exception as e:
-        error_msg = f"Error calculating SDG relevance: {str(e)}"
-        logger.error(error_msg, exc_info=True)
+        error_msg = f"Unexpected error calculating SDG relevance: {str(e)}"
+        logger.error(f"Document {document.id} / SDG {sdg.id}: {error_msg}", exc_info=True)
         log_failure(document.id, sdg.id, error_msg)
         return False, error_msg
 
@@ -193,6 +258,10 @@ def process_document_sdgs(
         f"{stats['success']} successful, {stats['failed']} failed"
     )
     
+    # Add fallback statistics to stats
+    fallback_stats = FallbackTracker.get_fallback_stats()
+    stats['fallback_used'] = fallback_stats['total_fallbacks']
+    
     return stats
 
 
@@ -254,6 +323,16 @@ def process_batch_documents(
     logger.info(f"Successful: {aggregate_stats['success']}")
     logger.info(f"Failed: {aggregate_stats['failed']}")
     logger.info(f"Total time: {aggregate_stats['total_time']:.2f}s")
+    
+    # Add fallback statistics
+    fallback_stats = FallbackTracker.get_fallback_stats()
+    aggregate_stats['fallback_used'] = fallback_stats['total_fallbacks']
+    
+    if fallback_stats['total_fallbacks'] > 0:
+        logger.warning(f"Fallbacks used: {fallback_stats['total_fallbacks']} "
+                      f"({fallback_stats['connection_errors']} connection, "
+                      f"{fallback_stats['timeout_errors']} timeout)")
+    
     logger.info(f"{'='*80}\n")
     
     return aggregate_stats

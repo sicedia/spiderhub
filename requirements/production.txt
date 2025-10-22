@@ -27,6 +27,13 @@ geonamescache
 django-cities-light
 
 reportlab  # For generating reports
+PyMuPDF  # For PDF text extraction
+httpx  # For async HTTP requests (LLM API calls)
+
+# LangChain dependencies for LLM integration
+langchain-openai  # OpenAI integration for LangChain
+langchain-core  # Core LangChain functionality
+langchain-anthropic  # Anthropic/Claude integration (optional)
 
 # Add django-csp for Content Security Policy support
 django-csp

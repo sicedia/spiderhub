@@ -11,6 +11,10 @@ import json
 from typing import Dict, Any, Optional
 from .logger import get_logger
 from .utils import parse_llm_json_response, validate_score
+from .exceptions import (
+    LLMServiceError, LLMConnectionError, LLMTimeoutError, 
+    LLMAuthenticationError, LLMRateLimitError, LLMResponseError
+)
 
 logger = get_logger(__name__)
 
@@ -167,12 +171,13 @@ class LLMService:
             dict: Parsed JSON response with 'score' and 'justification'
             
         Raises:
-            Exception: If all retries fail
+            LLMServiceError: If all retries fail with specific error type
         """
         if max_retries is None:
             max_retries = self.max_retries
         
         last_error = None
+        last_error_type = None
         
         for attempt in range(max_retries):
             try:
@@ -194,15 +199,15 @@ class LLMService:
                 
                 # Validate required fields
                 if 'score' not in parsed:
-                    raise ValueError("LLM response missing 'score' field")
+                    raise LLMResponseError("LLM response missing 'score' field")
                 
                 if 'justification' not in parsed:
-                    raise ValueError("LLM response missing 'justification' field")
+                    raise LLMResponseError("LLM response missing 'justification' field")
                 
                 # Validate score range
                 score = float(parsed['score'])
                 if not validate_score(score):
-                    raise ValueError(
+                    raise LLMResponseError(
                         f"Invalid score {score}. Must be between 0.0 and 1.0"
                     )
                 
@@ -215,10 +220,16 @@ class LLMService:
             
             except Exception as e:
                 last_error = e
-                logger.warning(
-                    f"LLM call attempt {attempt + 1} failed: {str(e)}",
-                    exc_info=(attempt == max_retries - 1)  # Full trace on last attempt
-                )
+                last_error_type = self._categorize_error(e)
+                
+                # Log appropriate level based on error type
+                if isinstance(e, (LLMConnectionError, LLMTimeoutError)):
+                    logger.warning(f"LLM call attempt {attempt + 1} failed: {str(e)}")
+                else:
+                    logger.warning(
+                        f"LLM call attempt {attempt + 1} failed: {str(e)}",
+                        exc_info=(attempt == max_retries - 1)  # Full trace only on last attempt
+                    )
                 
                 # Exponential backoff: 2s, 4s, 8s
                 if attempt < max_retries - 1:
@@ -226,10 +237,45 @@ class LLMService:
                     logger.info(f"Retrying in {sleep_time} seconds...")
                     time.sleep(sleep_time)
         
-        # All retries failed
-        error_msg = f"LLM call failed after {max_retries} attempts: {str(last_error)}"
-        logger.error(error_msg)
-        raise Exception(error_msg)
+        # All retries failed - raise appropriate exception
+        if last_error_type:
+            raise last_error_type(f"LLM call failed after {max_retries} attempts", last_error)
+        else:
+            raise LLMServiceError(f"LLM call failed after {max_retries} attempts: {str(last_error)}", last_error)
+    
+    def _categorize_error(self, error: Exception) -> Optional[LLMServiceError]:
+        """
+        Categorize exceptions into specific LLM error types.
+        
+        Args:
+            error: The original exception
+            
+        Returns:
+            Appropriate LLMServiceError subclass or None
+        """
+        error_str = str(error).lower()
+        error_type = type(error).__name__.lower()
+        
+        # Connection and timeout errors
+        if any(keyword in error_str for keyword in ['timeout', 'timed out', 'connect timeout']):
+            return LLMTimeoutError
+        
+        if any(keyword in error_str for keyword in ['connection', 'connect', 'network', 'unreachable']):
+            return LLMConnectionError
+        
+        # Authentication errors
+        if any(keyword in error_str for keyword in ['unauthorized', 'authentication', 'api key', 'invalid key']):
+            return LLMAuthenticationError
+        
+        # Rate limiting
+        if any(keyword in error_str for keyword in ['rate limit', 'too many requests', 'quota']):
+            return LLMRateLimitError
+        
+        # Response errors
+        if any(keyword in error_str for keyword in ['invalid response', 'parse', 'json', 'format']):
+            return LLMResponseError
+        
+        return None
     
     def generate_sdg_relevance_prompt(
         self,
