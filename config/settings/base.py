@@ -50,6 +50,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'csp.middleware.CSPMiddleware',  # Apply Content Security Policy headers
+    'apps.core.middleware.AdminCSPMiddleware',  # Apply relaxed CSP for Django Admin
     'corsheaders.middleware.CorsMiddleware',
     'apps.core.middleware.NoCacheMiddleware',  # Mover después de CORS
     'django.contrib.sessions.middleware.SessionMiddleware',

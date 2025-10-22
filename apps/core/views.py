@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.db.models import Count, Q, Avg, Sum
+from django.conf import settings
 from apps.documents.models import (
     Document, Actor, Theme, BeneficiaryGroup, SDG, CommitmentDetail, Country, Commitment, DocumentSDG
 )
@@ -11,6 +12,7 @@ from django.db.models import Value
 from django.db.models.functions import Coalesce
 from collections import defaultdict
 from django.utils.translation import gettext_lazy as _
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +34,54 @@ def health_check(request):
             'status': 'unhealthy',
             'error': str(e)
         }, status=500)
+
+def csp_report_view(request):
+    """
+    Endpoint para recibir reportes de Content Security Policy
+    Maneja reportes CSP en formato JSON y los loggea para análisis
+    """
+    if request.method != 'POST':
+        return HttpResponse(status=405)  # Method Not Allowed
+    
+    try:
+        # Parsear el JSON del reporte CSP
+        report_data = json.loads(request.body)
+        
+        # Extraer información relevante del reporte
+        report_type = report_data.get('type', 'unknown')
+        report_body = report_data.get('body', {})
+        
+        # Información del reporte CSP
+        blocked_uri = report_body.get('blocked-uri', 'unknown')
+        violated_directive = report_body.get('violated-directive', 'unknown')
+        source_file = report_body.get('source-file', 'unknown')
+        line_number = report_body.get('line-number', 'unknown')
+        column_number = report_body.get('column-number', 'unknown')
+        
+        # Loggear el reporte CSP
+        logger.warning(
+            f"CSP Violation Report - Type: {report_type}, "
+            f"Blocked URI: {blocked_uri}, "
+            f"Violated Directive: {violated_directive}, "
+            f"Source: {source_file}:{line_number}:{column_number}, "
+            f"User Agent: {request.META.get('HTTP_USER_AGENT', 'unknown')}, "
+            f"IP: {request.META.get('REMOTE_ADDR', 'unknown')}"
+        )
+        
+        # En modo DEBUG, también loggear el reporte completo
+        if settings.DEBUG:
+            logger.debug(f"Full CSP Report: {json.dumps(report_data, indent=2)}")
+        
+        # Retornar 204 No Content (éxito sin contenido)
+        return HttpResponse(status=204)
+        
+    except json.JSONDecodeError as e:
+        logger.error(f"Error parsing CSP report JSON: {e}")
+        return HttpResponse(status=400)  # Bad Request
+        
+    except Exception as e:
+        logger.error(f"Error processing CSP report: {e}")
+        return HttpResponse(status=500)  # Internal Server Error
 
 def home_page(request):
     """Home page view with recent documents"""

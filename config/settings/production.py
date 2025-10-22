@@ -159,7 +159,7 @@ CONTENT_SECURITY_POLICY = {
         # style-src-elem: Must allow 'unsafe-inline' for vis-network's dynamic <style> injection
         # vis-network creates <style> elements at runtime which cannot use nonces
         'style-src-elem': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),
-        # style-src-attr: Keep 'unsafe-hashes' for inline style attributes
+        # style-src-attr: Keep 'unsafe-hashes' for inline style attributes (strict for main site)
         'style-src-attr': ("'self'", "'unsafe-hashes'"),
         'img-src': ("'self'", "data:", "https://*.tile.openstreetmap.org", "https://unpkg.com"),
         'font-src': ("'self'", "data:", "https://fonts.gstatic.com"),
@@ -170,9 +170,30 @@ CONTENT_SECURITY_POLICY = {
         'form-action': ("'self'",),
         'frame-ancestors': ("'none'",),
         
-        # Include report URI if set
+        # Include report URI if set - debe ser URL completa con https://
         **({ 'report-uri': (os.getenv('CSP_REPORT_URI'),) } if os.getenv('CSP_REPORT_URI') else {}),
     }
+}
+
+# CSP Policy específica para Django Admin
+# Permite estilos inline que Django Admin requiere para funcionar correctamente
+CSP_ADMIN_POLICY = {
+    'default-src': ("'self'",),
+    'script-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://unpkg.com"),
+    'style-src': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),
+    'style-src-elem': ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"),
+    'style-src-attr': ("'self'", "'unsafe-inline'"),  # Relajado para Django Admin
+    'img-src': ("'self'", "data:", "https://*.tile.openstreetmap.org", "https://unpkg.com"),
+    'font-src': ("'self'", "data:", "https://fonts.gstatic.com"),
+    'connect-src': ("'self'", "https://cdn.jsdelivr.net", "https://d3js.org", "https://raw.githubusercontent.com", "https://unpkg.com", "https://leafletjs.com"),
+    'frame-src': ("'none'",),
+    'object-src': ("'none'",),
+    'base-uri': ("'self'",),
+    'form-action': ("'self'",),
+    'frame-ancestors': ("'none'",),
+    
+    # Include report URI if set - debe ser URL completa con https://
+    **({ 'report-uri': (os.getenv('CSP_REPORT_URI'),) } if os.getenv('CSP_REPORT_URI') else {}),
 }
 
 # Enable CSP nonces for scripts and styles

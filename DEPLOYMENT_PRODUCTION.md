@@ -176,6 +176,9 @@ LLM_PROVIDER=openai  # o 'anthropic'
 OPENAI_API_KEY=sk-...
 # O para Anthropic:
 # ANTHROPIC_API_KEY=sk-ant-...
+
+# CSP Report URI (IMPORTANTE: debe ser URL completa)
+CSP_REPORT_URI=https://spiderhub.cedia.edu.ec/csp-report/
 ```
 
 ---
@@ -218,6 +221,11 @@ docker exec -it spider_db psql -U spider_user -d spider
     - apps/documents/migrations/0010_documentsdg_alter_document_sdgs_and_more.py
     - requirements/production.txt
     - docker-compose.yml
+    - apps/core/views.py (agregado endpoint CSP report)
+    - config/urls.py (registrado endpoint /csp-report/)
+    - config/settings/production.py (CSP_ADMIN_POLICY)
+    - config/settings/base.py (AdminCSPMiddleware)
+    - apps/core/middleware.py (AdminCSPMiddleware)
 
 📄 Creados:
     - scripts/fix_production_migrations.py
@@ -229,6 +237,12 @@ docker exec -it spider_db psql -U spider_user -d spider
     - apps/documents/migrations/0010_*.py.backup
     - apps/documents/migrations/0011_*.py.backup
 ```
+
+### 🔧 Nuevas funcionalidades implementadas
+
+1. **Endpoint CSP Report**: `/csp-report/` para recibir y loggear violaciones CSP
+2. **CSP Admin Middleware**: Política CSP relajada específicamente para Django Admin
+3. **Configuración CSP mejorada**: Separación entre política principal y admin
 
 ---
 
