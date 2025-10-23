@@ -34,7 +34,7 @@ FROM python:3.12-slim AS runner
 # Build arguments for versioning (cache busting)
 ARG BUILD_DATE
 ARG GIT_COMMIT_HASH
-ARG VERSION=0.1.0-rc.17
+ARG VERSION=0.1.0-rc.20
 
 LABEL maintainer="felipe.mendieta@cedia.org.ec" \
       org.opencontainers.image.title="spiderhub" \
@@ -87,6 +87,13 @@ COPY --chown=appuser:appuser static/ ./static/
 COPY --chown=appuser:appuser locale/ ./locale/
 COPY --chown=appuser:appuser scripts/ ./scripts/
 COPY --chown=appuser:appuser entrypoint.sh ./
+
+# Compile translation messages during build using minimal settings
+ENV DJANGO_SETTINGS_MODULE=config.settings.build
+RUN python manage.py compilemessages --verbosity=2
+
+# Restore production settings for runtime
+ENV DJANGO_SETTINGS_MODULE=config.settings.production
 
 # Make scripts executable
 RUN chmod +x /app/entrypoint.sh && \
