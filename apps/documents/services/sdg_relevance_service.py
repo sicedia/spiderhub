@@ -20,6 +20,7 @@ from .utils import validate_llm_config
 from .exceptions import SDGRelevanceError, SDGProcessingError, LLMServiceError, LLMConnectionError, LLMTimeoutError
 from .fallback_service import SDGRelevanceFallback
 from .fallback_tracker import FallbackTracker
+from .document_analysis_service import get_document_analysis_service
 
 logger = get_logger(__name__)
 
@@ -32,10 +33,9 @@ def calculate_sdg_relevance(
     """
     Calculate relevance score for a single DocumentSDG relationship.
     
-    This function:
-    1. Extracts text from the document's source files
-    2. Calls LLM to analyze relevance to the specific SDG
-    3. Updates DocumentSDG with score and justification
+    This function now uses the new SOLID architecture while maintaining
+    backward compatibility. It delegates to DocumentAnalysisService for
+    processing and maintains existing error handling patterns.
     
     Args:
         document: Document instance
@@ -51,50 +51,55 @@ def calculate_sdg_relevance(
     )
     
     try:
-        # Step 1: Extract document text
-        success, document_text, errors = extract_all_document_text(document)
+        # Use new SOLID architecture for analysis
+        analysis_service = get_document_analysis_service()
+        result = analysis_service.analyze_sdg_relevance(document, force=False)
         
-        if not success or not document_text.strip():
-            error_msg = (
-                f"No text could be extracted from document {document.id}. "
-                f"Errors: {'; '.join(errors)}"
-            )
-            logger.error(error_msg)
+        if not result['success']:
+            error_msg = result.get('error', 'Analysis failed')
+            logger.error(f"Document {document.id} / SDG {sdg.id}: {error_msg}")
             log_failure(document.id, sdg.id, error_msg)
             return False, error_msg
         
-        # Step 2: Get LLM service and generate prompt
-        llm_service = get_llm_service()
+        # Check if SDG analysis was successful
+        sdg_results = result.get('analysis_results', {}).get('sdg', {})
         
-        prompt = llm_service.generate_sdg_relevance_prompt(
-            document_title=document.title,
-            document_text=document_text,
-            sdg_number=sdg.number,
-            sdg_label=sdg.label,
-            max_text_length=4000
-        )
+        if not sdg_results.get('success', False):
+            error_msg = f"SDG analysis failed: {'; '.join(sdg_results.get('errors', []))}"
+            logger.error(f"Document {document.id} / SDG {sdg.id}: {error_msg}")
+            log_failure(document.id, sdg.id, error_msg)
+            return False, error_msg
         
-        # Step 3: Call LLM
-        logger.debug(f"Calling LLM for Document {document.id} / SDG {sdg.id}")
-        result = llm_service.call_llm(prompt)
+        # Find the specific SDG result
+        sdg_key = f"sdg_{sdg.number}"
+        sdg_result = sdg_results.get('results', {}).get(sdg_key)
         
-        score = result['score']
-        justification = result['justification']
+        if not sdg_result:
+            error_msg = f"No analysis result found for SDG {sdg.number}"
+            logger.error(f"Document {document.id} / SDG {sdg.id}: {error_msg}")
+            log_failure(document.id, sdg.id, error_msg)
+            return False, error_msg
+        
+        # Extract score and justification
+        score = sdg_result['score']
+        justification = sdg_result['justification']
         
         logger.info(
             f"LLM analysis complete: Document {document.id} / SDG {sdg.number} "
-            f"-> Score: {score:.3f}"
+            f"-> Score: {score:.3f} (Processing: {result['processing_type']})"
         )
         
-        # Step 4: Update DocumentSDG instance
-        doc_sdg_instance.relevance_score = score
-        doc_sdg_instance.justification = justification
-        doc_sdg_instance.save(update_fields=['relevance_score', 'justification', 'updated_at'])
-        
-        logger.info(
-            f"✓ Successfully updated DocumentSDG {doc_sdg_instance.id}: "
-            f"score={score:.3f}"
-        )
+        # Update DocumentSDG instance (this should already be done by SDGAnalyzer)
+        # But we'll verify and update if needed for backward compatibility
+        if doc_sdg_instance.relevance_score != score or doc_sdg_instance.justification != justification:
+            doc_sdg_instance.relevance_score = score
+            doc_sdg_instance.justification = justification
+            doc_sdg_instance.save(update_fields=['relevance_score', 'justification', 'updated_at'])
+            
+            logger.info(
+                f"✓ Updated DocumentSDG {doc_sdg_instance.id}: "
+                f"score={score:.3f}"
+            )
         
         return True, None
     
@@ -104,6 +109,15 @@ def calculate_sdg_relevance(
         
         # Use fallback strategy for connection errors
         try:
+            # Try to get document text for fallback
+            success, document_text, errors = extract_all_document_text(document)
+            
+            if not success or not document_text.strip():
+                error_msg = f"No text available for fallback: {'; '.join(errors)}"
+                logger.error(f"Document {document.id} / SDG {sdg.id}: {error_msg}")
+                log_failure(document.id, sdg.id, error_msg)
+                return False, error_msg
+            
             fallback_result = SDGRelevanceFallback.calculate_fallback_score(
                 document.title,
                 document_text,
@@ -132,6 +146,15 @@ def calculate_sdg_relevance(
         
         # Use fallback strategy for timeout errors
         try:
+            # Try to get document text for fallback
+            success, document_text, errors = extract_all_document_text(document)
+            
+            if not success or not document_text.strip():
+                error_msg = f"No text available for fallback: {'; '.join(errors)}"
+                logger.error(f"Document {document.id} / SDG {sdg.id}: {error_msg}")
+                log_failure(document.id, sdg.id, error_msg)
+                return False, error_msg
+            
             fallback_result = SDGRelevanceFallback.calculate_fallback_score(
                 document.title,
                 document_text,
