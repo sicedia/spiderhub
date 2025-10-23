@@ -90,7 +90,8 @@ COPY --chown=appuser:appuser entrypoint.sh ./
 
 # Make scripts executable
 RUN chmod +x /app/entrypoint.sh && \
-    chmod +x /app/scripts/setup_log_rotation.sh
+    chmod +x /app/scripts/setup_log_rotation.sh && \
+    chmod +x /app/scripts/*.sh
 
 # Switch to non-root user
 USER appuser

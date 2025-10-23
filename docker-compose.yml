@@ -35,6 +35,7 @@ services:
       - media_data:/app/media
       - static_data:/app/staticfiles
       - logs_data:/app/logs
+      - ./scripts:/app/scripts:ro
     depends_on:
       postgres:
         condition: service_healthy

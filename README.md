@@ -200,6 +200,133 @@ python manage.py seed --dry-run
 python manage.py seed --limit 10
 ```
 
+## 📊 SDG Relevance Analysis & Logging
+
+### SDG Relevance Ingestion
+
+The application includes AI-powered SDG (Sustainable Development Goals) relevance analysis for documents. This feature calculates relevance scores and justifications for document-SDG relationships using Large Language Models.
+
+#### Quick Start
+
+**Using convenience scripts (recommended):**
+
+```bash
+# Linux/macOS
+./scripts/run-sdg-ingestion.sh --all
+
+# Windows PowerShell
+.\scripts\run-sdg-ingestion.ps1 --all
+```
+
+**Direct Docker commands:**
+
+```bash
+# Process all documents needing SDG scores
+docker exec -it spider_web python manage.py ingest_sdg_relevance --all
+
+# Process specific document
+docker exec -it spider_web python manage.py ingest_sdg_relevance --doc 42
+
+# Process batch of recent documents
+docker exec -it spider_web python manage.py ingest_sdg_relevance --batch 10
+
+# Force recalculation of existing scores
+docker exec -it spider_web python manage.py ingest_sdg_relevance --all --force
+```
+
+**Using scripts inside container:**
+
+```bash
+# Execute scripts directly inside the container
+docker exec -it spider_web /app/scripts/run-sdg-ingestion.sh --all
+docker exec -it spider_web /app/scripts/view-sdg-logs.sh
+docker exec -it spider_web /app/scripts/view-failed-scores.sh
+
+# Test the setup
+docker exec -it spider_web /app/scripts/test-setup.sh
+```
+
+#### Command Options
+
+- `--all`: Process all documents that need SDG relevance scores
+- `--batch N`: Process N most recent documents that need processing
+- `--doc ID`: Process a specific document by ID
+- `--force`: Recalculate scores even if they already exist
+
+### Logging & Monitoring
+
+The application provides comprehensive logging for SDG processing and general application monitoring.
+
+#### Accessing Logs
+
+**Using convenience scripts:**
+
+```bash
+# Linux/macOS
+./scripts/view-sdg-logs.sh          # View SDG processing logs in real-time
+./scripts/view-failed-scores.sh     # View failed SDG scores
+./scripts/copy-logs.sh              # Copy logs to host for analysis
+
+# Windows PowerShell
+.\scripts\view-sdg-logs.ps1         # View SDG processing logs in real-time
+.\scripts\view-failed-scores.ps1    # View failed SDG scores
+.\scripts\copy-logs.ps1             # Copy logs to host for analysis
+```
+
+**Direct Docker commands:**
+
+```bash
+# View SDG processing logs
+docker exec -it spider_web cat /app/logs/sdg_ingestion.log
+
+# View failed SDG scores
+docker exec -it spider_web cat /app/logs/failed_sdg_scores.log
+
+# Monitor logs in real-time
+docker exec -it spider_web tail -f /app/logs/sdg_ingestion.log
+
+# Copy logs to host
+docker cp spider_web:/app/logs/sdg_ingestion.log ./sdg_ingestion.log
+docker cp spider_web:/app/logs/failed_sdg_scores.log ./failed_sdg_scores.log
+```
+
+**Using scripts inside container:**
+
+```bash
+# Execute scripts directly inside the container
+docker exec -it spider_web /app/scripts/view-sdg-logs.sh
+docker exec -it spider_web /app/scripts/view-failed-scores.sh
+docker exec -it spider_web /app/scripts/copy-logs.sh
+
+# Test the setup
+docker exec -it spider_web /app/scripts/test-setup.sh
+```
+
+#### Log Files
+
+- **`sdg_ingestion.log`**: General SDG processing logs with timestamps and detailed information
+- **`failed_sdg_scores.log`**: Failed document/SDG pairs in CSV format for easy parsing and retry operations
+- **`django.log`**: Django application warnings and errors
+
+#### Troubleshooting
+
+When SDG processing fails, check the logs for specific error messages:
+
+```bash
+# View recent failures
+docker exec -it spider_web tail -20 /app/logs/failed_sdg_scores.log
+
+# Monitor processing in real-time
+docker exec -it spider_web tail -f /app/logs/sdg_ingestion.log
+```
+
+Common issues and solutions:
+- **Network connectivity**: Check LLM service availability and API credentials
+- **Rate limiting**: Reduce batch size or add delays between requests
+- **Authentication errors**: Verify API keys in environment configuration
+
+For detailed logging configuration and advanced troubleshooting, see [Logging Docker Setup v1.0](docs/LOGGING_DOCKER_SETUP_v1.0.md).
+
 ## Docker Deployment
 
 ### Run image in local
@@ -368,6 +495,7 @@ All documentation files now include **version numbers** for easy identification:
 - **[Logger Migration Guide v1.0](docs/LOGGER_MIGRATION_GUIDE_v1.0.md)** - Centralized logging system migration
 - **[EventBus Migration Guide v1.0](docs/EVENTBUS_MIGRATION_GUIDE_v1.0.md)** - Event system migration
 - **[Logging Configuration v1.0](docs/LOGGING_CONFIGURATION_v1.0.md)** - Logging setup
+- **[Logging Docker Setup v1.0](docs/LOGGING_DOCKER_SETUP_v1.0.md)** - Docker logging configuration and troubleshooting
 
 ### 🎯 AI & SDG Analysis
 - **[SDG Relevance Quick Start v1.0](docs/SDG_RELEVANCE_QUICKSTART_v1.0.md)** - ⭐ 5-minute setup guide
