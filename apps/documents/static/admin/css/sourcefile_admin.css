@@ -1,0 +1,201 @@
+/* Custom CSS for SourceFile admin interface improvements */
+
+/* Fix overflow issues in inline forms */
+.inline-group .form-row .field-external_link input,
+.inline-group .form-row .field-description textarea {
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* Style for read-only display fields */
+.field-filename_display,
+.field-file_type_display {
+    background-color: #f8f9fa;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+}
+
+.field-filename_display span,
+.field-file_type_display span {
+    display: inline-block;
+    margin: 2px 0;
+}
+
+/* Prevent filename overflow in inline forms */
+.inline-group .field-filename_display span {
+    max-width: 180px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Prevent filename overflow in standalone admin */
+.field-filename_display span {
+    max-width: 250px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Improve table layout for source files */
+.inline-group table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.inline-group table th,
+.inline-group table td {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Specific column widths for better layout */
+.inline-group .field-file {
+    width: 30%;
+}
+
+.inline-group .field-filename_display {
+    width: 25%;
+}
+
+.inline-group .field-file_type_display {
+    width: 15%;
+}
+
+.inline-group .field-external_link {
+    width: 30%;
+}
+
+.inline-group .field-description {
+    width: 30%;
+}
+
+/* Theme/Actor/SDG Relationships column widths */
+.inline-group .field-theme,
+.inline-group .field-actor,
+.inline-group .field-sdg {
+    width: 25%;
+}
+
+.inline-group .field-is_top {
+    width: 10%;
+}
+
+.inline-group .field-relevance_score {
+    width: 15%;
+}
+
+.inline-group .field-justification {
+    width: 50%;
+}
+
+/* KPI column widths */
+.inline-group .field-metric_name {
+    width: 25%;
+}
+
+.inline-group .field-kpi_type {
+    width: 15%;
+}
+
+.inline-group .field-target_value {
+    width: 15%;
+}
+
+.inline-group .field-unit {
+    width: 10%;
+}
+
+.inline-group .field-sector {
+    width: 20%;
+}
+
+/* Improve readability of long URLs and descriptions */
+.field-external_link input {
+    font-size: 12px;
+    padding: 4px 6px;
+}
+
+.field-description textarea {
+    font-size: 12px;
+    padding: 4px 6px;
+    resize: vertical;
+}
+
+/* Improve justification and text fields */
+.field-justification textarea {
+    font-size: 12px;
+    padding: 4px 6px;
+    resize: vertical;
+    max-width: 100%;
+}
+
+.field-description textarea,
+.field-text textarea {
+    font-size: 12px;
+    padding: 4px 6px;
+    resize: vertical;
+    max-width: 100%;
+}
+
+/* Improve relevance score fields */
+.field-relevance_score input {
+    font-size: 12px;
+    padding: 4px 6px;
+    text-align: center;
+}
+
+/* Improve KPI fields */
+.field-metric_name input,
+.field-target_value input,
+.field-unit input,
+.field-sector input {
+    font-size: 12px;
+    padding: 4px 6px;
+}
+
+/* Add visual indicators for auto-generated fields */
+.field-filename input {
+    background-color: #f8f9fa;
+    border-left: 3px solid #28a745;
+}
+
+.field-filename input:focus {
+    background-color: white;
+    border-left: 3px solid #007bff;
+}
+
+/* Improve admin action buttons */
+.admin-actions {
+    margin-bottom: 10px;
+}
+
+.admin-actions select {
+    margin-right: 10px;
+}
+
+/* Better spacing for inline groups */
+.inline-group {
+    margin-bottom: 20px;
+}
+
+.inline-group h3 {
+    background-color: #f8f9fa;
+    padding: 8px 12px;
+    border-left: 4px solid #007bff;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .inline-group table {
+        font-size: 12px;
+    }
+    
+    .inline-group .field-external_link input,
+    .inline-group .field-description textarea {
+        font-size: 11px;
+        padding: 3px 5px;
+    }
+}

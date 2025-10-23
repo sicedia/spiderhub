@@ -3,6 +3,7 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.db import models
 from django.forms import Textarea, TextInput
+from django import forms
 from .models import (
     Country, City,    
     Theme, Actor, BeneficiaryGroup, BeneficiaryGroupRaw, SDG, Document,
@@ -272,22 +273,71 @@ class EUPolicyAdmin(admin.ModelAdmin):
 class SourceFileInline(admin.TabularInline):
     model = SourceFile
     extra = 0  # Change from 1 to 0 to avoid empty forms
-    fields = ('file', 'filename', 'file_type', 'external_link', 'description')
+    fields = ('file', 'filename_display', 'file_type_display', 'external_link', 'description')
     classes = ('collapse',)
     verbose_name = "Source File"
     verbose_name_plural = "Source Files"
-    readonly_fields = ('file_size', 'upload_date')
+    readonly_fields = ('filename_display', 'file_type_display', 'file_size', 'upload_date')
     
     # Add these to prevent formset issues
     can_delete = True
     show_change_link = True
     
-    # Override to ensure proper formset handling
+    class Media:
+        css = {
+            'all': ('admin/css/sourcefile_admin.css',)
+        }
+    
+    # Custom form to improve field layout
     def get_formset(self, request, obj=None, **kwargs):
         formset = super().get_formset(request, obj, **kwargs)
+        
+        # Add custom CSS classes to improve field layout
+        class CustomSourceFileForm(formset.form):
+            class Meta(formset.form.Meta):
+                widgets = {
+                    'external_link': TextInput(attrs={'size': '50', 'placeholder': 'https://...'}),
+                    'description': Textarea(attrs={'rows': 2, 'cols': '50', 'placeholder': 'Optional description'}),
+                }
+        
+        formset.form = CustomSourceFileForm
         formset.validate_min = False
         formset.validate_max = False
         return formset
+    
+    def filename_display(self, obj):
+        """Display filename as read-only label with truncation"""
+        if obj.filename:
+            # Truncate long filenames to prevent overflow
+            display_name = obj.filename
+            if len(display_name) > 30:
+                display_name = display_name[:27] + "..."
+            
+            return format_html(
+                '<span style="background-color: #e8f5e8; padding: 2px 6px; border-radius: 4px; font-size: 12px; max-width: 200px; display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="{}">📄 {}</span>', 
+                obj.filename, display_name
+            )
+        return '-'
+    filename_display.short_description = 'Filename (Auto-generated)'
+    
+    def file_type_display(self, obj):
+        """Display file type as read-only label"""
+        if obj.file_type:
+            colors = {
+                'pdf': '#dc3545',
+                'doc': '#007bff',
+                'docx': '#007bff',
+                'txt': '#28a745',
+                'html': '#fd7e14',
+                'other': '#6c757d'
+            }
+            color = colors.get(obj.file_type, '#6c757d')
+            return format_html(
+                '<span style="background-color: {}; color: white; padding: 2px 6px; border-radius: 4px; font-size: 12px;">{}</span>',
+                color, obj.file_type.upper()
+            )
+        return '-'
+    file_type_display.short_description = 'Type (Auto-detected)'
 
 class DocumentThemeInline(admin.TabularInline):
     model = DocumentTheme
@@ -302,6 +352,27 @@ class DocumentThemeInline(admin.TabularInline):
     
     can_delete = True
     show_change_link = True
+    
+    class Media:
+        css = {
+            'all': ('admin/css/sourcefile_admin.css',)
+        }
+    
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+        
+        # Add custom CSS classes to improve field layout
+        class CustomThemeForm(formset.form):
+            class Meta(formset.form.Meta):
+                widgets = {
+                    'justification': Textarea(attrs={'rows': 2, 'cols': '50', 'placeholder': 'Optional justification'}),
+                    'relevance_score': TextInput(attrs={'size': '10', 'placeholder': '0-100'}),
+                }
+        
+        formset.form = CustomThemeForm
+        formset.validate_min = False
+        formset.validate_max = False
+        return formset
 
 class DocumentActorInline(admin.TabularInline):
     model = DocumentActor
@@ -316,6 +387,27 @@ class DocumentActorInline(admin.TabularInline):
     
     can_delete = True
     show_change_link = True
+    
+    class Media:
+        css = {
+            'all': ('admin/css/sourcefile_admin.css',)
+        }
+    
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+        
+        # Add custom CSS classes to improve field layout
+        class CustomActorForm(formset.form):
+            class Meta(formset.form.Meta):
+                widgets = {
+                    'justification': Textarea(attrs={'rows': 2, 'cols': '50', 'placeholder': 'Optional justification'}),
+                    'relevance_score': TextInput(attrs={'size': '10', 'placeholder': '0-100'}),
+                }
+        
+        formset.form = CustomActorForm
+        formset.validate_min = False
+        formset.validate_max = False
+        return formset
 
 class DocumentSDGInline(admin.TabularInline):
     model = DocumentSDG
@@ -330,6 +422,27 @@ class DocumentSDGInline(admin.TabularInline):
     
     can_delete = True
     show_change_link = True
+    
+    class Media:
+        css = {
+            'all': ('admin/css/sourcefile_admin.css',)
+        }
+    
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+        
+        # Add custom CSS classes to improve field layout
+        class CustomSDGForm(formset.form):
+            class Meta(formset.form.Meta):
+                widgets = {
+                    'justification': Textarea(attrs={'rows': 2, 'cols': '50', 'placeholder': 'Optional justification'}),
+                    'relevance_score': TextInput(attrs={'size': '10', 'placeholder': '0.0-1.0'}),
+                }
+        
+        formset.form = CustomSDGForm
+        formset.validate_min = False
+        formset.validate_max = False
+        return formset
 
 class PracticalApplicationInline(admin.StackedInline):
     model = PracticalApplication
@@ -339,14 +452,30 @@ class PracticalApplicationInline(admin.StackedInline):
     verbose_name = "Practical Application"
     verbose_name_plural = "Practical Applications"
     
-    formfield_overrides = {
-        models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 80})},
-    }
-    
     max_num = 50
     
     can_delete = True
     show_change_link = True
+    
+    class Media:
+        css = {
+            'all': ('admin/css/sourcefile_admin.css',)
+        }
+    
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+        
+        # Add custom CSS classes to improve field layout
+        class CustomPracticalForm(formset.form):
+            class Meta(formset.form.Meta):
+                widgets = {
+                    'description': Textarea(attrs={'rows': 3, 'cols': '80', 'style': 'max-width: 100%;', 'placeholder': 'Describe practical applications...'}),
+                }
+        
+        formset.form = CustomPracticalForm
+        formset.validate_min = False
+        formset.validate_max = False
+        return formset
 
 class CommitmentInline(admin.StackedInline):
     model = Commitment
@@ -356,14 +485,30 @@ class CommitmentInline(admin.StackedInline):
     verbose_name = "Commitment"
     verbose_name_plural = "Commitments"
     
-    formfield_overrides = {
-        models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 80})},
-    }
-    
     max_num = 50
     
     can_delete = True
     show_change_link = True
+    
+    class Media:
+        css = {
+            'all': ('admin/css/sourcefile_admin.css',)
+        }
+    
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+        
+        # Add custom CSS classes to improve field layout
+        class CustomCommitmentForm(formset.form):
+            class Meta(formset.form.Meta):
+                widgets = {
+                    'text': Textarea(attrs={'rows': 3, 'cols': '80', 'style': 'max-width: 100%;', 'placeholder': 'Enter commitment text...'}),
+                }
+        
+        formset.form = CustomCommitmentForm
+        formset.validate_min = False
+        formset.validate_max = False
+        return formset
 
 class KPIInline(admin.TabularInline):
     model = KPI
@@ -375,6 +520,29 @@ class KPIInline(admin.TabularInline):
     
     can_delete = True
     show_change_link = True
+    
+    class Media:
+        css = {
+            'all': ('admin/css/sourcefile_admin.css',)
+        }
+    
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+        
+        # Add custom CSS classes to improve field layout
+        class CustomKPIForm(formset.form):
+            class Meta(formset.form.Meta):
+                widgets = {
+                    'metric_name': TextInput(attrs={'size': '30', 'placeholder': 'Metric name'}),
+                    'target_value': TextInput(attrs={'size': '15', 'placeholder': 'Target value'}),
+                    'unit': TextInput(attrs={'size': '15', 'placeholder': 'Unit'}),
+                    'sector': TextInput(attrs={'size': '20', 'placeholder': 'Sector'}),
+                }
+        
+        formset.form = CustomKPIForm
+        formset.validate_min = False
+        formset.validate_max = False
+        return formset
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
@@ -401,7 +569,7 @@ class DocumentAdmin(admin.ModelAdmin):
     )
     date_hierarchy = 'event_date'
     filter_horizontal = ('beneficiary_groups', 'countries_involved', 'eu_policy_alignments')
-    readonly_fields = ('created_at', 'updated_at', 'title_normalized', 'executive_summary_normalized', 'search_vector', 'ai_check_date')
+    readonly_fields = ('created_at', 'updated_at', 'title_normalized', 'executive_summary_normalized', 'search_vector', 'ai_check_date', 'human_check_date_display', 'human_reviewer_display')
     autocomplete_fields = ('created_by', 'event_city', 'event_country', 'lead_country', 'human_reviewer')
     list_per_page = 20
     
@@ -435,7 +603,7 @@ class DocumentAdmin(admin.ModelAdmin):
             'classes': ('wide',)
         }),
         ('✅ Review Status', {
-            'fields': ('ai_check_status', 'ai_check_date', 'human_check_status', 'human_check_date', 'human_reviewer', 'human_notes'),
+            'fields': ('ai_check_status', 'ai_check_date', 'human_check_status', 'human_notes'),
             'classes': ('wide',)
         }),
         ('🔗 Direct Relationships', {
@@ -447,7 +615,7 @@ class DocumentAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
         ('🏷️ Metadata', {
-            'fields': ('created_at', 'updated_at', 'title_normalized', 'executive_summary_normalized', 'search_vector'),
+            'fields': ('created_at', 'updated_at', 'title_normalized', 'executive_summary_normalized', 'search_vector', 'human_check_date_display', 'human_reviewer_display'),
             'classes': ('collapse',)
         }),
     )
@@ -768,6 +936,26 @@ class DocumentAdmin(admin.ModelAdmin):
             .select_related('event_city__country')
             .prefetch_related('source_files')
         )
+    
+    def human_check_date_display(self, obj):
+        """Display human check date with better formatting"""
+        if obj.human_check_date:
+            return format_html(
+                '<span style="background-color: #e8f5e8; padding: 2px 6px; border-radius: 4px; font-size: 12px;">📅 {}</span>',
+                obj.human_check_date.strftime('%Y-%m-%d %H:%M')
+            )
+        return '-'
+    human_check_date_display.short_description = 'Human Review Date'
+    
+    def human_reviewer_display(self, obj):
+        """Display human reviewer with better formatting"""
+        if obj.human_reviewer:
+            return format_html(
+                '<span style="background-color: #e3f2fd; padding: 2px 6px; border-radius: 4px; font-size: 12px;">👤 {}</span>',
+                obj.human_reviewer.username
+            )
+        return '-'
+    human_reviewer_display.short_description = 'Human Reviewer'
 
 # Enhanced through models for direct editing
 @admin.register(DocumentTheme)
@@ -1129,12 +1317,13 @@ class SourceFileAdmin(admin.ModelAdmin):
     list_filter = ('file_type', 'upload_date', 'document')
     search_fields = ('filename', 'description', 'document__title', 'external_link')
     autocomplete_fields = ('document',)
-    readonly_fields = ('file_size', 'upload_date', 'created_at', 'updated_at')
+    readonly_fields = ('filename_display', 'file_type_display', 'file_size', 'upload_date', 'created_at', 'updated_at')
     list_per_page = 25
+    actions = ['extract_filenames_from_pdfs', 'regenerate_filenames']
     
     fieldsets = (
         ('📎 File Information', {
-            'fields': ('document', 'file', 'filename', 'file_type'),
+            'fields': ('document', 'file', 'filename_display', 'file_type_display'),
             'classes': ('wide',)
         }),
         ('📝 Details', {
@@ -1148,13 +1337,49 @@ class SourceFileAdmin(admin.ModelAdmin):
     )
     
     formfield_overrides = {
-        models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 80})},
-        models.CharField: {'widget': TextInput(attrs={'size': '60'})},
+        models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 80, 'style': 'max-width: 100%;'})},
+        models.CharField: {'widget': TextInput(attrs={'size': '60', 'style': 'max-width: 100%;'})},
+        models.URLField: {'widget': TextInput(attrs={'size': '80', 'style': 'max-width: 100%;', 'placeholder': 'https://...'})},
     }
     
+    class Media:
+        css = {
+            'all': ('admin/css/sourcefile_admin.css',)
+        }
+    
     def filename_display(self, obj):
-        return format_html('<strong style="color: #007cba;">📄 {}</strong>', obj.filename)
-    filename_display.short_description = 'Filename'
+        """Display filename as read-only label with truncation"""
+        if obj.filename:
+            # Truncate long filenames to prevent overflow
+            display_name = obj.filename
+            if len(display_name) > 40:
+                display_name = display_name[:37] + "..."
+            
+            return format_html(
+                '<span style="background-color: #e8f5e8; padding: 2px 6px; border-radius: 4px; font-size: 12px; max-width: 300px; display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="{}">📄 {}</span>', 
+                obj.filename, display_name
+            )
+        return '-'
+    filename_display.short_description = 'Filename (Auto-generated)'
+    
+    def file_type_display(self, obj):
+        """Display file type as read-only label"""
+        if obj.file_type:
+            colors = {
+                'pdf': '#dc3545',
+                'doc': '#007bff',
+                'docx': '#007bff',
+                'txt': '#28a745',
+                'html': '#fd7e14',
+                'other': '#6c757d'
+            }
+            color = colors.get(obj.file_type, '#6c757d')
+            return format_html(
+                '<span style="background-color: {}; color: white; padding: 2px 6px; border-radius: 4px; font-size: 12px;">{}</span>',
+                color, obj.file_type.upper()
+            )
+        return '-'
+    file_type_display.short_description = 'Type (Auto-detected)'
     
     def document_title(self, obj):
         return obj.document.title[:50] + "..." if len(obj.document.title) > 50 else obj.document.title
@@ -1200,3 +1425,49 @@ class SourceFileAdmin(admin.ModelAdmin):
             return format_html('<a href="{}" target="_blank" title="{}">🔗 Link</a>', obj.external_link, obj.external_link)
         return '-'
     link_display.short_description = 'External Link'
+    
+    def extract_filenames_from_pdfs(self, request, queryset):
+        """Admin action to extract filenames from PDF metadata for selected files."""
+        count = 0
+        for source_file in queryset:
+            if source_file.file_type == 'pdf' and source_file.file:
+                try:
+                    # Use the new recalculate_metadata method
+                    if source_file.recalculate_metadata():
+                        count += 1
+                        
+                except Exception as e:
+                    self.message_user(
+                        request,
+                        f'Error processing {source_file.filename}: {str(e)}',
+                        level='error'
+                    )
+        
+        self.message_user(
+            request,
+            f'Successfully extracted filenames for {count} PDF file(s).'
+        )
+    extract_filenames_from_pdfs.short_description = "📄 Extract filenames from PDF metadata"
+    
+    def regenerate_filenames(self, request, queryset):
+        """Admin action to regenerate filenames for selected files."""
+        count = 0
+        for source_file in queryset:
+            if source_file.file:
+                try:
+                    # Use the new recalculate_metadata method
+                    if source_file.recalculate_metadata():
+                        count += 1
+                    
+                except Exception as e:
+                    self.message_user(
+                        request,
+                        f'Error processing {source_file.filename}: {str(e)}',
+                        level='error'
+                    )
+        
+        self.message_user(
+            request,
+            f'Successfully regenerated filenames for {count} file(s).'
+        )
+    regenerate_filenames.short_description = "🔄 Regenerate filenames (all file types)"

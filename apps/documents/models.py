@@ -14,6 +14,7 @@ from django.db.models import (
     Q, Count, F, IntegerField, OuterRef, Subquery, Value
 )
 from django.db.models.functions import Coalesce
+from pathlib import Path
 
 # Importing necessary fields and indexes for full-text search
 from django.contrib.postgres.search import SearchVectorField
@@ -369,6 +370,49 @@ class Document(BaseModel):
         ]
 
     def save(self, *args, **kwargs):
+        # Check if this is a new instance or if significant fields have changed
+        is_new = self.pk is None
+        significant_changes = False
+        
+        if not is_new:
+            # Get the current instance from database to compare
+            try:
+                old_instance = Document.objects.get(pk=self.pk)
+                
+                # Define fields that require human re-review when changed
+                significant_fields = [
+                    'title', 'executive_summary', 'document_type', 'event_format',
+                    'coverage_scope', 'legal_bindingness', 'event_date', 'event_city',
+                    'event_country', 'lead_country', 'score'
+                ]
+                
+                # Check if any significant field has changed
+                for field in significant_fields:
+                    old_value = getattr(old_instance, field)
+                    new_value = getattr(self, field)
+                    
+                    # Simple comparison that handles None values
+                    if old_value != new_value:
+                        significant_changes = True
+                        # Debug logging (remove in production)
+                        print(f"DEBUG: Field '{field}' changed from '{old_value}' to '{new_value}'")
+                        break
+                        
+            except Document.DoesNotExist:
+                significant_changes = True
+        
+        # If there are significant changes and document was previously human-reviewed,
+        # reset human review status (but preserve human_notes and human_reviewer)
+        if significant_changes and self.human_check_status:
+            print(f"DEBUG: Resetting human review status for document {self.id}")
+            self.human_check_status = False
+            self.human_check_date = None
+            # Keep human_reviewer and human_notes unchanged
+        elif significant_changes:
+            print(f"DEBUG: Significant changes detected but document {self.id} was not human-reviewed")
+        elif self.human_check_status:
+            print(f"DEBUG: Document {self.id} is human-reviewed but no significant changes detected")
+        
         super().save(*args, **kwargs)
 
     def mark_human_reviewed(self, user):
@@ -524,17 +568,25 @@ class SourceFile(BaseModel):
         return f"{self.filename} ({self.document.title})"
     
     def save(self, *args, **kwargs):
-        # Auto-populate filename if not provided
-        if not self.filename and self.file:
-            self.filename = self.file.name.split('/')[-1]
+        # Check if this is a new instance or if the file has changed
+        is_new = self.pk is None
+        file_changed = False
+        
+        if not is_new:
+            # Get the current instance from database to compare
+            try:
+                old_instance = SourceFile.objects.get(pk=self.pk)
+                file_changed = old_instance.file != self.file
+            except SourceFile.DoesNotExist:
+                file_changed = True
         
         # Auto-populate file_size
         if self.file:
             self.file_size = self.file.size
             
-        # Auto-detect file_type from extension
-        if self.file and not self.file_type or self.file_type == 'other':
-            extension = self.filename.split('.')[-1].lower()
+        # Auto-detect file_type from extension (always recalculate if file changed or is new)
+        if self.file and (is_new or file_changed or not self.file_type or self.file_type == 'other'):
+            extension = self.file.name.split('.')[-1].lower()
             type_mapping = {
                 'pdf': 'pdf',
                 'doc': 'doc',
@@ -545,8 +597,58 @@ class SourceFile(BaseModel):
             }
             self.file_type = type_mapping.get(extension, 'other')
         
+        # Auto-populate filename with smart extraction (always recalculate if file changed or is new)
+        if self.file and (is_new or file_changed or not self.filename):
+            original_filename = self.file.name.split('/')[-1]
+            
+            # For PDF files, try to extract a meaningful filename
+            if self.file_type == 'pdf':
+                try:
+                    from .services.pdf_metadata_extractor import generate_smart_filename
+                    suggested_name = generate_smart_filename(self.file.path, original_filename)
+                    # Keep the original extension
+                    file_extension = Path(original_filename).suffix
+                    self.filename = f"{suggested_name}{file_extension}"
+                except Exception as e:
+                    # Fallback to original filename if extraction fails
+                    self.filename = original_filename
+            else:
+                # For non-PDF files, use the original filename
+                self.filename = original_filename
+        
         super().save(*args, **kwargs)
-
+    
+    def recalculate_metadata(self):
+        """
+        Force recalculation of filename and file_type based on current file.
+        Useful for updating existing files when needed.
+        """
+        if not self.file:
+            return False
+        
+        try:
+            # Force recalculation by temporarily clearing the fields
+            old_filename = self.filename
+            old_file_type = self.file_type
+            
+            # Clear fields to trigger recalculation
+            self.filename = None
+            self.file_type = 'other'
+            
+            # Save to trigger recalculation
+            self.save()
+            
+            # Log the change if there was one
+            if old_filename != self.filename or old_file_type != self.file_type:
+                return True
+            
+            return False
+            
+        except Exception as e:
+            # Restore original values if something went wrong
+            self.filename = old_filename
+            self.file_type = old_file_type
+            raise e
 
 
 # ---------------------------------------------------------------------------
@@ -721,3 +823,39 @@ class KPI(BaseModel):
 
     def __str__(self):
         return f"{self.metric_name} ({self.document.title})"
+
+
+# ---------------------------------------------------------------------------
+# SIGNALS FOR AUTOMATIC REVIEW STATUS MANAGEMENT
+# ---------------------------------------------------------------------------
+
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
+from django.utils import timezone
+
+
+@receiver(post_save, sender=SourceFile)
+def reset_document_review_on_sourcefile_change(sender, instance, created, **kwargs):
+    """
+    Reset document human review status when source files are added or modified.
+    This ensures that changes to source files trigger a need for human re-review.
+    """
+    if instance.document and instance.document.human_check_status:
+        # Reset human review status when source files change
+        instance.document.human_check_status = False
+        instance.document.human_check_date = None
+        # Keep human_reviewer and human_notes unchanged
+        instance.document.save(update_fields=['human_check_status', 'human_check_date'])
+
+
+@receiver(post_delete, sender=SourceFile)
+def reset_document_review_on_sourcefile_deletion(sender, instance, **kwargs):
+    """
+    Reset document human review status when source files are deleted.
+    """
+    if instance.document and instance.document.human_check_status:
+        # Reset human review status when source files are deleted
+        instance.document.human_check_status = False
+        instance.document.human_check_date = None
+        # Keep human_reviewer and human_notes unchanged
+        instance.document.save(update_fields=['human_check_status', 'human_check_date'])
