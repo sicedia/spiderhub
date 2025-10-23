@@ -289,7 +289,7 @@ def document_detail_page(request, pk):
         ).prefetch_related(
             'themes', 'actors', 'beneficiary_groups', 'sdgs',
             'practical_applications', 'commitments', 'kpis',
-            'countries_involved', 'eu_policy_alignments'
+            'countries_involved', 'eu_policy_alignments', 'source_files'
         ),
         pk=pk
     )

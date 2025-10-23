@@ -80,6 +80,10 @@
 
 .document-actions {
   align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
 }
 
 /* ========================================

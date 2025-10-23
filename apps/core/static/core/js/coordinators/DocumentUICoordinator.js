@@ -7,6 +7,7 @@ import { logger } from '../core/logger/Logger.js';
 import { eventBus } from '../core/events/EventBus.js';
 import { EVENTS } from '../core/constants/config.js';
 import { Tooltip } from '../components/ui/Tooltip.js';
+import { SourceFilesManager } from '../components/ui/SourceFilesManager.js';
 
 export class DocumentUICoordinator {
   constructor(documentId, options = {}) {
@@ -25,6 +26,7 @@ export class DocumentUICoordinator {
     
     this.tooltips = [];
     this.imageObserver = null;
+    this.sourceFilesManager = null;
     this.userInteractions = {
       viewStartTime: Date.now(),
       scrollDepth: 0,
@@ -53,6 +55,9 @@ export class DocumentUICoordinator {
     if (this.options.enableAnalytics) {
       this.initializeAnalytics();
     }
+    
+    // Initialize source files manager
+    this.initializeSourceFilesManager();
     
     this.setupEventListeners();
     
@@ -178,6 +183,34 @@ export class DocumentUICoordinator {
   }
 
   /**
+   * Initialize source files manager
+   */
+  initializeSourceFilesManager() {
+    const sourceFilesContainer = document.querySelector('.source-files-card');
+    
+    if (!sourceFilesContainer) {
+      this.logger.debug('Source files card not found, skipping initialization');
+      return;
+    }
+    
+    try {
+      this.sourceFilesManager = new SourceFilesManager(sourceFilesContainer, {
+        enableAnalytics: this.options.enableAnalytics,
+        enableCopyToClipboard: true,
+        enableDownloadTracking: true,
+        enableExternalLinkTracking: true,
+        showFileSizeTooltips: true,
+        showDownloadProgress: true
+      });
+      
+      this.logger.info('SourceFilesManager initialized successfully');
+      
+    } catch (error) {
+      this.logger.error('Failed to initialize SourceFilesManager', error);
+    }
+  }
+
+  /**
    * Initialize analytics tracking
    */
   initializeAnalytics() {
@@ -297,12 +330,19 @@ export class DocumentUICoordinator {
   getInteractionStats() {
     const timeOnPage = Date.now() - this.userInteractions.viewStartTime;
     
-    return {
+    const stats = {
       timeOnPage: timeOnPage,
       timeOnPageMinutes: Math.round(timeOnPage / 60000),
       scrollDepth: this.userInteractions.scrollDepth,
       maxScrollDepth: this.userInteractions.maxScrollDepth
     };
+    
+    // Add source files statistics if available
+    if (this.sourceFilesManager) {
+      stats.sourceFiles = this.sourceFilesManager.getInteractionStats();
+    }
+    
+    return stats;
   }
 
   /**
@@ -336,6 +376,12 @@ export class DocumentUICoordinator {
     if (this.imageObserver) {
       this.imageObserver.disconnect();
       this.imageObserver = null;
+    }
+    
+    // Destroy source files manager
+    if (this.sourceFilesManager) {
+      this.sourceFilesManager.destroy();
+      this.sourceFilesManager = null;
     }
     
     // Track final time on page

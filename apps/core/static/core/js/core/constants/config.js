@@ -184,6 +184,18 @@ export const EVENTS = {
   HOME_QUICK_ACTION: 'home:quick:action',
   CAROUSEL_SLIDE_CHANGED: 'carousel:slide:changed',
   
+  // Analytics Events
+  ANALYTICS: {
+    TRACK: 'analytics:track',
+    PAGE_VIEW: 'analytics:page_view',
+    EVENT: 'analytics:event',
+    USER_ACTION: 'analytics:user_action'
+  },
+  
+  // UI Events
+  NOTIFICATION_SHOW: 'notification:show',
+  NOTIFICATION_HIDE: 'notification:hide',
+  
   // Legacy Events (to be migrated)
   commitSearch: 'search:committed', // Legacy alias
   filterChanged: 'filter:changed', // Legacy alias
