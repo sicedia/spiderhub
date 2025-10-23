@@ -569,7 +569,7 @@ class DocumentAdmin(admin.ModelAdmin):
     )
     date_hierarchy = 'event_date'
     filter_horizontal = ('beneficiary_groups', 'countries_involved', 'eu_policy_alignments')
-    readonly_fields = ('created_at', 'updated_at', 'title_normalized', 'executive_summary_normalized', 'search_vector', 'ai_check_date', 'human_check_date_display', 'human_reviewer_display')
+    readonly_fields = ('created_at', 'updated_at', 'title_normalized', 'executive_summary_normalized', 'search_vector', 'ai_check_date', 'human_check_date_display', 'human_reviewer_display', 'created_by_display')
     autocomplete_fields = ('created_by', 'event_city', 'event_country', 'lead_country', 'human_reviewer')
     list_per_page = 20
     
@@ -611,7 +611,7 @@ class DocumentAdmin(admin.ModelAdmin):
             'classes': ('wide',)
         }),
         ('👤 Admin Fields', {
-            'fields': ('created_by', 'admin_notes'),
+            'fields': ('created_by_display', 'admin_notes'),
             'classes': ('collapse',)
         }),
         ('🏷️ Metadata', {
@@ -750,6 +750,9 @@ class DocumentAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         # Set created_by if it's a new document
         if not change and not obj.created_by:
+            obj.created_by = request.user
+        elif not change:
+            # Ensure created_by is set even if it wasn't set in the model save
             obj.created_by = request.user
 
         # Handle manual human check status changes
@@ -956,6 +959,16 @@ class DocumentAdmin(admin.ModelAdmin):
             )
         return '-'
     human_reviewer_display.short_description = 'Human Reviewer'
+    
+    def created_by_display(self, obj):
+        """Display created by user with better formatting"""
+        if obj.created_by:
+            return format_html(
+                '<span style="background-color: #f3e5f5; padding: 2px 6px; border-radius: 4px; font-size: 12px;">✍️ {}</span>',
+                obj.created_by.username
+            )
+        return '-'
+    created_by_display.short_description = 'Created By'
 
 # Enhanced through models for direct editing
 @admin.register(DocumentTheme)

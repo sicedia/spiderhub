@@ -374,6 +374,22 @@ class Document(BaseModel):
         is_new = self.pk is None
         significant_changes = False
         
+        # Auto-assign created_by for new documents
+        if is_new and not self.created_by:
+            from django.contrib.auth import get_user_model
+            User = get_user_model()
+            # Try to get the current user from thread local storage (Django admin context)
+            try:
+                from django.utils.deprecation import get_current_request
+                request = get_current_request()
+                if request and hasattr(request, 'user') and request.user.is_authenticated:
+                    self.created_by = request.user
+            except:
+                # Fallback: get the first superuser if no request context
+                superuser = User.objects.filter(is_superuser=True).first()
+                if superuser:
+                    self.created_by = superuser
+        
         if not is_new:
             # Get the current instance from database to compare
             try:
