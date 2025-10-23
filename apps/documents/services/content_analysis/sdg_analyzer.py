@@ -135,6 +135,8 @@ class SDGAnalyzer(ContentAnalyzer):
         try:
             if processing_type == 'text':
                 result = self._analyze_with_text(document, doc_sdg, content_data['content'])
+            elif processing_type == 'hybrid':
+                result = self._analyze_with_hybrid(document, doc_sdg, content_data)
             elif processing_type == 'vision':
                 result = self._analyze_with_vision(document, doc_sdg, content_data['content'])
             else:
@@ -292,6 +294,183 @@ You MUST respond with valid JSON in exactly this format:
 }}
 
 Do not include any text outside the JSON object."""
+    
+    def _analyze_with_hybrid(self, document, doc_sdg, content_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Analyze SDG relevance using hybrid content (text + vision).
+        
+        Args:
+            document: Document instance
+            doc_sdg: DocumentSDG relationship
+            content_data: Hybrid content data with text and vision images
+            
+        Returns:
+            dict: Analysis result with score and justification
+        """
+        # Extract vision images from metadata
+        vision_images = self._extract_vision_images(content_data)
+        
+        if vision_images:
+            # Use multimodal analysis with text + images
+            return self._analyze_with_langchain_vision(document, doc_sdg, content_data['content'], vision_images)
+        else:
+            # Fall back to text-only analysis
+            logger.info(f"No vision images found for Document {document.id}, using text-only analysis")
+            return self._analyze_with_text(document, doc_sdg, content_data['content'])
+    
+    def _analyze_with_langchain_vision(self, document, doc_sdg, text_content: str, vision_images: List[str]) -> Dict[str, Any]:
+        """
+        Analyze SDG relevance using LangChain multimodal message (text + images).
+        
+        Args:
+            document: Document instance
+            doc_sdg: DocumentSDG relationship
+            text_content: Combined text content
+            vision_images: List of base64-encoded images
+            
+        Returns:
+            dict: Analysis result with score and justification
+        """
+        # Generate hybrid-specific prompt
+        prompt = self._generate_hybrid_sdg_prompt(
+            document.title,
+            doc_sdg.sdg.number,
+            doc_sdg.sdg.label,
+            text_content
+        )
+        
+        # Create multimodal message content
+        message_content = [{"type": "text", "text": prompt}]
+        
+        # Add images to message
+        for img_base64 in vision_images:
+            message_content.append({
+                "type": "image_url",
+                "image_url": {"url": f"data:image/png;base64,{img_base64}"}
+            })
+        
+        message = HumanMessage(content=message_content)
+        
+        # Call LLM with multimodal content
+        response = self.llm_service.llm.invoke([message])
+        
+        # Extract response text
+        if hasattr(response, 'content'):
+            response_text = response.content
+        else:
+            response_text = str(response)
+        
+        logger.debug(f"Hybrid LLM response: {response_text[:200]}...")
+        
+        # Parse JSON response
+        parsed = parse_llm_json_response(response_text)
+        
+        # Validate required fields
+        if 'score' not in parsed:
+            raise ValueError("LLM response missing 'score' field")
+        
+        if 'justification' not in parsed:
+            raise ValueError("LLM response missing 'justification' field")
+        
+        # Validate score range
+        score = float(parsed['score'])
+        if not validate_score(score):
+            raise ValueError(f"Invalid score {score}. Must be between 0.0 and 1.0")
+        
+        return {
+            'score': score,
+            'justification': str(parsed['justification'])
+        }
+    
+    def _generate_hybrid_sdg_prompt(self, document_title: str, sdg_number: int, sdg_label: str, text_content: str) -> str:
+        """
+        Generate prompt for hybrid SDG analysis (text + vision).
+        
+        Args:
+            document_title: Title of the document
+            sdg_number: SDG number (1-17)
+            sdg_label: SDG description/label
+            text_content: Combined text content
+            
+        Returns:
+            str: Formatted prompt for hybrid analysis
+        """
+        return f"""You are an expert in analyzing policy documents for alignment with the United Nations Sustainable Development Goals (SDGs).
+
+Document Title: {document_title}
+
+SDG to Analyze: SDG {sdg_number} - {sdg_label}
+
+Task: Analyze this document's relevance to the specified SDG on a scale of 0.0 to 1.0 using both the provided text content and PDF images.
+
+Relevance Scale:
+- 0.0-0.3: Not relevant or only tangentially mentioned
+- 0.4-0.6: Moderately relevant, the SDG is addressed but not a primary focus
+- 0.7-0.9: Highly relevant, significant alignment with the SDG
+- 1.0: Core focus, the document directly implements or strongly promotes this SDG
+
+Instructions:
+1. Read the text content carefully
+2. Analyze the PDF images to extract any additional text or visual information
+3. Look for mentions, themes, commitments, or visual elements related to SDG {sdg_number}
+4. Consider both textual and visual evidence in your analysis
+5. Assign a relevance score based on the scale above
+6. Provide a 2-3 sentence justification explaining your score
+
+Text Content:
+{text_content[:3000]}{'...' if len(text_content) > 3000 else ''}
+
+You MUST respond with valid JSON in exactly this format:
+{{
+  "score": 0.85,
+  "justification": "Your 2-3 sentence explanation here."
+}}
+
+Do not include any text outside the JSON object."""
+    
+    def _extract_vision_images(self, content_data: Dict[str, Any]) -> List[str]:
+        """
+        Extract vision images from content data metadata.
+        
+        Args:
+            content_data: Content data from HybridDocumentProcessor
+            
+        Returns:
+            List[str]: List of base64-encoded images
+        """
+        vision_images = []
+        
+        try:
+            metadata = content_data.get('metadata', {})
+            vision_images_dict = metadata.get('vision_images', {})
+            
+            # Flatten all images from all files
+            for filename, images in vision_images_dict.items():
+                vision_images.extend(images)
+            
+            logger.debug(f"Extracted {len(vision_images)} vision images from metadata")
+            
+        except Exception as e:
+            logger.warning(f"Could not extract vision images: {str(e)}")
+        
+        return vision_images
+    
+    def analyze_single_sdg(self, document, doc_sdg, content_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Public method to analyze a single SDG relationship.
+        
+        This method is used by the caching optimization to analyze individual SDGs
+        without processing all SDGs linked to the document.
+        
+        Args:
+            document: Document instance
+            doc_sdg: DocumentSDG relationship instance
+            content_data: Content data from processor
+            
+        Returns:
+            dict: Analysis result for single SDG
+        """
+        return self._analyze_single_sdg(document, doc_sdg, content_data)
     
     def get_analysis_type(self) -> str:
         """Return the analysis type identifier."""

@@ -28,7 +28,8 @@ logger = get_logger(__name__)
 def calculate_sdg_relevance(
     document: Document,
     sdg: SDG,
-    doc_sdg_instance: DocumentSDG
+    doc_sdg_instance: DocumentSDG,
+    cached_content: Optional[Dict[str, Any]] = None
 ) -> tuple[bool, Optional[str]]:
     """
     Calculate relevance score for a single DocumentSDG relationship.
@@ -41,6 +42,7 @@ def calculate_sdg_relevance(
         document: Document instance
         sdg: SDG instance  
         doc_sdg_instance: Existing DocumentSDG relationship to update
+        cached_content: Optional pre-extracted content to avoid re-processing
         
     Returns:
         tuple: (success: bool, error_message: str or None)
@@ -53,7 +55,16 @@ def calculate_sdg_relevance(
     try:
         # Use new SOLID architecture for analysis
         analysis_service = get_document_analysis_service()
-        result = analysis_service.analyze_sdg_relevance(document, force=False)
+        
+        # Use cached content if available, otherwise extract fresh
+        if cached_content:
+            logger.debug(f"Using cached content for Document {document.id} / SDG {sdg.number}")
+            result = analysis_service.analyze_single_sdg_with_content(
+                document, sdg, cached_content, force=False
+            )
+        else:
+            logger.debug(f"Extracting fresh content for Document {document.id} / SDG {sdg.number}")
+            result = analysis_service.analyze_sdg_relevance(document, force=False)
         
         if not result['success']:
             error_msg = result.get('error', 'Analysis failed')
@@ -249,7 +260,25 @@ def process_document_sdgs(
         logger.info(f"All SDGs for Document {document.id} already have scores. Use --force to recalculate.")
         return stats
     
-    # Process each DocumentSDG relationship
+    # OPTIMIZATION: Extract content ONCE and cache it for all SDGs
+    logger.info(f"Extracting content for Document {document.id} (cached for all {total_to_process} SDGs)")
+    cached_content = None
+    try:
+        analysis_service = get_document_analysis_service()
+        processor = analysis_service.processor_factory.get_processor(document)
+        cached_content = processor.extract_content(document)
+        
+        if not cached_content.get('success', False):
+            logger.error(f"Content extraction failed for Document {document.id}: {cached_content.get('errors', [])}")
+            return stats
+            
+        logger.info(f"Content extraction successful for Document {document.id}: {cached_content['type']} processing")
+        
+    except Exception as e:
+        logger.error(f"Failed to extract content for Document {document.id}: {str(e)}")
+        return stats
+    
+    # Process each DocumentSDG relationship with cached content
     for idx, doc_sdg in enumerate(document_sdgs, 1):
         stats['processed'] += 1
         
@@ -261,7 +290,8 @@ def process_document_sdgs(
         success, error = calculate_sdg_relevance(
             document=document,
             sdg=doc_sdg.sdg,
-            doc_sdg_instance=doc_sdg
+            doc_sdg_instance=doc_sdg,
+            cached_content=cached_content  # Pass cached content
         )
         
         if success:

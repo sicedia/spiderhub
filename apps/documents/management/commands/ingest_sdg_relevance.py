@@ -150,7 +150,7 @@ class Command(BaseCommand):
         # Confirm before processing
         if options['force']:
             self.stdout.write(self.style.WARNING(
-                "\n⚠️  FORCE mode enabled: Will recalculate existing scores\n"
+                "\n[WARNING] FORCE mode enabled: Will recalculate existing scores\n"
             ))
         
         self.stdout.write("\nStarting processing...\n")

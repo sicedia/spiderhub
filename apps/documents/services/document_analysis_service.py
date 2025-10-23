@@ -138,6 +138,128 @@ class DocumentAnalysisService:
         """
         return self.analyze_document(document, ['sdg'], force)
     
+    def analyze_sdg_relevance_with_content(self, document, content_data: Dict[str, Any], force: bool = False) -> Dict[str, Any]:
+        """
+        Convenience method for SDG analysis using pre-extracted content.
+        
+        This method bypasses content extraction and uses the provided content_data
+        directly, which is useful for optimizing batch processing of multiple SDGs.
+        
+        Args:
+            document: Document instance to analyze
+            content_data: Pre-extracted content data from processor
+            force: Whether to recalculate existing SDG scores
+            
+        Returns:
+            dict: SDG analysis results
+        """
+        logger.info(f"Starting SDG analysis with cached content for Document {document.id}: {document.title}")
+        
+        try:
+            # Skip content extraction and use provided content_data
+            processing_type = content_data.get('type', 'unknown')
+            logger.info(f"Using cached {processing_type} content for Document {document.id}")
+            
+            # Run SDG analysis with cached content
+            analysis_results = self.analyzer_factory.analyze_document(
+                document, ['sdg'], content_data
+            )
+            
+            # Update document status if successful
+            if analysis_results['success'] and 'sdg' in analysis_results['successful_types']:
+                document.ai_check_status = True
+                document.ai_check_date = timezone.now()
+                document.save(update_fields=['ai_check_status', 'ai_check_date'])
+                logger.info(f"Document {document.id} marked as AI-checked")
+            
+            logger.info(f"SDG analysis with cached content complete for Document {document.id}")
+            
+            return {
+                'success': analysis_results['success'],
+                'analysis_results': analysis_results,
+                'processing_type': processing_type,
+                'cached_content_used': True
+            }
+            
+        except Exception as e:
+            error_msg = f"SDG analysis with cached content failed for Document {document.id}: {str(e)}"
+            logger.error(error_msg, exc_info=True)
+            
+            return {
+                'success': False,
+                'error': error_msg,
+                'cached_content_used': True
+            }
+    
+    def analyze_single_sdg_with_content(self, document, sdg, content_data: Dict[str, Any], force: bool = False) -> Dict[str, Any]:
+        """
+        Analyze a single SDG using pre-extracted content.
+        
+        This method analyzes only the specified SDG, not all SDGs linked to the document.
+        This is the key optimization for the caching strategy.
+        
+        Args:
+            document: Document instance to analyze
+            sdg: SDG instance to analyze
+            content_data: Pre-extracted content data from processor
+            force: Whether to recalculate existing SDG scores
+            
+        Returns:
+            dict: Single SDG analysis result
+        """
+        logger.info(f"Starting single SDG analysis with cached content for Document {document.id} / SDG {sdg.number}")
+        
+        try:
+            # Skip content extraction and use provided content_data
+            processing_type = content_data.get('type', 'unknown')
+            logger.info(f"Using cached {processing_type} content for Document {document.id} / SDG {sdg.number}")
+            
+            # Get SDG analyzer and analyze single SDG
+            sdg_analyzer = self.analyzer_factory.get_analyzer('sdg')
+            
+            # Create a mock DocumentSDG relationship for the analyzer
+            from apps.documents.models import DocumentSDG
+            doc_sdg, created = DocumentSDG.objects.get_or_create(
+                document=document,
+                sdg=sdg,
+                defaults={'relevance_score': None, 'justification': ''}
+            )
+            
+            # Analyze single SDG with cached content
+            result = sdg_analyzer.analyze_single_sdg(document, doc_sdg, content_data)
+            
+            logger.info(f"Single SDG analysis with cached content complete for Document {document.id} / SDG {sdg.number}")
+            
+            # Extract the actual result data from the analyzer response
+            if result['success']:
+                actual_result = result['data']
+            else:
+                raise Exception(f"SDG analysis failed: {result['error']}")
+            
+            return {
+                'success': True,
+                'analysis_results': {
+                    'sdg': {
+                        'success': True,
+                        'results': {
+                            f'sdg_{sdg.number}': actual_result
+                        }
+                    }
+                },
+                'processing_type': processing_type,
+                'cached_content_used': True
+            }
+            
+        except Exception as e:
+            error_msg = f"Single SDG analysis with cached content failed for Document {document.id} / SDG {sdg.number}: {str(e)}"
+            logger.error(error_msg, exc_info=True)
+            
+            return {
+                'success': False,
+                'error': error_msg,
+                'cached_content_used': True
+            }
+    
     def analyze_actors(self, document) -> Dict[str, Any]:
         """
         Convenience method for actor analysis.

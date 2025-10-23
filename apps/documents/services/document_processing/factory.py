@@ -8,7 +8,7 @@ Implements automatic processor selection with fallback strategy.
 from typing import Optional
 from .base import DocumentProcessor
 from .text_extractor import TextDocumentProcessor
-from .vision_extractor import VisionDocumentProcessor
+from .hybrid_extractor import HybridDocumentProcessor
 from ..logger import get_logger
 
 logger = get_logger(__name__)
@@ -20,7 +20,7 @@ class DocumentProcessorFactory:
     
     This factory implements a fallback strategy:
     1. Try TextDocumentProcessor first (fast, handles most cases)
-    2. Fall back to VisionDocumentProcessor if text extraction fails
+    2. Fall back to HybridDocumentProcessor if text extraction fails
     3. Raise error if no processor can handle the document
     """
     
@@ -28,7 +28,7 @@ class DocumentProcessorFactory:
         """Initialize factory with available processors."""
         self.processors = [
             TextDocumentProcessor(),
-            VisionDocumentProcessor()
+            HybridDocumentProcessor()
         ]
         
         logger.debug(f"Initialized DocumentProcessorFactory with {len(self.processors)} processors")
@@ -67,7 +67,7 @@ class DocumentProcessorFactory:
         Get processor by specific type.
         
         Args:
-            processing_type: Type of processor to get ('text', 'vision')
+            processing_type: Type of processor to get ('text', 'hybrid')
             
         Returns:
             DocumentProcessor or None: Processor of specified type, or None if not found
