@@ -654,10 +654,18 @@ export class AnalysisDataCoordinator {
 
   /**
    * Format timeline data for evolution chart
+   * Handles both API format (Chart.js with labels/datasets) and legacy format (object by year)
    */
   formatTimelineData() {
     const timelineData = this.data.analysis.timeline_data || {};
     
+    // Check if data is already in Chart.js format (from API)
+    if (timelineData.labels && timelineData.datasets) {
+      // API returns data in Chart.js format, return as-is
+      return timelineData;
+    }
+    
+    // Legacy format: object with years as keys
     // Get years sorted
     const years = Object.keys(timelineData).sort();
     
