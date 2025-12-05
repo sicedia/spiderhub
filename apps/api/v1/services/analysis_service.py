@@ -141,7 +141,7 @@ class AnalysisService:
     
     def get_legal_bindingness_data(self):
         """Get legal bindingness distribution"""
-        raw_legal_bindingness_choices = Document.legal_bindingness.field.choices
+        raw_legal_bindingness_choices = Document._meta.get_field('legal_bindingness').choices
         legal_bindingness_qs = (
             Document.objects
             .values('legal_bindingness')
@@ -160,7 +160,7 @@ class AnalysisService:
     
     def get_coverage_scope_data(self):
         """Get coverage scope distribution"""
-        raw_coverage_scope_choices = Document.coverage_scope.field.choices
+        raw_coverage_scope_choices = Document._meta.get_field('coverage_scope').choices
         coverage_scope_qs = (
             Document.objects
             .values('coverage_scope')
@@ -586,7 +586,7 @@ class AnalysisService:
             }
     
     def get_timeline_data(self):
-        """Generate temporal evolution data for documents by year"""
+        """Generate temporal evolution data for documents by year in Chart.js format"""
         try:
             timeline_qs = (
                 Document.objects
@@ -601,20 +601,44 @@ class AnalysisService:
                 .order_by('year')
             )
             
-            timeline_data = {}
+            # Convert to Chart.js format: {labels: [], datasets: [{label: '', data: []}]}
+            years = []
+            total_data = []
+            agreements_data = []
+            dialogues_data = []
+            
             for entry in timeline_qs:
                 year = str(entry['year'])
-                timeline_data[year] = {
-                    'total': entry['total'],
-                    'agreements': entry['agreements'],
-                    'dialogues': entry['dialogues']
-                }
+                years.append(year)
+                total_data.append(entry['total'])
+                agreements_data.append(entry['agreements'])
+                dialogues_data.append(entry['dialogues'])
             
-            return timeline_data
+            return {
+                'labels': years,
+                'datasets': [
+                    {
+                        'label': 'Total',
+                        'data': total_data
+                    },
+                    {
+                        'label': 'Agreements',
+                        'data': agreements_data
+                    },
+                    {
+                        'label': 'Dialogues',
+                        'data': dialogues_data
+                    }
+                ]
+            }
             
         except Exception as e:
             logger.error(f"Error generating timeline data: {e}")
             return {
-                '2020': {'total': 0, 'agreements': 0, 'dialogues': 0}
+                'labels': ['2020'],
+                'datasets': [
+                    {'label': 'Total', 'data': [0]},
+                    {'label': 'Agreements', 'data': [0]},
+                    {'label': 'Dialogues', 'data': [0]}
+                ]
             }
-

@@ -13,6 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = 'build-time-secret-key-not-for-production'
 
 # Application definition - minimal for translations
+# Must include all apps that are referenced in project code to avoid initialization errors
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -21,6 +22,7 @@ INSTALLED_APPS = [
     'apps.documents',
     'apps.admin_panel',
     'apps.search',
+    'apps.api',  # Required for compilemessages to work during Docker build
 ]
 
 # Minimal middleware for translations
@@ -87,3 +89,9 @@ SILENCED_SYSTEM_CHECKS = [
 
 # Disable debug toolbar and other development tools
 DEBUG = False
+
+# Required Django settings for app initialization (even if not used by compilemessages)
+# Some apps may import these during module loading
+ROOT_URLCONF = 'config.urls'
+WSGI_APPLICATION = 'config.wsgi.application'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

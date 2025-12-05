@@ -11,10 +11,43 @@ import { CONFIG } from './core/constants/config.js';
 import { MobileNav } from './components/navigation/MobileNav.js';
 import './components/language-switcher/LanguageSwitcher.js';
 
-// Initialize i18n system early
+// Initialize i18n system early - critical for app functionality
+// Note: gettext() function is safe to call before init() completes - it returns original string if not loaded
+// This allows modules to use gettext in getDefaultOptions() during module evaluation
 i18n.init().catch(error => {
-  console.warn('[MainEntry] i18n initialization failed, using fallback:', error);
+  console.warn('[MainEntry] i18n initialization failed, using fallback translations:', error);
+  // Don't throw synchronously - this would break module loading chain
+  // Instead, handle error asynchronously after DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      handleI18nError(error);
+    });
+  } else {
+    // DOM already ready, handle immediately
+    handleI18nError(error);
+  }
 });
+
+// Handle i18n error asynchronously without breaking module loading
+function handleI18nError(error) {
+  // Show non-blocking warning to user
+  const warningMsg = document.createElement('div');
+  warningMsg.style.cssText = 'position: fixed; top: 10px; right: 10px; background: #ff9800; color: white; padding: 12px 16px; border-radius: 4px; z-index: 10000; font-family: Arial, sans-serif; font-size: 14px; max-width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);';
+  warningMsg.innerHTML = '⚠️ Translation system not fully loaded. Some text may appear in English.';
+  document.body.appendChild(warningMsg);
+  
+  // Auto-dismiss after 5 seconds
+  setTimeout(() => {
+    if (warningMsg.parentNode) {
+      warningMsg.style.transition = 'opacity 0.3s';
+      warningMsg.style.opacity = '0';
+      setTimeout(() => warningMsg.remove(), 300);
+    }
+  }, 5000);
+  
+  // Log for debugging
+  console.warn('[MainEntry] App will continue with fallback translations. Components using gettext() will return original strings.');
+}
 
 // Global utilities object for backward compatibility
 export const Utils = {

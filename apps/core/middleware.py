@@ -117,9 +117,28 @@ class RelaxedCSPMiddleware:
             csp_directives.append(f"script-src {' '.join(settings.CSP_SCRIPT_SRC)}")
         
         # Style sources - allow unsafe-inline for Django admin
-        csp_directives.append("style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com")
-        csp_directives.append("style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com")
-        csp_directives.append("style-src-attr 'self' 'unsafe-inline'")
+        style_src = list(getattr(settings, 'CSP_STYLE_SRC', ["'self'"]))
+        required_styles = ["'unsafe-inline'", "https://fonts.googleapis.com", "https://unpkg.com"]
+        
+        for style in required_styles:
+            if style not in style_src:
+                style_src.append(style)
+        
+        csp_directives.append(f"style-src {' '.join(style_src)}")
+        
+        # Handle style-src-elem and style-src-attr if they exist in settings, otherwise inherit from style-src
+        if hasattr(settings, 'CSP_STYLE_SRC_ELEM'):
+            style_src_elem = list(settings.CSP_STYLE_SRC_ELEM)
+            for style in required_styles:
+                if style not in style_src_elem:
+                    style_src_elem.append(style)
+            csp_directives.append(f"style-src-elem {' '.join(style_src_elem)}")
+        
+        if hasattr(settings, 'CSP_STYLE_SRC_ATTR'):
+            style_src_attr = list(settings.CSP_STYLE_SRC_ATTR)
+            if "'unsafe-inline'" not in style_src_attr:
+                style_src_attr.append("'unsafe-inline'")
+            csp_directives.append(f"style-src-attr {' '.join(style_src_attr)}")
         
         # Image sources
         if hasattr(settings, 'CSP_IMG_SRC'):

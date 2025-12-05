@@ -89,8 +89,10 @@ COPY --chown=appuser:appuser scripts/ ./scripts/
 COPY --chown=appuser:appuser entrypoint.sh ./
 
 # Compile translation messages during build using minimal settings
+# Note: config.settings.build must exist and include all apps referenced in project code
+# This minimal settings module avoids requiring production dependencies (database, etc.)
 ENV DJANGO_SETTINGS_MODULE=config.settings.build
-RUN python manage.py compilemessages --verbosity=2
+RUN python manage.py compilemessages --verbosity=2 || (echo "ERROR: compilemessages failed. Check that config/settings/build.py exists and is properly configured." && exit 1)
 
 # Restore production settings for runtime
 ENV DJANGO_SETTINGS_MODULE=config.settings.production
