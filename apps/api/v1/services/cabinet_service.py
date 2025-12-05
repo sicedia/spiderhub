@@ -4,6 +4,7 @@ Business logic for Strategic Cabinet endpoints
 Extracted from apps.core.views.api_cabinet_* functions
 """
 import logging
+from datetime import date
 from django.db.models import Count, Q
 from apps.documents.models import Document, Theme, Actor, SDG
 
@@ -13,6 +14,30 @@ logger = logging.getLogger(__name__)
 class CabinetService:
     """Service for Strategic Cabinet data calculations"""
     
+    def _parse_date(self, date_string):
+        """
+        Parse a date string to a date object.
+        Supports ISO format (YYYY-MM-DD) and handles errors gracefully.
+        
+        Args:
+            date_string: String date in ISO format (YYYY-MM-DD) or None
+            
+        Returns:
+            date object or None if parsing fails
+        """
+        if not date_string:
+            return None
+        
+        # If already a date object, return as-is
+        if isinstance(date_string, date):
+            return date_string
+        
+        try:
+            return date.fromisoformat(str(date_string))
+        except (ValueError, TypeError) as e:
+            logger.warning(f"Failed to parse date string '{date_string}': {e}")
+            return None
+    
     def _get_base_queryset(self, country_iso3, date_from=None, date_to=None):
         """Get base queryset for country participation (lead ∪ involved ∪ event)"""
         queryset = Document.objects.filter(
@@ -21,10 +46,14 @@ class CabinetService:
             Q(countries_involved__iso3=country_iso3)
         ).distinct()
         
-        if date_from:
-            queryset = queryset.filter(event_date__gte=date_from)
-        if date_to:
-            queryset = queryset.filter(event_date__lte=date_to)
+        # Parse date strings to date objects before filtering
+        parsed_date_from = self._parse_date(date_from)
+        parsed_date_to = self._parse_date(date_to)
+        
+        if parsed_date_from:
+            queryset = queryset.filter(event_date__gte=parsed_date_from)
+        if parsed_date_to:
+            queryset = queryset.filter(event_date__lte=parsed_date_to)
         
         return queryset
     
