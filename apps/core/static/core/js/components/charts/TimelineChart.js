@@ -300,4 +300,3 @@ export class TimelineChart extends BaseChart {
     super.destroy();
   }
 }
-
