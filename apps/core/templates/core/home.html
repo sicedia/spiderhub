@@ -51,32 +51,40 @@
     </div>
   </section>
 
-  <!-- Stats Section -->
+  <!-- Stats Section - Data loaded via API -->
   <section class="home-stats">
     <div class="home-stats__container">
       <h2 class="home-stats__title">{% trans "Mapping Scope" %}</h2>
-      <div class="home-stats__grid">
+      <div class="home-stats__grid" id="stats-container">
         <div class="home-stats__card">
-          <div class="home-stats__number" data-target="{{ total_documents }}" data-suffix="+">0+</div>
+          <div class="home-stats__number" data-stat="total_documents" data-target="0" data-suffix="+">
+            <span class="loading-skeleton">--</span>
+          </div>
           <div class="home-stats__label">{% trans "Documents Analysed" %}</div>
         </div>
         <div class="home-stats__card">
-          <div class="home-stats__number" data-target="{{ total_countries }}">0</div>
+          <div class="home-stats__number" data-stat="total_countries" data-target="0">
+            <span class="loading-skeleton">--</span>
+          </div>
           <div class="home-stats__label">{% trans "Countries Involved" %}</div>
         </div>
         <div class="home-stats__card">
-          <div class="home-stats__number" data-target="{{ total_themes }}">0</div>
+          <div class="home-stats__number" data-stat="total_themes" data-target="0">
+            <span class="loading-skeleton">--</span>
+          </div>
           <div class="home-stats__label">{% trans "Themes Involved" %}</div>
         </div>
         <div class="home-stats__card">
-          <div class="home-stats__number" data-target="{{ total_beneficiary_groups }}">0</div>
+          <div class="home-stats__number" data-stat="total_beneficiary_groups" data-target="0">
+            <span class="loading-skeleton">--</span>
+          </div>
           <div class="home-stats__label">{% trans "Beneficiary Groups" %}</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Recent Documents Section -->
+  <!-- Recent Documents Section - Data loaded via API -->
   <section class="home-documents">
     <div class="home-documents__container">
       <h2 class="home-documents__title">{% trans "Recent Documents" %}</h2>
@@ -88,53 +96,53 @@
             </svg>
           </button>
           <div class="carousel__wrapper">
-            <div class="carousel__track">
-              {% for document in recent_documents %}
-                <div class="carousel__item">
-                  <div class="card card--document">
-                    <div class="card__header">
-                      <div class="card__title">{{ document.title }}</div>
-                      <div class="card__meta">
-                        <span>{{ document.event_country.name|default:"Unknown" }}</span>
-                        <span>{{ document.event_date.year|default:"N/A" }}</span>
-                      </div>
-                      {% if document.status %}
-                        <span class="tag tag--info">{{ document.status }}</span>
-                      {% endif %}
-                    </div>
-                    <div class="card__body">
-                      <p class="card__content">{{ document.executive_summary|truncatewords:25|default:"No summary available." }}</p>
-                    </div>
-                    <div class="card__footer">
-                      <div class="card__actions">
-                        <a href="{% url 'core:document_detail' document.id %}" class="button button--secondary button--small">
-                          {% trans "View Details" %}
-                        </a>
-                      </div>
-                    </div>
+            <div class="carousel__track" id="recent-documents-container">
+              <!-- Loading skeleton cards -->
+              <div class="carousel__item carousel__item--loading">
+                <div class="card card--document card--skeleton">
+                  <div class="card__header">
+                    <div class="skeleton skeleton--title"></div>
+                    <div class="skeleton skeleton--meta"></div>
+                  </div>
+                  <div class="card__body">
+                    <div class="skeleton skeleton--text"></div>
+                    <div class="skeleton skeleton--text"></div>
+                  </div>
+                  <div class="card__footer">
+                    <div class="skeleton skeleton--button"></div>
                   </div>
                 </div>
-              {% empty %}
-                <div class="carousel__item">
-                  <div class="card card--document">
-                    <div class="card__header">
-                      <div class="card__title">{% trans "No documents available" %}</div>
-                      <div class="card__meta">
-                        <span>-</span>
-                        <span>-</span>
-                      </div>
-                    </div>
-                    <div class="card__body">
-                      <p class="card__content">{% trans "No documents have been uploaded yet." %}</p>
-                    </div>
-                    <div class="card__footer">
-                      <div class="card__actions">
-                        <span class="button button--secondary button--small button--disabled">{% trans "View Details" %}</span>
-                      </div>
-                    </div>
+              </div>
+              <div class="carousel__item carousel__item--loading">
+                <div class="card card--document card--skeleton">
+                  <div class="card__header">
+                    <div class="skeleton skeleton--title"></div>
+                    <div class="skeleton skeleton--meta"></div>
+                  </div>
+                  <div class="card__body">
+                    <div class="skeleton skeleton--text"></div>
+                    <div class="skeleton skeleton--text"></div>
+                  </div>
+                  <div class="card__footer">
+                    <div class="skeleton skeleton--button"></div>
                   </div>
                 </div>
-              {% endfor %}
+              </div>
+              <div class="carousel__item carousel__item--loading">
+                <div class="card card--document card--skeleton">
+                  <div class="card__header">
+                    <div class="skeleton skeleton--title"></div>
+                    <div class="skeleton skeleton--meta"></div>
+                  </div>
+                  <div class="card__body">
+                    <div class="skeleton skeleton--text"></div>
+                    <div class="skeleton skeleton--text"></div>
+                  </div>
+                  <div class="card__footer">
+                    <div class="skeleton skeleton--button"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <button class="carousel__nav carousel__nav--next" aria-label="Next">

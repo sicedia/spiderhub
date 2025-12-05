@@ -20,8 +20,8 @@ export class SearchManager extends BaseComponent {
 
   getDefaultOptions() {
     return {
-      apiEndpoint: '/api/search/documents/',
-      suggestEndpoint: '/api/search/suggest/',
+      apiEndpoint: '/api/v1/search/documents/',
+      suggestEndpoint: '/api/v1/search/suggest/',
       debounceDelay: 300,
       initialPageSize: 10
     };

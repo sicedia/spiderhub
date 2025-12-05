@@ -216,7 +216,7 @@ export class DocumentActionsCoordinator {
       this.logger.debug('Loading related documents');
       
       // Load related documents from API
-      const response = await APIUtils.get(`/api/documents/${this.documentId}/related`);
+      const response = await APIUtils.get(`/api/v1/documents/${this.documentId}/related/`);
       this.relatedDocuments = response.documents || [];
       
       if (this.relatedDocuments.length === 0) {

@@ -29,11 +29,8 @@
           {% trans "Focus Country" %}
         </label>
         <select id="country-select" class="filter-select">
-          {% for country in countries %}
-          <option value="{{ country.iso3 }}" {% if country.iso3 == default_country %}selected{% endif %}>
-            {{ country.name }} ({{ country.iso3 }})
-          </option>
-          {% endfor %}
+          <option value="">{% trans "Loading countries..." %}</option>
+          <!-- Countries loaded via API /api/v1/countries/ -->
         </select>
       </div>
 

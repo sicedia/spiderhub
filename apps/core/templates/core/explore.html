@@ -94,337 +94,235 @@
           </header>
           
           <div id="filter-groups" class="filter-groups">
-          <!-- Accordion style filters -->
-          <div class="filter-accordion">
-            <!-- Document Type -->
-            <div class="filter-group" data-filter-group="document_type">
-              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="true" aria-controls="filter-document-type">
-                <h3 class="filter-group__title">{% trans "Document Type" %}</h3>
-                <div class="filter-group__count">{{ available_doc_types|length }}</div>
-                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div class="filter-group__content" id="filter-document-type">
-                <div class="filter-group__body">
-                  <div class="filter-options">
-                    {% for slug, label, count in available_doc_types %}
-                      <div class="filter-option">
-                        <input
-                          type="checkbox"
-                          name="document_type"
-                          value="{{ slug }}"
-                          class="filter-option__checkbox"
-                          id="doc-type-{{ slug }}"
-                        />
-                        <label for="doc-type-{{ slug }}" class="filter-option__label">{{ label }}</label>
-                        <span class="filter-option__count">{{ count }}</span>
-                      </div>
-                    {% endfor %}
+            <!-- Loading state for filters -->
+            <div class="filter-loading" id="filters-loading">
+              <div class="filter-loading__spinner"></div>
+              <span>{% trans "Loading filters..." %}</span>
+            </div>
+            
+            <!-- Accordion style filters - populated by JavaScript -->
+            <div class="filter-accordion" id="filter-accordion">
+              <!-- Document Type -->
+              <div class="filter-group" data-filter-group="document_type">
+                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="true" aria-controls="filter-document-type">
+                  <h3 class="filter-group__title">{% trans "Document Type" %}</h3>
+                  <div class="filter-group__count" data-count="document_type">-</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div class="filter-group__content" id="filter-document-type">
+                  <div class="filter-group__body">
+                    <div class="filter-options" id="filter-options-document-type">
+                      <!-- Options loaded via API -->
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <!-- Legal Characteristics -->
-            <div class="filter-group" data-filter-group="legal_characteristics">
-              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-legal-characteristics">
-                <h3 class="filter-group__title">{% trans "Legal Characteristics" %}</h3>
-                <div class="filter-group__count">3</div>
-                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div class="filter-group__content" id="filter-legal-characteristics">
-                <div class="filter-group__body">
-                  
-                  <div class="filter-subgroup">
-                    <h4 class="filter-subgroup__title">{% trans "Legal Bindingness" %}</h4>
-                    <div class="filter-options">
-                      {% for slug, label, count in available_legal_bindingness %}
-                        <div class="filter-option">
-                          <input
-                            type="checkbox"
-                            name="legal_bindingness"
-                            value="{{ slug }}"
-                            class="filter-option__checkbox"
-                            id="legal-bindingness-{{ slug }}"
-                          />
-                          <label for="legal-bindingness-{{ slug }}" class="filter-option__label">{{ label }}</label>
-                          <span class="filter-option__count">{{ count }}</span>
-                        </div>
-                      {% endfor %}
+              
+              <!-- Legal Characteristics -->
+              <div class="filter-group" data-filter-group="legal_characteristics">
+                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-legal-characteristics">
+                  <h3 class="filter-group__title">{% trans "Legal Characteristics" %}</h3>
+                  <div class="filter-group__count">3</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div class="filter-group__content" id="filter-legal-characteristics">
+                  <div class="filter-group__body">
+                    
+                    <div class="filter-subgroup">
+                      <h4 class="filter-subgroup__title">{% trans "Legal Bindingness" %}</h4>
+                      <div class="filter-options" id="filter-options-legal-bindingness">
+                        <!-- Options loaded via API -->
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div class="filter-subgroup">
-                    <h4 class="filter-subgroup__title">{% trans "Coverage Scope" %}</h4>
-                    <div class="filter-options">
-                      {% for slug, label, count in available_coverage_scope %}
-                        <div class="filter-option">
-                          <input
-                            type="checkbox"
-                            name="coverage_scope"
-                            value="{{ slug }}"
-                            class="filter-option__checkbox"
-                            id="coverage-scope-{{ slug }}"
-                          />
-                          <label for="coverage-scope-{{ slug }}" class="filter-option__label">{{ label }}</label>
-                          <span class="filter-option__count">{{ count }}</span>
-                        </div>
-                      {% endfor %}
+                    
+                    <div class="filter-subgroup">
+                      <h4 class="filter-subgroup__title">{% trans "Coverage Scope" %}</h4>
+                      <div class="filter-options" id="filter-options-coverage-scope">
+                        <!-- Options loaded via API -->
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div class="filter-subgroup">
-                    <h4 class="filter-subgroup__title">{% trans "Agreement Type" %}</h4>
-                    <div class="filter-options">
-                      {% for slug, label, count in available_agreement_types %}
-                        <div class="filter-option">
-                          <input
-                            type="checkbox"
-                            name="agreement_type"
-                            value="{{ slug }}"
-                            class="filter-option__checkbox"
-                            id="agreement-type-{{ slug }}"
-                          />
-                          <label for="agreement-type-{{ slug }}" class="filter-option__label">{{ label }}</label>
-                          <span class="filter-option__count">{{ count }}</span>
-                        </div>
-                      {% endfor %}
+                    
+                    <div class="filter-subgroup">
+                      <h4 class="filter-subgroup__title">{% trans "Agreement Type" %}</h4>
+                      <div class="filter-options" id="filter-options-agreement-type">
+                        <!-- Options loaded via API -->
+                      </div>
                     </div>
-                  </div>
 
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            <!-- Countries -->
-            <div class="filter-group" data-filter-group="countries">
-              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-countries">
-                <h3 class="filter-group__title">{% trans "Countries" %}</h3>
-                <div class="filter-group__count">{{ available_countries|length }}</div>
-                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div class="filter-group__content" id="filter-countries">
-                <div class="filter-group__body">
-                  <!-- Country Role Selector -->
-                  <div class="filter-role-selector">
-                    <label for="country-role-select" class="filter-role-selector__label">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" fill="none"/>
-                        <polyline points="2 17 12 22 22 17" stroke="currentColor" stroke-width="2" fill="none"/>
-                        <polyline points="2 12 12 17 22 12" stroke="currentColor" stroke-width="2" fill="none"/>
+              
+              <!-- Countries -->
+              <div class="filter-group" data-filter-group="countries">
+                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-countries">
+                  <h3 class="filter-group__title">{% trans "Countries" %}</h3>
+                  <div class="filter-group__count" data-count="countries">-</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div class="filter-group__content" id="filter-countries">
+                  <div class="filter-group__body">
+                    <!-- Country Role Selector -->
+                    <div class="filter-role-selector">
+                      <label for="country-role-select" class="filter-role-selector__label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" fill="none"/>
+                          <polyline points="2 17 12 22 22 17" stroke="currentColor" stroke-width="2" fill="none"/>
+                          <polyline points="2 12 12 17 22 12" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                        {% trans "Country Role:" %}
+                      </label>
+                      <select 
+                        id="country-role-select" 
+                        name="country_role" 
+                        class="filter-role-selector__select"
+                        aria-label="{% trans "Select country participation role" %}"
+                      >
+                        <option value="any" selected>{% trans "Any Role (Lead, Involved, or Event)" %}</option>
+                        <option value="lead">{% trans "Lead Country (Primary Leadership)" %}</option>
+                        <option value="involved">{% trans "Involved Country (Participant)" %}</option>
+                        <option value="event">{% trans "Event Country (Host)" %}</option>
+                      </select>
+                    </div>
+                    
+                    <div class="filter-search">
+                      <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
                       </svg>
-                      {% trans "Country Role:" %}
-                    </label>
-                    <select 
-                      id="country-role-select" 
-                      name="country_role" 
-                      class="filter-role-selector__select"
-                      aria-label="{% trans "Select country participation role" %}"
-                    >
-                      <option value="any" selected>{% trans "Any Role (Lead, Involved, or Event)" %}</option>
-                      <option value="lead">{% trans "Lead Country (Primary Leadership)" %}</option>
-                      <option value="involved">{% trans "Involved Country (Participant)" %}</option>
-                      <option value="event">{% trans "Event Country (Host)" %}</option>
-                    </select>
-                  </div>
-                  
-                  <div class="filter-search">
-                    <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
-                    </svg>
-                    <input type="text" class="filter-search__input" placeholder="{% trans "Search country..." %}" aria-label="{% trans "Search countries" %}">
-                  </div>
-                  
-                  <div class="filter-options">
-                    {% for code, code_label, count in available_countries %}
-                      <div class="filter-option" data-country="{{ code_label|lower }}">
-                        <input
-                          type="checkbox"
-                          name="country"
-                          value="{{ code }}"
-                          class="filter-option__checkbox"
-                          id="country-{{ code }}"
-                        />
-                        <label for="country-{{ code }}" class="filter-option__label">{{ code_label }}</label>
-                        <span class="filter-option__count">{{ count }}</span>
-                      </div>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Date Range -->
-            <div class="filter-group" data-filter-group="period">
-              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-period">
-                <h3 class="filter-group__title">{% trans "Period" %}</h3>
-                <div class="filter-group__count">Date Range</div>
-                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div class="filter-group__content" id="filter-period">
-                <div class="filter-group__body">
-                  <div class="filter-date-range">
-                    <div class="filter-date-field">
-                      <label for="date_from" class="filter-date-field__label">{% trans "From" %}</label>
-                      <input type="date" id="date_from" name="date-from" class="filter-date-field__input">
+                      <input type="text" class="filter-search__input" placeholder="{% trans "Search country..." %}" aria-label="{% trans "Search countries" %}">
                     </div>
-                    <div class="filter-date-field">
-                      <label for="date_to" class="filter-date-field__label">{% trans "Until" %}</label>
-                      <input type="date" id="date_to" name="date-to" class="filter-date-field__input">
+                    
+                    <div class="filter-options" id="filter-options-countries">
+                      <!-- Options loaded via API -->
                     </div>
                   </div>
-                  
-                  <div class="filter-date-presets">
-                    <button class="filter-date-preset" type="button" data-years="1">{% trans "Last year" %}</button>
-                    <button class="filter-date-preset" type="button" data-years="3">{% trans "Last 3 years" %}</button>
-                    <button class="filter-date-preset" type="button" data-years="5">{% trans "Last 5 years" %}</button>
-                  </div>
                 </div>
               </div>
-            </div>
-            
-            <!-- Actors -->
-            <div class="filter-group" data-filter-group="actors">
-              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-actors">
-                <h3 class="filter-group__title">{% trans "Actors" %}</h3>
-                <div class="filter-group__count">{{ available_actors|length }}</div>
-                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div class="filter-group__content" id="filter-actors">
-                <div class="filter-group__body">
-                  <div class="filter-search">
-                    <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
-                    </svg>
-                    <input type="text" id="actor-search" class="filter-search__input" placeholder="{% trans "Search actor..." %}" aria-label="{% trans "Search actors" %}">
-                  </div>
-                  
-                  <div class="filter-options">
-                    {% for id, label, count in available_actors %}
-                      <div class="filter-option" data-actor="{{ label|lower }}">
-                        <input
-                          type="checkbox"
-                          name="actor"
-                          value="{{ id }}"
-                          class="filter-option__checkbox"
-                          id="actor-{{ id }}"
-                        />
-                        <label for="actor-{{ id }}" class="filter-option__label">{{ label }}</label>
-                        <span class="filter-option__count">{{ count }}</span>
+              
+              <!-- Date Range -->
+              <div class="filter-group" data-filter-group="period">
+                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-period">
+                  <h3 class="filter-group__title">{% trans "Period" %}</h3>
+                  <div class="filter-group__count">Date Range</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div class="filter-group__content" id="filter-period">
+                  <div class="filter-group__body">
+                    <div class="filter-date-range">
+                      <div class="filter-date-field">
+                        <label for="date_from" class="filter-date-field__label">{% trans "From" %}</label>
+                        <input type="date" id="date_from" name="date-from" class="filter-date-field__input">
                       </div>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Beneficiary Groups -->
-            <div class="filter-group" data-filter-group="beneficiaries">
-              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-beneficiaries">
-                <h3 class="filter-group__title">{% trans "Beneficiary Groups" %}</h3>
-                <div class="filter-group__count">{{ available_beneficiaries|length }}</div>
-                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div class="filter-group__content" id="filter-beneficiaries">
-                <div class="filter-group__body">
-                  <div class="filter-options">
-                    {% for id, label, count in available_beneficiaries %}
-                      <div class="filter-option">
-                        <input
-                          type="checkbox"
-                          name="beneficiary"
-                          value="{{ id }}"
-                          class="filter-option__checkbox"
-                          id="beneficiary-{{ id }}"
-                        />
-                        <label for="beneficiary-{{ id }}" class="filter-option__label">{{ label }}</label>
-                        <span class="filter-option__count">{{ count }}</span>
+                      <div class="filter-date-field">
+                        <label for="date_to" class="filter-date-field__label">{% trans "Until" %}</label>
+                        <input type="date" id="date_to" name="date-to" class="filter-date-field__input">
                       </div>
-                    {% endfor %}
+                    </div>
+                    
+                    <div class="filter-date-presets">
+                      <button class="filter-date-preset" type="button" data-years="1">{% trans "Last year" %}</button>
+                      <button class="filter-date-preset" type="button" data-years="3">{% trans "Last 3 years" %}</button>
+                      <button class="filter-date-preset" type="button" data-years="5">{% trans "Last 5 years" %}</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <!-- Topics -->
-            <div class="filter-group" data-filter-group="topics">
-              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-topics">
-                <h3 class="filter-group__title">{% trans "Topics" %}</h3>
-                <div class="filter-group__count">{{ available_themes|length }}</div>
-                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div class="filter-group__content" id="filter-topics">
-                <div class="filter-group__body">
-                  <div class="filter-search">
-                    <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
-                    </svg>
-                    <input type="text" class="filter-search__input" placeholder="{% trans "Search topic..." %}" aria-label="{% trans "Search topics" %}">
-                  </div>
-                  
-                  <div class="filter-options">
-                    {% for id, label, count in available_themes %}
-                      <div class="filter-option" data-topic="{{ label|lower }}">
-                        <input
-                          type="checkbox"
-                          name="theme"
-                          value="{{ id }}"
-                          class="filter-option__checkbox"
-                          id="theme-{{ id }}"
-                        />
-                        <label for="theme-{{ id }}" class="filter-option__label">{{ label }}</label>
-                        <span class="filter-option__count">{{ count }}</span>
-                      </div>
-                    {% endfor %}
+              
+              <!-- Actors -->
+              <div class="filter-group" data-filter-group="actors">
+                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-actors">
+                  <h3 class="filter-group__title">{% trans "Actors" %}</h3>
+                  <div class="filter-group__count" data-count="actors">-</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div class="filter-group__content" id="filter-actors">
+                  <div class="filter-group__body">
+                    <div class="filter-search">
+                      <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
+                      </svg>
+                      <input type="text" id="actor-search" class="filter-search__input" placeholder="{% trans "Search actor..." %}" aria-label="{% trans "Search actors" %}">
+                    </div>
+                    
+                    <div class="filter-options" id="filter-options-actors">
+                      <!-- Options loaded via API -->
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <!-- SDG Alignments -->
-            <div class="filter-group" data-filter-group="sdgs">
-              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-sdgs">
-                <h3 class="filter-group__title">{% trans "SDG Alignments" %}</h3>
-                <div class="filter-group__count">{{ available_sdgs|length }}</div>
-                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div class="filter-group__content" id="filter-sdgs">
-                <div class="filter-group__body">
-                  <div class="filter-options">
-                    {% for number, label, count in available_sdgs %}
-                      <div class="filter-option">
-                        <input
-                          type="checkbox"
-                          name="sdg"
-                          value="{{ number }}"
-                          class="filter-option__checkbox"
-                          id="sdg-{{ number }}"
-                        />
-                        <label for="sdg-{{ number }}" class="filter-option__label">{{ label }}</label>
-                        <span class="filter-option__count">{{ count }}</span>
-                      </div>
-                    {% endfor %}
+              
+              <!-- Beneficiary Groups -->
+              <div class="filter-group" data-filter-group="beneficiaries">
+                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-beneficiaries">
+                  <h3 class="filter-group__title">{% trans "Beneficiary Groups" %}</h3>
+                  <div class="filter-group__count" data-count="beneficiaries">-</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div class="filter-group__content" id="filter-beneficiaries">
+                  <div class="filter-group__body">
+                    <div class="filter-options" id="filter-options-beneficiaries">
+                      <!-- Options loaded via API -->
+                    </div>
                   </div>
                 </div>
               </div>
+              
+              <!-- Topics -->
+              <div class="filter-group" data-filter-group="topics">
+                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-topics">
+                  <h3 class="filter-group__title">{% trans "Topics" %}</h3>
+                  <div class="filter-group__count" data-count="themes">-</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div class="filter-group__content" id="filter-topics">
+                  <div class="filter-group__body">
+                    <div class="filter-search">
+                      <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
+                      </svg>
+                      <input type="text" class="filter-search__input" placeholder="{% trans "Search topic..." %}" aria-label="{% trans "Search topics" %}">
+                    </div>
+                    
+                    <div class="filter-options" id="filter-options-themes">
+                      <!-- Options loaded via API -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- SDG Alignments -->
+              <div class="filter-group" data-filter-group="sdgs">
+                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-sdgs">
+                  <h3 class="filter-group__title">{% trans "SDG Alignments" %}</h3>
+                  <div class="filter-group__count" data-count="sdgs">-</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div class="filter-group__content" id="filter-sdgs">
+                  <div class="filter-group__body">
+                    <div class="filter-options" id="filter-options-sdgs">
+                      <!-- Options loaded via API -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
             </div>
-            
-          </div>
           </div>
         </div>
         

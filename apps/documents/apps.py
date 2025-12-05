@@ -7,4 +7,5 @@ class DocumentsConfig(AppConfig):
 
     def ready(self):
         # Import the signals module to ensure the signal handlers are registered
-        import apps.documents.signals  # noqa
+        import apps.documents.signals  # noqa: F401
+        # This imports from apps.documents.signals/__init__.py which imports all signal handlers

@@ -94,8 +94,8 @@ export class CabinetPageManager extends BasePageManager {
         this.logger.info('✅ CabinetChartsCoordinator initialized');
       }
       
-      // 3. Setup filter UI
-      this.setupFilters();
+      // 3. Setup filter UI (loads countries from API)
+      await this.setupFilters();
       
       if (this.logger) {
         this.logger.info('All components initialized successfully');
@@ -112,7 +112,7 @@ export class CabinetPageManager extends BasePageManager {
   /**
    * Setup filter controls
    */
-  setupFilters() {
+  async setupFilters() {
     this.logger.debug('Setting up filters');
     
     // Get filter elements
@@ -123,6 +123,9 @@ export class CabinetPageManager extends BasePageManager {
       applyBtn: document.getElementById('apply-filters'),
       resetBtn: document.getElementById('reset-filters')
     };
+    
+    // Load countries first
+    await this.loadCountries();
     
     // Bind event listeners
     if (this.filterElements.applyBtn) {
@@ -149,6 +152,66 @@ export class CabinetPageManager extends BasePageManager {
     });
     
     this.logger.debug('Filters setup complete');
+  }
+
+  /**
+   * Load countries from API and populate the country select
+   */
+  async loadCountries() {
+    const countrySelect = this.filterElements.countrySelect;
+    if (!countrySelect) {
+      this.logger.warn('Country select element not found');
+      return;
+    }
+
+    try {
+      this.logger.debug('Loading countries from API');
+      
+      const response = await fetch('/api/v1/countries/');
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      
+      const data = await response.json();
+      const countries = data.countries || [];
+      
+      this.logger.info('Countries loaded successfully', { count: countries.length });
+      
+      // Clear existing options (except loading message)
+      countrySelect.innerHTML = '';
+      
+      // Add default option
+      const defaultOption = document.createElement('option');
+      defaultOption.value = '';
+      defaultOption.textContent = 'Select a country...';
+      countrySelect.appendChild(defaultOption);
+      
+      // Add countries
+      countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country.iso3;
+        option.textContent = `${country.name} (${country.iso3})`;
+        
+        // Set default country as selected
+        if (country.iso3 === this.options.defaultCountry) {
+          option.selected = true;
+        }
+        
+        countrySelect.appendChild(option);
+      });
+      
+      this.logger.debug('Countries populated in select');
+      
+    } catch (error) {
+      this.logger.error('Failed to load countries', error);
+      
+      // Show error in select
+      countrySelect.innerHTML = '';
+      const errorOption = document.createElement('option');
+      errorOption.value = '';
+      errorOption.textContent = 'Error loading countries';
+      countrySelect.appendChild(errorOption);
+    }
   }
 
   /**

@@ -128,7 +128,7 @@ export class CabinetDataCoordinator {
         ...(this.filters.dateTo && { date_to: this.filters.dateTo })
       });
       
-      const response = await fetch(`/api/cabinet/summary/?${params}`);
+      const response = await fetch(`/api/v1/cabinet/summary/?${params}`);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       
       const data = await response.json();
@@ -156,7 +156,7 @@ export class CabinetDataCoordinator {
         ...(this.filters.dateTo && { date_to: this.filters.dateTo })
       });
       
-      const response = await fetch(`/api/cabinet/trends/?${params}`);
+      const response = await fetch(`/api/v1/cabinet/trends/?${params}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -184,7 +184,7 @@ export class CabinetDataCoordinator {
         ...(this.filters.dateTo && { date_to: this.filters.dateTo })
       });
       
-      const response = await fetch(`/api/cabinet/map/?${params}`);
+      const response = await fetch(`/api/v1/cabinet/map/?${params}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -212,7 +212,7 @@ export class CabinetDataCoordinator {
         ...(this.filters.dateTo && { date_to: this.filters.dateTo })
       });
       
-      const response = await fetch(`/api/cabinet/mix/?${params}`);
+      const response = await fetch(`/api/v1/cabinet/mix/?${params}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -241,7 +241,7 @@ export class CabinetDataCoordinator {
         ...(this.filters.dateTo && { date_to: this.filters.dateTo })
       });
       
-      const response = await fetch(`/api/cabinet/top/?${params}`);
+      const response = await fetch(`/api/v1/cabinet/top/?${params}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

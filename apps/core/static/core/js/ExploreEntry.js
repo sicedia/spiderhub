@@ -1,17 +1,21 @@
 /**
  * Explore Page Entry Point - ES6 Modular Implementation
- * Uses @js/ alias for clean imports and modular architecture
+ * SPA Mode: Loads all data via API
  */
 
-// V3: Refactored ExplorePageManager with Coordinators
 import { ExplorePageManager } from './pages/ExplorePageManager.js';
+import { FilterLoader } from './services/FilterLoader.js';
 import { DOMUtils } from './core/utils/dom.js';
 
 /**
  * Initialize the explore page when DOM is ready
  */
-function initializeExplorePage() {
+async function initializeExplorePage() {
   try {
+    // Load filters from API first
+    const filterLoader = new FilterLoader();
+    await filterLoader.loadFilters();
+    
     // Create and initialize the page manager
     const exploreManager = new ExplorePageManager(document.body, {
       autoInitialize: true,
@@ -19,26 +23,20 @@ function initializeExplorePage() {
       enableMobileNavigation: true
     });
 
-    // Make it globally accessible for debugging and backward compatibility
+    // Make it globally accessible for debugging
     if (typeof window !== 'undefined') {
       window.explorePageManager = exploreManager;
-      
-      // For backward compatibility, also expose as ExplorePageManager class
-      window.ExplorePageManager = class {
-        constructor() {
-          return exploreManager;
-        }
-      };
+      window.filterLoader = filterLoader;
     }
 
-    console.log('Explore page initialized with ES6 modular architecture');
+    console.log('Explore page initialized with SPA architecture');
     
     return exploreManager;
     
   } catch (error) {
-    console.error('Failed to initialize modular explore page:', error);
+    console.error('Failed to initialize explore page:', error);
     
-    // Fallback: show error message
+    // Show error message
     const errorDiv = document.createElement('div');
     errorDiv.style.cssText = `
       position: fixed;
@@ -52,7 +50,7 @@ function initializeExplorePage() {
       font-family: Arial, sans-serif;
       font-size: 14px;
     `;
-    errorDiv.textContent = 'Error loading modular explore page. Check console for details.';
+    errorDiv.textContent = 'Error loading explore page. Check console for details.';
     document.body.appendChild(errorDiv);
     
     setTimeout(() => {
@@ -65,9 +63,7 @@ function initializeExplorePage() {
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initializeExplorePage);
 } else {
-  // DOM is already ready
   initializeExplorePage();
 }
 
-// Export for potential external use
-export { ExplorePageManager, initializeExplorePage };
+export { ExplorePageManager, FilterLoader, initializeExplorePage };

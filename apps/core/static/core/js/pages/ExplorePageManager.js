@@ -258,8 +258,8 @@ export class ExplorePageManager extends BaseComponent {
 
     // Initialize Search Manager
     this.components.searchManager = new SearchManager(document.body, {
-      apiEndpoint: '/api/search/documents/',
-      suggestEndpoint: '/api/search/suggest/',
+      apiEndpoint: '/api/v1/search/documents/',
+      suggestEndpoint: '/api/v1/search/suggest/',
       debounceDelay: 300,
       initialPageSize: 10
     });

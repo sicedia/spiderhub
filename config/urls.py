@@ -8,12 +8,17 @@ from django.http import HttpResponse        # Añadido
 from django.views.i18n import JavaScriptCatalog
 
 from apps.core.views import health_check, csp_report_view
-from apps.documents.urls import api_urlpatterns as documents_api_urls
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 # URLs that don't need language prefix (API endpoints, health checks, etc.)
 urlpatterns = [
-    path('api/search/', include('apps.search.urls', namespace='search')),
-    path('api/documents/', include(documents_api_urls)),
+    # Unified API v1 - all API endpoints
+    path('api/v1/', include('apps.api.v1.urls', namespace='api-v1')),
+    
+    # Swagger/OpenAPI documentation
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    
     path('health/', health_check, name='health_check'),
     path('csp-report/', csp_report_view, name='csp_report'),
     path('i18n/', include('django.conf.urls.i18n')),  # Language switching endpoint

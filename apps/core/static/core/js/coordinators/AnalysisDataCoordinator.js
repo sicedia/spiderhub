@@ -46,51 +46,72 @@ export class AnalysisDataCoordinator {
   }
 
   /**
-   * Load analysis data from page or API
+   * Load analysis data from API
    */
   async loadData() {
     try {
-      this.logger.debug('Loading analysis data');
+      this.logger.debug('Loading analysis data from API');
       
-      // Try to load from page script tag first
+      // Fetch all analysis data from API endpoints in parallel
+      const [summary, sdgs, themes, actors, beneficiaries, timeline, diversity, network] = await Promise.all([
+        fetch('/api/v1/analysis/summary/').then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch('/api/v1/analysis/sdgs/').then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch('/api/v1/analysis/themes/').then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch('/api/v1/analysis/actors/').then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch('/api/v1/analysis/beneficiaries/').then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch('/api/v1/analysis/timeline/').then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch('/api/v1/analysis/diversity/').then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch('/api/v1/analysis/network/').then(r => r.ok ? r.json() : null).catch(() => null),
+      ]);
+      
+      // Combine all data
+      this.data.summary = summary || {};
+      this.data.analysis = {
+        ...sdgs,
+        ...themes,
+        ...actors,
+        ...beneficiaries,
+        timeline_data: timeline,
+        diversity_radar_data: diversity,
+        ...network,
+      };
+      
+      this.data.isLoaded = true;
+      
+      this.logger.info('Analysis data loaded from API', {
+        documentsCount: this.data.summary?.total_documents,
+        chartsAvailable: Object.keys(this.data.analysis).length
+      });
+      
+      // Emit data loaded event
+      eventBus.emit(EVENTS.DATA_LOADED, {
+        summary: this.data.summary,
+        analysis: this.data.analysis
+      });
+      
+    } catch (error) {
+      this.logger.error('Failed to load analysis data from API', error);
+      
+      // Fallback: Try to load from page script tag (backwards compatibility)
       const dataFromPage = this.loadDataFromPage();
-      
       if (dataFromPage) {
-        // Django passes analysis_data directly as the root object
-        // Check if it has summary as a separate key or if it's all chart data
         if (dataFromPage.summary && dataFromPage.analysis_data) {
-          // New structure with separate summary
           this.data.summary = dataFromPage.summary;
           this.data.analysis = dataFromPage.analysis_data;
         } else {
-          // Old structure - analysis_data is the root object
-          // Extract summary from template context (it's in {{ summary }})
           this.data.summary = this.extractSummaryFromDOM();
-          this.data.analysis = dataFromPage; // All data is chart data
+          this.data.analysis = dataFromPage;
         }
-        
         this.data.isLoaded = true;
-        
-        this.logger.info('Analysis data loaded from page', {
-          documentsCount: this.data.summary?.total_documents,
-          chartsAvailable: Object.keys(this.data.analysis).length
-        });
-        
-        // Emit data loaded event
         eventBus.emit(EVENTS.DATA_LOADED, {
           summary: this.data.summary,
           analysis: this.data.analysis
         });
-        
         return;
       }
       
-      // Fallback to mock data for development
+      // Final fallback to mock data
       this.logger.warn('No data found, using mock data');
-      this.loadMockData();
-      
-    } catch (error) {
-      this.logger.error('Failed to load analysis data', error);
       this.loadMockData();
     }
   }
