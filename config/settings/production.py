@@ -147,8 +147,9 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50MB
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 20000  # Limit number of fields in a form submission
 
 # Content Security Policy settings (django-csp >=4.0)
-# Note: vis-network requires 'unsafe-inline' for dynamically injected <style> elements
-# This is a necessary security trade-off for this third-party library
+# Base CSP is strict (no unsafe-inline) for most pages
+# RelaxedCSPMiddleware applies relaxed CSP (with unsafe-inline) only to /analysis/ and /admin/
+# This allows optimal Observatory scores for the main pages while maintaining functionality
 
 # Use the new CONTENT_SECURITY_POLICY format as suggested by django-csp
 CONTENT_SECURITY_POLICY = {
@@ -160,7 +161,7 @@ CONTENT_SECURITY_POLICY = {
                         'https://raw.githubusercontent.com',
                         'https://unpkg.com',
                         'https://leafletjs.com'],
-        'default-src': ["'self'"],
+        'default-src': ["'none'"],  # Deny by default as required by Observatory
         'font-src': ["'self'", 'data:', 'https://fonts.gstatic.com'],
         'form-action': ["'self'"],
         'frame-src': ["'none'"],
@@ -174,14 +175,12 @@ CONTENT_SECURITY_POLICY = {
                        'https://d3js.org',
                        'https://unpkg.com'],
         'style-src': ["'self'",
-                      "'unsafe-inline'",
                       'https://fonts.googleapis.com',
-                      'https://unpkg.com'],
-        'style-src-attr': ["'self'", "'unsafe-inline'"],
+                      'https://unpkg.com'],  # Removed unsafe-inline - applied only via RelaxedCSPMiddleware
+        'style-src-attr': ["'self'"],  # Removed unsafe-inline - applied only via RelaxedCSPMiddleware
         'style-src-elem': ["'self'",
-                           "'unsafe-inline'",
                            'https://fonts.googleapis.com',
-                           'https://unpkg.com'],
+                           'https://unpkg.com'],  # Removed unsafe-inline - applied only via RelaxedCSPMiddleware
         'frame-ancestors': ["'none'"],
     }
 }
@@ -189,4 +188,7 @@ CONTENT_SECURITY_POLICY = {
 # Include report URI if set
 if os.getenv('CSP_REPORT_URI'):
     CONTENT_SECURITY_POLICY['DIRECTIVES']['report-uri'] = os.getenv('CSP_REPORT_URI')
+
+# Enable nonce generation for script-src to allow inline scripts with nonces
+CSP_INCLUDE_NONCE_IN = ['script-src']
 

@@ -82,7 +82,7 @@ class DocumentDetailAPIView(APIView):
                     for a in document.actors.all()
                 ],
                 'beneficiary_groups': [
-                    {'id': b.id, 'name': b.label}
+                    {'id': b.id, 'name': b.label, 'category': b.category or ''}
                     for b in document.beneficiary_groups.all()
                 ],
                 'sdgs': [

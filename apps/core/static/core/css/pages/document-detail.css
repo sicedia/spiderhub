@@ -517,11 +517,13 @@
   justify-content: center;
   background: var(--color-bg-primary);
   border-radius: var(--radius-base);
+  flex-shrink: 0;
 }
 
 .beneficiary-icon {
-  width: 32px;
-  height: 32px;
+  font-size: 32px;
+  line-height: 1;
+  display: block;
 }
 
 .beneficiary-title {
@@ -612,8 +614,10 @@
 .kpi-card__target {
   margin: var(--space-sm) 0;
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  justify-content: center;
   gap: var(--space-xs);
+  text-align: center;
 }
 
 .kpi-card__value {
@@ -621,6 +625,7 @@
   font-weight: var(--font-weight-bold);
   color: var(--color-primary-600);
   line-height: 1;
+  text-align: center;
 }
 
 .kpi-card__unit {

@@ -5,12 +5,10 @@
 {% block title %}{% trans "Loading..." %} - SPIDERHUB{% endblock %}
 {% block description %}{% trans "EU-LAC digital transformation document details, commitments, and analysis." %}{% endblock %}
 {% block extra_head %}
-<!-- Document ID for JavaScript -->
-<script>window.DOCUMENT_ID = "{{ document_id }}";</script>
 {% endblock %}
 {% block content %}
 <!-- Document Detail Content - Loaded via API -->
-<div class="document-page" id="document-page">
+<div class="document-page" id="document-page" data-document-id="{{ document_id }}">
   <!-- Loading State -->
   <div class="document-loading" id="document-loading">
     <div class="document-loading__spinner"></div>

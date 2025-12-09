@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'csp.middleware.CSPMiddleware',  # Apply Content Security Policy headers
     'apps.core.middleware.RelaxedCSPMiddleware',  # Apply relaxed CSP for specific pages
+    'apps.core.middleware.SecurityHeadersMiddleware',  # Add security headers (Permissions-Policy, etc.)
     'corsheaders.middleware.CorsMiddleware',
     'apps.core.middleware.NoCacheMiddleware',  # Mover después de CORS
     'django.contrib.sessions.middleware.SessionMiddleware',
