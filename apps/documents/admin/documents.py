@@ -4,6 +4,7 @@ Admin interfaces for Document model and its relationship models
 """
 from django.contrib import admin
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from django.db import models
 from django.forms import Textarea, TextInput
 from ..models import (
@@ -199,11 +200,11 @@ class DocumentAdmin(WideFormFieldOverridesMixin, admin.ModelAdmin):
     def ai_status_badge(self, obj):
         """Display AI review status badge"""
         if obj.ai_check_status:
-            return format_html(
+            return mark_safe(
                 '<span style="background-color: #28a745; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">🤖 ✓ AI</span>'
             )
         else:
-            return format_html(
+            return mark_safe(
                 '<span style="background-color: #dc3545; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">🤖 ✗ AI</span>'
             )
     ai_status_badge.short_description = 'AI Status'
@@ -529,7 +530,7 @@ class DocumentThemeAdmin(TimestampReadonlyMixin, admin.ModelAdmin):
     
     def is_top_badge(self, obj):
         if obj.is_top:
-            return format_html('<span style="background-color: #28a745; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">⭐ TOP</span>')
+            return mark_safe('<span style="background-color: #28a745; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">⭐ TOP</span>')
         return '-'
     is_top_badge.short_description = 'Priority'
     
@@ -561,7 +562,7 @@ class DocumentActorAdmin(TimestampReadonlyMixin, admin.ModelAdmin):
     
     def is_top_badge(self, obj):
         if obj.is_top:
-            return format_html('<span style="background-color: #28a745; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">⭐ TOP</span>')
+            return mark_safe('<span style="background-color: #28a745; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">⭐ TOP</span>')
         return '-'
     is_top_badge.short_description = 'Priority'
     

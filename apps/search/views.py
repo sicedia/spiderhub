@@ -4,6 +4,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from django.contrib.postgres.search import TrigramSimilarity
+from drf_spectacular.utils import extend_schema
+from drf_spectacular.types import OpenApiTypes
 from apps.documents.models import Document
 from .filters import DocumentFilter
 from .serializers import DocumentListSerializer
@@ -42,6 +44,12 @@ class SuggestAPIView(APIView):
     Endpoint: GET /api/search/suggest/?q=<término>
     Return up to 10 titles of Documents similar to the term (typo-tolerance).
     """
+    @extend_schema(
+        summary="Get document suggestions",
+        description="Returns up to 10 document titles similar to the search term (typo-tolerance)",
+        parameters=[],
+        responses={200: OpenApiTypes.OBJECT}
+    )
     def get(self, request):
         term = request.GET.get('q', '')
         if len(term) < 2:

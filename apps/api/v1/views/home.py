@@ -4,6 +4,7 @@ Home API Views
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema
+from drf_spectacular.types import OpenApiTypes
 from django.db.models import Count, Q
 from apps.documents.models import Document, Country, Actor, Theme, BeneficiaryGroup
 
@@ -13,7 +14,8 @@ class HomeStatsAPIView(APIView):
     
     @extend_schema(
         summary="Get home page stats",
-        description="Returns summary statistics for the home page"
+        description="Returns summary statistics for the home page",
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         from apps.api.v1.services.analysis_service import AnalysisService
@@ -35,7 +37,8 @@ class RecentDocumentsAPIView(APIView):
     
     @extend_schema(
         summary="Get recent documents",
-        description="Returns most recent documents for home page carousel"
+        description="Returns most recent documents for home page carousel",
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         recent_documents = (

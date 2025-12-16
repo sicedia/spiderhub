@@ -2,6 +2,8 @@
 Middleware to prevent browser caching of static files during development
 and to handle CSP specific to Django Admin
 """
+import os
+from datetime import datetime, timezone
 from django.conf import settings
 
 
@@ -12,19 +14,108 @@ class NoCacheMiddleware:
     
     IMPORTANT: ES6 modules have very aggressive caching in modern browsers.
     This middleware uses very strict HTTP headers to force reload.
+    
+    Supports temporary forced no-cache via FORCE_NO_CACHE_UNTIL environment variable.
+    Format: ISO datetime string (e.g., "2024-01-15T18:00:00Z" or "2024-01-15T18:00:00+00:00")
+    After this date/time, normal caching behavior resumes.
     """
     
     def __init__(self, get_response):
         self.get_response = get_response
+        self._force_no_cache_until = self._parse_force_until_date()
+
+    def _parse_force_until_date(self):
+        """Parse FORCE_NO_CACHE_UNTIL environment variable to datetime."""
+        force_until_str = os.getenv('FORCE_NO_CACHE_UNTIL', '').strip()
+        if not force_until_str:
+            return None
+        
+        try:
+            # Try parsing ISO format with timezone
+            if 'T' in force_until_str:
+                # ISO format: 2024-01-15T18:00:00Z or 2024-01-15T18:00:00+00:00
+                dt = datetime.fromisoformat(force_until_str.replace('Z', '+00:00'))
+                # Ensure timezone aware
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
+                return dt
+            else:
+                # Try parsing as timestamp
+                return datetime.fromtimestamp(float(force_until_str), tz=timezone.utc)
+        except (ValueError, TypeError):
+            # Invalid format, ignore
+            return None
+
+    def _should_force_no_cache(self):
+        """
+        Check if we should force no-cache based on FORCE_NO_CACHE_UNTIL.
+        Returns True if current time is before the expiration date.
+        """
+        if self._force_no_cache_until is None:
+            return False
+        
+        now = datetime.now(timezone.utc)
+        return now < self._force_no_cache_until
 
     def __call__(self, request):
         response = self.get_response(request)
         
-        # Only apply in development
-        if settings.DEBUG:
-            # Detect if it's a JavaScript file (including ES6 modules)
-            is_js_file = request.path.endswith('.js')
+        # Detect if it's a JavaScript file (including ES6 modules)
+        is_js_file = request.path.endswith('.js')
+        is_html = response.get('Content-Type', '').startswith('text/html')
+        is_api = request.path.startswith('/api/')
+        is_static = request.path.startswith(settings.STATIC_URL) or request.path.startswith(settings.MEDIA_URL)
+        
+        # Check if we should force no-cache temporarily
+        force_no_cache = self._should_force_no_cache()
+        
+        # Always prevent caching of HTML responses (both dev and production)
+        # This ensures the browser always gets fresh HTML with updated JS references
+        if is_html:
+            if force_no_cache:
+                # Aggressive no-cache during forced period
+                response['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0'
+                response['Pragma'] = 'no-cache'
+                response['Expires'] = '0'
+                response['Clear-Site-Data'] = '"cache"'
+            else:
+                # Normal no-cache for HTML
+                response['Cache-Control'] = 'no-cache, no-store, must-revalidate, proxy-revalidate, max-age=0'
+                response['Pragma'] = 'no-cache'
+                response['Expires'] = '0'
             
+            # Remove ETag and Last-Modified to prevent conditional requests
+            if 'ETag' in response:
+                del response['ETag']
+            if 'Last-Modified' in response:
+                del response['Last-Modified']
+        
+        # Apply aggressive no-cache to API during forced period
+        if is_api and force_no_cache:
+            response['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0'
+            response['Pragma'] = 'no-cache'
+            response['Expires'] = '0'
+            response['Clear-Site-Data'] = '"cache"'
+        
+        # Apply aggressive no-cache to static files during forced period
+        if is_static and force_no_cache:
+            if is_js_file:
+                response['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0'
+                response['Pragma'] = 'no-cache'
+                response['Expires'] = '0'
+                response['Last-Modified'] = ''
+                response['ETag'] = ''
+                response['Clear-Site-Data'] = '"cache"'
+                response['Vary'] = '*'
+            else:
+                response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+                response['Pragma'] = 'no-cache'
+                response['Expires'] = '0'
+                response['Last-Modified'] = ''
+                response['ETag'] = ''
+        
+        # Only apply to static files in development
+        if settings.DEBUG:
             # Debug: print when processing JS files
             if is_js_file:
                 print(f"[NoCacheMiddleware] Processing: {request.path}")

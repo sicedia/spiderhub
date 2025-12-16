@@ -15,7 +15,8 @@ class CountryListAPIView(APIView):
     
     @extend_schema(
         summary="Get all countries",
-        description="Returns list of all countries with ISO codes and names"
+        description="Returns list of all countries with ISO codes and names",
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         countries = Country.objects.all().values('iso3', 'iso2', 'name')
@@ -29,7 +30,8 @@ class LeadCountriesAPIView(APIView):
     
     @extend_schema(
         summary="Get lead countries",
-        description="Returns document counts by lead country for choropleth map"
+        description="Returns document counts by lead country for choropleth map",
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         service = AnalysisService()
@@ -64,7 +66,8 @@ class CountriesByRoleAPIView(APIView):
         description="Returns countries with document counts filtered by participation role",
         parameters=[
             OpenApiParameter('role', OpenApiTypes.STR, description="Role: 'any', 'lead', 'involved', 'event'", default='any'),
-        ]
+        ],
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         role = request.GET.get('role', 'any')

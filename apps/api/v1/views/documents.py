@@ -4,7 +4,7 @@ Documents API Views
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from drf_spectacular.utils import extend_schema, OpenApiParameter
+from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiTypes
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
@@ -17,7 +17,8 @@ class DocumentDetailAPIView(APIView):
     
     @extend_schema(
         summary="Get document details",
-        description="Returns complete document information including all relationships for SPA rendering"
+        description="Returns complete document information including all relationships for SPA rendering",
+        responses={200: OpenApiTypes.OBJECT, 404: OpenApiTypes.OBJECT, 500: OpenApiTypes.OBJECT}
     )
     def get(self, request, pk):
         """
@@ -189,7 +190,8 @@ class RelatedDocumentsAPIView(APIView):
     
     @extend_schema(
         summary="Get related documents",
-        description="Returns up to 3 documents that share taxonomies with the current document"
+        description="Returns up to 3 documents that share taxonomies with the current document",
+        responses={200: OpenApiTypes.OBJECT, 404: OpenApiTypes.OBJECT, 500: OpenApiTypes.OBJECT}
     )
     def get(self, request, pk):
         """

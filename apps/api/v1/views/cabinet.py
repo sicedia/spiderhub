@@ -18,7 +18,8 @@ class CabinetSummaryAPIView(APIView):
             OpenApiParameter('country', OpenApiTypes.STR, description='Country ISO3 code', default='ECU'),
             OpenApiParameter('date_from', OpenApiTypes.DATE, description='Start date filter'),
             OpenApiParameter('date_to', OpenApiTypes.DATE, description='End date filter'),
-        ]
+        ],
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         country_iso3 = request.GET.get('country', 'ECU')
@@ -40,7 +41,8 @@ class CabinetTrendsAPIView(APIView):
             OpenApiParameter('country', OpenApiTypes.STR, description='Country ISO3 code', default='ECU'),
             OpenApiParameter('date_from', OpenApiTypes.DATE, description='Start date filter'),
             OpenApiParameter('date_to', OpenApiTypes.DATE, description='End date filter'),
-        ]
+        ],
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         country_iso3 = request.GET.get('country', 'ECU')
@@ -62,7 +64,8 @@ class CabinetMapAPIView(APIView):
             OpenApiParameter('country', OpenApiTypes.STR, description='Country ISO3 code', default='ECU'),
             OpenApiParameter('date_from', OpenApiTypes.DATE, description='Start date filter'),
             OpenApiParameter('date_to', OpenApiTypes.DATE, description='End date filter'),
-        ]
+        ],
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         country_iso3 = request.GET.get('country', 'ECU')
@@ -84,7 +87,8 @@ class CabinetMixAPIView(APIView):
             OpenApiParameter('country', OpenApiTypes.STR, description='Country ISO3 code', default='ECU'),
             OpenApiParameter('date_from', OpenApiTypes.DATE, description='Start date filter'),
             OpenApiParameter('date_to', OpenApiTypes.DATE, description='End date filter'),
-        ]
+        ],
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         country_iso3 = request.GET.get('country', 'ECU')
@@ -107,7 +111,8 @@ class CabinetTopAPIView(APIView):
             OpenApiParameter('date_from', OpenApiTypes.DATE, description='Start date filter'),
             OpenApiParameter('date_to', OpenApiTypes.DATE, description='End date filter'),
             OpenApiParameter('limit', OpenApiTypes.INT, description='Number of items to return', default=10),
-        ]
+        ],
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         country_iso3 = request.GET.get('country', 'ECU')

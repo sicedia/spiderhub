@@ -4,6 +4,7 @@ Analysis API Views
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema
+from drf_spectacular.types import OpenApiTypes
 from ..services.analysis_service import AnalysisService
 
 
@@ -12,7 +13,8 @@ class AnalysisSummaryAPIView(APIView):
     
     @extend_schema(
         summary="Get analysis summary statistics",
-        description="Returns main summary statistics including total documents, countries, themes, etc."
+        description="Returns main summary statistics including total documents, countries, themes, etc.",
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         service = AnalysisService()
@@ -25,7 +27,8 @@ class SDGAnalysisAPIView(APIView):
     
     @extend_schema(
         summary="Get SDG analysis data",
-        description="Returns SDG counts, relevance metrics, and labels"
+        description="Returns SDG counts, relevance metrics, and labels",
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         service = AnalysisService()
@@ -38,7 +41,8 @@ class ThemeAnalysisAPIView(APIView):
     
     @extend_schema(
         summary="Get theme analysis data",
-        description="Returns theme distribution by category"
+        description="Returns theme distribution by category",
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         service = AnalysisService()
@@ -51,7 +55,8 @@ class ActorAnalysisAPIView(APIView):
     
     @extend_schema(
         summary="Get actor analysis data",
-        description="Returns actor distribution by category"
+        description="Returns actor distribution by category",
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         service = AnalysisService()
@@ -64,7 +69,8 @@ class BeneficiaryAnalysisAPIView(APIView):
     
     @extend_schema(
         summary="Get beneficiary analysis data",
-        description="Returns beneficiary group distribution by category"
+        description="Returns beneficiary group distribution by category",
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         service = AnalysisService()
@@ -77,7 +83,8 @@ class TimelineAPIView(APIView):
     
     @extend_schema(
         summary="Get timeline evolution data",
-        description="Returns document evolution by year"
+        description="Returns document evolution by year",
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         service = AnalysisService()
@@ -90,7 +97,8 @@ class DiversityRadarAPIView(APIView):
     
     @extend_schema(
         summary="Get diversity radar data",
-        description="Returns diversity metrics across multiple dimensions"
+        description="Returns diversity metrics across multiple dimensions",
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         service = AnalysisService()
@@ -103,7 +111,8 @@ class NetworkGraphAPIView(APIView):
     
     @extend_schema(
         summary="Get network graph data",
-        description="Returns actor-theme co-occurrence matrix for network visualization"
+        description="Returns actor-theme co-occurrence matrix for network visualization",
+        responses={200: OpenApiTypes.OBJECT}
     )
     def get(self, request):
         service = AnalysisService()

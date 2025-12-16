@@ -2,7 +2,10 @@ from django_filters import FilterSet, CharFilter, DateFromToRangeFilter, ModelMu
 from django.contrib.postgres.search import SearchQuery, SearchRank
 from django.db.models import Q, IntegerField
 from django.db.models.functions import Cast
+from drf_spectacular.utils import extend_schema_field
+from drf_spectacular.types import OpenApiTypes
 from apps.documents.models import Document, Actor, Theme, BeneficiaryGroup, SDG, Country
+
 
 class DocumentFilter(FilterSet):
     """
@@ -19,13 +22,23 @@ class DocumentFilter(FilterSet):
     actor = ModelMultipleChoiceFilter(queryset=Actor.objects.all(), field_name='actors', to_field_name='id')
     theme = ModelMultipleChoiceFilter(queryset=Theme.objects.all(), field_name='themes', to_field_name='id')
     beneficiary = ModelMultipleChoiceFilter(queryset=BeneficiaryGroup.objects.all(), field_name='beneficiary_groups', to_field_name='id')
-    sdg = ModelMultipleChoiceFilter(queryset=SDG.objects.all(), field_name='sdgs__number', to_field_name='number')
+    sdg = ModelMultipleChoiceFilter(
+        queryset=SDG.objects.all(), 
+        field_name='sdgs__number', 
+        to_field_name='number',
+        help_text="Filter by SDG numbers (e.g., 1, 2, 3)"
+    )
     document_type     = CharFilter(method='noop')
     coverage_scope    = CharFilter(method='noop')
     legal_bindingness = CharFilter(method='noop')
     agreement_type    = CharFilter(method='noop')
-    # Updated country and city filters
-    country = ModelMultipleChoiceFilter(queryset=Country.objects.all(), field_name='event_country__iso3', to_field_name='iso3')
+    # Country and city filters
+    country = ModelMultipleChoiceFilter(
+        queryset=Country.objects.all(), 
+        field_name='event_country__iso3', 
+        to_field_name='iso3',
+        help_text="Filter by country ISO3 codes (e.g., ECU, USA, BRA)"
+    )
     city = CharFilter(field_name='event_city__name', lookup_expr='icontains')
 
     class Meta:
@@ -36,6 +49,13 @@ class DocumentFilter(FilterSet):
             'document_type', 'coverage_scope', 'legal_bindingness',
             'agreement_type', 'country', 'city',
         ]
+
+    def noop(self, queryset, name, value):
+        """
+        No-op filter method. These filters are handled manually in filter_queryset.
+        This method exists to satisfy django-filters and drf-spectacular requirements.
+        """
+        return queryset
 
     def filter_queryset(self, queryset):
         """

@@ -3,6 +3,7 @@ django
 djangorestframework
 django-filter
 django-cors-headers
+drf-spectacular
 
 # Database adapters
 dj-database-url
