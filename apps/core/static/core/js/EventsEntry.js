@@ -1,0 +1,57 @@
+/**
+ * Events Page Entry Point
+ * Initializes EventsPageManager
+ * ES6 Module
+ */
+
+import { EventsPageManager } from './pages/EventsPageManager.js';
+import { logger } from './core/logger/Logger.js';
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeEventsPage);
+} else {
+  initializeEventsPage();
+}
+
+function initializeEventsPage() {
+  try {
+    const appLogger = logger.child({ module: 'EventsEntry' });
+    appLogger.info('Initializing events page');
+    
+    // Initialize EventsPageManager
+    const eventsPageManager = new EventsPageManager(document.body, {
+      enableFilters: true,
+      enablePagination: true,
+      pageSize: 10
+    });
+    
+    // Make available globally for debugging
+    if (typeof window !== 'undefined') {
+      window.eventsPageManager = eventsPageManager;
+    }
+    
+    appLogger.info('Events page initialized successfully');
+    
+  } catch (error) {
+    appLogger.error('Failed to initialize events page', error);
+    
+    // Show error to user
+    const errorContainer = document.createElement('div');
+    errorContainer.className = 'events-error';
+    errorContainer.style.cssText = 'margin: 20px; padding: 15px; text-align: center;';
+    errorContainer.innerHTML = `
+      <h3>Initialization Error</h3>
+      <p>Failed to initialize the events page. Please refresh the page or contact support.</p>
+      <button onclick="location.reload()" class="button button--primary">Reload Page</button>
+    `;
+    
+    const main = document.querySelector('main');
+    if (main) {
+      main.insertBefore(errorContainer, main.firstChild);
+    }
+  }
+}
+
+export { initializeEventsPage };
+

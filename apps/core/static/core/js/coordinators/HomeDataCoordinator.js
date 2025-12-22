@@ -17,12 +17,14 @@ export class HomeDataCoordinator {
     this.options = {
       enableStatsLoading: true,
       enableFeaturedDocs: true,
+      enableUpcomingEvents: true,
       ...options
     };
     
     this.pageData = {
       stats: null,
-      featuredDocuments: []
+      featuredDocuments: [],
+      upcomingEvents: []
     };
     
     this.logger.debug('HomeDataCoordinator initialized');
@@ -54,13 +56,18 @@ export class HomeDataCoordinator {
         promises.push(this.loadFeaturedDocuments());
       }
       
+      if (this.options.enableUpcomingEvents) {
+        promises.push(this.loadUpcomingEvents());
+      }
+      
       await Promise.all(promises);
       
       this.logger.info('All page data loaded successfully');
       
       eventBus.emit(EVENTS.HOME_DATA_LOADED, {
         stats: this.pageData.stats,
-        featuredCount: this.pageData.featuredDocuments.length
+        featuredCount: this.pageData.featuredDocuments.length,
+        upcomingEventsCount: this.pageData.upcomingEvents.length
       });
       
     } catch (error) {
@@ -262,6 +269,139 @@ export class HomeDataCoordinator {
   }
 
   /**
+   * Load upcoming events from API
+   */
+  async loadUpcomingEvents() {
+    try {
+      this.logger.debug('Loading upcoming events from API');
+      
+      const response = await fetch('/api/v1/events/upcoming/');
+      if (response.ok) {
+        const data = await response.json();
+        this.pageData.upcomingEvents = data.events || [];
+      this.logger.info('Upcoming events loaded from API', {
+        count: this.pageData.upcomingEvents.length
+      });
+      this.renderUpcomingEvents();
+      
+      eventBus.emit(EVENTS.EVENTS_LOADED, {
+        events: this.pageData.upcomingEvents,
+        context: 'home'
+      });
+      } else {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      
+    } catch (error) {
+      this.logger.error('Failed to load upcoming events from API', error);
+      this.pageData.upcomingEvents = [];
+      this.renderUpcomingEventsEmpty();
+    }
+  }
+
+  /**
+   * Render upcoming events to DOM
+   */
+  renderUpcomingEvents() {
+    const container = document.getElementById('upcoming-events-container');
+    if (!container) return;
+    
+    if (this.pageData.upcomingEvents.length === 0) {
+      this.renderUpcomingEventsEmpty();
+      return;
+    }
+
+    // Hide loading skeleton
+    const loading = container.querySelector('.home-events__loading');
+    if (loading) {
+      loading.hidden = true;
+    }
+    
+    // Get current language from URL
+    const lang = window.location.pathname.split('/')[1] || 'en';
+    
+    container.innerHTML = this.pageData.upcomingEvents.map(event => {
+      const dateStr = this.formatEventDate(event.start_at, event.end_at);
+      const locationStr = this.formatLocation(event.city_name, event.country_name);
+      const formatBadge = event.event_format_display 
+        ? `<span class="tag tag--info">${this.escapeHtml(event.event_format_display)}</span>`
+        : '';
+      
+      return `
+        <div class="home-events__card">
+          <div class="home-events__card-header">
+            <h3 class="home-events__card-title">${this.escapeHtml(event.title)}</h3>
+            ${formatBadge}
+          </div>
+          <div class="home-events__card-body">
+            ${dateStr ? `<div class="home-events__card-date">${this.escapeHtml(dateStr)}</div>` : ''}
+            ${locationStr ? `<div class="home-events__card-location">${this.escapeHtml(locationStr)}</div>` : ''}
+            ${event.organization_name ? `<div class="home-events__card-org">${this.escapeHtml(event.organization_name)}</div>` : ''}
+          </div>
+          <div class="home-events__card-footer">
+            <a href="/${lang}/events/${event.id}/" class="button button--secondary button--small">View Details</a>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  /**
+   * Render empty state for upcoming events
+   */
+  renderUpcomingEventsEmpty() {
+    const container = document.getElementById('upcoming-events-container');
+    if (!container) return;
+    
+    // Hide loading skeleton
+    const loading = container.querySelector('.home-events__loading');
+    if (loading) {
+      loading.hidden = true;
+    }
+    
+    // Hide the entire section if no events
+    const section = document.getElementById('home-events-section');
+    if (section) {
+      section.hidden = true;
+    }
+  }
+
+  /**
+   * Format event date
+   */
+  formatEventDate(startAt, endAt) {
+    if (!startAt) return '';
+    
+    try {
+      const start = new Date(startAt);
+      const startStr = start.toLocaleDateString();
+      
+      if (endAt) {
+        const end = new Date(endAt);
+        const endStr = end.toLocaleDateString();
+        if (startStr === endStr) {
+          return startStr;
+        }
+        return `${startStr} - ${endStr}`;
+      }
+      
+      return startStr;
+    } catch (e) {
+      return '';
+    }
+  }
+
+  /**
+   * Format location string
+   */
+  formatLocation(city, country) {
+    const parts = [];
+    if (city) parts.push(city);
+    if (country) parts.push(country);
+    return parts.join(', ') || '';
+  }
+
+  /**
    * Clean up resources
    */
   destroy() {
@@ -269,7 +409,8 @@ export class HomeDataCoordinator {
     
     this.pageData = {
       stats: null,
-      featuredDocuments: []
+      featuredDocuments: [],
+      upcomingEvents: []
     };
     
     this.logger.debug('HomeDataCoordinator destroyed');

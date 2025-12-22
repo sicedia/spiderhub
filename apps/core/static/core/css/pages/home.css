@@ -266,6 +266,123 @@
 }
 
 /* ========================================
+   Home-specific Events Section
+   ======================================== */
+
+.home-events {
+  padding: 5rem 5%;
+  background-color: var(--color-bg-primary);
+}
+
+.home-events__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home-events__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.home-events__title {
+  text-align: left;
+  font-size: var(--font-size-3xl);
+  color: var(--color-primary-500);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.home-events__link {
+  color: var(--color-primary-500);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.home-events__link:hover {
+  color: var(--color-primary-600);
+}
+
+.home-events__content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.home-events__loading {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.home-events__card {
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
+  transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out);
+}
+
+.home-events__card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.home-events__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.home-events__card-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+  flex: 1;
+}
+
+.home-events__card-body {
+  margin-bottom: var(--space-md);
+}
+
+.home-events__card-date,
+.home-events__card-location {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.home-events__card-org {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.home-events__card-footer {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border-light);
+}
+
+@media (max-width: 768px) {
+  .home-events__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+  
+  .home-events__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
    Home-specific Documents Section - Updated to match previous design
    ======================================== */
 

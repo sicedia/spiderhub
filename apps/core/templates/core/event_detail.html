@@ -1,0 +1,110 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load static_tags %}
+{% load i18n %}
+{% block title %}{% trans "Loading..." %} - SPIDERHUB{% endblock %}
+{% block description %}{% trans "EU-LAC digital transformation event details." %}{% endblock %}
+
+{% block content %}
+<div class="event-page" id="event-page" data-event-id="{% if event_id %}{{ event_id }}{% endif %}">
+  <!-- Loading State -->
+  <div class="event-loading" id="event-loading">
+    <div class="event-loading__spinner"></div>
+    <p>{% trans "Loading event..." %}</p>
+  </div>
+  
+  <!-- Error State -->
+  <div class="event-error" id="event-error" hidden>
+    <div class="event-error__icon">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor"/>
+      </svg>
+    </div>
+    <h2>{% trans "Error loading event" %}</h2>
+    <p id="event-error-message">{% trans "An error occurred while loading the event. Please try again." %}</p>
+    <button class="button button--primary" onclick="window.location.reload()">{% trans "Retry" %}</button>
+  </div>
+  
+  <!-- Event Content Container - Populated by JavaScript -->
+  <div class="event-content-wrapper" id="event-content" hidden>
+    <div class="event-back-link">
+      <a href="{% url 'core:events' %}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="currentColor"/>
+        </svg>
+        {% trans "Back to Events" %}
+      </a>
+    </div>
+    
+    <div class="event-title-container">
+      <h1 id="event-title" class="event-title"></h1>
+      <div class="event-meta" id="event-meta"></div>
+    </div>
+    
+    <div class="event-content">
+      <div class="event-main">
+        <!-- Description -->
+        <section class="event-section" id="section-description" hidden>
+          <h2 class="event-section__title">{% trans "Description" %}</h2>
+          <div class="event-description" id="event-description"></div>
+        </section>
+        
+        <!-- Links -->
+        <section class="event-section" id="section-links" hidden>
+          <h2 class="event-section__title">{% trans "Links" %}</h2>
+          <div class="event-links" id="event-links"></div>
+        </section>
+        
+        <!-- Taxonomy -->
+        <section class="event-section event-section--taxonomy" id="section-taxonomy" hidden>
+          <h2 class="event-section__title">{% trans "Taxonomy" %}</h2>
+          <div class="event-taxonomy">
+            <!-- Themes -->
+            <div class="event-taxonomy__group" id="taxonomy-themes" hidden>
+              <h3 class="event-taxonomy__label">{% trans "Themes" %}</h3>
+              <div class="event-taxonomy__chips" id="themes-container"></div>
+            </div>
+            
+            <!-- Actors -->
+            <div class="event-taxonomy__group" id="taxonomy-actors" hidden>
+              <h3 class="event-taxonomy__label">{% trans "Actors" %}</h3>
+              <div class="event-taxonomy__chips" id="actors-container"></div>
+            </div>
+            
+            <!-- SDGs -->
+            <div class="event-taxonomy__group" id="taxonomy-sdgs" hidden>
+              <h3 class="event-taxonomy__label">{% trans "SDGs" %}</h3>
+              <div class="event-taxonomy__chips" id="sdgs-container"></div>
+            </div>
+            
+            <!-- Beneficiary Groups -->
+            <div class="event-taxonomy__group" id="taxonomy-beneficiaries" hidden>
+              <h3 class="event-taxonomy__label">{% trans "Beneficiary Groups" %}</h3>
+              <div class="event-taxonomy__chips" id="beneficiaries-container"></div>
+            </div>
+            
+            <!-- EU Policy Alignments -->
+            <div class="event-taxonomy__group" id="taxonomy-eu-policies" hidden>
+              <h3 class="event-taxonomy__label">{% trans "EU Policy Alignments" %}</h3>
+              <div class="event-taxonomy__chips" id="eu-policies-container"></div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Related Documents -->
+        <section class="event-section" id="section-documents" hidden>
+          <h2 class="event-section__title">{% trans "Related Documents" %}</h2>
+          <div class="event-documents" id="event-documents">
+            <p class="event-documents__empty">{% trans "No related documents yet." %}</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+  {% js_module_versioned 'core/js/EventDetailEntry.js' %}
+{% endblock %}
+

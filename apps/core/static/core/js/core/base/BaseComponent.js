@@ -22,7 +22,25 @@ export class BaseComponent {
     this.eventBusUnsubscribers = []; // For EventBus subscriptions
     this.isInitialized = false;
     
-    this.init();
+    // Call init() asynchronously to allow child classes to initialize properties first
+    // This is especially important for BasePageManager which needs to set up logger
+    // Check if this is BaseComponent or if shouldDeferInit is defined and returns false
+    const className = this.constructor.name;
+    const shouldDefer = className !== 'BaseComponent' && 
+                       typeof this.shouldDeferInit === 'function' && 
+                       this.shouldDeferInit();
+    
+    if (!shouldDefer) {
+      this.init();
+    } else {
+      // For child classes that need to set up properties first, they should call init() manually
+      // after setting up their properties
+      setTimeout(() => {
+        if (!this.isInitialized) {
+          this.init();
+        }
+      }, 0);
+    }
   }
 
   /**
@@ -30,6 +48,14 @@ export class BaseComponent {
    */
   getDefaultOptions() {
     return {};
+  }
+
+  /**
+   * Override this method to return true if init() should be deferred
+   * This allows child classes to set up properties before init() is called
+   */
+  shouldDeferInit() {
+    return false;
   }
 
   /**

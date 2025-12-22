@@ -71,7 +71,17 @@ export class APIUtils {
     };
     
     // Handle relative URLs
-    const fullURL = url.startsWith('http') ? url : `${config.baseURL}${url}`;
+    let fullURL;
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      // Absolute URL, use as-is
+      fullURL = url;
+    } else if (url.startsWith('/')) {
+      // Absolute path, use as-is (don't prepend baseURL)
+      fullURL = url;
+    } else {
+      // Relative path, prepend baseURL
+      fullURL = `${config.baseURL}${url.startsWith('/') ? '' : '/'}${url}`;
+    }
     
     // Create AbortController for timeout
     const controller = new AbortController();
@@ -135,15 +145,33 @@ export class APIUtils {
    * GET request
    */
   static async get(url, params = {}, options = {}) {
-    // Add query parameters
-    const urlObj = new URL(url, window.location.origin);
-    Object.entries(params).forEach(([key, value]) => {
-      if (value !== null && value !== undefined) {
-        urlObj.searchParams.append(key, value);
-      }
-    });
+    // Handle relative URLs properly
+    let finalUrl = url;
     
-    return this.request(urlObj.toString(), {
+    // If URL is absolute (starts with http), use as-is
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      finalUrl = url;
+    } else {
+      // For relative URLs, ensure they start with /
+      if (!url.startsWith('/')) {
+        finalUrl = `/${url}`;
+      } else {
+        finalUrl = url;
+      }
+    }
+    
+    // Add query parameters if any
+    if (Object.keys(params).length > 0) {
+      const urlObj = new URL(finalUrl, window.location.origin);
+      Object.entries(params).forEach(([key, value]) => {
+        if (value !== null && value !== undefined) {
+          urlObj.searchParams.append(key, value);
+        }
+      });
+      finalUrl = urlObj.pathname + urlObj.search;
+    }
+    
+    return this.request(finalUrl, {
       method: 'GET',
       ...options
     });

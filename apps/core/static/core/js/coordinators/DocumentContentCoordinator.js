@@ -210,6 +210,7 @@ export class DocumentContentCoordinator {
     this.renderBasicInfo();
     this.renderSourceFiles();
     this.renderRelatedDocuments();
+    this.renderRelatedEvents();
 
     this.showContent();
     
@@ -693,6 +694,81 @@ export class DocumentContentCoordinator {
       
     } catch (error) {
       this.logger.warn('Failed to load related documents', error);
+    }
+  }
+
+  /**
+   * Render related events
+   */
+  async renderRelatedEvents() {
+    const card = document.getElementById('related-events-card');
+    const countEl = document.getElementById('related-events-count');
+    const listEl = document.getElementById('related-events-list');
+    
+    if (!card) return;
+    
+    try {
+      this.logger.debug('Loading related events for document', { documentId: this.documentId });
+      
+      const response = await fetch(`/api/v1/documents/${this.documentId}/events/`);
+      if (!response.ok) {
+        this.logger.warn('Failed to load related events', { status: response.status });
+        return;
+      }
+      
+      const data = await response.json();
+      const relatedEvents = data.events || [];
+      
+      this.logger.info('Related events loaded', {
+        documentId: this.documentId,
+        count: relatedEvents.length
+      });
+      
+      if (relatedEvents.length === 0) {
+        card.hidden = true;
+        return;
+      }
+      
+      card.hidden = false;
+      
+      if (countEl) {
+        countEl.textContent = `${relatedEvents.length} related event${relatedEvents.length !== 1 ? 's' : ''}`;
+      }
+      
+      if (listEl) {
+        const lang = window.location.pathname.split('/')[1] || 'en';
+        listEl.innerHTML = relatedEvents.map(event => {
+          const dateStr = event.start_at 
+            ? new Date(event.start_at).toLocaleDateString()
+            : '';
+          
+          return `
+            <div class="related-event">
+              <a href="/${lang}/events/${event.id}/" class="related-event__link">
+                <div class="related-event__content">
+                  <div class="related-title">${this.escapeHtml(this.truncateText(event.title, 60))}</div>
+                  <div class="related-meta">
+                    ${dateStr ? `<span class="related-meta__item">${this.escapeHtml(dateStr)}</span>` : ''}
+                    ${event.country_name ? `<span class="related-meta__item">${this.escapeHtml(event.country_name)}</span>` : ''}
+                  </div>
+                </div>
+              </a>
+            </div>
+          `;
+        }).join('');
+      }
+      
+      eventBus.emit(EVENTS.RELATED_DOCUMENTS_LOADED, {
+        documentId: this.documentId,
+        events: relatedEvents,
+        type: 'events'
+      });
+      
+    } catch (error) {
+      this.logger.warn('Failed to load related events', error, {
+        documentId: this.documentId
+      });
+      card.hidden = true;
     }
   }
 

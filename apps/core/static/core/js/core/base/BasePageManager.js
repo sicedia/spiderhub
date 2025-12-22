@@ -14,7 +14,7 @@ export class BasePageManager extends BaseComponent {
   constructor(element, options = {}) {
     super(element, options);
     
-    // Create child logger with component context
+    // Create child logger with component context AFTER super() call
     this.logger = logger.child({
       component: this.constructor.name,
       instance: Math.random().toString(36).substr(2, 9)
@@ -24,6 +24,19 @@ export class BasePageManager extends BaseComponent {
     this.services = new Map();
     this.isPageReady = false;
     this.pageData = null;
+    
+    // Call init() manually now that logger is available
+    // (BaseComponent deferred it because shouldDeferInit() returns true)
+    if (!this.isInitialized) {
+      this.init();
+    }
+  }
+
+  /**
+   * Defer init() until after constructor completes
+   */
+  shouldDeferInit() {
+    return true;
   }
 
   /**

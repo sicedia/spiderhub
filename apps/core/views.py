@@ -102,3 +102,13 @@ def document_detail_page(request, pk):
 def strategic_cabinet_page(request):
     """Strategic Cabinet - all data loaded via /api/v1/cabinet/* endpoints"""
     return render(request, 'core/strategic_cabinet.html')
+
+
+def events_list_page(request):
+    """Events listing page - data loaded via /api/v1/events/ endpoint"""
+    return render(request, 'core/events.html')
+
+
+def event_detail_page(request, pk):
+    """Event detail page - data loaded via /api/v1/events/{pk}/ endpoint"""
+    return render(request, 'core/event_detail.html', {'event_id': pk})

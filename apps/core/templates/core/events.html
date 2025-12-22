@@ -1,0 +1,320 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load static_tags %}
+{% load i18n %}
+{% block title %}SPIDERHUB: {% trans "Events" %} - {% trans "EU - LAC Digital Transformation" %}{% endblock %}
+{% block description %}{% trans "Explore events related to EU-LAC digital transformation dialogues and agreements." %}{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+<main class="events-page" id="main-content">
+  <!-- Enhanced Top Search Bar -->
+  <section class="explore-header" role="region" aria-labelledby="search-heading">
+    <div class="explore-search">
+      <form id="search-form" class="search-bar" role="search" aria-label="{% trans "Search events" %}" autocomplete="off">
+        <label for="searchbox" class="sr-only">{% trans "Search events by keyword or phrase" %}</label>
+        <svg class="search-bar__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="#666"/>
+        </svg>
+        <input 
+          type="search" 
+          id="searchbox" 
+          name="q" 
+          placeholder="{% trans "Search events by keyword or phrase..." %}"
+          class="search-bar__input" 
+          autofocus
+          autocomplete="off"
+          aria-describedby="suggestions-list"
+          aria-expanded="false"
+          aria-autocomplete="list"
+          aria-controls="suggestions-list"
+        />
+        <button type="submit" id="search-button" class="search-bar__button">
+          <span>{% trans "Search" %}</span>
+        </button>
+      </form>
+      <ul 
+        id="suggestions-list" 
+        class="suggestions-list"
+        role="listbox"
+        aria-label="Search suggestions"
+        hidden
+      >
+        <!-- Suggestions will be populated by JavaScript -->
+      </ul>
+    </div>
+    
+    <!-- Results count - subtle and visible -->
+    <div class="results-count-wrapper">
+      <p id="results-count-top" class="results-count-top" aria-live="polite" aria-atomic="true">
+        <!-- results count set by js  -->
+      </p>
+    </div>
+    
+    <div id="active-filters" class="filter-chips explore-filters--empty" role="region" aria-label="{% trans "Active filters" %}" aria-live="polite">
+      <!-- Active filter chips will be populated by JavaScript -->
+      <button class="filter-chips__clear-all" type="button" aria-label="{% trans "Clear all active filters" %}">{% trans "Clear all filters" %}</button>
+    </div>
+  </section>
+
+  <!-- Main Content Area with Sidebar and Results -->
+  <div class="explore-content">
+    <!-- Enhanced Filter Sidebar -->
+    <aside class="explore-sidebar" role="complementary" aria-labelledby="filters-heading">
+      <div class="filter-container filter-container--sticky">
+        <header class="filter-header">
+          <h2 id="filters-heading" class="filter-header__title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor"/>
+            </svg>
+            {% trans "Filters" %}
+          </h2>
+          <div class="filter-header__actions">
+            <button 
+              class="filter-header__toggle filter-toggle mobile-only" 
+              aria-expanded="false" 
+              aria-controls="filter-groups" 
+              aria-label="{% trans "Toggle filter panel" %}"
+              type="button"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+              </svg>
+            </button>
+            <button id="clear-filters" class="filter-header__clear" type="button" aria-label="{% trans "Clear all filters" %}">
+              {% trans "Clear all" %}
+            </button>
+          </div>
+        </header>
+        
+        <div id="filter-groups" class="filter-groups">
+          <!-- Loading state for filters -->
+          <div class="filter-loading" id="filters-loading">
+            <div class="filter-loading__spinner"></div>
+            <span>{% trans "Loading filters..." %}</span>
+          </div>
+          
+          <!-- Accordion style filters - populated by JavaScript -->
+          <div class="filter-accordion" id="filter-accordion">
+            <!-- Event Format -->
+            <div class="filter-group" data-filter-group="event_format">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-event-format">
+                <h3 class="filter-group__title">{% trans "Event Format" %}</h3>
+                <div class="filter-group__count" data-count="event_format">-</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="filter-group__content" id="filter-event-format">
+                <div class="filter-group__body">
+                  <div class="filter-options" id="filter-options-event-format">
+                    <!-- Options loaded via API -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Date Range -->
+            <div class="filter-group" data-filter-group="period">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-period">
+                <h3 class="filter-group__title">{% trans "Date Range" %}</h3>
+                <div class="filter-group__count">Date Range</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="filter-group__content" id="filter-period">
+                <div class="filter-group__body">
+                  <div class="filter-date-range">
+                    <div class="filter-date-field">
+                      <label for="start_at_after" class="filter-date-field__label">{% trans "From" %}</label>
+                      <input type="date" id="start_at_after" name="start_at_after" class="filter-date-field__input">
+                    </div>
+                    <div class="filter-date-field">
+                      <label for="start_at_before" class="filter-date-field__label">{% trans "Until" %}</label>
+                      <input type="date" id="start_at_before" name="start_at_before" class="filter-date-field__input">
+                    </div>
+                  </div>
+                  
+                  <div class="filter-date-presets">
+                    <button class="filter-date-preset" type="button" data-years="1">{% trans "Last year" %}</button>
+                    <button class="filter-date-preset" type="button" data-years="3">{% trans "Last 3 years" %}</button>
+                    <button class="filter-date-preset" type="button" data-years="5">{% trans "Last 5 years" %}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Countries -->
+            <div class="filter-group" data-filter-group="countries">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-countries">
+                <h3 class="filter-group__title">{% trans "Countries" %}</h3>
+                <div class="filter-group__count" data-count="countries">-</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="filter-group__content" id="filter-countries">
+                <div class="filter-group__body">
+                  <div class="filter-search">
+                    <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
+                    </svg>
+                    <input type="text" class="filter-search__input" placeholder="{% trans "Search country..." %}" aria-label="{% trans "Search countries" %}">
+                  </div>
+                  
+                  <div class="filter-options" id="filter-options-countries">
+                    <!-- Options loaded via API -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Organizations -->
+            <div class="filter-group" data-filter-group="organizations">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-organizations">
+                <h3 class="filter-group__title">{% trans "Organizations" %}</h3>
+                <div class="filter-group__count" data-count="organizations">-</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="filter-group__content" id="filter-organizations">
+                <div class="filter-group__body">
+                  <div class="filter-search">
+                    <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
+                    </svg>
+                    <input type="text" class="filter-search__input" placeholder="{% trans "Search organization..." %}" aria-label="{% trans "Search organizations" %}">
+                  </div>
+                  
+                  <div class="filter-options" id="filter-options-organizations">
+                    <!-- Options loaded via API -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Themes/Topics -->
+            <div class="filter-group" data-filter-group="topics">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-topics">
+                <h3 class="filter-group__title">{% trans "Topics" %}</h3>
+                <div class="filter-group__count" data-count="themes">-</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="filter-group__content" id="filter-topics">
+                <div class="filter-group__body">
+                  <div class="filter-search">
+                    <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
+                    </svg>
+                    <input type="text" class="filter-search__input" placeholder="{% trans "Search topic..." %}" aria-label="{% trans "Search topics" %}">
+                  </div>
+                  
+                  <div class="filter-options" id="filter-options-themes">
+                    <!-- Options loaded via API -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Actors -->
+            <div class="filter-group" data-filter-group="actors">
+              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-actors">
+                <h3 class="filter-group__title">{% trans "Actors" %}</h3>
+                <div class="filter-group__count" data-count="actors">-</div>
+                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="filter-group__content" id="filter-actors">
+                <div class="filter-group__body">
+                  <div class="filter-search">
+                    <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
+                    </svg>
+                    <input type="text" id="actor-search" class="filter-search__input" placeholder="{% trans "Search actor..." %}" aria-label="{% trans "Search actors" %}">
+                  </div>
+                  
+                  <div class="filter-options" id="filter-options-actors">
+                    <!-- Options loaded via API -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="filter-actions">
+          <div class="filter-actions__secondary">
+            <button id="reset-filters" class="button button--secondary" type="button">{% trans "Reset" %}</button>
+          </div>
+          <div class="filter-actions__primary">
+            <button id="apply-filters" class="button button--primary" type="button">{% trans "Apply Filters" %}</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Enhanced Results Container -->
+    <div class="explore-results">
+      <!-- Results Section -->
+      <section 
+        class="list-view active list-display-mode-list" 
+        id="results-panel"
+        role="region"
+        aria-label="Event results"
+      >
+        
+        <div class="explore-results__grid">
+          <!-- Loading State -->
+          <div class="events-loading" id="events-loading">
+            <div class="events-loading__spinner"></div>
+            <p>{% trans "Loading events..." %}</p>
+          </div>
+          
+          <!-- Error State -->
+          <div class="events-error" id="events-error" hidden>
+            <div class="events-error__icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor"/>
+              </svg>
+            </div>
+            <h2>{% trans "Error loading events" %}</h2>
+            <p id="events-error-message">{% trans "An error occurred while loading events. Please try again." %}</p>
+            <button class="button button--primary" onclick="window.location.reload()">{% trans "Retry" %}</button>
+          </div>
+          
+          <!-- Empty State -->
+          <div class="explore-results__empty" id="events-empty" hidden>
+            <div class="explore-results__empty-icon" aria-hidden="true">📅</div>
+            <h3 id="events-empty-title" class="explore-results__empty-title">{% trans "No events found" %}</h3>
+            <p id="events-empty-message" class="explore-results__empty-description">
+              {% trans "Try adjusting your search or filters to find what you're looking for." %}
+            </p>
+            <button id="events-empty-clear-filters" class="button button--secondary" hidden>{% trans "Clear filters" %}</button>
+          </div>
+
+          <ul class="documents-list" id="events-list" role="list" aria-label="Event results" aria-busy="false">
+            <!-- Events will be populated by JavaScript -->
+          </ul>
+        </div>
+
+        <div class="pagination-container">
+          <nav id="events-pagination" class="pagination" role="navigation" aria-label="Event results pagination">
+            <!-- Pagination buttons generated by JavaScript -->
+          </nav>
+        </div>
+
+      </section>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_scripts %}
+  {% js_module_versioned 'core/js/EventsEntry.js' %}
+{% endblock %}

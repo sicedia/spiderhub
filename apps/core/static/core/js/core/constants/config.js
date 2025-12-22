@@ -184,6 +184,16 @@ export const EVENTS = {
   HOME_QUICK_ACTION: 'home:quick:action',
   CAROUSEL_SLIDE_CHANGED: 'carousel:slide:changed',
   
+  // Events page events
+  EVENT_LOADING_START: 'event:loading:start',
+  EVENT_LOADED: 'event:loaded',
+  EVENT_LOAD_ERROR: 'event:load:error',
+  EVENT_CONTENT_READY: 'event:content:ready',
+  EVENTS_LOADED: 'events:loaded',
+  EVENTS_LOAD_ERROR: 'events:load:error',
+  EVENTS_FILTERS_CHANGED: 'events:filters:changed',
+  EVENTS_PAGE_CHANGED: 'events:page:changed',
+  
   // Analytics Events
   ANALYTICS: {
     TRACK: 'analytics:track',

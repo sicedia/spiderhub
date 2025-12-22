@@ -32,6 +32,28 @@ class DocumentEventSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "document_id", "document_title"]
 
 
+class PublicDocumentEventSerializer(serializers.ModelSerializer):
+    """Public serializer for DocumentEvent with nested document info"""
+    document_id = serializers.IntegerField(source="document.id", read_only=True)
+    document_title = serializers.CharField(source="document.title", read_only=True)
+    document_type = serializers.CharField(source="document.get_document_type_display", read_only=True)
+    document_event_date = serializers.DateTimeField(source="document.event_date", read_only=True)
+
+    class Meta:
+        model = DocumentEvent
+        fields = [
+            "id",
+            "document_id",
+            "document_title",
+            "document_type",
+            "document_event_date",
+            "role",
+            "confidence",
+            "notes"
+        ]
+        read_only_fields = ["id", "document_id", "document_title", "document_type", "document_event_date"]
+
+
 class EventSerializer(serializers.ModelSerializer):
     """Main serializer for Event model"""
     links = EventLinkSerializer(many=True, required=False)
@@ -184,4 +206,106 @@ class EventSerializer(serializers.ModelSerializer):
                     DocumentEvent.objects.create(event=instance, **doc_link_data)
 
         return instance
+
+
+class PublicEventSerializer(serializers.ModelSerializer):
+    """Public serializer for Event (list view) - excludes internal fields"""
+    links = EventLinkSerializer(many=True, required=False, read_only=True)
+    
+    # Display fields for related objects
+    organization_name = serializers.CharField(
+        source="organization.name", 
+        read_only=True
+    )
+    city_name = serializers.CharField(
+        source="city.name", 
+        read_only=True
+    )
+    country_name = serializers.CharField(
+        source="country.name", 
+        read_only=True
+    )
+    country_iso3 = serializers.CharField(
+        source="country.iso3", 
+        read_only=True
+    )
+    
+    # Taxonomy fields with labels
+    themes = serializers.SerializerMethodField()
+    actors = serializers.SerializerMethodField()
+    sdgs = serializers.SerializerMethodField()
+    beneficiary_groups = serializers.SerializerMethodField()
+    
+    event_format_display = serializers.CharField(source="get_event_format_display", read_only=True)
+
+    class Meta:
+        model = Event
+        fields = [
+            "id",
+            "title",
+            "description",
+            "start_at",
+            "end_at",
+            "event_format",
+            "event_format_display",
+            "city",
+            "city_name",
+            "country",
+            "country_name",
+            "country_iso3",
+            "organization",
+            "organization_name",
+            "themes",
+            "actors",
+            "sdgs",
+            "beneficiary_groups",
+            "links",
+            "created_at",
+            "updated_at",
+        ]
+        read_only_fields = [
+            "id",
+            "organization_name",
+            "city_name",
+            "country_name",
+            "country_iso3",
+            "event_format_display",
+            "created_at",
+            "updated_at",
+        ]
+    
+    def get_themes(self, obj):
+        """Return themes with id and label"""
+        return [{"id": t.id, "name": t.label} for t in obj.themes.all()]
+    
+    def get_actors(self, obj):
+        """Return actors with id and label"""
+        return [{"id": a.id, "name": a.label} for a in obj.actors.all()]
+    
+    def get_sdgs(self, obj):
+        """Return SDGs with id, number, and label"""
+        return [{"id": s.id, "number": s.number, "label": s.label} for s in obj.sdgs.all()]
+    
+    def get_beneficiary_groups(self, obj):
+        """Return beneficiary groups with id, name, and category"""
+        return [
+            {"id": b.id, "name": b.label, "category": b.category or ""} 
+            for b in obj.beneficiary_groups.all()
+        ]
+
+
+class PublicEventDetailSerializer(PublicEventSerializer):
+    """Public serializer for Event detail view - includes document links and all taxonomies"""
+    document_links = PublicDocumentEventSerializer(many=True, required=False, read_only=True)
+    eu_policy_alignments = serializers.SerializerMethodField()
+
+    class Meta(PublicEventSerializer.Meta):
+        fields = PublicEventSerializer.Meta.fields + [
+            "document_links",
+            "eu_policy_alignments",
+        ]
+    
+    def get_eu_policy_alignments(self, obj):
+        """Return EU policy alignments with id and name"""
+        return [{"id": p.id, "name": p.name} for p in obj.eu_policy_alignments.all()]
 

@@ -24,6 +24,13 @@ from .views import (
     RecentDocumentsAPIView,
 )
 from .views.documents import DocumentDetailAPIView, RelatedDocumentsAPIView
+from .views.events import (
+    PublicEventsListAPIView,
+    PublicEventDetailAPIView,
+    UpcomingEventsAPIView,
+    DocumentEventsAPIView,
+    EventSuggestAPIView,
+)
 
 app_name = 'api-v1'
 
@@ -60,9 +67,16 @@ urlpatterns = [
     # Documents
     path('documents/<int:pk>/', DocumentDetailAPIView.as_view(), name='document-detail'),
     path('documents/<int:pk>/related/', RelatedDocumentsAPIView.as_view(), name='document-related'),
+    path('documents/<int:pk>/events/', DocumentEventsAPIView.as_view(), name='document-events'),
     
-    # Events
-    path('events/', include('apps.events.urls')),
+    # Events (public endpoints)
+    path('events/upcoming/', UpcomingEventsAPIView.as_view(), name='events-upcoming'),
+    path('events/suggest/', EventSuggestAPIView.as_view(), name='event-suggest'),
+    path('events/<int:pk>/', PublicEventDetailAPIView.as_view(), name='event-detail'),
+    path('events/', PublicEventsListAPIView.as_view(), name='events-list'),
+    
+    # Events (authenticated endpoints - keep existing)
+    path('events/admin/', include('apps.events.urls')),
     
     # Search (include search app)
     path('search/', include('apps.search.urls')),

@@ -65,7 +65,7 @@ class OrganizationMember(BaseModel):
 class Event(BaseModel):
     """Event entity linked to organizations and taxonomies."""
     title = models.CharField(max_length=500)
-    description = models.TextField(blank=True)
+    description = models.TextField()
 
     start_at = models.DateTimeField(null=True, blank=True)
     end_at = models.DateTimeField(null=True, blank=True)
