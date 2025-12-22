@@ -100,7 +100,8 @@ CONTENT_SECURITY_POLICY = {
         'img-src': ["'self'",
                     'data:',
                     'https://*.tile.openstreetmap.org',
-                    'https://unpkg.com'],
+                    'https://unpkg.com',
+                    'https://cdn.jsdelivr.net'],  # Added for Swagger UI favicon
         'object-src': ["'none'"],
         'script-src': ["'self'",
                        'https://cdn.jsdelivr.net',
@@ -108,11 +109,13 @@ CONTENT_SECURITY_POLICY = {
                        'https://unpkg.com'],
         'style-src': ["'self'",
                       'https://fonts.googleapis.com',
-                      'https://unpkg.com'],  # Removed unsafe-inline - applied only via RelaxedCSPMiddleware
+                      'https://unpkg.com',
+                      'https://cdn.jsdelivr.net'],  # Added for Swagger UI CSS
         'style-src-attr': ["'self'"],  # Removed unsafe-inline - applied only via RelaxedCSPMiddleware
         'style-src-elem': ["'self'",
                            'https://fonts.googleapis.com',
-                           'https://unpkg.com'],  # Removed unsafe-inline - applied only via RelaxedCSPMiddleware
+                           'https://unpkg.com',
+                           'https://cdn.jsdelivr.net'],  # Added for Swagger UI CSS
         'frame-ancestors': ["'none'"],
     }
 }

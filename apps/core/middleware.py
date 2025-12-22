@@ -193,6 +193,7 @@ class RelaxedCSPMiddleware:
         These pages require 'unsafe-inline' for styles due to:
         - Django Admin: uses inline styles
         - /analysis/: uses vis-network which injects <style> elements dynamically
+        - /api/docs/: Swagger UI requires inline scripts and styles
         """
         path = request.path
         return (
@@ -205,7 +206,10 @@ class RelaxedCSPMiddleware:
             path.startswith('/analysis/') or
             path.startswith('/en/analysis/') or
             path.startswith('/es/analysis/') or
-            path.startswith('/pt/analysis/')
+            path.startswith('/pt/analysis/') or
+            # Swagger UI documentation
+            path.startswith('/api/docs/') or
+            path == '/api/docs'
         )
     
     def _apply_relaxed_csp_headers(self, response):
@@ -248,6 +252,25 @@ class RelaxedCSPMiddleware:
         else:
             # Add style-src if it doesn't exist
             existing_csp += "; style-src 'self' 'unsafe-inline'"
+        
+        # Modify script-src to add unsafe-inline for Swagger UI
+        script_src_pattern = r"script-src\s+([^;]+)"
+        script_src_match = re.search(script_src_pattern, existing_csp)
+        if script_src_match:
+            script_src_content = script_src_match.group(1)
+            if "'unsafe-inline'" not in script_src_content:
+                # Check if nonce is present, if so keep it
+                if nonce_value:
+                    modified_script_src = f"script-src {script_src_content} 'unsafe-inline' 'nonce-{nonce_value}'"
+                else:
+                    modified_script_src = f"script-src {script_src_content} 'unsafe-inline'"
+                existing_csp = re.sub(script_src_pattern, modified_script_src, existing_csp)
+        else:
+            # Add script-src if it doesn't exist
+            if nonce_value:
+                existing_csp += f"; script-src 'self' 'unsafe-inline' 'nonce-{nonce_value}'"
+            else:
+                existing_csp += "; script-src 'self' 'unsafe-inline'"
         
         # Replace style-src-elem
         style_src_elem_pattern = r"style-src-elem\s+([^;]+)"

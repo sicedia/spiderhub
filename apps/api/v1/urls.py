@@ -61,6 +61,9 @@ urlpatterns = [
     path('documents/<int:pk>/', DocumentDetailAPIView.as_view(), name='document-detail'),
     path('documents/<int:pk>/related/', RelatedDocumentsAPIView.as_view(), name='document-related'),
     
+    # Events
+    path('events/', include('apps.events.urls')),
+    
     # Search (include search app)
     path('search/', include('apps.search.urls')),
 ]
