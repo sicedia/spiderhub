@@ -44,6 +44,73 @@
       </ul>
     </div>
     
+    <!-- Quick Filters -->
+    <div class="quick-filters" role="region" aria-label="{% trans "Quick filters" %}">
+      <div class="quick-filters__container">
+        <!-- Event Format -->
+        <div class="quick-filter-group">
+          <label class="quick-filter-group__label">{% trans "Format" %}</label>
+          <div class="quick-filter-buttons">
+            <button 
+              type="button" 
+              class="quick-filter-button" 
+              data-filter-type="event_format" 
+              data-value="presencial"
+              aria-pressed="false"
+            >
+              {% trans "Presencial" %}
+            </button>
+            <button 
+              type="button" 
+              class="quick-filter-button" 
+              data-filter-type="event_format" 
+              data-value="virtual"
+              aria-pressed="false"
+            >
+              {% trans "Virtual" %}
+            </button>
+            <button 
+              type="button" 
+              class="quick-filter-button" 
+              data-filter-type="event_format" 
+              data-value="hybrid"
+              aria-pressed="false"
+            >
+              {% trans "Hybrid" %}
+            </button>
+          </div>
+        </div>
+        
+        <!-- Country -->
+        <div class="quick-filter-group">
+          <label for="quick-filter-country" class="quick-filter-group__label">{% trans "Country" %}</label>
+          <select 
+            id="quick-filter-country" 
+            class="quick-filter-select" 
+            data-filter-type="country"
+            aria-label="{% trans "Filter by country" %}"
+          >
+            <option value="">{% trans "All countries" %}</option>
+            <!-- Options loaded via JavaScript -->
+          </select>
+        </div>
+        
+        <!-- Organization -->
+        <div class="quick-filter-group">
+          <label for="quick-filter-organization" class="quick-filter-group__label">{% trans "Organization" %}</label>
+          <select 
+            id="quick-filter-organization" 
+            class="quick-filter-select" 
+            data-filter-type="organization"
+            aria-label="{% trans "Filter by organization" %}"
+          >
+            <option value="">{% trans "All organizations" %}</option>
+            <!-- Options loaded via JavaScript -->
+          </select>
+        </div>
+      </div>
+    </div>
+    
     <!-- Results count - subtle and visible -->
     <div class="results-count-wrapper">
       <p id="results-count-top" class="results-count-top" aria-live="polite" aria-atomic="true">
@@ -96,24 +163,6 @@
           
           <!-- Accordion style filters - populated by JavaScript -->
           <div class="filter-accordion" id="filter-accordion">
-            <!-- Event Format -->
-            <div class="filter-group" data-filter-group="event_format">
-              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-event-format">
-                <h3 class="filter-group__title">{% trans "Event Format" %}</h3>
-                <div class="filter-group__count" data-count="event_format">-</div>
-                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div class="filter-group__content" id="filter-event-format">
-                <div class="filter-group__body">
-                  <div class="filter-options" id="filter-options-event-format">
-                    <!-- Options loaded via API -->
-                  </div>
-                </div>
-              </div>
-            </div>
-            
             <!-- Date Range -->
             <div class="filter-group" data-filter-group="period">
               <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-period">
@@ -140,56 +189,6 @@
                     <button class="filter-date-preset" type="button" data-years="1">{% trans "Last year" %}</button>
                     <button class="filter-date-preset" type="button" data-years="3">{% trans "Last 3 years" %}</button>
                     <button class="filter-date-preset" type="button" data-years="5">{% trans "Last 5 years" %}</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Countries -->
-            <div class="filter-group" data-filter-group="countries">
-              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-countries">
-                <h3 class="filter-group__title">{% trans "Countries" %}</h3>
-                <div class="filter-group__count" data-count="countries">-</div>
-                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div class="filter-group__content" id="filter-countries">
-                <div class="filter-group__body">
-                  <div class="filter-search">
-                    <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
-                    </svg>
-                    <input type="text" class="filter-search__input" placeholder="{% trans "Search country..." %}" aria-label="{% trans "Search countries" %}">
-                  </div>
-                  
-                  <div class="filter-options" id="filter-options-countries">
-                    <!-- Options loaded via API -->
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Organizations -->
-            <div class="filter-group" data-filter-group="organizations">
-              <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-organizations">
-                <h3 class="filter-group__title">{% trans "Organizations" %}</h3>
-                <div class="filter-group__count" data-count="organizations">-</div>
-                <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div class="filter-group__content" id="filter-organizations">
-                <div class="filter-group__body">
-                  <div class="filter-search">
-                    <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
-                    </svg>
-                    <input type="text" class="filter-search__input" placeholder="{% trans "Search organization..." %}" aria-label="{% trans "Search organizations" %}">
-                  </div>
-                  
-                  <div class="filter-options" id="filter-options-organizations">
-                    <!-- Options loaded via API -->
                   </div>
                 </div>
               </div>
@@ -245,15 +244,6 @@
               </div>
             </div>
             
-          </div>
-        </div>
-        
-        <div class="filter-actions">
-          <div class="filter-actions__secondary">
-            <button id="reset-filters" class="button button--secondary" type="button">{% trans "Reset" %}</button>
-          </div>
-          <div class="filter-actions__primary">
-            <button id="apply-filters" class="button button--primary" type="button">{% trans "Apply Filters" %}</button>
           </div>
         </div>
       </div>

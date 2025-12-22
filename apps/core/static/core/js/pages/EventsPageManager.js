@@ -56,6 +56,12 @@ export class EventsPageManager extends BasePageManager {
       searchButton: DOMUtils.getElement('#search-button'),
       suggestionsList: DOMUtils.getElement('#suggestions-list'),
       
+      // Quick filters
+      quickFilters: DOMUtils.getElement('.quick-filters'),
+      formatButtons: DOMUtils.getElements('.quick-filter-button[data-filter-type="event_format"]'),
+      countrySelect: DOMUtils.getElement('#quick-filter-country'),
+      organizationSelect: DOMUtils.getElement('#quick-filter-organization'),
+      
       // Results count
       resultsCountTop: DOMUtils.getElement('#results-count-top'),
       
@@ -66,8 +72,9 @@ export class EventsPageManager extends BasePageManager {
       filterAccordion: DOMUtils.getElement('#filter-accordion'),
       filtersLoading: DOMUtils.getElement('#filters-loading'),
       clearFilters: DOMUtils.getElement('#clear-filters'),
-      resetFilters: DOMUtils.getElement('#reset-filters'),
-      applyFilters: DOMUtils.getElement('#apply-filters'),
+      startAtAfter: DOMUtils.getElement('#start_at_after'),
+      startAtBefore: DOMUtils.getElement('#start_at_before'),
+      datePresets: DOMUtils.getElements('.filter-date-preset'),
       
       // Results elements
       loading: DOMUtils.getElement('#events-loading'),
@@ -182,9 +189,111 @@ export class EventsPageManager extends BasePageManager {
     // Cache elements before loading data
     this.cacheElements();
     
-    // Hide filters loading state (filters are not implemented yet, or will be loaded differently)
+    // Hide filters loading state
     if (this.elements.filtersLoading) {
       this.elements.filtersLoading.hidden = true;
+    }
+    
+    // Initialize quick filters (load countries and organizations)
+    await this.initializeQuickFilters();
+  }
+
+  /**
+   * Initialize quick filters
+   */
+  async initializeQuickFilters() {
+    this.logger.debug('Initializing quick filters');
+    
+    // Load countries
+    await this.loadCountries();
+    
+    // Load organizations from events
+    await this.loadOrganizations();
+  }
+
+  /**
+   * Load countries for quick filter
+   */
+  async loadCountries() {
+    if (!this.elements.countrySelect) return;
+    
+    try {
+      this.logger.debug('Loading countries from events');
+      
+      // Load first page of events to extract unique countries with IDs
+      const response = await APIUtils.get(`${this.options.apiEndpoint}?published=true&page_size=100`);
+      const events = response.results || [];
+      
+      // Extract unique countries with ID and name
+      const countryMap = new Map();
+      events.forEach(event => {
+        if (event.country_id && event.country_name) {
+          if (!countryMap.has(event.country_id)) {
+            countryMap.set(event.country_id, event.country_name);
+          }
+        }
+      });
+      
+      // Clear existing options
+      this.elements.countrySelect.innerHTML = '<option value="">All countries</option>';
+      
+      // Sort countries by name
+      const sortedCountries = Array.from(countryMap.entries()).sort((a, b) => a[1].localeCompare(b[1]));
+      
+      // Add countries
+      sortedCountries.forEach(([id, name]) => {
+        const option = document.createElement('option');
+        option.value = id;
+        option.textContent = name;
+        this.elements.countrySelect.appendChild(option);
+      });
+      
+      this.logger.info('Countries loaded successfully', { count: sortedCountries.length });
+    } catch (error) {
+      this.logger.error('Failed to load countries', error);
+    }
+  }
+
+  /**
+   * Load organizations from events
+   */
+  async loadOrganizations() {
+    if (!this.elements.organizationSelect) return;
+    
+    try {
+      this.logger.debug('Loading organizations from events');
+      
+      // Load first page of events to extract unique organizations
+      const response = await APIUtils.get(`${this.options.apiEndpoint}?published=true&page_size=100`);
+      const events = response.results || [];
+      
+      // Extract unique organizations
+      const orgMap = new Map();
+      events.forEach(event => {
+        if (event.organization_id && event.organization_name) {
+          if (!orgMap.has(event.organization_id)) {
+            orgMap.set(event.organization_id, event.organization_name);
+          }
+        }
+      });
+      
+      // Clear existing options
+      this.elements.organizationSelect.innerHTML = '<option value="">{% trans "All organizations" %}</option>';
+      
+      // Sort organizations by name
+      const sortedOrgs = Array.from(orgMap.entries()).sort((a, b) => a[1].localeCompare(b[1]));
+      
+      // Add organizations
+      sortedOrgs.forEach(([id, name]) => {
+        const option = document.createElement('option');
+        option.value = id;
+        option.textContent = name;
+        this.elements.organizationSelect.appendChild(option);
+      });
+      
+      this.logger.info('Organizations loaded successfully', { count: sortedOrgs.length });
+    } catch (error) {
+      this.logger.error('Failed to load organizations', error);
     }
   }
 
@@ -226,24 +335,102 @@ export class EventsPageManager extends BasePageManager {
       });
     }
 
+    // Quick filter: Format buttons (toggle)
+    if (this.elements.formatButtons && this.elements.formatButtons.length > 0) {
+      this.elements.formatButtons.forEach(button => {
+        this.addEventListener(button, 'click', (e) => {
+          const value = button.dataset.value;
+          const isActive = button.getAttribute('aria-pressed') === 'true';
+          
+          // Toggle: if already active, deselect; otherwise, select this one and deselect others
+          if (isActive) {
+            button.setAttribute('aria-pressed', 'false');
+            button.classList.remove('active');
+            delete this.filters.event_format;
+          } else {
+            // Deselect all format buttons
+            this.elements.formatButtons.forEach(btn => {
+              btn.setAttribute('aria-pressed', 'false');
+              btn.classList.remove('active');
+            });
+            // Select clicked button
+            button.setAttribute('aria-pressed', 'true');
+            button.classList.add('active');
+            this.filters.event_format = value;
+          }
+          
+          this.currentPage = 1;
+          this.loadEvents();
+        });
+      });
+    }
+
+    // Quick filter: Country select
+    if (this.elements.countrySelect) {
+      this.addEventListener(this.elements.countrySelect, 'change', (e) => {
+        const value = e.target.value;
+        if (value) {
+          this.filters.country = parseInt(value);
+        } else {
+          delete this.filters.country;
+        }
+        this.currentPage = 1;
+        this.loadEvents();
+      });
+    }
+
+    // Quick filter: Organization select
+    if (this.elements.organizationSelect) {
+      this.addEventListener(this.elements.organizationSelect, 'change', (e) => {
+        const value = e.target.value;
+        if (value) {
+          this.filters.organization = parseInt(value);
+        } else {
+          delete this.filters.organization;
+        }
+        this.currentPage = 1;
+        this.loadEvents();
+      });
+    }
+
+    // Date range filters (auto-apply)
+    if (this.elements.startAtAfter) {
+      this.addEventListener(this.elements.startAtAfter, 'change', () => {
+        this.handleDateFilterChange();
+      });
+    }
+    
+    if (this.elements.startAtBefore) {
+      this.addEventListener(this.elements.startAtBefore, 'change', () => {
+        this.handleDateFilterChange();
+      });
+    }
+
+    // Date presets
+    if (this.elements.datePresets && this.elements.datePresets.length > 0) {
+      this.elements.datePresets.forEach(preset => {
+        this.addEventListener(preset, 'click', () => {
+          const years = parseInt(preset.dataset.years);
+          const endDate = new Date();
+          const startDate = new Date();
+          startDate.setFullYear(endDate.getFullYear() - years);
+          
+          if (this.elements.startAtAfter) {
+            this.elements.startAtAfter.value = startDate.toISOString().split('T')[0];
+          }
+          if (this.elements.startAtBefore) {
+            this.elements.startAtBefore.value = endDate.toISOString().split('T')[0];
+          }
+          
+          this.handleDateFilterChange();
+        });
+      });
+    }
+
     // Clear filters button
     if (this.elements.clearFilters) {
       this.addEventListener(this.elements.clearFilters, 'click', () => {
         this.clearAllFilters();
-      });
-    }
-
-    // Reset filters button
-    if (this.elements.resetFilters) {
-      this.addEventListener(this.elements.resetFilters, 'click', () => {
-        this.clearAllFilters();
-      });
-    }
-
-    // Apply filters button
-    if (this.elements.applyFilters) {
-      this.addEventListener(this.elements.applyFilters, 'click', () => {
-        this.applyFiltersFromAccordion();
       });
     }
 
@@ -266,78 +453,95 @@ export class EventsPageManager extends BasePageManager {
         this.loadEvents();
       });
     }
+
+    // Auto-apply filters from accordion (themes, actors)
+    this.setupAccordionAutoApply();
   }
 
   /**
-   * Apply filters from accordion
+   * Handle quick filter change
    */
-  applyFiltersFromAccordion() {
-    this.logger.debug('Applying filters from accordion');
+  handleQuickFilterChange(filterType, value) {
+    this.logger.debug('Quick filter changed', { filterType, value });
     
-    // Collect filters from accordion groups
-    const newFilters = {};
-    
-    // Event format
-    const formatInputs = document.querySelectorAll('#filter-options-event-format input[type="checkbox"]:checked');
-    if (formatInputs.length > 0) {
-      const formats = Array.from(formatInputs).map(input => input.value);
-      if (formats.length === 1) {
-        newFilters.event_format = formats[0];
-      }
+    if (filterType === 'country') {
+      this.filters.country = parseInt(value);
     }
     
-    // Date range
-    const startAtAfter = document.querySelector('#start_at_after')?.value;
-    const startAtBefore = document.querySelector('#start_at_before')?.value;
-    if (startAtAfter) {
-      newFilters.start_at_after = startAtAfter;
-    }
-    if (startAtBefore) {
-      newFilters.start_at_before = startAtBefore;
-    }
-    
-    // Country
-    const countryInputs = document.querySelectorAll('#filter-options-countries input[type="checkbox"]:checked');
-    if (countryInputs.length > 0) {
-      const countryIds = Array.from(countryInputs).map(input => parseInt(input.value));
-      if (countryIds.length === 1) {
-        newFilters.country = countryIds[0];
-      }
-    }
-    
-    // Organization
-    const orgInputs = document.querySelectorAll('#filter-options-organizations input[type="checkbox"]:checked');
-    if (orgInputs.length > 0) {
-      const orgIds = Array.from(orgInputs).map(input => parseInt(input.value));
-      if (orgIds.length === 1) {
-        newFilters.organization = orgIds[0];
-      }
-    }
-    
-    // Themes
-    const themeInputs = document.querySelectorAll('#filter-options-themes input[type="checkbox"]:checked');
-    if (themeInputs.length > 0) {
-      newFilters.theme = Array.from(themeInputs).map(input => parseInt(input.value));
-    }
-    
-    // Actors
-    const actorInputs = document.querySelectorAll('#filter-options-actors input[type="checkbox"]:checked');
-    if (actorInputs.length > 0) {
-      newFilters.actor = Array.from(actorInputs).map(input => parseInt(input.value));
-    }
-    
-    this.filters = newFilters;
     this.currentPage = 1;
-    
-    // Update FilterManager
-    const filterManager = this.getComponent('filterManager');
-    if (filterManager) {
-      filterManager.setFilters(newFilters);
-    }
-    
-    eventBus.emit(EVENTS.EVENTS_FILTERS_CHANGED, { filters: newFilters });
     this.loadEvents();
   }
+
+  /**
+   * Handle date filter change (auto-apply)
+   */
+  handleDateFilterChange() {
+    const startAtAfter = this.elements.startAtAfter?.value;
+    const startAtBefore = this.elements.startAtBefore?.value;
+    
+    if (startAtAfter) {
+      this.filters.start_at_after = startAtAfter;
+    } else {
+      delete this.filters.start_at_after;
+    }
+    
+    if (startAtBefore) {
+      this.filters.start_at_before = startAtBefore;
+    } else {
+      delete this.filters.start_at_before;
+    }
+    
+    this.currentPage = 1;
+    this.loadEvents();
+  }
+
+  /**
+   * Setup auto-apply for accordion filters (themes, actors)
+   */
+  setupAccordionAutoApply() {
+    // Listen for changes in theme checkboxes
+    const themeContainer = DOMUtils.getElement('#filter-options-themes');
+    if (themeContainer) {
+      // Use event delegation for dynamically loaded checkboxes
+      this.addEventListener(themeContainer, 'change', (e) => {
+        if (e.target.type === 'checkbox' && e.target.closest('#filter-options-themes')) {
+          this.handleAccordionFilterChange('theme');
+        }
+      });
+    }
+
+    // Listen for changes in actor checkboxes
+    const actorContainer = DOMUtils.getElement('#filter-options-actors');
+    if (actorContainer) {
+      this.addEventListener(actorContainer, 'change', (e) => {
+        if (e.target.type === 'checkbox' && e.target.closest('#filter-options-actors')) {
+          this.handleAccordionFilterChange('actor');
+        }
+      });
+    }
+  }
+
+  /**
+   * Handle accordion filter change (auto-apply)
+   */
+  handleAccordionFilterChange(filterType) {
+    const containerId = `#filter-options-${filterType === 'theme' ? 'themes' : 'actors'}`;
+    const container = DOMUtils.getElement(containerId);
+    if (!container) return;
+    
+    const checkedInputs = container.querySelectorAll('input[type="checkbox"]:checked');
+    const values = Array.from(checkedInputs).map(input => parseInt(input.value));
+    
+    if (values.length > 0) {
+      this.filters[filterType] = values;
+    } else {
+      delete this.filters[filterType];
+    }
+    
+    this.currentPage = 1;
+    this.loadEvents();
+  }
+
 
   /**
    * Load events from API
@@ -598,6 +802,37 @@ export class EventsPageManager extends BasePageManager {
     this.logger.debug('Clearing all filters');
     this.filters = {};
     this.currentPage = 1;
+    
+    // Clear quick filters UI
+    if (this.elements.formatButtons) {
+      this.elements.formatButtons.forEach(btn => {
+        btn.setAttribute('aria-pressed', 'false');
+        btn.classList.remove('active');
+      });
+    }
+    
+    if (this.elements.countrySelect) {
+      this.elements.countrySelect.value = '';
+    }
+    
+    if (this.elements.organizationSelect) {
+      this.elements.organizationSelect.value = '';
+    }
+    
+    if (this.elements.startAtAfter) {
+      this.elements.startAtAfter.value = '';
+    }
+    
+    if (this.elements.startAtBefore) {
+      this.elements.startAtBefore.value = '';
+    }
+    
+    // Clear accordion checkboxes
+    const themeInputs = document.querySelectorAll('#filter-options-themes input[type="checkbox"]:checked');
+    themeInputs.forEach(input => input.checked = false);
+    
+    const actorInputs = document.querySelectorAll('#filter-options-actors input[type="checkbox"]:checked');
+    actorInputs.forEach(input => input.checked = false);
     
     const filterManager = this.getComponent('filterManager');
     if (filterManager) {

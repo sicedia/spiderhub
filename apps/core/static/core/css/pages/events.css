@@ -17,6 +17,105 @@
 }
 
 /* ========================================
+   Quick Filters
+   ======================================== */
+
+.quick-filters {
+  background-color: var(--color-bg-primary);
+  padding: var(--space-md) 5%;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.quick-filters__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  align-items: flex-end;
+}
+
+.quick-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 150px;
+  flex: 0 1 auto;
+}
+
+.quick-filter-group__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.quick-filter-buttons {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.quick-filter-button {
+  padding: var(--space-2) var(--space-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  white-space: nowrap;
+}
+
+.quick-filter-button:hover {
+  background-color: var(--color-primary-50);
+  border-color: var(--color-primary-300);
+  color: var(--color-primary-700);
+}
+
+.quick-filter-button[aria-pressed="true"],
+.quick-filter-button.active {
+  background-color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+  color: var(--color-white);
+}
+
+.quick-filter-button[aria-pressed="true"]:hover,
+.quick-filter-button.active:hover {
+  background-color: var(--color-primary-700);
+  border-color: var(--color-primary-700);
+}
+
+.quick-filter-select {
+  padding: var(--space-2) var(--space-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.quick-filter-select:hover {
+  border-color: var(--color-primary-300);
+}
+
+.quick-filter-select:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px var(--color-primary-100);
+}
+
+/* ========================================
+   Events-specific List Item Styles
+   ======================================== */
+
+/* ========================================
    Events-specific List Item Styles
    ======================================== */
 
@@ -172,6 +271,34 @@
    ======================================== */
 
 @media (max-width: 768px) {
+  .quick-filters {
+    padding: var(--space-md) 3%;
+  }
+  
+  .quick-filters__container {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .quick-filter-group {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .quick-filter-select {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .quick-filter-buttons {
+    width: 100%;
+  }
+  
+  .quick-filter-button {
+    flex: 1;
+    min-width: 0;
+  }
+  
   .event-item {
     padding: var(--space-md);
   }
