@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'apps.core.middleware.NoCacheMiddleware',  # Mover después de CORS
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'apps.core.middleware.ForceEnglishDefaultMiddleware',  # Force English as default, ignore browser language (must be BEFORE LocaleMiddleware)
     'django.middleware.locale.LocaleMiddleware',  # i18n language detection and switching
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,7 +119,7 @@ USE_TZ = True
 LANGUAGES = [
     ('en', 'English'),
     ('es', 'Español'),
-    # ('pt', 'Português'),  # Desactivado temporalmente - archivos listos en locale/pt/
+    ('pt', 'Português'),
 ]
 LOCALE_PATHS = [BASE_DIR / 'locale']
 

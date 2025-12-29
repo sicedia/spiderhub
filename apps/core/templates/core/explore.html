@@ -48,7 +48,7 @@
           
           <div id="filter-groups" class="filter-groups">
             <!-- Loading state for filters -->
-            <div class="filter-loading" id="filters-loading">
+            <div class="filter-loading" id="filters-loading" hidden>
               <div class="filter-loading__spinner"></div>
               <span>{% trans "Loading filters..." %}</span>
             </div>
@@ -152,19 +152,17 @@
                         <!-- Chips will be populated by JavaScript -->
                       </div>
                       
-                      <!-- Country Typeahead -->
-                      <div class="filter-country-typeahead">
-                        <div class="filter-search">
-                          <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
-                          </svg>
-                          <input type="text" id="country-typeahead-input" class="filter-search__input" placeholder="{% trans "Type a country…" %}" aria-label="{% trans "Search countries" %}" autocomplete="off">
-                        </div>
-                        
-                        <!-- Typeahead Results -->
-                        <div class="filter-country-results" id="filter-country-results" role="listbox" aria-label="{% trans "Country search results" %}" hidden>
-                          <!-- Results will be populated by JavaScript -->
-                        </div>
+                      <!-- Country Search (same structure as Topics) -->
+                      <div class="filter-search">
+                        <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="currentColor"/>
+                        </svg>
+                        <input type="text" class="filter-search__input" placeholder="{% trans "Search country..." %}" aria-label="{% trans "Search countries" %}">
+                      </div>
+                      
+                      <!-- Country Options (same structure as Topics) -->
+                      <div class="filter-options" id="filter-options-countries">
+                        <!-- Options loaded via API -->
                       </div>
                     </div>
                   </div>

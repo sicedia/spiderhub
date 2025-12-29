@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SpiderHub 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-14 13:55-0500\n"
+"POT-Creation-Date: 2025-12-29 13:17-0500\n"
 "PO-Revision-Date: 2025-10-14 13:15-0500\n"
 "Last-Translator: SpiderHub Team\n"
 "Language-Team: Spanish\n"
@@ -15,6 +15,155 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\apps\core\static\core\js\EventsEntry.js:45
+msgid "Initialization Error"
+msgstr "Error de Inicialización"
+
+#: .\apps\core\static\core\js\EventsEntry.js:46
+msgid ""
+"Failed to initialize the events page. Please refresh the page or contact "
+"support."
+msgstr "Error al inicializar la página de eventos. Por favor, actualiza la página o contacta con soporte."
+
+#: .\apps\core\static\core\js\EventsEntry.js:47
+msgid "Reload Page"
+msgstr "Recargar Página"
+
+# ========================================
+# SDG CHARTS - TOOLTIPS
+# ========================================
+#: .\apps\core\static\core\js\components\charts\ActorsBarChart.js:127
+#: .\apps\core\static\core\js\components\charts\BeneficiariesBarChart.js:142
+#: .\apps\core\static\core\js\components\charts\BindingDonutChart.js:138
+#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:134
+#: .\apps\core\static\core\js\components\charts\ThemesBarChart.js:130
+msgid "Documents"
+msgstr "Documentos"
+
+#: .\apps\core\static\core\js\components\charts\ActorsBarChart.js:134
+msgid "Role"
+msgstr "Rol"
+
+#: .\apps\core\static\core\js\components\charts\ActorsBarChart.js:139
+msgid "Stakeholder participation"
+msgstr "Participación de partes interesadas"
+
+#: .\apps\core\static\core\js\components\charts\BeneficiariesBarChart.js:149
+msgid "Category"
+msgstr "Categoría"
+
+#: .\apps\core\static\core\js\components\charts\BeneficiariesBarChart.js:154
+msgid "Who benefits from cooperation"
+msgstr "Quién se beneficia de la cooperación"
+
+#: .\apps\core\static\core\js\components\charts\BindingDonutChart.js:146
+msgid "Strength"
+msgstr "Fuerza"
+
+#: .\apps\core\static\core\js\components\charts\BindingDonutChart.js:151
+msgid "Legal framework classification"
+msgstr "Clasificación del marco legal"
+
+# ========================================
+# SDG CHARTS - TOOLTIPS
+# ========================================
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:140
+#, fuzzy
+#| msgid "Documents"
+msgid "Documents Led"
+msgstr "Documentos"
+
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:146
+msgid "European Union"
+msgstr "Unión Europea"
+
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:147
+msgid "Latin America & Caribbean"
+msgstr "América Latina y el Caribe"
+
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:148
+msgid "Other Region"
+msgstr "Otra Región"
+
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:150
+msgid "Region"
+msgstr "Región"
+
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:150
+msgid "Code"
+msgstr "Código"
+
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:153
+msgid "Countries leading digital cooperation initiatives"
+msgstr "Países que lideran iniciativas de cooperación digital"
+
+#: .\apps\core\static\core\js\components\charts\SDGGlobalBarChart.js:137
+msgid "Global Relevance"
+msgstr "Relevancia Global"
+
+#: .\apps\core\static\core\js\components\charts\SDGGlobalBarChart.js:148
+msgid "Impact across entire corpus (docs without SDG = 0)"
+msgstr "Impacto en todo el corpus (docs sin ODS = 0)"
+
+#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:134
+msgid "of max"
+msgstr "del máximo"
+
+#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:137
+msgid "Avg Intensity"
+msgstr "Intensidad Promedio"
+
+#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:148
+msgid "About this SDG"
+msgstr "Acerca de este ODS"
+
+#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:153
+msgid "Part of UN's 2030 Agenda for Sustainable Development"
+msgstr "Parte de la Agenda 2030 de la ONU para el Desarrollo Sostenible"
+
+#: .\apps\core\static\core\js\components\charts\ThemesBarChart.js:137
+msgid "Focus"
+msgstr "Enfoque"
+
+#: .\apps\core\static\core\js\components\charts\ThemesBarChart.js:142
+msgid "Digital cooperation themes"
+msgstr "Temas de cooperación digital"
+
+# ========================================
+# TIMELINE CHART - TOOLTIPS & LABELS
+# ========================================
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:76
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:192
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:200
+msgid "Total Documents"
+msgstr "Documentos Totales"
+
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:91
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:184
+msgid "Agreements"
+msgstr "Acuerdos"
+
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:106
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:185
+msgid "Dialogues"
+msgstr "Diálogos"
+
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:183
+msgid "Total"
+msgstr "Total"
+
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:187
+msgid "documents"
+msgstr "documentos"
+
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:234
+msgid "Year"
+msgstr "Año"
+
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:264
+msgid "Number of Documents"
+msgstr "Número de Documentos"
 
 # Date Range Filter
 #: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:39
@@ -53,6 +202,12 @@ msgstr "Hoy"
 msgid "Apply"
 msgstr "Aplicar"
 
+#: .\apps\core\static\core\js\components\filters\FilterGroups.js:551
+#, fuzzy
+#| msgid "No documents found"
+msgid "No countries found"
+msgstr "No se encontraron documentos"
+
 # Search Components
 #: .\apps\core\static\core\js\components\filters\SearchBox.js:29
 msgid "Search documents..."
@@ -70,6 +225,19 @@ msgstr "Intenta ajustar tu búsqueda o filtros para encontrar lo que buscas."
 msgid "Loading documents..."
 msgstr "Cargando documentos..."
 
+#: .\apps\core\static\core\js\components\results\ResultsList.js:237
+msgid "View details for"
+msgstr "Ver detalles de"
+
+# Result Actions
+#: .\apps\core\static\core\js\components\results\ResultsList.js:238
+#: .\apps\core\static\core\js\components\search\DocumentResults.js:253
+#: .\apps\core\static\core\js\coordinators\HomeDataCoordinator.js:193
+#: .\apps\core\static\core\js\coordinators\HomeDataCoordinator.js:224
+#: .\apps\core\static\core\js\coordinators\HomeDataCoordinator.js:343
+msgid "View Details"
+msgstr "Ver Detalles"
+
 #: .\apps\core\static\core\js\components\search\DocumentResults.js:26
 msgid "No documents match your criteria."
 msgstr "Ningún documento coincide con tus criterios."
@@ -82,76 +250,1034 @@ msgstr "Cargando…"
 msgid "Error loading results."
 msgstr "Error al cargar resultados."
 
-# Result Actions
-#: .\apps\core\static\core\js\components\results\ResultsList.js:238
-#: .\apps\core\static\core\js\components\search\DocumentResults.js:261
-msgid "View Details"
-msgstr "Ver Detalles"
+#: .\apps\core\static\core\js\coordinators\HomeDataCoordinator.js:188
+msgid "No summary available."
+msgstr "No hay resumen disponible."
 
-#: .\apps\core\static\core\js\components\results\ResultsList.js:237
-msgid "View details for"
-msgstr "Ver detalles de"
+#: .\apps\core\static\core\js\pages\EventsPageManager.js:224
+msgid "Failed to load events"
+msgstr "Error al cargar eventos"
 
-# ========================================
-# SDG CHARTS - TOOLTIPS
-# ========================================
+#: .\apps\core\static\core\js\pages\EventsPageManager.js:293
+msgid "Upcoming"
+msgstr "Próximos"
 
-#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:134
-msgid "Documents"
-msgstr "Documentos"
+#: .\apps\core\static\core\js\pages\EventsPageManager.js:294
+msgid "Past"
+msgstr "Pasado"
 
-#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:134
-msgid "of max"
-msgstr "del máximo"
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "arrayExpression"
+msgstr ""
 
-#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:137
-msgid "Avg Intensity"
-msgstr "Intensidad Promedio"
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "assignmentExpression"
+msgstr ""
 
-#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:148
-msgid "About this SDG"
-msgstr "Acerca de este ODS"
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "binaryExpression"
+msgstr ""
 
-#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:153
-msgid "Part of UN's 2030 Agenda for Sustainable Development"
-msgstr "Parte de la Agenda 2030 de la ONU para el Desarrollo Sostenible"
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "interpreterDirective"
+msgstr ""
 
-#: .\apps\core\static\core\js\components\charts\SDGGlobalBarChart.js:137
-msgid "Global Relevance"
-msgstr "Relevancia Global"
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "directive"
+msgstr ""
 
-#: .\apps\core\static\core\js\components\charts\SDGGlobalBarChart.js:148
-msgid "Impact across entire corpus (docs without SDG = 0)"
-msgstr "Impacto en todo el corpus (docs sin ODS = 0)"
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "directiveLiteral"
+msgstr ""
 
-# ========================================
-# TIMELINE CHART - TOOLTIPS & LABELS
-# ========================================
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "blockStatement"
+msgstr ""
 
-#: .\apps\core\static\core\js\components\charts\TimelineChart.js:76
-msgid "Total Documents"
-msgstr "Documentos Totales"
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "breakStatement"
+msgstr ""
 
-#: .\apps\core\static\core\js\components\charts\TimelineChart.js:91
-msgid "Agreements"
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "callExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "catchClause"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "conditionalExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "continueStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "debuggerStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "doWhileStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "emptyStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "expressionStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "file"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "forInStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "forStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "functionDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "functionExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "identifier"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "ifStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "labeledStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "stringLiteral"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "numericLiteral"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "nullLiteral"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "booleanLiteral"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "regExpLiteral"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "logicalExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "memberExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "newExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "program"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "objectExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "objectMethod"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "objectProperty"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+#, fuzzy
+#| msgid "Agreements"
+msgid "restElement"
 msgstr "Acuerdos"
 
-#: .\apps\core\static\core\js\components\charts\TimelineChart.js:106
-msgid "Dialogues"
-msgstr "Diálogos"
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "returnStatement"
+msgstr ""
 
-#: .\apps\core\static\core\js\components\charts\TimelineChart.js:187
-msgid "documents"
-msgstr "documentos"
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "sequenceExpression"
+msgstr ""
 
-#: .\apps\core\static\core\js\components\charts\TimelineChart.js:183
-msgid "Total"
-msgstr "Total"
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "parenthesizedExpression"
+msgstr ""
 
-#: .\apps\core\static\core\js\components\charts\TimelineChart.js:234
-msgid "Year"
-msgstr "Año"
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "switchCase"
+msgstr ""
 
-#: .\apps\core\static\core\js\components\charts\TimelineChart.js:264
-msgid "Number of Documents"
-msgstr "Número de Documentos"
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "switchStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "thisExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "throwStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tryStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "unaryExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "updateExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "variableDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "variableDeclarator"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "whileStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "withStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "assignmentPattern"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "arrayPattern"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "arrowFunctionExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "classBody"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "classExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "classDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "exportAllDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "exportDefaultDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "exportNamedDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "exportSpecifier"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "forOfStatement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "importDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "importDefaultSpecifier"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "importNamespaceSpecifier"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "importSpecifier"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "importExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "metaProperty"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "classMethod"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "objectPattern"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+#, fuzzy
+#| msgid "Agreements"
+msgid "spreadElement"
+msgstr "Acuerdos"
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "super"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "taggedTemplateExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "templateElement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "templateLiteral"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "yieldExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "awaitExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "import"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "bigIntLiteral"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "exportNamespaceSpecifier"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "optionalMemberExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "optionalCallExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "classProperty"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "classAccessorProperty"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "classPrivateProperty"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "classPrivateMethod"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "privateName"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "staticBlock"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "importAttribute"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "anyTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "arrayTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "booleanTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "booleanLiteralTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "nullLiteralTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "classImplements"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "declareClass"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "declareFunction"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "declareInterface"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "declareModule"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "declareModuleExports"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "declareTypeAlias"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "declareOpaqueType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "declareVariable"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "declareExportDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "declareExportAllDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "declaredPredicate"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "existsTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "functionTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "functionTypeParam"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "genericTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "inferredPredicate"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "interfaceExtends"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "interfaceDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "interfaceTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "intersectionTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "mixedTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "emptyTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "nullableTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "numberLiteralTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "numberTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "objectTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "objectTypeInternalSlot"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "objectTypeCallProperty"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "objectTypeIndexer"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "objectTypeProperty"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "objectTypeSpreadProperty"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "opaqueType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "qualifiedTypeIdentifier"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "stringLiteralTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "stringTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "symbolTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "thisTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tupleTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "typeofTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "typeAlias"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "typeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "typeCastExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "typeParameter"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "typeParameterDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "typeParameterInstantiation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "unionTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "variance"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "voidTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "enumDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "enumBooleanBody"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "enumNumberBody"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "enumStringBody"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "enumSymbolBody"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "enumBooleanMember"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "enumNumberMember"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "enumStringMember"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "enumDefaultedMember"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "indexedAccessType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "optionalIndexedAccessType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxAttribute"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxClosingElement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxElement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxEmptyExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxExpressionContainer"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxSpreadChild"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxIdentifier"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxMemberExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxNamespacedName"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxOpeningElement"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxSpreadAttribute"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxText"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxFragment"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxOpeningFragment"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "jsxClosingFragment"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "noop"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "placeholder"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "v8IntrinsicIdentifier"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "argumentPlaceholder"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "bindExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "decorator"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "doExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "exportDefaultSpecifier"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "recordExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tupleExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "decimalLiteral"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "moduleExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "topicReference"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "pipelineTopicExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "pipelineBareFunction"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "pipelinePrimaryTopicReference"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "voidPattern"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsParameterProperty"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsDeclareFunction"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsDeclareMethod"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsQualifiedName"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsCallSignatureDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsConstructSignatureDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsPropertySignature"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsMethodSignature"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsIndexSignature"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsAnyKeyword"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsBooleanKeyword"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsBigIntKeyword"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsIntrinsicKeyword"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsNeverKeyword"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsNullKeyword"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsNumberKeyword"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsObjectKeyword"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsStringKeyword"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsSymbolKeyword"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsUndefinedKeyword"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsUnknownKeyword"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsVoidKeyword"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsThisType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsFunctionType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsConstructorType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsTypeReference"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsTypePredicate"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsTypeQuery"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsTypeLiteral"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsArrayType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsTupleType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsOptionalType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsRestType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsNamedTupleMember"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsUnionType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsIntersectionType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsConditionalType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsInferType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsParenthesizedType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsTypeOperator"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsIndexedAccessType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsMappedType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsTemplateLiteralType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsLiteralType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsExpressionWithTypeArguments"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsInterfaceDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsInterfaceBody"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsTypeAliasDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsInstantiationExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsAsExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsSatisfiesExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsTypeAssertion"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsEnumBody"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsEnumDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsEnumMember"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsModuleDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsModuleBlock"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsImportType"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsImportEqualsDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsExternalModuleReference"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsNonNullExpression"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsExportAssignment"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsNamespaceExportDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsTypeAnnotation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsTypeParameterInstantiation"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsTypeParameterDeclaration"
+msgstr ""
+
+#: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
+msgid "tsTypeParameter"
+msgstr ""

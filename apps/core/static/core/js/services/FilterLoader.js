@@ -33,17 +33,25 @@ export class FilterLoader {
       this.logger.info('Filters loaded successfully', this.filtersData);
       
       this.renderFilters();
+      
+      // Small delay to ensure DOM is updated before hiding
+      await new Promise(resolve => setTimeout(resolve, 50));
+      
+      // Ensure loading is hidden after rendering
       this.hideLoadingState();
       
       return this.filtersData;
       
     } catch (error) {
       this.logger.error('Failed to load filters from API', error);
+      // Always hide loading state, even on error
       this.hideLoadingState();
       this.showErrorState();
       return null;
     } finally {
       this.isLoading = false;
+      // Double-check that loading is hidden in finally block
+      this.hideLoadingState();
     }
   }
 
@@ -52,7 +60,13 @@ export class FilterLoader {
    */
   showLoadingState() {
     const loading = document.getElementById('filters-loading');
-    if (loading) loading.hidden = false;
+    if (loading) {
+      loading.hidden = false;
+      loading.style.display = ''; // Remove inline display:none if present
+      this.logger.debug('Loading state shown');
+    } else {
+      this.logger.warn('filters-loading element not found when trying to show');
+    }
     
     const accordion = document.getElementById('filter-accordion');
     if (accordion) accordion.style.opacity = '0.5';
@@ -63,10 +77,18 @@ export class FilterLoader {
    */
   hideLoadingState() {
     const loading = document.getElementById('filters-loading');
-    if (loading) loading.hidden = true;
+    if (loading) {
+      loading.hidden = true;
+      loading.style.display = 'none'; // Force hide with CSS as well
+      this.logger.debug('Loading state hidden');
+    } else {
+      this.logger.warn('filters-loading element not found when trying to hide');
+    }
     
     const accordion = document.getElementById('filter-accordion');
-    if (accordion) accordion.style.opacity = '1';
+    if (accordion) {
+      accordion.style.opacity = '1';
+    }
   }
 
   /**
@@ -118,13 +140,9 @@ export class FilterLoader {
       'agreement-type'
     );
     
-    // Render countries
-    this.renderFilterOptions(
-      'filter-options-countries',
-      this.filtersData.available_countries || [],
-      'country',
-      'country'
-    );
+    // Countries are now handled via typeahead in FilterGroups
+    // No need to render them as checkboxes anymore
+    // The typeahead will load countries dynamically based on role
     
     // Render actors
     this.renderFilterOptions(

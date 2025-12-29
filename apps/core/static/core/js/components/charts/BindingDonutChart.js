@@ -6,6 +6,7 @@
 
 import { BaseChart } from '../../core/base/BaseChart.js';
 import { eventBus } from '../../core/events/EventBus.js';
+import { gettext as _ } from '../../core/i18n/i18n.js';
 
 export class BindingDonutChart extends BaseChart {
   constructor(element, options = {}) {
@@ -134,7 +135,7 @@ export class BindingDonutChart extends BaseChart {
                 const value = context.parsed || 0;
                 const total = context.dataset.data.reduce((a, b) => a + b, 0);
                 const percentage = ((value / total) * 100).toFixed(1);
-                return `📄 Documents: ${value} (${percentage}%)`;
+                return `${_('Documents')}: ${value} (${percentage}%)`;
               },
               afterLabel: (context) => {
                 const index = context.dataIndex;
@@ -142,12 +143,12 @@ export class BindingDonutChart extends BaseChart {
                 const bindingInfo = this.options.bindingInfo?.[key];
                 
                 if (bindingInfo?.description) {
-                  return `\n💡 ${bindingInfo.description}\n📊 Strength: ${bindingInfo.strength}`;
+                  return `\n💡 ${bindingInfo.description}\n📊 ${_('Strength')}: ${bindingInfo.strength}`;
                 }
                 return '';
               },
               footer: () => {
-                return '\n⚖️ Legal framework classification';
+                return `\n⚖️ ${_('Legal framework classification')}`;
               }
             }
           }

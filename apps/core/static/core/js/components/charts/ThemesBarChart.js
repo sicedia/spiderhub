@@ -6,6 +6,7 @@
 
 import { BaseChart } from '../../core/base/BaseChart.js';
 import { eventBus } from '../../core/events/EventBus.js';
+import { gettext as _ } from '../../core/i18n/i18n.js';
 
 export class ThemesBarChart extends BaseChart {
   constructor(element, options = {}) {
@@ -126,19 +127,19 @@ export class ThemesBarChart extends BaseChart {
                 return label;
               },
               label: (context) => {
-                return `📄 Documents: ${context.parsed.x}`;
+                return `${_('Documents')}: ${context.parsed.x}`;
               },
               afterLabel: (context) => {
                 const label = context.label;
                 const themeInfo = this.options.themeInfo?.[label];
                 
                 if (themeInfo?.description) {
-                  return `\n💡 ${themeInfo.description}\n🎯 Focus: ${themeInfo.focus}`;
+                  return `\n💡 ${themeInfo.description}\n🎯 ${_('Focus')}: ${themeInfo.focus}`;
                 }
                 return '';
               },
               footer: () => {
-                return '\n🌐 Digital cooperation themes';
+                return `\n🌐 ${_('Digital cooperation themes')}`;
               }
             }
           }

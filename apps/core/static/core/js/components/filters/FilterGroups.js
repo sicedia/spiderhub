@@ -4,6 +4,8 @@
  * Following the existing JavaScript architecture
  */
 
+import { gettext as _ } from '../../core/i18n/i18n.js';
+
 export class FilterGroups {
   constructor(container) {
     this.container = container;
@@ -15,7 +17,7 @@ export class FilterGroups {
   init() {
     this.bindEvents();
     this.initializeFilterGroups();
-    this.initializeCountryTypeahead();
+    this.initializeCountryOptions();
     this.initializePeriodPresets();
     this.initializeDateInputs();
     this.initializeSegmentedControl();
@@ -66,11 +68,6 @@ export class FilterGroups {
       // Segmented control for country role
       if (e.target.classList.contains('filter-role-segmented__option')) {
         this.handleRoleSegmented(e.target);
-      }
-      
-      // Country typeahead result selection
-      if (e.target.classList.contains('filter-country-result')) {
-        this.handleCountrySelect(e.target);
       }
       
       // Legal filter chips
@@ -277,6 +274,11 @@ export class FilterGroups {
     if (option.dataset.country) return option.dataset.country;
     if (option.dataset.actor) return option.dataset.actor;
     if (option.dataset.topic) return option.dataset.topic;
+    // For country options, also check the label text
+    if (option.querySelector('input[name="country"]')) {
+      const label = option.querySelector('.filter-option__label');
+      return label ? label.textContent : null;
+    }
     return null;
   }
 
@@ -285,6 +287,15 @@ export class FilterGroups {
     const filterValue = checkbox.value;
     const filterLabel = checkbox.closest('.filter-option').querySelector('.filter-option__label').textContent;
     const filterCategory = this.getFilterCategory(checkbox);
+    
+    // Special handling for country checkboxes - add/remove chips
+    if (filterName === 'country') {
+      if (checkbox.checked) {
+        this.addCountryChip(filterValue, filterLabel);
+      } else {
+        this.removeCountryChip(filterValue);
+      }
+    }
     
     // Dispatch event for filter chips to handle
     const event = new CustomEvent('filterToggle', {
@@ -325,7 +336,7 @@ export class FilterGroups {
         checkbox.disabled = true;
       });
       
-      const response = await fetch(`/api/countries-by-role/?role=${role}`);
+      const response = await fetch(`/api/v1/countries/by-role/?role=${role}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -474,145 +485,115 @@ export class FilterGroups {
   }
   
   /**
-   * Initialize country typeahead
+   * Initialize country options (similar to Topics)
    */
-  initializeCountryTypeahead() {
-    const typeaheadInput = this.container.querySelector('#country-typeahead-input');
-    if (!typeaheadInput) return;
-    
-    this.countryTypeaheadData = [];
-    this.countryTypeaheadSelected = new Set();
-    this.countryTypeaheadResultsLimit = 15;
-    this.countryTypeaheadShown = 0;
-    
-    // Load countries when typeahead is focused
-    typeaheadInput.addEventListener('focus', () => {
-      if (this.countryTypeaheadData.length === 0) {
-        this.loadCountriesForTypeahead();
-      }
-    });
-    
-    // Handle input for typeahead
-    typeaheadInput.addEventListener('input', (e) => {
-      this.handleCountryTypeahead(e.target.value);
-    });
-    
-    // Close results when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!typeaheadInput.closest('.filter-country-typeahead')?.contains(e.target)) {
-        const results = this.container.querySelector('#filter-country-results');
-        if (results) results.hidden = true;
-      }
-    });
+  initializeCountryOptions() {
+    // Load countries on initialization, but don't block if container doesn't exist yet
+    // This will be called after FilterLoader finishes, so container should exist
+    const container = this.container.querySelector('#filter-options-countries');
+    if (container) {
+      this.loadCountriesAsOptions();
+    } else {
+      // If container doesn't exist yet, wait a bit and try again
+      setTimeout(() => {
+        const retryContainer = this.container.querySelector('#filter-options-countries');
+        if (retryContainer) {
+          this.loadCountriesAsOptions();
+        }
+      }, 100);
+    }
   }
   
   /**
-   * Load countries for typeahead
+   * Show loading state for countries
    */
-  async loadCountriesForTypeahead() {
+  showCountriesLoading() {
+    const container = this.container.querySelector('#filter-options-countries');
+    if (!container) return;
+    
+    container.innerHTML = `
+      <div class="filter-loading">
+        <div class="filter-loading__spinner"></div>
+        <span class="filter-loading__text">${_('Loading countries...')}</span>
+      </div>
+    `;
+  }
+  
+  /**
+   * Load countries as checkbox options (similar to Topics)
+   */
+  async loadCountriesAsOptions(showLoading = false) {
+    const container = this.container.querySelector('#filter-options-countries');
+    if (!container) return;
+    
+    // Show loading state if requested
+    if (showLoading) {
+      this.showCountriesLoading();
+    }
+    
     try {
       const roleInput = this.container.querySelector('#country-role-select');
       const role = roleInput?.value || 'any';
-      const response = await fetch(`/api/countries-by-role/?role=${role}`);
+      const response = await fetch(`/api/v1/countries/by-role/?role=${role}`);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       
       const data = await response.json();
-      this.countryTypeaheadData = data.countries || [];
-      this.handleCountryTypeahead('');
-    } catch (error) {
-      console.error('Error loading countries for typeahead:', error);
-    }
-  }
-  
-  /**
-   * Handle country typeahead search
-   */
-  handleCountryTypeahead(searchTerm) {
-    const resultsContainer = this.container.querySelector('#filter-country-results');
-    if (!resultsContainer) return;
-    
-    const normalizedSearch = this.normalizeSearchTerm(searchTerm);
-    const filtered = this.countryTypeaheadData.filter(country => {
-      const normalizedName = this.normalizeSearchTerm(country.name);
-      return normalizedName.includes(normalizedSearch) && 
-             !this.countryTypeaheadSelected.has(country.iso3);
-    });
-    
-    // Limit results
-    const limited = filtered.slice(0, this.countryTypeaheadResultsLimit);
-    this.countryTypeaheadShown = limited.length;
-    const hasMore = filtered.length > this.countryTypeaheadResultsLimit;
-    
-    // Render results
-    resultsContainer.innerHTML = '';
-    if (limited.length === 0 && searchTerm) {
-      resultsContainer.innerHTML = '<div class="filter-country-result">No countries found</div>';
-      resultsContainer.hidden = false;
-      return;
-    }
-    
-    limited.forEach(country => {
-      const result = document.createElement('div');
-      result.className = 'filter-country-result';
-      result.dataset.iso3 = country.iso3;
-      result.innerHTML = `
-        <span class="filter-country-result__name">${country.name}</span>
-        <span class="filter-country-result__count">${country.count || 0}</span>
-      `;
-      resultsContainer.appendChild(result);
-    });
-    
-    if (hasMore) {
-      const showMore = document.createElement('div');
-      showMore.className = 'filter-country-results__show-more';
-      showMore.textContent = `Show more (${filtered.length - this.countryTypeaheadResultsLimit} more)`;
-      showMore.addEventListener('click', () => {
-        this.countryTypeaheadResultsLimit += 15;
-        this.handleCountryTypeahead(searchTerm);
-      });
-      resultsContainer.appendChild(showMore);
-    }
-    
-    resultsContainer.hidden = limited.length === 0 && !searchTerm;
-  }
-  
-  /**
-   * Handle country selection from typeahead
-   */
-  handleCountrySelect(resultElement) {
-    const iso3 = resultElement.dataset.iso3;
-    const name = resultElement.querySelector('.filter-country-result__name').textContent;
-    
-    // Add to selected
-    this.countryTypeaheadSelected.add(iso3);
-    
-    // Add chip
-    this.addCountryChip(iso3, name);
-    
-    // Clear typeahead input
-    const typeaheadInput = this.container.querySelector('#country-typeahead-input');
-    if (typeaheadInput) {
-      typeaheadInput.value = '';
-      this.handleCountryTypeahead('');
-    }
-    
-    // Hide results
-    const resultsContainer = this.container.querySelector('#filter-country-results');
-    if (resultsContainer) resultsContainer.hidden = true;
-    
-    // Dispatch filter toggle event
-    const event = new CustomEvent('filterToggle', {
-      detail: {
-        filterName: 'country',
-        filterValue: iso3,
-        filterLabel: name,
-        filterCategory: 'Countries',
-        isChecked: true
+      const countries = data.countries || [];
+      
+      if (countries.length === 0) {
+        container.innerHTML = '<div class="filter-empty">No countries available</div>';
+        return;
       }
-    });
-    document.dispatchEvent(event);
-    
-    this.updateSelectedCount(null, 'countries');
+      
+      // Get currently selected countries from chips
+      const selectedCountries = new Set();
+      const chips = this.container.querySelectorAll('#filter-country-chips .filter-country-chip');
+      chips.forEach(chip => {
+        selectedCountries.add(chip.dataset.iso3);
+      });
+      
+      container.innerHTML = countries.map(country => {
+        const isChecked = selectedCountries.has(country.iso3);
+        return `
+          <div class="filter-option" data-country="${this.escapeHtml(country.name.toLowerCase())}">
+            <input
+              type="checkbox"
+              name="country"
+              value="${this.escapeHtml(country.iso3)}"
+              class="filter-option__checkbox"
+              id="country-${this.escapeHtml(country.iso3)}"
+              ${isChecked ? 'checked' : ''}
+            />
+            <label for="country-${this.escapeHtml(country.iso3)}" class="filter-option__label">${this.escapeHtml(country.name)}</label>
+            <span class="filter-option__count">${country.count || 0}</span>
+          </div>
+        `;
+      }).join('');
+      
+      // Update country group count
+      const countryGroup = this.container.querySelector('[data-filter-group="countries"]');
+      if (countryGroup) {
+        const countBadge = countryGroup.querySelector('.filter-group__count[data-count]');
+        if (countBadge) {
+          countBadge.setAttribute('data-count', countries.length.toString());
+        }
+      }
+    } catch (error) {
+      console.error('Error loading countries as options:', error);
+      if (container) {
+        container.innerHTML = '<div class="filter-error">Error loading countries</div>';
+      }
+    }
+  }
+  
+  /**
+   * Escape HTML for XSS prevention
+   */
+  escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
   }
   
   /**
@@ -641,12 +622,18 @@ export class FilterGroups {
    * Remove country chip
    */
   removeCountryChip(iso3) {
-    this.countryTypeaheadSelected.delete(iso3);
     const chip = this.container.querySelector(`#filter-country-chips .filter-country-chip[data-iso3="${iso3}"]`);
+    const name = chip?.querySelector('span')?.textContent.trim() || '';
+    
     if (chip) chip.remove();
     
+    // Uncheck the corresponding checkbox
+    const checkbox = this.container.querySelector(`input[name="country"][value="${iso3}"]`);
+    if (checkbox) {
+      checkbox.checked = false;
+    }
+    
     // Dispatch filter toggle event
-    const name = chip?.textContent.trim().replace('✕', '').trim() || '';
     const event = new CustomEvent('filterToggle', {
       detail: {
         filterName: 'country',
@@ -890,6 +877,10 @@ export class FilterGroups {
   async handleRoleSegmented(optionButton) {
     const role = optionButton.dataset.role;
     const hiddenInput = this.container.querySelector('#country-role-select');
+    const previousRole = hiddenInput?.value || 'any';
+    
+    // Only show loading if role actually changed
+    const roleChanged = role !== previousRole;
     
     // Update all segmented options
     this.container.querySelectorAll('.filter-role-segmented__option').forEach(btn => {
@@ -902,14 +893,42 @@ export class FilterGroups {
       hiddenInput.value = role;
     }
     
-    // Clear selected countries and reload
-    this.countryTypeaheadSelected.clear();
+    // Clear selected countries chips and uncheck all country checkboxes
     const chipsContainer = this.container.querySelector('#filter-country-chips');
-    if (chipsContainer) chipsContainer.innerHTML = '';
+    if (chipsContainer) {
+      // Get all chips before clearing
+      const chips = chipsContainer.querySelectorAll('.filter-country-chip');
+      chips.forEach(chip => {
+        const iso3 = chip.dataset.iso3;
+        // Uncheck the corresponding checkbox
+        const checkbox = this.container.querySelector(`input[name="country"][value="${iso3}"]`);
+        if (checkbox) {
+          checkbox.checked = false;
+        }
+        // Dispatch filter toggle event to remove from filter chips
+        const name = chip.textContent.trim().replace('✕', '').trim();
+        const event = new CustomEvent('filterToggle', {
+          detail: {
+            filterName: 'country',
+            filterValue: iso3,
+            filterLabel: name,
+            filterCategory: 'Countries',
+            isChecked: false
+          }
+        });
+        document.dispatchEvent(event);
+      });
+      chipsContainer.innerHTML = '';
+    }
     
-    // Reload countries for new role
-    this.countryTypeaheadData = [];
-    await this.loadCountriesForTypeahead();
+    // Uncheck all country checkboxes
+    const countryCheckboxes = this.container.querySelectorAll('input[name="country"]');
+    countryCheckboxes.forEach(checkbox => {
+      checkbox.checked = false;
+    });
+    
+    // Reload countries for new role (show loading if role changed)
+    await this.loadCountriesAsOptions(roleChanged);
     await this.updateCountryCounts(role);
     
     // Dispatch filter change
@@ -921,6 +940,9 @@ export class FilterGroups {
       }
     });
     document.dispatchEvent(event);
+    
+    // Update selected count
+    this.updateSelectedCount(null, 'countries');
   }
   
   /**

@@ -72,11 +72,25 @@ class CountriesByRoleAPIView(APIView):
     def get(self, request):
         role = request.GET.get('role', 'any')
         
-        countries_with_docs = Country.objects.filter(
-            Q(document__isnull=False) |
-            Q(lead_documents__isnull=False) |
-            Q(mentioned_in_documents__isnull=False)
-        ).distinct()
+        # Get all countries that appear in documents (any role)
+        # Collect country IDs from all three relationships
+        event_country_ids = Document.objects.filter(
+            event_country__isnull=False
+        ).values_list('event_country_id', flat=True).distinct()
+        
+        lead_country_ids = Document.objects.filter(
+            lead_country__isnull=False
+        ).values_list('lead_country_id', flat=True).distinct()
+        
+        involved_country_ids = Document.objects.filter(
+            countries_involved__isnull=False
+        ).values_list('countries_involved', flat=True).distinct()
+        
+        # Combine all country IDs
+        all_country_ids = set(list(event_country_ids) + list(lead_country_ids) + list(involved_country_ids))
+        
+        # Get all countries that have documents
+        countries_with_docs = Country.objects.filter(id__in=all_country_ids)
         
         countries_data = []
         for country in countries_with_docs:

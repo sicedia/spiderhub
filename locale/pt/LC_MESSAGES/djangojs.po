@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SpiderHub 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-14 14:56-0500\n"
-"PO-Revision-Date: 2025-10-14 15:00-0500\n"
+"POT-Creation-Date: 2025-12-29 13:17-0500\n"
+"PO-Revision-Date: 2025-12-29 14:05-0500\n"
 "Last-Translator: SpiderHub Team\n"
 "Language-Team: Portuguese\n"
 "Language: pt\n"
@@ -15,6 +15,147 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\apps\core\static\core\js\EventsEntry.js:45
+msgid "Initialization Error"
+msgstr "Erro de Inicialização"
+
+#: .\apps\core\static\core\js\EventsEntry.js:46
+msgid ""
+"Failed to initialize the events page. Please refresh the page or contact "
+"support."
+msgstr ""
+"Falha ao inicializar a página de eventos. Por favor, atualize a página ou "
+"entre em contato com o suporte."
+
+#: .\apps\core\static\core\js\EventsEntry.js:47
+msgid "Reload Page"
+msgstr "Recarregar Página"
+
+#: .\apps\core\static\core\js\components\charts\ActorsBarChart.js:127
+#: .\apps\core\static\core\js\components\charts\BeneficiariesBarChart.js:142
+#: .\apps\core\static\core\js\components\charts\BindingDonutChart.js:138
+#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:134
+#: .\apps\core\static\core\js\components\charts\ThemesBarChart.js:130
+msgid "Documents"
+msgstr "Documentos"
+
+#: .\apps\core\static\core\js\components\charts\ActorsBarChart.js:134
+msgid "Role"
+msgstr "Papel"
+
+#: .\apps\core\static\core\js\components\charts\ActorsBarChart.js:139
+msgid "Stakeholder participation"
+msgstr "Participação das partes interessadas"
+
+#: .\apps\core\static\core\js\components\charts\BeneficiariesBarChart.js:149
+msgid "Category"
+msgstr "Categoria"
+
+#: .\apps\core\static\core\js\components\charts\BeneficiariesBarChart.js:154
+msgid "Who benefits from cooperation"
+msgstr "Quem se beneficia da cooperação"
+
+#: .\apps\core\static\core\js\components\charts\BindingDonutChart.js:146
+msgid "Strength"
+msgstr "Força"
+
+#: .\apps\core\static\core\js\components\charts\BindingDonutChart.js:151
+msgid "Legal framework classification"
+msgstr "Classificação do quadro jurídico"
+
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:140
+msgid "Documents Led"
+msgstr "Documentos Liderados"
+
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:146
+msgid "European Union"
+msgstr "União Europeia"
+
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:147
+msgid "Latin America & Caribbean"
+msgstr "América Latina e Caribe"
+
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:148
+msgid "Other Region"
+msgstr "Outra Região"
+
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:150
+msgid "Region"
+msgstr "Região"
+
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:150
+msgid "Code"
+msgstr "Código"
+
+#: .\apps\core\static\core\js\components\charts\CountriesBarChart.js:153
+msgid "Countries leading digital cooperation initiatives"
+msgstr "Países liderando iniciativas de cooperação digital"
+
+#: .\apps\core\static\core\js\components\charts\SDGGlobalBarChart.js:137
+msgid "Global Relevance"
+msgstr "Relevância Global"
+
+#: .\apps\core\static\core\js\components\charts\SDGGlobalBarChart.js:148
+msgid "Impact across entire corpus (docs without SDG = 0)"
+msgstr "Impacto em todo o corpus (docs sem ODS = 0)"
+
+#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:134
+msgid "of max"
+msgstr "do máximo"
+
+#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:137
+msgid "Avg Intensity"
+msgstr "Intensidade Média"
+
+#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:148
+msgid "About this SDG"
+msgstr "Sobre este ODS"
+
+#: .\apps\core\static\core\js\components\charts\SDGRadarChart.js:153
+msgid "Part of UN's 2030 Agenda for Sustainable Development"
+msgstr "Parte da Agenda 2030 da ONU para o Desenvolvimento Sustentável"
+
+#: .\apps\core\static\core\js\components\charts\ThemesBarChart.js:137
+msgid "Focus"
+msgstr "Foco"
+
+#: .\apps\core\static\core\js\components\charts\ThemesBarChart.js:142
+msgid "Digital cooperation themes"
+msgstr "Temas de cooperação digital"
+
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:76
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:192
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:200
+msgid "Total Documents"
+msgstr "Total de Documentos"
+
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:91
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:184
+msgid "Agreements"
+msgstr "Acordos"
+
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:106
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:185
+msgid "Dialogues"
+msgstr "Diálogos"
+
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:183
+msgid "Total"
+msgstr "Total"
+
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:187
+msgid "documents"
+msgstr "documentos"
+
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:234
+msgid "Year"
+msgstr "Ano"
+
+#: .\apps\core\static\core\js\components\charts\TimelineChart.js:264
+msgid "Number of Documents"
+msgstr "Número de Documentos"
+
 #: .\apps\core\static\core\js\components\filters\DateRangeFilter.js:39
 msgid "Last 7 days"
 msgstr "Últimos 7 dias"
@@ -51,6 +192,10 @@ msgstr "Hoje"
 msgid "Apply"
 msgstr "Aplicar"
 
+#: .\apps\core\static\core\js\components\filters\FilterGroups.js:551
+msgid "No countries found"
+msgstr "Nenhum país encontrado"
+
 #: .\apps\core\static\core\js\components\filters\SearchBox.js:29
 msgid "Search documents..."
 msgstr "Buscar documentos..."
@@ -72,7 +217,10 @@ msgid "View details for"
 msgstr "Ver detalhes de"
 
 #: .\apps\core\static\core\js\components\results\ResultsList.js:238
-#: .\apps\core\static\core\js\components\search\DocumentResults.js:261
+#: .\apps\core\static\core\js\components\search\DocumentResults.js:253
+#: .\apps\core\static\core\js\coordinators\HomeDataCoordinator.js:193
+#: .\apps\core\static\core\js\coordinators\HomeDataCoordinator.js:224
+#: .\apps\core\static\core\js\coordinators\HomeDataCoordinator.js:343
 msgid "View Details"
 msgstr "Ver Detalhes"
 
@@ -87,6 +235,22 @@ msgstr "Carregando…"
 #: .\apps\core\static\core\js\components\search\DocumentResults.js:141
 msgid "Error loading results."
 msgstr "Erro ao carregar resultados."
+
+#: .\apps\core\static\core\js\coordinators\HomeDataCoordinator.js:188
+msgid "No summary available."
+msgstr "Nenhum resumo disponível."
+
+#: .\apps\core\static\core\js\pages\EventsPageManager.js:224
+msgid "Failed to load events"
+msgstr "Falha ao carregar eventos"
+
+#: .\apps\core\static\core\js\pages\EventsPageManager.js:293
+msgid "Upcoming"
+msgstr "Próximos"
+
+#: .\apps\core\static\core\js\pages\EventsPageManager.js:294
+msgid "Past"
+msgstr "Passados"
 
 #: .\node_modules\playwright\lib\transform\babelBundleImpl.js:9
 msgid "arrayExpression"

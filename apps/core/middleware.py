@@ -322,3 +322,42 @@ class SecurityHeadersMiddleware:
             response['Permissions-Policy'] = 'geolocation=(), microphone=(), camera=()'
         
         return response
+
+
+class ForceEnglishDefaultMiddleware:
+    """
+    Middleware that forces the default language to English, ignoring browser language detection.
+    This ensures that the site always starts in English unless the user explicitly chooses
+    a different language via URL prefix or language switcher.
+    
+    This middleware runs BEFORE LocaleMiddleware and removes the Accept-Language header
+    to prevent Django from detecting the browser's language preference.
+    """
+    
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        from django.conf import settings
+        
+        # Check if language is explicitly set in URL (has language prefix)
+        # If URL has a language prefix like /es/ or /pt/, allow it
+        path_parts = request.path_info.strip('/').split('/')
+        has_language_prefix = path_parts and path_parts[0] in dict(settings.LANGUAGES).keys()
+        
+        # Check if language is set in session (user explicitly chose a language via switcher)
+        language_from_session = request.session.get('django_language', None) if hasattr(request, 'session') else None
+        
+        # If there's no language prefix in URL and no language in session,
+        # remove Accept-Language header to prevent browser language detection
+        # This forces Django to use LANGUAGE_CODE (English) as default
+        if not has_language_prefix and not language_from_session:
+            # Temporarily remove Accept-Language header to prevent browser language detection
+            if 'HTTP_ACCEPT_LANGUAGE' in request.META:
+                # Store original value in case we need it later
+                request.META['HTTP_ACCEPT_LANGUAGE_ORIGINAL'] = request.META['HTTP_ACCEPT_LANGUAGE']
+                # Remove it so LocaleMiddleware won't use it
+                del request.META['HTTP_ACCEPT_LANGUAGE']
+        
+        response = self.get_response(request)
+        return response

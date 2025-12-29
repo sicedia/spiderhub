@@ -41,7 +41,7 @@ USE_TZ = True
 LANGUAGES = [
     ('en', 'English'),
     ('es', 'Español'),
-    # ('pt', 'Português'),  # Desactivado temporalmente - archivos listos en locale/pt/
+    ('pt', 'Português'),
 ]
 
 LOCALE_PATHS = [BASE_DIR / 'locale']

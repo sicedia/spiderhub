@@ -7,6 +7,7 @@ import { logger } from '../core/logger/Logger.js';
 import { eventBus } from '../core/events/EventBus.js';
 import { EVENTS, CONFIG } from '../core/constants/config.js';
 import { AnimationUtils } from '../core/utils/animations.js';
+import { gettext as _ } from '../core/i18n/i18n.js';
 
 export class HomeDataCoordinator {
   constructor(options = {}) {
@@ -184,12 +185,12 @@ export class HomeDataCoordinator {
             </div>
           </div>
           <div class="card__body">
-            <p class="card__content">${this.truncateText(doc.executive_summary || 'No summary available.', 100)}</p>
+            <p class="card__content">${this.truncateText(doc.executive_summary || _('No summary available.'), 100)}</p>
           </div>
           <div class="card__footer">
             <div class="card__actions">
               <a href="/${lang}/document_detail/${doc.id}/" class="button button--secondary button--small">
-                View Details
+                ${_('View Details')}
               </a>
             </div>
           </div>
@@ -220,7 +221,7 @@ export class HomeDataCoordinator {
           </div>
           <div class="card__footer">
             <div class="card__actions">
-              <span class="button button--secondary button--small button--disabled">View Details</span>
+              <span class="button button--secondary button--small button--disabled">${_('View Details')}</span>
             </div>
           </div>
         </div>
@@ -339,7 +340,7 @@ export class HomeDataCoordinator {
             ${event.organization_name ? `<div class="home-events__card-org">${this.escapeHtml(event.organization_name)}</div>` : ''}
           </div>
           <div class="home-events__card-footer">
-            <a href="/${lang}/events/${event.id}/" class="button button--secondary button--small">View Details</a>
+            <a href="/${lang}/events/${event.id}/" class="button button--secondary button--small">${_('View Details')}</a>
           </div>
         </div>
       `;

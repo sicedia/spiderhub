@@ -6,6 +6,7 @@
 
 import { BaseChart } from '../../core/base/BaseChart.js';
 import { eventBus } from '../../core/events/EventBus.js';
+import { gettext as _ } from '../../core/i18n/i18n.js';
 
 export class CountriesBarChart extends BaseChart {
   constructor(element, options = {}) {
@@ -136,20 +137,20 @@ export class CountriesBarChart extends BaseChart {
                 return `${flag} ${item.label}`;
               },
               label: (context) => {
-                return `📄 Documents Led: ${context.parsed.x}`;
+                return `${_('Documents Led')}: ${context.parsed.x}`;
               },
               afterLabel: (context) => {
                 const index = context.dataIndex;
                 const iso3 = iso3Codes[index];
                 const region = this.getCountryRegion(iso3);
-                const regionName = region === 'EU' ? 'European Union' : 
-                                  region === 'LAC' ? 'Latin America & Caribbean' : 
-                                  'Other Region';
+                const regionName = region === 'EU' ? _('European Union') : 
+                                  region === 'LAC' ? _('Latin America & Caribbean') : 
+                                  _('Other Region');
                 
-                return `\n🌍 Region: ${regionName}\n🏴 Code: ${iso3}`;
+                return `\n🌍 ${_('Region')}: ${regionName}\n🏴 ${_('Code')}: ${iso3}`;
               },
               footer: () => {
-                return '\n🌐 Countries leading digital cooperation initiatives';
+                return `\n🌐 ${_('Countries leading digital cooperation initiatives')}`;
               }
             }
           }

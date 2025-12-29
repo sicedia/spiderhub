@@ -14,6 +14,7 @@ import { FilterManager } from '../components/filters/FilterManager.js';
 import { FilterAccordion } from '../components/filters/FilterAccordion.js';
 import { SearchManager } from '../components/search/SearchManager.js';
 import { SuggestionsBox } from '../components/search/SuggestionsBox.js';
+import { gettext as _ } from '../core/i18n/i18n.js';
 
 export class EventsPageManager extends BasePageManager {
   constructor(element = document.body, options = {}) {
@@ -220,7 +221,7 @@ export class EventsPageManager extends BasePageManager {
 
     } catch (error) {
       this.logger.error('Error loading archive events', error);
-      this.showArchiveError(error.message || 'Failed to load events');
+      this.showArchiveError(error.message || _('Failed to load events'));
       this.hideArchiveLoading();
     }
   }
@@ -289,8 +290,8 @@ export class EventsPageManager extends BasePageManager {
       : '';
     
     const statusBadge = isUpcoming 
-      ? '<span class="event-card__status event-card__status--upcoming">Próximo</span>'
-      : '<span class="event-card__status event-card__status--past">Pasado</span>';
+      ? `<span class="event-card__status event-card__status--upcoming">${_('Upcoming')}</span>`
+      : `<span class="event-card__status event-card__status--past">${_('Past')}</span>`;
     
     const descriptionLength = isArchive ? 120 : (isUpcoming ? 150 : 120);
 
@@ -356,12 +357,14 @@ export class EventsPageManager extends BasePageManager {
     
     try {
       const start = new Date(startAt);
+      // Get locale from document or default to 'en'
+      const locale = document.documentElement.lang || 'en';
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      const startStr = start.toLocaleDateString('es-ES', options);
+      const startStr = start.toLocaleDateString(locale, options);
       
       if (endAt) {
         const end = new Date(endAt);
-        const endStr = end.toLocaleDateString('es-ES', options);
+        const endStr = end.toLocaleDateString(locale, options);
         if (startStr === endStr) {
           return startStr;
         }

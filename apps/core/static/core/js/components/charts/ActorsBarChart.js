@@ -6,6 +6,7 @@
 
 import { BaseChart } from '../../core/base/BaseChart.js';
 import { eventBus } from '../../core/events/EventBus.js';
+import { gettext as _ } from '../../core/i18n/i18n.js';
 
 export class ActorsBarChart extends BaseChart {
   constructor(element, options = {}) {
@@ -123,19 +124,19 @@ export class ActorsBarChart extends BaseChart {
                 return label;
               },
               label: (context) => {
-                return `📄 Documents: ${context.parsed.y}`;
+                return `${_('Documents')}: ${context.parsed.y}`;
               },
               afterLabel: (context) => {
                 const label = context.label;
                 const actorInfo = this.options.actorInfo?.[label];
                 
                 if (actorInfo?.description) {
-                  return `\n💡 ${actorInfo.description}\n👥 Role: ${actorInfo.role}`;
+                  return `\n💡 ${actorInfo.description}\n👥 ${_('Role')}: ${actorInfo.role}`;
                 }
                 return '';
               },
               footer: () => {
-                return '\n🤝 Stakeholder participation';
+                return `\n🤝 ${_('Stakeholder participation')}`;
               }
             }
           }

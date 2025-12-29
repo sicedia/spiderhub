@@ -6,6 +6,7 @@
 
 import { EventsPageManager } from './pages/EventsPageManager.js';
 import { logger } from './core/logger/Logger.js';
+import { gettext as _ } from './core/i18n/i18n.js';
 
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
@@ -41,9 +42,9 @@ function initializeEventsPage() {
     errorContainer.className = 'events-error';
     errorContainer.style.cssText = 'margin: 20px; padding: 15px; text-align: center;';
     errorContainer.innerHTML = `
-      <h3>Initialization Error</h3>
-      <p>Failed to initialize the events page. Please refresh the page or contact support.</p>
-      <button onclick="location.reload()" class="button button--primary">Reload Page</button>
+      <h3>${_('Initialization Error')}</h3>
+      <p>${_('Failed to initialize the events page. Please refresh the page or contact support.')}</p>
+      <button onclick="location.reload()" class="button button--primary">${_('Reload Page')}</button>
     `;
     
     const main = document.querySelector('main');

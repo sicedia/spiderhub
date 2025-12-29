@@ -27,28 +27,28 @@ SDG_INFO = {
 
 BINDING_INFO = {
     'legallyBinding': {
-        'name': 'Legally Binding',
-        'description': 'Agreements with enforceable legal obligations under international law',
+        'name': _('Legally Binding'),
+        'description': _('Agreements with enforceable legal obligations under international law'),
         'icon': '⚖️',
-        'strength': 'Strong'
+        'strength': _('Strong')
     },
     'politicallyBinding': {
-        'name': 'Politically Binding',
-        'description': 'Commitments based on political will without legal enforcement mechanisms',
+        'name': _('Politically Binding'),
+        'description': _('Commitments based on political will without legal enforcement mechanisms'),
         'icon': '🤝',
-        'strength': 'Medium'
+        'strength': _('Medium')
     },
     'nonBinding': {
-        'name': 'Non-Binding',
-        'description': 'Voluntary cooperation frameworks without formal obligations',
+        'name': _('Non-Binding'),
+        'description': _('Voluntary cooperation frameworks without formal obligations'),
         'icon': '📋',
-        'strength': 'Soft'
+        'strength': _('Soft')
     },
     'uncategorised': {
-        'name': 'Uncategorised',
-        'description': 'Documents without specified binding level',
+        'name': _('Uncategorised'),
+        'description': _('Documents without specified binding level'),
         'icon': '❓',
-        'strength': 'Undefined'
+        'strength': _('Undefined')
     }
 }
 

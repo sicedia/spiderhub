@@ -6,6 +6,7 @@
 
 import { BaseChart } from '../../core/base/BaseChart.js';
 import { eventBus } from '../../core/events/EventBus.js';
+import { gettext as _ } from '../../core/i18n/i18n.js';
 
 export class BeneficiariesBarChart extends BaseChart {
   constructor(element, options = {}) {
@@ -138,19 +139,19 @@ export class BeneficiariesBarChart extends BaseChart {
                 return label;
               },
               label: (context) => {
-                return `📄 Documents: ${context.parsed.x}`;
+                return `${_('Documents')}: ${context.parsed.x}`;
               },
               afterLabel: (context) => {
                 const label = context.label;
                 const beneficiaryInfo = this.options.beneficiaryInfo?.[label];
                 
                 if (beneficiaryInfo?.description) {
-                  return `\n💡 ${beneficiaryInfo.description}\n🏷️ Category: ${beneficiaryInfo.category}`;
+                  return `\n💡 ${beneficiaryInfo.description}\n🏷️ ${_('Category')}: ${beneficiaryInfo.category}`;
                 }
                 return '';
               },
               footer: () => {
-                return '\n🎁 Who benefits from cooperation';
+                return `\n🎁 ${_('Who benefits from cooperation')}`;
               }
             }
           }
