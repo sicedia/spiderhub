@@ -8,6 +8,7 @@ export class FilterGroups {
   constructor(container) {
     this.container = container;
     this.filterGroups = new Map();
+    this.searchTimeouts = new Map(); // Store debounce timeouts per search input
     this.init();
   }
 
@@ -82,6 +83,15 @@ export class FilterGroups {
       // Update classes
       if (isExpanded) {
         group.classList.add('filter-group--expanded');
+        
+        // Scroll to group header when expanded (smooth scroll)
+        requestAnimationFrame(() => {
+          header.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'nearest'
+          });
+        });
       } else {
         group.classList.remove('filter-group--expanded');
       }
@@ -89,26 +99,141 @@ export class FilterGroups {
   }
 
   handleSearch(searchInput) {
+    // Clear existing timeout for this input
+    const existingTimeout = this.searchTimeouts.get(searchInput);
+    if (existingTimeout) {
+      clearTimeout(existingTimeout);
+    }
+    
+    // Debounce search for better performance
+    const timeout = setTimeout(() => {
+      this.performSearch(searchInput);
+      this.searchTimeouts.delete(searchInput);
+    }, 200); // 200ms debounce
+    
+    this.searchTimeouts.set(searchInput, timeout);
+  }
+  
+  performSearch(searchInput) {
     const filterGroup = searchInput.closest('.filter-group');
-    const options = filterGroup.querySelectorAll('.filter-option');
-    const searchTerm = searchInput.value.toLowerCase().trim();
+    if (!filterGroup) return;
+    
+    const options = Array.from(filterGroup.querySelectorAll('.filter-option'));
+    const searchTerm = this.normalizeSearchTerm(searchInput.value);
+    
+    let visibleCount = 0;
+    let totalCount = options.length;
     
     options.forEach(option => {
-      const label = option.querySelector('.filter-option__label').textContent.toLowerCase();
+      const label = option.querySelector('.filter-option__label')?.textContent || '';
+      const normalizedLabel = this.normalizeSearchTerm(label);
       const dataAttribute = this.getSearchDataAttribute(option);
       
       let shouldShow = false;
       
-      if (dataAttribute) {
+      if (searchTerm === '') {
+        // Show all when search is empty
+        shouldShow = true;
+      } else if (dataAttribute) {
         // Use data attribute for search (countries, actors, topics)
-        shouldShow = dataAttribute.includes(searchTerm);
+        const normalizedData = this.normalizeSearchTerm(dataAttribute);
+        shouldShow = normalizedData.includes(searchTerm);
       } else {
         // Use label text for search
-        shouldShow = label.includes(searchTerm);
+        shouldShow = normalizedLabel.includes(searchTerm);
       }
       
       option.style.display = shouldShow ? 'flex' : 'none';
+      if (shouldShow) visibleCount++;
     });
+    
+    // Update search results indicator
+    this.updateSearchResults(filterGroup, visibleCount, totalCount, searchTerm);
+    
+    // Show/hide clear button
+    this.toggleClearButton(searchInput, searchTerm);
+  }
+  
+  /**
+   * Normalize search term (remove accents, lowercase, trim)
+   */
+  normalizeSearchTerm(term) {
+    if (!term) return '';
+    return term
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // Remove accents
+      .trim();
+  }
+  
+  /**
+   * Update search results indicator
+   */
+  updateSearchResults(filterGroup, visibleCount, totalCount, searchTerm) {
+    // Remove existing indicator
+    let indicator = filterGroup.querySelector('.filter-search-results');
+    const optionsContainer = filterGroup.querySelector('.filter-options');
+    
+    if (!optionsContainer) return;
+    
+    if (searchTerm === '') {
+      // Remove indicator when search is empty
+      if (indicator) {
+        indicator.remove();
+      }
+      return;
+    }
+    
+    if (!indicator) {
+      indicator = document.createElement('div');
+      indicator.className = 'filter-search-results';
+      indicator.setAttribute('role', 'status');
+      indicator.setAttribute('aria-live', 'polite');
+      optionsContainer.insertBefore(indicator, optionsContainer.firstChild);
+    }
+    
+    if (visibleCount === 0) {
+      indicator.className = 'filter-search-results filter-search-results--empty';
+      indicator.textContent = `No results found for "${searchTerm}"`;
+    } else {
+      indicator.className = 'filter-search-results';
+      indicator.textContent = `Showing ${visibleCount} of ${totalCount} options`;
+    }
+  }
+  
+  /**
+   * Toggle clear search button
+   */
+  toggleClearButton(searchInput, searchTerm) {
+    const searchContainer = searchInput.closest('.filter-search');
+    if (!searchContainer) return;
+    
+    let clearButton = searchContainer.querySelector('.filter-search__clear');
+    
+    if (searchTerm && !clearButton) {
+      // Create clear button
+      clearButton = document.createElement('button');
+      clearButton.type = 'button';
+      clearButton.className = 'filter-search__clear';
+      clearButton.setAttribute('aria-label', 'Clear search');
+      clearButton.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      `;
+      clearButton.addEventListener('click', () => {
+        searchInput.value = '';
+        searchInput.focus();
+        this.performSearch(searchInput);
+      });
+      searchContainer.appendChild(clearButton);
+      // Add class to input for padding adjustment
+      searchInput.classList.add('has-clear');
+    } else if (!searchTerm && clearButton) {
+      // Remove clear button when search is empty
+      clearButton.remove();
+      searchInput.classList.remove('has-clear');
+    }
   }
 
   getSearchDataAttribute(option) {

@@ -36,6 +36,8 @@ export class FilterManager extends BaseComponent {
     // Initialize instance properties here (not in constructor after super())
     this.filterGroups = null;
     this.filterChips = null;
+    this.pendingFilters = new Set(); // Track filters that are selected but not yet applied
+    this.appliedFilters = new Set(); // Track filters that are currently applied
     
     if (this.logger) {
       this.logger.debug('FilterManager initialized', {
@@ -45,6 +47,7 @@ export class FilterManager extends BaseComponent {
     
     this.initializeComponents();
     this.bindEvents();
+    this.updateUIState();
   }
 
   initializeComponents() {
@@ -77,16 +80,35 @@ export class FilterManager extends BaseComponent {
         return;
       }
       
+      const filterKey = `${filterName}-${filterValue}`;
+      
       if (isChecked) {
+        // Add to pending filters
+        this.pendingFilters.add(filterKey);
+        this.appliedFilters.add(filterKey);
         this.filterChips.addFilter(filterName, filterValue, filterLabel, filterCategory);
       } else {
+        // Remove from pending and applied
+        this.pendingFilters.delete(filterKey);
+        this.appliedFilters.delete(filterKey);
         this.filterChips.removeFilter(filterName, filterValue);
+      }
+      
+      // Update UI state - use requestAnimationFrame to ensure DOM updates are complete
+      requestAnimationFrame(() => {
+        this.updateUIState();
+      });
+      
+      // Auto-apply if autoCommit is enabled
+      if (this.options.autoCommit) {
+        this.applyFilters();
       }
     });
 
     // Listen for filter change events from filter chips
     document.addEventListener('filterChange', (e) => {
       this.handleFilterChange(e.detail.activeFilters);
+      this.updateUIState();
     });
 
     // Bind clear all filters button
@@ -97,21 +119,7 @@ export class FilterManager extends BaseComponent {
       });
     }
 
-    // Bind reset filters button
-    const resetBtn = document.getElementById('reset-filters');
-    if (resetBtn) {
-      resetBtn.addEventListener('click', () => {
-        this.resetFilters();
-      });
-    }
-
-    // Bind apply filters button
-    const applyBtn = document.getElementById('apply-filters');
-    if (applyBtn) {
-      applyBtn.addEventListener('click', () => {
-        this.applyFilters();
-      });
-    }
+    // Apply and Reset buttons removed - using autoCommit instead
 
     // Mobile filter toggle
     const filterToggle = document.querySelector('.filter-header__toggle');
@@ -120,6 +128,14 @@ export class FilterManager extends BaseComponent {
         this.toggleMobileFilters();
       });
     }
+    
+    // Listen for filter count changes from FilterChips
+    document.addEventListener('filterCountChanged', (e) => {
+      // Use requestAnimationFrame to ensure we get the latest count
+      requestAnimationFrame(() => {
+        this.updateUIState();
+      });
+    });
   }
 
   handleFilterChange(activeFilters) {
@@ -144,24 +160,85 @@ export class FilterManager extends BaseComponent {
   }
 
   clearAllFilters() {
+    this.pendingFilters.clear();
+    this.appliedFilters.clear();
+    
     if (this.filterChips) {
       this.filterChips.clearAllFilters();
+    }
+    
+    this.updateUIState();
+    
+    if (this.options.autoCommit) {
+      this.applyFilters();
     }
   }
 
   resetFilters() {
+    this.pendingFilters.clear();
+    this.appliedFilters.clear();
+    
     if (this.filterGroups) {
       this.filterGroups.resetAllFilters();
     }
     if (this.filterChips) {
       this.filterChips.clearAllFilters();
     }
+    
+    this.updateUIState();
+    
+    if (this.options.autoCommit) {
+      this.applyFilters();
+    }
   }
 
   applyFilters() {
+    // Move pending filters to applied
+    this.appliedFilters = new Set(this.pendingFilters);
+    
     const activeFilters = this.getActiveFilters();
     this.handleFilterChange(activeFilters);
     this.emit(EVENTS.SEARCH_COMMITTED, { activeFilters });
+  }
+  
+  /**
+   * Update UI state indicators (counters, button states, etc.)
+   */
+  updateUIState() {
+    // Always get the current count directly from FilterChips
+    const activeFilterCount = this.filterChips ? this.filterChips.activeFilters.size : 0;
+    
+    // Update filter count badge
+    const countBadge = document.getElementById('filter-count-badge');
+    const countNumber = document.getElementById('filter-count-number');
+    if (countBadge && countNumber) {
+      // Always update the number first, even if it's 0
+      countNumber.textContent = activeFilterCount;
+      
+      if (activeFilterCount > 0) {
+        countBadge.hidden = false;
+      } else {
+        countBadge.hidden = true;
+      }
+    }
+    
+    // Update Clear all button
+    const clearBtn = document.getElementById('clear-filters');
+    if (clearBtn) {
+      clearBtn.disabled = activeFilterCount === 0;
+      clearBtn.setAttribute('aria-disabled', activeFilterCount === 0 ? 'true' : 'false');
+    }
+  }
+  
+  /**
+   * Check if two sets are equal
+   */
+  setsEqual(set1, set2) {
+    if (set1.size !== set2.size) return false;
+    for (const item of set1) {
+      if (!set2.has(item)) return false;
+    }
+    return true;
   }
 
   getActiveFilters() {
@@ -222,14 +299,29 @@ export class FilterManager extends BaseComponent {
 
   // Methods expected by ExplorePageManager
   addFilter(filterType, filterValue, filterLabel, filterCategory = '') {
+    const filterKey = `${filterType}-${filterValue}`;
+    this.pendingFilters.add(filterKey);
+    this.appliedFilters.add(filterKey);
+    
     this.setFilter(filterType, filterValue, filterLabel, filterCategory);
+    this.updateUIState();
+    
     if (this.options.autoCommit) {
       this.applyFilters();
     }
   }
 
-  clearAllFilters() {
-    this.resetFilters();
+  removeFilter(filterName, filterValue) {
+    const filterKey = `${filterName}-${filterValue}`;
+    this.pendingFilters.delete(filterKey);
+    this.appliedFilters.delete(filterKey);
+    
+    if (this.filterChips) {
+      this.filterChips.removeFilter(filterName, filterValue);
+    }
+    
+    this.updateUIState();
+    
     if (this.options.autoCommit) {
       this.applyFilters();
     }

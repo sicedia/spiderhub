@@ -1,7 +1,23 @@
 /**
- * Filter Components
- * Advanced filter system for search and exploration interfaces
- * Following BEM methodology and design system tokens
+ * Filter Components - GLOBAL STYLES
+ * 
+ * This file contains GLOBAL, reusable filter component styles that can be used
+ * across different pages (Explore, Events, etc.).
+ * 
+ * IMPORTANT: These styles should NOT be page-specific. For Explore page specific
+ * overrides, see: apps/core/static/core/css/pages/explore.css
+ * 
+ * Following BEM methodology and design system tokens.
+ * 
+ * Structure:
+ * - Filter Container (base styles)
+ * - Filter Header (base styles)
+ * - Filter Groups (base accordion styles)
+ * - Filter Options (base checkbox/option styles)
+ * - Filter Search (base search input styles)
+ * - Filter Actions (base button styles)
+ * - Filter Chips (base chip styles)
+ * - Date Range (base date picker styles)
  */
 
 /* ========================================
@@ -184,14 +200,13 @@
    ======================================== */
 
 .filter-group__content {
-  max-height: none;
+  /* Base content styles - page-specific CSS should override for accordion behavior */
   overflow: visible;
 }
 
-.filter-group--expanded .filter-group__content {
-  max-height: none;
-  overflow: visible;
-}
+/* Note: Accordion expand/collapse behavior (max-height, display, etc.) should be
+   defined in page-specific CSS files (e.g., explore.css) using selectors like
+   .explore-sidebar .filter-group__content */
 
 .filter-group__body {
   padding: 0;

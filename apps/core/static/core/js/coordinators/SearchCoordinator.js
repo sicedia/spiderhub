@@ -43,6 +43,8 @@ export class SearchCoordinator extends BaseComponent {
     searchManager.on(EVENTS.LOADING_START, (data) => {
       this.logger.debug('Search loading started');
       documentResults.showLoading();
+      // Don't show "Searching..." status - it's redundant with the loading spinner
+      // this.showSearchStatus('Searching...');
     });
 
     searchManager.on(EVENTS.SEARCH_SUCCESS, (data) => {
@@ -53,11 +55,14 @@ export class SearchCoordinator extends BaseComponent {
       if (data && data.data) {
         documentResults.renderResults(data.data);
       }
+      // Always hide status after successful search
+      this.hideSearchStatus();
     });
 
     searchManager.on(EVENTS.SEARCH_ERROR, (data) => {
       this.logger.error('Search error occurred', data.error);
       documentResults.showError(data.error);
+      this.showSearchStatus('Error loading results', true);
     });
 
     // Filter Events - CRITICAL: This connects filter changes to search
@@ -102,20 +107,20 @@ export class SearchCoordinator extends BaseComponent {
   /**
    * Perform a search
    */
-  performSearch() {
-    if (this.isPerformingSearch) {
+  performSearch(userInitiated = false) {
+    if (this.isPerformingSearch && userInitiated) {
       this.logger.debug('Search already in progress, skipping duplicate request');
       return;
     }
 
-    this.logger.debug('Performing search');
-    this.executeSearch();
+    this.logger.debug('Performing search', { userInitiated });
+    this.executeSearch(userInitiated);
   }
 
   /**
    * Execute the actual search
    */
-  executeSearch() {
+  executeSearch(userInitiated = false) {
     const { searchManager, filterManager, documentResults } = this.components;
     
     if (!searchManager || !documentResults) {
@@ -127,7 +132,7 @@ export class SearchCoordinator extends BaseComponent {
     }
 
     try {
-      this.isPerformingSearch = true;
+      this.isPerformingSearch = userInitiated;
       
       this.logger.debug('Executing search');
       
@@ -251,6 +256,32 @@ export class SearchCoordinator extends BaseComponent {
     }
   }
 
+  /**
+   * Show search status message
+   */
+  showSearchStatus(message, isError = false) {
+    const statusText = document.getElementById('filter-status-text');
+    if (statusText) {
+      statusText.textContent = message;
+      statusText.hidden = false;
+      if (isError) {
+        statusText.classList.add('filter-actions__status-text--error');
+      } else {
+        statusText.classList.remove('filter-actions__status-text--error');
+      }
+    }
+  }
+  
+  /**
+   * Hide search status message
+   */
+  hideSearchStatus() {
+    const statusText = document.getElementById('filter-status-text');
+    if (statusText) {
+      statusText.hidden = true;
+    }
+  }
+  
   /**
    * Cleanup
    */

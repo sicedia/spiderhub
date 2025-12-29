@@ -56,7 +56,7 @@ export class FilterChips {
     const key = `${filterName}-${filterValue}`;
     if (this.activeFilters.has(key)) {
       this.activeFilters.delete(key);
-      this.updateDisplay();
+      this.updateDisplay(); // This will trigger filterCountChanged event
       
       // Uncheck the corresponding checkbox
       const checkbox = document.querySelector(`input[name="${filterName}"][value="${filterValue}"]`);
@@ -146,6 +146,15 @@ export class FilterChips {
         chipsContainer.insertBefore(chip, clearAllBtn);
       });
     }
+    
+    // Dispatch event to notify FilterManager of count change
+    // Use requestAnimationFrame to ensure DOM is updated first
+    requestAnimationFrame(() => {
+      const countEvent = new CustomEvent('filterCountChanged', {
+        detail: { count: this.activeFilters.size }
+      });
+      document.dispatchEvent(countEvent);
+    });
   }
 
   createFilterChip(filter) {

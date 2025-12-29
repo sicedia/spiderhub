@@ -48,6 +48,19 @@ export class FilterAccordion extends BaseComponent {
       headers: Array.from(DOMUtils.getElements('.filter-group__header', this.element) || []),
       contents: Array.from(DOMUtils.getElements('.filter-group__content', this.element) || [])
     };
+    
+    // Ensure headers have proper accessibility attributes
+    this.elements.headers.forEach((header, index) => {
+      const content = this.elements.contents[index];
+      if (content && !header.getAttribute('aria-controls')) {
+        header.setAttribute('aria-controls', content.id || `filter-content-${index}`);
+      }
+      if (!header.getAttribute('aria-expanded')) {
+        const isExpanded = header.getAttribute('aria-expanded') === 'true' || 
+                         header.closest('.filter-group')?.classList.contains('filter-group--expanded');
+        header.setAttribute('aria-expanded', isExpanded.toString());
+      }
+    });
   }
 
   bindEvents() {
@@ -90,6 +103,23 @@ export class FilterAccordion extends BaseComponent {
     
     // Smooth height animation
     this.animateHeight(content, 0, content.scrollHeight);
+    
+    // Scroll to header when opening (only if not already visible)
+    requestAnimationFrame(() => {
+      const headerRect = header.getBoundingClientRect();
+      const sidebar = header.closest('.explore-sidebar');
+      if (sidebar) {
+        const sidebarRect = sidebar.getBoundingClientRect();
+        // Only scroll if header is not fully visible
+        if (headerRect.top < sidebarRect.top || headerRect.bottom > sidebarRect.bottom) {
+          header.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'nearest'
+          });
+        }
+      }
+    });
 
     this.emit(EVENTS.ACCORDION_OPENED, { 
       index, 

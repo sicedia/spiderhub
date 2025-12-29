@@ -19,12 +19,18 @@
       <aside class="explore-sidebar" role="complementary" aria-labelledby="filters-heading">
         <div class="filter-container filter-container--sticky">
           <header class="filter-header">
-            <h2 id="filters-heading" class="filter-header__title">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor"/>
-              </svg>
-              {% trans "Filters" %}
-            </h2>
+            <div class="filter-header__title-wrapper">
+              <h2 id="filters-heading" class="filter-header__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor"/>
+                </svg>
+                {% trans "Filters" %}
+              </h2>
+              <span id="filter-count-badge" class="filter-header__count" aria-live="polite" aria-atomic="true" hidden>
+                <span class="filter-header__count-number" id="filter-count-number">0</span>
+                <span class="sr-only">{% trans "active filters" %}</span>
+              </span>
+            </div>
             <div class="filter-header__actions">
               <button 
                 class="filter-header__toggle filter-toggle mobile-only" 
@@ -37,7 +43,14 @@
                   <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                 </svg>
               </button>
-              <button id="clear-filters" class="filter-header__clear" type="button" aria-label="{% trans "Clear all filters" %}">
+              <button 
+                id="clear-filters" 
+                class="filter-header__clear" 
+                type="button" 
+                aria-label="{% trans "Clear all filters" %}"
+                disabled
+                aria-disabled="true"
+              >
                 {% trans "Clear all" %}
               </button>
             </div>
@@ -54,14 +67,20 @@
             <div class="filter-accordion" id="filter-accordion">
               <!-- Document Type -->
               <div class="filter-group" data-filter-group="document_type">
-                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="true" aria-controls="filter-document-type">
+                <button 
+                  class="filter-group__header" 
+                  type="button"
+                  aria-expanded="true" 
+                  aria-controls="filter-document-type"
+                  aria-label="{% trans "Toggle Document Type filter group" %}"
+                >
                   <h3 class="filter-group__title">{% trans "Document Type" %}</h3>
-                  <div class="filter-group__count" data-count="document_type">-</div>
-                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <div class="filter-group__count" data-count="document_type" aria-label="{% trans "Number of document types available" %}">-</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                   </svg>
-                </div>
-                <div class="filter-group__content" id="filter-document-type">
+                </button>
+                <div class="filter-group__content" id="filter-document-type" role="region" aria-labelledby="filter-document-type-title">
                   <div class="filter-group__body">
                     <div class="filter-options" id="filter-options-document-type">
                       <!-- Options loaded via API -->
@@ -72,14 +91,20 @@
               
               <!-- Legal Characteristics -->
               <div class="filter-group" data-filter-group="legal_characteristics">
-                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-legal-characteristics">
+                <button 
+                  class="filter-group__header" 
+                  type="button"
+                  aria-expanded="false" 
+                  aria-controls="filter-legal-characteristics"
+                  aria-label="{% trans "Toggle Legal Characteristics filter group" %}"
+                >
                   <h3 class="filter-group__title">{% trans "Legal Characteristics" %}</h3>
-                  <div class="filter-group__count">3</div>
-                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <div class="filter-group__count" aria-label="{% trans "Number of legal characteristics available" %}">3</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                   </svg>
-                </div>
-                <div class="filter-group__content" id="filter-legal-characteristics">
+                </button>
+                <div class="filter-group__content" id="filter-legal-characteristics" role="region" aria-labelledby="filter-legal-characteristics-title">
                   <div class="filter-group__body">
                     
                     <div class="filter-subgroup">
@@ -109,14 +134,20 @@
               
               <!-- Countries -->
               <div class="filter-group" data-filter-group="countries">
-                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-countries">
+                <button 
+                  class="filter-group__header" 
+                  type="button"
+                  aria-expanded="false" 
+                  aria-controls="filter-countries"
+                  aria-label="{% trans "Toggle Countries filter group" %}"
+                >
                   <h3 class="filter-group__title">{% trans "Countries" %}</h3>
-                  <div class="filter-group__count" data-count="countries">-</div>
-                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <div class="filter-group__count" data-count="countries" aria-label="{% trans "Number of countries available" %}">-</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                   </svg>
-                </div>
-                <div class="filter-group__content" id="filter-countries">
+                </button>
+                <div class="filter-group__content" id="filter-countries" role="region" aria-labelledby="filter-countries-title">
                   <div class="filter-group__body">
                     <!-- Country Role Selector -->
                     <div class="filter-role-selector">
@@ -157,14 +188,20 @@
               
               <!-- Date Range -->
               <div class="filter-group" data-filter-group="period">
-                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-period">
+                <button 
+                  class="filter-group__header" 
+                  type="button"
+                  aria-expanded="false" 
+                  aria-controls="filter-period"
+                  aria-label="{% trans "Toggle Period filter group" %}"
+                >
                   <h3 class="filter-group__title">{% trans "Period" %}</h3>
-                  <div class="filter-group__count">Date Range</div>
-                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <div class="filter-group__count" aria-label="{% trans "Date range filter" %}">Date Range</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                   </svg>
-                </div>
-                <div class="filter-group__content" id="filter-period">
+                </button>
+                <div class="filter-group__content" id="filter-period" role="region" aria-labelledby="filter-period-title">
                   <div class="filter-group__body">
                     <div class="filter-date-range">
                       <div class="filter-date-field">
@@ -188,14 +225,20 @@
               
               <!-- Actors -->
               <div class="filter-group" data-filter-group="actors">
-                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-actors">
+                <button 
+                  class="filter-group__header" 
+                  type="button"
+                  aria-expanded="false" 
+                  aria-controls="filter-actors"
+                  aria-label="{% trans "Toggle Actors filter group" %}"
+                >
                   <h3 class="filter-group__title">{% trans "Actors" %}</h3>
-                  <div class="filter-group__count" data-count="actors">-</div>
-                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <div class="filter-group__count" data-count="actors" aria-label="{% trans "Number of actors available" %}">-</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                   </svg>
-                </div>
-                <div class="filter-group__content" id="filter-actors">
+                </button>
+                <div class="filter-group__content" id="filter-actors" role="region" aria-labelledby="filter-actors-title">
                   <div class="filter-group__body">
                     <div class="filter-search">
                       <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -213,14 +256,20 @@
               
               <!-- Beneficiary Groups -->
               <div class="filter-group" data-filter-group="beneficiaries">
-                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-beneficiaries">
+                <button 
+                  class="filter-group__header" 
+                  type="button"
+                  aria-expanded="false" 
+                  aria-controls="filter-beneficiaries"
+                  aria-label="{% trans "Toggle Beneficiary Groups filter group" %}"
+                >
                   <h3 class="filter-group__title">{% trans "Beneficiary Groups" %}</h3>
-                  <div class="filter-group__count" data-count="beneficiaries">-</div>
-                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <div class="filter-group__count" data-count="beneficiaries" aria-label="{% trans "Number of beneficiary groups available" %}">-</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                   </svg>
-                </div>
-                <div class="filter-group__content" id="filter-beneficiaries">
+                </button>
+                <div class="filter-group__content" id="filter-beneficiaries" role="region" aria-labelledby="filter-beneficiaries-title">
                   <div class="filter-group__body">
                     <div class="filter-options" id="filter-options-beneficiaries">
                       <!-- Options loaded via API -->
@@ -231,14 +280,20 @@
               
               <!-- Topics -->
               <div class="filter-group" data-filter-group="topics">
-                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-topics">
+                <button 
+                  class="filter-group__header" 
+                  type="button"
+                  aria-expanded="false" 
+                  aria-controls="filter-topics"
+                  aria-label="{% trans "Toggle Topics filter group" %}"
+                >
                   <h3 class="filter-group__title">{% trans "Topics" %}</h3>
-                  <div class="filter-group__count" data-count="themes">-</div>
-                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <div class="filter-group__count" data-count="themes" aria-label="{% trans "Number of topics available" %}">-</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                   </svg>
-                </div>
-                <div class="filter-group__content" id="filter-topics">
+                </button>
+                <div class="filter-group__content" id="filter-topics" role="region" aria-labelledby="filter-topics-title">
                   <div class="filter-group__body">
                     <div class="filter-search">
                       <svg class="filter-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -256,14 +311,20 @@
               
               <!-- SDG Alignments -->
               <div class="filter-group" data-filter-group="sdgs">
-                <div class="filter-group__header" role="button" tabindex="0" aria-expanded="false" aria-controls="filter-sdgs">
+                <button 
+                  class="filter-group__header" 
+                  type="button"
+                  aria-expanded="false" 
+                  aria-controls="filter-sdgs"
+                  aria-label="{% trans "Toggle SDG Alignments filter group" %}"
+                >
                   <h3 class="filter-group__title">{% trans "SDG Alignments" %}</h3>
-                  <div class="filter-group__count" data-count="sdgs">-</div>
-                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <div class="filter-group__count" data-count="sdgs" aria-label="{% trans "Number of SDG alignments available" %}">-</div>
+                  <svg class="filter-group__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M7 10l5 5 5-5z" fill="currentColor"/>
                   </svg>
-                </div>
-                <div class="filter-group__content" id="filter-sdgs">
+                </button>
+                <div class="filter-group__content" id="filter-sdgs" role="region" aria-labelledby="filter-sdgs-title">
                   <div class="filter-group__body">
                     <div class="filter-options" id="filter-options-sdgs">
                       <!-- Options loaded via API -->
@@ -276,12 +337,9 @@
           </div>
         </div>
         
-        <div class="filter-actions">
-            <div class="filter-actions__secondary">
-              <button id="reset-filters" class="button button--secondary" type="button">{% trans "Reset" %}</button>
-            </div>
-            <div class="filter-actions__primary">
-              <button id="apply-filters" class="button button--primary" type="button">{% trans "Apply Filters" %}</button>
+        <div class="filter-actions" id="filter-actions">
+            <div class="filter-actions__status" aria-live="polite" aria-atomic="true">
+              <span class="filter-actions__status-text" id="filter-status-text" hidden></span>
             </div>
           </div>
         </div>

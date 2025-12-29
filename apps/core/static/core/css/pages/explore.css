@@ -1,11 +1,22 @@
 /**
- * Explore Page Styles
- * Refactored for improved UX/UI following best practices
- * - Better filter placement and accessibility
- * - Optimized spacing and visual hierarchy
- * - Enhanced list results display
- * - Mobile-first responsive design
- * Following BEM methodology and design system tokens
+ * Explore Page Styles - PAGE-SPECIFIC OVERRIDES
+ * 
+ * This file contains EXPLORE PAGE SPECIFIC styles that override or extend
+ * the global filter component styles from filter.css.
+ * 
+ * IMPORTANT: All filter-related styles here MUST use the `.explore-sidebar` 
+ * selector to avoid affecting other pages that use filter components.
+ * 
+ * Structure:
+ * - Explore Page Layout
+ * - Explore Sidebar (specific overrides for .explore-sidebar)
+ * - Explore Results Area
+ * - Document Cards
+ * - Search Bar (in results area)
+ * - Pagination
+ * - Responsive (mobile) styles
+ * 
+ * Following BEM methodology and design system tokens.
  */
 
 /* ========================================
@@ -55,7 +66,11 @@
 }
 
 /* ========================================
-   Explore-specific Filter Sidebar - Industry Best Practices
+   Explore-specific Filter Sidebar
+   
+   IMPORTANT: All styles here use .explore-sidebar selector to ensure
+   they only affect the Explore page and don't interfere with filter
+   components used on other pages.
    ======================================== */
 
 .explore-sidebar {
@@ -108,6 +123,13 @@
   z-index: 10;
 }
 
+.explore-sidebar .filter-header__title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+}
+
 .explore-sidebar .filter-header__title {
   font-size: 1.125rem;
   font-weight: var(--font-weight-bold);
@@ -115,10 +137,31 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
+  margin: 0;
 }
 
 .explore-sidebar .filter-header__title svg {
   color: var(--color-primary-500);
+}
+
+/* Filter count badge */
+.explore-sidebar .filter-header__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 0.5rem;
+  background-color: var(--color-primary-500);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+}
+
+.explore-sidebar .filter-header__count-number {
+  display: inline-block;
 }
 
 .explore-sidebar .filter-header__clear {
@@ -172,14 +215,33 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .explore-sidebar .filter-group__content {
+    transition: none;
+  }
+  
+  .explore-sidebar .filter-group--expanded .filter-group__content {
+    animation: none;
+  }
+  
+  .explore-sidebar .filter-group__icon {
+    transition: none;
+  }
+  
+  .explore-sidebar .filter-actions .button__spinner {
+    animation: none;
+  }
+}
+
 .explore-sidebar .filter-group--expanded .filter-group__content {
   display: block;
-  max-height: 800px;
+  max-height: 500px; /* Reduced from 800px for better UX */
   overflow-y: auto;
   overflow-x: hidden;
   animation: slideDown 0.3s ease-out;
   scrollbar-width: thin;
   scrollbar-color: var(--color-border-medium) transparent;
+  scroll-behavior: smooth;
 }
 
 /* Custom scrollbar for webkit browsers */
@@ -215,14 +277,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.875rem 0;
+  padding: 0.875rem;
   cursor: pointer;
   user-select: none;
   transition: all var(--duration-base) var(--ease-out);
   border-radius: var(--radius-base);
   margin: 0 -0.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.explore-sidebar .filter-group__header:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+.explore-sidebar .filter-group__header:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .explore-sidebar .filter-group__header:hover {
@@ -278,6 +354,33 @@
   padding: 0.75rem 0 0 0;
 }
 
+/* Filter Options Container - Better scrolling for long lists */
+.explore-sidebar .filter-options {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-medium) transparent;
+}
+
+.explore-sidebar .filter-options::-webkit-scrollbar {
+  width: 6px;
+}
+
+.explore-sidebar .filter-options::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.explore-sidebar .filter-options::-webkit-scrollbar-thumb {
+  background-color: var(--color-border-medium);
+  border-radius: 3px;
+}
+
+.explore-sidebar .filter-options::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-border-dark);
+}
+
 /* Filter Subgroups (for grouped filters like Legal Characteristics) */
 .explore-sidebar .filter-subgroup {
   margin-bottom: 1.25rem;
@@ -298,7 +401,10 @@
   padding-left: 0.5rem;
 }
 
-/* Filter Search Input */
+/* ========================================
+   Filter Search - Explore-specific Enhancements
+   ======================================== */
+
 /* Country Role Selector */
 .filter-role-selector {
   margin-bottom: var(--space-md);
@@ -354,12 +460,17 @@
 .explore-sidebar .filter-search__input {
   width: 100%;
   padding: 0.625rem 0.875rem 0.625rem 2.5rem;
+  padding-right: 0.875rem; /* Default padding, will be adjusted by JS if clear button exists */
   border: 1px solid var(--color-border-medium);
   border-radius: var(--radius-base);
   font-size: 0.875rem;
   background-color: var(--color-bg-secondary);
   color: var(--color-text-primary);
   transition: all var(--duration-base) var(--ease-out);
+}
+
+.explore-sidebar .filter-search__input.has-clear {
+  padding-right: 2.5rem;
 }
 
 .explore-sidebar .filter-search__input:focus {
@@ -383,6 +494,59 @@
   width: 16px;
   height: 16px;
   pointer-events: none;
+  z-index: 1;
+}
+
+/* Clear search button */
+.explore-sidebar .filter-search__clear {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-base);
+  transition: all var(--duration-base) var(--ease-out);
+  z-index: 2;
+}
+
+.explore-sidebar .filter-search__clear:hover {
+  background-color: var(--color-bg-muted);
+  color: var(--color-text-primary);
+}
+
+.explore-sidebar .filter-search__clear:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+.explore-sidebar .filter-search__clear svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Input padding adjusted by JS when clear button is present */
+
+/* Search results indicator */
+.explore-sidebar .filter-search-results {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.5rem;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-base);
+  text-align: center;
+}
+
+.explore-sidebar .filter-search-results--empty {
+  color: var(--color-error-600, #dc2626);
+  background-color: var(--color-error-50, #fef2f2);
 }
 
 /* Filter Options Container */
@@ -455,6 +619,7 @@
 /* Filter Actions - Sticky Bottom */
 .explore-sidebar .filter-actions {
   display: flex;
+  flex-direction: column;
   gap: 0.75rem;
   padding: 1rem 1.5rem;
   border-top: 2px solid var(--color-border-light);
@@ -465,16 +630,40 @@
   z-index: 10;
 }
 
-.explore-sidebar .filter-actions__primary,
-.explore-sidebar .filter-actions__secondary {
-  flex: 1;
+.explore-sidebar .filter-actions__status {
+  min-height: 1.25rem;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
 }
+
+.explore-sidebar .filter-actions__status-text {
+  display: block;
+}
+
+.explore-sidebar .filter-actions__status-text--error {
+  color: var(--color-error-600, #dc2626);
+}
+
+/* Buttons removed - using autoCommit instead */
 
 .explore-sidebar .filter-actions .button {
   width: 100%;
   font-weight: var(--font-weight-semibold);
   padding: 0.75rem 1rem;
   font-size: 0.9375rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.explore-sidebar .filter-actions .button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .explore-sidebar .filter-actions .button--primary {
@@ -484,10 +673,15 @@
   box-shadow: 0 2px 4px rgba(28, 115, 119, 0.2);
 }
 
-.explore-sidebar .filter-actions .button--primary:hover {
+.explore-sidebar .filter-actions .button--primary:hover:not(:disabled) {
   background-color: var(--color-primary-600);
   box-shadow: 0 4px 8px rgba(28, 115, 119, 0.3);
   transform: translateY(-1px);
+}
+
+.explore-sidebar .filter-actions .button--primary:disabled {
+  background-color: var(--color-primary-300);
+  box-shadow: none;
 }
 
 .explore-sidebar .filter-actions .button--secondary {
@@ -496,13 +690,48 @@
   border: 1px solid var(--color-border-medium);
 }
 
-.explore-sidebar .filter-actions .button--secondary:hover {
+.explore-sidebar .filter-actions .button--secondary:hover:not(:disabled) {
   background-color: var(--color-bg-muted);
   border-color: var(--color-border-strong);
   color: var(--color-text-primary);
 }
 
-/* Date Range Filter Styling */
+.explore-sidebar .filter-actions .button--secondary:disabled {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border-light);
+  color: var(--color-text-muted);
+}
+
+/* Button loading state */
+.explore-sidebar .filter-actions .button__text {
+  display: inline-block;
+}
+
+.explore-sidebar .filter-actions .button__loading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.explore-sidebar .filter-actions .button__spinner {
+  width: 16px;
+  height: 16px;
+  animation: filterButtonSpin 1s linear infinite;
+}
+
+@keyframes filterButtonSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================
+   Date Range Filter - Explore-specific Styling
+   ======================================== */
+
 .explore-sidebar .filter-date-range {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -544,6 +773,27 @@
   border-color: var(--color-primary-500);
   background-color: var(--color-bg-primary);
   box-shadow: 0 0 0 3px rgba(28, 115, 119, 0.08);
+}
+
+.explore-sidebar .filter-date-field__input--error {
+  border-color: var(--color-error-500, #dc2626);
+  background-color: var(--color-error-50, #fef2f2);
+}
+
+.explore-sidebar .filter-date-field__input--error:focus {
+  border-color: var(--color-error-600, #b91c1c);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.explore-sidebar .filter-date-error {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--color-error-50, #fef2f2);
+  border: 1px solid var(--color-error-200, #fecaca);
+  border-radius: var(--radius-base);
+  color: var(--color-error-700, #b91c1c);
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
 }
 
 .explore-sidebar .filter-date-presets {

@@ -248,17 +248,104 @@ export class FilterCoordinator extends BaseComponent {
     
     if (dateFromInput) {
       this.addEventListener(dateFromInput, 'change', () => {
-        this.handleManualDateChange();
+        this.validateAndHandleDateChange();
+      });
+      this.addEventListener(dateFromInput, 'blur', () => {
+        this.validateDateRange();
       });
     }
     
     if (dateToInput) {
       this.addEventListener(dateToInput, 'change', () => {
-        this.handleManualDateChange();
+        this.validateAndHandleDateChange();
+      });
+      this.addEventListener(dateToInput, 'blur', () => {
+        this.validateDateRange();
       });
     }
     
     this.logger.debug('Date inputs initialized');
+  }
+  
+  /**
+   * Validate and handle date change
+   */
+  validateAndHandleDateChange() {
+    if (this.validateDateRange()) {
+      this.handleManualDateChange();
+    }
+  }
+  
+  /**
+   * Validate date range and show feedback
+   */
+  validateDateRange() {
+    const dateFromInput = document.getElementById('date_from');
+    const dateToInput = document.getElementById('date_to');
+    
+    if (!dateFromInput || !dateToInput) {
+      return true;
+    }
+    
+    const dateFrom = dateFromInput.value;
+    const dateTo = dateToInput.value;
+    
+    // Remove previous error states
+    dateFromInput.classList.remove('filter-date-field__input--error');
+    dateToInput.classList.remove('filter-date-field__input--error');
+    this.removeDateErrorMessage();
+    
+    // If both are empty, no validation needed
+    if (!dateFrom && !dateTo) {
+      return true;
+    }
+    
+    // If only one is filled, it's valid
+    if (!dateFrom || !dateTo) {
+      return true;
+    }
+    
+    // Both are filled, check if from is before to
+    const fromDate = new Date(dateFrom);
+    const toDate = new Date(dateTo);
+    
+    if (fromDate > toDate) {
+      // Invalid: from date is after to date
+      dateFromInput.classList.add('filter-date-field__input--error');
+      dateToInput.classList.add('filter-date-field__input--error');
+      this.showDateErrorMessage('The start date must be before or equal to the end date.');
+      return false;
+    }
+    
+    return true;
+  }
+  
+  /**
+   * Show date error message
+   */
+  showDateErrorMessage(message) {
+    this.removeDateErrorMessage();
+    
+    const dateRangeContainer = document.querySelector('.filter-date-range');
+    if (!dateRangeContainer) return;
+    
+    const errorMessage = document.createElement('div');
+    errorMessage.className = 'filter-date-error';
+    errorMessage.setAttribute('role', 'alert');
+    errorMessage.setAttribute('aria-live', 'polite');
+    errorMessage.textContent = message;
+    
+    dateRangeContainer.appendChild(errorMessage);
+  }
+  
+  /**
+   * Remove date error message
+   */
+  removeDateErrorMessage() {
+    const errorMessage = document.querySelector('.filter-date-error');
+    if (errorMessage) {
+      errorMessage.remove();
+    }
   }
 
   /**
@@ -274,9 +361,12 @@ export class FilterCoordinator extends BaseComponent {
     // Clear active state from preset buttons since user entered manually
     this.clearPresetButtonsState();
     
-    // Add date filter chips if dates are provided
+    // Only add filters if dates are valid
     if (dateFrom || dateTo) {
-      this.addManualDateFilterChips(dateFrom, dateTo);
+      // Validate before adding
+      if (this.validateDateRange()) {
+        this.addManualDateFilterChips(dateFrom, dateTo);
+      }
     } else {
       // Remove date filters if both are empty
       this.removeDateFilters();
