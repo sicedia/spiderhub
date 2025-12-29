@@ -203,41 +203,35 @@ export class DocumentResults extends BaseComponent {
     if (doc.event_date) metaParts.push(formatDate(doc.event_date));
     const metaText = metaParts.join(' • ');
 
-    // Build tags: location + actors + themes (limit to 5 with overflow indicator)
-    const MAX_VISIBLE_TAGS = 5;
-    const allTags = [
-      doc.event_country ? { text: doc.event_country, type: 'location' } : null,
-      ...(doc.actors || []).map(a => ({ text: a, type: 'actor' })),
-      ...(doc.themes || []).map(t => ({ text: t, type: 'theme' }))
-    ].filter(Boolean);
+    // Host country badge - visible and explicit
+    // Handle both string and object formats for event_country
+    const eventCountryName = doc.event_country 
+      ? (typeof doc.event_country === 'string' 
+          ? doc.event_country 
+          : doc.event_country.name || doc.event_country)
+      : null;
     
-    const visibleTags = allTags.slice(0, MAX_VISIBLE_TAGS);
-    const hiddenCount = allTags.length - visibleTags.length;
-    
-    const tagsHtml = visibleTags.map(tag => {
-      if (tag.type === 'location') {
-        // Add location icon and tooltip for event country
-        return `<span class="doc-tag ${tag.type}" title="Host Country (Event Location)">
-          <svg class="doc-tag__icon" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    const hostCountryBadge = eventCountryName
+      ? `<span class="host-country-badge" title="Host Country">
+          <svg class="host-country-badge__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
           </svg>
-          ${this.escapeHtml(tag.text)}
-        </span>`;
-      }
-      return `<span class="doc-tag ${tag.type}">${this.escapeHtml(tag.text)}</span>`;
-    }).join('');
-    
-    const moreIndicator = hiddenCount > 0 
-      ? `<span class="doc-tag doc-tag--more">+${hiddenCount} more</span>` 
+          <span class="host-country-badge__text">Host: ${this.escapeHtml(eventCountryName)}</span>
+        </span>`
       : '';
-    
-    const tags = tagsHtml + moreIndicator;
 
-    // Excerpt
-    const excerpt = this.escapeHtml(doc.executive_summary || '');
+    // Excerpt - truncated to be more compact (120 characters)
+    const excerpt = doc.executive_summary 
+      ? this.truncateText(doc.executive_summary, 120)
+      : '';
+
+    // Get current language from URL for proper routing
+    const lang = window.location.pathname.split('/')[1] || '';
+    const langPrefix = lang && ['en', 'es', 'pt'].includes(lang) ? `/${lang}` : '';
+    const detailUrl = `${langPrefix}/document_detail/${doc.id}/`;
 
     return `
-      <div class="document-list-item">
+      <a href="${detailUrl}" class="document-list-item document-list-item--clickable" data-document-id="${doc.id}">
         <div class="document-icon">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -251,18 +245,26 @@ export class DocumentResults extends BaseComponent {
         <div class="document-list-content">
           <div class="document-list-title">${this.escapeHtml(doc.title || 'Untitled Document')}</div>
           ${metaText ? `<div class="document-list-meta"><span>${metaText}</span></div>` : ''}
-          <div class="document-list-tags">
-            ${tags}
-          </div>
+          ${hostCountryBadge ? `<div class="document-list-host-badge">${hostCountryBadge}</div>` : ''}
           ${excerpt ? `<p class="document-excerpt">${excerpt}</p>` : ''}
         </div>
         <div class="document-list-actions">
-          <a href="/document_detail/${doc.id}/" class="btn btn-secondary btn-sm">
+          <span class="btn btn-secondary btn-sm">
             ${_('View Details')}
-          </a>
+          </span>
         </div>
-      </div>
+      </a>
     `;
+  }
+
+  /**
+   * Truncate text to specified length
+   */
+  truncateText(text, maxLength) {
+    if (!text) return '';
+    const escaped = this.escapeHtml(text);
+    if (escaped.length <= maxLength) return escaped;
+    return escaped.substring(0, maxLength) + '...';
   }
 
   /**
@@ -387,12 +389,12 @@ export class DocumentResults extends BaseComponent {
    * Scroll to the top of the results list
    */
   scrollToResults() {
-    // Find the main content area or results header to scroll to
-    const searchHeader = document.querySelector('.explore-header');
+    // Find the search section in results area to scroll to
+    const searchSection = document.querySelector('.explore-results__search-section');
     
-    if (searchHeader) {
-      // Scroll to the search header area smoothly
-      searchHeader.scrollIntoView({ 
+    if (searchSection) {
+      // Scroll to the search section area smoothly
+      searchSection.scrollIntoView({ 
         behavior: 'smooth', 
         block: 'start' 
       });

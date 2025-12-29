@@ -87,6 +87,7 @@ export class SuggestionsBox extends BaseComponent {
 
     this.render();
     this.element.classList.add('visible');
+    this.element.removeAttribute('hidden'); // Remove hidden attribute
     this.emit('suggestions:shown', { suggestions: this.suggestions });
   }
 
@@ -95,6 +96,7 @@ export class SuggestionsBox extends BaseComponent {
    */
   hide() {
     this.element.classList.remove('visible');
+    this.element.setAttribute('hidden', ''); // Add hidden attribute
     this.element.innerHTML = '';
     this.suggestions = [];
     this.selectedIndex = -1;
