@@ -258,28 +258,23 @@ export class SearchCoordinator extends BaseComponent {
 
   /**
    * Show search status message
+   * Note: filter-actions removed, status messages no longer displayed
    */
   showSearchStatus(message, isError = false) {
-    const statusText = document.getElementById('filter-status-text');
-    if (statusText) {
-      statusText.textContent = message;
-      statusText.hidden = false;
-      if (isError) {
-        statusText.classList.add('filter-actions__status-text--error');
-      } else {
-        statusText.classList.remove('filter-actions__status-text--error');
-      }
+    // Status display removed - filter-actions section eliminated
+    // Status can be logged to console for debugging if needed
+    if (isError) {
+      console.warn('Search status (error):', message);
     }
   }
   
   /**
    * Hide search status message
+   * Note: filter-actions removed, status messages no longer displayed
    */
   hideSearchStatus() {
-    const statusText = document.getElementById('filter-status-text');
-    if (statusText) {
-      statusText.hidden = true;
-    }
+    // Status display removed - filter-actions section eliminated
+    // No action needed
   }
   
   /**

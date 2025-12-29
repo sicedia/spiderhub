@@ -15,6 +15,11 @@ export class FilterGroups {
   init() {
     this.bindEvents();
     this.initializeFilterGroups();
+    this.initializeCountryTypeahead();
+    this.initializePeriodPresets();
+    this.initializeDateInputs();
+    this.initializeSegmentedControl();
+    this.initializeSelectedCounts();
   }
 
   bindEvents() {
@@ -46,8 +51,39 @@ export class FilterGroups {
     this.container.addEventListener('change', (e) => {
       if (e.target.type === 'checkbox') {
         this.handleCheckboxChange(e.target);
+        this.updateSelectedCount(e.target);
       } else if (e.target.tagName === 'SELECT') {
         this.handleSelectChange(e.target);
+      }
+    });
+    
+    // Period preset buttons
+    this.container.addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-date-preset')) {
+        this.handlePeriodPreset(e.target);
+      }
+      
+      // Segmented control for country role
+      if (e.target.classList.contains('filter-role-segmented__option')) {
+        this.handleRoleSegmented(e.target);
+      }
+      
+      // Country typeahead result selection
+      if (e.target.classList.contains('filter-country-result')) {
+        this.handleCountrySelect(e.target);
+      }
+      
+      // Legal filter chips
+      if (e.target.closest('.filter-legal-row__options')) {
+        const chip = e.target.closest('.filter-option');
+        if (chip) {
+          const checkbox = chip.querySelector('input[type="checkbox"]');
+          if (checkbox) {
+            checkbox.checked = !checkbox.checked;
+            this.handleCheckboxChange(checkbox);
+            this.updateSelectedCount(checkbox);
+          }
+        }
       }
     });
   }
@@ -264,69 +300,13 @@ export class FilterGroups {
   }
 
   async handleSelectChange(select) {
-    // If this is the country_role select, uncheck all country checkboxes and remove chips
-    if (select.id === 'country-role-select') {
-      // Get all checked country checkboxes before unchecking
-      const countryCheckboxes = this.container.querySelectorAll('input[name="country"]:checked');
-      const hadCountriesSelected = countryCheckboxes.length > 0;
-      
-      // Uncheck and dispatch removal events for each country
-      countryCheckboxes.forEach(checkbox => {
-        checkbox.checked = false;
-        
-        // Dispatch filterToggle event to properly remove the chip through FilterManager
-        const filterOption = checkbox.closest('.filter-option');
-        if (filterOption) {
-          const filterLabel = filterOption.querySelector('.filter-option__label')?.textContent || '';
-          const event = new CustomEvent('filterToggle', {
-            detail: {
-              filterName: checkbox.name,
-              filterValue: checkbox.value,
-              filterLabel: filterLabel,
-              filterCategory: this.getFilterCategory(checkbox),
-              isChecked: false
-            }
-          });
-          document.dispatchEvent(event);
-        }
-      });
-      
-      // Clear the country search input
-      const countryGroup = this.container.querySelector('[data-filter-group="countries"]');
-      if (countryGroup) {
-        const countrySearchInput = countryGroup.querySelector('.filter-search__input');
-        if (countrySearchInput) {
-          countrySearchInput.value = '';
-          // Trigger the search to show all countries again
-          this.handleSearch(countrySearchInput);
-        }
-      }
-      
-      // Update country counts with new role and wait for it to complete
-      await this.updateCountryCounts(select.value);
-      
-      // Only dispatch filter change event if there were countries selected
-      // This triggers a new search with the updated role
-      if (hadCountriesSelected) {
-        const event = new CustomEvent('filterChange', {
-          detail: {
-            filterName: select.name,
-            filterValue: select.value,
-            filterLabel: select.options[select.selectedIndex].text
-          }
-        });
-        document.dispatchEvent(event);
-      }
-      
-      return; // Early return for country_role to avoid dispatching the event below
-    }
-    
+    // Country role is now handled by segmented control, so this is mainly for other selects
     // For other select inputs, dispatch filter change event
     const event = new CustomEvent('filterChange', {
       detail: {
         filterName: select.name,
         filterValue: select.value,
-        filterLabel: select.options[select.selectedIndex].text
+        filterLabel: select.options[select.selectedIndex]?.text || select.value
       }
     });
     document.dispatchEvent(event);
@@ -455,7 +435,8 @@ export class FilterGroups {
     checkboxes.forEach(checkbox => {
       const filterName = checkbox.name;
       const filterValue = checkbox.value;
-      const filterLabel = checkbox.closest('.filter-option').querySelector('.filter-option__label').textContent;
+      const filterLabel = checkbox.closest('.filter-option')?.querySelector('.filter-option__label')?.textContent || 
+                         checkbox.value;
       const filterCategory = this.getFilterCategory(checkbox);
       
       activeFilters.push({
@@ -467,11 +448,19 @@ export class FilterGroups {
     });
     
     // Get all select inputs (like country_role)
-    const selects = this.container.querySelectorAll('select[name]');
+    const selects = this.container.querySelectorAll('select[name], input[type="hidden"][name="country_role"]');
     selects.forEach(select => {
       const filterName = select.name;
       const filterValue = select.value;
-      const filterLabel = select.options[select.selectedIndex].text;
+      let filterLabel = '';
+      
+      if (select.tagName === 'SELECT') {
+        filterLabel = select.options[select.selectedIndex].text;
+      } else {
+        // For hidden input, get label from segmented control
+        const segmented = this.container.querySelector(`.filter-role-segmented__option[data-role="${filterValue}"]`);
+        filterLabel = segmented?.textContent || filterValue;
+      }
       
       activeFilters.push({
         name: filterName,
@@ -482,5 +471,533 @@ export class FilterGroups {
     });
     
     return activeFilters;
+  }
+  
+  /**
+   * Initialize country typeahead
+   */
+  initializeCountryTypeahead() {
+    const typeaheadInput = this.container.querySelector('#country-typeahead-input');
+    if (!typeaheadInput) return;
+    
+    this.countryTypeaheadData = [];
+    this.countryTypeaheadSelected = new Set();
+    this.countryTypeaheadResultsLimit = 15;
+    this.countryTypeaheadShown = 0;
+    
+    // Load countries when typeahead is focused
+    typeaheadInput.addEventListener('focus', () => {
+      if (this.countryTypeaheadData.length === 0) {
+        this.loadCountriesForTypeahead();
+      }
+    });
+    
+    // Handle input for typeahead
+    typeaheadInput.addEventListener('input', (e) => {
+      this.handleCountryTypeahead(e.target.value);
+    });
+    
+    // Close results when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!typeaheadInput.closest('.filter-country-typeahead')?.contains(e.target)) {
+        const results = this.container.querySelector('#filter-country-results');
+        if (results) results.hidden = true;
+      }
+    });
+  }
+  
+  /**
+   * Load countries for typeahead
+   */
+  async loadCountriesForTypeahead() {
+    try {
+      const roleInput = this.container.querySelector('#country-role-select');
+      const role = roleInput?.value || 'any';
+      const response = await fetch(`/api/countries-by-role/?role=${role}`);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      
+      const data = await response.json();
+      this.countryTypeaheadData = data.countries || [];
+      this.handleCountryTypeahead('');
+    } catch (error) {
+      console.error('Error loading countries for typeahead:', error);
+    }
+  }
+  
+  /**
+   * Handle country typeahead search
+   */
+  handleCountryTypeahead(searchTerm) {
+    const resultsContainer = this.container.querySelector('#filter-country-results');
+    if (!resultsContainer) return;
+    
+    const normalizedSearch = this.normalizeSearchTerm(searchTerm);
+    const filtered = this.countryTypeaheadData.filter(country => {
+      const normalizedName = this.normalizeSearchTerm(country.name);
+      return normalizedName.includes(normalizedSearch) && 
+             !this.countryTypeaheadSelected.has(country.iso3);
+    });
+    
+    // Limit results
+    const limited = filtered.slice(0, this.countryTypeaheadResultsLimit);
+    this.countryTypeaheadShown = limited.length;
+    const hasMore = filtered.length > this.countryTypeaheadResultsLimit;
+    
+    // Render results
+    resultsContainer.innerHTML = '';
+    if (limited.length === 0 && searchTerm) {
+      resultsContainer.innerHTML = '<div class="filter-country-result">No countries found</div>';
+      resultsContainer.hidden = false;
+      return;
+    }
+    
+    limited.forEach(country => {
+      const result = document.createElement('div');
+      result.className = 'filter-country-result';
+      result.dataset.iso3 = country.iso3;
+      result.innerHTML = `
+        <span class="filter-country-result__name">${country.name}</span>
+        <span class="filter-country-result__count">${country.count || 0}</span>
+      `;
+      resultsContainer.appendChild(result);
+    });
+    
+    if (hasMore) {
+      const showMore = document.createElement('div');
+      showMore.className = 'filter-country-results__show-more';
+      showMore.textContent = `Show more (${filtered.length - this.countryTypeaheadResultsLimit} more)`;
+      showMore.addEventListener('click', () => {
+        this.countryTypeaheadResultsLimit += 15;
+        this.handleCountryTypeahead(searchTerm);
+      });
+      resultsContainer.appendChild(showMore);
+    }
+    
+    resultsContainer.hidden = limited.length === 0 && !searchTerm;
+  }
+  
+  /**
+   * Handle country selection from typeahead
+   */
+  handleCountrySelect(resultElement) {
+    const iso3 = resultElement.dataset.iso3;
+    const name = resultElement.querySelector('.filter-country-result__name').textContent;
+    
+    // Add to selected
+    this.countryTypeaheadSelected.add(iso3);
+    
+    // Add chip
+    this.addCountryChip(iso3, name);
+    
+    // Clear typeahead input
+    const typeaheadInput = this.container.querySelector('#country-typeahead-input');
+    if (typeaheadInput) {
+      typeaheadInput.value = '';
+      this.handleCountryTypeahead('');
+    }
+    
+    // Hide results
+    const resultsContainer = this.container.querySelector('#filter-country-results');
+    if (resultsContainer) resultsContainer.hidden = true;
+    
+    // Dispatch filter toggle event
+    const event = new CustomEvent('filterToggle', {
+      detail: {
+        filterName: 'country',
+        filterValue: iso3,
+        filterLabel: name,
+        filterCategory: 'Countries',
+        isChecked: true
+      }
+    });
+    document.dispatchEvent(event);
+    
+    this.updateSelectedCount(null, 'countries');
+  }
+  
+  /**
+   * Add country chip
+   */
+  addCountryChip(iso3, name) {
+    const chipsContainer = this.container.querySelector('#filter-country-chips');
+    if (!chipsContainer) return;
+    
+    const chip = document.createElement('div');
+    chip.className = 'filter-country-chip';
+    chip.dataset.iso3 = iso3;
+    chip.innerHTML = `
+      <span>${name}</span>
+      <button class="filter-country-chip__remove" type="button" aria-label="Remove ${name}">✕</button>
+    `;
+    
+    chip.querySelector('.filter-country-chip__remove').addEventListener('click', () => {
+      this.removeCountryChip(iso3);
+    });
+    
+    chipsContainer.appendChild(chip);
+  }
+  
+  /**
+   * Remove country chip
+   */
+  removeCountryChip(iso3) {
+    this.countryTypeaheadSelected.delete(iso3);
+    const chip = this.container.querySelector(`#filter-country-chips .filter-country-chip[data-iso3="${iso3}"]`);
+    if (chip) chip.remove();
+    
+    // Dispatch filter toggle event
+    const name = chip?.textContent.trim().replace('✕', '').trim() || '';
+    const event = new CustomEvent('filterToggle', {
+      detail: {
+        filterName: 'country',
+        filterValue: iso3,
+        filterLabel: name,
+        filterCategory: 'Countries',
+        isChecked: false
+      }
+    });
+    document.dispatchEvent(event);
+    
+    this.updateSelectedCount(null, 'countries');
+  }
+  
+  /**
+   * Initialize period presets
+   */
+  initializePeriodPresets() {
+    const presets = this.container.querySelectorAll('.filter-date-preset');
+    presets.forEach(preset => {
+      preset.addEventListener('click', () => {
+        this.handlePeriodPreset(preset);
+      });
+    });
+  }
+  
+  /**
+   * Initialize date inputs listeners
+   */
+  initializeDateInputs() {
+    const dateFromInput = this.container.querySelector('#date_from');
+    const dateToInput = this.container.querySelector('#date_to');
+    
+    if (dateFromInput) {
+      dateFromInput.addEventListener('change', () => {
+        this.handleDateInputChange();
+      });
+    }
+    
+    if (dateToInput) {
+      dateToInput.addEventListener('change', () => {
+        this.handleDateInputChange();
+      });
+    }
+  }
+  
+  /**
+   * Format date for display in chips
+   */
+  formatDateForChip(dateString) {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+  
+  /**
+   * Handle date input changes
+   */
+  handleDateInputChange() {
+    const dateFromInput = this.container.querySelector('#date_from');
+    const dateToInput = this.container.querySelector('#date_to');
+    
+    const dateFrom = dateFromInput?.value || '';
+    const dateTo = dateToInput?.value || '';
+    
+    // Validate date range
+    if (dateFrom && dateTo && dateFrom > dateTo) {
+      // Invalid range - don't add filters, but don't remove existing ones either
+      return;
+    }
+    
+    // Get current active date filters from FilterChips (if available)
+    const filterChipsContainer = document.querySelector('.filter-chips');
+    const existingDateFromChip = filterChipsContainer?.querySelector('.filter-chip[data-type="date_from"]');
+    const existingDateToChip = filterChipsContainer?.querySelector('.filter-chip[data-type="date_to"]');
+    
+    // Remove existing date_from filter if value changed or cleared
+    if (existingDateFromChip) {
+      const oldValue = existingDateFromChip.dataset.value;
+      if (oldValue !== dateFrom) {
+        const removeEvent = new CustomEvent('filterToggle', {
+          detail: {
+            filterName: 'date_from',
+            filterValue: oldValue,
+            filterLabel: '',
+            filterCategory: 'Period',
+            isChecked: false
+          }
+        });
+        document.dispatchEvent(removeEvent);
+      }
+    }
+    
+    // Remove existing date_to filter if value changed or cleared
+    if (existingDateToChip) {
+      const oldValue = existingDateToChip.dataset.value;
+      if (oldValue !== dateTo) {
+        const removeEvent = new CustomEvent('filterToggle', {
+          detail: {
+            filterName: 'date_to',
+            filterValue: oldValue,
+            filterLabel: '',
+            filterCategory: 'Period',
+            isChecked: false
+          }
+        });
+        document.dispatchEvent(removeEvent);
+      }
+    }
+    
+    // Add new date_from filter if value is set and different from existing
+    if (dateFrom) {
+      if (!existingDateFromChip || existingDateFromChip.dataset.value !== dateFrom) {
+        const fromEvent = new CustomEvent('filterToggle', {
+          detail: {
+            filterName: 'date_from',
+            filterValue: dateFrom,
+            filterLabel: `From: ${this.formatDateForChip(dateFrom)}`,
+            filterCategory: 'Period',
+            isChecked: true
+          }
+        });
+        document.dispatchEvent(fromEvent);
+      }
+    }
+    
+    // Add new date_to filter if value is set and different from existing
+    if (dateTo) {
+      if (!existingDateToChip || existingDateToChip.dataset.value !== dateTo) {
+        const toEvent = new CustomEvent('filterToggle', {
+          detail: {
+            filterName: 'date_to',
+            filterValue: dateTo,
+            filterLabel: `Until: ${this.formatDateForChip(dateTo)}`,
+            filterCategory: 'Period',
+            isChecked: true
+          }
+        });
+        document.dispatchEvent(toEvent);
+      }
+    }
+    
+    this.updateSelectedCount(null, 'period');
+  }
+  
+  /**
+   * Handle period preset selection
+   */
+  handlePeriodPreset(presetButton) {
+    const preset = presetButton.dataset.preset;
+    const customRange = this.container.querySelector('#filter-date-range-custom');
+    
+    // Remove active state from all presets
+    this.container.querySelectorAll('.filter-date-preset').forEach(btn => {
+      btn.classList.remove('active', 'filter-date-preset--active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
+    
+    if (preset === 'custom') {
+      // Show custom date range
+      presetButton.classList.add('active', 'filter-date-preset--active');
+      presetButton.setAttribute('aria-pressed', 'true');
+      if (customRange) {
+        customRange.classList.remove('filter-date-range--hidden');
+      }
+      // Don't clear dates when switching to custom - let user enter them
+    } else {
+      // Apply preset
+      presetButton.classList.add('active', 'filter-date-preset--active');
+      presetButton.setAttribute('aria-pressed', 'true');
+      if (customRange) {
+        customRange.classList.add('filter-date-range--hidden');
+      }
+      
+      const years = parseInt(preset);
+      const today = new Date();
+      const fromDate = new Date(today.getFullYear() - years, today.getMonth(), today.getDate());
+      
+      const dateFromInput = this.container.querySelector('#date_from');
+      const dateToInput = this.container.querySelector('#date_to');
+      
+      // Clear existing date filters first
+      if (dateFromInput?.value || dateToInput?.value) {
+        // Remove old filters
+        if (dateFromInput?.value) {
+          const removeFromEvent = new CustomEvent('filterToggle', {
+            detail: {
+              filterName: 'date_from',
+              filterValue: dateFromInput.value,
+              filterLabel: '',
+              filterCategory: 'Period',
+              isChecked: false
+            }
+          });
+          document.dispatchEvent(removeFromEvent);
+        }
+        if (dateToInput?.value) {
+          const removeToEvent = new CustomEvent('filterToggle', {
+            detail: {
+              filterName: 'date_to',
+              filterValue: dateToInput.value,
+              filterLabel: '',
+              filterCategory: 'Period',
+              isChecked: false
+            }
+          });
+          document.dispatchEvent(removeToEvent);
+        }
+      }
+      
+      // Set new date values
+      if (dateFromInput) {
+        dateFromInput.value = fromDate.toISOString().split('T')[0];
+      }
+      if (dateToInput) {
+        dateToInput.value = today.toISOString().split('T')[0];
+      }
+      
+      // Trigger date input change handler which will add the filters
+      this.handleDateInputChange();
+    }
+    
+    this.updateSelectedCount(null, 'period');
+  }
+  
+  /**
+   * Initialize segmented control for country role
+   */
+  initializeSegmentedControl() {
+    const segmentedOptions = this.container.querySelectorAll('.filter-role-segmented__option');
+    segmentedOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        this.handleRoleSegmented(option);
+      });
+    });
+  }
+  
+  /**
+   * Handle role segmented control selection
+   */
+  async handleRoleSegmented(optionButton) {
+    const role = optionButton.dataset.role;
+    const hiddenInput = this.container.querySelector('#country-role-select');
+    
+    // Update all segmented options
+    this.container.querySelectorAll('.filter-role-segmented__option').forEach(btn => {
+      btn.setAttribute('aria-pressed', 'false');
+    });
+    optionButton.setAttribute('aria-pressed', 'true');
+    
+    // Update hidden input
+    if (hiddenInput) {
+      hiddenInput.value = role;
+    }
+    
+    // Clear selected countries and reload
+    this.countryTypeaheadSelected.clear();
+    const chipsContainer = this.container.querySelector('#filter-country-chips');
+    if (chipsContainer) chipsContainer.innerHTML = '';
+    
+    // Reload countries for new role
+    this.countryTypeaheadData = [];
+    await this.loadCountriesForTypeahead();
+    await this.updateCountryCounts(role);
+    
+    // Dispatch filter change
+    const event = new CustomEvent('filterChange', {
+      detail: {
+        filterName: 'country_role',
+        filterValue: role,
+        filterLabel: optionButton.textContent
+      }
+    });
+    document.dispatchEvent(event);
+  }
+  
+  /**
+   * Initialize selected count badges
+   */
+  initializeSelectedCounts() {
+    // Listen for filter changes to update counts
+    document.addEventListener('filterToggle', () => {
+      requestAnimationFrame(() => {
+        this.updateAllSelectedCounts();
+      });
+    });
+    
+    // Initial update
+    this.updateAllSelectedCounts();
+  }
+  
+  /**
+   * Update selected count for a specific filter group
+   * Note: Count badges are hidden via CSS, but we keep the data-selected attribute
+   * for potential future use or analytics
+   */
+  updateSelectedCount(checkbox, groupId = null) {
+    if (!groupId && checkbox) {
+      const group = checkbox.closest('.filter-group');
+      groupId = group?.dataset.filterGroup;
+    }
+    
+    if (!groupId) return;
+    
+    const group = this.container.querySelector(`[data-filter-group="${groupId}"]`);
+    if (!group) return;
+    
+    const countBadge = group.querySelector('.filter-group__count[data-selected]');
+    if (!countBadge) return;
+    
+    // Count selected checkboxes in this group
+    const selected = group.querySelectorAll('input[type="checkbox"]:checked').length;
+    countBadge.setAttribute('data-selected', selected.toString());
+    // Text content removed - badges are hidden via CSS
+  }
+  
+  /**
+   * Update all selected counts
+   * Note: Count badges are hidden via CSS, but we keep the data-selected attribute
+   * for potential future use or analytics
+   */
+  updateAllSelectedCounts() {
+    const groups = this.container.querySelectorAll('.filter-group[data-filter-group]');
+    groups.forEach(group => {
+      const groupId = group.dataset.filterGroup;
+      const countBadge = group.querySelector('.filter-group__count[data-selected]');
+      if (!countBadge) return;
+      
+      // Special handling for countries (use chips count)
+      if (groupId === 'countries') {
+        const chips = group.querySelectorAll('.filter-country-chip');
+        const count = chips.length;
+        countBadge.setAttribute('data-selected', count.toString());
+        // Text content removed - badges are hidden via CSS
+        return;
+      }
+      
+      // Special handling for period
+      if (groupId === 'period') {
+        const hasActivePreset = group.querySelector('.filter-date-preset[aria-pressed="true"]');
+        const hasCustomDates = group.querySelector('#date_from')?.value || group.querySelector('#date_to')?.value;
+        const count = (hasActivePreset || hasCustomDates) ? 1 : 0;
+        countBadge.setAttribute('data-selected', count.toString());
+        // Text content removed - badges are hidden via CSS
+        return;
+      }
+      
+      // For other groups, count checkboxes
+      const selected = group.querySelectorAll('input[type="checkbox"]:checked').length;
+      countBadge.setAttribute('data-selected', selected.toString());
+      // Text content removed - badges are hidden via CSS
+    });
   }
 }

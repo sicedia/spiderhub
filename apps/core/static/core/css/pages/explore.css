@@ -74,17 +74,16 @@
    ======================================== */
 
 .explore-sidebar {
-  width: 380px;
-  min-width: 320px;
+  width: 320px;
+  min-width: 280px;
   background-color: var(--color-bg-primary);
   border-radius: var(--radius-lg);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   padding: 0;
   flex-shrink: 0;
-  height: fit-content;
+  height: calc(100vh - var(--header-height) - 3rem);
   position: sticky;
   top: calc(var(--header-height) + 1.5rem);
-  max-height: calc(100vh - var(--header-height) - 3rem);
   overflow: hidden;
   border: 1px solid var(--color-border-light);
   transition: all var(--duration-base) var(--ease-out);
@@ -188,11 +187,89 @@
 
 /* Filter Groups - Scrollable Area */
 .explore-sidebar .filter-groups {
-  flex: 1;
+  flex: 1 1 auto;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  padding-right: 0;
   margin: 0;
+  margin-right: 0;
+  min-height: 0;
+  scrollbar-gutter: stable;
+}
+
+/* ========================================
+   Filter Sections (Quick / More filters)
+   ======================================== */
+
+.explore-sidebar .filter-section {
+  margin-bottom: 1.5rem;
+}
+
+.explore-sidebar .filter-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Quick section is always visible - no special styling needed */
+
+.explore-sidebar .filter-section__title {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem 0;
+  padding: 0 0.5rem;
+}
+
+.explore-sidebar .filter-section--more .filter-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75rem 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-base);
+  transition: all var(--duration-base) var(--ease-out);
+  margin-bottom: 0.75rem;
+}
+
+.explore-sidebar .filter-section--more .filter-section__header:hover {
+  background-color: var(--color-primary-50);
+}
+
+.explore-sidebar .filter-section--more .filter-section__header:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+.explore-sidebar .filter-section--more .filter-section__header:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.explore-sidebar .filter-section__icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-muted);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.explore-sidebar .filter-section--more[aria-expanded="true"] .filter-section__icon {
+  transform: rotate(180deg);
+}
+
+.explore-sidebar .filter-section__content {
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.explore-sidebar .filter-section--more[aria-expanded="true"] .filter-section__content {
+  display: block;
+  max-height: 2000px;
 }
 
 /* Filter accordion behavior - collapsed by default */
@@ -226,10 +303,6 @@
   
   .explore-sidebar .filter-group__icon {
     transition: none;
-  }
-  
-  .explore-sidebar .filter-actions .button__spinner {
-    animation: none;
   }
 }
 
@@ -319,21 +392,26 @@
   margin: 0;
 }
 
-/* Filter Group Count Badge */
+/* Filter Group Title in sections (h4 instead of h3) */
+.explore-sidebar .filter-section .filter-group__title {
+  font-size: 0.875rem;
+}
+
+/* Filter Group Count Badge - Hidden (numbers removed per UX request) */
 .explore-sidebar .filter-group__count {
   font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
-  background-color: var(--color-bg-secondary);
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--radius-full);
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
   font-weight: var(--font-weight-medium);
-  min-width: 24px;
-  text-align: center;
+  min-width: auto;
+  text-align: left;
 }
 
-.explore-sidebar .filter-group--expanded .filter-group__count {
-  background-color: var(--color-primary-100);
-  color: var(--color-primary-700);
+/* Hide selected count badges */
+.explore-sidebar .filter-group__count[data-selected] {
+  display: none;
 }
 
 /* Filter Group Icon */
@@ -352,6 +430,14 @@
 /* Filter Group Body Padding */
 .explore-sidebar .filter-group__body {
   padding: 0.75rem 0 0 0;
+}
+
+/* Countries filter group - optimized spacing */
+.explore-sidebar .filter-group[data-filter-group="countries"] .filter-group__body {
+  padding: 0.5rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 /* Filter Options Container - Better scrolling for long lists */
@@ -402,59 +488,277 @@
 }
 
 /* ========================================
-   Filter Search - Explore-specific Enhancements
+   Legal Filter - Consolidated Compact Rows
    ======================================== */
 
-/* Country Role Selector */
-.filter-role-selector {
-  margin-bottom: var(--space-md);
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--color-border-light);
+.explore-sidebar .filter-group__body--compact {
+  padding: 0.5rem 0 0 0;
 }
 
-.filter-role-selector__label {
+.explore-sidebar .filter-legal-row {
   display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-size: var(--font-size-xs);
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border-lightest);
+}
+
+.explore-sidebar .filter-legal-row:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.explore-sidebar .filter-legal-row__label {
+  font-size: 0.75rem;
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: var(--space-sm);
+  margin: 0;
 }
 
-.filter-role-selector__label svg {
-  opacity: 0.7;
+.explore-sidebar .filter-legal-row__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.filter-role-selector__select {
-  width: 100%;
-  padding: var(--space-sm) var(--space-md);
+/* Legal options as chips */
+.explore-sidebar .filter-legal-row__options .filter-option {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  margin: 0;
+  border-radius: var(--radius-full);
   border: 1px solid var(--color-border-medium);
-  border-radius: var(--radius-base);
-  font-size: var(--font-size-sm);
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
+  font-size: 0.8125rem;
   cursor: pointer;
-  transition: all var(--transition-base);
-  font-family: inherit;
+  transition: all var(--duration-base) var(--ease-out);
 }
 
-.filter-role-selector__select:hover {
+.explore-sidebar .filter-legal-row__options .filter-option:hover {
+  background-color: var(--color-primary-50);
+  border-color: var(--color-primary-300);
+  color: var(--color-primary-600);
+}
+
+.explore-sidebar .filter-legal-row__options .filter-option input[type="checkbox"] {
+  display: none;
+}
+
+.explore-sidebar .filter-legal-row__options .filter-option input[type="checkbox"]:checked + .filter-option__label,
+.explore-sidebar .filter-legal-row__options .filter-option--checked {
+  background-color: var(--color-primary-500);
   border-color: var(--color-primary-500);
+  color: var(--color-text-inverse);
+}
+
+.explore-sidebar .filter-legal-row__options .filter-option__label {
+  margin: 0;
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+}
+
+.explore-sidebar .filter-legal-row__options .filter-option__count {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+/* ========================================
+   Filter Search - Explore-specific Enhancements
+   ======================================== */
+
+/* ========================================
+   Country Role Segmented Control
+   ======================================== */
+
+.explore-sidebar .filter-role-segmented {
+  display: flex;
+  gap: 0.125rem;
+  margin-bottom: 0.75rem;
+  padding: 0.125rem;
   background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-base);
 }
 
-.filter-role-selector__select:focus {
+.explore-sidebar .filter-role-segmented__option {
+  flex: 1;
+  padding: 0.375rem 0.5rem;
+  border: none;
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+  border-radius: calc(var(--radius-base) - 1px);
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  font-family: inherit;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.explore-sidebar .filter-role-segmented__option:hover {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.explore-sidebar .filter-role-segmented__option[aria-pressed="true"] {
+  background-color: var(--color-primary-500);
+  color: var(--color-text-inverse);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: 0 1px 3px rgba(28, 115, 119, 0.2);
+}
+
+.explore-sidebar .filter-role-segmented__option:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+.explore-sidebar .filter-role-segmented__option:focus:not(:focus-visible) {
   outline: none;
-  border-color: var(--color-primary-500);
-  box-shadow: 0 0 0 3px rgba(28, 115, 119, 0.1);
+}
+
+/* ========================================
+   Country Chips (Selected Countries)
+   ======================================== */
+
+.explore-sidebar .filter-country-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-bottom: 0.75rem;
+  min-height: 0;
+}
+
+.explore-sidebar .filter-country-chips:empty {
+  display: none;
+}
+
+.explore-sidebar .filter-country-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  background-color: var(--color-primary-500);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+}
+
+.explore-sidebar .filter-country-chip__remove {
+  background: none;
+  border: none;
+  color: var(--color-text-inverse);
+  cursor: pointer;
+  padding: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-base) var(--ease-out);
+  opacity: 0.8;
+  line-height: 1;
+  flex-shrink: 0;
+  font-size: 0.875rem;
+}
+
+.explore-sidebar .filter-country-chip__remove:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+}
+
+/* ========================================
+   Country Typeahead
+   ======================================== */
+
+.explore-sidebar .filter-country-typeahead {
+  position: relative;
+  margin-top: 0;
+}
+
+.explore-sidebar .filter-country-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.375rem;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  max-height: 280px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0.25rem 0;
+  margin: 0;
+}
+
+.explore-sidebar .filter-country-results:not([hidden]) {
+  display: block;
+}
+
+.explore-sidebar .filter-country-result {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border-lightest);
+  transition: background-color var(--duration-base) var(--ease-out);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.explore-sidebar .filter-country-result:hover {
+  background: var(--color-primary-50);
+}
+
+.explore-sidebar .filter-country-result:last-child {
+  border-bottom: none;
+}
+
+.explore-sidebar .filter-country-result__name {
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+}
+
+.explore-sidebar .filter-country-result__count {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  background-color: var(--color-bg-secondary);
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+.explore-sidebar .filter-country-results__show-more {
+  padding: 0.75rem 0.875rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--color-primary-600);
+  cursor: pointer;
+  border-top: 1px solid var(--color-border-light);
+  transition: background-color var(--duration-base) var(--ease-out);
+}
+
+.explore-sidebar .filter-country-results__show-more:hover {
+  background-color: var(--color-primary-50);
 }
 
 .explore-sidebar .filter-search {
   position: relative;
   margin-bottom: 0.875rem;
+}
+
+.explore-sidebar .filter-country-typeahead .filter-search {
+  margin-bottom: 0;
 }
 
 .explore-sidebar .filter-search__input {
@@ -616,117 +920,6 @@
   text-align: center;
 }
 
-/* Filter Actions - Sticky Bottom */
-.explore-sidebar .filter-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 1rem 1.5rem;
-  border-top: 2px solid var(--color-border-light);
-  background: var(--color-bg-primary);
-  flex-shrink: 0;
-  position: sticky;
-  bottom: 0;
-  z-index: 10;
-}
-
-.explore-sidebar .filter-actions__status {
-  min-height: 1.25rem;
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-  text-align: center;
-}
-
-.explore-sidebar .filter-actions__status-text {
-  display: block;
-}
-
-.explore-sidebar .filter-actions__status-text--error {
-  color: var(--color-error-600, #dc2626);
-}
-
-/* Buttons removed - using autoCommit instead */
-
-.explore-sidebar .filter-actions .button {
-  width: 100%;
-  font-weight: var(--font-weight-semibold);
-  padding: 0.75rem 1rem;
-  font-size: 0.9375rem;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  transition: all var(--duration-base) var(--ease-out);
-}
-
-.explore-sidebar .filter-actions .button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.explore-sidebar .filter-actions .button--primary {
-  background-color: var(--color-primary-500);
-  color: var(--color-text-inverse);
-  border: none;
-  box-shadow: 0 2px 4px rgba(28, 115, 119, 0.2);
-}
-
-.explore-sidebar .filter-actions .button--primary:hover:not(:disabled) {
-  background-color: var(--color-primary-600);
-  box-shadow: 0 4px 8px rgba(28, 115, 119, 0.3);
-  transform: translateY(-1px);
-}
-
-.explore-sidebar .filter-actions .button--primary:disabled {
-  background-color: var(--color-primary-300);
-  box-shadow: none;
-}
-
-.explore-sidebar .filter-actions .button--secondary {
-  background-color: transparent;
-  color: var(--color-text-secondary);
-  border: 1px solid var(--color-border-medium);
-}
-
-.explore-sidebar .filter-actions .button--secondary:hover:not(:disabled) {
-  background-color: var(--color-bg-muted);
-  border-color: var(--color-border-strong);
-  color: var(--color-text-primary);
-}
-
-.explore-sidebar .filter-actions .button--secondary:disabled {
-  background-color: var(--color-bg-secondary);
-  border-color: var(--color-border-light);
-  color: var(--color-text-muted);
-}
-
-/* Button loading state */
-.explore-sidebar .filter-actions .button__text {
-  display: inline-block;
-}
-
-.explore-sidebar .filter-actions .button__loading {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.explore-sidebar .filter-actions .button__spinner {
-  width: 16px;
-  height: 16px;
-  animation: filterButtonSpin 1s linear infinite;
-}
-
-@keyframes filterButtonSpin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 /* ========================================
    Date Range Filter - Explore-specific Styling
@@ -800,6 +993,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .explore-sidebar .filter-date-preset {
@@ -821,25 +1015,44 @@
 }
 
 .explore-sidebar .filter-date-preset.active,
-.explore-sidebar .filter-date-preset--active {
+.explore-sidebar .filter-date-preset--active,
+.explore-sidebar .filter-date-preset[aria-pressed="true"] {
   background-color: var(--color-primary-500);
   border-color: var(--color-primary-500);
   color: var(--color-text-inverse);
   box-shadow: 0 2px 4px rgba(28, 115, 119, 0.2);
 }
 
-/* Custom Scrollbar for Filter Groups */
+.explore-sidebar .filter-date-range--hidden {
+  display: none;
+}
+
+.explore-sidebar .filter-date-range:not(.filter-date-range--hidden) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Custom Scrollbar for Filter Groups - Aligned to right edge */
+.explore-sidebar .filter-groups {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-medium) transparent;
+}
+
 .explore-sidebar .filter-groups::-webkit-scrollbar {
   width: 6px;
 }
 
 .explore-sidebar .filter-groups::-webkit-scrollbar-track {
   background: transparent;
+  margin: 0;
 }
 
 .explore-sidebar .filter-groups::-webkit-scrollbar-thumb {
   background: var(--color-border-medium);
   border-radius: var(--radius-full);
+  border: none;
 }
 
 .explore-sidebar .filter-groups::-webkit-scrollbar-thumb:hover {
@@ -1530,16 +1743,6 @@
     overflow: visible;
   }
 
-  /* Hide filter actions by default in mobile */
-  .explore-sidebar .filter-actions {
-    display: none;
-  }
-  
-  /* Show filter actions when expanded */
-  .explore-sidebar[aria-expanded="true"] .filter-actions,
-  .explore-sidebar.expanded .filter-actions {
-    display: flex;
-  }
 
   /* Make filter header clickable */
   .explore-sidebar .filter-header {
@@ -1696,9 +1899,6 @@
     padding: 0.75rem 1rem;
   }
 
-  .explore-sidebar .filter-actions {
-    padding: 0.75rem 1rem;
-  }
 
   /* Date filter responsive adjustments */
   .explore-sidebar .filter-date-range {

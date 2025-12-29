@@ -46,7 +46,11 @@ export class FilterAccordion extends BaseComponent {
     this.elements = {
       groups: Array.from(DOMUtils.getElements('.filter-group', this.element) || []),
       headers: Array.from(DOMUtils.getElements('.filter-group__header', this.element) || []),
-      contents: Array.from(DOMUtils.getElements('.filter-group__content', this.element) || [])
+      contents: Array.from(DOMUtils.getElements('.filter-group__content', this.element) || []),
+      // More filters section
+      moreSection: this.element.querySelector('.filter-section--more'),
+      moreSectionHeader: this.element.querySelector('.filter-section--more .filter-section__header'),
+      moreSectionContent: this.element.querySelector('.filter-section--more .filter-section__content')
     };
     
     // Ensure headers have proper accessibility attributes
@@ -61,6 +65,11 @@ export class FilterAccordion extends BaseComponent {
         header.setAttribute('aria-expanded', isExpanded.toString());
       }
     });
+    
+    // Initialize More filters section (collapsed by default)
+    if (this.elements.moreSectionHeader && this.elements.moreSection) {
+      this.elements.moreSection.setAttribute('aria-expanded', 'false');
+    }
   }
 
   bindEvents() {
@@ -68,6 +77,33 @@ export class FilterAccordion extends BaseComponent {
       this.addEventListener(header, 'click', () => this.toggleGroup(index));
       this.addEventListener(header, 'keydown', (e) => this.handleKeyboard(e, index));
     });
+    
+    // Bind More filters section toggle
+    if (this.elements.moreSectionHeader) {
+      this.addEventListener(this.elements.moreSectionHeader, 'click', () => this.toggleMoreSection());
+      this.addEventListener(this.elements.moreSectionHeader, 'keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.toggleMoreSection();
+        }
+      });
+    }
+  }
+  
+  /**
+   * Toggle More filters section
+   */
+  toggleMoreSection() {
+    if (!this.elements.moreSection) return;
+    
+    const isExpanded = this.elements.moreSection.getAttribute('aria-expanded') === 'true';
+    this.elements.moreSection.setAttribute('aria-expanded', (!isExpanded).toString());
+    
+    // Update icon rotation
+    const icon = this.elements.moreSectionHeader?.querySelector('.filter-section__icon');
+    if (icon) {
+      icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
   }
 
   /**

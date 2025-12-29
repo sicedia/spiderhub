@@ -65,26 +65,42 @@ export class FilterChips {
       }
       
       // Clear date inputs if removing date filters
-      if (filterName === 'date_from') {
+      if (filterName === 'date_from' || filterName === 'date_to') {
         const dateFromInput = document.getElementById('date_from');
-        if (dateFromInput) dateFromInput.value = '';
-        
-        // Clear active state from date preset buttons
-        const datePresets = document.querySelectorAll('.filter-date-preset');
-        datePresets.forEach(preset => {
-          preset.classList.remove('active', 'filter-date-preset--active');
-        });
-      }
-      
-      if (filterName === 'date_to') {
         const dateToInput = document.getElementById('date_to');
-        if (dateToInput) dateToInput.value = '';
         
-        // Clear active state from date preset buttons
-        const datePresets = document.querySelectorAll('.filter-date-preset');
-        datePresets.forEach(preset => {
-          preset.classList.remove('active', 'filter-date-preset--active');
-        });
+        // Check if both date filters are being removed
+        const hasOtherDateFilter = Array.from(this.activeFilters.values()).some(
+          f => (f.name === 'date_from' || f.name === 'date_to') && 
+               !(f.name === filterName && f.value === filterValue)
+        );
+        
+        // Only clear inputs if no other date filter remains
+        if (!hasOtherDateFilter) {
+          if (dateFromInput) dateFromInput.value = '';
+          if (dateToInput) dateToInput.value = '';
+          
+          // Clear active state from date preset buttons
+          const datePresets = document.querySelectorAll('.filter-date-preset');
+          datePresets.forEach(preset => {
+            preset.classList.remove('active', 'filter-date-preset--active');
+            preset.setAttribute('aria-pressed', 'false');
+          });
+          
+          // Hide custom date range if visible
+          const customRange = document.getElementById('filter-date-range-custom');
+          if (customRange) {
+            customRange.classList.add('filter-date-range--hidden');
+          }
+        } else {
+          // Only clear the specific input
+          if (filterName === 'date_from' && dateFromInput) {
+            dateFromInput.value = '';
+          }
+          if (filterName === 'date_to' && dateToInput) {
+            dateToInput.value = '';
+          }
+        }
       }
       
       // Trigger filter change event
