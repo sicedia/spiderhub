@@ -191,10 +191,6 @@ export class AnalysisDataCoordinator {
         'sdg1': 0.67, 'sdg4': 0.85, 'sdg5': 0.73, 'sdg8': 0.91, 'sdg9': 0.95,
         'sdg10': 0.78, 'sdg11': 0.82, 'sdg13': 0.88, 'sdg16': 0.79, 'sdg17': 0.93
       },
-      sdg_global_relevance: {
-        'sdg1': 0.23, 'sdg4': 0.41, 'sdg5': 0.29, 'sdg8': 0.58, 'sdg9': 0.71,
-        'sdg10': 0.34, 'sdg11': 0.38, 'sdg13': 0.48, 'sdg16': 0.52, 'sdg17': 0.82
-      },
       sdg_info: {
         'sdg1': {'number': 1, 'name': 'No Poverty', 'description': 'End poverty in all its forms everywhere'},
         'sdg4': {'number': 4, 'name': 'Quality Education', 'description': 'Ensure inclusive and equitable quality education'},
@@ -419,8 +415,6 @@ export class AnalysisDataCoordinator {
     switch (chartType) {
       case 'sdg':
         return this.formatSDGData();
-      case 'sdg_global':
-        return this.formatSDGGlobalData();
       case 'binding':
         return this.formatBindingData();
       case 'countries':
@@ -509,52 +503,6 @@ export class AnalysisDataCoordinator {
           pointHoverBorderColor: 'rgba(52, 168, 83, 1)',
           pointRadius: 4,
           pointHoverRadius: 6
-        }
-      ]
-    };
-  }
-
-  /**
-   * Format SDG global relevance data for bar chart
-   * Shows overall impact considering all documents (includes zeros)
-   */
-  formatSDGGlobalData() {
-    const sdgGlobalRelevance = this.data.analysis.sdg_global_relevance || {};
-    const sdgLabels = this.data.analysis.sdg_labels || {};
-    
-    // Get ordered SDG keys (sdg1, sdg2, etc.)
-    const sdgKeys = Object.keys(sdgGlobalRelevance).sort((a, b) => {
-      const numA = parseInt(a.replace('sdg', ''));
-      const numB = parseInt(b.replace('sdg', ''));
-      return numA - numB;
-    });
-    
-    // Format labels (short version for bar chart)
-    const labels = sdgKeys.map(key => {
-      const number = key.replace('sdg', '');
-      return `SDG ${number}`;
-    });
-    
-    // Extract global relevance scores
-    const values = sdgKeys.map(key => sdgGlobalRelevance[key] || 0);
-    
-    // Get full SDG info for tooltips
-    const sdgInfo = sdgKeys.map(key => {
-      const number = key.replace('sdg', '');
-      return this.data.analysis.sdg_info?.[key] || { number, name: `SDG ${number}` };
-    });
-    
-    return {
-      labels: labels,
-      datasets: [
-        {
-          label: 'Global Relevance',
-          data: values,
-          sdgInfo: sdgInfo,  // Store for tooltips
-          backgroundColor: 'rgba(28, 115, 119, 0.8)',
-          borderColor: 'rgba(28, 115, 119, 1)',
-          borderWidth: 1,
-          hoverBackgroundColor: 'rgba(28, 115, 119, 0.95)'
         }
       ]
     };

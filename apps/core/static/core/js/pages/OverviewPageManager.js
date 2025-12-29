@@ -1,6 +1,6 @@
 /**
- * Strategic Cabinet Page Manager
- * Manages the Strategic Cabinet Country-EU dashboard
+ * Overview Page Manager
+ * Manages the Overview Country-EU dashboard
  * Built with coordinator pattern and EventBus
  */
 
@@ -10,23 +10,23 @@ import { EVENTS } from '../core/constants/config.js';
 import { logger } from '../core/logger/Logger.js';
 
 // Coordinators
-import { CabinetDataCoordinator } from '../coordinators/CabinetDataCoordinator.js';
-import { CabinetChartsCoordinator } from '../coordinators/CabinetChartsCoordinator.js';
+import { OverviewDataCoordinator } from '../coordinators/OverviewDataCoordinator.js';
+import { OverviewChartsCoordinator } from '../coordinators/OverviewChartsCoordinator.js';
 
-export class CabinetPageManager extends BasePageManager {
+export class OverviewPageManager extends BasePageManager {
   constructor(element = document.body, options = {}) {
     super(element, options);
     
     // Create child logger
     this.logger = logger.child({
-      component: 'CabinetPageManager',
+      component: 'OverviewPageManager',
       version: '1.0'
     });
     
     this.coordinators = {};
     this.filterElements = {};
     
-    this.logger.info('CabinetPageManager initialized');
+    this.logger.info('OverviewPageManager initialized');
   }
 
   /**
@@ -56,9 +56,9 @@ export class CabinetPageManager extends BasePageManager {
    */
   async loadPageData() {
     if (this.logger) {
-      this.logger.debug('Data loading delegated to CabinetDataCoordinator');
+      this.logger.debug('Data loading delegated to OverviewDataCoordinator');
     }
-    // Data loading is handled by CabinetDataCoordinator
+    // Data loading is handled by OverviewDataCoordinator
   }
 
   /**
@@ -71,17 +71,17 @@ export class CabinetPageManager extends BasePageManager {
     
     try {
       // 1. Initialize Data Coordinator first
-      this.coordinators.data = new CabinetDataCoordinator({
+      this.coordinators.data = new OverviewDataCoordinator({
         defaultCountry: this.options.defaultCountry
       });
       await this.coordinators.data.init();
       
       if (this.logger) {
-        this.logger.info('✅ CabinetDataCoordinator initialized');
+        this.logger.info('✅ OverviewDataCoordinator initialized');
       }
       
       // 2. Initialize Charts Coordinator
-      this.coordinators.charts = new CabinetChartsCoordinator(
+      this.coordinators.charts = new OverviewChartsCoordinator(
         this.coordinators.data,
         {
           enableAnimations: this.options.enableChartAnimations,
@@ -91,7 +91,7 @@ export class CabinetPageManager extends BasePageManager {
       await this.coordinators.charts.init();
       
       if (this.logger) {
-        this.logger.info('✅ CabinetChartsCoordinator initialized');
+        this.logger.info('✅ OverviewChartsCoordinator initialized');
       }
       
       // 3. Setup filter UI (loads countries from API)
@@ -318,23 +318,23 @@ export class CabinetPageManager extends BasePageManager {
   }
 
   /**
-   * Reload cabinet data and charts
+   * Reload overview data and charts
    */
   async reload() {
     if (this.logger) {
-      this.logger.info('Reloading cabinet page');
+      this.logger.info('Reloading overview page');
     }
     
     try {
       await this.coordinators.data?.loadAllData();
       
       if (this.logger) {
-        this.logger.info('Cabinet page reloaded successfully');
+        this.logger.info('Overview page reloaded successfully');
       }
       
     } catch (error) {
       if (this.logger) {
-        this.logger.error('Failed to reload cabinet page', error);
+        this.logger.error('Failed to reload overview page', error);
       }
     }
   }
@@ -344,7 +344,7 @@ export class CabinetPageManager extends BasePageManager {
    */
   destroy() {
     if (this.logger) {
-      this.logger.debug('Destroying CabinetPageManager');
+      this.logger.debug('Destroying OverviewPageManager');
     }
     
     // Destroy coordinators
@@ -361,10 +361,10 @@ export class CabinetPageManager extends BasePageManager {
     super.destroy();
     
     if (this.logger) {
-      this.logger.debug('CabinetPageManager destroyed');
+      this.logger.debug('OverviewPageManager destroyed');
     }
   }
 }
 
-export default CabinetPageManager;
+export default OverviewPageManager;
 

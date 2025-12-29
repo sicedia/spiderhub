@@ -1,5 +1,5 @@
 /**
- * Strategic Cabinet Page Styles
+ * Overview Page Styles
  * Executive dashboard for EU-Country digital cooperation
  * Following ITCSS architecture with BEM methodology
  */
@@ -8,7 +8,7 @@
    Page Container
    ======================================== */
 
-.strategic-cabinet-page {
+.overview-page {
   min-height: 100vh;
   background-color: var(--color-bg-secondary);
   margin-top: var(--header-height);
@@ -20,7 +20,7 @@
    Compact Dashboard Header
    ======================================== */
 
-.cabinet-header {
+.overview-header {
   background: linear-gradient(
     135deg,
     var(--color-primary-600) 0%,
@@ -46,7 +46,7 @@
   );
 }
 
-.cabinet-header__content {
+.overview-header__content {
   max-width: var(--container-7xl);
   margin: 0 auto;
   display: flex;
@@ -55,7 +55,7 @@
   gap: var(--space-md);
 }
 
-.cabinet-header__title {
+.overview-header__title {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-inverse);
@@ -63,7 +63,7 @@
   line-height: var(--line-height-tight);
 }
 
-.cabinet-header__description {
+.overview-header__description {
   font-size: var(--font-size-sm);
   opacity: 0.9;
   margin: 0;
@@ -74,7 +74,7 @@
    Filters Section - Sticky Bar
    ======================================== */
 
-.cabinet-filters {
+.overview-filters {
   background: var(--color-bg-primary);
   border-bottom: 2px solid var(--color-border-light);
   padding: var(--space-md) 5%;
@@ -199,7 +199,7 @@
    Main Content
    ======================================== */
 
-.cabinet-content {
+.overview-content {
   max-width: var(--container-7xl);
   margin: 0 auto;
   padding: var(--space-xl) 3%;
@@ -211,7 +211,7 @@
    KPI Cards - Compact & Clean
    ======================================== */
 
-.cabinet-kpis {
+.overview-kpis {
   margin-bottom: var(--space-xl);
 }
 
@@ -328,7 +328,7 @@
    Section Components
    ======================================== */
 
-.cabinet-section {
+.overview-section {
   background: var(--color-bg-primary);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
@@ -546,7 +546,7 @@
 
 /* Mobile devices */
 @media (max-width: 768px) {
-  .strategic-cabinet-page {
+  .overview-page {
     margin-top: calc(var(--header-height) + 20px);
   }
 
@@ -554,21 +554,21 @@
     grid-template-columns: 1fr;
   }
 
-  .cabinet-header {
+  .overview-header {
     padding: var(--space-md) var(--space-md);
   }
 
-  .cabinet-header__content {
+  .overview-header__content {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-sm);
   }
 
-  .cabinet-header__title {
+  .overview-header__title {
     font-size: var(--font-size-xl);
   }
 
-  .cabinet-filters {
+  .overview-filters {
     padding: var(--space-sm) var(--space-md);
     position: relative;
     top: 0;
@@ -584,7 +584,7 @@
     grid-column: 1;
   }
 
-  .cabinet-content {
+  .overview-content {
     padding: var(--space-lg) var(--space-md);
   }
 
@@ -611,7 +611,7 @@
     font-size: var(--font-size-2xl);
   }
 
-  .cabinet-section {
+  .overview-section {
     padding: var(--space-lg);
     margin-bottom: var(--space-lg);
   }
@@ -648,19 +648,19 @@
 
 /* Small mobile devices */
 @media (max-width: 480px) {
-  .cabinet-header {
+  .overview-header {
     padding: var(--space-sm) var(--space-sm);
   }
 
-  .cabinet-header__title {
+  .overview-header__title {
     font-size: var(--font-size-lg);
   }
 
-  .cabinet-content {
+  .overview-content {
     padding: var(--space-md) var(--space-sm);
   }
 
-  .cabinet-section {
+  .overview-section {
     padding: var(--space-md);
   }
 
@@ -845,11 +845,11 @@
    ======================================== */
 
 @media (prefers-color-scheme: dark) {
-  .strategic-cabinet-page {
+  .overview-page {
     background-color: var(--color-bg-secondary);
   }
   
-  .cabinet-header {
+  .overview-header {
     background: linear-gradient(
       135deg,
       var(--color-primary-700) 0%,
@@ -857,7 +857,7 @@
     );
   }
   
-  .cabinet-content {
+  .overview-content {
     background-color: var(--color-bg-secondary);
   }
   

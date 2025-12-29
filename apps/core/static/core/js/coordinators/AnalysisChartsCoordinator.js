@@ -12,7 +12,6 @@ import { DOMUtils } from '../core/utils/dom.js';
 // Chart Components
 import { NetworkGraph } from '../components/charts/NetworkGraph.js';
 import { SDGRadarChart } from '../components/charts/SDGRadarChart.js';
-import { SDGGlobalBarChart } from '../components/charts/SDGGlobalBarChart.js';
 import { BindingDonutChart } from '../components/charts/BindingDonutChart.js';
 import { CountriesBarChart } from '../components/charts/CountriesBarChart.js';
 import { ThemesBarChart } from '../components/charts/ThemesBarChart.js';
@@ -101,15 +100,6 @@ export class AnalysisChartsCoordinator {
         component: SDGRadarChart,
         data: {
           sdgData: this.dataCoordinator.getChartData('sdg'),
-          sdgInfo: this.dataCoordinator.getSDGInfo()
-        }
-      },
-      { 
-        id: 'sdg-global-chart', 
-        type: 'bar',
-        component: SDGGlobalBarChart,
-        data: {
-          sdgGlobalData: this.dataCoordinator.getChartData('sdg_global'),
           sdgInfo: this.dataCoordinator.getSDGInfo()
         }
       },

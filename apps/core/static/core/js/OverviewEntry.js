@@ -1,17 +1,17 @@
 /**
- * Strategic Cabinet Page Entry Point
- * Initializes the Strategic Cabinet Country-EU dashboard
+ * Overview Page Entry Point
+ * Initializes the Overview Country-EU dashboard
  */
 
 import { logger } from './core/logger/Logger.js';
-import { CabinetPageManager } from './pages/CabinetPageManager.js';
+import { OverviewPageManager } from './pages/OverviewPageManager.js';
 
 /**
- * Initialize the Strategic Cabinet page
+ * Initialize the Overview page
  */
-async function initializeCabinetPage() {
+async function initializeOverviewPage() {
   try {
-    logger.info('Initializing Strategic Cabinet page...');
+    logger.info('Initializing Overview page...');
     
     // Wait for DOM to be fully loaded
     if (document.readyState === 'loading') {
@@ -21,9 +21,9 @@ async function initializeCabinetPage() {
     }
     
     // Get the page container
-    const pageContainer = document.getElementById('strategic-cabinet-page');
+    const pageContainer = document.getElementById('overview-page');
     if (!pageContainer) {
-      logger.error('Strategic Cabinet page container not found');
+      logger.error('Overview page container not found');
       return;
     }
     
@@ -32,23 +32,23 @@ async function initializeCabinetPage() {
     const defaultCountry = countrySelect?.value || 'ECU';
     
     // Create page manager (init is called automatically by BaseComponent constructor)
-    const pageManager = new CabinetPageManager(pageContainer, {
+    const pageManager = new OverviewPageManager(pageContainer, {
       enableAnimations: true,
       enableChartAnimations: true,
       defaultCountry: defaultCountry,
       autoInitialize: true
     });
     
-    logger.info('✅ Strategic Cabinet page initialized successfully');
+    logger.info('✅ Overview page initialized successfully');
     
     // Expose to window for debugging (only in development)
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      window.__cabinetPageManager = pageManager;
-      logger.debug('Page manager exposed as window.__cabinetPageManager');
+      window.__overviewPageManager = pageManager;
+      logger.debug('Page manager exposed as window.__overviewPageManager');
     }
     
   } catch (error) {
-    logger.error('Failed to initialize Strategic Cabinet page', error);
+    logger.error('Failed to initialize Overview page', error);
     
     // Show user-friendly error message
     showErrorMessage(
@@ -90,5 +90,5 @@ function showErrorMessage(message) {
 }
 
 // Initialize page when script loads
-initializeCabinetPage();
+initializeOverviewPage();
 

@@ -102,9 +102,7 @@ class AnalysisService:
             for s in sdgs_qs
         }
         
-        total_documents = Document.objects.count()
         sdg_avg_relevance = {}
-        sdg_global_relevance = {}
         
         for sdg in SDG.objects.all():
             doc_sdg_qs = DocumentSDG.objects.filter(sdg=sdg)
@@ -119,12 +117,6 @@ class AnalysisService:
             else:
                 avg_relevance = 0
             sdg_avg_relevance[f'sdg{sdg.number}'] = round(avg_relevance, 3)
-            
-            if total_documents > 0:
-                global_relevance = total_relevance / total_documents
-            else:
-                global_relevance = 0
-            sdg_global_relevance[f'sdg{sdg.number}'] = round(global_relevance, 3)
         
         sdg_labels = {
             sdg_key: f"SDG {SDG_INFO.get(sdg_key, {}).get('number', sdg_key.replace('sdg', ''))}"
@@ -134,7 +126,6 @@ class AnalysisService:
         return {
             'sdg_counts': sdgs,
             'sdg_avg_relevance': sdg_avg_relevance,
-            'sdg_global_relevance': sdg_global_relevance,
             'sdg_info': SDG_INFO,
             'sdg_labels': sdg_labels,
         }

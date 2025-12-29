@@ -108,39 +108,6 @@
           </div>
         </div>
         
-        <!-- SDG Global Relevance (Bar Chart) -->
-        <div class="chart-card" id="sdg-global-card">
-          <div class="chart-header">
-            <h3 class="chart-title">🌍 {% trans "SDG Global Relevance" %}</h3>
-            <p class="chart-subtitle">
-              {% blocktrans trimmed %}
-              This chart shows the <strong>overall impact</strong> of each SDG across the entire document corpus. 
-              The score considers both frequency and intensity: documents without a specific SDG are counted as 0. 
-              This metric answers: "How important is this SDG to the EU-LAC digital cooperation as a whole?" 
-              Higher values indicate SDGs that are both frequently mentioned and highly relevant.
-              <strong>Hover over bars</strong> to see detailed SDG information and global relevance scores.
-              {% endblocktrans %}
-            </p>
-          </div>
-          <div class="chart-body">
-            <canvas id="sdg-global-chart" height="400"></canvas>
-          </div>
-          <div class="sdg-legend">
-            <div class="sdg-legend-item">
-              <span class="sdg-legend-icon">📊</span>
-              <span class="sdg-legend-text">{% trans "Global Relevance = (Total SDG Relevance Score) / (All Documents)" %}</span>
-            </div>
-            <div class="sdg-legend-item">
-              <span class="sdg-legend-icon">🌍</span>
-              <span class="sdg-legend-text">{% trans "Documents without an SDG are counted as 0" %}</span>
-            </div>
-            <div class="sdg-legend-item">
-              <span class="sdg-legend-icon">🎨</span>
-              <span class="sdg-legend-text">{% trans "Bars colored by official UN SDG colors" %}</span>
-            </div>
-          </div>
-        </div>
-        
         <!-- Legal Bindingness Chart -->
         <div class="chart-card" id="binding-card">
           <div class="chart-header">

@@ -10,7 +10,7 @@ from .views import (
     analysis_page,
     explore_page,
     document_detail_page,
-    strategic_cabinet_page,
+    overview_page,
     events_list_page,
     event_detail_page,
 )
@@ -23,7 +23,7 @@ urlpatterns = [
     path('about/', about_page, name='about'),
     path('analysis/', analysis_page, name='analysis'),
     path('explore/', explore_page, name='explore'),
-    path('strategic-cabinet/', strategic_cabinet_page, name='strategic_cabinet'),
+    path('overview/', overview_page, name='overview'),
     path('events/', events_list_page, name='events'),
     path('events/<int:pk>/', event_detail_page, name='event_detail'),
     path('document_detail/<int:pk>/', document_detail_page, name='document_detail'),

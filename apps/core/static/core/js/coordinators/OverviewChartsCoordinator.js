@@ -1,16 +1,16 @@
 /**
- * CabinetChartsCoordinator
- * Coordinates chart rendering for the Strategic Cabinet page
+ * OverviewChartsCoordinator
+ * Coordinates chart rendering for the Overview page
  */
 
 import { logger } from '../core/logger/Logger.js';
 import { eventBus } from '../core/events/EventBus.js';
 import { EVENTS } from '../core/constants/config.js';
 
-export class CabinetChartsCoordinator {
+export class OverviewChartsCoordinator {
   constructor(dataCoordinator, options = {}) {
     this.logger = logger.child({
-      component: 'CabinetChartsCoordinator'
+      component: 'OverviewChartsCoordinator'
     });
     
     this.dataCoordinator = dataCoordinator;
@@ -35,14 +35,14 @@ export class CabinetChartsCoordinator {
     // Track if charts have been rendered
     this.hasRendered = false;
     
-    this.logger.debug('CabinetChartsCoordinator initialized');
+    this.logger.debug('OverviewChartsCoordinator initialized');
   }
 
   /**
    * Initialize the coordinator
    */
   async init() {
-    this.logger.debug('Initializing CabinetChartsCoordinator');
+    this.logger.debug('Initializing OverviewChartsCoordinator');
     
     try {
       // Listen for data loaded events (but don't render immediately if already loaded to avoid duplication)
@@ -54,7 +54,7 @@ export class CabinetChartsCoordinator {
       }, this);
       
       // Listen for filter changes
-      eventBus.on('cabinet:filters_changed', async () => {
+      eventBus.on('overview:filters_changed', async () => {
         await this.updateAllCharts();
       }, this);
       
@@ -64,9 +64,9 @@ export class CabinetChartsCoordinator {
         this.hasRendered = true;
       }
       
-      this.logger.info('CabinetChartsCoordinator initialized successfully');
+      this.logger.info('OverviewChartsCoordinator initialized successfully');
     } catch (error) {
-      this.logger.error('Failed to initialize CabinetChartsCoordinator', error);
+      this.logger.error('Failed to initialize OverviewChartsCoordinator', error);
       throw error;
     }
   }
@@ -804,7 +804,7 @@ export class CabinetChartsCoordinator {
    * Clean up resources
    */
   destroy() {
-    this.logger.debug('Destroying CabinetChartsCoordinator');
+    this.logger.debug('Destroying OverviewChartsCoordinator');
     
     // Destroy all charts
     Object.values(this.charts).forEach(chart => {
@@ -822,9 +822,9 @@ export class CabinetChartsCoordinator {
     eventBus.offContext(this);
     this.charts = {};
     
-    this.logger.debug('CabinetChartsCoordinator destroyed');
+    this.logger.debug('OverviewChartsCoordinator destroyed');
   }
 }
 
-export default CabinetChartsCoordinator;
+export default OverviewChartsCoordinator;
 

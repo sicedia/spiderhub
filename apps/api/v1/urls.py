@@ -11,11 +11,11 @@ from .views import (
     TimelineAPIView,
     DiversityRadarAPIView,
     NetworkGraphAPIView,
-    CabinetSummaryAPIView,
-    CabinetTrendsAPIView,
-    CabinetMapAPIView,
-    CabinetMixAPIView,
-    CabinetTopAPIView,
+    OverviewSummaryAPIView,
+    OverviewTrendsAPIView,
+    OverviewMapAPIView,
+    OverviewMixAPIView,
+    OverviewTopAPIView,
     CountryListAPIView,
     LeadCountriesAPIView,
     CountriesByRoleAPIView,
@@ -57,12 +57,12 @@ urlpatterns = [
     # Explore
     path('explore/filters/', ExploreFiltersAPIView.as_view(), name='explore-filters'),
     
-    # Strategic Cabinet
-    path('cabinet/summary/', CabinetSummaryAPIView.as_view(), name='cabinet-summary'),
-    path('cabinet/trends/', CabinetTrendsAPIView.as_view(), name='cabinet-trends'),
-    path('cabinet/map/', CabinetMapAPIView.as_view(), name='cabinet-map'),
-    path('cabinet/mix/', CabinetMixAPIView.as_view(), name='cabinet-mix'),
-    path('cabinet/top/', CabinetTopAPIView.as_view(), name='cabinet-top'),
+    # Overview
+    path('overview/summary/', OverviewSummaryAPIView.as_view(), name='overview-summary'),
+    path('overview/trends/', OverviewTrendsAPIView.as_view(), name='overview-trends'),
+    path('overview/map/', OverviewMapAPIView.as_view(), name='overview-map'),
+    path('overview/mix/', OverviewMixAPIView.as_view(), name='overview-mix'),
+    path('overview/top/', OverviewTopAPIView.as_view(), name='overview-top'),
     
     # Documents
     path('documents/<int:pk>/', DocumentDetailAPIView.as_view(), name='document-detail'),

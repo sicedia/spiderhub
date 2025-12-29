@@ -99,9 +99,9 @@ def document_detail_page(request, pk):
     return render(request, 'core/document_detail.html', {'document_id': pk})
 
 
-def strategic_cabinet_page(request):
-    """Strategic Cabinet - all data loaded via /api/v1/cabinet/* endpoints"""
-    return render(request, 'core/strategic_cabinet.html')
+def overview_page(request):
+    """Overview - all data loaded via /api/v1/overview/* endpoints"""
+    return render(request, 'core/overview.html')
 
 
 def events_list_page(request):

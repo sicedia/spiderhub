@@ -8,12 +8,12 @@ from .analysis import (
     DiversityRadarAPIView,
     NetworkGraphAPIView,
 )
-from .cabinet import (
-    CabinetSummaryAPIView,
-    CabinetTrendsAPIView,
-    CabinetMapAPIView,
-    CabinetMixAPIView,
-    CabinetTopAPIView,
+from .overview import (
+    OverviewSummaryAPIView,
+    OverviewTrendsAPIView,
+    OverviewMapAPIView,
+    OverviewMixAPIView,
+    OverviewTopAPIView,
 )
 from .countries import (
     CountryListAPIView,

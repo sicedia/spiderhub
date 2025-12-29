@@ -1,18 +1,18 @@
 """
-Strategic Cabinet API Views
+Overview API Views
 """
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from drf_spectacular.types import OpenApiTypes
-from ..services.cabinet_service import CabinetService
+from ..services.overview_service import OverviewService
 
 
-class CabinetSummaryAPIView(APIView):
-    """Get Strategic Cabinet summary metrics (KPIs)"""
+class OverviewSummaryAPIView(APIView):
+    """Get Overview summary metrics (KPIs)"""
     
     @extend_schema(
-        summary="Get Strategic Cabinet summary",
+        summary="Get Overview summary",
         description="Returns KPI metrics for a specific country",
         parameters=[
             OpenApiParameter('country', OpenApiTypes.STR, description='Country ISO3 code', default='ECU'),
@@ -26,16 +26,16 @@ class CabinetSummaryAPIView(APIView):
         date_from = request.GET.get('date_from')
         date_to = request.GET.get('date_to')
         
-        service = CabinetService()
+        service = OverviewService()
         data = service.get_summary(country_iso3, date_from, date_to)
         return Response(data)
 
 
-class CabinetTrendsAPIView(APIView):
-    """Get Strategic Cabinet trends data"""
+class OverviewTrendsAPIView(APIView):
+    """Get Overview trends data"""
     
     @extend_schema(
-        summary="Get Strategic Cabinet trends",
+        summary="Get Overview trends",
         description="Returns trends by year and legal bindingness/coverage scope",
         parameters=[
             OpenApiParameter('country', OpenApiTypes.STR, description='Country ISO3 code', default='ECU'),
@@ -49,16 +49,16 @@ class CabinetTrendsAPIView(APIView):
         date_from = request.GET.get('date_from')
         date_to = request.GET.get('date_to')
         
-        service = CabinetService()
+        service = OverviewService()
         data = service.get_trends(country_iso3, date_from, date_to)
         return Response(data)
 
 
-class CabinetMapAPIView(APIView):
-    """Get Strategic Cabinet cooperation map data"""
+class OverviewMapAPIView(APIView):
+    """Get Overview cooperation map data"""
     
     @extend_schema(
-        summary="Get Strategic Cabinet cooperation map",
+        summary="Get Overview cooperation map",
         description="Returns cooperation network data for map visualization",
         parameters=[
             OpenApiParameter('country', OpenApiTypes.STR, description='Country ISO3 code', default='ECU'),
@@ -72,16 +72,16 @@ class CabinetMapAPIView(APIView):
         date_from = request.GET.get('date_from')
         date_to = request.GET.get('date_to')
         
-        service = CabinetService()
+        service = OverviewService()
         data = service.get_cooperation_map(country_iso3, date_from, date_to)
         return Response(data)
 
 
-class CabinetMixAPIView(APIView):
-    """Get Strategic Cabinet document mix data"""
+class OverviewMixAPIView(APIView):
+    """Get Overview document mix data"""
     
     @extend_schema(
-        summary="Get Strategic Cabinet document mix",
+        summary="Get Overview document mix",
         description="Returns document composition by bindingness, type, and scope",
         parameters=[
             OpenApiParameter('country', OpenApiTypes.STR, description='Country ISO3 code', default='ECU'),
@@ -95,16 +95,16 @@ class CabinetMixAPIView(APIView):
         date_from = request.GET.get('date_from')
         date_to = request.GET.get('date_to')
         
-        service = CabinetService()
+        service = OverviewService()
         data = service.get_document_mix(country_iso3, date_from, date_to)
         return Response(data)
 
 
-class CabinetTopAPIView(APIView):
-    """Get Strategic Cabinet top themes, actors, and SDGs"""
+class OverviewTopAPIView(APIView):
+    """Get Overview top themes, actors, and SDGs"""
     
     @extend_schema(
-        summary="Get Strategic Cabinet top items",
+        summary="Get Overview top items",
         description="Returns top themes, actors, and SDGs for a country",
         parameters=[
             OpenApiParameter('country', OpenApiTypes.STR, description='Country ISO3 code', default='ECU'),
@@ -120,7 +120,7 @@ class CabinetTopAPIView(APIView):
         date_to = request.GET.get('date_to')
         limit = int(request.GET.get('limit', 10))
         
-        service = CabinetService()
+        service = OverviewService()
         data = service.get_top_items(country_iso3, date_from, date_to, limit)
         return Response(data)
 

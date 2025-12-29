@@ -1,6 +1,6 @@
 """
-Cabinet Service
-Business logic for Strategic Cabinet endpoints
+Overview Service
+Business logic for Overview endpoints
 Extracted from apps.core.views.api_cabinet_* functions
 """
 import logging
@@ -11,8 +11,8 @@ from apps.documents.models import Document, Theme, Actor, SDG
 logger = logging.getLogger(__name__)
 
 
-class CabinetService:
-    """Service for Strategic Cabinet data calculations"""
+class OverviewService:
+    """Service for Overview data calculations"""
     
     def _parse_date(self, date_string):
         """
@@ -58,7 +58,7 @@ class CabinetService:
         return queryset
     
     def get_summary(self, country_iso3='ECU', date_from=None, date_to=None):
-        """Get summary metrics (KPIs) for Strategic Cabinet"""
+        """Get summary metrics (KPIs) for Overview"""
         queryset = self._get_base_queryset(country_iso3, date_from, date_to)
         
         total_documents = queryset.count()

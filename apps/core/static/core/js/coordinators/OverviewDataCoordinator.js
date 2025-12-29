@@ -1,16 +1,16 @@
 /**
- * CabinetDataCoordinator
- * Coordinates data loading and processing for the Strategic Cabinet page
+ * OverviewDataCoordinator
+ * Coordinates data loading and processing for the Overview page
  */
 
 import { logger } from '../core/logger/Logger.js';
 import { eventBus } from '../core/events/EventBus.js';
 import { EVENTS } from '../core/constants/config.js';
 
-export class CabinetDataCoordinator {
+export class OverviewDataCoordinator {
   constructor(options = {}) {
     this.logger = logger.child({
-      component: 'CabinetDataCoordinator'
+      component: 'OverviewDataCoordinator'
     });
     
     this.options = {
@@ -35,22 +35,22 @@ export class CabinetDataCoordinator {
       isLoaded: false
     };
     
-    this.logger.debug('CabinetDataCoordinator initialized');
+    this.logger.debug('OverviewDataCoordinator initialized');
   }
 
   /**
    * Initialize the coordinator
    */
   async init() {
-    this.logger.debug('Initializing CabinetDataCoordinator');
+    this.logger.debug('Initializing OverviewDataCoordinator');
     
     try {
       // Load initial data with default filters
       await this.loadAllData();
       
-      this.logger.info('CabinetDataCoordinator initialized successfully');
+      this.logger.info('OverviewDataCoordinator initialized successfully');
     } catch (error) {
-      this.logger.error('Failed to initialize CabinetDataCoordinator', error);
+      this.logger.error('Failed to initialize OverviewDataCoordinator', error);
       throw error;
     }
   }
@@ -67,7 +67,7 @@ export class CabinetDataCoordinator {
     };
     
     // Emit filter change event
-    eventBus.emit('cabinet:filters_changed', this.filters);
+    eventBus.emit('overview:filters_changed', this.filters);
   }
 
   /**
@@ -81,7 +81,7 @@ export class CabinetDataCoordinator {
    * Load all data for current filters
    */
   async loadAllData() {
-    this.logger.debug('Loading all cabinet data', this.filters);
+    this.logger.debug('Loading all overview data', this.filters);
     
     try {
       // Load all endpoints in parallel
@@ -100,7 +100,7 @@ export class CabinetDataCoordinator {
       this.data.top = topData;
       this.data.isLoaded = true;
       
-      this.logger.info('All cabinet data loaded successfully');
+      this.logger.info('All overview data loaded successfully');
       
       // Emit data loaded event
       eventBus.emit(EVENTS.DATA_LOADED, {
@@ -112,7 +112,7 @@ export class CabinetDataCoordinator {
       });
       
     } catch (error) {
-      this.logger.error('Failed to load cabinet data', error);
+      this.logger.error('Failed to load overview data', error);
       throw error;
     }
   }
@@ -128,7 +128,7 @@ export class CabinetDataCoordinator {
         ...(this.filters.dateTo && { date_to: this.filters.dateTo })
       });
       
-      const response = await fetch(`/api/v1/cabinet/summary/?${params}`);
+      const response = await fetch(`/api/v1/overview/summary/?${params}`);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       
       const data = await response.json();
@@ -156,7 +156,7 @@ export class CabinetDataCoordinator {
         ...(this.filters.dateTo && { date_to: this.filters.dateTo })
       });
       
-      const response = await fetch(`/api/v1/cabinet/trends/?${params}`);
+      const response = await fetch(`/api/v1/overview/trends/?${params}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -184,7 +184,7 @@ export class CabinetDataCoordinator {
         ...(this.filters.dateTo && { date_to: this.filters.dateTo })
       });
       
-      const response = await fetch(`/api/v1/cabinet/map/?${params}`);
+      const response = await fetch(`/api/v1/overview/map/?${params}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -212,7 +212,7 @@ export class CabinetDataCoordinator {
         ...(this.filters.dateTo && { date_to: this.filters.dateTo })
       });
       
-      const response = await fetch(`/api/v1/cabinet/mix/?${params}`);
+      const response = await fetch(`/api/v1/overview/mix/?${params}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -241,7 +241,7 @@ export class CabinetDataCoordinator {
         ...(this.filters.dateTo && { date_to: this.filters.dateTo })
       });
       
-      const response = await fetch(`/api/v1/cabinet/top/?${params}`);
+      const response = await fetch(`/api/v1/overview/top/?${params}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -310,12 +310,12 @@ export class CabinetDataCoordinator {
    * Clean up resources
    */
   destroy() {
-    this.logger.debug('Destroying CabinetDataCoordinator');
+    this.logger.debug('Destroying OverviewDataCoordinator');
     eventBus.offContext(this);
     this.data = null;
-    this.logger.debug('CabinetDataCoordinator destroyed');
+    this.logger.debug('OverviewDataCoordinator destroyed');
   }
 }
 
-export default CabinetDataCoordinator;
+export default OverviewDataCoordinator;
 
