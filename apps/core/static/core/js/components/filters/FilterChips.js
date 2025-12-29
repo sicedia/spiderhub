@@ -4,6 +4,8 @@
  * Following the existing JavaScript architecture
  */
 
+import { gettext as _ } from '../../core/i18n/i18n.js';
+
 export class FilterChips {
   constructor(container) {
     this.container = container;
@@ -141,9 +143,13 @@ export class FilterChips {
     const chipsContainer = this.container;
     const clearAllBtn = chipsContainer.querySelector('.filter-chips__clear-all');
     
-    // Remove existing chips (except clear all button)
+    // Remove existing chips and OR separators (except clear all button)
     const existingChips = chipsContainer.querySelectorAll('.filter-chip');
     existingChips.forEach(chip => chip.remove());
+    const existingSeparators = chipsContainer.querySelectorAll('.filter-chips__or-separator');
+    existingSeparators.forEach(sep => sep.remove());
+    const existingHint = chipsContainer.querySelector('.filter-chips__hint');
+    if (existingHint) existingHint.remove();
     
     if (this.activeFilters.size === 0) {
       chipsContainer.classList.add('filter-chips--empty');
@@ -156,10 +162,30 @@ export class FilterChips {
         clearAllBtn.style.display = 'block';
       }
       
-      // Add chips for active filters
+      // Add hint text explaining OR logic (only if more than one filter)
+      if (this.activeFilters.size > 1) {
+        const hint = document.createElement('span');
+        hint.className = 'filter-chips__hint';
+        hint.textContent = _('Multiple filters use OR logic:');
+        hint.setAttribute('aria-label', _('Multiple filters use OR logic'));
+        chipsContainer.insertBefore(hint, clearAllBtn);
+      }
+      
+      // Add chips for active filters with OR separators
+      let isFirst = true;
       this.activeFilters.forEach((filter, key) => {
+        // Add OR separator before each chip except the first
+        if (!isFirst) {
+          const separator = document.createElement('span');
+          separator.className = 'filter-chips__or-separator';
+          separator.textContent = 'OR';
+          separator.setAttribute('aria-hidden', 'true');
+          chipsContainer.insertBefore(separator, clearAllBtn);
+        }
+        
         const chip = this.createFilterChip(filter);
         chipsContainer.insertBefore(chip, clearAllBtn);
+        isFirst = false;
       });
     }
     

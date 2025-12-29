@@ -84,26 +84,6 @@
     </div>
   </section>
 
-  <!-- Upcoming Events Section - Data loaded via API -->
-  <section class="home-events" id="home-events-section">
-    <div class="home-events__container">
-      <div class="home-events__header">
-        <h2 class="home-events__title">{% trans "Upcoming Events" %}</h2>
-        <a href="{% url 'core:events' %}" class="home-events__link">{% trans "View all events" %}</a>
-      </div>
-      <div class="home-events__content" id="upcoming-events-container">
-        <!-- Loading skeleton -->
-        <div class="home-events__loading">
-          <div class="loading-skeleton loading-skeleton--card"></div>
-          <div class="loading-skeleton loading-skeleton--card"></div>
-          <div class="loading-skeleton loading-skeleton--card"></div>
-        </div>
-        <!-- Events will be populated by JavaScript -->
-        <!-- Empty state will be shown if no events -->
-      </div>
-    </div>
-  </section>
-
   <!-- Recent Documents Section - Data loaded via API -->
   <section class="home-documents">
     <div class="home-documents__container">
@@ -174,6 +154,26 @@
         <div class="carousel__indicators">
           <!-- Indicators injected by JS -->
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upcoming Events Section - Data loaded via API -->
+  <section class="home-events" id="home-events-section">
+    <div class="home-events__container">
+      <div class="home-events__header">
+        <h2 class="home-events__title">{% trans "Events" %}</h2>
+        <a href="{% url 'core:events' %}" class="home-events__link">{% trans "View all events" %}</a>
+      </div>
+      <div class="home-events__content" id="upcoming-events-container">
+        <!-- Loading skeleton -->
+        <div class="home-events__loading">
+          <div class="loading-skeleton loading-skeleton--card"></div>
+          <div class="loading-skeleton loading-skeleton--card"></div>
+          <div class="loading-skeleton loading-skeleton--card"></div>
+        </div>
+        <!-- Events will be populated by JavaScript -->
+        <!-- Empty state will be shown if no events -->
       </div>
     </div>
   </section>

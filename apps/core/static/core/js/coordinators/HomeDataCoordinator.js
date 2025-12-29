@@ -318,10 +318,15 @@ export class HomeDataCoordinator {
       loading.hidden = true;
     }
     
+    // Limit to only one row (3-4 events max depending on screen size)
+    // For desktop: 3 events per row, for larger screens: 4 events
+    const maxEvents = window.innerWidth >= 1200 ? 4 : 3;
+    const eventsToShow = this.pageData.upcomingEvents.slice(0, maxEvents);
+    
     // Get current language from URL
     const lang = window.location.pathname.split('/')[1] || 'en';
     
-    container.innerHTML = this.pageData.upcomingEvents.map(event => {
+    container.innerHTML = eventsToShow.map(event => {
       const dateStr = this.formatEventDate(event.start_at, event.end_at);
       const locationStr = this.formatLocation(event.city_name, event.country_name);
       const formatBadge = event.event_format_display 
