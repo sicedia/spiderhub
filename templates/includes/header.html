@@ -51,6 +51,22 @@
           {% endfor %}
         </div>
       </div>
+      <!-- Theme Toggle -->
+      <div class="navigation__theme-toggle">
+        <button class="theme-toggle__button" 
+                type="button" 
+                aria-label="{% trans "Switch to dark mode" %}">
+          <span class="theme-toggle__icon-container">
+            <svg class="theme-toggle__icon theme-toggle__icon--sun" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+              <path d="M12 1v3M12 20v3M23 12h-3M4 12H1M19.07 4.93l-2.12 2.12M6.05 17.95l-2.12 2.12M19.07 19.07l-2.12-2.12M6.05 6.05L3.93 3.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg class="theme-toggle__icon theme-toggle__icon--moon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+      </div>
     </div>
     <button class="navigation__toggle" aria-label="{% trans "Toggle mobile menu" %}" aria-expanded="false">
       <span class="navigation__toggle-line"></span>
@@ -96,6 +112,63 @@
                 </button>
               </form>
             {% endfor %}
+          </div>
+        </div>
+      </li>
+      <!-- Theme Toggle for Mobile -->
+      <li class="navigation__mobile-item">
+        <div class="mobile-theme-toggle">
+          <div class="mobile-theme-toggle__header">
+            <svg class="mobile-theme-toggle__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="mobile-theme-toggle__label">{% trans "Theme" %}</span>
+          </div>
+          <div class="mobile-theme-toggle__options">
+            <button type="button" 
+                    class="mobile-theme-toggle__button" 
+                    data-theme="light"
+                    aria-label="{% trans "Light mode" %}">
+              <div class="mobile-theme-toggle__button-content">
+                <svg class="mobile-theme-toggle__button-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+                  <path d="M12 1v3M12 20v3M23 12h-3M4 12H1M19.07 4.93l-2.12 2.12M6.05 17.95l-2.12 2.12M19.07 19.07l-2.12-2.12M6.05 6.05L3.93 3.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span class="mobile-theme-toggle__button-label">{% trans "Light" %}</span>
+              </div>
+              <svg class="mobile-theme-toggle__check" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/>
+              </svg>
+            </button>
+            <button type="button" 
+                    class="mobile-theme-toggle__button" 
+                    data-theme="dark"
+                    aria-label="{% trans "Dark mode" %}">
+              <div class="mobile-theme-toggle__button-content">
+                <svg class="mobile-theme-toggle__button-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="mobile-theme-toggle__button-label">{% trans "Dark" %}</span>
+              </div>
+              <svg class="mobile-theme-toggle__check" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/>
+              </svg>
+            </button>
+            <button type="button" 
+                    class="mobile-theme-toggle__button" 
+                    data-theme="auto"
+                    aria-label="{% trans "System preference" %}">
+              <div class="mobile-theme-toggle__button-content">
+                <svg class="mobile-theme-toggle__button-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="2" y="3" width="20" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                  <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span class="mobile-theme-toggle__button-label">{% trans "Auto" %}</span>
+              </div>
+              <svg class="mobile-theme-toggle__check" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/>
+              </svg>
+            </button>
           </div>
         </div>
       </li>

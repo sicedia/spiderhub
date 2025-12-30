@@ -27,3 +27,4 @@ from .home import (
 )
 # Import Document views
 from .documents import DocumentDetailAPIView, RelatedDocumentsAPIView
+from .app_info import AppVersionAPIView

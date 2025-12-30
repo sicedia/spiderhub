@@ -254,15 +254,90 @@
 }
 
 /* ========================================
-   Dark Mode Support (Future Enhancement)
-   ======================================== */
-
-/* ========================================
    Dark Mode Support - Enhanced Implementation
    ======================================== */
 
+/* Manual theme control via data-theme attribute (has priority) */
+[data-theme="dark"] {
+  /* Text Colors - Enhanced contrast for dark mode */
+  --color-text-primary: var(--color-neutral-100);
+  --color-text-secondary: var(--color-neutral-300);
+  --color-text-muted: var(--color-neutral-400);
+  --color-text-light: var(--color-neutral-500);
+  
+  /* Background Colors - Layered dark theme */
+  --color-bg-primary: var(--color-neutral-900);
+  --color-bg-secondary: var(--color-neutral-800);
+  --color-bg-muted: var(--color-neutral-700);
+  
+  /* Border Colors - Subtle but visible */
+  --color-border-light: var(--color-neutral-700);
+  --color-border-lighter: var(--color-neutral-600);
+  --color-border-lightest: var(--color-neutral-500);
+  --color-border-medium: var(--color-neutral-600);
+  --color-border-strong: var(--color-neutral-500);
+  
+  /* Component-specific dark mode tokens */
+  --card-bg: var(--color-neutral-800);
+  --card-border: var(--color-neutral-700);
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.4);
+  
+  /* Input dark mode */
+  --input-bg: var(--color-neutral-800);
+  --input-border: var(--color-neutral-600);
+  --input-border-focus: var(--color-primary-400);
+  
+  /* Header dark mode */
+  --header-bg: var(--color-neutral-900);
+  --header-border: var(--color-neutral-700);
+  
+  /* Focus ring for dark mode */
+  --focus-ring-color: rgba(28, 115, 119, 0.6);
+}
+
+/* Force light mode when data-theme="light" */
+[data-theme="light"] {
+  /* Text Colors - Light mode */
+  --color-text-primary: #333333;
+  --color-text-secondary: #555555;
+  --color-text-muted: #666666;
+  --color-text-light: #999999;
+  
+  /* Background Colors - Light theme */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F7F7F7;
+  --color-bg-muted: #F0F4F8;
+  
+  /* Border Colors - Light mode */
+  --color-border-light: #ddd;
+  --color-border-lighter: #eee;
+  --color-border-lightest: #f0f0f0;
+  --color-border-medium: #D9E2EC;
+  --color-border-strong: #B0BEC5;
+  
+  /* Component-specific light mode tokens */
+  --card-bg: #FFFFFF;
+  --card-border: #ddd;
+  --card-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  --card-shadow-hover: 0 5px 15px rgba(0,0,0,0.05);
+  
+  /* Input light mode */
+  --input-bg: #FFFFFF;
+  --input-border: #D9E2EC;
+  --input-border-focus: var(--color-primary-500);
+  
+  /* Header light mode */
+  --header-bg: #FFFFFF;
+  --header-border: #ddd;
+  
+  /* Focus ring for light mode */
+  --focus-ring-color: rgba(28, 115, 119, 0.4);
+}
+
+/* System preference fallback (only applies when data-theme is not set) */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     /* Text Colors - Enhanced contrast for dark mode */
     --color-text-primary: var(--color-neutral-100);
     --color-text-secondary: var(--color-neutral-300);

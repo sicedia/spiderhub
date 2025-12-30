@@ -10,8 +10,76 @@
  */
 export class DarkModeManager {
   constructor() {
+    this.storageKey = 'spiderhub-theme';
+    this.currentTheme = this.getStoredTheme() || 'auto';
     this.isDarkMode = this.detectDarkMode();
     this.setupMediaQueryListener();
+    this.applyTheme(this.currentTheme);
+  }
+
+  /**
+   * Get stored theme preference from localStorage
+   * @returns {string|null} 'light', 'dark', 'auto', or null
+   */
+  getStoredTheme() {
+    try {
+      return localStorage.getItem(this.storageKey);
+    } catch (e) {
+      console.warn('[DarkModeManager] localStorage not available:', e);
+      return null;
+    }
+  }
+
+  /**
+   * Store theme preference in localStorage
+   * @param {string} theme - 'light', 'dark', or 'auto'
+   */
+  storeTheme(theme) {
+    try {
+      if (theme === 'auto') {
+        localStorage.removeItem(this.storageKey);
+      } else {
+        localStorage.setItem(this.storageKey, theme);
+      }
+    } catch (e) {
+      console.warn('[DarkModeManager] Failed to store theme:', e);
+    }
+  }
+
+  /**
+   * Set theme manually
+   * @param {string} theme - 'light', 'dark', or 'auto'
+   */
+  setTheme(theme) {
+    if (!['light', 'dark', 'auto'].includes(theme)) {
+      console.warn('[DarkModeManager] Invalid theme:', theme);
+      return;
+    }
+    
+    this.currentTheme = theme;
+    this.storeTheme(theme);
+    this.applyTheme(theme);
+    this.isDarkMode = this.detectDarkMode();
+    this.notifyDarkModeChange();
+  }
+
+  /**
+   * Apply theme to document
+   * @param {string} theme - 'light', 'dark', or 'auto'
+   */
+  applyTheme(theme) {
+    const html = document.documentElement;
+    
+    if (theme === 'auto') {
+      // Remove data-theme to let media query take over
+      html.removeAttribute('data-theme');
+      // Update isDarkMode based on system preference
+      this.isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    } else {
+      // Set explicit theme
+      html.setAttribute('data-theme', theme);
+      this.isDarkMode = theme === 'dark';
+    }
   }
 
   /**
@@ -19,19 +87,41 @@ export class DarkModeManager {
    * @returns {boolean} True if dark mode is active
    */
   detectDarkMode() {
+    // Check if explicit theme is set
+    const html = document.documentElement;
+    const dataTheme = html.getAttribute('data-theme');
+    
+    if (dataTheme === 'dark') {
+      return true;
+    } else if (dataTheme === 'light') {
+      return false;
+    }
+    
+    // Fall back to system preference
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 
   /**
-   * Setup media query listener for dark mode changes
+   * Setup media query listener for dark mode changes (only when theme is 'auto')
    */
   setupMediaQueryListener() {
     if (window.matchMedia) {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      mediaQuery.addListener((e) => {
-        this.isDarkMode = e.matches;
-        this.notifyDarkModeChange();
-      });
+      
+      // Use addEventListener for modern browsers, addListener for older ones
+      const handler = (e) => {
+        // Only update if theme is set to 'auto'
+        if (this.currentTheme === 'auto') {
+          this.isDarkMode = e.matches;
+          this.notifyDarkModeChange();
+        }
+      };
+      
+      if (mediaQuery.addEventListener) {
+        mediaQuery.addEventListener('change', handler);
+      } else {
+        mediaQuery.addListener(handler);
+      }
     }
   }
 

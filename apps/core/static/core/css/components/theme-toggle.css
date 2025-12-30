@@ -1,0 +1,304 @@
+/**
+ * Theme Toggle Component
+ * Button to switch between light and dark mode
+ * Following BEM methodology and accessibility best practices
+ */
+
+/* ========================================
+   Desktop Theme Toggle
+   ======================================== */
+
+.navigation__theme-toggle {
+  position: relative;
+}
+
+.theme-toggle__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: var(--space-2);
+  background-color: transparent;
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  position: relative;
+}
+
+.theme-toggle__button:hover {
+  background-color: rgba(28, 115, 119, 0.1);
+  border-color: var(--color-primary-500);
+  color: var(--color-primary-500);
+}
+
+.theme-toggle__button:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-color: var(--color-primary-500);
+}
+
+.theme-toggle__button:active {
+  transform: scale(0.95);
+}
+
+/* Icon container */
+.theme-toggle__icon-container {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle__icon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity var(--duration-base) var(--ease-out),
+              transform var(--duration-base) var(--ease-out);
+  color: currentColor;
+}
+
+/* Sun icon (visible in dark mode - click to switch to light) */
+.theme-toggle__icon--sun {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+[data-theme="dark"] .theme-toggle__icon--sun {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+/* Moon icon (visible in light mode - click to switch to dark) */
+.theme-toggle__icon--moon {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+[data-theme="dark"] .theme-toggle__icon--moon {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+/* System preference fallback for icon visibility when data-theme is not set */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-toggle__icon--sun {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  
+  :root:not([data-theme]) .theme-toggle__icon--moon {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-90deg);
+  }
+}
+
+/* ========================================
+   Mobile Theme Toggle
+   ======================================== */
+
+.mobile-theme-toggle {
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: var(--space-4);
+}
+
+.mobile-theme-toggle__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.mobile-theme-toggle__icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-primary-500);
+  flex-shrink: 0;
+}
+
+.mobile-theme-toggle__label {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.mobile-theme-toggle__options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mobile-theme-toggle__button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-4);
+  background-color: transparent;
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  gap: var(--space-3);
+}
+
+.mobile-theme-toggle__button:hover {
+  background-color: rgba(28, 115, 119, 0.05);
+  border-color: var(--color-primary-400);
+}
+
+.mobile-theme-toggle__button:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.mobile-theme-toggle__button--active {
+  background-color: rgba(28, 115, 119, 0.12);
+  border-color: var(--color-primary-500);
+  border-width: 2px;
+}
+
+.mobile-theme-toggle__button-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;
+}
+
+.mobile-theme-toggle__button-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.mobile-theme-toggle__button-label {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: inherit;
+  text-align: left;
+}
+
+.mobile-theme-toggle__check {
+  width: 20px;
+  height: 20px;
+  color: var(--color-primary-600);
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.mobile-theme-toggle__button--active .mobile-theme-toggle__check {
+  opacity: 1;
+}
+
+/* ========================================
+   Responsive Behavior
+   ======================================== */
+
+@media (max-width: 992px) {
+  /* Hide desktop toggle on mobile */
+  .navigation__theme-toggle {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-theme-toggle__button {
+    padding: var(--space-3);
+  }
+  
+  .mobile-theme-toggle__button-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-toggle__button {
+    border-color: var(--color-border-medium);
+  }
+  
+  :root:not([data-theme]) .theme-toggle__button:hover {
+    background-color: rgba(28, 115, 119, 0.2);
+  }
+  
+  :root:not([data-theme]) .mobile-theme-toggle__button {
+    border-color: var(--color-border-medium);
+    color: var(--color-text-primary);
+  }
+  
+  :root:not([data-theme]) .mobile-theme-toggle__button:hover {
+    background-color: rgba(28, 115, 119, 0.15);
+  }
+}
+
+[data-theme="dark"] .theme-toggle__button {
+  border-color: var(--color-border-medium);
+}
+
+[data-theme="dark"] .theme-toggle__button:hover {
+  background-color: rgba(28, 115, 119, 0.2);
+}
+
+[data-theme="dark"] .mobile-theme-toggle__button {
+  border-color: var(--color-border-medium);
+  color: var(--color-text-primary);
+}
+
+[data-theme="dark"] .mobile-theme-toggle__button:hover {
+  background-color: rgba(28, 115, 119, 0.15);
+}
+
+/* ========================================
+   Accessibility Enhancements
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle__button,
+  .theme-toggle__icon,
+  .mobile-theme-toggle__button,
+  .mobile-theme-toggle__check {
+    transition: none;
+  }
+  
+  .theme-toggle__icon--sun,
+  .theme-toggle__icon--moon {
+    transform: translate(-50%, -50%);
+  }
+  
+  [data-theme="dark"] .theme-toggle__icon--sun,
+  :root:not([data-theme]) .theme-toggle__icon--sun {
+    transform: translate(-50%, -50%);
+  }
+  
+  [data-theme="dark"] .theme-toggle__icon--moon,
+  :root:not([data-theme]) .theme-toggle__icon--moon {
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .theme-toggle__button {
+    border-width: 2px;
+  }
+  
+  .mobile-theme-toggle__button--active {
+    border-width: 3px;
+  }
+}
+

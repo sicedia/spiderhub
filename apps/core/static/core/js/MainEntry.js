@@ -10,6 +10,8 @@ import { AnimationUtils } from './core/utils/animations.js';
 import { CONFIG } from './core/constants/config.js';
 import { MobileNav } from './components/navigation/MobileNav.js';
 import './components/language-switcher/LanguageSwitcher.js';
+import './components/theme-toggle/ThemeToggle.js';
+import { versionCheckService } from './services/VersionCheckService.js';
 
 // Initialize i18n system early - critical for app functionality
 // Note: gettext() function is safe to call before init() completes - it returns original string if not loaded
@@ -96,6 +98,9 @@ export const Utils = {
 document.addEventListener('DOMContentLoaded', () => {
   try {
     console.log('Initializing main application utilities...');
+    
+    // Initialize version check service
+    versionCheckService.init();
     
     // Initialize shared mobile navigation using the new component
     const mobileNav = Utils.initializeMobileNavigation();

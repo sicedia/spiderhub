@@ -79,6 +79,17 @@
   gap: var(--space-8);
 }
 
+/* Group language switcher and theme toggle together */
+.navigation__language-switcher,
+.navigation__theme-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.navigation__language-switcher + .navigation__theme-toggle {
+  margin-left: var(--space-2);
+}
+
 .navigation__list {
   display: flex;
   align-items: center;

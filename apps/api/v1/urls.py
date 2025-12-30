@@ -22,6 +22,7 @@ from .views import (
     ExploreFiltersAPIView,
     HomeStatsAPIView,
     RecentDocumentsAPIView,
+    AppVersionAPIView,
 )
 from .views.documents import DocumentDetailAPIView, RelatedDocumentsAPIView
 from .views.events import (
@@ -80,4 +81,7 @@ urlpatterns = [
     
     # Search (include search app)
     path('search/', include('apps.search.urls')),
+    
+    # App Info
+    path('app/version/', AppVersionAPIView.as_view(), name='app-version'),
 ]

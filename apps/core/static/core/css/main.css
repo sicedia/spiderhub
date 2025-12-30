@@ -39,6 +39,7 @@
 @import 'components/document-card.css';
 @import 'components/navigation.css';
 @import 'components/language-switcher.css';
+@import 'components/theme-toggle.css';
 @import 'components/form.css';
 @import 'components/filter.css';
 @import 'components/tag.css';
