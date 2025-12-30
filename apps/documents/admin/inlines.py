@@ -249,7 +249,7 @@ class KPIInline(admin.TabularInline):
     """Inline admin for KPI model"""
     model = KPI
     extra = 0
-    fields = ('metric_name', 'kpi_type', 'target_value', 'unit', 'sector')
+    fields = ('metric_name', 'kpi_type', 'target_value', 'target_description', 'unit', 'sector')
     classes = ('collapse',)
     verbose_name = "Key Performance Indicator"
     verbose_name_plural = "Key Performance Indicators"
@@ -269,6 +269,7 @@ class KPIInline(admin.TabularInline):
                 widgets = {
                     'metric_name': TextInput(attrs={'size': '30', 'placeholder': 'Metric name'}),
                     'target_value': TextInput(attrs={'size': '15', 'placeholder': 'Target value'}),
+                    'target_description': TextInput(attrs={'size': '40', 'placeholder': 'Target description'}),
                     'unit': TextInput(attrs={'size': '15', 'placeholder': 'Unit'}),
                     'sector': TextInput(attrs={'size': '20', 'placeholder': 'Sector'}),
                 }
