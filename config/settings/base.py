@@ -128,6 +128,11 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
+# Versión estática para cache busting
+# En desarrollo usa timestamp, en producción se sobrescribe desde variable de entorno
+import time
+STATIC_VERSION = os.getenv('STATIC_VERSION', os.getenv('GIT_COMMIT_HASH', str(int(time.time())))[:12])
+
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

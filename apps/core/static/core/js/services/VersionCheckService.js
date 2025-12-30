@@ -115,25 +115,31 @@ class VersionCheckService {
       }
 
       const data = await response.json();
-      const serverVersion = data.version;
-
-      // Si es la primera vez, guardar la versión
+      const serverVersion = data.version || 'unknown';
+      
+      // Obtener versión guardada del localStorage
+      const storedVersion = localStorage.getItem(VERSION_STORAGE_KEY);
+      
+      // Si no hay versión guardada, guardar la actual y salir
+      if (!storedVersion) {
+        this.currentVersion = serverVersion;
+        localStorage.setItem(VERSION_STORAGE_KEY, serverVersion);
+        console.log(`📦 First time - saved version: ${serverVersion}`);
+        return;
+      }
+      
+      // Si currentVersion no está inicializado, usar la guardada
       if (!this.currentVersion) {
-        const storedVersion = localStorage.getItem(VERSION_STORAGE_KEY);
-        if (storedVersion) {
-          this.currentVersion = storedVersion;
-        } else {
-          // Primera carga, guardar la versión actual
-          this.currentVersion = serverVersion;
-          localStorage.setItem(VERSION_STORAGE_KEY, serverVersion);
-          return;
-        }
+        this.currentVersion = storedVersion;
       }
 
-      // Comparar versiones
-      if (serverVersion !== this.currentVersion && serverVersion !== 'unknown') {
-        console.log(`🔄 New version detected: ${serverVersion} (current: ${this.currentVersion})`);
+      // Comparar versiones - si son diferentes y la del servidor no es 'unknown'
+      if (serverVersion !== this.currentVersion && serverVersion !== 'unknown' && serverVersion) {
+        console.log(`🔄 New version detected! Server: ${serverVersion}, Current: ${this.currentVersion}`);
         this.showUpdateModal(serverVersion);
+      } else if (serverVersion === this.currentVersion) {
+        // Versiones coinciden, actualizar localStorage por si acaso
+        localStorage.setItem(VERSION_STORAGE_KEY, serverVersion);
       }
     } catch (error) {
       console.warn('⚠️ Failed to check app version:', error);
@@ -197,9 +203,6 @@ class VersionCheckService {
         </div>
       </div>
     `;
-
-    // Estilos inline para el modal
-    this.addModalStyles();
 
     // Event listeners
     const updateButton = modal.querySelector('#update-button');
@@ -329,26 +332,28 @@ class VersionCheckService {
   }
 
   /**
-   * Maneja la recarga forzada cuando se recibe el comando
+   * Maneja la recarga forzada cuando se recibe el comando desde otra pestaña
+   * Esto se ejecuta en TODAS las pestañas abiertas (excepto la que inició la actualización)
    */
   handleForceReload(newVersion) {
     if (this.isReloading) return;
     
-    console.log('📨 Received force reload command, clearing cache...');
+    console.log('📨 Received force reload command from another tab, clearing cache and reloading...');
     this.isReloading = true;
 
-    // Limpiar caché local
+    // Limpiar caché local (en esta pestaña también)
     this.clearLocalCache();
     
     // Limpiar Service Worker cache
     this.clearServiceWorkerCache().then(() => {
-      // Actualizar versión
+      // Actualizar versión guardada
       localStorage.setItem(VERSION_STORAGE_KEY, newVersion);
 
-      // Recargar esta pestaña
+      // Recargar esta pestaña con cache busting
+      // Esto recargará la ruta actual (cualquiera que sea) con cache forzado
       this.forceReloadCurrentTab();
     }).catch(() => {
-      // Continuar aunque falle
+      // Continuar aunque falle la limpieza de Service Worker
       localStorage.setItem(VERSION_STORAGE_KEY, newVersion);
       this.forceReloadCurrentTab();
     });
@@ -356,35 +361,77 @@ class VersionCheckService {
 
   /**
    * Fuerza la recarga de la pestaña actual sin caché
-   * Usa múltiples técnicas para máxima compatibilidad
+   * Usa múltiples técnicas para máxima compatibilidad y cache busting
+   * Equivalente a Ctrl+Shift+R (hard reload)
    */
   forceReloadCurrentTab() {
-    console.log('🔄 Force reloading current tab...');
+    console.log('🔄 Force reloading current tab with cache busting...');
 
-    // Técnica 1: Agregar parámetro único a la URL (más confiable)
+    // Limpiar cache del navegador antes de recargar
+    // Esto incluye: HTTP cache, Service Workers, y localStorage (ya limpiado)
+    
+    // Técnica 1: Agregar parámetro único a la URL con timestamp
     const url = new URL(window.location.href);
-    url.searchParams.set('_nocache', Date.now());
+    // Limpiar parámetros anteriores de cache busting
+    url.searchParams.delete('_nocache');
+    url.searchParams.delete('_reload');
+    url.searchParams.delete('_v');
+    // Agregar nuevos parámetros únicos
+    const timestamp = Date.now();
+    url.searchParams.set('_nocache', timestamp);
     url.searchParams.set('_reload', '1');
+    url.searchParams.set('_v', timestamp);
 
-    // Técnica 2: Usar location.replace con timestamp
-    // Esto evita que el usuario pueda volver atrás
-    setTimeout(() => {
-      window.location.replace(url.toString());
-    }, 100);
-
-    // Técnica 3: Fallback - reload forzado (si replace falla)
-    setTimeout(() => {
-      // Si después de 500ms aún estamos aquí, usar reload
-      window.location.href = url.toString();
-    }, 500);
-
-    // Técnica 4: Último recurso - reload directo
-    setTimeout(() => {
-      // Forzar recarga incluso si las anteriores fallaron
-      if (window.location.href === url.toString()) {
-        window.location.reload();
+    // Técnica 2: Intentar usar fetch con cache: 'no-store' antes de recargar
+    // Esto ayuda a invalidar el cache HTTP
+    fetch(url.toString(), {
+      method: 'GET',
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
       }
-    }, 1000);
+    }).catch(() => {
+      // Ignorar errores, solo queremos invalidar el cache
+    });
+
+    // Técnica 3: Usar location.replace con timestamp (evita historial)
+    // Esto fuerza al navegador a descargar todo desde el servidor
+    setTimeout(() => {
+      // Forzar recarga completa sin cache
+      if ('serviceWorker' in navigator) {
+        // Desactivar service workers temporalmente
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          registrations.forEach(reg => reg.unregister());
+        });
+      }
+      
+      // Usar replace para evitar que el usuario pueda volver atrás
+      window.location.replace(url.toString());
+    }, 150);
+
+    // Técnica 4: Fallback - si replace no funciona, usar href
+    setTimeout(() => {
+      if (window.location.href === url.toString() || !document.hidden) {
+        window.location.href = url.toString() + '&_force=' + Date.now();
+      }
+    }, 400);
+
+    // Técnica 5: Último recurso - reload forzado con cache: 'reload'
+    setTimeout(() => {
+      // Si aún estamos aquí después de 800ms, forzar reload
+      try {
+        // Intentar usar reload con cache bypass
+        if (window.location.reload) {
+          // Algunos navegadores soportan location.reload(true) para hard reload
+          // Pero está deprecado, así que usamos otra técnica
+          window.location.href = window.location.href.split('?')[0] + '?_hard_reload=' + Date.now();
+        }
+      } catch (e) {
+        console.warn('⚠️ Error forcing reload:', e);
+      }
+    }, 800);
   }
 
   /**
@@ -403,167 +450,13 @@ class VersionCheckService {
   }
 
   /**
-   * Agrega los estilos CSS para el modal
+   * Los estilos CSS están en version-update-modal.css
+   * que se carga automáticamente con main.css
+   * Ya no necesitamos agregar estilos inline
    */
   addModalStyles() {
-    if (document.getElementById('version-update-modal-styles')) {
-      return;
-    }
-
-    const style = document.createElement('style');
-    style.id = 'version-update-modal-styles';
-    style.textContent = `
-      .version-update-modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 10000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-      }
-
-      .version-update-modal.active {
-        opacity: 1;
-        pointer-events: all;
-      }
-
-      .version-update-modal__overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(4px);
-      }
-
-      .version-update-modal__content {
-        position: relative;
-        background: white;
-        border-radius: 12px;
-        padding: 32px;
-        max-width: 500px;
-        width: 90%;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        transform: scale(0.9);
-        transition: transform 0.3s ease;
-      }
-
-      .version-update-modal.active .version-update-modal__content {
-        transform: scale(1);
-      }
-
-      .version-update-modal__header {
-        margin-bottom: 24px;
-      }
-
-      .version-update-modal__title {
-        font-size: 24px;
-        font-weight: 700;
-        color: #094eb2;
-        margin: 0 0 12px 0;
-      }
-
-      .version-update-modal__description {
-        font-size: 16px;
-        color: #666;
-        line-height: 1.5;
-        margin: 0;
-      }
-
-      .version-update-modal__body {
-        margin-bottom: 24px;
-        padding: 16px;
-        background: #f5f5f5;
-        border-radius: 8px;
-      }
-
-      .version-update-modal__info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 0;
-      }
-
-      .version-update-modal__label {
-        font-size: 14px;
-        color: #666;
-        font-weight: 500;
-      }
-
-      .version-update-modal__value {
-        font-size: 14px;
-        color: #333;
-        font-family: monospace;
-        font-weight: 600;
-      }
-
-      .version-update-modal__value--new {
-        color: #094eb2;
-      }
-
-      .version-update-modal__footer {
-        display: flex;
-        gap: 12px;
-        justify-content: flex-end;
-      }
-
-      .version-update-modal__button {
-        padding: 12px 24px;
-        border: none;
-        border-radius: 6px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
-      }
-
-      .version-update-modal__button--primary {
-        background: #094eb2;
-        color: white;
-      }
-
-      .version-update-modal__button--primary:hover {
-        background: #073d8f;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(9, 78, 178, 0.3);
-      }
-
-      .version-update-modal__button--secondary {
-        background: #f5f5f5;
-        color: #666;
-      }
-
-      .version-update-modal__button--secondary:hover {
-        background: #e0e0e0;
-      }
-
-      @media (max-width: 600px) {
-        .version-update-modal__content {
-          padding: 24px;
-        }
-
-        .version-update-modal__title {
-          font-size: 20px;
-        }
-
-        .version-update-modal__footer {
-          flex-direction: column;
-        }
-
-        .version-update-modal__button {
-          width: 100%;
-        }
-      }
-    `;
-
-    document.head.appendChild(style);
+    // Los estilos ya están cargados en main.css
+    // No necesitamos hacer nada aquí
   }
 
   /**

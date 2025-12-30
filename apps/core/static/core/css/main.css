@@ -47,6 +47,7 @@
 @import 'components/modal.css';
 @import 'components/source-files-card.css';
 @import 'components/footer.css';
+@import 'version-update-modal.css';
 
 /* Chart Components */
 @import 'components/charts/network-graph.css';
