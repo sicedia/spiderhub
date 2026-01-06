@@ -7,10 +7,20 @@ import { ExplorePageManager } from './pages/ExplorePageManager.js';
 import { FilterLoader } from './services/FilterLoader.js';
 import { DOMUtils } from './core/utils/dom.js';
 
+// Flag to prevent double initialization
+let isInitialized = false;
+
 /**
  * Initialize the explore page when DOM is ready
  */
 async function initializeExplorePage() {
+  // Prevent double initialization
+  if (isInitialized || window.explorePageManager) {
+    console.log('Explore page already initialized, skipping...');
+    return;
+  }
+  isInitialized = true;
+
   try {
     // Load filters from API first
     const filterLoader = new FilterLoader();
@@ -35,6 +45,7 @@ async function initializeExplorePage() {
     
   } catch (error) {
     console.error('Failed to initialize explore page:', error);
+    isInitialized = false; // Allow retry on error
     
     // Show error message
     const errorDiv = document.createElement('div');

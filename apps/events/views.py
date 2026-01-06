@@ -82,6 +82,10 @@ class EventViewSet(ModelViewSet):
         Filter events by user's organizations with optimized queries.
         Uses select_related and prefetch_related to minimize database hits.
         """
+        # Handle schema generation (drf-spectacular)
+        if getattr(self, 'swagger_fake_view', False):
+            return Event.objects.none()
+        
         user = self.request.user
         qs = Event.objects.select_related(
             'organization',

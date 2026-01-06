@@ -3,20 +3,9 @@
 {% load i18n %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:'en' }}">
-<script>
-  // Apply theme immediately to prevent flash of unstyled content (FOUC)
-  (function() {
-    try {
-      var theme = localStorage.getItem('spiderhub-theme');
-      if (theme === 'light' || theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', theme);
-      }
-    } catch (e) {
-      // localStorage not available, ignore
-    }
-  })();
-</script>
 <head>
+  <!-- Theme initialization - loaded synchronously to prevent FOUC -->
+  {% js_versioned 'core/js/theme-init.js' %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="{% block description %}{% trans "SPIDERHUB: Mapping EU-LAC Digital Transformation Dialogues & Agreements. Discover connections driving digital transformation between Europe and Latin America." %}{% endblock %}">
@@ -39,7 +28,7 @@
   {% block extra_head %}{% endblock %}
   
   <!-- Structured Data -->
-  <script type="application/ld+json">
+  <script type="application/ld+json"{% if request.csp_nonce %} nonce="{{ request.csp_nonce }}"{% endif %}>
   {
     "@context": "https://schema.org",
     "@type": "WebSite",

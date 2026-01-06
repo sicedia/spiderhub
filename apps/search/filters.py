@@ -1,6 +1,7 @@
+from typing import List
 from django_filters import FilterSet, CharFilter, DateFromToRangeFilter, ModelMultipleChoiceFilter
 from django.contrib.postgres.search import SearchQuery, SearchRank
-from django.db.models import Q, IntegerField
+from django.db.models import Q, IntegerField, QuerySet
 from django.db.models.functions import Cast
 from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
@@ -50,7 +51,8 @@ class DocumentFilter(FilterSet):
             'agreement_type', 'country', 'city',
         ]
 
-    def noop(self, queryset, name, value):
+    @extend_schema_field(OpenApiTypes.STR)
+    def noop(self, queryset: QuerySet, name: str, value: str) -> QuerySet:
         """
         No-op filter method. These filters are handled manually in filter_queryset.
         This method exists to satisfy django-filters and drf-spectacular requirements.

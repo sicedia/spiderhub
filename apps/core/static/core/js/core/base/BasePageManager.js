@@ -47,7 +47,8 @@ export class BasePageManager extends BaseComponent {
       autoInitialize: true,
       enableMobileNavigation: true,
       enableKeyboardShortcuts: false,
-      loadingTimeout: 10000
+      loadingTimeout: 30000, // 30 seconds timeout for slow connections
+      showLoadingOverlay: false // Disabled by default - rely on skeleton loaders
     };
   }
 
@@ -196,25 +197,35 @@ export class BasePageManager extends BaseComponent {
 
   /**
    * Show page loading state
+   * Note: Most pages now use skeleton loaders instead of overlay
    */
   showPageLoading() {
-    const loadingOverlay = DOMUtils.createElement('div', {
-      className: 'page-loading-overlay',
-      innerHTML: `
-        <div class="page-loading-content">
-          <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
+    // Only show overlay if explicitly enabled
+    if (this.options.showLoadingOverlay) {
+      const loadingOverlay = DOMUtils.createElement('div', {
+        className: 'page-loading-overlay',
+        innerHTML: `
+          <div class="page-loading-content">
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <p class="mt-3">Loading page...</p>
           </div>
-          <p class="mt-3">Loading page...</p>
-        </div>
-      `
-    });
+        `
+      });
+      
+      document.body.appendChild(loadingOverlay);
+    }
     
-    document.body.appendChild(loadingOverlay);
-    
-    // Set timeout for loading
+    // Set timeout for loading (only logs warning, doesn't block)
     this.loadingTimeout = setTimeout(() => {
-      this.handlePageError(new Error('Page loading timeout'));
+      if (this.logger) {
+        this.logger.warn('Page loading is taking longer than expected', {
+          timeout: this.options.loadingTimeout
+        });
+      }
+      // Don't throw error - let the page continue loading
+      // The skeleton loaders will remain visible until data loads
     }, this.options.loadingTimeout);
   }
 

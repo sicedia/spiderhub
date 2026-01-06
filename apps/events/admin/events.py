@@ -217,7 +217,7 @@ class EventAdmin(admin.ModelAdmin):
                 reviewer_info
             )
         else:
-            return format_html(
+            return mark_safe(
                 '<span style="background-color: #ffc107; color: black; padding: 2px 6px; '
                 'border-radius: 10px; font-size: 10px;" title="Needs human review">👤 ⏳</span>'
             )

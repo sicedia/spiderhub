@@ -9,10 +9,20 @@ import HomePageManager from './pages/HomePageManager.js';
 // Store manager instance globally for debugging
 window.homePageManager = null;
 
+// Flag to prevent double initialization
+let isInitialized = false;
+
 /**
  * Initialize home page
  */
 async function initializeHomePage() {
+  // Prevent double initialization
+  if (isInitialized || window.homePageManager) {
+    logger.debug('Home page already initialized, skipping...');
+    return;
+  }
+  isInitialized = true;
+
   try {
     logger.info('Initializing home page with ES6 modular architecture');
     
@@ -38,6 +48,7 @@ async function initializeHomePage() {
     
   } catch (error) {
     logger.error('Failed to initialize home page', error);
+    isInitialized = false; // Allow retry on error
     
     // Show user-friendly error message
     const errorContainer = document.createElement('div');

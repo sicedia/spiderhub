@@ -8,6 +8,9 @@ import { EventsPageManager } from './pages/EventsPageManager.js';
 import { logger } from './core/logger/Logger.js';
 import { gettext as _ } from './core/i18n/i18n.js';
 
+// Flag to prevent double initialization
+let isInitialized = false;
+
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initializeEventsPage);
@@ -16,8 +19,15 @@ if (document.readyState === 'loading') {
 }
 
 function initializeEventsPage() {
+  // Prevent double initialization
+  if (isInitialized || window.eventsPageManager) {
+    return;
+  }
+  isInitialized = true;
+
+  const appLogger = logger.child({ module: 'EventsEntry' });
+  
   try {
-    const appLogger = logger.child({ module: 'EventsEntry' });
     appLogger.info('Initializing events page');
     
     // Initialize EventsPageManager
@@ -36,6 +46,7 @@ function initializeEventsPage() {
     
   } catch (error) {
     appLogger.error('Failed to initialize events page', error);
+    isInitialized = false; // Allow retry on error
     
     // Show error to user
     const errorContainer = document.createElement('div');

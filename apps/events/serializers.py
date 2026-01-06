@@ -2,6 +2,7 @@
 Serializers for Event API endpoints
 """
 from rest_framework import serializers
+from drf_spectacular.utils import extend_schema_field
 from .models import Event, EventLink, DocumentEvent
 
 
@@ -274,18 +275,22 @@ class PublicEventSerializer(serializers.ModelSerializer):
             "updated_at",
         ]
     
+    @extend_schema_field(list[dict])
     def get_themes(self, obj):
         """Return themes with id and label"""
         return [{"id": t.id, "name": t.label} for t in obj.themes.all()]
     
+    @extend_schema_field(list[dict])
     def get_actors(self, obj):
         """Return actors with id and label"""
         return [{"id": a.id, "name": a.label} for a in obj.actors.all()]
     
+    @extend_schema_field(list[dict])
     def get_sdgs(self, obj):
         """Return SDGs with id, number, and label"""
         return [{"id": s.id, "number": s.number, "label": s.label} for s in obj.sdgs.all()]
     
+    @extend_schema_field(list[dict])
     def get_beneficiary_groups(self, obj):
         """Return beneficiary groups with id, name, and category"""
         return [
@@ -305,6 +310,7 @@ class PublicEventDetailSerializer(PublicEventSerializer):
             "eu_policy_alignments",
         ]
     
+    @extend_schema_field(list[dict])
     def get_eu_policy_alignments(self, obj):
         """Return EU policy alignments with id and name"""
         return [{"id": p.id, "name": p.name} for p in obj.eu_policy_alignments.all()]

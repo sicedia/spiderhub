@@ -99,7 +99,7 @@
 .home-project-info {
   /* Uses shared .section pattern */
   padding: var(--space-3xl) 0;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, var(--color-neutral-50) 0%, var(--color-neutral-200) 100%);
   border-bottom: 1px solid var(--color-border-light);
 }
 
@@ -652,40 +652,130 @@
 }
 
 /* ========================================
-   Dark Mode Support
+   Dark Mode Support - Manual theme control
    ======================================== */
 
+[data-theme="dark"] .home-project-info {
+  background: linear-gradient(135deg, var(--color-neutral-900) 0%, var(--color-neutral-800) 100%);
+  border-bottom-color: var(--color-neutral-700);
+}
+
+[data-theme="dark"] .home-project-info__card {
+  background-color: var(--color-neutral-800);
+  border-left-color: var(--color-primary-400);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .home-project-info__text {
+  color: var(--color-neutral-300);
+}
+
+[data-theme="dark"] .home-project-info__text strong {
+  color: var(--color-primary-400);
+}
+
+[data-theme="dark"] .home-project-info__link {
+  color: var(--color-primary-400);
+}
+
+[data-theme="dark"] .home-project-info__link:hover {
+  color: var(--color-secondary-400);
+}
+
+[data-theme="dark"] .home-stats {
+  background-color: var(--color-neutral-900);
+}
+
+[data-theme="dark"] .home-stats__card {
+  background: var(--color-neutral-800);
+  border-top-color: var(--color-accent-info);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .home-stats__card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .home-stats__title {
+  color: var(--color-primary-400);
+}
+
+[data-theme="dark"] .home-stats__number {
+  color: var(--color-neutral-100);
+}
+
+[data-theme="dark"] .home-stats__label {
+  color: var(--color-neutral-300);
+}
+
+[data-theme="dark"] .home-documents {
+  background-color: var(--color-neutral-800);
+}
+
+[data-theme="dark"] .home-events {
+  background-color: var(--color-neutral-900);
+}
+
+[data-theme="dark"] .home-events__title {
+  color: var(--color-neutral-100);
+}
+
+[data-theme="dark"] .home-events__card {
+  background-color: var(--color-neutral-800);
+  border-color: var(--color-neutral-700);
+}
+
+[data-theme="dark"] .home-events__card-title {
+  color: var(--color-neutral-100);
+}
+
+[data-theme="dark"] .home-events__card-date,
+[data-theme="dark"] .home-events__card-location,
+[data-theme="dark"] .home-events__card-org {
+  color: var(--color-neutral-400);
+}
+
+[data-theme="dark"] .home-cta {
+  background: linear-gradient(135deg, var(--color-primary-700) 0%, var(--color-secondary-700) 100%);
+}
+
+/* System preference fallback (only when data-theme is not set) */
 @media (prefers-color-scheme: dark) {
-  .home-project-info {
-    background: linear-gradient(135deg, var(--color-neutral-800) 0%, var(--color-neutral-700) 100%);
-    border-bottom-color: var(--color-border-medium);
+  :root:not([data-theme]) .home-project-info {
+    background: linear-gradient(135deg, var(--color-neutral-900) 0%, var(--color-neutral-800) 100%);
+    border-bottom-color: var(--color-neutral-700);
   }
   
-  .home-project-info__card {
-    background-color: var(--color-bg-primary);
+  :root:not([data-theme]) .home-project-info__card {
+    background-color: var(--color-neutral-800);
     border-left-color: var(--color-primary-400);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
   
-  .home-stats {
-    background-color: var(--color-bg-primary);
+  :root:not([data-theme]) .home-project-info__text {
+    color: var(--color-neutral-300);
   }
   
-  .home-stats__card {
-    background: var(--color-bg-primary);
+  :root:not([data-theme]) .home-stats {
+    background-color: var(--color-neutral-900);
+  }
+  
+  :root:not([data-theme]) .home-stats__card {
+    background: var(--color-neutral-800);
     border-top-color: var(--color-accent-info);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
   
-  .home-stats__card:hover {
+  :root:not([data-theme]) .home-stats__card:hover {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   }
   
-  .home-documents {
-    background-color: var(--color-bg-secondary);
+  :root:not([data-theme]) .home-documents {
+    background-color: var(--color-neutral-800);
   }
   
-  .home-cta {
-    background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-secondary-600) 100%);
+  :root:not([data-theme]) .home-cta {
+    background: linear-gradient(135deg, var(--color-primary-700) 0%, var(--color-secondary-700) 100%);
   }
 }
 

@@ -6,10 +6,20 @@
 import { logger } from './core/logger/Logger.js';
 import { OverviewPageManager } from './pages/OverviewPageManager.js';
 
+// Flag to prevent double initialization
+let isInitialized = false;
+
 /**
  * Initialize the Overview page
  */
 async function initializeOverviewPage() {
+  // Prevent double initialization
+  if (isInitialized || window.__overviewPageManager) {
+    logger.debug('Overview page already initialized, skipping...');
+    return;
+  }
+  isInitialized = true;
+
   try {
     logger.info('Initializing Overview page...');
     
@@ -49,6 +59,7 @@ async function initializeOverviewPage() {
     
   } catch (error) {
     logger.error('Failed to initialize Overview page', error);
+    isInitialized = false; // Allow retry on error
     
     // Show user-friendly error message
     showErrorMessage(

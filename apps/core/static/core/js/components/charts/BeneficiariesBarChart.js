@@ -47,7 +47,9 @@ export class BeneficiariesBarChart extends BaseChart {
    */
   async loadData() {
     if (!this.options.beneficiariesData) {
-      throw new Error('BeneficiariesBarChart requires beneficiariesData option');
+      this.logger.warn('No beneficiariesData provided, showing empty state');
+      this.data = null;
+      return;
     }
     this.data = this.options.beneficiariesData;
   }
@@ -67,8 +69,14 @@ export class BeneficiariesBarChart extends BaseChart {
       existingChart.destroy();
     }
 
+    // Handle no data gracefully
+    if (!this.data || !this.data.labels || !this.data.datasets) {
+      this.renderEmptyState();
+      return;
+    }
+
     const labels = this.data.labels || [];
-    const values = this.data.datasets[0].data || [];
+    const values = this.data.datasets[0]?.data || [];
 
     // Assign colors based on beneficiary category
     const backgroundColors = labels.map(label => {
@@ -206,6 +214,23 @@ export class BeneficiariesBarChart extends BaseChart {
     
     eventBus.emit('chart:rendered', { chartId: this.element.id, type: 'bar' });
     this.logger.info('Beneficiaries Bar chart rendered', { beneficiaryGroups: labels.length });
+  }
+
+  /**
+   * Render empty state when no data is available
+   */
+  renderEmptyState() {
+    this.element.style.display = 'flex';
+    this.element.style.alignItems = 'center';
+    this.element.style.justifyContent = 'center';
+    this.element.style.minHeight = '200px';
+    this.element.innerHTML = `
+      <div style="text-align: center; color: #6c757d;">
+        <p style="margin: 0; font-size: 14px;">No beneficiary data available</p>
+        <p style="margin: 5px 0 0; font-size: 12px; opacity: 0.7;">Data will appear once documents are analyzed</p>
+      </div>
+    `;
+    this.logger.info('Beneficiaries chart showing empty state');
   }
 
   /**

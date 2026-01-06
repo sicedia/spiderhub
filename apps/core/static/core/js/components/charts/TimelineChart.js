@@ -37,7 +37,9 @@ export class TimelineChart extends BaseChart {
    */
   async loadData() {
     if (!this.options.timelineData) {
-      throw new Error('TimelineChart requires timelineData option');
+      this.logger.warn('No timelineData provided, showing empty state');
+      this.data = null;
+      return;
     }
     this.data = this.options.timelineData;
   }
@@ -55,6 +57,12 @@ export class TimelineChart extends BaseChart {
     const existingChart = Chart.getChart(this.element);
     if (existingChart) {
       existingChart.destroy();
+    }
+
+    // Handle no data gracefully
+    if (!this.data || !this.data.labels || !this.data.datasets) {
+      this.renderEmptyState();
+      return;
     }
 
     const labels = this.data.labels || [];
@@ -287,6 +295,23 @@ export class TimelineChart extends BaseChart {
       periods: labels.length,
       maxValue: maxValue
     });
+  }
+
+  /**
+   * Render empty state when no data is available
+   */
+  renderEmptyState() {
+    this.element.style.display = 'flex';
+    this.element.style.alignItems = 'center';
+    this.element.style.justifyContent = 'center';
+    this.element.style.minHeight = '200px';
+    this.element.innerHTML = `
+      <div style="text-align: center; color: #6c757d;">
+        <p style="margin: 0; font-size: 14px;">No timeline data available</p>
+        <p style="margin: 5px 0 0; font-size: 12px; opacity: 0.7;">Data will appear once documents are analyzed</p>
+      </div>
+    `;
+    this.logger.info('Timeline chart showing empty state');
   }
 
   /**

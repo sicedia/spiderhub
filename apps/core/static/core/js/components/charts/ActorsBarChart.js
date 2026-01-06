@@ -37,7 +37,9 @@ export class ActorsBarChart extends BaseChart {
    */
   async loadData() {
     if (!this.options.actorsData) {
-      throw new Error('ActorsBarChart requires actorsData option');
+      this.logger.warn('No actorsData provided, showing empty state');
+      this.data = null;
+      return;
     }
     this.data = this.options.actorsData;
   }
@@ -57,8 +59,14 @@ export class ActorsBarChart extends BaseChart {
       existingChart.destroy();
     }
 
+    // Handle no data gracefully
+    if (!this.data || !this.data.labels || !this.data.datasets) {
+      this.renderEmptyState();
+      return;
+    }
+
     const labels = this.data.labels || [];
-    const values = this.data.datasets[0].data || [];
+    const values = this.data.datasets[0]?.data || [];
     
     // Assign colors based on actor labels
     const backgroundColors = labels.map(label => 
@@ -216,6 +224,23 @@ export class ActorsBarChart extends BaseChart {
       (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
       (B < 255 ? B < 1 ? 0 : B : 255))
       .toString(16).slice(1);
+  }
+
+  /**
+   * Render empty state when no data is available
+   */
+  renderEmptyState() {
+    this.element.style.display = 'flex';
+    this.element.style.alignItems = 'center';
+    this.element.style.justifyContent = 'center';
+    this.element.style.minHeight = '200px';
+    this.element.innerHTML = `
+      <div style="text-align: center; color: #6c757d;">
+        <p style="margin: 0; font-size: 14px;">No actor data available</p>
+        <p style="margin: 5px 0 0; font-size: 12px; opacity: 0.7;">Data will appear once documents are analyzed</p>
+      </div>
+    `;
+    this.logger.info('Actors chart showing empty state');
   }
 
   /**

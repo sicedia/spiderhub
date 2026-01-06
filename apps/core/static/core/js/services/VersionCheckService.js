@@ -44,6 +44,7 @@ class VersionCheckService {
     // Usar BroadcastChannel si está disponible
     if (this.broadcastChannel) {
       this.broadcastChannel.onmessage = (event) => {
+        console.log('📨 BroadcastChannel message received:', event.data);
         if (event.data && event.data.type === 'FORCE_RELOAD') {
           this.handleForceReload(event.data.version);
         }
@@ -51,8 +52,10 @@ class VersionCheckService {
     }
 
     // Fallback: usar localStorage events (funciona en todos los navegadores)
+    // El evento 'storage' solo se dispara en OTRAS pestañas, no en la actual
     window.addEventListener('storage', (event) => {
       if (event.key === 'spiderhub_force_reload' && event.newValue) {
+        console.log('📨 localStorage storage event received');
         try {
           const data = JSON.parse(event.newValue);
           if (data && data.type === 'FORCE_RELOAD') {
@@ -63,6 +66,9 @@ class VersionCheckService {
         }
       }
     });
+
+    // Log para debugging - mostrar ruta actual
+    console.log(`🔗 VersionCheckService listening on route: ${window.location.pathname}`);
   }
 
   /**
@@ -80,16 +86,52 @@ class VersionCheckService {
     // Verificar cuando la ventana recupera el foco
     window.addEventListener('focus', () => {
       this.checkVersion();
+      // También verificar si hay un comando de recarga pendiente (para móviles)
+      this.checkPendingReload();
     });
 
-    // Verificar cuando la página se hace visible
+    // Verificar cuando la página se hace visible (importante para móviles)
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden) {
         this.checkVersion();
+        // También verificar si hay un comando de recarga pendiente (para móviles)
+        this.checkPendingReload();
+      }
+    });
+
+    // pageshow se dispara cuando la página se muestra desde bfcache (navegación atrás/adelante)
+    // Esto es especialmente importante en Safari iOS
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        console.log('📱 Page restored from bfcache, checking version...');
+        this.checkVersion();
+        this.checkPendingReload();
       }
     });
 
     console.log('✅ Version check service initialized');
+  }
+
+  /**
+   * Verifica si hay un comando de recarga pendiente en localStorage
+   * Útil para móviles donde la pestaña puede haber estado suspendida
+   */
+  checkPendingReload() {
+    try {
+      const pendingReload = localStorage.getItem('spiderhub_force_reload');
+      if (pendingReload) {
+        const data = JSON.parse(pendingReload);
+        if (data && data.type === 'FORCE_RELOAD') {
+          console.log('📱 Found pending reload command, executing...');
+          // Limpiar el comando pendiente
+          localStorage.removeItem('spiderhub_force_reload');
+          // Ejecutar la recarga
+          this.handleForceReload(data.version);
+        }
+      }
+    } catch (e) {
+      // Ignorar errores de parsing
+    }
   }
 
   /**
@@ -120,11 +162,17 @@ class VersionCheckService {
       // Obtener versión guardada del localStorage
       const storedVersion = localStorage.getItem(VERSION_STORAGE_KEY);
       
-      // Si no hay versión guardada, guardar la actual y salir
+      // Si no hay versión guardada, mostrar modal para actualizar
+      // Esto cubre casos donde el usuario borró el localStorage o es primera vez
       if (!storedVersion) {
-        this.currentVersion = serverVersion;
-        localStorage.setItem(VERSION_STORAGE_KEY, serverVersion);
-        console.log(`📦 First time - saved version: ${serverVersion}`);
+        console.log(`📦 No version found in localStorage, prompting update to: ${serverVersion}`);
+        if (serverVersion && serverVersion !== 'unknown') {
+          // Mostrar modal para que el usuario actualice
+          this.showUpdateModal(serverVersion);
+        } else {
+          // Si la versión del servidor es desconocida, guardar para evitar loops
+          localStorage.setItem(VERSION_STORAGE_KEY, serverVersion);
+        }
         return;
       }
       
@@ -179,14 +227,15 @@ class VersionCheckService {
         <div class="version-update-modal__header">
           <h2 class="version-update-modal__title">Actualización Disponible</h2>
           <p class="version-update-modal__description">
-            Hay una nueva versión de la aplicación disponible. 
-            Por favor, actualiza para obtener las últimas mejoras y correcciones.
+            ${this.currentVersion 
+              ? 'Hay una nueva versión de la aplicación disponible. Por favor, actualiza para obtener las últimas mejoras y correcciones.'
+              : 'Se requiere actualizar la aplicación para continuar. Esto asegurará que tengas la última versión con todas las mejoras y correcciones.'}
           </p>
         </div>
         <div class="version-update-modal__body">
           <div class="version-update-modal__info">
             <span class="version-update-modal__label">Versión actual:</span>
-            <span class="version-update-modal__value">${this.currentVersion}</span>
+            <span class="version-update-modal__value">${this.currentVersion || 'No detectada'}</span>
           </div>
           <div class="version-update-modal__info">
             <span class="version-update-modal__label">Nueva versión:</span>
@@ -219,7 +268,7 @@ class VersionCheckService {
   /**
    * Maneja la actualización - limpia caché en TODAS las pestañas
    */
-  handleUpdate(newVersion) {
+  async handleUpdate(newVersion) {
     if (this.isReloading) return;
     
     this.isReloading = true;
@@ -228,15 +277,21 @@ class VersionCheckService {
     // 1. Limpiar caché local (preservar preferencias importantes)
     this.clearLocalCache();
 
-    // 2. Limpiar Service Worker cache si existe
+    // 2. Invalidar cache HTTP de archivos estáticos (CSS/JS)
+    // Esto asegura que la próxima carga obtenga las últimas versiones
+    await this.invalidateStaticAssetCache().catch(() => {
+      console.warn('⚠️ Static asset cache invalidation failed, continuing...');
+    });
+
+    // 3. Limpiar Service Worker cache si existe
     this.clearServiceWorkerCache().then(() => {
-      // 3. Notificar a TODAS las pestañas para que se recarguen
+      // 4. Notificar a TODAS las pestañas para que se recarguen
       this.broadcastReloadToAllTabs(newVersion);
 
-      // 4. Actualizar versión guardada
+      // 5. Actualizar versión guardada
       localStorage.setItem(VERSION_STORAGE_KEY, newVersion);
 
-      // 5. Recargar esta pestaña con múltiples técnicas
+      // 6. Recargar esta pestaña con múltiples técnicas
       this.forceReloadCurrentTab();
     }).catch(() => {
       // Continuar aunque falle la limpieza de Service Worker
@@ -302,32 +357,112 @@ class VersionCheckService {
   }
 
   /**
+   * Invalida el cache HTTP del navegador para archivos estáticos (CSS/JS)
+   * Esto fuerza al navegador a revalidar los recursos con el servidor
+   * Equivalente a lo que hace Ctrl+Shift+R para los archivos estáticos
+   */
+  async invalidateStaticAssetCache() {
+    const assetsToInvalidate = [];
+    
+    // Recopilar todos los archivos CSS
+    document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+      if (link.href && !link.href.includes('fonts.googleapis.com')) {
+        assetsToInvalidate.push(link.href);
+      }
+    });
+    
+    // Recopilar todos los archivos JS
+    document.querySelectorAll('script[src]').forEach(script => {
+      if (script.src && !script.src.includes('cdn.') && !script.src.includes('googleapis.com')) {
+        assetsToInvalidate.push(script.src);
+      }
+    });
+    
+    console.log(`🔄 Invalidating HTTP cache for ${assetsToInvalidate.length} static assets...`);
+    
+    // Hacer fetch con cache: 'reload' para cada archivo
+    // Esto fuerza al navegador a hacer una solicitud condicional al servidor
+    const invalidationPromises = assetsToInvalidate.map(async (url) => {
+      try {
+        // Usar cache: 'reload' para forzar revalidación
+        // Esto hace que el navegador verifique con el servidor si hay versión nueva
+        await fetch(url, {
+          method: 'HEAD', // Solo verificar headers, no descargar contenido
+          cache: 'reload', // Forzar revalidación con el servidor
+          credentials: 'same-origin'
+        });
+        return { url, success: true };
+      } catch (error) {
+        // Ignorar errores de CORS o red - no es crítico
+        return { url, success: false, error };
+      }
+    });
+    
+    try {
+      const results = await Promise.allSettled(invalidationPromises);
+      const successful = results.filter(r => r.status === 'fulfilled' && r.value.success).length;
+      console.log(`✅ HTTP cache invalidated for ${successful}/${assetsToInvalidate.length} assets`);
+    } catch (error) {
+      console.warn('⚠️ Some assets failed to invalidate:', error);
+    }
+  }
+
+  /**
    * Notifica a TODAS las pestañas para que se recarguen
    */
   broadcastReloadToAllTabs(newVersion) {
     const reloadCommand = {
       type: 'FORCE_RELOAD',
       version: newVersion,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      origin: window.location.pathname // Para debugging
     };
+
+    console.log('📡 Broadcasting reload command to all tabs...');
 
     // Método 1: BroadcastChannel (más eficiente, navegadores modernos)
     if (this.broadcastChannel) {
-      this.broadcastChannel.postMessage(reloadCommand);
-      console.log('📡 Broadcasted reload command via BroadcastChannel');
+      try {
+        this.broadcastChannel.postMessage(reloadCommand);
+        console.log('✅ Broadcasted via BroadcastChannel');
+      } catch (e) {
+        console.warn('⚠️ BroadcastChannel failed:', e);
+      }
     }
 
-    // Método 2: localStorage event (fallback para navegadores antiguos)
-    // Nota: el evento 'storage' solo se dispara en OTRAS pestañas, no en la actual
+    // Método 2: localStorage event (fallback universal y soporte para móviles)
+    // El evento 'storage' se dispara en OTRAS pestañas cuando cambia un valor
+    // En móviles, las pestañas suspendidas pueden revisar este valor cuando vuelvan a estar activas
     try {
-      localStorage.setItem('spiderhub_force_reload', JSON.stringify(reloadCommand));
-      // Limpiar inmediatamente para que el evento se dispare en la próxima escritura
+      // Primero limpiar cualquier comando anterior
+      localStorage.removeItem('spiderhub_force_reload');
+      
+      // Esperar un tick para asegurar que el evento anterior se procesó
       setTimeout(() => {
-        localStorage.removeItem('spiderhub_force_reload');
-      }, 100);
-      console.log('📡 Broadcasted reload command via localStorage');
+        localStorage.setItem('spiderhub_force_reload', JSON.stringify(reloadCommand));
+        console.log('✅ Broadcasted via localStorage');
+        
+        // En móviles, las pestañas pueden estar suspendidas por más tiempo
+        // Mantener el comando por 30 segundos para dar tiempo a que pestañas
+        // suspendidas lo encuentren cuando vuelvan a estar activas
+        setTimeout(() => {
+          // Solo limpiar si el comando es el mismo (no uno más nuevo)
+          try {
+            const current = localStorage.getItem('spiderhub_force_reload');
+            if (current) {
+              const currentData = JSON.parse(current);
+              if (currentData.timestamp === reloadCommand.timestamp) {
+                localStorage.removeItem('spiderhub_force_reload');
+                console.log('🧹 Cleaned up old reload command');
+              }
+            }
+          } catch (e) {
+            // Ignorar errores
+          }
+        }, 30000); // 30 segundos para móviles
+      }, 10);
     } catch (e) {
-      console.warn('⚠️ Failed to broadcast via localStorage:', e);
+      console.warn('⚠️ localStorage broadcast failed:', e);
     }
   }
 
@@ -336,25 +471,38 @@ class VersionCheckService {
    * Esto se ejecuta en TODAS las pestañas abiertas (excepto la que inició la actualización)
    */
   handleForceReload(newVersion) {
-    if (this.isReloading) return;
+    // Verificar si ya estamos recargando
+    if (this.isReloading) {
+      console.log('⚠️ Already reloading, ignoring duplicate command');
+      return;
+    }
     
-    console.log('📨 Received force reload command from another tab, clearing cache and reloading...');
+    const currentPath = window.location.pathname;
+    console.log(`📨 Force reload command received on route: ${currentPath}`);
+    console.log(`📦 Updating to version: ${newVersion}`);
+    
     this.isReloading = true;
+
+    // Actualizar versión guardada PRIMERO para evitar loops de detección
+    try {
+      localStorage.setItem(VERSION_STORAGE_KEY, newVersion);
+    } catch (e) {
+      console.warn('⚠️ Failed to save version to localStorage:', e);
+    }
 
     // Limpiar caché local (en esta pestaña también)
     this.clearLocalCache();
     
-    // Limpiar Service Worker cache
-    this.clearServiceWorkerCache().then(() => {
-      // Actualizar versión guardada
-      localStorage.setItem(VERSION_STORAGE_KEY, newVersion);
-
+    // Ejecutar limpieza en paralelo con timeout para no bloquear la recarga
+    Promise.race([
+      Promise.all([
+        this.invalidateStaticAssetCache().catch(() => {}), // Invalidar CSS/JS
+        this.clearServiceWorkerCache().catch(() => {})     // Limpiar SW cache
+      ]),
+      new Promise(resolve => setTimeout(resolve, 300)) // Timeout de 300ms
+    ]).finally(() => {
       // Recargar esta pestaña con cache busting
       // Esto recargará la ruta actual (cualquiera que sea) con cache forzado
-      this.forceReloadCurrentTab();
-    }).catch(() => {
-      // Continuar aunque falle la limpieza de Service Worker
-      localStorage.setItem(VERSION_STORAGE_KEY, newVersion);
       this.forceReloadCurrentTab();
     });
   }
@@ -365,73 +513,63 @@ class VersionCheckService {
    * Equivalente a Ctrl+Shift+R (hard reload)
    */
   forceReloadCurrentTab() {
-    console.log('🔄 Force reloading current tab with cache busting...');
+    const currentPath = window.location.pathname;
+    console.log(`🔄 Force reloading current tab: ${currentPath}`);
 
-    // Limpiar cache del navegador antes de recargar
-    // Esto incluye: HTTP cache, Service Workers, y localStorage (ya limpiado)
-    
-    // Técnica 1: Agregar parámetro único a la URL con timestamp
+    // Marcar que ya iniciamos la recarga para evitar loops
+    if (this._reloadInitiated) {
+      console.log('⚠️ Reload already initiated, skipping...');
+      return;
+    }
+    this._reloadInitiated = true;
+
+    // Construir URL con cache busting
     const url = new URL(window.location.href);
+    
     // Limpiar parámetros anteriores de cache busting
     url.searchParams.delete('_nocache');
     url.searchParams.delete('_reload');
     url.searchParams.delete('_v');
-    // Agregar nuevos parámetros únicos
+    url.searchParams.delete('_force');
+    url.searchParams.delete('_hard_reload');
+    
+    // Agregar nuevo parámetro único con timestamp
     const timestamp = Date.now();
-    url.searchParams.set('_nocache', timestamp);
-    url.searchParams.set('_reload', '1');
     url.searchParams.set('_v', timestamp);
 
-    // Técnica 2: Intentar usar fetch con cache: 'no-store' antes de recargar
-    // Esto ayuda a invalidar el cache HTTP
-    fetch(url.toString(), {
-      method: 'GET',
-      cache: 'no-store',
-      headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0'
+    console.log(`🔗 Reloading to: ${url.toString()}`);
+
+    // Desregistrar Service Workers primero
+    const unregisterSW = async () => {
+      if ('serviceWorker' in navigator) {
+        try {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(registrations.map(reg => reg.unregister()));
+        } catch (e) {
+          // Ignorar errores
+        }
       }
-    }).catch(() => {
-      // Ignorar errores, solo queremos invalidar el cache
+    };
+
+    // Ejecutar la recarga
+    unregisterSW().finally(() => {
+      // Usar location.replace para evitar agregar al historial
+      // y forzar una recarga completa desde el servidor
+      try {
+        window.location.replace(url.toString());
+      } catch (e) {
+        // Fallback: usar href si replace falla
+        window.location.href = url.toString();
+      }
     });
 
-    // Técnica 3: Usar location.replace con timestamp (evita historial)
-    // Esto fuerza al navegador a descargar todo desde el servidor
+    // Fallback de seguridad: si después de 500ms aún estamos aquí, forzar con href
     setTimeout(() => {
-      // Forzar recarga completa sin cache
-      if ('serviceWorker' in navigator) {
-        // Desactivar service workers temporalmente
-        navigator.serviceWorker.getRegistrations().then(registrations => {
-          registrations.forEach(reg => reg.unregister());
-        });
+      if (!document.hidden) {
+        console.log('⚠️ Fallback reload triggered');
+        window.location.href = url.toString();
       }
-      
-      // Usar replace para evitar que el usuario pueda volver atrás
-      window.location.replace(url.toString());
-    }, 150);
-
-    // Técnica 4: Fallback - si replace no funciona, usar href
-    setTimeout(() => {
-      if (window.location.href === url.toString() || !document.hidden) {
-        window.location.href = url.toString() + '&_force=' + Date.now();
-      }
-    }, 400);
-
-    // Técnica 5: Último recurso - reload forzado con cache: 'reload'
-    setTimeout(() => {
-      // Si aún estamos aquí después de 800ms, forzar reload
-      try {
-        // Intentar usar reload con cache bypass
-        if (window.location.reload) {
-          // Algunos navegadores soportan location.reload(true) para hard reload
-          // Pero está deprecado, así que usamos otra técnica
-          window.location.href = window.location.href.split('?')[0] + '?_hard_reload=' + Date.now();
-        }
-      } catch (e) {
-        console.warn('⚠️ Error forcing reload:', e);
-      }
-    }, 800);
+    }, 500);
   }
 
   /**
