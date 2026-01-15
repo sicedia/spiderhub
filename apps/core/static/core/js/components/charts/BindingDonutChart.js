@@ -36,7 +36,9 @@ export class BindingDonutChart extends BaseChart {
    */
   async loadData() {
     if (!this.options.bindingData) {
-      throw new Error('BindingDonutChart requires bindingData option');
+      console.warn('[BindingDonutChart] No bindingData provided, showing empty state');
+      this.data = null;
+      return;
     }
     this.data = this.options.bindingData;
   }
@@ -54,6 +56,12 @@ export class BindingDonutChart extends BaseChart {
     const existingChart = Chart.getChart(this.element);
     if (existingChart) {
       existingChart.destroy();
+    }
+
+    // Handle no data gracefully
+    if (!this.data || !this.data.labels) {
+      this.renderEmptyState();
+      return;
     }
 
     const labels = this.data.labels || [];
@@ -184,6 +192,25 @@ export class BindingDonutChart extends BaseChart {
       this.chart.data.datasets[0].backgroundColor = backgroundColors;
       
       this.chart.update();
+    }
+  }
+
+  /**
+   * Render empty state when no data is available
+   */
+  renderEmptyState() {
+    this.element.style.display = 'flex';
+    this.element.style.alignItems = 'center';
+    this.element.style.justifyContent = 'center';
+    this.element.style.minHeight = '200px';
+    this.element.innerHTML = `
+      <div style="text-align: center; color: #6c757d;">
+        <p style="margin: 0; font-size: 14px;">No binding data available</p>
+        <p style="margin: 5px 0 0; font-size: 12px; opacity: 0.7;">Data will appear once documents are analyzed</p>
+      </div>
+    `;
+    if (this.logger) {
+      this.logger.info('Binding donut chart showing empty state');
     }
   }
 

@@ -37,7 +37,7 @@ export class TimelineChart extends BaseChart {
    */
   async loadData() {
     if (!this.options.timelineData) {
-      this.logger.warn('No timelineData provided, showing empty state');
+      console.warn('[TimelineChart] No timelineData provided, showing empty state');
       this.data = null;
       return;
     }

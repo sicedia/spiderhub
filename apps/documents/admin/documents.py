@@ -220,7 +220,7 @@ class DocumentAdmin(WideFormFieldOverridesMixin, admin.ModelAdmin):
                 obj.human_check_date.strftime('%Y-%m-%d %H:%M') if obj.human_check_date else 'Unknown'
             )
         else:
-            return format_html(
+            return mark_safe(
                 '<span style="background-color: #ffc107; color: black; padding: 2px 6px; border-radius: 10px; font-size: 10px;" title="Needs human review">👤 ⏳</span>'
             )
     human_status_badge.short_description = 'Human Status'

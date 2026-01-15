@@ -38,7 +38,9 @@ export class SDGRadarChart extends BaseChart {
    */
   async loadData() {
     if (!this.options.sdgData) {
-      throw new Error('SDGRadarChart requires sdgData option');
+      console.warn('[SDGRadarChart] No sdgData provided, showing empty state');
+      this.data = null;
+      return;
     }
     this.data = this.options.sdgData;
   }
@@ -56,6 +58,12 @@ export class SDGRadarChart extends BaseChart {
     const existingChart = Chart.getChart(this.element);
     if (existingChart) {
       existingChart.destroy();
+    }
+
+    // Handle no data gracefully
+    if (!this.data || !this.data.labels) {
+      this.renderEmptyState();
+      return;
     }
 
     const labels = this.data.labels || [];
@@ -226,6 +234,25 @@ export class SDGRadarChart extends BaseChart {
       this.chart.options.scales.r.ticks.stepSize = 20;
       
       this.chart.update();
+    }
+  }
+
+  /**
+   * Render empty state when no data is available
+   */
+  renderEmptyState() {
+    this.element.style.display = 'flex';
+    this.element.style.alignItems = 'center';
+    this.element.style.justifyContent = 'center';
+    this.element.style.minHeight = '200px';
+    this.element.innerHTML = `
+      <div style="text-align: center; color: #6c757d;">
+        <p style="margin: 0; font-size: 14px;">No SDG data available</p>
+        <p style="margin: 5px 0 0; font-size: 12px; opacity: 0.7;">Data will appear once documents are analyzed</p>
+      </div>
+    `;
+    if (this.logger) {
+      this.logger.info('SDG Radar chart showing empty state');
     }
   }
 

@@ -37,7 +37,7 @@ export class ActorsBarChart extends BaseChart {
    */
   async loadData() {
     if (!this.options.actorsData) {
-      this.logger.warn('No actorsData provided, showing empty state');
+      console.warn('[ActorsBarChart] No actorsData provided, showing empty state');
       this.data = null;
       return;
     }

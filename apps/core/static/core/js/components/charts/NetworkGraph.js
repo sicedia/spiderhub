@@ -76,7 +76,9 @@ export class NetworkGraph extends BaseChart {
    */
   async loadData() {
     if (!this.options.actorData || !this.options.themeData) {
-      throw new Error('NetworkGraph requires actorData and themeData options');
+      console.warn('[NetworkGraph] No actorData or themeData provided, showing empty state');
+      this.data = null;
+      return;
     }
     
     this.data = {
@@ -92,6 +94,12 @@ export class NetworkGraph extends BaseChart {
     // Check if vis-network is available
     if (typeof vis === 'undefined') {
       this.logger.warn('Vis-network library not loaded');
+      return;
+    }
+
+    // Handle no data gracefully
+    if (!this.data || !this.data.actors || !this.data.themes) {
+      this.renderEmptyState();
       return;
     }
 
@@ -367,6 +375,25 @@ export class NetworkGraph extends BaseChart {
     }));
 
     this.network.setData({ nodes, edges });
+  }
+
+  /**
+   * Render empty state when no data is available
+   */
+  renderEmptyState() {
+    this.element.style.display = 'flex';
+    this.element.style.alignItems = 'center';
+    this.element.style.justifyContent = 'center';
+    this.element.style.minHeight = '300px';
+    this.element.innerHTML = `
+      <div style="text-align: center; color: #6c757d;">
+        <p style="margin: 0; font-size: 14px;">No network data available</p>
+        <p style="margin: 5px 0 0; font-size: 12px; opacity: 0.7;">Data will appear once documents are analyzed</p>
+      </div>
+    `;
+    if (this.logger) {
+      this.logger.info('Network graph showing empty state');
+    }
   }
 
   /**

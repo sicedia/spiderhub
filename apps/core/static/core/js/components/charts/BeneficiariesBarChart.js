@@ -47,7 +47,7 @@ export class BeneficiariesBarChart extends BaseChart {
    */
   async loadData() {
     if (!this.options.beneficiariesData) {
-      this.logger.warn('No beneficiariesData provided, showing empty state');
+      console.warn('[BeneficiariesBarChart] No beneficiariesData provided, showing empty state');
       this.data = null;
       return;
     }

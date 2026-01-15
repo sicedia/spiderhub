@@ -42,7 +42,9 @@ export class CountriesBarChart extends BaseChart {
    */
   async loadData() {
     if (!this.options.countriesData) {
-      throw new Error('CountriesBarChart requires countriesData option');
+      console.warn('[CountriesBarChart] No countriesData provided, showing empty state');
+      this.data = null;
+      return;
     }
     this.data = this.options.countriesData;
     
@@ -67,6 +69,12 @@ export class CountriesBarChart extends BaseChart {
     const existingChart = Chart.getChart(this.element);
     if (existingChart) {
       existingChart.destroy();
+    }
+
+    // Handle no data gracefully
+    if (!this.data || !this.data.labels) {
+      this.renderEmptyState();
+      return;
     }
 
     const iso3Codes = this.data.labels || [];
@@ -251,6 +259,25 @@ export class CountriesBarChart extends BaseChart {
       'Other': '🌍'
     };
     return flags[region] || '🌍';
+  }
+
+  /**
+   * Render empty state when no data is available
+   */
+  renderEmptyState() {
+    this.element.style.display = 'flex';
+    this.element.style.alignItems = 'center';
+    this.element.style.justifyContent = 'center';
+    this.element.style.minHeight = '200px';
+    this.element.innerHTML = `
+      <div style="text-align: center; color: #6c757d;">
+        <p style="margin: 0; font-size: 14px;">No country data available</p>
+        <p style="margin: 5px 0 0; font-size: 12px; opacity: 0.7;">Data will appear once documents are analyzed</p>
+      </div>
+    `;
+    if (this.logger) {
+      this.logger.info('Countries chart showing empty state');
+    }
   }
 
   /**

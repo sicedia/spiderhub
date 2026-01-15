@@ -40,7 +40,7 @@ export class ThemesBarChart extends BaseChart {
   async loadData() {
     if (!this.options.themesData) {
       // Show empty state message instead of throwing
-      this.logger.warn('No themesData provided, showing empty state');
+      console.warn('[ThemesBarChart] No themesData provided, showing empty state');
       this.data = null;
       return;
     }
