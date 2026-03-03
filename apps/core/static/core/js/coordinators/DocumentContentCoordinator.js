@@ -470,19 +470,17 @@ export class DocumentContentCoordinator {
       grouped[key].push(ind);
     });
 
-    const scoreClass = score => {
-      if (score === null || score === undefined) return '';
-      if (score < 0.4)  return 'qi-score-bar--low';
-      if (score < 0.7)  return 'qi-score-bar--mid';
-      return 'qi-score-bar--high';
-    };
-
-    const scoreBucket = score => {
-      if (score === null || score === undefined) return '';
-      if (score <= 0.3) return 'Not evident';
-      if (score <= 0.6) return 'Partially evident';
-      if (score < 1.0)  return 'Clearly evident';
-      return 'Central focus';
+    // ── Category helpers (mirror backend thresholds) ─────────────────────────
+    const scoreToCategory = score => {
+      if (score === null || score === undefined)
+        return { slug: 'pending',         label: 'Pending analysis', icon: '⏳' };
+      if (score <= 0.30)
+        return { slug: 'not_evident',     label: 'Not evident',      icon: '○' };
+      if (score <= 0.60)
+        return { slug: 'partially',       label: 'Partially evident',icon: '◑' };
+      if (score <= 0.90)
+        return { slug: 'clearly_evident', label: 'Clearly evident',  icon: '●' };
+      return   { slug: 'central_focus',   label: 'Central focus',    icon: '★' };
     };
 
     const dimensionLabel = dim => {
@@ -502,31 +500,26 @@ export class DocumentContentCoordinator {
 
     const renderCard = ind => {
       const hasScore = ind.score !== null && ind.score !== undefined;
-      const pct = hasScore ? Math.round(ind.score * 100) : 0;
-      const cls = scoreClass(ind.score);
-      const bucket = scoreBucket(ind.score);
+      const cat      = scoreToCategory(ind.score);
       const dimLabel = dimensionLabel(ind.dimension);
 
       const scoreHtml = hasScore ? `
-        <div class="qi-score-row">
-          <div class="qi-score-track">
-            <div class="qi-score-bar ${cls}" style="width:${pct}%"></div>
-          </div>
-          <span class="qi-score-label">${ind.score.toFixed(2)} / 1.0</span>
+        <div class="qi-category-badge qi-category-badge--${cat.slug}">
+          <span class="qi-category-icon">${cat.icon}</span>
+          <span class="qi-category-label">${this.escapeHtml(cat.label)}</span>
         </div>
-        <span class="qi-score-bucket">${this.escapeHtml(bucket)}</span>
-      ` : `<span class="qi-pending">Pending analysis</span>`;
+      ` : `<div class="qi-category-badge qi-category-badge--pending">⏳ Pending analysis</div>`;
 
       const justHtml = ind.justification
         ? `<p class="qi-justification">${this.escapeHtml(ind.justification)}</p>`
         : '';
 
       const evidenceHtml = ind.evidence
-        ? `<blockquote class="qi-evidence">${this.escapeHtml(ind.evidence)}</blockquote>`
+        ? `<blockquote class="qi-evidence"><span class="qi-evidence-icon">📎</span>${this.escapeHtml(ind.evidence)}</blockquote>`
         : '';
 
       return `
-        <div class="qi-card">
+        <div class="qi-card qi-card--${cat.slug}">
           <div class="qi-card__header">
             ${dimLabel ? `<span class="qi-dimension-tag">${this.escapeHtml(dimLabel)}</span>` : ''}
           </div>

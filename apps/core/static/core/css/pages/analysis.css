@@ -217,6 +217,16 @@
   border-radius: var(--radius-sm);
 }
 
+/* Lead paragraph that sits between the section title and the charts grid */
+.analysis-section__lead {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  margin-top: calc(-1 * var(--space-sm));
+  margin-bottom: var(--space-xl);
+  max-width: 80ch;
+}
+
 .charts-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -742,10 +752,11 @@
   font-weight: var(--font-weight-medium);
 }
 
-.qi-score-key__item--low  { background: rgba(239,68,68,0.12);  color: #b91c1c; }
-.qi-score-key__item--mid  { background: rgba(234,179,8,0.15);  color: #92400e; }
-.qi-score-key__item--high { background: rgba(34,197,94,0.12);  color: #166534; }
-.qi-score-key__item--top  { background: rgba(124,58,237,0.12); color: #5b21b6; }
+/* Tier colours match document-detail.css + JS scoreToCategory() */
+.qi-score-key__item--not_evident     { background: rgba(239,68,68,0.12);  color: #b91c1c; border: 1px solid rgba(239,68,68,0.25);   }
+.qi-score-key__item--partially       { background: rgba(245,158,11,0.12); color: #92400e; border: 1px solid rgba(245,158,11,0.25);  }
+.qi-score-key__item--clearly_evident { background: rgba(34,197,94,0.12);  color: #166534; border: 1px solid rgba(34,197,94,0.25);   }
+.qi-score-key__item--central_focus   { background: rgba(124,58,237,0.12); color: #5b21b6; border: 1px solid rgba(124,58,237,0.25);  }
 
 /* Three levels row */
 .qi-levels-row {
@@ -847,6 +858,16 @@
   letter-spacing: 0.05em;
 }
 
+/* Chart body height for qualitative radar — extra height so 4-line vertex labels don't clip */
+.chart-body--radar {
+  min-height: 480px;
+  height: 480px;
+}
+
+.chart-body--radar canvas {
+  max-height: 480px !important;
+}
+
 /* Chart body height for qualitative bar */
 .chart-body--qi-bar {
   min-height: 340px;
@@ -918,10 +939,10 @@
   .qi-level-pill--macro { background: rgba(15,118,110,0.15); }
   .qi-level-pill--macro strong { color: #5eead4; }
 
-  .qi-score-key__item--low  { background: rgba(239,68,68,0.2);  color: #fca5a5; }
-  .qi-score-key__item--mid  { background: rgba(234,179,8,0.2);  color: #fcd34d; }
-  .qi-score-key__item--high { background: rgba(34,197,94,0.2);  color: #86efac; }
-  .qi-score-key__item--top  { background: rgba(124,58,237,0.2); color: #c4b5fd; }
+  .qi-score-key__item--not_evident     { background: rgba(239,68,68,0.2);  color: #fca5a5; }
+  .qi-score-key__item--partially       { background: rgba(245,158,11,0.2); color: #fcd34d; }
+  .qi-score-key__item--clearly_evident { background: rgba(34,197,94,0.2);  color: #86efac; }
+  .qi-score-key__item--central_focus   { background: rgba(124,58,237,0.2); color: #c4b5fd; }
 }
 
 /* Responsive */

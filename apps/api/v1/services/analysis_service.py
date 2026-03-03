@@ -663,13 +663,28 @@ class AnalysisService:
 
             coverage_rate = round(scored_docs / total_docs * 100, 1) if total_docs else 0
 
-            # Per-indicator averages (ordered by level then label for consistent chart order)
+            # Per-indicator averages + tier distribution
+            # Thresholds must stay in sync with JS scoreToCategory() and Python _score_to_category()
+            TIERS = [
+                ('not_evident',     Q(score__lte=0.30)),
+                ('partially',       Q(score__gt=0.30, score__lte=0.60)),
+                ('clearly_evident', Q(score__gt=0.60, score__lte=0.90)),
+                ('central_focus',   Q(score__gt=0.90)),
+            ]
+
             by_indicator = []
             for ind in QualitativeIndicator.objects.filter(is_active=True).order_by('level', 'label'):
-                agg = DocumentQualitativeIndicator.objects.filter(
+                qs = DocumentQualitativeIndicator.objects.filter(
                     indicator=ind,
                     score__isnull=False,
-                ).aggregate(avg=Avg('score'), cnt=Count('id'))
+                )
+                agg = qs.aggregate(avg=Avg('score'), cnt=Count('id'))
+
+                distribution = {
+                    slug: qs.filter(score_filter).count()
+                    for slug, score_filter in TIERS
+                }
+
                 by_indicator.append({
                     'code':          ind.code,
                     'label':         ind.label,
@@ -677,6 +692,7 @@ class AnalysisService:
                     'dimension':     ind.dimension,
                     'avg_score':     round(agg['avg'] or 0, 3),
                     'scored_count':  agg['cnt'] or 0,
+                    'distribution':  distribution,
                 })
 
             # Per-level averages

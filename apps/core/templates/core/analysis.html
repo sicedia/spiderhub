@@ -9,11 +9,17 @@
 {% block content %}
 <main id="analysis-page" class="analysis-page">
   
-  <!-- Dashboard Header - Compact -->
+  <!-- Dashboard Header -->
   <div class="analysis-header">
     <div class="analysis-header__content">
       <h1 class="analysis-header__title">{% trans "Analysis Dashboard" %}</h1>
-      <p class="analysis-header__description">{% trans "EU-LAC Digital Transformation Insights" %}</p>
+      <p class="analysis-header__description">
+        {% blocktrans trimmed %}
+        A data-driven overview of EU-LAC digital cooperation — who participates, what topics they address,
+        how cooperation has evolved over time, and how well documents reflect the principles of inclusive,
+        sustained, and impactful collaboration.
+        {% endblocktrans %}
+      </p>
     </div>
   </div>
 
@@ -25,9 +31,15 @@
       <h2 class="analysis-section__title">{% trans "Cross-Sector Collaboration Network" %}</h2>
       <p class="network-description">
         {% blocktrans trimmed %}
-        This network shows how different <strong>actor types</strong> (in blue) collaborate on various <strong>thematic areas</strong> (in green) 
-        within EU-LAC digital transformation initiatives. Each connection represents documents where both an actor and theme co-occur, 
-        indicating active collaboration. Hover over nodes to see details, and over connections to see the number of shared documents.
+        <strong>Question this answers: Who collaborates with whom, and on what?</strong>
+        The network maps how <strong>actor types</strong> (blue nodes — governments, research bodies, businesses,
+        civil society) connect to <strong>thematic areas</strong> (green nodes — digital strategy, data governance,
+        inclusion, etc.) across all EU-LAC cooperation documents. A line between an actor and a theme means
+        documents exist where both appear together. <strong>Thicker lines</strong> indicate more shared documents
+        — stronger or more sustained collaboration. <strong>Larger nodes</strong> are more central to the network
+        (connected to more partners or topics). Use this map to spot which actors drive which agendas, and which
+        themes remain underdeveloped or isolated.
+        <strong>Hover over any node or connection</strong> for details.
         {% endblocktrans %}
       </p>
       
@@ -73,19 +85,29 @@
     <!-- Main Charts Grid -->
     <section class="analysis-charts">
       <h2 class="analysis-section__title">{% trans "Key Insights" %}</h2>
-      
+      <p class="analysis-section__lead">
+        {% blocktrans trimmed %}
+        These four charts describe the <em>content</em> of EU-LAC digital cooperation: which global goals are
+        referenced, how binding the commitments are, which countries take the lead, which topics dominate, and
+        how activity has grown over the years.
+        {% endblocktrans %}
+      </p>
+
       <div class="charts-grid">
         <!-- SDG Coverage & Intensity (Dual Radar Chart) -->
         <div class="chart-card chart-card--radar" id="sdg-card">
           <div class="chart-header">
-            <h3 class="chart-title">🎯 {% trans "SDG Coverage & Intensity" %}</h3>
+            <h3 class="chart-title">🎯 {% trans "SDG Alignment — Coverage & Depth" %}</h3>
             <p class="chart-subtitle">
               {% blocktrans trimmed %}
-              This radar chart compares two perspectives of SDG alignment: 
-              <strong>Document Count</strong> (blue) shows how many documents address each SDG, while 
-              <strong>Avg Intensity</strong> (green) shows how relevant each SDG is within the documents that mention it (0-1 scale). 
-              Together, they reveal both coverage and depth of SDG engagement. 
-              <strong>Hover over each point</strong> to see detailed metrics.
+              <strong>Question: Which Sustainable Development Goals does this corpus actually prioritise?</strong>
+              The radar shows two overlapping perspectives. The <strong>blue area</strong> (Document Count) answers
+              "how many documents mention each SDG" — a wide blue shape means broad coverage across goals.
+              The <strong>green area</strong> (Avg Intensity) answers "how central is each SDG in the documents
+              that do mention it" — a high green point means that SDG is a primary concern, not a passing
+              reference. An SDG with high coverage but low intensity is frequently mentioned but superficially.
+              An SDG with low coverage but high intensity appears in few documents but drives them deeply.
+              <strong>Hover over each point</strong> to see exact counts and intensity scores.
               {% endblocktrans %}
             </p>
           </div>
@@ -95,30 +117,34 @@
           <div class="sdg-legend">
             <div class="sdg-legend-item">
               <span class="sdg-legend-icon">📊</span>
-              <span class="sdg-legend-text">{% trans "Blue = Document frequency (coverage)" %}</span>
+              <span class="sdg-legend-text">{% trans "Blue = How many documents address each SDG (breadth)" %}</span>
             </div>
             <div class="sdg-legend-item">
               <span class="sdg-legend-icon">⭐</span>
-              <span class="sdg-legend-text">{% trans "Green = Avg intensity (depth when mentioned)" %}</span>
+              <span class="sdg-legend-text">{% trans "Green = How central each SDG is when mentioned (depth)" %}</span>
             </div>
             <div class="sdg-legend-item">
               <span class="sdg-legend-icon">💡</span>
-              <span class="sdg-legend-text">{% trans "Hover for detailed metrics" %}</span>
+              <span class="sdg-legend-text">{% trans "Hover over each axis point for exact metrics" %}</span>
             </div>
           </div>
         </div>
-        
+
         <!-- Legal Bindingness Chart -->
         <div class="chart-card" id="binding-card">
           <div class="chart-header">
-            <h3 class="chart-title">{% trans "Legal Framework" %}</h3>
+            <h3 class="chart-title">⚖️ {% trans "Strength of Commitments" %}</h3>
             <p class="chart-subtitle">
               {% blocktrans trimmed %}
-              This chart shows the distribution of cooperation agreements by their <strong>legal enforceability level</strong>. 
-              <strong>Legally Binding</strong> (⚖️ Strong) agreements have enforceable obligations under international law, 
-              <strong>Politically Binding</strong> (🤝 Medium) commitments rely on political will, and 
-              <strong>Non-Binding</strong> (📋 Soft) frameworks are voluntary. <strong>Hover over segments</strong> to see 
-              detailed descriptions and document counts.
+              <strong>Question: Are these cooperation agreements actually binding, or mostly aspirational?</strong>
+              The chart shows the balance between three levels of legal enforceability.
+              <strong>⚖️ Legally Binding</strong> agreements create enforceable obligations under international
+              law — parties must comply. <strong>🤝 Politically Binding</strong> commitments rely on political
+              will rather than legal enforcement — they signal intent but carry no legal consequences for
+              non-compliance. <strong>📋 Non-Binding</strong> frameworks are entirely voluntary declarations or
+              guidelines. A corpus dominated by legally binding documents signals mature, institutionalised
+              cooperation. One dominated by non-binding texts suggests dialogue is still in an early, exploratory
+              phase. <strong>Hover over each segment</strong> to see the description and document count.
               {% endblocktrans %}
             </p>
           </div>
@@ -128,31 +154,34 @@
           <div class="binding-legend">
             <div class="binding-legend-item">
               <span class="binding-dot binding-dot--legally"></span>
-              <span class="binding-legend-text">{% trans "Legally Binding (Strong)" %}</span>
+              <span class="binding-legend-text">{% trans "Legally Binding — enforceable under international law" %}</span>
             </div>
             <div class="binding-legend-item">
               <span class="binding-dot binding-dot--politically"></span>
-              <span class="binding-legend-text">{% trans "Politically Binding (Medium)" %}</span>
+              <span class="binding-legend-text">{% trans "Politically Binding — intent without legal enforcement" %}</span>
             </div>
             <div class="binding-legend-item">
               <span class="binding-dot binding-dot--non"></span>
-              <span class="binding-legend-text">{% trans "Non-Binding (Soft)" %}</span>
+              <span class="binding-legend-text">{% trans "Non-Binding — voluntary, aspirational frameworks" %}</span>
             </div>
           </div>
         </div>
-        
+
         <!-- Top Countries Chart -->
         <div class="chart-card" id="countries-card">
           <div class="chart-header">
-            <h3 class="chart-title">{% trans "Leading Countries" %}</h3>
+            <h3 class="chart-title">🌍 {% trans "Leading Countries" %}</h3>
             <p class="chart-subtitle">
               {% blocktrans trimmed %}
-              This chart shows the <strong>top 15 countries</strong> leading digital cooperation initiatives, 
-              sorted by the number of documents they have initiated or led. Countries are color-coded by region: 
-              <strong>🇪🇺 EU countries</strong> (blue) represent European Union member states, and 
-              <strong>🌎 LAC countries</strong> (green) represent Latin America & Caribbean nations. 
-              This highlights the bilateral nature of EU-LAC cooperation. 
-              <strong>Hover over bars</strong> to see full country names, regions, and document counts.
+              <strong>Question: Which countries are driving EU-LAC digital cooperation?</strong>
+              Each bar shows the number of documents that a country has led or initiated — a measure of
+              proactive engagement rather than passive participation. Countries are colour-coded by region:
+              <strong>🇪🇺 blue = European Union member states</strong>,
+              <strong>🌎 green = Latin America &amp; Caribbean nations</strong>.
+              A long bar means that country has been particularly active in producing or leading cooperation
+              documents. Comparing EU and LAC bar lengths reveals whether the relationship is balanced or
+              dominated by one side. Only the top 15 most active countries are displayed.
+              <strong>Hover over any bar</strong> to see the full country name, region, and exact count.
               {% endblocktrans %}
             </p>
           </div>
@@ -162,30 +191,35 @@
           <div class="countries-legend">
             <div class="countries-legend-item">
               <span class="country-dot country-dot--eu"></span>
-              <span>{% trans "European Union Countries" %}</span>
+              <span>{% trans "European Union member states" %}</span>
             </div>
             <div class="countries-legend-item">
               <span class="country-dot country-dot--lac"></span>
-              <span>{% trans "Latin America & Caribbean" %}</span>
+              <span>{% trans "Latin America &amp; Caribbean nations" %}</span>
             </div>
             <div class="countries-legend-item">
               <span class="legend-icon">📊</span>
-              <span>{% trans "Showing top 15 countries by led documents" %}</span>
+              <span>{% trans "Top 15 by number of documents led" %}</span>
             </div>
           </div>
         </div>
-        
+
         <!-- Top Themes Chart -->
         <div class="chart-card" id="themes-card">
           <div class="chart-header">
-            <h3 class="chart-title">{% trans "Thematic Focus" %}</h3>
+            <h3 class="chart-title">🗂️ {% trans "Thematic Focus" %}</h3>
             <p class="chart-subtitle">
               {% blocktrans trimmed %}
-              This chart displays the main <strong>thematic categories</strong> addressed in EU-LAC digital cooperation documents. 
-              Themes range from <strong>🚀 Digital Strategy</strong> (transformation frameworks), <strong>💡 Technology & Innovation</strong> 
-              (emerging tech), <strong>🔒 Data Governance</strong> (security & privacy), <strong>🤝 Social Inclusion</strong> (digital equity), 
-              to <strong>🌍 International Cooperation</strong> (cross-border partnerships). <strong>Hover over bars</strong> to see detailed 
-              theme descriptions and focus areas.
+              <strong>Question: What topics dominate the EU-LAC digital cooperation agenda?</strong>
+              Each bar shows how many documents address a given thematic area. The longer the bar, the more
+              central that topic is to the overall corpus. This reveals the <em>agenda priorities</em> of the
+              cooperation: themes with very short bars are underrepresented and may represent gaps.
+              Major themes include <strong>🚀 Digital Strategy</strong> (transformation roadmaps and policy
+              frameworks), <strong>💡 Technology &amp; Innovation</strong> (emerging tech, R&amp;D ecosystems),
+              <strong>🔒 Data Governance</strong> (privacy, security, data rights),
+              <strong>🤝 Social Inclusion</strong> (digital equity and accessibility), and
+              <strong>🌍 International Cooperation</strong> (cross-border partnerships and alliances).
+              <strong>Hover over any bar</strong> for the full theme description and focus area.
               {% endblocktrans %}
             </p>
           </div>
@@ -195,39 +229,42 @@
           <div class="themes-legend">
             <div class="themes-legend-item">
               <span class="theme-dot theme-dot--strategy"></span>
-              <span>{% trans "Digital Strategy" %}</span>
+              <span>{% trans "Digital Strategy — frameworks and roadmaps" %}</span>
             </div>
             <div class="themes-legend-item">
               <span class="theme-dot theme-dot--tech"></span>
-              <span>{% trans "Technology & Innovation" %}</span>
+              <span>{% trans "Technology &amp; Innovation — emerging tech, R&amp;D" %}</span>
             </div>
             <div class="themes-legend-item">
               <span class="theme-dot theme-dot--data"></span>
-              <span>{% trans "Data Governance" %}</span>
+              <span>{% trans "Data Governance — privacy, security, data rights" %}</span>
             </div>
             <div class="themes-legend-item">
               <span class="theme-dot theme-dot--inclusion"></span>
-              <span>{% trans "Social Inclusion" %}</span>
+              <span>{% trans "Social Inclusion — digital equity and access" %}</span>
             </div>
             <div class="themes-legend-item">
               <span class="theme-dot theme-dot--cooperation"></span>
-              <span>{% trans "International Cooperation" %}</span>
+              <span>{% trans "International Cooperation — cross-border partnerships" %}</span>
             </div>
           </div>
         </div>
-        
+
         <!-- Timeline Evolution Chart -->
         <div class="chart-card chart-card--timeline" id="timeline-card">
           <div class="chart-header">
-            <h3 class="chart-title">📈 {% trans "Temporal Evolution" %}</h3>
+            <h3 class="chart-title">📈 {% trans "How Cooperation Has Evolved Over Time" %}</h3>
             <p class="chart-subtitle">
               {% blocktrans trimmed %}
-              This chart shows the <strong>temporal evolution</strong> of EU-LAC digital cooperation over time. 
-              The <strong>Total Documents</strong> line (teal) shows overall activity, while 
-              <strong>Agreements</strong> (blue) and <strong>Dialogues</strong> (green) reveal the nature of cooperation. 
-              Tracking these trends helps identify <strong>growth patterns</strong>, <strong>peak periods</strong>, 
-              and the balance between policy discussion and concrete commitments. 
-              <strong>Hover over points</strong> to see detailed yearly metrics and percentages.
+              <strong>Question: Is EU-LAC digital cooperation growing, and is it becoming more formal?</strong>
+              The chart plots document production year by year with three lines.
+              <strong>Total Documents</strong> (teal) shows the overall pace of activity — a rising line means
+              cooperation is accelerating. <strong>Agreements</strong> (blue) counts formal cooperation
+              instruments — a growing share of agreements relative to total documents signals
+              institutionalisation. <strong>Dialogues</strong> (green) counts discussion and consultation
+              documents — a high and stable dialogue line indicates active exchange even without formal outputs.
+              <strong>Peak years</strong> often coincide with major EU-LAC summits or policy milestones.
+              <strong>Hover over any point</strong> to see the breakdown for that year.
               {% endblocktrans %}
             </p>
           </div>
@@ -237,15 +274,15 @@
           <div class="timeline-legend">
             <div class="timeline-legend-item">
               <span class="timeline-line timeline-line--total"></span>
-              <span>{% trans "Total Documents" %}</span>
+              <span>{% trans "Total Documents — overall cooperation activity" %}</span>
             </div>
             <div class="timeline-legend-item">
               <span class="timeline-line timeline-line--agreements"></span>
-              <span>{% trans "Agreements" %}</span>
+              <span>{% trans "Agreements — formal cooperation instruments" %}</span>
             </div>
             <div class="timeline-legend-item">
               <span class="timeline-line timeline-line--dialogues"></span>
-              <span>{% trans "Dialogues" %}</span>
+              <span>{% trans "Dialogues — consultations and discussion documents" %}</span>
             </div>
           </div>
         </div>
@@ -255,20 +292,30 @@
     <!-- Stakeholders Section -->
     <section class="analysis-stakeholders">
       <h2 class="analysis-section__title">{% trans "Stakeholder Ecosystem" %}</h2>
-      
+      <p class="analysis-section__lead">
+        {% blocktrans trimmed %}
+        These two charts reveal <em>who</em> participates in EU-LAC digital cooperation and <em>who benefits</em>
+        from it. Together they show whether cooperation is inclusive — involving diverse organisations — and
+        whether its benefits reach beyond government and business to citizens, youth, women, and marginalised groups.
+        {% endblocktrans %}
+      </p>
+
       <div class="stakeholders-grid">
         <!-- Actors Chart -->
         <div class="chart-card" id="actors-card">
           <div class="chart-header">
-            <h3 class="chart-title">{% trans "Actor Types" %}</h3>
+            <h3 class="chart-title">🏛️ {% trans "Who Participates — Actor Types" %}</h3>
             <p class="chart-subtitle">
               {% blocktrans trimmed %}
-              This chart shows participation by <strong>organization type</strong> in EU-LAC digital cooperation. 
-              <strong>🏛️ Political Actors</strong> (governments & institutions) lead policy frameworks, 
-              <strong>🔬 Research & Innovation Actors</strong> (universities & R&D) drive knowledge development, 
-              <strong>💼 Economic Actors</strong> (businesses & SMEs) enable implementation, and 
-              <strong>🤝 Civil Society Actors</strong> (NGOs & communities) ensure social impact. 
-              <strong>Hover over bars</strong> to see detailed actor descriptions and roles.
+              <strong>Question: Is cooperation genuinely multi-stakeholder, or is it mostly government-to-government?</strong>
+              Each bar shows how many documents involve a given type of organisation.
+              <strong>🏛️ Political Actors</strong> (governments, ministries, international institutions) set the
+              policy framework. <strong>🔬 Research &amp; Innovation Actors</strong> (universities, R&amp;D centres,
+              think tanks) generate knowledge. <strong>💼 Economic Actors</strong> (businesses, SMEs, industry
+              associations) drive implementation and investment. <strong>🤝 Civil Society Actors</strong> (NGOs,
+              foundations, community organisations) ensure social accountability and inclusion.
+              A corpus dominated by political actors but with few civil society or private sector entries may
+              indicate a top-down cooperation model. <strong>Hover over bars</strong> for role descriptions.
               {% endblocktrans %}
             </p>
           </div>
@@ -278,34 +325,38 @@
           <div class="actors-legend">
             <div class="actors-legend-item">
               <span class="actor-dot actor-dot--political"></span>
-              <span>{% trans "Political Actors" %}</span>
+              <span>{% trans "Political Actors — governments &amp; institutions" %}</span>
             </div>
             <div class="actors-legend-item">
               <span class="actor-dot actor-dot--research"></span>
-              <span>{% trans "Research & Innovation" %}</span>
+              <span>{% trans "Research &amp; Innovation — universities, R&amp;D, think tanks" %}</span>
             </div>
             <div class="actors-legend-item">
               <span class="actor-dot actor-dot--economic"></span>
-              <span>{% trans "Economic Actors" %}</span>
+              <span>{% trans "Economic Actors — businesses, SMEs, industry" %}</span>
             </div>
             <div class="actors-legend-item">
               <span class="actor-dot actor-dot--civil"></span>
-              <span>{% trans "Civil Society" %}</span>
+              <span>{% trans "Civil Society — NGOs, foundations, communities" %}</span>
             </div>
           </div>
         </div>
-        
+
         <!-- Beneficiaries Chart -->
         <div class="chart-card" id="beneficiaries-card">
           <div class="chart-header">
-            <h3 class="chart-title">{% trans "Beneficiary Groups" %}</h3>
+            <h3 class="chart-title">👥 {% trans "Who Benefits — Beneficiary Groups" %}</h3>
             <p class="chart-subtitle">
               {% blocktrans trimmed %}
-              This chart shows the <strong>top 10 beneficiary groups</strong> most frequently addressed in EU-LAC digital cooperation, 
-              sorted by document count. Beneficiaries range from <strong>🏪 Economic actors</strong> (SMEs, startups, businesses), 
-              <strong>🎓 Knowledge sector</strong> (researchers, students), <strong>👥 Citizens</strong> (general public), 
-              to <strong>vulnerable groups</strong> like 👩 women, 🏘️ rural communities, and ♿ persons with disabilities. 
-              Each color represents a beneficiary category. <strong>Hover over bars</strong> to see detailed descriptions.
+              <strong>Question: Does digital cooperation reach the groups that need it most?</strong>
+              Each bar shows how many documents explicitly address the needs or interests of a given group.
+              A high count means the corpus frequently discusses that group as a target of cooperation benefits.
+              A very short or absent bar is a gap — it means that group's needs are rarely articulated in the
+              documents, even if they may be indirectly affected. Pay particular attention to the presence of
+              <strong>👩 women &amp; girls</strong>, <strong>🏘️ rural &amp; remote communities</strong>, and
+              <strong>♿ persons with disabilities</strong> — groups most at risk of being left behind in
+              digital transitions. The top 10 most-mentioned groups are displayed.
+              <strong>Hover over any bar</strong> for the full group description.
               {% endblocktrans %}
             </p>
           </div>
@@ -315,7 +366,7 @@
           <div class="beneficiaries-legend">
             <div class="beneficiaries-legend-note">
               <span class="legend-icon">📊</span>
-              <span>{% trans "Showing top 10 groups sorted by document count. Colors represent beneficiary categories." %}</span>
+              <span>{% trans "Top 10 groups by number of documents that address them. Sorted descending." %}</span>
             </div>
           </div>
         </div>
@@ -331,24 +382,23 @@
         <p class="qi-intro-text">
           {% blocktrans trimmed %}
           This section measures <strong>how</strong> digital cooperation unfolds in practice — not just whether it
-          exists. Each document in the repository is evaluated by an AI model (GPT-4o mini) against
-          <strong>9 qualitative indicators</strong> co-designed under the EU-LAC Digital Cooperation monitoring
-          framework. The AI reads the full text of each document and assigns a score from
-          <strong>0.0 to 1.0</strong> for every indicator, together with a written justification and an evidence
-          extract. Scores are then aggregated here to reveal patterns across the entire document corpus.
+          exists. Each document is assessed against <strong>9 qualitative indicators</strong> co-designed under the
+          EU-LAC Digital Cooperation monitoring framework. An automated analysis reads the full text of each document
+          and assigns a qualitative rating for every indicator, together with a written justification and a supporting
+          excerpt. Results are aggregated here to reveal patterns across the entire document repository.
           {% endblocktrans %}
         </p>
 
-        <!-- Score key -->
+        <!-- Rating key -->
         <div class="qi-score-key">
-          <span class="qi-score-key__title">{% trans "Score key:" %}</span>
-          <span class="qi-score-key__item qi-score-key__item--low">0.0–0.3 {% trans "Not evident" %}</span>
+          <span class="qi-score-key__title">{% trans "Rating scale:" %}</span>
+          <span class="qi-score-key__item qi-score-key__item--not_evident">○ {% trans "Not evident" %}</span>
           <span class="qi-score-key__sep">·</span>
-          <span class="qi-score-key__item qi-score-key__item--mid">0.4–0.6 {% trans "Partially evident" %}</span>
+          <span class="qi-score-key__item qi-score-key__item--partially">◑ {% trans "Partially evident" %}</span>
           <span class="qi-score-key__sep">·</span>
-          <span class="qi-score-key__item qi-score-key__item--high">0.7–0.9 {% trans "Clearly evident" %}</span>
+          <span class="qi-score-key__item qi-score-key__item--clearly_evident">● {% trans "Clearly evident" %}</span>
           <span class="qi-score-key__sep">·</span>
-          <span class="qi-score-key__item qi-score-key__item--top">1.0 {% trans "Central focus" %}</span>
+          <span class="qi-score-key__item qi-score-key__item--central_focus">★ {% trans "Central focus" %}</span>
         </div>
 
         <!-- Three levels explained -->
@@ -378,71 +428,35 @@
           <span class="qi-kpi-label">{% trans "Total Documents" %}</span>
           <span class="qi-kpi-hint">{% trans "in the repository" %}</span>
         </div>
-        <div class="qi-kpi-card" title="{% trans 'Documents where all 9 indicators have been scored by the AI' %}">
+        <div class="qi-kpi-card" title="{% trans 'Documents where all 9 indicators have been assessed' %}">
           <span class="qi-kpi-value" id="qi-scored-docs">—</span>
-          <span class="qi-kpi-label">{% trans "AI-Scored" %}</span>
-          <span class="qi-kpi-hint">{% trans "all 9 indicators analysed" %}</span>
+          <span class="qi-kpi-label">{% trans "Fully Assessed" %}</span>
+          <span class="qi-kpi-hint">{% trans "all 9 indicators rated" %}</span>
         </div>
-        <div class="qi-kpi-card" title="{% trans 'Percentage of documents fully scored — run ingest_qualitative_indicators to increase coverage' %}">
+        <div class="qi-kpi-card" title="{% trans 'Percentage of documents that have been fully assessed across all 9 indicators' %}">
           <span class="qi-kpi-value" id="qi-coverage-rate">—</span>
           <span class="qi-kpi-label">{% trans "Coverage Rate" %}</span>
           <span class="qi-kpi-hint">{% trans "of repository analysed" %}</span>
         </div>
       </div>
 
-      <!-- Charts -->
+      <!-- Charts — radar first (strategic overview), distribution second (detail) -->
       <div class="charts-grid">
-        <!-- Indicator average scores (horizontal bar) -->
-        <div class="chart-card" id="qualitative-bar-card">
-          <div class="chart-header">
-            <h3 class="chart-title">📊 {% trans "Average Score per Indicator" %}</h3>
-            <p class="chart-subtitle">
-              {% blocktrans trimmed %}
-              Each bar shows the <strong>mean AI score (0–1)</strong> for that indicator calculated across all
-              documents that have been analysed so far. A longer bar means the corpus scores higher on that
-              dimension on average. <strong>Hover over any bar</strong> to see the exact value and the number of
-              documents included in that average. Bars are colour-coded by analytical level:
-              <strong style="color:#7c3aed">■ purple = Micro</strong>&nbsp;
-              <strong style="color:#1d4ed8">■ blue = Meso</strong>&nbsp;
-              <strong style="color:#0f766e">■ teal = Macro</strong>.
-              Use this chart to identify which cooperation dimensions are strongest or weakest across the repository.
-              {% endblocktrans %}
-            </p>
-          </div>
-          <div class="chart-body chart-body--qi-bar">
-            <canvas id="qualitative-bar-chart"></canvas>
-          </div>
-          <div class="qi-level-legend">
-            <div class="qi-legend-item">
-              <span class="qi-legend-dot qi-legend-dot--micro"></span>
-              <span>{% trans "Micro — Institutional practices &amp; actor participation" %}</span>
-            </div>
-            <div class="qi-legend-item">
-              <span class="qi-legend-dot qi-legend-dot--meso"></span>
-              <span>{% trans "Meso — Project collaboration &amp; stakeholder engagement" %}</span>
-            </div>
-            <div class="qi-legend-item">
-              <span class="qi-legend-dot qi-legend-dot--macro"></span>
-              <span>{% trans "Macro — Regional policy alignment &amp; long-term impact" %}</span>
-            </div>
-          </div>
-        </div>
 
-        <!-- Level radar -->
+        <!-- PRIMARY: Level radar — strategic overview -->
         <div class="chart-card" id="qualitative-radar-card">
           <div class="chart-header">
-            <h3 class="chart-title">🔺 {% trans "Balance across Analytical Levels" %}</h3>
+            <h3 class="chart-title">🔺 {% trans "Strategic Balance by Level" %}</h3>
             <p class="chart-subtitle">
               {% blocktrans trimmed %}
-              This radar (spider) chart shows the <strong>average score for each of the three analytical
-              levels</strong> on a 0–100 scale. The three vertices represent:
-              <strong>Micro</strong> (how well individual institutions and actors participate),
-              <strong>Meso</strong> (how effectively stakeholders collaborate during implementation), and
-              <strong>Macro</strong> (how strongly documents align with regional strategies and produce lasting
-              impact). A <strong>large, balanced triangle</strong> indicates that the cooperation corpus is
-              well-rounded across all three dimensions. A <strong>skewed or small triangle</strong> signals that
-              some dimensions receive less attention and may need targeted improvement.
-              <strong>Hover over each vertex</strong> to see the exact percentage.
+              Start here. This radar shows the <strong>overall quality of cooperation</strong> across three
+              analytical levels — each vertex is labelled directly with its current rating.
+              A <strong>large, balanced triangle</strong> means the repository is well-rounded across all dimensions.
+              A <strong>small or skewed shape</strong> highlights which dimensions need the most attention.
+              Each vertex represents a distinct lens on cooperation:
+              <strong>Micro</strong> — whether individual institutions and actors actively participate;
+              <strong>Meso</strong> — whether stakeholders effectively collaborate during implementation;
+              <strong>Macro</strong> — whether documents align with regional strategies and produce lasting impact.
               {% endblocktrans %}
             </p>
           </div>
@@ -453,13 +467,50 @@
             <span class="legend-icon">💡</span>
             <span>
               {% blocktrans trimmed %}
-              Values are expressed as percentages (score × 100).
-              A score of 70 % or above on any axis means that dimension is <em>clearly evident</em>
-              across the analysed documents.
+              The closer a vertex is to the edge, the stronger that dimension is across the analysed documents.
+              The dashed green ring marks the <strong>Clearly evident</strong> threshold — the benchmark for
+              well-documented cooperation. <strong>Hover over a vertex</strong> to see its rating.
               {% endblocktrans %}
             </span>
           </div>
         </div>
+
+        <!-- SECONDARY: Stacked tier distribution — per-indicator breakdown -->
+        <div class="chart-card" id="qualitative-bar-card">
+          <div class="chart-header">
+            <h3 class="chart-title">📊 {% trans "Document Distribution per Indicator" %}</h3>
+            <p class="chart-subtitle">
+              {% blocktrans trimmed %}
+              Each horizontal bar represents one qualitative indicator. The bar is divided into coloured
+              segments that show <strong>how many documents</strong> scored in each tier for that indicator —
+              <strong style="color:#ef4444">red = Not evident</strong>,
+              <strong style="color:#f59e0b">amber = Partially evident</strong>,
+              <strong style="color:#22c55e">green = Clearly evident</strong>,
+              <strong style="color:#7c3aed">purple = Central focus</strong>.
+              A bar that is <em>mostly red</em> means most documents do not demonstrate that dimension at all.
+              A bar that is <em>mostly green or purple</em> means the corpus consistently reflects it.
+              <strong>Hover over any segment</strong> to see the exact count, percentage, and average score
+              for that indicator.
+              {% endblocktrans %}
+            </p>
+          </div>
+          <div class="chart-body chart-body--qi-bar">
+            <canvas id="qualitative-bar-chart"></canvas>
+          </div>
+          <div class="qi-radar-note">
+            <span class="legend-icon">📋</span>
+            <span>
+              {% blocktrans trimmed %}
+              Indicators are listed top to bottom by analytical level:
+              first <strong>Micro</strong> (actor &amp; institution participation),
+              then <strong>Meso</strong> (project implementation &amp; collaboration),
+              then <strong>Macro</strong> (regional alignment &amp; long-term impact).
+              Bar colours show how many documents fall into each rating — see the legend above the chart.
+              {% endblocktrans %}
+            </span>
+          </div>
+        </div>
+
       </div>
     </section>
 

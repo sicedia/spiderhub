@@ -166,6 +166,7 @@ class QualitativeAnalyzer(ContentAnalyzer):
         raw = self.llm_service.call_llm(prompt)
         return {
             "score": raw["score"],
+            "category": raw.get("category", self._score_to_category(raw["score"])),
             "justification": raw["justification"],
             "evidence": raw.get("evidence", ""),
         }
@@ -217,72 +218,100 @@ class QualitativeAnalyzer(ContentAnalyzer):
     # Prompt templates
     # ──────────────────────────────────────────────────────────────────────
 
+    # Shared tier table injected into every prompt
+    _TIER_TABLE = """\
+Scoring tiers — choose the one that best matches the document:
+┌─────────────────┬───────────────┬──────────────────────────────────────────────────────────┐
+│ Category        │ Score range   │ When to use                                              │
+├─────────────────┼───────────────┼──────────────────────────────────────────────────────────┤
+│ not_evident     │ 0.00 – 0.30   │ The dimension is absent or only superficially hinted at  │
+│ partially       │ 0.31 – 0.60   │ Some relevant content exists but it is implicit,         │
+│                 │               │ incomplete, or limited to a single passing reference      │
+│ clearly_evident │ 0.61 – 0.90   │ Substantial, well-documented evidence; multiple passages │
+│                 │               │ address the dimension explicitly                          │
+│ central_focus   │ 0.91 – 1.00   │ The dimension is a primary, defining concern of the      │
+│                 │               │ whole document; almost every section references it        │
+└─────────────────┴───────────────┴──────────────────────────────────────────────────────────┘"""
+
     def _generate_text_prompt(self, document_title: str, indicator, text_content: str) -> str:
         from ..utils import truncate_text, clean_text_for_analysis
 
         clean = clean_text_for_analysis(text_content)
         truncated = truncate_text(clean, 4000, strategy="smart")
 
-        return f"""You are an expert evaluator of digital cooperation and policy dialogue documents.
+        return f"""You are an expert evaluator of EU-LAC digital cooperation and policy dialogue documents.
+Your task is to assess how strongly one specific qualitative indicator is present in the document.
 
-Document Title: {document_title}
+═══════════════════════════════════════════════════
+DOCUMENT
+═══════════════════════════════════════════════════
+Title: {document_title}
 
-Document Text:
+Text:
 {truncated}
 
-Qualitative Indicator to Assess: {indicator.label}
-Level: {indicator.level.upper()}
+═══════════════════════════════════════════════════
+INDICATOR TO ASSESS
+═══════════════════════════════════════════════════
+Name:        {indicator.label}
+Level:       {indicator.level.upper()}  (Micro = actor/institutional · Meso = project/collaboration · Macro = regional/systemic)
+Dimension:   {indicator.dimension}
 Description: {indicator.description}
 
-Task: Assess the presence and quality of this indicator in the document on a scale of 0.0 to 1.0.
+═══════════════════════════════════════════════════
+SCORING GUIDE
+═══════════════════════════════════════════════════
+{self._TIER_TABLE}
 
-Evidence Scale:
-- 0.0–0.3: Not evident — the indicator dimension is absent or only superficially mentioned
-- 0.4–0.6: Partially evident — some relevant content but incomplete or implicit
-- 0.7–0.9: Clearly evident — substantial, well-documented evidence of this dimension
-- 1.0: Central focus — the indicator is a primary, explicit concern of the document
+═══════════════════════════════════════════════════
+INSTRUCTIONS
+═══════════════════════════════════════════════════
+1. Read the document with the indicator description firmly in mind.
+2. Identify every passage, commitment, or structural element that is relevant to this indicator.
+3. Choose the category that best matches the overall evidence and assign a precise score within that range.
+4. Write a 2–4 sentence justification that explains WHY you chose this category.
+   — Reference specific sections or statements.
+   — Explain what is present AND what is missing or weak.
+5. Extract the single most representative quote or paraphrase as "evidence" (≤ 60 words).
+   Leave evidence empty if the document has no extractable text.
 
-Instructions:
-1. Read the document carefully with the indicator description in mind.
-2. Identify passages, statements, or structural elements relevant to the indicator.
-3. Assign a score based on the scale above.
-4. Provide a 2–3 sentence justification explaining your score.
-5. If possible, include a brief direct quote or paraphrase that best supports your score as "evidence".
-
-You MUST respond with valid JSON in exactly this format:
+You MUST respond with ONLY valid JSON in exactly this format — no markdown, no extra text:
 {{
   "score": 0.75,
-  "justification": "Your 2–3 sentence explanation here.",
-  "evidence": "Relevant quote or paraphrase from the document (or empty string if none)."
-}}
-
-Do not include any text outside the JSON object."""
+  "category": "clearly_evident",
+  "justification": "Your 2–4 sentence explanation referencing specific content.",
+  "evidence": "Direct quote or close paraphrase from the document (≤ 60 words), or empty string."
+}}"""
 
     def _generate_vision_prompt(self, document_title: str, indicator) -> str:
-        return f"""You are an expert evaluator of digital cooperation and policy dialogue documents.
+        return f"""You are an expert evaluator of EU-LAC digital cooperation and policy dialogue documents.
+Analyse the PDF page images provided and assess how strongly one qualitative indicator is present.
 
-Document Title: {document_title}
+═══════════════════════════════════════════════════
+DOCUMENT
+═══════════════════════════════════════════════════
+Title: {document_title}
 
-Qualitative Indicator to Assess: {indicator.label}
-Level: {indicator.level.upper()}
+═══════════════════════════════════════════════════
+INDICATOR TO ASSESS
+═══════════════════════════════════════════════════
+Name:        {indicator.label}
+Level:       {indicator.level.upper()}
+Dimension:   {indicator.dimension}
 Description: {indicator.description}
 
-Task: Analyse the PDF images provided and assess the presence and quality of this indicator on a scale of 0.0 to 1.0.
+═══════════════════════════════════════════════════
+SCORING GUIDE
+═══════════════════════════════════════════════════
+{self._TIER_TABLE}
 
-Evidence Scale:
-- 0.0–0.3: Not evident
-- 0.4–0.6: Partially evident
-- 0.7–0.9: Clearly evident
-- 1.0: Central focus
-
-You MUST respond with valid JSON in exactly this format:
+You MUST respond with ONLY valid JSON — no markdown, no extra text:
 {{
   "score": 0.75,
-  "justification": "Your 2–3 sentence explanation here.",
-  "evidence": "Relevant quote or paraphrase from the document (or empty string if none)."
-}}
-
-Do not include any text outside the JSON object."""
+  "category": "clearly_evident",
+  "justification": "Your 2–4 sentence explanation referencing specific content.",
+  "evidence": "Direct quote or close paraphrase (≤ 60 words), or empty string."
+}}"""
 
     def _generate_hybrid_prompt(
         self, document_title: str, indicator, text_content: str
@@ -292,33 +321,38 @@ Do not include any text outside the JSON object."""
         clean = clean_text_for_analysis(text_content)
         truncated = truncate_text(clean, 3000, strategy="smart")
 
-        return f"""You are an expert evaluator of digital cooperation and policy dialogue documents.
+        return f"""You are an expert evaluator of EU-LAC digital cooperation and policy dialogue documents.
+Use BOTH the extracted text below AND the PDF page images attached to assess how strongly one qualitative indicator is present.
 
-Document Title: {document_title}
-
-Qualitative Indicator to Assess: {indicator.label}
-Level: {indicator.level.upper()}
-Description: {indicator.description}
-
-Task: Using both the extracted text and the PDF images provided, assess the presence and quality of this indicator on a scale of 0.0 to 1.0.
-
-Evidence Scale:
-- 0.0–0.3: Not evident
-- 0.4–0.6: Partially evident
-- 0.7–0.9: Clearly evident
-- 1.0: Central focus
+═══════════════════════════════════════════════════
+DOCUMENT
+═══════════════════════════════════════════════════
+Title: {document_title}
 
 Extracted Text:
 {truncated}
 
-You MUST respond with valid JSON in exactly this format:
+═══════════════════════════════════════════════════
+INDICATOR TO ASSESS
+═══════════════════════════════════════════════════
+Name:        {indicator.label}
+Level:       {indicator.level.upper()}
+Dimension:   {indicator.dimension}
+Description: {indicator.description}
+
+═══════════════════════════════════════════════════
+SCORING GUIDE
+═══════════════════════════════════════════════════
+{self._TIER_TABLE}
+
+You MUST respond with ONLY valid JSON — no markdown, no extra text:
 {{
   "score": 0.75,
-  "justification": "Your 2–3 sentence explanation here.",
-  "evidence": "Relevant quote or paraphrase from the document (or empty string if none)."
-}}
-
-Do not include any text outside the JSON object."""
+  "category": "clearly_evident",
+  "justification": "Your 2–4 sentence explanation referencing specific content.",
+  "evidence": "Direct quote or close paraphrase (≤ 60 words), or empty string."
+}}\
+"""
 
     # ──────────────────────────────────────────────────────────────────────
     # Helpers
@@ -340,11 +374,48 @@ Do not include any text outside the JSON object."""
         if not validate_score(score):
             raise ValueError(f"Invalid score {score} — must be 0.0–1.0")
 
+        category = str(parsed.get("category", self._score_to_category(score)))
+        # normalise any freeform category the LLM might return
+        category = self._normalise_category(category)
+
         return {
             "score": score,
+            "category": category,
             "justification": str(parsed["justification"]),
             "evidence": str(parsed.get("evidence", "")),
         }
+
+    # ──────────────────────────────────────────────────────────────────────
+    # Category helpers
+    # ──────────────────────────────────────────────────────────────────────
+
+    @staticmethod
+    def _score_to_category(score: float) -> str:
+        """Derive a machine-readable category slug from a numeric score."""
+        if score <= 0.30:
+            return "not_evident"
+        if score <= 0.60:
+            return "partially"
+        if score <= 0.90:
+            return "clearly_evident"
+        return "central_focus"
+
+    _VALID_CATEGORIES = {"not_evident", "partially", "clearly_evident", "central_focus"}
+
+    @classmethod
+    def _normalise_category(cls, raw: str) -> str:
+        """Map any freeform LLM string to one of the four valid slugs."""
+        slug = raw.strip().lower().replace(" ", "_").replace("-", "_")
+        if slug in cls._VALID_CATEGORIES:
+            return slug
+        # fuzzy fallbacks
+        if "central" in slug or "focus" in slug:
+            return "central_focus"
+        if "clearly" in slug or "evident" in slug:
+            return "clearly_evident"
+        if "partial" in slug:
+            return "partially"
+        return "not_evident"
 
     def _extract_vision_images(self, content_data: Dict[str, Any]) -> List[str]:
         images = []

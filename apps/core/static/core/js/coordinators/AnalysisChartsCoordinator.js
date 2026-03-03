@@ -191,7 +191,11 @@ export class AnalysisChartsCoordinator {
       return;
     }
 
-    const { barLabels, barData, barColors, fullLabels, radarLabels, radarData, coverage } = q;
+    const {
+      stackedLabels, fullLabels, stackedDatasets,
+      radarLabels, radarData, radarCategories,
+      byIndicator, coverage,
+    } = q;
 
     // ── KPI cards ─────────────────────────────────────────────────────────────
     const totalEl    = document.getElementById('qi-total-docs');
@@ -202,88 +206,80 @@ export class AnalysisChartsCoordinator {
     if (scoredEl)   scoredEl.textContent   = coverage.scored_documents.toLocaleString();
     if (coverageEl) coverageEl.textContent = `${coverage.coverage_rate}%`;
 
-    // ── Horizontal bar chart (per indicator) ──────────────────────────────────
-    const barCanvas = document.getElementById('qualitative-bar-chart');
-    if (barCanvas) {
-      const hasBarData = barData.some(v => v > 0);
-      new Chart(barCanvas, {
-        type: 'bar',
-        data: {
-          labels: barLabels,
-          datasets: [{
-            label: 'Avg Score',
-            data: barData,
-            backgroundColor: barColors,
-            borderColor: barColors.map(c => c.replace('0.75', '1')),
-            borderWidth: 1,
-            borderRadius: 4,
-          }],
-        },
-        options: {
-          indexAxis: 'y',
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                title: (items) => fullLabels[items[0].dataIndex] || items[0].label,
-                label: (item) => {
-                  const v = item.raw;
-                  return ` Score: ${v.toFixed(3)} / 1.0  (${(v * 100).toFixed(1)}%)`;
-                },
-              },
-            },
-          },
-          scales: {
-            x: {
-              min: 0,
-              max: 1,
-              ticks: {
-                callback: (v) => `${(v * 100).toFixed(0)}%`,
-              },
-              grid: { color: 'rgba(0,0,0,0.06)' },
-            },
-            y: {
-              ticks: { font: { size: 12 } },
-              grid: { display: false },
-            },
-          },
-          animation: { duration: hasBarData ? 800 : 0 },
-        },
-      });
-      this.logger.debug('Qualitative bar chart rendered');
-    }
-
-    // ── Radar chart (per level) ────────────────────────────────────────────────
+    // ── Radar chart — PRIMARY (per level) ─────────────────────────────────────
     const radarCanvas = document.getElementById('qualitative-radar-chart');
     if (radarCanvas) {
       const hasRadarData = radarData.some(v => v > 0);
+
+      // Colours per category (must match CSS + JS scoreToCategory)
+      const catColor = (cat) => ({
+        not_evident:     '#ef4444',
+        partially:       '#f59e0b',
+        clearly_evident: '#22c55e',
+        central_focus:   '#7c3aed',
+        pending:         '#9ca3af',
+      }[cat ? cat.slug : 'pending'] || '#9ca3af');
+
+      // Plain-language descriptions for each analytical level
+      // Split into 2 short lines to avoid horizontal clipping inside the canvas
+      const LEVEL_ORDER_RADAR = ['micro', 'meso', 'macro'];
+      const LEVEL_DESCS = {
+        micro: ['Institutions &', 'actor participation'],
+        meso:  ['Stakeholder', 'collaboration'],
+        macro: ['Regional alignment', '& lasting impact'],
+      };
+
       new Chart(radarCanvas, {
         type: 'radar',
         data: {
           labels: radarLabels,
-          datasets: [{
-            label: 'Avg Score (%)',
-            data: radarData,
-            backgroundColor: 'rgba(124, 58, 237, 0.18)',
-            borderColor:     'rgba(124, 58, 237, 0.9)',
-            borderWidth: 2,
-            pointBackgroundColor: 'rgba(124, 58, 237, 1)',
-            pointBorderColor:     '#fff',
-            pointRadius: 5,
-            pointHoverRadius: 7,
-          }],
+          datasets: [
+            // Dashed reference ring at the "Clearly evident" threshold (60 = 0.60)
+            {
+              label: 'Clearly evident threshold',
+              data: Array(radarLabels.length).fill(60),
+              backgroundColor:  'transparent',
+              borderColor:      'rgba(34,197,94,0.40)',
+              borderWidth:      1.5,
+              borderDash:       [6, 4],
+              pointRadius:      0,
+              pointHoverRadius: 0,
+            },
+            // Actual level data — coloured points per tier
+            {
+              label: 'Level score',
+              data: radarData,
+              backgroundColor:      'rgba(124, 58, 237, 0.13)',
+              borderColor:          'rgba(124, 58, 237, 0.85)',
+              borderWidth:          2.5,
+              pointBackgroundColor: radarCategories.map(c => catColor(c)),
+              pointBorderColor:     '#fff',
+              pointBorderWidth:     2,
+              pointRadius:          9,
+              pointHoverRadius:     11,
+            },
+          ],
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          // Push the scale inward so point labels have room without hitting the canvas edge
+          layout: {
+            padding: { top: 50, left: 100, right: 100, bottom: 50 },
+          },
           plugins: {
             legend: { display: false },
             tooltip: {
+              // Only show tooltip for the real data dataset (index 1)
+              filter: (item) => item.datasetIndex === 1,
               callbacks: {
-                label: (item) => ` ${item.raw.toFixed(1)} / 100`,
+                title: (items) => radarLabels[items[0].dataIndex],
+                label: (item) => {
+                  const cat = radarCategories[item.dataIndex];
+                  return ` ${cat ? cat.label : '—'}`;
+                },
               },
+              displayColors: false,
             },
           },
           scales: {
@@ -291,19 +287,125 @@ export class AnalysisChartsCoordinator {
               min: 0,
               max: 100,
               ticks: {
-                stepSize: 25,
-                callback: (v) => `${v}%`,
-                font: { size: 11 },
+                stepSize: 30,
+                callback: (v) => {
+                  if (v === 30) return 'Partially';
+                  if (v === 60) return '✓ Clearly';
+                  if (v === 90) return 'Central';
+                  return '';
+                },
+                font: { size: 9 },
+                color: (ctx) => ctx.tick.value === 60 ? '#16a34a' : '#9ca3af',
+                backdropColor: 'transparent',
               },
-              pointLabels: { font: { size: 13, weight: 'bold' } },
-              grid:        { color: 'rgba(0,0,0,0.08)' },
-              angleLines:  { color: 'rgba(0,0,0,0.08)' },
+              pointLabels: {
+                // 4-line vertex: level name / desc line 1 / desc line 2 / tier badge
+                callback: (label, index) => {
+                  const levelKey = LEVEL_ORDER_RADAR[index] || '';
+                  const desc = LEVEL_DESCS[levelKey] || [];
+                  const cat  = radarCategories[index];
+                  const tier = (cat && cat.icon && cat.label)
+                    ? `${cat.icon} ${cat.label}`
+                    : '—';
+                  return [label, ...desc, tier];
+                },
+                // Colour each vertex by its tier
+                color: radarCategories.map(c => catColor(c)),
+                font: { size: 11, weight: 'bold' },
+                padding: 12,
+              },
+              grid:       { color: 'rgba(0,0,0,0.07)' },
+              angleLines: { color: 'rgba(0,0,0,0.07)' },
             },
           },
-          animation: { duration: hasRadarData ? 800 : 0 },
+          animation: { duration: hasRadarData ? 900 : 0 },
         },
       });
       this.logger.debug('Qualitative radar chart rendered');
+    }
+
+    // ── Stacked tier distribution bar chart — SECONDARY ───────────────────────
+    const stackedCanvas = document.getElementById('qualitative-bar-chart');
+    if (stackedCanvas) {
+      const maxCount = coverage.scored_documents || 1;
+      const hasAnyData = stackedDatasets.some(ds => ds.data.some(v => v > 0));
+
+      new Chart(stackedCanvas, {
+        type: 'bar',
+        data: {
+          labels: stackedLabels,
+          datasets: stackedDatasets,
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            // Legend above chart — shows the four tier names with their colours
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                boxWidth: 12,
+                boxHeight: 12,
+                borderRadius: 3,
+                padding: 12,
+                font: { size: 11 },
+              },
+            },
+            tooltip: {
+              callbacks: {
+                title: (items) => fullLabels[items[0].dataIndex] || items[0].label,
+                label: (item) => {
+                  const count = item.raw;
+                  const total = coverage.scored_documents || 0;
+                  const pct   = total > 0 ? Math.round((count / total) * 100) : 0;
+                  // Show tier name + absolute count + relative %
+                  return ` ${item.dataset.label}: ${count} doc${count !== 1 ? 's' : ''} (${pct}%)`;
+                },
+                afterBody: (items) => {
+                  // Show avg score as context at the bottom of the tooltip
+                  const ind = byIndicator[items[0].dataIndex];
+                  if (!ind) return [];
+                  const cat = this.dataCoordinator.constructor.scoreToCategory(ind.avg_score);
+                  return [
+                    '',
+                    `Avg: ${ind.avg_score.toFixed(2)} → ${cat ? cat.label : '—'}`,
+                    `Total scored: ${ind.scored_count} document${ind.scored_count !== 1 ? 's' : ''}`,
+                  ];
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              stacked: true,
+              min: 0,
+              ticks: {
+                stepSize: 1,
+                precision: 0,
+                callback: (v) => Number.isInteger(v) ? `${v} doc${v !== 1 ? 's' : ''}` : '',
+                font: { size: 10 },
+                color: '#6b7280',
+              },
+              grid: { color: 'rgba(0,0,0,0.04)' },
+              title: {
+                display: true,
+                text: 'Number of documents',
+                font: { size: 10 },
+                color: '#9ca3af',
+              },
+            },
+            y: {
+              stacked: true,
+              ticks: { font: { size: 11 } },
+              grid:   { display: false },
+            },
+          },
+          animation: { duration: hasAnyData ? 800 : 0 },
+        },
+      });
+      this.logger.debug('Qualitative stacked distribution chart rendered');
     }
   }
 

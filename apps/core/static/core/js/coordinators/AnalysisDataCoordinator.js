@@ -694,48 +694,88 @@ export class AnalysisDataCoordinator {
   }
 
   /**
-   * Format qualitative indicator data for Chart.js bar and radar charts.
+   * Map a 0–1 score to a category slug, human label, and hex accent colour.
+   * Matches the tier thresholds used in the backend _score_to_category() helper.
+   */
+  static scoreToCategory(score) {
+    if (score === null || score === undefined) {
+      return { slug: 'pending',         label: 'Pending analysis',  icon: '⏳', color: '#9ca3af', bg: 'rgba(156,163,175,0.12)' };
+    }
+    if (score <= 0.30) {
+      return { slug: 'not_evident',     label: 'Not evident',       icon: '○',  color: '#ef4444', bg: 'rgba(239,68,68,0.12)'   };
+    }
+    if (score <= 0.60) {
+      return { slug: 'partially',       label: 'Partially evident', icon: '◑',  color: '#f59e0b', bg: 'rgba(245,158,11,0.12)'  };
+    }
+    if (score <= 0.90) {
+      return { slug: 'clearly_evident', label: 'Clearly evident',   icon: '●',  color: '#22c55e', bg: 'rgba(34,197,94,0.12)'   };
+    }
+    return   { slug: 'central_focus',   label: 'Central focus',     icon: '★',  color: '#7c3aed', bg: 'rgba(124,58,237,0.12)'  };
+  }
+
+  /**
+   * Format qualitative indicator data for Chart.js charts.
    *
    * Returns:
-   *   barLabels   — short indicator labels (truncated to fit bar chart)
-   *   barData     — avg_score values (0–1)
-   *   barColors   — colour per bar based on analytical level
-   *   radarLabels — ['Micro', 'Meso', 'Macro']
-   *   radarData   — avg_score × 100 per level
-   *   coverage    — { total_documents, scored_documents, coverage_rate }
+   *   stackedLabels   — short indicator labels for the stacked distribution bar chart
+   *   fullLabels      — full indicator labels for tooltips
+   *   stackedDatasets — 4 Chart.js datasets (one per tier) for a stacked horizontal bar
+   *   levelLabels     — indicator labels grouped by level (for potential use)
+   *   radarLabels     — ['Micro', 'Meso', 'Macro']
+   *   radarData       — avg_score × 100 per level
+   *   radarCategories — category object per level
+   *   coverage        — { total_documents, scored_documents, coverage_rate }
+   *   byIndicator     — raw indicator objects (for tooltips, avg_score access)
    */
   formatQualitativeData() {
     const q = this.data.qualitative || {};
     const byIndicator = q.by_indicator || [];
     const byLevel     = q.by_level     || {};
 
-    const LEVEL_COLORS = {
-      micro: 'rgba(124, 58, 237, 0.75)',   // purple
-      meso:  'rgba(29,  78, 216, 0.75)',   // blue
-      macro: 'rgba(15, 118, 110, 0.75)',   // teal
-    };
+    // ── Stacked distribution bar chart ──────────────────────────────────────
+    const TIERS = [
+      { slug: 'not_evident',     label: 'Not evident',       color: 'rgba(239,68,68,0.80)'   },
+      { slug: 'partially',       label: 'Partially evident', color: 'rgba(245,158,11,0.80)'  },
+      { slug: 'clearly_evident', label: 'Clearly evident',   color: 'rgba(34,197,94,0.80)'   },
+      { slug: 'central_focus',   label: 'Central focus',     color: 'rgba(124,58,237,0.80)'  },
+    ];
 
-    const barLabels = byIndicator.map(ind => {
-      // Truncate long labels for the chart
+    const stackedLabels = byIndicator.map(ind => {
       const lbl = ind.label || ind.code;
-      return lbl.length > 32 ? lbl.slice(0, 30) + '…' : lbl;
+      return lbl.length > 28 ? lbl.slice(0, 26) + '…' : lbl;
     });
-
-    const barData   = byIndicator.map(ind => +(ind.avg_score || 0).toFixed(3));
-    const barColors = byIndicator.map(ind => LEVEL_COLORS[ind.level] || 'rgba(107, 114, 128, 0.7)');
     const fullLabels = byIndicator.map(ind => ind.label || ind.code);
 
-    const LEVEL_ORDER = ['micro', 'meso', 'macro'];
-    const radarLabels = LEVEL_ORDER.map(l => (byLevel[l] && byLevel[l].label) || l.charAt(0).toUpperCase() + l.slice(1));
-    const radarData   = LEVEL_ORDER.map(l => +(((byLevel[l] && byLevel[l].avg_score) || 0) * 100).toFixed(1));
+    const stackedDatasets = TIERS.map(tier => ({
+      label:           tier.label,
+      tierSlug:        tier.slug,
+      backgroundColor: tier.color,
+      borderColor:     tier.color.replace('0.80', '1'),
+      borderWidth:     0,
+      borderRadius:    2,
+      data: byIndicator.map(ind => (ind.distribution && ind.distribution[tier.slug]) || 0),
+    }));
+
+    // ── Radar (level averages) ───────────────────────────────────────────────
+    const LEVEL_ORDER     = ['micro', 'meso', 'macro'];
+    const radarLabels     = LEVEL_ORDER.map(l =>
+      (byLevel[l] && byLevel[l].label) || l.charAt(0).toUpperCase() + l.slice(1)
+    );
+    const radarData       = LEVEL_ORDER.map(l =>
+      +(((byLevel[l] && byLevel[l].avg_score) || 0) * 100).toFixed(1)
+    );
+    const radarCategories = LEVEL_ORDER.map(l =>
+      AnalysisDataCoordinator.scoreToCategory((byLevel[l] && byLevel[l].avg_score) || 0)
+    );
 
     return {
-      barLabels,
-      barData,
-      barColors,
+      stackedLabels,
       fullLabels,
+      stackedDatasets,
       radarLabels,
       radarData,
+      radarCategories,
+      byIndicator,
       coverage: q.coverage || { total_documents: 0, scored_documents: 0, coverage_rate: 0 },
     };
   }
