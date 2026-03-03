@@ -71,10 +71,10 @@ docker-compose -f docker-compose.yml build --no-cache
 docker-compose -f docker-compose.yml up -d
 
 # Collectstatic (if necessary)
-python manage.py collectstatic --noinput
+poetry run python manage.py collectstatic --noinput
 
 # Compile translations (if you added new ones)
-python manage.py compilemessages
+poetry run python manage.py compilemessages
 ```
 
 ### 3. Verify HTTP Headers

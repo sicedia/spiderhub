@@ -11,6 +11,7 @@ from .views import (
     TimelineAPIView,
     DiversityRadarAPIView,
     NetworkGraphAPIView,
+    QualitativeAnalysisAPIView,
     OverviewSummaryAPIView,
     OverviewTrendsAPIView,
     OverviewMapAPIView,
@@ -49,6 +50,7 @@ urlpatterns = [
     path('analysis/timeline/', TimelineAPIView.as_view(), name='analysis-timeline'),
     path('analysis/diversity/', DiversityRadarAPIView.as_view(), name='analysis-diversity'),
     path('analysis/network/', NetworkGraphAPIView.as_view(), name='analysis-network'),
+    path('analysis/qualitative/', QualitativeAnalysisAPIView.as_view(), name='analysis-qualitative'),
     
     # Countries
     path('countries/', CountryListAPIView.as_view(), name='countries-list'),

@@ -59,7 +59,7 @@ apps/documents/migrations/0010_*.py.backup
 apps/documents/migrations/0011_*.py.backup
 
 # 2. Regeneración usando makemigrations
-python manage.py makemigrations documents
+poetry run python manage.py makemigrations documents
 ```
 
 ### 2. Migración Resiliente
@@ -236,11 +236,11 @@ Para evitar este problema en el futuro:
 ✅ **SÍ hacer:**
 ```bash
 # Modificar models.py primero
-python manage.py makemigrations
+poetry run python manage.py makemigrations
 
 # Revisar la migración generada
 # Aplicar localmente
-python manage.py migrate
+poetry run python manage.py migrate
 
 # Probar que funciona
 # Luego hacer commit
@@ -264,14 +264,14 @@ Antes de desplegar a producción:
 
 ```bash
 # 1. Probar en base de datos limpia
-python manage.py migrate --database=test
+poetry run python manage.py migrate --database=test
 
 # 2. Probar rollback
-python manage.py migrate documents 0009
-python manage.py migrate documents 0010
+poetry run python manage.py migrate documents 0009
+poetry run python manage.py migrate documents 0010
 
 # 3. Verificar que no hay errores
-python manage.py migrate --check
+poetry run python manage.py migrate --check
 ```
 
 ### 4. **Migraciones resilientes para casos especiales**

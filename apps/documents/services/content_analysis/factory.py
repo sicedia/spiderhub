@@ -8,6 +8,7 @@ Maps analysis types to analyzer instances with extensible architecture.
 from typing import Dict, Optional, Any
 from .base import ContentAnalyzer
 from .sdg_analyzer import SDGAnalyzer
+from .qualitative_analyzer import QualitativeAnalyzer
 from ..logger import get_logger
 
 logger = get_logger(__name__)
@@ -40,9 +41,9 @@ class ContentAnalyzerFactory:
     
     def _register_default_analyzers(self):
         """Register default analyzers."""
-        # Register SDG analyzer
         self.register_analyzer('sdg', SDGAnalyzer(self.llm_service))
-        
+        self.register_analyzer('qualitative', QualitativeAnalyzer(self.llm_service))
+
         # Future analyzers can be registered here:
         # self.register_analyzer('actor', ActorAnalyzer(self.llm_service))
         # self.register_analyzer('theme', ThemeAnalyzer(self.llm_service))

@@ -146,7 +146,7 @@ LLM_TEMPERATURE=0.1
 
 ```python
 # In Django shell
-python manage.py shell
+poetry run python manage.py shell
 
 >>> import os
 >>> from dotenv import load_dotenv
@@ -257,7 +257,7 @@ No code changes needed, just restart the application:
 ```bash
 # If using Django dev server
 # Ctrl+C and run again
-python manage.py runserver
+poetry run python manage.py runserver
 
 # If using Gunicorn
 sudo systemctl restart spiderhub
@@ -393,7 +393,7 @@ If an API key is exposed:
 - [ ] Connection test (Step 3 above)
 - [ ] Process test document:
   ```bash
-  python manage.py ingest_sdg_relevance --doc 1
+  poetry run python manage.py ingest_sdg_relevance --doc 1
   ```
 - [ ] Review logs: `logs/sdg_ingestion.log`
 
@@ -404,7 +404,7 @@ If an API key is exposed:
 Once the test works, you can process all your documents:
 
 ```bash
-python manage.py ingest_sdg_relevance --all
+poetry run python manage.py ingest_sdg_relevance --all
 ```
 
 ---

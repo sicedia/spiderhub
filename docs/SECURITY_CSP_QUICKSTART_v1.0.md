@@ -12,7 +12,7 @@ Before deploying to production:
 
 - [ ] **1. Test in development** (5 minutes)
   ```bash
-  python manage.py runserver
+  poetry run python manage.py runserver
   # Open http://localhost:8000/
   # Open browser console (F12)
   # Navigate through all pages
@@ -28,7 +28,7 @@ Before deploying to production:
 
 - [ ] **3. Deploy to production**
   ```bash
-  python manage.py collectstatic --noinput
+  poetry run python manage.py collectstatic --noinput
   # Deploy using your normal process
   ```
 

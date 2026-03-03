@@ -1132,3 +1132,232 @@
     break-inside: avoid;
   }
 }
+
+/* ========================================
+   QUALITATIVE INDICATORS
+   ======================================== */
+
+/* Level groups -------------------------------------------------- */
+.qi-level-group {
+  margin-bottom: var(--space-2xl);
+}
+
+.qi-level-group:last-child {
+  margin-bottom: 0;
+}
+
+.qi-level-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.qi-level-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.qi-level-badge--micro {
+  background-color: #ede9fe;
+  color: #5b21b6;
+}
+
+.qi-level-badge--meso {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.qi-level-badge--macro {
+  background-color: #ccfbf1;
+  color: #0f766e;
+}
+
+.qi-level-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+}
+
+/* Cards grid ---------------------------------------------------- */
+.qi-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+/* Individual card ----------------------------------------------- */
+.qi-card {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  transition: box-shadow var(--duration-base) ease, border-color var(--duration-base) ease;
+}
+
+.qi-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-medium);
+}
+
+.qi-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+  min-height: 24px;
+}
+
+.qi-dimension-tag {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--space-xs);
+}
+
+.qi-card__title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* Score bar ----------------------------------------------------- */
+.qi-score-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+}
+
+.qi-score-track {
+  flex: 1;
+  height: 8px;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  border: 1px solid var(--color-border-light);
+}
+
+.qi-score-bar {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.5s ease;
+}
+
+.qi-score-bar--low {
+  background: linear-gradient(90deg, #f87171, #fb923c);
+}
+
+.qi-score-bar--mid {
+  background: linear-gradient(90deg, #fbbf24, #a3e635);
+}
+
+.qi-score-bar--high {
+  background: linear-gradient(90deg, #34d399, #059669);
+}
+
+.qi-score-label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  min-width: 52px;
+  text-align: right;
+}
+
+.qi-score-bucket {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+/* Justification & Evidence -------------------------------------- */
+.qi-justification {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.qi-evidence {
+  margin: 0;
+  padding: var(--space-xs) var(--space-md);
+  border-left: 3px solid var(--color-primary-300, #93c5fd);
+  background: var(--color-bg-secondary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* Pending state ------------------------------------------------- */
+.qi-pending {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  background: var(--color-bg-secondary);
+  border: 1px dashed var(--color-border-medium);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2xs) var(--space-sm);
+}
+
+/* Responsive ---------------------------------------------------- */
+@media (max-width: 600px) {
+  .qi-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .qi-level-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Dark mode ----------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  .qi-level-badge--micro {
+    background-color: #3b0764;
+    color: #c4b5fd;
+  }
+
+  .qi-level-badge--meso {
+    background-color: #1e3a5f;
+    color: #93c5fd;
+  }
+
+  .qi-level-badge--macro {
+    background-color: #134e4a;
+    color: #5eead4;
+  }
+
+  .qi-card {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-border-medium);
+  }
+
+  .qi-score-track {
+    background: var(--color-bg-tertiary, #374151);
+    border-color: var(--color-border-medium);
+  }
+
+  .qi-evidence {
+    background: var(--color-bg-tertiary, #1f2937);
+    border-left-color: var(--color-primary-500, #3b82f6);
+  }
+}

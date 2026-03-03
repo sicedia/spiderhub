@@ -21,6 +21,7 @@ export class AnalysisDataCoordinator {
     this.data = {
       summary: null,
       analysis: null,
+      qualitative: null,
       isLoaded: false
     };
     
@@ -53,7 +54,7 @@ export class AnalysisDataCoordinator {
       this.logger.debug('Loading analysis data from API');
       
       // Fetch all analysis data from API endpoints in parallel
-      const [summary, sdgs, themes, actors, beneficiaries, timeline, diversity, network] = await Promise.all([
+      const [summary, sdgs, themes, actors, beneficiaries, timeline, diversity, network, qualitative] = await Promise.all([
         fetch('/api/v1/analysis/summary/').then(r => r.ok ? r.json() : null).catch(() => null),
         fetch('/api/v1/analysis/sdgs/').then(r => r.ok ? r.json() : null).catch(() => null),
         fetch('/api/v1/analysis/themes/').then(r => r.ok ? r.json() : null).catch(() => null),
@@ -62,6 +63,7 @@ export class AnalysisDataCoordinator {
         fetch('/api/v1/analysis/timeline/').then(r => r.ok ? r.json() : null).catch(() => null),
         fetch('/api/v1/analysis/diversity/').then(r => r.ok ? r.json() : null).catch(() => null),
         fetch('/api/v1/analysis/network/').then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch('/api/v1/analysis/qualitative/').then(r => r.ok ? r.json() : null).catch(() => null),
       ]);
       
       // Combine all data
@@ -75,6 +77,7 @@ export class AnalysisDataCoordinator {
         diversity_radar_data: diversity,
         ...network,
       };
+      this.data.qualitative = qualitative || { coverage: { total_documents: 0, scored_documents: 0, coverage_rate: 0 }, by_indicator: [], by_level: {} };
       
       this.data.isLoaded = true;
       
@@ -429,6 +432,8 @@ export class AnalysisDataCoordinator {
         return this.formatActorsData();
       case 'beneficiaries':
         return this.formatBeneficiariesData();
+      case 'qualitative':
+        return this.formatQualitativeData();
       default:
         this.logger.warn('Unknown chart type', { chartType });
         return null;
@@ -685,6 +690,53 @@ export class AnalysisDataCoordinator {
         borderColor: 'rgba(0, 188, 212, 1)',
         borderWidth: 1
       }]
+    };
+  }
+
+  /**
+   * Format qualitative indicator data for Chart.js bar and radar charts.
+   *
+   * Returns:
+   *   barLabels   — short indicator labels (truncated to fit bar chart)
+   *   barData     — avg_score values (0–1)
+   *   barColors   — colour per bar based on analytical level
+   *   radarLabels — ['Micro', 'Meso', 'Macro']
+   *   radarData   — avg_score × 100 per level
+   *   coverage    — { total_documents, scored_documents, coverage_rate }
+   */
+  formatQualitativeData() {
+    const q = this.data.qualitative || {};
+    const byIndicator = q.by_indicator || [];
+    const byLevel     = q.by_level     || {};
+
+    const LEVEL_COLORS = {
+      micro: 'rgba(124, 58, 237, 0.75)',   // purple
+      meso:  'rgba(29,  78, 216, 0.75)',   // blue
+      macro: 'rgba(15, 118, 110, 0.75)',   // teal
+    };
+
+    const barLabels = byIndicator.map(ind => {
+      // Truncate long labels for the chart
+      const lbl = ind.label || ind.code;
+      return lbl.length > 32 ? lbl.slice(0, 30) + '…' : lbl;
+    });
+
+    const barData   = byIndicator.map(ind => +(ind.avg_score || 0).toFixed(3));
+    const barColors = byIndicator.map(ind => LEVEL_COLORS[ind.level] || 'rgba(107, 114, 128, 0.7)');
+    const fullLabels = byIndicator.map(ind => ind.label || ind.code);
+
+    const LEVEL_ORDER = ['micro', 'meso', 'macro'];
+    const radarLabels = LEVEL_ORDER.map(l => (byLevel[l] && byLevel[l].label) || l.charAt(0).toUpperCase() + l.slice(1));
+    const radarData   = LEVEL_ORDER.map(l => +(((byLevel[l] && byLevel[l].avg_score) || 0) * 100).toFixed(1));
+
+    return {
+      barLabels,
+      barData,
+      barColors,
+      fullLabels,
+      radarLabels,
+      radarData,
+      coverage: q.coverage || { total_documents: 0, scored_documents: 0, coverage_rate: 0 },
     };
   }
 

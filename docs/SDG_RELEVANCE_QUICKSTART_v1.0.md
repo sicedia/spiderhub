@@ -18,10 +18,10 @@ Get up and running with SDG relevance scoring in 5 minutes!
 ### Step 1: Install Dependencies (2 min)
 
 ```bash
-# Install new packages
-pip install -r requirements/base.txt
+# Con Poetry (recomendado)
+poetry install
 
-# This installs:
+# Las dependencias ya incluyen:
 # - langchain, langchain-openai, langchain-anthropic, langchain-community
 # - openai, anthropic
 # - PyMuPDF, python-docx
@@ -64,7 +64,7 @@ LLM_MAX_RETRIES=3
 
 ```bash
 # Test with a single document (replace 1 with an actual document ID)
-python manage.py ingest_sdg_relevance --doc 1
+poetry run python manage.py ingest_sdg_relevance --doc 1
 ```
 
 **Expected output**:
@@ -106,10 +106,10 @@ Go to **Django Admin → Documents → Your Document**:
 
 ```bash
 # Option A: Process 10 recent documents
-python manage.py ingest_sdg_relevance --batch 10
+poetry run python manage.py ingest_sdg_relevance --batch 10
 
 # Option B: Process all documents needing scores
-python manage.py ingest_sdg_relevance --all
+poetry run python manage.py ingest_sdg_relevance --all
 
 # Option C: Use Django Admin
 # 1. Go to Documents admin page
@@ -180,7 +180,7 @@ OPENAI_API_KEY=sk-proj-xxxxxxxxxxxxx
 
 **Solution**: Use `--force` to recalculate:
 ```bash
-python manage.py ingest_sdg_relevance --doc 1 --force
+poetry run python manage.py ingest_sdg_relevance --doc 1 --force
 ```
 
 ---
@@ -228,7 +228,7 @@ python manage.py ingest_sdg_relevance --doc 1 --force
 
 1. **Process your documents**:
    ```bash
-   python manage.py ingest_sdg_relevance --all
+   poetry run python manage.py ingest_sdg_relevance --all
    ```
 
 2. **Review results** in Django Admin
@@ -240,7 +240,7 @@ python manage.py ingest_sdg_relevance --doc 1 --force
 
 4. **Retry failures** manually if needed:
    ```bash
-   python manage.py ingest_sdg_relevance --doc <ID> --force
+   poetry run python manage.py ingest_sdg_relevance --doc <ID> --force
    ```
 
 5. **Automate** (optional):

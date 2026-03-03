@@ -10,7 +10,7 @@
 export DJANGO_SETTINGS_MODULE=config.settings.development
 
 # Start the development server
-python manage.py runserver
+poetry run python manage.py runserver
 ```
 
 #### Page-by-Page Testing
@@ -207,7 +207,7 @@ This should work without nonce because `type="application/ld+json"` is exempt fr
 
 2. **Run collectstatic**:
    ```bash
-   python manage.py collectstatic --noinput
+   poetry run python manage.py collectstatic --noinput
    ```
 
 3. **Check production settings**:

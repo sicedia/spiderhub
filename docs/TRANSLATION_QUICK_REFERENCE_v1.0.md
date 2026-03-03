@@ -4,20 +4,17 @@
 
 ### 1. Extract new strings
 ```bash
-# Activate virtual environment
-.\pyspider\Scripts\activate
-
-# Extract from HTML templates
-python manage.py makemessages -l es -l pt --ignore=pyspider
+# Extract from HTML templates (con Poetry)
+poetry run python manage.py makemessages -l es -l pt --ignore=*.venv
 
 # Extract from JavaScript
-python manage.py makemessages -l es -l pt -d djangojs --ignore=pyspider
+poetry run python manage.py makemessages -l es -l pt -d djangojs --ignore=*.venv
 ```
 
 ### 2. Compile translations
 ```bash
 # Option 1: Using Django (requires gettext in PATH)
-python manage.py compilemessages
+poetry run python manage.py compilemessages
 
 # Option 2: Windows - direct msgfmt
 & "C:\Program Files\gettext-iconv\bin\msgfmt.exe" -o locale\es\LC_MESSAGES\django.mo locale\es\LC_MESSAGES\django.po
@@ -29,7 +26,7 @@ python manage.py compilemessages
 ### 3. Restart server
 ```bash
 # Stop (Ctrl+C) and restart
-python manage.py runserver 8001
+poetry run python manage.py runserver 8001
 ```
 
 ---

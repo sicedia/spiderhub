@@ -7,6 +7,7 @@ from .analysis import (
     TimelineAPIView,
     DiversityRadarAPIView,
     NetworkGraphAPIView,
+    QualitativeAnalysisAPIView,
 )
 from .overview import (
     OverviewSummaryAPIView,

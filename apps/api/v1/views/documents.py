@@ -33,7 +33,8 @@ class DocumentDetailAPIView(APIView):
                 ).prefetch_related(
                     'themes', 'actors', 'beneficiary_groups', 'sdgs',
                     'practical_applications', 'commitments__details',
-                    'kpis', 'countries_involved', 'eu_policy_alignments', 'source_files'
+                    'kpis', 'countries_involved', 'eu_policy_alignments', 'source_files',
+                    'qualitative_indicators__indicator',
                 ),
                 pk=pk
             )
@@ -156,6 +157,22 @@ class DocumentDetailAPIView(APIView):
                 # Review status
                 'ai_check_status': document.ai_check_status,
                 'human_check_status': document.human_check_status,
+
+                # Qualitative indicators
+                'qualitative_indicators': [
+                    {
+                        'code':          dqi.indicator.code,
+                        'label':         dqi.indicator.label,
+                        'level':         dqi.indicator.level,
+                        'dimension':     dqi.indicator.dimension,
+                        'score':         dqi.score,
+                        'justification': dqi.justification,
+                        'evidence':      dqi.evidence,
+                    }
+                    for dqi in document.qualitative_indicators
+                        .filter(indicator__is_active=True)
+                        .order_by('indicator__level', 'indicator__label')
+                ],
             }
             
             return Response(data)

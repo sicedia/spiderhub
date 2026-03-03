@@ -202,6 +202,7 @@ export class DocumentContentCoordinator {
     this.renderCommitments();
     this.renderTechnicalDetails();
     this.renderAlignment();
+    this.renderQualitativeIndicators();
     this.renderBeneficiaries();
     this.renderKPIs();
     this.renderCountries();
@@ -437,6 +438,138 @@ export class DocumentContentCoordinator {
         </div>
       `;
     }
+  }
+
+  /**
+   * Render Qualitative Indicators section grouped by level (micro → meso → macro)
+   */
+  renderQualitativeIndicators() {
+    const section = document.getElementById('section-qualitative');
+    const container = document.getElementById('qualitative-indicators-container');
+
+    if (!section || !container) return;
+
+    const indicators = this.documentData.qualitative_indicators || [];
+    if (indicators.length === 0) return;
+
+    section.hidden = false;
+
+    // Level config: display order, label, CSS modifier
+    const LEVEL_ORDER = ['micro', 'meso', 'macro'];
+    const LEVEL_META = {
+      micro: { label: 'Micro',  mod: 'micro' },
+      meso:  { label: 'Meso',   mod: 'meso'  },
+      macro: { label: 'Macro',  mod: 'macro' },
+    };
+
+    // Group by level preserving order
+    const grouped = {};
+    LEVEL_ORDER.forEach(l => { grouped[l] = []; });
+    indicators.forEach(ind => {
+      const key = ind.level in grouped ? ind.level : 'micro';
+      grouped[key].push(ind);
+    });
+
+    const scoreClass = score => {
+      if (score === null || score === undefined) return '';
+      if (score < 0.4)  return 'qi-score-bar--low';
+      if (score < 0.7)  return 'qi-score-bar--mid';
+      return 'qi-score-bar--high';
+    };
+
+    const scoreBucket = score => {
+      if (score === null || score === undefined) return '';
+      if (score <= 0.3) return 'Not evident';
+      if (score <= 0.6) return 'Partially evident';
+      if (score < 1.0)  return 'Clearly evident';
+      return 'Central focus';
+    };
+
+    const dimensionLabel = dim => {
+      const map = {
+        engagement:      'Stakeholder Engagement',
+        policy:          'Policy Influence',
+        trust:           'Collaborative Trust',
+        inclusivity:     'Communication Inclusivity',
+        impact:          'Long-term Impact',
+        alignment:       'Regional Alignment',
+        continuity:      'Continuity of Practice',
+        representation:  'Institutional Representation',
+        diversity:       'Stakeholder Diversity',
+      };
+      return map[dim] || dim;
+    };
+
+    const renderCard = ind => {
+      const hasScore = ind.score !== null && ind.score !== undefined;
+      const pct = hasScore ? Math.round(ind.score * 100) : 0;
+      const cls = scoreClass(ind.score);
+      const bucket = scoreBucket(ind.score);
+      const dimLabel = dimensionLabel(ind.dimension);
+
+      const scoreHtml = hasScore ? `
+        <div class="qi-score-row">
+          <div class="qi-score-track">
+            <div class="qi-score-bar ${cls}" style="width:${pct}%"></div>
+          </div>
+          <span class="qi-score-label">${ind.score.toFixed(2)} / 1.0</span>
+        </div>
+        <span class="qi-score-bucket">${this.escapeHtml(bucket)}</span>
+      ` : `<span class="qi-pending">Pending analysis</span>`;
+
+      const justHtml = ind.justification
+        ? `<p class="qi-justification">${this.escapeHtml(ind.justification)}</p>`
+        : '';
+
+      const evidenceHtml = ind.evidence
+        ? `<blockquote class="qi-evidence">${this.escapeHtml(ind.evidence)}</blockquote>`
+        : '';
+
+      return `
+        <div class="qi-card">
+          <div class="qi-card__header">
+            ${dimLabel ? `<span class="qi-dimension-tag">${this.escapeHtml(dimLabel)}</span>` : ''}
+          </div>
+          <h4 class="qi-card__title">${this.escapeHtml(ind.label)}</h4>
+          ${scoreHtml}
+          ${justHtml}
+          ${evidenceHtml}
+        </div>
+      `;
+    };
+
+    const html = LEVEL_ORDER
+      .filter(level => grouped[level].length > 0)
+      .map(level => {
+        const meta = LEVEL_META[level];
+        const cards = grouped[level].map(renderCard).join('');
+        return `
+          <div class="qi-level-group">
+            <div class="qi-level-header">
+              <span class="qi-level-badge qi-level-badge--${meta.mod}">${meta.label}</span>
+              <span class="qi-level-description">${this._levelDescription(level)}</span>
+            </div>
+            <div class="qi-cards-grid">
+              ${cards}
+            </div>
+          </div>
+        `;
+      })
+      .join('');
+
+    container.innerHTML = html;
+  }
+
+  /**
+   * Human-readable level descriptions for qualitative indicators
+   */
+  _levelDescription(level) {
+    const descs = {
+      micro: 'Institutional practices & actor-level participation',
+      meso:  'Project implementation & stakeholder collaboration',
+      macro: 'Regional policy alignment, continuity & impact',
+    };
+    return descs[level] || '';
   }
 
   /**

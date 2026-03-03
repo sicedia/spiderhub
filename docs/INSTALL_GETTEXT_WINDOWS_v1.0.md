@@ -29,14 +29,11 @@ choco install gettext -y
 After installing, close and reopen terminal, then:
 
 ```powershell
-# Activate virtual environment
-.\pyspider\Scripts\Activate.ps1
-
-# Compile messages
-python manage.py compilemessages
+# Compile messages (con Poetry)
+poetry run python manage.py compilemessages
 
 # Restart server
-python manage.py runserver 8001
+poetry run python manage.py runserver 8001
 ```
 
 ### Option 2: Manual Download (Simpler)
@@ -69,8 +66,7 @@ python manage.py runserver 8001
 5. **Compile messages**:
    ```powershell
    cd C:\Projects\spiderhub_web
-   .\pyspider\Scripts\Activate.ps1
-   python manage.py compilemessages
+   poetry run python manage.py compilemessages
    ```
 
 ### Option 3: Use Custom Scripts (Temporary)
@@ -91,8 +87,7 @@ If you have WSL installed:
 ```bash
 # In WSL
 cd /mnt/c/Projects/spiderhub_web
-source pyspider/bin/activate  # or correct path of your venv
-python manage.py compilemessages
+poetry run python manage.py compilemessages
 ```
 
 ## Verification
@@ -137,7 +132,7 @@ Once messages are compiled:
 
 ```powershell
 # Start server
-python manage.py runserver 8001
+poetry run python manage.py runserver 8001
 
 # Open in browser:
 # http://localhost:8001/es/   ← Should show everything in Spanish
@@ -156,7 +151,7 @@ python manage.py runserver 8001
 - Solution: Delete .mo and recompile with official gettext
 ```powershell
 Remove-Item locale\es\LC_MESSAGES\django.mo -Force
-python manage.py compilemessages
+poetry run python manage.py compilemessages
 ```
 
 ### Translations don't appear

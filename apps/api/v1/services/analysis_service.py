@@ -9,7 +9,7 @@ from django.db.models import Count, Sum, Avg, Q, Value
 from django.db.models.functions import Coalesce, ExtractYear
 from apps.documents.models import (
     Document, Theme, Actor, SDG, Country, BeneficiaryGroup, Commitment,
-    DocumentSDG, CommitmentDetail
+    DocumentSDG, CommitmentDetail, QualitativeIndicator, DocumentQualitativeIndicator,
 )
 from apps.core.constants import (
     SDG_INFO, BINDING_INFO, THEME_INFO, ACTOR_INFO, BENEFICIARY_INFO,
@@ -632,4 +632,88 @@ class AnalysisService:
                     {'label': 'Agreements', 'data': [0]},
                     {'label': 'Dialogues', 'data': [0]}
                 ]
+            }
+
+    def get_qualitative_analysis(self):
+        """
+        Aggregate qualitative indicator scores across all documents.
+
+        Returns coverage stats, per-indicator averages, and per-level averages
+        for use in the Analysis Dashboard.
+        """
+        try:
+            total_docs = Document.objects.count()
+            active_count = QualitativeIndicator.objects.filter(is_active=True).count()
+
+            # A document is "fully scored" when every active indicator has a non-null score
+            if active_count > 0:
+                scored_docs = (
+                    Document.objects
+                    .annotate(
+                        scored=Count(
+                            'qualitative_indicators',
+                            filter=Q(qualitative_indicators__score__isnull=False),
+                        )
+                    )
+                    .filter(scored=active_count)
+                    .count()
+                )
+            else:
+                scored_docs = 0
+
+            coverage_rate = round(scored_docs / total_docs * 100, 1) if total_docs else 0
+
+            # Per-indicator averages (ordered by level then label for consistent chart order)
+            by_indicator = []
+            for ind in QualitativeIndicator.objects.filter(is_active=True).order_by('level', 'label'):
+                agg = DocumentQualitativeIndicator.objects.filter(
+                    indicator=ind,
+                    score__isnull=False,
+                ).aggregate(avg=Avg('score'), cnt=Count('id'))
+                by_indicator.append({
+                    'code':          ind.code,
+                    'label':         ind.label,
+                    'level':         ind.level,
+                    'dimension':     ind.dimension,
+                    'avg_score':     round(agg['avg'] or 0, 3),
+                    'scored_count':  agg['cnt'] or 0,
+                })
+
+            # Per-level averages
+            by_level = {}
+            for level in ('micro', 'meso', 'macro'):
+                agg = DocumentQualitativeIndicator.objects.filter(
+                    indicator__level=level,
+                    indicator__is_active=True,
+                    score__isnull=False,
+                ).aggregate(avg=Avg('score'))
+                by_level[level] = {
+                    'avg_score': round(agg['avg'] or 0, 3),
+                    'label':     level.capitalize(),
+                }
+
+            return {
+                'coverage': {
+                    'total_documents': total_docs,
+                    'scored_documents': scored_docs,
+                    'coverage_rate':   coverage_rate,
+                },
+                'by_indicator': by_indicator,
+                'by_level':     by_level,
+            }
+
+        except Exception as e:
+            logger.error(f"Error generating qualitative analysis: {e}")
+            return {
+                'coverage': {
+                    'total_documents': 0,
+                    'scored_documents': 0,
+                    'coverage_rate': 0,
+                },
+                'by_indicator': [],
+                'by_level': {
+                    'micro': {'avg_score': 0, 'label': 'Micro'},
+                    'meso':  {'avg_score': 0, 'label': 'Meso'},
+                    'macro': {'avg_score': 0, 'label': 'Macro'},
+                },
             }

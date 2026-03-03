@@ -276,13 +276,13 @@ LLM_MAX_RETRIES=3
 
 ### Unit Tests
 ```bash
-python manage.py test apps.documents.tests.test_services
+poetry run python manage.py test apps.documents.tests.test_services
 ```
 
 ### Integration Test
 ```bash
 # Test with a real document
-python manage.py ingest_sdg_relevance --doc 1
+poetry run python manage.py ingest_sdg_relevance --doc 1
 ```
 
 ### Configuration Test
@@ -329,12 +329,12 @@ Copy `sdg_relevance_service.py` and:
 
 ### "PyMuPDF not found"
 ```bash
-pip install PyMuPDF
+poetry add PyMuPDF
 ```
 
 ### "langchain_openai not found"
 ```bash
-pip install langchain-openai
+poetry add langchain-openai
 ```
 
 ### "No module named 'apps.documents.services'"
@@ -373,7 +373,7 @@ Check that `logs/` directory exists at project root. It's created automatically,
 
 ### Updating Dependencies
 ```bash
-pip install --upgrade langchain langchain-openai
+poetry update langchain langchain-openai
 ```
 
 ### Cleaning Logs

@@ -8,9 +8,9 @@ The SDG Relevance module automatically calculates relevance scores for SDG links
 
 ## Prerequisites
 
-1. Python packages installed (run after adding to requirements):
+1. Python packages installed (con Poetry):
    ```bash
-   pip install -r requirements/base.txt
+   poetry install
    ```
 
 2. At least one LLM provider account:
@@ -137,22 +137,22 @@ The system will:
 
 #### Process a specific document
 ```bash
-python manage.py ingest_sdg_relevance --doc 42
+poetry run python manage.py ingest_sdg_relevance --doc 42
 ```
 
 #### Process 10 most recent documents
 ```bash
-python manage.py ingest_sdg_relevance --batch 10
+poetry run python manage.py ingest_sdg_relevance --batch 10
 ```
 
 #### Process all documents needing scores
 ```bash
-python manage.py ingest_sdg_relevance --all
+poetry run python manage.py ingest_sdg_relevance --all
 ```
 
 #### Force recalculation (overwrite existing scores)
 ```bash
-python manage.py ingest_sdg_relevance --doc 42 --force
+poetry run python manage.py ingest_sdg_relevance --doc 42 --force
 ```
 
 ## How It Works

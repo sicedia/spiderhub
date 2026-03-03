@@ -169,6 +169,142 @@ export class AnalysisChartsCoordinator {
         });
       }
     }
+
+    // Qualitative indicators section (inline — simple enough without a component file)
+    try {
+      this.renderQualitativeCharts();
+    } catch (error) {
+      this.logger.warn('Failed to render qualitative charts', { error: error.message });
+    }
+  }
+
+  /**
+   * Render qualitative cooperation framework charts:
+   *  - 3 KPI cards (total docs, scored docs, coverage %)
+   *  - Horizontal bar chart  (avg score per indicator)
+   *  - Radar chart           (avg score per analytical level)
+   */
+  renderQualitativeCharts() {
+    const q = this.dataCoordinator.getChartData('qualitative');
+    if (!q) {
+      this.logger.warn('No qualitative data available');
+      return;
+    }
+
+    const { barLabels, barData, barColors, fullLabels, radarLabels, radarData, coverage } = q;
+
+    // ── KPI cards ─────────────────────────────────────────────────────────────
+    const totalEl    = document.getElementById('qi-total-docs');
+    const scoredEl   = document.getElementById('qi-scored-docs');
+    const coverageEl = document.getElementById('qi-coverage-rate');
+
+    if (totalEl)    totalEl.textContent    = coverage.total_documents.toLocaleString();
+    if (scoredEl)   scoredEl.textContent   = coverage.scored_documents.toLocaleString();
+    if (coverageEl) coverageEl.textContent = `${coverage.coverage_rate}%`;
+
+    // ── Horizontal bar chart (per indicator) ──────────────────────────────────
+    const barCanvas = document.getElementById('qualitative-bar-chart');
+    if (barCanvas) {
+      const hasBarData = barData.some(v => v > 0);
+      new Chart(barCanvas, {
+        type: 'bar',
+        data: {
+          labels: barLabels,
+          datasets: [{
+            label: 'Avg Score',
+            data: barData,
+            backgroundColor: barColors,
+            borderColor: barColors.map(c => c.replace('0.75', '1')),
+            borderWidth: 1,
+            borderRadius: 4,
+          }],
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                title: (items) => fullLabels[items[0].dataIndex] || items[0].label,
+                label: (item) => {
+                  const v = item.raw;
+                  return ` Score: ${v.toFixed(3)} / 1.0  (${(v * 100).toFixed(1)}%)`;
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              min: 0,
+              max: 1,
+              ticks: {
+                callback: (v) => `${(v * 100).toFixed(0)}%`,
+              },
+              grid: { color: 'rgba(0,0,0,0.06)' },
+            },
+            y: {
+              ticks: { font: { size: 12 } },
+              grid: { display: false },
+            },
+          },
+          animation: { duration: hasBarData ? 800 : 0 },
+        },
+      });
+      this.logger.debug('Qualitative bar chart rendered');
+    }
+
+    // ── Radar chart (per level) ────────────────────────────────────────────────
+    const radarCanvas = document.getElementById('qualitative-radar-chart');
+    if (radarCanvas) {
+      const hasRadarData = radarData.some(v => v > 0);
+      new Chart(radarCanvas, {
+        type: 'radar',
+        data: {
+          labels: radarLabels,
+          datasets: [{
+            label: 'Avg Score (%)',
+            data: radarData,
+            backgroundColor: 'rgba(124, 58, 237, 0.18)',
+            borderColor:     'rgba(124, 58, 237, 0.9)',
+            borderWidth: 2,
+            pointBackgroundColor: 'rgba(124, 58, 237, 1)',
+            pointBorderColor:     '#fff',
+            pointRadius: 5,
+            pointHoverRadius: 7,
+          }],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (item) => ` ${item.raw.toFixed(1)} / 100`,
+              },
+            },
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 100,
+              ticks: {
+                stepSize: 25,
+                callback: (v) => `${v}%`,
+                font: { size: 11 },
+              },
+              pointLabels: { font: { size: 13, weight: 'bold' } },
+              grid:        { color: 'rgba(0,0,0,0.08)' },
+              angleLines:  { color: 'rgba(0,0,0,0.08)' },
+            },
+          },
+          animation: { duration: hasRadarData ? 800 : 0 },
+        },
+      });
+      this.logger.debug('Qualitative radar chart rendered');
+    }
   }
 
   /**

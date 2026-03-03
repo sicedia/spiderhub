@@ -142,3 +142,18 @@ class NetworkGraphAPIView(APIView):
             'initiative_treemap_data': treemap_data,
         })
 
+
+class QualitativeAnalysisAPIView(APIView):
+    """Get qualitative indicator scores aggregated across all documents."""
+
+    @extend_schema(
+        summary="Get qualitative indicator analysis",
+        description=(
+            "Returns coverage stats, per-indicator average scores, and per-level "
+            "(micro/meso/macro) averages for the qualitative cooperation framework."
+        ),
+        responses={200: OpenApiTypes.OBJECT},
+    )
+    def get(self, request):
+        return Response(AnalysisService().get_qualitative_analysis())
+

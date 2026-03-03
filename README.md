@@ -23,14 +23,54 @@ This repository implements SPIDERHUB’s core functionality:
 
 ## 📋 Prerequisites
 
-- Python 3.12+ 
-- pip (Python package manager)
+- Python 3.12+
+- [Poetry](https://python-poetry.org/) (recomendado) o pip
 - Git
 - PostgreSQL
 
+> **Convención**: En esta documentación los comandos de Django se muestran con `poetry run` (ej.: `poetry run python manage.py ...`). Si usas un venv tradicional, activa el entorno y ejecuta solo `python manage.py ...`.
+
 ## 🛠️ Installation
 
-### Development Setup
+### Opción A: Con Poetry (recomendado)
+
+1. **Clonar el repositorio**
+   ```bash
+   git clone https://github.com/sicedia/spiderhub_web
+   cd spiderhub_web
+   ```
+
+2. **Configurar el entorno con Poetry**
+   ```bash
+   # Usar Python 3.12
+   poetry env use 3.12
+
+   # Instalar dependencias (incluye las de desarrollo)
+   poetry install
+   ```
+
+3. **Variables de entorno**
+   ```bash
+   cp .env.example .env
+   # Editar .env y configurar DJANGO_SECRET_KEY, base de datos, etc.
+   ```
+
+4. **Ejecutar el proyecto**
+   ```bash
+   # Servidor de desarrollo
+   poetry run python manage.py runserver
+
+   # O activar el shell de Poetry y ejecutar comandos
+   poetry shell
+   python manage.py runserver
+   ```
+
+   Comandos útiles con Poetry:
+   - `poetry run python manage.py migrate`
+   - `poetry run python manage.py createsuperuser`
+   - `poetry run pytest`
+
+### Opción B: Development Setup (venv + pip)
 
 1. **Clone the repository**
    ```bash
@@ -76,21 +116,21 @@ This repository implements SPIDERHUB’s core functionality:
 5. **Database setup**
    ```bash
    # Run migrations
-   python manage.py makemigrations
-   python manage.py migrate
+   poetry run python manage.py makemigrations
+   poetry run python manage.py migrate
    
    # Create superuser
-   python manage.py createsuperuser
+   poetry run python manage.py createsuperuser
    
    # Load initial data (optional)
-   python manage.py load_iso_countries
-   python manage.py load_cities
-   python manage.py seed
+   poetry run python manage.py load_iso_countries
+   poetry run python manage.py load_cities
+   poetry run python manage.py seed
    ```
 
 6. **Run development server**
    ```bash
-   python manage.py runserver
+   poetry run python manage.py runserver
    ```
 
    Access the application at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
@@ -149,10 +189,12 @@ spider-web/
 ├── staticfiles/                 # Static files for deployment
 ├── templates/                   # Global templates
 │   └── includes/                # Reusable template components
-├── requirements/                # Dependencies
-│   ├── base.txt                # Core dependencies
-│   ├── development.txt         # Development dependencies
-│   └── production.txt          # Production dependencies
+├── pyproject.toml              # Poetry: dependencies and config (recomendado)
+├── poetry.lock                 # Poetry: locked versions
+├── requirements/               # Dependencies (pip, Docker)
+│   ├── base.txt
+│   ├── development.txt
+│   └── production.txt
 ├── scripts/                    # Utility scripts
 ├── docker/                     # Docker configuration
 ├── .env.example               # Environment variables template
@@ -176,28 +218,28 @@ docker compose -f postgresdev-docker-compose.yml up
 ### Migrations
 ```bash
 # Create new migrations
-python manage.py makemigrations
+poetry run python manage.py makemigrations
 
 # Apply migrations
-python manage.py migrate
+poetry run python manage.py migrate
 
 # Show migration status
-python manage.py showmigrations
+poetry run python manage.py showmigrations
 ```
 
 ### Data Seeding
 ```bash
 # Load initial documents (default: truncate and load new data)
-python manage.py seed
+poetry run python manage.py seed
 
 # Preserve existing data and add new only
-python manage.py seed --no-truncate
+poetry run python manage.py seed --no-truncate
 
 # Dry run (preview changes without applying)
-python manage.py seed --dry-run
+poetry run python manage.py seed --dry-run
 
 # Load limited number of documents
-python manage.py seed --limit 10
+poetry run python manage.py seed --limit 10
 ```
 
 ## 📊 SDG Relevance Analysis & Logging
@@ -218,21 +260,48 @@ The application includes AI-powered SDG (Sustainable Development Goals) relevanc
 .\scripts\run-sdg-ingestion.ps1 --all
 ```
 
-**Direct Docker commands:**
+**Local (con Poetry):**
 
 ```bash
 # Process all documents needing SDG scores
-docker exec -it spider_web python manage.py ingest_sdg_relevance --all
+poetry run python manage.py ingest_sdg_relevance --all
 
 # Process specific document
-docker exec -it spider_web python manage.py ingest_sdg_relevance --doc 42
+poetry run python manage.py ingest_sdg_relevance --doc 42
 
 # Process batch of recent documents
-docker exec -it spider_web python manage.py ingest_sdg_relevance --batch 10
+poetry run python manage.py ingest_sdg_relevance --batch 10
 
 # Force recalculation of existing scores
+poetry run python manage.py ingest_sdg_relevance --all --force
+```
+
+**Docker (dentro del contenedor):**
+
+```bash
+docker exec -it spider_web python manage.py ingest_sdg_relevance --all
+docker exec -it spider_web python manage.py ingest_sdg_relevance --doc 42
+docker exec -it spider_web python manage.py ingest_sdg_relevance --batch 10
 docker exec -it spider_web python manage.py ingest_sdg_relevance --all --force
 ```
+
+
+```bash
+# Process all documents (will call LLM for each document × 9 indicators)
+poetry run python manage.py ingest_qualitative_indicators --all
+
+# Or start with one document to test
+poetry run python manage.py ingest_qualitative_indicators --doc 42
+
+# Re-seed the catalog (safe to re-run at any time)
+poetry run python manage.py seed_qualitative_indicators
+```
+
+**These commands allow you to analyze all (or individual) documents against the 9 qualitative indicators. The management commands use LLM-powered classification and will update or create indicator relationships for each document.**
+
+
+
+
 
 **Using scripts inside container:**
 
@@ -451,16 +520,16 @@ This project currently supports **2 active languages**: English (default) and Sp
 3. **Extract and compile translations:**
    ```bash
    # Extract strings
-   python manage.py makemessages -l es -l pt --ignore=pyspider
-   python manage.py makemessages -l es -l pt -d djangojs --ignore=pyspider
+   poetry run python manage.py makemessages -l es -l pt --ignore=*.venv
+   poetry run python manage.py makemessages -l es -l pt -d djangojs --ignore=*.venv
    
    # Add translations to locale/es/LC_MESSAGES/django.po and locale/pt/LC_MESSAGES/django.po
    
    # Compile
-   python manage.py compilemessages
+   poetry run python manage.py compilemessages
    
    # Restart server
-   python manage.py runserver 8001
+   poetry run python manage.py runserver 8001
    ```
 
 📖 **Complete guides:**

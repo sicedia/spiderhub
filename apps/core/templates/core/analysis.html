@@ -322,6 +322,147 @@
       </div>
     </section>
 
+    <!-- Qualitative Cooperation Framework Section -->
+    <section class="analysis-qualitative" id="qualitative-section">
+      <h2 class="analysis-section__title">{% trans "Qualitative Cooperation Framework" %}</h2>
+
+      <!-- Section intro -->
+      <div class="qi-intro-box">
+        <p class="qi-intro-text">
+          {% blocktrans trimmed %}
+          This section measures <strong>how</strong> digital cooperation unfolds in practice — not just whether it
+          exists. Each document in the repository is evaluated by an AI model (GPT-4o mini) against
+          <strong>9 qualitative indicators</strong> co-designed under the EU-LAC Digital Cooperation monitoring
+          framework. The AI reads the full text of each document and assigns a score from
+          <strong>0.0 to 1.0</strong> for every indicator, together with a written justification and an evidence
+          extract. Scores are then aggregated here to reveal patterns across the entire document corpus.
+          {% endblocktrans %}
+        </p>
+
+        <!-- Score key -->
+        <div class="qi-score-key">
+          <span class="qi-score-key__title">{% trans "Score key:" %}</span>
+          <span class="qi-score-key__item qi-score-key__item--low">0.0–0.3 {% trans "Not evident" %}</span>
+          <span class="qi-score-key__sep">·</span>
+          <span class="qi-score-key__item qi-score-key__item--mid">0.4–0.6 {% trans "Partially evident" %}</span>
+          <span class="qi-score-key__sep">·</span>
+          <span class="qi-score-key__item qi-score-key__item--high">0.7–0.9 {% trans "Clearly evident" %}</span>
+          <span class="qi-score-key__sep">·</span>
+          <span class="qi-score-key__item qi-score-key__item--top">1.0 {% trans "Central focus" %}</span>
+        </div>
+
+        <!-- Three levels explained -->
+        <div class="qi-levels-row">
+          <div class="qi-level-pill qi-level-pill--micro">
+            <strong>{% trans "Micro" %}</strong>
+            <span>{% trans "Institutional practices &amp; actor-level participation" %}</span>
+            <em>{% trans "Stakeholder Diversity · Institutional Representativeness" %}</em>
+          </div>
+          <div class="qi-level-pill qi-level-pill--meso">
+            <strong>{% trans "Meso" %}</strong>
+            <span>{% trans "Project implementation &amp; stakeholder collaboration" %}</span>
+            <em>{% trans "Engagement Quality · Policy Influence · Collaborative Trust · Communication Inclusivity" %}</em>
+          </div>
+          <div class="qi-level-pill qi-level-pill--macro">
+            <strong>{% trans "Macro" %}</strong>
+            <span>{% trans "Regional policy alignment, continuity &amp; long-term impact" %}</span>
+            <em>{% trans "Regional Alignment · Long-term Impact · Continuity of Practice" %}</em>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coverage KPI row -->
+      <div class="qi-kpi-row">
+        <div class="qi-kpi-card" title="{% trans 'Total number of documents in the repository' %}">
+          <span class="qi-kpi-value" id="qi-total-docs">—</span>
+          <span class="qi-kpi-label">{% trans "Total Documents" %}</span>
+          <span class="qi-kpi-hint">{% trans "in the repository" %}</span>
+        </div>
+        <div class="qi-kpi-card" title="{% trans 'Documents where all 9 indicators have been scored by the AI' %}">
+          <span class="qi-kpi-value" id="qi-scored-docs">—</span>
+          <span class="qi-kpi-label">{% trans "AI-Scored" %}</span>
+          <span class="qi-kpi-hint">{% trans "all 9 indicators analysed" %}</span>
+        </div>
+        <div class="qi-kpi-card" title="{% trans 'Percentage of documents fully scored — run ingest_qualitative_indicators to increase coverage' %}">
+          <span class="qi-kpi-value" id="qi-coverage-rate">—</span>
+          <span class="qi-kpi-label">{% trans "Coverage Rate" %}</span>
+          <span class="qi-kpi-hint">{% trans "of repository analysed" %}</span>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="charts-grid">
+        <!-- Indicator average scores (horizontal bar) -->
+        <div class="chart-card" id="qualitative-bar-card">
+          <div class="chart-header">
+            <h3 class="chart-title">📊 {% trans "Average Score per Indicator" %}</h3>
+            <p class="chart-subtitle">
+              {% blocktrans trimmed %}
+              Each bar shows the <strong>mean AI score (0–1)</strong> for that indicator calculated across all
+              documents that have been analysed so far. A longer bar means the corpus scores higher on that
+              dimension on average. <strong>Hover over any bar</strong> to see the exact value and the number of
+              documents included in that average. Bars are colour-coded by analytical level:
+              <strong style="color:#7c3aed">■ purple = Micro</strong>&nbsp;
+              <strong style="color:#1d4ed8">■ blue = Meso</strong>&nbsp;
+              <strong style="color:#0f766e">■ teal = Macro</strong>.
+              Use this chart to identify which cooperation dimensions are strongest or weakest across the repository.
+              {% endblocktrans %}
+            </p>
+          </div>
+          <div class="chart-body chart-body--qi-bar">
+            <canvas id="qualitative-bar-chart"></canvas>
+          </div>
+          <div class="qi-level-legend">
+            <div class="qi-legend-item">
+              <span class="qi-legend-dot qi-legend-dot--micro"></span>
+              <span>{% trans "Micro — Institutional practices &amp; actor participation" %}</span>
+            </div>
+            <div class="qi-legend-item">
+              <span class="qi-legend-dot qi-legend-dot--meso"></span>
+              <span>{% trans "Meso — Project collaboration &amp; stakeholder engagement" %}</span>
+            </div>
+            <div class="qi-legend-item">
+              <span class="qi-legend-dot qi-legend-dot--macro"></span>
+              <span>{% trans "Macro — Regional policy alignment &amp; long-term impact" %}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Level radar -->
+        <div class="chart-card" id="qualitative-radar-card">
+          <div class="chart-header">
+            <h3 class="chart-title">🔺 {% trans "Balance across Analytical Levels" %}</h3>
+            <p class="chart-subtitle">
+              {% blocktrans trimmed %}
+              This radar (spider) chart shows the <strong>average score for each of the three analytical
+              levels</strong> on a 0–100 scale. The three vertices represent:
+              <strong>Micro</strong> (how well individual institutions and actors participate),
+              <strong>Meso</strong> (how effectively stakeholders collaborate during implementation), and
+              <strong>Macro</strong> (how strongly documents align with regional strategies and produce lasting
+              impact). A <strong>large, balanced triangle</strong> indicates that the cooperation corpus is
+              well-rounded across all three dimensions. A <strong>skewed or small triangle</strong> signals that
+              some dimensions receive less attention and may need targeted improvement.
+              <strong>Hover over each vertex</strong> to see the exact percentage.
+              {% endblocktrans %}
+            </p>
+          </div>
+          <div class="chart-body chart-body--radar">
+            <canvas id="qualitative-radar-chart"></canvas>
+          </div>
+          <div class="qi-radar-note">
+            <span class="legend-icon">💡</span>
+            <span>
+              {% blocktrans trimmed %}
+              Values are expressed as percentages (score × 100).
+              A score of 70 % or above on any axis means that dimension is <em>clearly evident</em>
+              across the analysed documents.
+              {% endblocktrans %}
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 </main>
 {% endblock %}

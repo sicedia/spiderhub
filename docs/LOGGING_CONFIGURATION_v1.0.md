@@ -111,12 +111,12 @@ logger.error('API request failed', error);
 ### Verify Backend
 ```bash
 # Development
-python manage.py shell
+poetry run python manage.py shell
 >>> import logging
 >>> logging.getLogger().level  # Should be 10 (DEBUG)
 
 # Production
-DJANGO_SETTINGS_MODULE=config.settings.production python manage.py shell
+DJANGO_SETTINGS_MODULE=config.settings.production poetry run python manage.py shell
 >>> import logging
 >>> logging.getLogger().level  # Should be 30 (WARNING)
 ```

@@ -33,24 +33,21 @@
 ### Option 2: Manual - When adding a new feature:
 
 ```bash
-# 1. Activate virtual environment
-.\pyspider\Scripts\activate
+# 1. Extract new strings (con Poetry)
+poetry run python manage.py makemessages -l es -l pt --ignore=*.venv
+poetry run python manage.py makemessages -l es -l pt -d djangojs --ignore=*.venv
 
-# 2. Extract new strings
-python manage.py makemessages -l es -l pt --ignore=pyspider
-python manage.py makemessages -l es -l pt -d djangojs --ignore=pyspider
-
-# 3. Edit .po files (add translations):
+# 2. Edit .po files (add translations):
 #    - locale/es/LC_MESSAGES/django.po
 #    - locale/es/LC_MESSAGES/djangojs.po
 #    - locale/pt/LC_MESSAGES/django.po
 #    - locale/pt/LC_MESSAGES/djangojs.po
 
-# 4. Compile
-python manage.py compilemessages
+# 3. Compile
+poetry run python manage.py compilemessages
 
-# 5. Restart server
-python manage.py runserver 8001
+# 4. Restart server
+poetry run python manage.py runserver 8001
 ```
 
 ---

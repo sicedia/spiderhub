@@ -1,0 +1,65 @@
+[tool.poetry]
+name = "spiderhub-web"
+version = "0.1.0"
+description = "SpiderHub Document Management System - EU-LAC Digital Transformation Platform"
+readme = "README.md"
+authors = ["SpiderHub Team"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+# Django
+django = ">=5.0,<6.0"
+djangorestframework = "*"
+django-filter = "*"
+django-cors-headers = "*"
+django-csp = "*"
+drf-spectacular = "*"
+# Database
+dj-database-url = "*"
+psycopg2-binary = "*"
+# Environment
+django-environ = "*"
+python-dotenv = "*"
+# Static / production server
+whitenoise = "*"
+gunicorn = "*"
+# Utilities
+str2bool = "*"
+unidecode = "*"
+pycountry = "*"
+geonamescache = "*"
+django-cities-light = "*"
+# PDF & reports
+reportlab = "*"
+PyMuPDF = "*"
+python-docx = "*"
+# HTTP
+httpx = "*"
+# LLM
+langchain = ">=0.1.0"
+langchain-openai = "*"
+langchain-anthropic = "*"
+langchain-community = "*"
+langchain-core = "*"
+openai = ">=1.0.0"
+anthropic = "*"
+
+[tool.poetry.group.dev.dependencies]
+django-debug-toolbar = "*"
+pytest = "*"
+pytest-django = "*"
+factory-boy = "*"
+coverage = "*"
+flake8 = "*"
+black = "*"
+isort = "*"
+mypy = "*"
+sphinx = "*"
+django-extensions = "*"
+django-compressor = "*"
+waitress = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

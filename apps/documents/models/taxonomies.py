@@ -202,3 +202,55 @@ class EUPolicy(BaseModel):
     def __str__(self):
         return self.name
 
+
+class QualitativeIndicator(BaseModel):
+    """
+    Catalog of qualitative indicators for assessing digital cooperation documents.
+
+    Indicators are organised across three analytical levels:
+      - micro:  institutional practices and actor-level participation
+      - meso:   project implementation and stakeholder collaboration
+      - macro:  regional policy alignment, continuity, and impact
+    """
+
+    LEVEL_CHOICES = [
+        ("micro", _("Micro")),
+        ("meso", _("Meso")),
+        ("macro", _("Macro")),
+    ]
+
+    DIMENSION_CHOICES = [
+        ("engagement", _("Stakeholder Engagement")),
+        ("policy", _("Policy Influence")),
+        ("trust", _("Collaborative Trust")),
+        ("inclusivity", _("Communication Inclusivity")),
+        ("impact", _("Long-term Impact")),
+        ("alignment", _("Regional Alignment")),
+        ("continuity", _("Continuity of Practice")),
+        ("representation", _("Institutional Representation")),
+        ("diversity", _("Stakeholder Diversity")),
+    ]
+
+    code = models.CharField(max_length=80, unique=True, help_text="Stable machine-readable identifier, e.g. MICRO_STAKEHOLDER_DIVERSITY")
+    label = models.CharField(max_length=200, unique=True)
+    description = models.TextField(blank=True)
+    level = models.CharField(max_length=10, choices=LEVEL_CHOICES)
+    dimension = models.CharField(max_length=20, choices=DIMENSION_CHOICES, blank=True)
+    is_active = models.BooleanField(default=True, help_text="Inactive indicators are skipped during LLM processing")
+
+    # Search fields
+    label_normalized = models.TextField(editable=False, null=True, blank=True)
+    search_vector = SearchVectorField(null=True, editable=False)
+
+    class Meta:
+        ordering = ["level", "label"]
+        verbose_name = "Qualitative Indicator"
+        verbose_name_plural = "Qualitative Indicators"
+        indexes = [
+            GinIndex(fields=['search_vector'], name='qual_ind_search_vector_gin'),
+            GinIndex(fields=['label_normalized'], opclasses=['gin_trgm_ops'], name='qual_ind_label_norm_gin'),
+        ]
+
+    def __str__(self):
+        return f"[{self.level.upper()}] {self.label}"
+

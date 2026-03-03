@@ -182,14 +182,11 @@ Follow these steps **EVERY TIME** you add a new feature with visible text:
 After finishing your feature, extract the strings:
 
 ```bash
-# Activate virtual environment
-.\pyspider\Scripts\activate
-
-# Extract strings from HTML templates
-python manage.py makemessages -l es -l pt --ignore=pyspider
+# Extract strings from HTML templates (con Poetry)
+poetry run python manage.py makemessages -l es -l pt --ignore=*.venv
 
 # Extract strings from JavaScript
-python manage.py makemessages -l es -l pt -d djangojs --ignore=pyspider
+poetry run python manage.py makemessages -l es -l pt -d djangojs --ignore=*.venv
 ```
 
 ### Step 3: Add translations to .po files
@@ -216,7 +213,7 @@ msgstr "Título da Nova Funcionalidade"
 
 ```bash
 # Compile ALL languages
-python manage.py compilemessages
+poetry run python manage.py compilemessages
 
 # Or use msgfmt directly:
 & "C:\Program Files\gettext-iconv\bin\msgfmt.exe" -o locale\es\LC_MESSAGES\django.mo locale\es\LC_MESSAGES\django.po
@@ -225,7 +222,7 @@ python manage.py compilemessages
 
 **On Linux/Mac:**
 ```bash
-python manage.py compilemessages
+poetry run python manage.py compilemessages
 ```
 
 ### Step 5: Restart the server
@@ -233,7 +230,7 @@ python manage.py compilemessages
 ```bash
 # Stop the server (Ctrl+C)
 # Start again
-python manage.py runserver 8001
+poetry run python manage.py runserver 8001
 ```
 
 ### Step 6: Verify in browser
@@ -250,20 +247,20 @@ python manage.py runserver 8001
 
 ```bash
 # HTML/Templates - Spanish and Portuguese
-python manage.py makemessages -l es -l pt --ignore=pyspider
+poetry run python manage.py makemessages -l es -l pt --ignore=*.venv
 
 # JavaScript - Spanish and Portuguese
-python manage.py makemessages -l es -l pt -d djangojs --ignore=pyspider
+poetry run python manage.py makemessages -l es -l pt -d djangojs --ignore=*.venv
 
 # Update only one language
-python manage.py makemessages -l es
+poetry run python manage.py makemessages -l es
 ```
 
 ### Compile translations
 
 ```bash
 # Compile all languages
-python manage.py compilemessages
+poetry run python manage.py compilemessages
 
 # Windows - Compile manually with msgfmt
 & "C:\Program Files\gettext-iconv\bin\msgfmt.exe" -o locale\es\LC_MESSAGES\django.mo locale\es\LC_MESSAGES\django.po
@@ -341,7 +338,7 @@ Remove-Item locale\es\LC_MESSAGES\*.mo
 Remove-Item locale\pt\LC_MESSAGES\*.mo
 
 # Recompile
-python manage.py compilemessages
+poetry run python manage.py compilemessages
 ```
 
 ### Problem: Empty translations after makemessages
@@ -414,7 +411,7 @@ Use this checklist every time you add a new feature:
 ### 2. Extract strings
 
 ```bash
-python manage.py makemessages -l es -l pt
+poetry run python manage.py makemessages -l es -l pt
 ```
 
 ### 3. Translate in `locale/es/LC_MESSAGES/django.po`
@@ -446,8 +443,8 @@ msgstr "Esta é uma descrição da nova funcionalidade."
 ### 5. Compile and test
 
 ```bash
-python manage.py compilemessages
-python manage.py runserver 8001
+poetry run python manage.py compilemessages
+poetry run python manage.py runserver 8001
 ```
 
 Visit:
