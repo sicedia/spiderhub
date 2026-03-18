@@ -23,6 +23,12 @@ gunicorn
 str2bool
 unidecode
 
+# Event scrapers
+requests
+beautifulsoup4
+lxml
+dateparser
+
 pycountry  # Country data for Django
 geonamescache
 django-cities-light

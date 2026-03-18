@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import abc
 import logging
+import time
+from datetime import datetime
 from typing import Any
 
 import requests
@@ -30,6 +32,8 @@ _DEFAULT_HEADERS = {
 }
 
 REQUEST_TIMEOUT = 30
+REQUEST_RETRIES = 3
+REQUEST_RETRY_BACKOFF = 2  # seconds
 
 
 class BaseScraper(abc.ABC):
@@ -43,11 +47,20 @@ class BaseScraper(abc.ABC):
     # ── helpers ──────────────────────────────────────────────────────
 
     def fetch(self, url: str) -> BeautifulSoup:
-        """GET *url* and return a parsed BeautifulSoup tree."""
+        """GET *url* and return a parsed BeautifulSoup tree. Retries on connection/SSL errors."""
         logger.info("Fetching %s", url)
-        resp = self.session.get(url, timeout=REQUEST_TIMEOUT)
-        resp.raise_for_status()
-        return BeautifulSoup(resp.text, "lxml")
+        last_exc = None
+        for attempt in range(1, REQUEST_RETRIES + 1):
+            try:
+                resp = self.session.get(url, timeout=REQUEST_TIMEOUT)
+                resp.raise_for_status()
+                return BeautifulSoup(resp.text, "lxml")
+            except requests.RequestException as e:
+                last_exc = e
+                if attempt < REQUEST_RETRIES:
+                    logger.warning("Attempt %s/%s failed for %s: %s. Retrying in %ss.", attempt, REQUEST_RETRIES, url, e, REQUEST_RETRY_BACKOFF)
+                    time.sleep(REQUEST_RETRY_BACKOFF)
+        raise last_exc
 
     # ── abstract ─────────────────────────────────────────────────────
 
@@ -57,6 +70,15 @@ class BaseScraper(abc.ABC):
 
     # ── pipeline ─────────────────────────────────────────────────────
 
+    @staticmethod
+    def _ensure_aware(dt: datetime | None) -> datetime | None:
+        """Return timezone-aware datetime; assume UTC if naive."""
+        if dt is None:
+            return None
+        if timezone.is_naive(dt):
+            return timezone.make_aware(dt, timezone=timezone.utc)
+        return dt
+
     def normalize(self, raw: dict[str, Any]) -> dict[str, Any]:
         """Apply classification, scoring, and relevance; return dict ready for upsert."""
         raw.setdefault("category", classify_event(raw))
@@ -64,6 +86,9 @@ class BaseScraper(abc.ABC):
         raw.setdefault("is_relevant", is_relevant_for_spider(raw))
         raw.setdefault("is_published", True)
         raw.setdefault("status", "published")
+        for key in ("start_at", "end_at"):
+            if key in raw and isinstance(raw[key], datetime):
+                raw[key] = self._ensure_aware(raw[key])
         return raw
 
     def upsert(self, data: dict[str, Any]) -> tuple[Event, bool]:
@@ -71,6 +96,9 @@ class BaseScraper(abc.ABC):
         source_url = data.pop("source_url")
         data["last_seen_at"] = timezone.now()
         data["source"] = self.source
+        for key in ("start_at", "end_at"):
+            if key in data and isinstance(data[key], datetime):
+                data[key] = self._ensure_aware(data[key])
 
         event, created = Event.objects.update_or_create(
             source_url=source_url,
