@@ -4,6 +4,7 @@ from .itu import ItuScraper  # noqa: F401
 from .caf import CafScraper  # noqa: F401
 from .idrc import IdrcScraper  # noqa: F401
 from .iesalc import IesalcScraper  # noqa: F401
+from .eucelac import EucelacScraper  # noqa: F401
 
 SCRAPER_REGISTRY: dict[str, type[BaseScraper]] = {
     "oas": OasScraper,
@@ -11,6 +12,7 @@ SCRAPER_REGISTRY: dict[str, type[BaseScraper]] = {
     "caf": CafScraper,
     "idrc": IdrcScraper,
     "iesalc": IesalcScraper,
+    "eucelac": EucelacScraper,
 }
 
 # ─────────────────────────────────────────────────────────────────────
