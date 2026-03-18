@@ -2,6 +2,9 @@
 # Script de despliegue en producción (Ubuntu Linux).
 # Usa docker-compose.yml y .env.production en la raíz del proyecto.
 #
+# Para que la app se actualice sola en el navegador (sin Ctrl+Shift+R), no definas
+# STATIC_VERSION en .env.production; así Django usará GIT_COMMIT_HASH de la imagen.
+#
 # Uso en el servidor:
 #   cd ~/spiderhub
 #   ./scripts/deploy-production.sh
@@ -51,6 +54,7 @@ docker compose -f "$COMPOSE_FILE" up -d
 
 echo ""
 echo -e "${GREEN}Despliegue completado.${NC}"
+echo -e "${BLUE}Nota:${NC} Si no defines STATIC_VERSION en .env.production, los clientes detectarán la nueva versión y se actualizarán solos."
 echo ""
 echo -e "${BLUE}Estado de los contenedores:${NC}"
 docker compose -f "$COMPOSE_FILE" ps

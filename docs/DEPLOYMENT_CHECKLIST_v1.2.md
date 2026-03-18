@@ -19,26 +19,14 @@
 
 ### 3. Prepare Static Version
 
-If you modified JavaScript files:
+**Recommended (auto-reload):** Do **not** set `STATIC_VERSION` in `.env.production`. The Docker image carries `GIT_COMMIT_HASH` at build time; Django uses it for `/api/v1/app/version/`, so each deploy gets a new version and the client auto-reloads all tabs without Ctrl+Shift+R. See `docs/CACHE_BUSTING_V2_SUMMARY_v2.0.md`.
+
+If you must pin a static version (not recommended):
 
 ```bash
-# Increment STATIC_VERSION
-# In your production .env or docker-compose.yml
-
-# For minor changes (bugfixes, dark mode, styles)
-STATIC_VERSION=X.Y.(Z+1)
-
-# For major changes (new features)
-STATIC_VERSION=X.(Y+1).0
-```
-
-Example:
-```bash
-# Before
-STATIC_VERSION=1.0.5
-
-# After changes in darkMode.js
-STATIC_VERSION=1.0.6
+# In your production .env (only if you need a fixed version)
+# For minor changes: STATIC_VERSION=X.Y.(Z+1)
+# For major changes: STATIC_VERSION=X.(Y+1).0
 ```
 
 ### 4. Verify Translations (if you added new content)
@@ -59,7 +47,7 @@ See: [Translation Workflow Guide](TRANSLATION_WORKFLOW.md)
 ## During Deployment
 
 ### 1. Production Configuration
-- [ ] Verify that production `.env` has the new `STATIC_VERSION`
+- [ ] For auto-reload on deploy: ensure production `.env` does **not** set `STATIC_VERSION` (so `GIT_COMMIT_HASH` from the image is used). Or if you use a fixed version, set the new `STATIC_VERSION`.
 - [ ] Verify that `DEBUG=False` in production
 - [ ] Verify that `ALLOWED_HOSTS` is configured correctly
 - [ ] Verify that compiled `.mo` files are present in `locale/*/LC_MESSAGES/`

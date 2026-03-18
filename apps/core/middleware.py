@@ -193,6 +193,7 @@ class RelaxedCSPMiddleware:
         These pages require 'unsafe-inline' for styles due to:
         - Django Admin: uses inline styles
         - /analysis/: uses vis-network which injects <style> elements dynamically
+        - /events/: uses Pagination component which injects <style> dynamically
         - /api/docs/: Swagger UI requires inline scripts and styles
         """
         path = request.path
@@ -207,6 +208,11 @@ class RelaxedCSPMiddleware:
             path.startswith('/en/analysis/') or
             path.startswith('/es/analysis/') or
             path.startswith('/pt/analysis/') or
+            # Events page with Pagination component (injects <style>)
+            path.startswith('/events/') or
+            path.startswith('/en/events/') or
+            path.startswith('/es/events/') or
+            path.startswith('/pt/events/') or
             # Swagger UI documentation
             path.startswith('/api/docs/') or
             path == '/api/docs'

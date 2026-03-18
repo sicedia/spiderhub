@@ -146,11 +146,16 @@ Users load new version automatically
 
 ## ✅ Deploy Checklist
 
+### Production .env: do not set STATIC_VERSION
+
+For the client to auto-reload after each deploy (without users pressing Ctrl+Shift+R), **do not define `STATIC_VERSION`** in `.env.production`. Leave it unset so Django uses `GIT_COMMIT_HASH` from the Docker image (set at build time). Then `/api/v1/app/version/` returns a new value on each deploy and the VersionCheckService reloads all tabs automatically.
+
 ### First time (Setup)
 - [ ] Commit changes
 - [ ] Run build script: `.\scripts\build-docker.ps1 -Version "X.X.X"`
 - [ ] Push image to registry
 - [ ] Deploy container
+- [ ] Ensure `.env.production` does **not** set `STATIC_VERSION` (see above)
 
 ### Subsequent deploys
 - [ ] Commit changes

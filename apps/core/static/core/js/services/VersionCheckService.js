@@ -1,7 +1,7 @@
 /**
  * Version Check Service
- * Verifica si hay una nueva versión de la aplicación disponible
- * y muestra un modal para actualizar limpiando todo el caché
+ * Verifica si hay una nueva versión de la aplicación disponible y recarga
+ * automáticamente (todas las pestañas) sin requerir Ctrl+Shift+R.
  * ES6 Module Export
  */
 
@@ -9,6 +9,7 @@ const VERSION_STORAGE_KEY = 'spiderhub_app_version';
 const VERSION_CHECK_INTERVAL = 300000; // 5 minutos
 const API_VERSION_ENDPOINT = '/api/v1/app/version/';
 const BROADCAST_CHANNEL_NAME = 'spiderhub_version_update';
+const AUTO_RELOAD_DELAY_MS = 1500; // Breve delay antes de recargar (muestra toast)
 
 class VersionCheckService {
   constructor() {
@@ -162,29 +163,24 @@ class VersionCheckService {
       // Obtener versión guardada del localStorage
       const storedVersion = localStorage.getItem(VERSION_STORAGE_KEY);
       
-      // Si no hay versión guardada, mostrar modal para actualizar
-      // Esto cubre casos donde el usuario borró el localStorage o es primera vez
+      // Si no hay versión guardada, guardar la del servidor (primera vez o localStorage borrado)
       if (!storedVersion) {
-        console.log(`📦 No version found in localStorage, prompting update to: ${serverVersion}`);
+        console.log(`📦 No version found in localStorage, storing: ${serverVersion}`);
         if (serverVersion && serverVersion !== 'unknown') {
-          // Mostrar modal para que el usuario actualice
-          this.showUpdateModal(serverVersion);
-        } else {
-          // Si la versión del servidor es desconocida, guardar para evitar loops
           localStorage.setItem(VERSION_STORAGE_KEY, serverVersion);
         }
         return;
       }
-      
+
       // Si currentVersion no está inicializado, usar la guardada
       if (!this.currentVersion) {
         this.currentVersion = storedVersion;
       }
 
-      // Comparar versiones - si son diferentes y la del servidor no es 'unknown'
+      // Nueva versión detectada: recarga automática (toast + delay, luego reload en todas las pestañas)
       if (serverVersion !== this.currentVersion && serverVersion !== 'unknown' && serverVersion) {
         console.log(`🔄 New version detected! Server: ${serverVersion}, Current: ${this.currentVersion}`);
-        this.showUpdateModal(serverVersion);
+        this.showUpdateToast(serverVersion);
       } else if (serverVersion === this.currentVersion) {
         // Versiones coinciden, actualizar localStorage por si acaso
         localStorage.setItem(VERSION_STORAGE_KEY, serverVersion);
@@ -197,21 +193,24 @@ class VersionCheckService {
   }
 
   /**
-   * Muestra el modal de actualización
+   * Muestra un toast breve y programa recarga automática (todas las pestañas)
    */
-  showUpdateModal(newVersion) {
-    // Evitar múltiples modales
-    if (document.getElementById('version-update-modal')) {
-      return;
-    }
+  showUpdateToast(newVersion) {
+    if (this._autoReloadScheduled) return;
+    this._autoReloadScheduled = true;
 
-    const modal = this.createUpdateModal(newVersion);
-    document.body.appendChild(modal);
-    
-    // Mostrar con animación
-    requestAnimationFrame(() => {
-      modal.classList.add('active');
-    });
+    const toast = document.createElement('div');
+    toast.setAttribute('aria-live', 'polite');
+    toast.className = 'version-update-toast';
+    toast.innerHTML = 'Nueva versión. Actualizando…';
+    // Estilos mínimos para el toast (no depende de CSS externo)
+    toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);color:#fff;padding:12px 20px;border-radius:8px;font-family:system-ui,sans-serif;font-size:14px;z-index:99999;box-shadow:0 4px 12px rgba(0,0,0,0.3);';
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.remove();
+      this.handleUpdate(newVersion);
+    }, AUTO_RELOAD_DELAY_MS);
   }
 
   /**
