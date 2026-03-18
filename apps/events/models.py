@@ -53,8 +53,8 @@ class Event(BaseModel):
         default="published",
     )
     language = models.CharField(max_length=10, blank=True)
-    registration_url = models.URLField(blank=True)
-    image_url = models.URLField(blank=True)
+    registration_url = models.URLField(max_length=500, blank=True)
+    image_url = models.URLField(max_length=500, blank=True)
     tags_raw = models.JSONField(default=list, blank=True)
     category = models.CharField(
         max_length=40,
