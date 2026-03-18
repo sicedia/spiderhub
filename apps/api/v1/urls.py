@@ -30,7 +30,6 @@ from .views.events import (
     PublicEventsListAPIView,
     PublicEventDetailAPIView,
     UpcomingEventsAPIView,
-    DocumentEventsAPIView,
     EventSuggestAPIView,
 )
 
@@ -70,7 +69,6 @@ urlpatterns = [
     # Documents
     path('documents/<int:pk>/', DocumentDetailAPIView.as_view(), name='document-detail'),
     path('documents/<int:pk>/related/', RelatedDocumentsAPIView.as_view(), name='document-related'),
-    path('documents/<int:pk>/events/', DocumentEventsAPIView.as_view(), name='document-events'),
     
     # Events (public endpoints)
     path('events/upcoming/', UpcomingEventsAPIView.as_view(), name='events-upcoming'),

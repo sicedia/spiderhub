@@ -169,7 +169,12 @@ CONTENT_SECURITY_POLICY = {
                     'data:',
                     'https://*.tile.openstreetmap.org',
                     'https://unpkg.com',
-                    'https://cdn.jsdelivr.net'],  # Added for Swagger UI favicon
+                    'https://cdn.jsdelivr.net',
+                    'https://www.oas.org',
+                    'https://www.itu.int',
+                    'https://www.caf.com',
+                    'https://idrc-crdi.ca',
+                    'https://www.iesalc.unesco.org'],
         'object-src': ["'none'"],
         'script-src': ["'self'",
                        'https://cdn.jsdelivr.net',

@@ -278,35 +278,94 @@ export class EventsPageManager extends BasePageManager {
   }
 
   /**
+   * Get source visual config (color + abbreviation)
+   */
+  getSourceConfig(event) {
+    const defaults = {
+      oas: { color: '#1B5E8C', label: 'OAS' },
+      itu: { color: '#0072BC', label: 'ITU' },
+      caf: { color: '#00A651', label: 'CAF' },
+      idrc: { color: '#2E3192', label: 'IDRC' },
+      iesalc: { color: '#0077C8', label: 'IESALC' },
+    };
+    const d = defaults[event.source_slug] || { color: '#6B7280', label: (event.source_slug || '?').toUpperCase() };
+    return {
+      ...d,
+      logoUrl: event.source_logo_url || '',
+      fullName: event.source_name || d.label,
+    };
+  }
+
+  /**
    * Render event card (for upcoming and archive events)
    */
   renderEventCard(event, type = 'upcoming') {
     const isUpcoming = type === 'upcoming';
-    const isArchive = type === 'archive';
     const dateStr = this.formatEventDate(event.start_at, event.end_at);
-    const locationStr = this.formatLocation(event.city_name, event.country_name);
-    const formatBadge = event.event_format_display 
-      ? `<span class="event-card__format">${this.escapeHtml(event.event_format_display)}</span>`
+    const locationStr = event.location_text || event.country_name || '';
+    const summaryText = event.summary || event.description || '';
+    const descriptionLength = isUpcoming ? 150 : 120;
+    const src = this.getSourceConfig(event);
+
+    // Thumbnail image (if available from scraper)
+    const thumbnail = event.image_url
+      ? `<div class="event-card__thumb">
+           <img src="${this.escapeHtml(event.image_url)}" alt="" loading="lazy" />
+         </div>`
       : '';
-    
-    const statusBadge = isUpcoming 
-      ? `<span class="event-card__status event-card__status--upcoming">${_('Upcoming')}</span>`
-      : `<span class="event-card__status event-card__status--past">${_('Past')}</span>`;
-    
-    const descriptionLength = isArchive ? 120 : (isUpcoming ? 150 : 120);
+
+    // Source logo (real image or colored text fallback)
+    const logoInner = src.logoUrl
+      ? `<img src="${this.escapeHtml(src.logoUrl)}" alt="${this.escapeHtml(src.label)}" class="event-card__logo-img" />`
+      : `<span class="event-card__logo-text" style="background:${src.color}">${this.escapeHtml(src.label)}</span>`;
+
+    const sourceBadge = `
+      <a href="${this.escapeHtml(event.source_url || '#')}" target="_blank" rel="noopener"
+         class="event-card__source" title="${this.escapeHtml(src.fullName)}" onclick="event.stopPropagation()">
+        ${logoInner}
+      </a>`;
+
+    const modalityBadge = event.modality_display 
+      ? `<span class="event-card__badge event-card__badge--modality">${this.escapeHtml(event.modality_display)}</span>`
+      : '';
+
+    const categoryBadge = event.category_display && event.category !== 'other'
+      ? `<span class="event-card__badge event-card__badge--category">${this.escapeHtml(event.category_display)}</span>`
+      : '';
+
+    const orgLine = event.organizer
+      ? `<span class="event-card__organizer">${_('By')} ${this.escapeHtml(event.organizer)}</span>`
+      : '';
+
+    const sourceLink = event.source_url
+      ? `<a href="${this.escapeHtml(event.source_url)}" target="_blank" rel="noopener"
+            class="event-card__source-link" onclick="event.stopPropagation()"
+            title="${_('View on')} ${this.escapeHtml(src.fullName)}">${_('View original')}
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>`
+      : '';
 
     return `
       <article class="event-card event-card--${type}" data-event-id="${event.id}">
-        <div class="event-card__header">
-          <div class="event-card__date">${dateStr}</div>
-          ${statusBadge}
+        ${thumbnail}
+        <div class="event-card__body">
+          <div class="event-card__header">
+            ${sourceBadge}
+            <div class="event-card__date-block">
+              <span class="event-card__date">${dateStr}</span>
+              ${orgLine}
+            </div>
+          </div>
+          <h3 class="event-card__title">
+            <a href="/events/${event.id}/" class="event-card__link">${this.escapeHtml(event.title)}</a>
+          </h3>
+          ${locationStr ? `<div class="event-card__location">${this.escapeHtml(locationStr)}</div>` : ''}
+          ${summaryText ? `<p class="event-card__description">${this.truncateText(summaryText, descriptionLength)}</p>` : ''}
+          <div class="event-card__footer">
+            <div class="event-card__badges">${modalityBadge}${categoryBadge}</div>
+            ${sourceLink}
+          </div>
         </div>
-        <h3 class="event-card__title">
-          <a href="/events/${event.id}/" class="event-card__link">${this.escapeHtml(event.title)}</a>
-        </h3>
-        ${locationStr ? `<div class="event-card__location">${this.escapeHtml(locationStr)}</div>` : ''}
-        ${event.description ? `<p class="event-card__description">${this.truncateText(event.description, descriptionLength)}</p>` : ''}
-        ${formatBadge}
       </article>
     `;
   }
@@ -315,14 +374,14 @@ export class EventsPageManager extends BasePageManager {
    * Render event list item (for archive)
    */
   renderEventListItem(event) {
-    const formatBadge = event.event_format_display 
-      ? `<span class="tag tag--info">${this.escapeHtml(event.event_format_display)}</span>`
+    const modalityBadge = event.modality_display 
+      ? `<span class="tag tag--info">${this.escapeHtml(event.modality_display)}</span>`
       : '';
     
     const dateStr = this.formatEventDate(event.start_at, event.end_at);
-    const locationStr = this.formatLocation(event.city_name, event.country_name);
-    const orgStr = event.organization_name 
-      ? `<span class="event-item__org">${this.escapeHtml(event.organization_name)}</span>`
+    const locationStr = event.location_text || event.country_name || '';
+    const orgStr = event.organizer 
+      ? `<span class="event-item__org">${this.escapeHtml(event.organizer)}</span>`
       : '';
 
     const metadataParts = [];
@@ -333,6 +392,8 @@ export class EventsPageManager extends BasePageManager {
       ? `<div class="event-item__meta">${metadataParts.join(' • ')}</div>`
       : '';
 
+    const summaryText = event.summary || event.description || '';
+
     return `
       <li class="event-item document-item" data-event-id="${event.id}">
         <div class="event-item__content">
@@ -340,10 +401,10 @@ export class EventsPageManager extends BasePageManager {
             <h3 class="event-item__title">
               <a href="/events/${event.id}/" class="event-item__link">${this.escapeHtml(event.title)}</a>
             </h3>
-            ${formatBadge}
+            ${modalityBadge}
           </div>
           ${metadata}
-          ${event.description ? `<p class="event-item__description">${this.truncateText(event.description, 200)}</p>` : ''}
+          ${summaryText ? `<p class="event-item__description">${this.truncateText(summaryText, 200)}</p>` : ''}
         </div>
       </li>
     `;

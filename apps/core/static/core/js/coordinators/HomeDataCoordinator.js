@@ -328,21 +328,21 @@ export class HomeDataCoordinator {
     
     container.innerHTML = eventsToShow.map(event => {
       const dateStr = this.formatEventDate(event.start_at, event.end_at);
-      const locationStr = this.formatLocation(event.city_name, event.country_name);
-      const formatBadge = event.event_format_display 
-        ? `<span class="tag tag--info">${this.escapeHtml(event.event_format_display)}</span>`
+      const locationStr = event.location_text || event.country_name || '';
+      const modalityBadge = event.modality_display 
+        ? `<span class="tag tag--info">${this.escapeHtml(event.modality_display)}</span>`
         : '';
       
       return `
         <div class="home-events__card">
           <div class="home-events__card-header">
             <h3 class="home-events__card-title">${this.escapeHtml(event.title)}</h3>
-            ${formatBadge}
+            ${modalityBadge}
           </div>
           <div class="home-events__card-body">
             ${dateStr ? `<div class="home-events__card-date">${this.escapeHtml(dateStr)}</div>` : ''}
             ${locationStr ? `<div class="home-events__card-location">${this.escapeHtml(locationStr)}</div>` : ''}
-            ${event.organization_name ? `<div class="home-events__card-org">${this.escapeHtml(event.organization_name)}</div>` : ''}
+            ${event.organizer ? `<div class="home-events__card-org">${this.escapeHtml(event.organizer)}</div>` : ''}
           </div>
           <div class="home-events__card-footer">
             <a href="/${lang}/events/${event.id}/" class="button button--secondary button--small">${_('View Details')}</a>
