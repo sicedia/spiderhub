@@ -49,7 +49,7 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(
                     f"Source: {slug.upper()} | Found: {stats['found']} | "
                     f"Created: {stats['created']} | Updated: {stats['updated']} | "
-                    f"Skipped: {stats.get('skipped', 0)}"
+                    f"Skipped: {stats.get('skipped', 0)} | Existing: {stats.get('existing', 0)}"
                 ))
             except Exception as exc:
                 self.stderr.write(self.style.ERROR(

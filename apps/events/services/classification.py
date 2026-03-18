@@ -112,3 +112,40 @@ def score_networking(data: dict[str, Any]) -> int:
         score += 10
 
     return min(score, 100)
+
+
+# ── Relevance for Spider (exclude courses, MOOCs, training-only, etc.) ──
+# Extensible: add more entries to _RELEVANCE_EXCLUSION_PATTERNS to filter
+# other event types later. Terms in both English and Spanish (scraping can be either).
+
+_RELEVANCE_EXCLUSION_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
+    (
+        "course_like",
+        re.compile(
+            r"\b("
+            # English
+            r"mooc(s)?|course(s)?|online\s+course|e-learning|elearning|"
+            r"training\s+program|certification\s+program|diploma\s+program|"
+            # Spanish
+            r"curso(s)?|curso\s+en\s+línea|cursos\s+online|"
+            r"diplomado|certificación\s+en|formación\s+continua|"
+            r"workshop\s+de\s+formación|webinar\s+formativo|capacitación\s+en|"
+            # Both / common
+            r"formación\s+en\s+línea|capacitación\s+online|"
+            r"training\s+course|curso\s+virtual|virtual\s+course"
+            r")\b",
+            re.IGNORECASE,
+        ),
+    ),
+    # Future: add more exclusion groups, e.g. ("job_fair", re.compile(...))
+]
+
+
+def is_relevant_for_spider(data: dict[str, Any]) -> bool:
+    """Return False if event should be hidden from public listing (e.g. courses, MOOCs).
+    Extensible: exclusion rules are in _RELEVANCE_EXCLUSION_PATTERNS."""
+    blob = _build_text_blob(data)
+    for _name, pattern in _RELEVANCE_EXCLUSION_PATTERNS:
+        if pattern.search(blob):
+            return False
+    return True

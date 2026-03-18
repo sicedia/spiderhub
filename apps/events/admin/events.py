@@ -21,10 +21,11 @@ class EventAdmin(admin.ModelAdmin):
         "category",
         "modality",
         "networking_score",
+        "is_relevant",
         "is_published",
         "last_seen_at",
     ]
-    list_filter = ["source", "category", "modality", "is_published", "country"]
+    list_filter = ["source", "category", "modality", "is_relevant", "is_published", "country"]
     search_fields = [
         "title",
         "summary",

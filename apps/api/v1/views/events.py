@@ -28,6 +28,11 @@ class PublicEventsListAPIView(APIView):
             OpenApiParameter("start_at_after", OpenApiTypes.DATE),
             OpenApiParameter("start_at_before", OpenApiTypes.DATE),
             OpenApiParameter("country", OpenApiTypes.INT),
+            OpenApiParameter(
+                "relevant",
+                OpenApiTypes.STR,
+                description="Default: only relevant events. Use relevant=all to include courses/MOOCs etc.",
+            ),
             OpenApiParameter("page", OpenApiTypes.INT),
             OpenApiParameter("page_size", OpenApiTypes.INT),
         ],
@@ -41,6 +46,10 @@ class PublicEventsListAPIView(APIView):
         )
 
         params = request.query_params
+
+        # By default show only relevant events (exclude courses, MOOCs, etc.)
+        if params.get("relevant", "").lower() != "all":
+            qs = qs.filter(is_relevant=True)
 
         if q := params.get("q", "").strip():
             qs = qs.filter(Q(title__icontains=q) | Q(summary__icontains=q))
@@ -100,7 +109,11 @@ class UpcomingEventsAPIView(APIView):
     )
     def get(self, request):
         upcoming = (
-            Event.objects.filter(is_published=True, start_at__gte=timezone.now())
+            Event.objects.filter(
+                is_published=True,
+                is_relevant=True,
+                start_at__gte=timezone.now(),
+            )
             .select_related("source", "country")
             .order_by("start_at")[:5]
         )
@@ -121,7 +134,9 @@ class EventSuggestAPIView(APIView):
             return Response([])
 
         suggestions = list(
-            Event.objects.filter(is_published=True, title__icontains=term)
+            Event.objects.filter(
+                is_published=True, is_relevant=True, title__icontains=term
+            )
             .values_list("title", flat=True)[:10]
         )
         return Response(suggestions)

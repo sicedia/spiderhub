@@ -11,7 +11,11 @@ from bs4 import BeautifulSoup
 from django.utils import timezone
 
 from apps.events.models import Event, EventSource
-from apps.events.services.classification import classify_event, score_networking
+from apps.events.services.classification import (
+    classify_event,
+    is_relevant_for_spider,
+    score_networking,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -54,9 +58,10 @@ class BaseScraper(abc.ABC):
     # ── pipeline ─────────────────────────────────────────────────────
 
     def normalize(self, raw: dict[str, Any]) -> dict[str, Any]:
-        """Apply classification and scoring, return dict ready for upsert."""
+        """Apply classification, scoring, and relevance; return dict ready for upsert."""
         raw.setdefault("category", classify_event(raw))
         raw.setdefault("networking_score", score_networking(raw))
+        raw.setdefault("is_relevant", is_relevant_for_spider(raw))
         raw.setdefault("is_published", True)
         raw.setdefault("status", "published")
         return raw
@@ -88,15 +93,28 @@ class BaseScraper(abc.ABC):
         return False
 
     def run(self) -> dict[str, int]:
-        """Orchestrate: parse → normalize → filter → upsert. Returns summary stats."""
+        """Orchestrate: parse → skip existing → normalize → filter → insert new only.
+        Events already in DB (by source_url) are not re-ingested or updated."""
         logger.info("Starting scraper for source '%s'", self.source.slug)
         raw_items = self.parse_list()
         stats: dict[str, int] = {
-            "found": len(raw_items), "created": 0, "updated": 0, "skipped": 0,
+            "found": len(raw_items),
+            "created": 0,
+            "updated": 0,
+            "skipped": 0,
+            "existing": 0,
         }
 
         for raw in raw_items:
             try:
+                source_url = raw.get("source_url")
+                if not source_url:
+                    continue
+                # Do not re-ingest: skip if we already have this event
+                if Event.objects.filter(source=self.source, source_url=source_url).exists():
+                    stats["existing"] += 1
+                    continue
+
                 data = self.normalize(raw)
                 if not self._is_eligible(data):
                     stats["skipped"] += 1
@@ -107,11 +125,12 @@ class BaseScraper(abc.ABC):
                 logger.exception("Error upserting event: %s", raw.get("source_url", "?"))
 
         logger.info(
-            "Scraper '%s' done — found=%d created=%d updated=%d skipped=%d",
+            "Scraper '%s' done — found=%d created=%d updated=%d skipped=%d existing=%d",
             self.source.slug,
             stats["found"],
             stats["created"],
             stats["updated"],
             stats["skipped"],
+            stats["existing"],
         )
         return stats

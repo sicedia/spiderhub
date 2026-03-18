@@ -69,6 +69,11 @@ class Event(BaseModel):
         default="other",
     )
     networking_score = models.PositiveSmallIntegerField(default=0)
+    is_relevant = models.BooleanField(
+        default=True,
+        db_index=True,
+        help_text="If False, event is filtered out from public listing (e.g. courses, MOOCs).",
+    )
     is_published = models.BooleanField(default=True)
     scraped_at = models.DateTimeField(default=tz.now)
     last_seen_at = models.DateTimeField(auto_now=True)

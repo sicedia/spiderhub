@@ -11,5 +11,5 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(
             f"Source: ITU | Found: {stats['found']} | "
             f"Created: {stats['created']} | Updated: {stats['updated']} | "
-            f"Skipped: {stats.get('skipped', 0)}"
+            f"Skipped: {stats.get('skipped', 0)} | Existing: {stats.get('existing', 0)}"
         ))
