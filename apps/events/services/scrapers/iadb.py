@@ -1,8 +1,8 @@
 """Scraper for IDB (Inter-American Development Bank) events.
 
 Uses the internal EmmaWebApi JSON API:
-  - Listing:  GET /EmmaWebApi/v10a/events/en/all?startDate=...&endDate=...&pageSize=100
-  - Detail:   GET /EmmaWebApi/v10a/events/en/{eventId}
+  - Listing:  GET {base}/EmmaWebApi/v10a/events/en/all?startDate=...&endDate=...&pageSize=100
+  - Detail:   GET {base}/EmmaWebApi/v10a/events/en/{eventId}
 
 Each list item provides: id, name, startDate, endDate, country, imageUrl.
 The detail endpoint adds: timezone, venueLocation, description, registrationLink,
@@ -22,19 +22,22 @@ from .base import BaseScraper
 
 logger = logging.getLogger(__name__)
 
-_API_BASE = "https://events.iadb.org/EmmaWebApi/v10a"
-_CALENDAR_URL = "https://events.iadb.org/calendar/event"
+_API_PATH = "/EmmaWebApi/v10a"
+_CALENDAR_PATH = "/calendar/event"
 
 
 class IadbScraper(BaseScraper):
     def __init__(self) -> None:
         super().__init__("iadb")
         self.session.headers.update({"Accept": "application/json"})
+        base = self.source.base_url.rstrip("/")
+        self._api_base = f"{base}{_API_PATH}"
+        self._calendar_base = f"{base}{_CALENDAR_PATH}"
 
     # ── list ──────────────────────────────────────────────────────────
 
     def parse_list(self) -> list[dict[str, Any]]:
-        url = f"{_API_BASE}/events/en/all"
+        url = f"{self._api_base}/events/en/all"
         params = {
             "startDate": "2026-01-01",
             "endDate": "2026-12-31",
@@ -44,10 +47,14 @@ class IadbScraper(BaseScraper):
         logger.info("Fetching IDB events list: %s", url)
         resp = self.session.get(url, params=params, timeout=30)
         resp.raise_for_status()
-        items: list[dict] = resp.json()
+        data = resp.json()
+
+        if not isinstance(data, list):
+            logger.error("IDB API returned unexpected type: %s", type(data).__name__)
+            return []
 
         events: list[dict[str, Any]] = []
-        for item in items:
+        for item in data:
             try:
                 parsed = self._parse_item(item)
                 if parsed:
@@ -64,10 +71,11 @@ class IadbScraper(BaseScraper):
         if not event_id or not name:
             return None
 
-        source_url = f"{_CALENDAR_URL}/{event_id}?lang=en"
+        source_url = f"{self._calendar_base}/{event_id}?lang=en"
         start_at = self._parse_dt(item.get("startDate"))
         end_at = self._parse_dt(item.get("endDate"))
         image_url = item.get("imageUrl") or ""
+        country_name = item.get("country") or ""
 
         detail = self._fetch_detail(event_id)
 
@@ -75,7 +83,7 @@ class IadbScraper(BaseScraper):
         location_text = ""
         tz = "UTC"
         registration_url = ""
-        tags: list[str] = ["IDB"]
+        tags: set[str] = {"IDB"}
         modality = None
 
         if detail:
@@ -92,24 +100,24 @@ class IadbScraper(BaseScraper):
 
             event_type = detail.get("eventType") or {}
             if event_type.get("name"):
-                tags.append(event_type["name"])
+                tags.add(event_type["name"])
 
             for cls in detail.get("classifications") or []:
                 cls_name = cls.get("name") or cls.get("code") or ""
                 if cls_name:
-                    tags.append(cls_name)
+                    tags.add(cls_name)
 
             if detail.get("imageUrl"):
                 image_url = image_url or detail["imageUrl"]
 
-        if location_text:
-            loc_lower = location_text.lower()
-            if "virtual" in loc_lower or "online" in loc_lower:
-                modality = "virtual"
-            elif any(k in name.lower() for k in ("hybrid", "híbrido")):
-                modality = "hybrid"
-            else:
-                modality = "presencial"
+        # Modality: check location text first, then list-level country
+        loc_check = (location_text or country_name).lower()
+        if "virtual" in loc_check or "online" in loc_check:
+            modality = "virtual"
+        elif any(k in name.lower() for k in ("hybrid", "híbrido")):
+            modality = "hybrid"
+        elif loc_check:
+            modality = "presencial"
 
         return {
             "source_url": source_url,
@@ -122,22 +130,23 @@ class IadbScraper(BaseScraper):
             "timezone": tz,
             "location_text": location_text[:255],
             "organizer": "IDB",
-            "image_url": image_url,
+            "image_url": image_url[:500],
             "modality": modality,
             "language": "en",
-            "registration_url": registration_url,
-            "tags_raw": tags,
+            "registration_url": registration_url[:500],
+            "tags_raw": sorted(tags),
             "raw_data": {"api_id": event_id},
         }
 
     # ── helpers ───────────────────────────────────────────────────────
 
     def _fetch_detail(self, event_id: int) -> dict | None:
-        url = f"{_API_BASE}/events/en/{event_id}"
+        url = f"{self._api_base}/events/en/{event_id}"
         try:
             resp = self.session.get(url, timeout=20)
             if resp.status_code == 200:
                 return resp.json()
+            logger.warning("IDB detail returned %d for id=%s", resp.status_code, event_id)
         except Exception:
             logger.warning("Could not fetch IDB detail for id=%s", event_id)
         return None
