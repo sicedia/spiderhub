@@ -6,6 +6,7 @@ from .idrc import IdrcScraper  # noqa: F401
 from .iesalc import IesalcScraper  # noqa: F401
 from .eucelac import EucelacScraper  # noqa: F401
 from .iadb import IadbScraper  # noqa: F401
+from .eclac import EclacScraper  # noqa: F401
 
 SCRAPER_REGISTRY: dict[str, type[BaseScraper]] = {
     "oas": OasScraper,
@@ -15,6 +16,7 @@ SCRAPER_REGISTRY: dict[str, type[BaseScraper]] = {
     "iesalc": IesalcScraper,
     "eucelac": EucelacScraper,
     "iadb": IadbScraper,
+    "eclac": EclacScraper,
 }
 
 # ─────────────────────────────────────────────────────────────────────

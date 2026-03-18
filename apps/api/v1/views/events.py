@@ -4,11 +4,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiTypes
 from django.shortcuts import get_object_or_404
-from django.db.models import Q
+from django.db.models import Count, Q
 from django.utils import timezone
 
-from apps.events.models import Event
-from apps.events.serializers import PublicEventSerializer, PublicEventDetailSerializer
+from apps.events.models import Event, EventSource
+from apps.events.serializers import EventSourceSerializer, PublicEventSerializer, PublicEventDetailSerializer
 from apps.api.pagination import StandardResultsSetPagination
 
 
@@ -140,3 +140,38 @@ class EventSuggestAPIView(APIView):
             .values_list("title", flat=True)[:10]
         )
         return Response(suggestions)
+
+
+class PublicEventSourcesAPIView(APIView):
+    """GET /api/v1/events/sources/ — active event sources with event counts."""
+
+    @extend_schema(
+        summary="List active event sources",
+        responses={200: EventSourceSerializer(many=True)},
+    )
+    def get(self, request):
+        now = timezone.now()
+        sources = (
+            EventSource.objects.filter(is_active=True)
+            .annotate(event_count=Count(
+                "events",
+                filter=Q(
+                    events__is_published=True,
+                    events__is_relevant=True,
+                    events__start_at__gte=now,
+                ),
+            ))
+            .order_by("name")
+        )
+        data = []
+        for s in sources:
+            data.append({
+                "id": s.id,
+                "name": s.name,
+                "slug": s.slug,
+                "base_url": s.base_url,
+                "events_url": s.events_url,
+                "logo_url": s.logo_url,
+                "event_count": s.event_count,
+            })
+        return Response(data)

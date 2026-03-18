@@ -31,6 +31,7 @@ from .views.events import (
     PublicEventDetailAPIView,
     UpcomingEventsAPIView,
     EventSuggestAPIView,
+    PublicEventSourcesAPIView,
 )
 
 app_name = 'api-v1'
@@ -71,6 +72,7 @@ urlpatterns = [
     path('documents/<int:pk>/related/', RelatedDocumentsAPIView.as_view(), name='document-related'),
     
     # Events (public endpoints)
+    path('events/sources/', PublicEventSourcesAPIView.as_view(), name='events-sources'),
     path('events/upcoming/', UpcomingEventsAPIView.as_view(), name='events-upcoming'),
     path('events/suggest/', EventSuggestAPIView.as_view(), name='event-suggest'),
     path('events/<int:pk>/', PublicEventDetailAPIView.as_view(), name='event-detail'),

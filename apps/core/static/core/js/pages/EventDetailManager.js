@@ -137,6 +137,7 @@ export class EventDetailManager extends BasePageManager {
       iesalc: { color: '#0077C8', label: 'IESALC' },
       eucelac: { color: '#003399', label: 'EU-CELAC' },
       iadb: { color: '#005DA6', label: 'IDB' },
+      eclac: { color: '#1A3668', label: 'ECLAC' },
     };
     const d = defaults[ev.source_slug] || { color: '#6B7280', label: (ev.source_slug || '?').toUpperCase() };
     return {

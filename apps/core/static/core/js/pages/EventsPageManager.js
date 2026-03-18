@@ -47,8 +47,9 @@ export class EventsPageManager extends BasePageManager {
     return {
       ...super.getDefaultOptions(),
       apiEndpoint: '/api/v1/events/',
+      sourcesEndpoint: '/api/v1/events/sources/',
       suggestEndpoint: '/api/v1/events/suggest/',
-      pageSize: 3, // For testing - show 3 events per page
+      pageSize: 3,
       enableFilters: true,
       enablePagination: true,
       enableSearch: true
@@ -60,6 +61,11 @@ export class EventsPageManager extends BasePageManager {
    */
   cacheElements() {
     this.elements = {
+      // Sources bar
+      sourcesBar: DOMUtils.getElement('#events-sources'),
+      sourcesList: DOMUtils.getElement('#events-sources-list'),
+      sourcesFooter: DOMUtils.getElement('#events-sources-footer'),
+
       // Hero section
       hero: DOMUtils.getElement('.events-hero'),
       
@@ -119,8 +125,75 @@ export class EventsPageManager extends BasePageManager {
    * Load page data
    */
   async loadPageData() {
-    // Load upcoming events
-    await this.loadUpcomingEvents();
+    await Promise.all([
+      this.loadSources(),
+      this.loadUpcomingEvents(),
+    ]);
+  }
+
+  /**
+   * Load active event sources for the logos strip
+   */
+  async loadSources() {
+    try {
+      const sources = await APIUtils.get(this.options.sourcesEndpoint);
+      if (!Array.isArray(sources) || sources.length === 0) return;
+
+      this.renderSourcesBar(sources);
+    } catch (error) {
+      this.logger.warn('Could not load event sources', error);
+    }
+  }
+
+  /**
+   * Render the sources logo bar
+   */
+  renderSourcesBar(sources) {
+    if (!this.elements.sourcesList || !this.elements.sourcesBar) return;
+
+    const totalEvents = sources.reduce((sum, s) => sum + (s.event_count || 0), 0);
+    const activeSources = sources.filter(s => s.event_count > 0).length;
+
+    const html = sources.map(src => {
+      const cfg = this.getSourceConfig({ source_slug: src.slug, source_name: src.name, source_logo_url: src.logo_url });
+      const hasEvents = src.event_count > 0;
+      const itemClass = hasEvents ? 'events-sources__item' : 'events-sources__item events-sources__item--empty';
+
+      const logoInner = src.logo_url
+        ? `<img src="${this.escapeHtml(src.logo_url)}" alt="${this.escapeHtml(src.name)}" class="events-sources__logo-img" />`
+        : `<span class="events-sources__logo-text" style="background:${cfg.color}">${this.escapeHtml(cfg.label)}</span>`;
+
+      const countBadge = hasEvents
+        ? `<span class="events-sources__count">${src.event_count}</span>`
+        : '';
+
+      const tooltip = hasEvents
+        ? `${src.event_count} ${src.event_count === 1 ? _('event') : _('events')}`
+        : _('No upcoming events');
+
+      return `
+        <a href="${this.escapeHtml(src.events_url || src.base_url)}" target="_blank" rel="noopener"
+           class="${itemClass}" title="${this.escapeHtml(src.name)} — ${tooltip}">
+          <div class="events-sources__logo-wrap">${logoInner}${countBadge}</div>
+          <span class="events-sources__name">${this.escapeHtml(src.name)}</span>
+        </a>`;
+    }).join('');
+
+    this.elements.sourcesList.innerHTML = html;
+
+    if (this.elements.sourcesFooter) {
+      const infoIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="events-sources__info-icon"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`;
+      this.elements.sourcesFooter.innerHTML = `
+        <div class="events-sources__footer-inner">
+          <span class="events-sources__stat">
+            ${infoIcon}
+            ${totalEvents} ${_('upcoming events from')} ${activeSources} ${_('of')} ${sources.length} ${_('monitored sources')}
+          </span>
+          <span class="events-sources__filter-note">${_('Events are filtered for relevance — courses, MOOCs and similar are excluded.')}</span>
+        </div>`;
+    }
+
+    this.elements.sourcesBar.hidden = false;
   }
 
   /**
@@ -136,7 +209,7 @@ export class EventsPageManager extends BasePageManager {
       const params = new URLSearchParams();
       params.append('published', 'true');
       params.append('start_at_after', now);
-      params.append('page_size', '20'); // Get more upcoming events
+      params.append('page_size', '100');
 
       const url = `${this.options.apiEndpoint}?${params.toString()}`;
       const response = await APIUtils.get(url);
@@ -289,6 +362,7 @@ export class EventsPageManager extends BasePageManager {
       iesalc: { color: '#0077C8', label: 'IESALC' },
       eucelac: { color: '#003399', label: 'EU-CELAC' },
       iadb: { color: '#005DA6', label: 'IDB' },
+      eclac: { color: '#1A3668', label: 'ECLAC' },
     };
     const d = defaults[event.source_slug] || { color: '#6B7280', label: (event.source_slug || '?').toUpperCase() };
     return {
