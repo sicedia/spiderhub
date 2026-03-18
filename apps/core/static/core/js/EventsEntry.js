@@ -32,9 +32,8 @@ function initializeEventsPage() {
     
     // Initialize EventsPageManager
     const eventsPageManager = new EventsPageManager(document.body, {
-      enableFilters: true,
       enablePagination: true,
-      pageSize: 10
+      pageSize: 20
     });
     
     // Make available globally for debugging

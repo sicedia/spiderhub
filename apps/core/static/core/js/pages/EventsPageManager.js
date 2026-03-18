@@ -7,34 +7,30 @@
 import { BasePageManager } from '../core/base/BasePageManager.js';
 import { DOMUtils } from '../core/utils/dom.js';
 import { APIUtils } from '../core/utils/api.js';
-import { eventBus } from '../core/events/EventBus.js';
 import { EVENTS } from '../core/constants/config.js';
 import { Pagination } from '../components/navigation/Pagination.js';
-import { FilterManager } from '../components/filters/FilterManager.js';
-import { FilterAccordion } from '../components/filters/FilterAccordion.js';
-import { SearchManager } from '../components/search/SearchManager.js';
-import { SuggestionsBox } from '../components/search/SuggestionsBox.js';
 import { gettext as _ } from '../core/i18n/i18n.js';
 
 export class EventsPageManager extends BasePageManager {
   constructor(element = document.body, options = {}) {
     super(element, options);
-    
-    // Archive/search mode state
+
+    // Upcoming state
+    this.upcomingPage = 1;
+    this.upcomingTotalPages = 1;
+    this.upcomingTotalCount = 0;
+    this.upcomingFilters = {};
+    this.upcomingEvents = [];
+
+    // Archive state
     this.archiveMode = false;
     this.currentPage = 1;
     this.totalPages = 1;
     this.totalCount = 0;
-    this.filters = {};
-    this.searchQuery = '';
-    
-    // Events data
-    this.upcomingEvents = [];
     this.archiveEvents = [];
-    
-    // Set pageSize from options (will be set after getDefaultOptions is called)
-    this.pageSize = this.options.pageSize || 3;
-    
+
+    this.pageSize = this.options.pageSize || 20;
+
     this.logger.info('EventsPageManager initialized', {
       pageSize: this.pageSize
     });
@@ -48,11 +44,8 @@ export class EventsPageManager extends BasePageManager {
       ...super.getDefaultOptions(),
       apiEndpoint: '/api/v1/events/',
       sourcesEndpoint: '/api/v1/events/sources/',
-      suggestEndpoint: '/api/v1/events/suggest/',
-      pageSize: 3,
-      enableFilters: true,
+      pageSize: 20,
       enablePagination: true,
-      enableSearch: true
     };
   }
 
@@ -66,21 +59,25 @@ export class EventsPageManager extends BasePageManager {
       sourcesList: DOMUtils.getElement('#events-sources-list'),
       sourcesFooter: DOMUtils.getElement('#events-sources-footer'),
 
-      // Hero section
-      hero: DOMUtils.getElement('.events-hero'),
-      
+      // Filters
+      filterSource: DOMUtils.getElement('#filter-source'),
+      filterCategory: DOMUtils.getElement('#filter-category'),
+      filterModality: DOMUtils.getElement('#filter-modality'),
+      filterClear: DOMUtils.getElement('#filter-clear'),
+
       // Upcoming events section
       upcomingSection: DOMUtils.getElement('.events-section--upcoming'),
       upcomingLoading: DOMUtils.getElement('#upcoming-loading'),
       upcomingEmpty: DOMUtils.getElement('#upcoming-empty'),
       upcomingGrid: DOMUtils.getElement('#upcoming-events-grid'),
-      
+      upcomingPagination: DOMUtils.getElement('#upcoming-pagination'),
+
       // Archive section
       archiveSection: DOMUtils.getElement('#events-archive'),
       archiveToggle: DOMUtils.getElement('#events-archive-toggle'),
       viewArchiveButton: DOMUtils.getElement('#view-archive-button'),
       archiveClose: DOMUtils.getElement('#archive-close'),
-      
+
       // Archive results elements
       archiveLoading: DOMUtils.getElement('#archive-loading'),
       archiveError: DOMUtils.getElement('#archive-error'),
@@ -92,33 +89,10 @@ export class EventsPageManager extends BasePageManager {
   }
 
   /**
-   * Initialize components
-   */
-  async initializeComponents() {
-    // Only initialize archive components when archive is opened
-    // They will be initialized when needed
-  }
-
-  /**
-   * Initialize archive components (simplified - no search/filters)
-   */
-  async initializeArchiveComponents() {
-    if (this.archiveComponentsInitialized) return;
-    // No components needed for simple archive
-    this.archiveComponentsInitialized = true;
-  }
-
-  /**
    * Initialize services
    */
   async initializeServices() {
-    // Cache elements before loading data
     this.cacheElements();
-    
-    // Hide filters loading state if exists
-    if (this.elements.filtersLoading) {
-      this.elements.filtersLoading.hidden = true;
-    }
   }
 
   /**
@@ -140,9 +114,32 @@ export class EventsPageManager extends BasePageManager {
       if (!Array.isArray(sources) || sources.length === 0) return;
 
       this.renderSourcesBar(sources);
+      this.populateSourceFilter(sources);
     } catch (error) {
       this.logger.warn('Could not load event sources', error);
     }
+  }
+
+  /**
+   * Populate the source filter <select> with fetched sources
+   */
+  populateSourceFilter(sources) {
+    const sel = this.elements.filterSource;
+    if (!sel) return;
+
+    const current = sel.value;
+    while (sel.options.length > 1) sel.remove(1);
+
+    for (const src of sources) {
+      const opt = document.createElement('option');
+      opt.value = src.slug;
+      opt.textContent = src.event_count > 0
+        ? `${src.name} (${src.event_count})`
+        : src.name;
+      sel.appendChild(opt);
+    }
+
+    if (current) sel.value = current;
   }
 
   /**
@@ -197,7 +194,29 @@ export class EventsPageManager extends BasePageManager {
   }
 
   /**
-   * Load upcoming events (start_at >= now)
+   * Read current values from filter selects
+   */
+  readFilters() {
+    this.upcomingFilters = {};
+    const source = this.elements.filterSource?.value;
+    const category = this.elements.filterCategory?.value;
+    const modality = this.elements.filterModality?.value;
+    if (source) this.upcomingFilters.source = source;
+    if (category) this.upcomingFilters.category = category;
+    if (modality) this.upcomingFilters.modality = modality;
+  }
+
+  /**
+   * Show/hide the clear-filters button based on active filters
+   */
+  updateClearButton() {
+    if (!this.elements.filterClear) return;
+    const active = Object.keys(this.upcomingFilters).length > 0;
+    this.elements.filterClear.hidden = !active;
+  }
+
+  /**
+   * Load upcoming events (start_at >= now) with pagination and filters
    */
   async loadUpcomingEvents() {
     try {
@@ -207,23 +226,26 @@ export class EventsPageManager extends BasePageManager {
 
       const now = new Date().toISOString();
       const params = new URLSearchParams();
-      params.append('published', 'true');
       params.append('start_at_after', now);
-      params.append('page_size', '100');
+      params.append('page', this.upcomingPage.toString());
+      params.append('page_size', this.pageSize.toString());
+
+      for (const [key, val] of Object.entries(this.upcomingFilters)) {
+        params.append(key, val);
+      }
 
       const url = `${this.options.apiEndpoint}?${params.toString()}`;
       const response = await APIUtils.get(url);
-      
-      // Sort upcoming events by start_at ascending (most upcoming first)
-      const events = response.results || [];
-      this.upcomingEvents = events.sort((a, b) => {
-        const dateA = a.start_at ? new Date(a.start_at).getTime() : 0;
-        const dateB = b.start_at ? new Date(b.start_at).getTime() : 0;
-        return dateA - dateB; // Ascending order
-      });
+
+      this.upcomingEvents = response.results || [];
+      this.upcomingTotalCount = response.count || 0;
+      this.upcomingTotalPages = response.total_pages || 1;
+      this.upcomingPage = response.current_page || 1;
 
       this.logger.info('Upcoming events loaded', {
-        count: this.upcomingEvents.length
+        count: this.upcomingEvents.length,
+        total: this.upcomingTotalCount,
+        page: this.upcomingPage,
       });
 
       if (this.upcomingEvents.length === 0) {
@@ -233,9 +255,8 @@ export class EventsPageManager extends BasePageManager {
         this.showUpcomingGrid();
       }
 
+      this.updateUpcomingPagination();
       this.hideUpcomingLoading();
-      
-      // Show archive toggle if there are any events
       this.updateArchiveToggle();
 
     } catch (error) {
@@ -243,6 +264,37 @@ export class EventsPageManager extends BasePageManager {
       this.hideUpcomingLoading();
       this.showUpcomingEmpty();
     }
+  }
+
+  /**
+   * Update upcoming pagination component (mirrors archive pattern)
+   */
+  updateUpcomingPagination() {
+    if (!this.elements.upcomingPagination || !this.options.enablePagination) return;
+
+    if (this.upcomingTotalCount === 0 || this.upcomingEvents.length === 0) {
+      this.elements.upcomingPagination.innerHTML = '';
+      return;
+    }
+
+    this.elements.upcomingPagination.innerHTML = '';
+
+    const pagination = new Pagination(this.elements.upcomingPagination, {
+      currentPage: this.upcomingPage,
+      totalPages: this.upcomingTotalPages,
+      totalItems: this.upcomingTotalCount,
+      itemsPerPage: this.pageSize,
+      showItemsPerPageSelector: false,
+    });
+
+    pagination.render();
+    pagination.bindEvents();
+
+    pagination.on(EVENTS.PAGE_CHANGED, (data) => {
+      this.upcomingPage = data.currentPage;
+      this.loadUpcomingEvents();
+      this.elements.upcomingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   }
 
   /**
@@ -530,43 +582,28 @@ export class EventsPageManager extends BasePageManager {
   updateArchivePagination() {
     if (!this.elements.archivePagination || !this.options.enablePagination) return;
 
-    // Always show pagination if there are events, even if only one page
-    // This helps with testing and makes it clear pagination is available
     if (this.totalCount === 0 || this.archiveEvents.length === 0) {
       this.elements.archivePagination.innerHTML = '';
       return;
     }
 
-    let pagination = this.getComponent('archivePagination');
-    if (!pagination) {
-      pagination = new Pagination(this.elements.archivePagination, {
-        currentPage: this.currentPage,
-        totalPages: this.totalPages,
-        totalItems: this.totalCount,
-        itemsPerPage: this.pageSize
-      });
-      
-      this.registerComponent('archivePagination', pagination);
+    this.elements.archivePagination.innerHTML = '';
 
-      pagination.on(EVENTS.PAGE_CHANGED, (page) => {
-        this.logger.debug('Archive page changed', { page });
-        this.currentPage = page;
-        this.loadArchiveEvents();
-        this.elements.archiveSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    } else {
-      pagination.updateData({
-        currentPage: this.currentPage,
-        totalItems: this.totalCount,
-        itemsPerPage: this.pageSize
-      });
-    }
-    
-    this.logger.debug('Archive pagination updated', {
+    const pagination = new Pagination(this.elements.archivePagination, {
       currentPage: this.currentPage,
       totalPages: this.totalPages,
-      totalCount: this.totalCount,
-      pageSize: this.pageSize
+      totalItems: this.totalCount,
+      itemsPerPage: this.pageSize,
+      showItemsPerPageSelector: false,
+    });
+
+    pagination.render();
+    pagination.bindEvents();
+
+    pagination.on(EVENTS.PAGE_CHANGED, (data) => {
+      this.currentPage = data.currentPage;
+      this.loadArchiveEvents();
+      this.elements.archiveSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
 
@@ -594,9 +631,6 @@ export class EventsPageManager extends BasePageManager {
     if (this.elements.archiveToggle) {
       this.elements.archiveToggle.hidden = true;
     }
-    
-    // Initialize archive components if not already done
-    this.initializeArchiveComponents();
     
     // Reset to first page
     this.currentPage = 1;
@@ -630,6 +664,28 @@ export class EventsPageManager extends BasePageManager {
    * Bind page events
    */
   bindPageEvents() {
+    // Filter selects
+    const onFilterChange = () => {
+      this.readFilters();
+      this.updateClearButton();
+      this.upcomingPage = 1;
+      this.loadUpcomingEvents();
+    };
+
+    for (const sel of [this.elements.filterSource, this.elements.filterCategory, this.elements.filterModality]) {
+      if (sel) this.addEventListener(sel, 'change', onFilterChange);
+    }
+
+    // Clear filters
+    if (this.elements.filterClear) {
+      this.addEventListener(this.elements.filterClear, 'click', () => {
+        if (this.elements.filterSource) this.elements.filterSource.value = '';
+        if (this.elements.filterCategory) this.elements.filterCategory.value = '';
+        if (this.elements.filterModality) this.elements.filterModality.value = '';
+        onFilterChange();
+      });
+    }
+
     // View archive button
     if (this.elements.viewArchiveButton) {
       this.addEventListener(this.elements.viewArchiveButton, 'click', () => {
@@ -643,7 +699,6 @@ export class EventsPageManager extends BasePageManager {
         this.hideArchive();
       });
     }
-
   }
 
   // ========================================
@@ -775,14 +830,12 @@ export class EventsPageManager extends BasePageManager {
       this.logger.debug('Destroying EventsPageManager');
     }
     
-    // Clear data
     this.upcomingEvents = [];
     this.archiveEvents = [];
-    this.filters = {};
-    this.searchQuery = '';
-    
-    // Reset state
+    this.upcomingFilters = {};
+
     this.archiveMode = false;
+    this.upcomingPage = 1;
     this.currentPage = 1;
     
     // Call parent destroy (this will clean up all event listeners and components)

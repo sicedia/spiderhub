@@ -38,7 +38,33 @@
       <div class="events-section__header">
         <h2 id="upcoming-events-heading" class="events-section__title">{% trans "Upcoming events" %}</h2>
       </div>
-      
+
+      <!-- Filters -->
+      <div class="events-filters" id="upcoming-filters">
+        <select id="filter-source" class="events-filters__select" aria-label="{% trans 'Filter by source' %}">
+          <option value="">{% trans "All sources" %}</option>
+        </select>
+        <select id="filter-category" class="events-filters__select" aria-label="{% trans 'Filter by category' %}">
+          <option value="">{% trans "All categories" %}</option>
+          <option value="digital_transformation">{% trans "Digital Transformation" %}</option>
+          <option value="innovation">{% trans "Innovation" %}</option>
+          <option value="financing_development">{% trans "Financing & Development" %}</option>
+          <option value="environment_climate">{% trans "Environment & Climate" %}</option>
+          <option value="governance_public_policy">{% trans "Governance & Public Policy" %}</option>
+          <option value="other">{% trans "Other" %}</option>
+        </select>
+        <select id="filter-modality" class="events-filters__select" aria-label="{% trans 'Filter by modality' %}">
+          <option value="">{% trans "All modalities" %}</option>
+          <option value="virtual">{% trans "Virtual" %}</option>
+          <option value="presencial">{% trans "In-person" %}</option>
+          <option value="hybrid">{% trans "Hybrid" %}</option>
+        </select>
+        <button type="button" class="events-filters__clear" id="filter-clear" hidden aria-label="{% trans 'Clear filters' %}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          {% trans "Clear" %}
+        </button>
+      </div>
+
       <!-- Loading State for Upcoming -->
       <div class="events-loading" id="upcoming-loading">
         <div class="events-loading__spinner"></div>
@@ -55,6 +81,12 @@
       <!-- Upcoming Events Grid -->
       <div class="events-grid events-grid--upcoming" id="upcoming-events-grid" hidden>
         <!-- Upcoming events will be populated by JavaScript -->
+      </div>
+
+      <!-- Upcoming Pagination -->
+      <div class="events-section__pagination">
+        <nav id="upcoming-pagination" class="pagination" role="navigation" aria-label="{% trans 'Events pagination' %}">
+        </nav>
       </div>
     </section>
 
