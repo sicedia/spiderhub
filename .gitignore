@@ -468,3 +468,6 @@ cypress/screenshots/
 *.pem
 *.crt
 .env.production
+
+# Ops / SSH — no publicar detalles de host o cuentas (mantener copia local si aplica)
+docs/SERVER_PRODUCTION_ACCESS_v1.0.md

@@ -1,4 +1,6 @@
-# Acceso al servidor de producción y despliegue (v1.0)
+# Acceso al servidor de producción y despliegue (v1.0) — plantilla pública
+
+> **Repositorio público:** los valores concretos de host y usuario no se versionan. Sustituye `<PRODUCTION_HOST>`, `<SSH_USER>`, etc. El equipo puede guardar una copia rellenada como `docs/SERVER_PRODUCTION_ACCESS_v1.0.md` en local (ese archivo está en `.gitignore`).
 
 Guía operativa para desarrolladores e IA: **build local**, **Docker Hub**, **SSH**, **rutas en Linux**, **compose**, **logs** y **depuración**.  
 Complementa [STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md) y [DEPLOYMENT_CHECKLIST_v1.3.md](DEPLOYMENT_CHECKLIST_v1.3.md).
@@ -10,10 +12,10 @@ Complementa [STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md) y
 | Pieza | Rol |
 |--------|-----|
 | **Docker Hub** | Registro de la imagen `sicedia/spiderhub:<tag>` (y opcionalmente `:latest`). |
-| **Servidor Linux** | Ubuntu; usuario de despliegue típico `cedia`. **No** se usa el repo Git en el servidor para actualizar la app: se **pull** de la imagen publicada. |
+| **Servidor Linux** | Ubuntu; usuario de despliegue típico `<SSH_USER>`. **No** se usa el repo Git en el servidor para actualizar la app: se **pull** de la imagen publicada. |
 | **Directorio de compose** | `~/spiderhub` → `docker-compose.yml`, `.env.production`, `docker/nginx/`, `data/`, `deploy.sh`. |
 | **Contenedores** | `spider_web` (Django/Gunicorn), `spider_db` (PostgreSQL), `spider_nginx` (TLS y proxy). |
-| **Dominio público** | `spiderhub.cedia.edu.ec` (HTTPS vía nginx → `web:8000`). |
+| **Dominio público** | `<PRODUCTION_HOST>` (HTTPS vía nginx → `web:8000`). |
 
 ---
 
@@ -22,7 +24,7 @@ Complementa [STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md) y
 - Código clonado del repo (rama `dev` o la que uses).
 - **Docker Desktop** (Windows) o Docker en Linux/Mac para `docker build` / `docker push`.
 - Cuenta con permiso de **push** al repo `sicedia/spiderhub` en Docker Hub (`docker login`).
-- **SSH**: clave pública autorizada en el servidor para `cedia@spiderhub.cedia.edu.ec` (recomendado). No documentes contraseñas en el repositorio.
+- **SSH**: clave pública autorizada en el servidor para `<SSH_USER>@<PRODUCTION_HOST>` (recomendado). No documentes contraseñas en el repositorio.
 
 ---
 
@@ -59,7 +61,7 @@ El archivo [`docker-compose.production.yml`](../docker-compose.production.yml) d
 **Ruta base del despliegue:**
 
 ```text
-/home/cedia/spiderhub
+/home/<SSH_USER>/spiderhub
 ```
 
 Contenido típico:
@@ -75,7 +77,7 @@ Contenido típico:
 **Actualizar la imagen y reiniciar:**
 
 ```bash
-ssh cedia@spiderhub.cedia.edu.ec
+ssh <SSH_USER>@<PRODUCTION_HOST>
 cd ~/spiderhub
 ```
 
@@ -98,7 +100,7 @@ docker compose exec nginx nginx -s reload
 ## 4. Conexión SSH
 
 ```bash
-ssh cedia@spiderhub.cedia.edu.ec
+ssh <SSH_USER>@<PRODUCTION_HOST>
 ```
 
 - Primer acceso: aceptar fingerprint del host si lo pide.
@@ -108,7 +110,7 @@ Comprobar que estás en el servidor:
 
 ```bash
 hostname
-pwd   # suele ser /home/cedia
+pwd   # suele ser /home/<SSH_USER>
 ls ~/spiderhub
 ```
 
@@ -166,13 +168,13 @@ Los nombres exactos salen de `docker volume ls`; suelen incluir `static_data`, `
 Desde tu PC:
 
 ```bash
-curl -sI https://spiderhub.cedia.edu.ec/health/
+curl -sI https://<PRODUCTION_HOST>/health/
 ```
 
 Debe responder `200`. Para la API de versión (caché / `build_id`):
 
 ```bash
-curl -s https://spiderhub.cedia.edu.ec/api/v1/app/version/
+curl -s https://<PRODUCTION_HOST>/api/v1/app/version/
 ```
 
 ---
@@ -198,7 +200,7 @@ curl -s https://spiderhub.cedia.edu.ec/api/v1/app/version/
 Ejemplo de copia de `nginx.conf` desde tu PC (Windows PowerShell, rutas ajustadas):
 
 ```powershell
-scp .\docker\nginx\nginx.conf cedia@spiderhub.cedia.edu.ec:~/spiderhub/docker/nginx/nginx.conf
+scp .\docker\nginx\nginx.conf <SSH_USER>@<PRODUCTION_HOST>:~/spiderhub/docker/nginx/nginx.conf
 ```
 
 Luego `nginx -s reload` como arriba.
