@@ -1,31 +1,14 @@
-# 🚀 Guía Rápida de Deployment a Producción
+# Guía rápida de deployment a producción
 
-**Imagen actual:** `sicedia/spiderhub:0.1.0-rc.20`  
-**Fecha:** 21 de Octubre, 2025
+**Referencia principal de imagen y caché:** [`VERSION`](../VERSION) en el repo, [`docker-compose.production.yml`](../docker-compose.production.yml), y **[STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md)**.
+
+Los ejemplos de abajo usan `sicedia/spiderhub:<tag>`; sustituye `<tag>` por el valor de `VERSION` que hayas publicado en Docker Hub (p. ej. `0.1.0-rc.28`).
 
 ---
 
-## 📋 Cambios en esta versión
+## Cambios históricos (ejemplo)
 
-### ✅ Problemas Resueltos
-
-1. **Migración de base de datos** (`documents_document_sdgs`)
-   - Migración resiliente que maneja tablas existentes
-   - Agrega columnas faltantes automáticamente
-   - Compatible con bases de datos nuevas y existentes
-
-2. **Dependencias faltantes**
-   - ✅ PyMuPDF (extracción de texto de PDFs)
-   - ✅ langchain-openai (integración con LLM)
-   - ✅ langchain-core (funcionalidad core)
-   - ✅ langchain-anthropic (soporte para Claude)
-   - ✅ httpx (requests asíncronos)
-
-### 🔧 Configuración actualizada
-
-- Tmpfs para `/app/locale` (compilación de traducciones)
-- Volúmenes externos para persistencia de datos
-- Imagen optimizada con todas las dependencias
+- Migraciones resilientes, dependencias LLM/PDF, tmpfs para `locale`, etc. (ver historial de commits).
 
 ---
 
@@ -36,14 +19,14 @@
 ```powershell
 # 1. Exportar la imagen a un archivo comprimido
 cd C:\Projects\spiderhub_web
-docker save sicedia/spiderhub:0.1.0-rc.20 | gzip > spiderhub-0.1.0-rc.20.tar.gz
+docker save sicedia/spiderhub:<tag> | gzip > spiderhub-<tag>.tar.gz
 ```
 
 ### Transferir a producción:
 
 ```powershell
 # Usar SCP, WinSCP, o el método que prefieras
-scp spiderhub-0.1.0-rc.20.tar.gz cedia@ubuntu24:~/spiderhub/
+scp spiderhub-<tag>.tar.gz user@tu-servidor:~/spiderhub/
 ```
 
 ### En el servidor de producción (ubuntu24):
@@ -53,10 +36,9 @@ scp spiderhub-0.1.0-rc.20.tar.gz cedia@ubuntu24:~/spiderhub/
 cd ~/spiderhub
 
 # 2. Cargar la imagen
-docker load < spiderhub-0.1.0-rc.20.tar.gz
+docker load < spiderhub-<tag>.tar.gz
 
-# 3. Actualizar docker-compose.yml
-# Editar y cambiar la versión de la imagen a: sicedia/spiderhub:0.1.0-rc.20
+# 3. Actualizar docker-compose.yml — image: sicedia/spiderhub:<tag>
 
 # 4. Detener servicios
 docker-compose down
@@ -81,8 +63,8 @@ docker logs spider_web --tail=100
 # 1. Login en Docker Hub (si no lo has hecho)
 docker login
 
-# 2. Push la imagen
-docker push sicedia/spiderhub:0.1.0-rc.20
+# 2. Push (tras build-docker.ps1 / build-docker.sh)
+docker push sicedia/spiderhub:<tag>
 docker push sicedia/spiderhub:latest
 ```
 
@@ -92,8 +74,7 @@ docker push sicedia/spiderhub:latest
 # 1. Navegar al directorio
 cd ~/spiderhub
 
-# 2. Actualizar docker-compose.yml para usar la nueva versión
-# image: sicedia/spiderhub:0.1.0-rc.20
+# 2. Actualizar docker-compose.yml — image: sicedia/spiderhub:<tag>
 
 # 3. Pull la nueva imagen
 docker-compose pull web
@@ -157,7 +138,7 @@ Asegúrate de que tu `docker-compose.yml` en producción tenga:
 ```yaml
 web:
   container_name: "spider_web"
-  image: sicedia/spiderhub:0.1.0-rc.20  # <-- Versión actualizada
+  image: sicedia/spiderhub:<tag>  # <-- Misma tag que en Docker Hub
   tmpfs:
     - /tmp:noexec,nosuid,size=100m
     - /app/tmp:noexec,nosuid,size=100m

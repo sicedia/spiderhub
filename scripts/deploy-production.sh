@@ -2,8 +2,8 @@
 # Script de despliegue en producción (Ubuntu Linux).
 # Usa docker-compose.yml y .env.production en la raíz del proyecto.
 #
-# Para que la app se actualice sola en el navegador (sin Ctrl+Shift+R), no definas
-# STATIC_VERSION en .env.production; así Django usará GIT_COMMIT_HASH de la imagen.
+# Cliente: la API expone build_id (manifest de estáticos). Ver docs/STATIC_ASSETS_AND_CACHE_v1.0.md
+# Opcional: no definir STATIC_VERSION en .env.production salvo que lo necesites.
 #
 # Uso en el servidor:
 #   cd ~/spiderhub

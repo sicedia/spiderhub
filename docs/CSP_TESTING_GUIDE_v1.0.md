@@ -148,9 +148,11 @@ Content-Security-Policy:
 #### Check Script Loading
 
 Filter network requests by "JS" and verify:
-- [ ] All local JavaScript files have `?v=` parameter (cache busting)
+- [ ] Local scripts use **hashed** paths in production (`.../MainEntry.<hash>.js`); in development you may see `?v=` (mtime)
 - [ ] External CDN scripts load successfully (200 status)
 - [ ] Django JavaScript catalog (/jsi18n/) loads (200 status)
+
+See [STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md).
 
 ### 4. Nonce Verification
 
@@ -158,17 +160,17 @@ Filter network requests by "JS" and verify:
 
 View page source (Ctrl+U) and verify nonces are present:
 
-**✅ Correct - Scripts have nonces:**
+**✅ Correct - Scripts have nonces (production uses hashed filenames):**
 ```html
 <script src="/jsi18n/" nonce="a1b2c3d4..."></script>
-<script type="module" src="/static/core/js/MainEntry.js?v=123" nonce="a1b2c3d4..."></script>
-<link rel="stylesheet" href="/static/core/css/main.css?v=123" nonce="a1b2c3d4...">
+<script type="module" src="/static/core/js/MainEntry.abc123def456.js" nonce="a1b2c3d4..."></script>
+<link rel="stylesheet" href="/static/core/css/main.abc123def456.css" nonce="a1b2c3d4...">
 ```
 
 **❌ Wrong - No nonces:**
 ```html
 <script src="/jsi18n/"></script>
-<script type="module" src="/static/core/js/MainEntry.js?v=123"></script>
+<script type="module" src="/static/core/js/MainEntry.js"></script>
 ```
 
 **Important:** All nonces on the same page should have the same value (they're generated once per request).

@@ -6,15 +6,14 @@ This folder contains technical documentation and development guides for SPIDERHU
 
 ### 🚀 Deployment and Configuration
 
-- **[DEPLOYMENT_CHECKLIST_v1.2.md](DEPLOYMENT_CHECKLIST_v1.2.md)** - Complete checklist for safe deployments
+- **[DEPLOYMENT_CHECKLIST_v1.3.md](DEPLOYMENT_CHECKLIST_v1.3.md)** - Complete checklist for safe deployments
   - JavaScript changes verification
   - Incognito mode testing
   - Deployment process and post-deployment verification
+
+- **[DEPLOYMENT_PRODUCTION.md](DEPLOYMENT_PRODUCTION.md)** - Docker save/load vs Docker Hub, verificación post-deploy
   
-- **[CACHE_BUSTING_V2_SUMMARY_v2.0.md](CACHE_BUSTING_V2_SUMMARY_v2.0.md)** - v2.0 cache busting system
-  - Automatic content hash
-  - Docker and Git integration
-  - New deployment workflow
+- **[STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md)** - Static files, HTTP cache, `STORAGES`, `BUILD_ID`, nginx, VersionCheckService
 
 ### 🔒 Security
 
@@ -118,6 +117,12 @@ This folder contains technical documentation and development guides for SPIDERHU
 
 ## 🗑️ Cleanup History
 
+### March 20, 2026 - Static assets documentation
+- ❌ Removed `CACHE_BUSTING_V2_SUMMARY_v2.0.md` and `STATIC_ASSETS_PIPELINE.md`
+- ❌ Removed `DEPLOYMENT_CHECKLIST_v1.2.md` (superseded by v1.3)
+- ✅ **[STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md)** — guía canónica de caché y estáticos
+- ✅ **[DEPLOYMENT_CHECKLIST_v1.3.md](DEPLOYMENT_CHECKLIST_v1.3.md)** — checklist alineado con manifest / `build_id`
+
 ### October 21, 2025 - Third Update: File Versioning
 - ✅ **Added version numbers to all filenames** (21 files)
 - ✅ Format: `DOCUMENT_NAME_v1.0.md`
@@ -144,8 +149,10 @@ This folder contains technical documentation and development guides for SPIDERHU
 - ❌ `CSP_IMPLEMENTATION_SUMMARY.md` - Nearly identical to main CSP doc
 - ❌ `CSP_VIS_NETWORK_FIX.md` - Specific fix completed
 
-**Cache Busting (1 file):**
-- ❌ `CACHE_BUSTING.md` - Mixed v1/v2, kept only V2 summary
+**Static assets / cache (superseded files):**
+- ❌ `CACHE_BUSTING.md` - removed earlier (mixed v1/v2)
+- ❌ `CACHE_BUSTING_V2_SUMMARY_v2.0.md` - **March 2026:** replaced by `STATIC_ASSETS_AND_CACHE_v1.0.md`
+- ❌ `STATIC_ASSETS_PIPELINE.md` - **March 2026:** merged into `STATIC_ASSETS_AND_CACHE_v1.0.md`
 
 **Fixes & Troubleshooting (6 files):**
 - ❌ `SECURITY_HEADERS_FIX_SUMMARY.md` - Completed fix

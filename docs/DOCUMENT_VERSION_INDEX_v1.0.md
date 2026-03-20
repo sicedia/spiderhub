@@ -12,8 +12,8 @@ Complete list of all documentation files with version tracking and chronological
 
 | Document | Version | Created | Status |
 |----------|---------|---------|--------|
-| [DEPLOYMENT_CHECKLIST_v1.2.md](DEPLOYMENT_CHECKLIST_v1.2.md) | v1.2 | Sep 2025 | ✅ Active |
-| [CACHE_BUSTING_V2_SUMMARY_v2.0.md](CACHE_BUSTING_V2_SUMMARY_v2.0.md) | v2.0 | Oct 14, 2025 | ✅ Active |
+| [DEPLOYMENT_CHECKLIST_v1.3.md](DEPLOYMENT_CHECKLIST_v1.3.md) | v1.3 | Mar 2026 | ✅ Active |
+| [STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md) | v1.0 | Mar 2026 | ✅ Active |
 
 ### 🔒 Security
 
@@ -81,7 +81,7 @@ Complete list of all documentation files with version tracking and chronological
 ### September 2025
 4. **TRANSLATIONS_v1.0.md** - i18n Quick Start ⭐
 5. **TRANSLATION_WORKFLOW_v1.1.md** - i18n Complete Guide
-6. **DEPLOYMENT_CHECKLIST_v1.2.md** - Deployment & Operations
+6. **DEPLOYMENT_CHECKLIST_v1.3.md** - Deployment & Operations
 
 ### October 13, 2025
 7. **TRANSLATION_QUICK_REFERENCE_v1.0.md** - i18n Reference
@@ -91,7 +91,7 @@ Complete list of all documentation files with version tracking and chronological
 11. **JEST_SETUP_v1.0.md** - Testing Configuration
 
 ### October 14, 2025
-12. **CACHE_BUSTING_V2_SUMMARY_v2.0.md** - Deployment & Cache
+12. **STATIC_ASSETS_AND_CACHE_v1.0.md** - Static assets & HTTP cache (replaces CACHE_BUSTING_V2 summary)
 
 ### October 15-16, 2025
 13. **CSP_IMPLEMENTATION_v1.1.md** - Security & CSP
@@ -105,6 +105,10 @@ Complete list of all documentation files with version tracking and chronological
 19. **SDG_CHARTS_STANDARDIZATION_SUMMARY_v1.0.md** - Data Visualization
 20. **README_v3.1.md** - Documentation Index (File versioning update)
 21. **DOCUMENT_VERSION_INDEX_v1.1.md** - This file (File versioning update)
+
+### March 2026
+22. **DEPLOYMENT_CHECKLIST_v1.3.md** - Replaces v1.2; aligns with manifest/`BUILD_ID` deploy
+23. **STATIC_ASSETS_AND_CACHE_v1.0.md** - Canonical static + cache doc (removes V2 summary + pipeline doc)
 
 ---
 
@@ -127,7 +131,7 @@ Complete list of all documentation files with version tracking and chronological
 **Examples:**
 - `TRANSLATIONS_v1.0.md` → Initial version
 - `TRANSLATION_WORKFLOW_v1.1.md` → Updated with new examples
-- `CACHE_BUSTING_V2_SUMMARY_v2.0.md` → Complete rewrite with new approach
+- `STATIC_ASSETS_AND_CACHE_v1.0.md` → Manifest + BUILD_ID + nginx (2026)
 - `README_v3.1.md` → Major reorganization + file versioning update
 
 ---
@@ -135,8 +139,8 @@ Complete list of all documentation files with version tracking and chronological
 ## 🎯 Quick Reference by Use Case
 
 ### "I need to deploy the application"
-1. [DEPLOYMENT_CHECKLIST_v1.2.md](DEPLOYMENT_CHECKLIST_v1.2.md)
-2. [CACHE_BUSTING_V2_SUMMARY_v2.0.md](CACHE_BUSTING_V2_SUMMARY_v2.0.md)
+1. [DEPLOYMENT_CHECKLIST_v1.3.md](DEPLOYMENT_CHECKLIST_v1.3.md)
+2. [STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md)
 
 ### "I need to add translations"
 1. [TRANSLATIONS_v1.0.md](TRANSLATIONS_v1.0.md) ⭐ Start Here
@@ -164,9 +168,9 @@ Complete list of all documentation files with version tracking and chronological
 
 ## 📊 Statistics
 
-- **Total Documents:** 21 (includes JEST_SETUP)
-- **Active Documents:** 20 (excluding this index)
-- **Total Versions:** 21 versions tracked
+- **Total Documents:** ~21 (see index tables; excludes removed cache-only docs Mar 2026)
+- **Active Documents:** see tables above
+- **Total Versions:** tracked per file
 - **Latest Document:** JEST_SETUP_v1.0.md (Oct 13, 2025)
 - **Oldest Document:** LOGGER_MIGRATION_GUIDE_v1.0.md (Oct 2024)
 - **Most Updated:** README_v3.1.md (4 major revisions)

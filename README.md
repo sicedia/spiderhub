@@ -545,8 +545,8 @@ All documentation files now include **version numbers** for easy identification:
 - **[Document Version Index (DOCUMENT_VERSION_INDEX_v1.0.md)](docs/DOCUMENT_VERSION_INDEX_v1.0.md)** - Chronological version tracking
 
 ### 🚀 Deployment & Operations
-- **[Deployment Checklist v1.2](docs/DEPLOYMENT_CHECKLIST_v1.2.md)** - Complete checklist for safe deployments
-- **[Cache Busting v2.0](docs/CACHE_BUSTING_V2_SUMMARY_v2.0.md)** - Automatic content hash system for static files
+- **[Deployment Checklist v1.3](docs/DEPLOYMENT_CHECKLIST_v1.3.md)** - Complete checklist for safe deployments
+- **[Static assets & cache](docs/STATIC_ASSETS_AND_CACHE_v1.0.md)** - Manifest hashing, `BUILD_ID`, nginx, VersionCheckService
 
 ### 🔒 Security
 - **[CSP Implementation v1.1](docs/CSP_IMPLEMENTATION_v1.1.md)** - Content Security Policy implementation
@@ -583,7 +583,7 @@ All documentation files now include **version numbers** for easy identification:
 - **Logging Test**: Access `/static/test-logging.html` to test the logging system
 
 ### Important Notes
-⚠️ **Before deploying**: Always check the [Deployment Checklist v1.2](docs/DEPLOYMENT_CHECKLIST_v1.2.md), especially:
+⚠️ **Before deploying**: Always check the [Deployment Checklist v1.3](docs/DEPLOYMENT_CHECKLIST_v1.3.md), especially:
 - Increment `STATIC_VERSION` if you modified JavaScript files
 - Test in incognito mode before deploying
 - Verify that dark mode works correctly in all pages

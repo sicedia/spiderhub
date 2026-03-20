@@ -62,20 +62,21 @@ This document describes the implementation of secure Content Security Policy (CS
 
 ### Template Tag Usage
 
-All template tags now automatically include nonces:
+All template tags now automatically include nonces.
+
+**Production (manifest storage):** URLs use Django’s hashed filenames **without** `?v=` (fingerprint is in the path). **Development:** `?v=<mtime>` is still appended for fast refresh.
 
 ```django
 {# CSS with nonce #}
 {% css_versioned 'core/css/main.css' %}
-{# Outputs: <link rel="stylesheet" href="/static/core/css/main.css?v=123" nonce="abc123"> #}
+{# Prod example: href="/static/core/css/main.abc123def456.css" nonce="..." #}
 
 {# JavaScript with nonce #}
 {% js_versioned 'core/js/app.js' %}
-{# Outputs: <script src="/static/core/js/app.js?v=123" nonce="abc123"></script> #}
 
 {# JavaScript module with nonce #}
 {% js_module_versioned 'core/js/MainEntry.js' %}
-{# Outputs: <script type="module" src="/static/core/js/MainEntry.js?v=123" nonce="abc123"></script> #}
+{# Prod example: src="/static/core/js/MainEntry.abc123def456.js" nonce="..." #}
 
 {# Django i18n catalog with nonce #}
 {% js_catalog_nonce %}

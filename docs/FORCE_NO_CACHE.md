@@ -91,7 +91,7 @@ curl -I https://tu-dominio.com/
 Después de la fecha de expiración, los headers deberían volver a la normalidad:
 - HTML: `Cache-Control: no-cache, no-store, must-revalidate` (normal)
 - API: `Cache-Control: no-cache, no-store, must-revalidate` (normal)
-- Static files: `Cache-Control: public, immutable` (con caché normal)
+- Archivos bajo `/static/` en nginx: `Cache-Control: public, max-age=...` (sin `immutable`; ver [STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md))
 
 ## ⚠️ Consideraciones
 
