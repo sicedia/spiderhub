@@ -5,7 +5,8 @@
  * ES6 Module Export
  */
 
-const VERSION_STORAGE_KEY = 'spiderhub_app_version';
+/** Persists server build_id (manifest digest) or legacy version string */
+const DEPLOY_STORAGE_KEY = 'spiderhub_deploy_id';
 const VERSION_CHECK_INTERVAL = 300000; // 5 minutos
 const API_VERSION_ENDPOINT = '/api/v1/app/version/';
 const BROADCAST_CHANNEL_NAME = 'spiderhub_version_update';
@@ -158,16 +159,17 @@ class VersionCheckService {
       }
 
       const data = await response.json();
-      const serverVersion = data.version || 'unknown';
+      // Prefer build_id (static bundle digest); same commit can ship new static assets.
+      const serverDeployId = data.build_id || data.version || 'unknown';
       
       // Obtener versión guardada del localStorage
-      const storedVersion = localStorage.getItem(VERSION_STORAGE_KEY);
+      const storedVersion = localStorage.getItem(DEPLOY_STORAGE_KEY);
       
       // Si no hay versión guardada, guardar la del servidor (primera vez o localStorage borrado)
       if (!storedVersion) {
-        console.log(`📦 No version found in localStorage, storing: ${serverVersion}`);
-        if (serverVersion && serverVersion !== 'unknown') {
-          localStorage.setItem(VERSION_STORAGE_KEY, serverVersion);
+        console.log(`📦 No deploy id stored yet, storing: ${serverDeployId}`);
+        if (serverDeployId && serverDeployId !== 'unknown') {
+          localStorage.setItem(DEPLOY_STORAGE_KEY, serverDeployId);
         }
         return;
       }
@@ -177,13 +179,12 @@ class VersionCheckService {
         this.currentVersion = storedVersion;
       }
 
-      // Nueva versión detectada: recarga automática (toast + delay, luego reload en todas las pestañas)
-      if (serverVersion !== this.currentVersion && serverVersion !== 'unknown' && serverVersion) {
-        console.log(`🔄 New version detected! Server: ${serverVersion}, Current: ${this.currentVersion}`);
-        this.showUpdateToast(serverVersion);
-      } else if (serverVersion === this.currentVersion) {
-        // Versiones coinciden, actualizar localStorage por si acaso
-        localStorage.setItem(VERSION_STORAGE_KEY, serverVersion);
+      // Nuevo despliegue / bundle estático detectado
+      if (serverDeployId !== this.currentVersion && serverDeployId !== 'unknown' && serverDeployId) {
+        console.log(`🔄 New deploy detected! Server: ${serverDeployId}, Current: ${this.currentVersion}`);
+        this.showUpdateToast(serverDeployId);
+      } else if (serverDeployId === this.currentVersion) {
+        localStorage.setItem(DEPLOY_STORAGE_KEY, serverDeployId);
       }
     } catch (error) {
       console.warn('⚠️ Failed to check app version:', error);
@@ -288,14 +289,14 @@ class VersionCheckService {
       this.broadcastReloadToAllTabs(newVersion);
 
       // 5. Actualizar versión guardada
-      localStorage.setItem(VERSION_STORAGE_KEY, newVersion);
+      localStorage.setItem(DEPLOY_STORAGE_KEY, newVersion);
 
       // 6. Recargar esta pestaña con múltiples técnicas
       this.forceReloadCurrentTab();
     }).catch(() => {
       // Continuar aunque falle la limpieza de Service Worker
       this.broadcastReloadToAllTabs(newVersion);
-      localStorage.setItem(VERSION_STORAGE_KEY, newVersion);
+      localStorage.setItem(DEPLOY_STORAGE_KEY, newVersion);
       this.forceReloadCurrentTab();
     });
   }
@@ -308,7 +309,7 @@ class VersionCheckService {
     const allKeys = Object.keys(localStorage);
     
     allKeys.forEach(key => {
-      if (!keysToKeep.includes(key) && key !== VERSION_STORAGE_KEY) {
+      if (!keysToKeep.includes(key) && key !== DEPLOY_STORAGE_KEY) {
         localStorage.removeItem(key);
       }
     });
@@ -484,7 +485,7 @@ class VersionCheckService {
 
     // Actualizar versión guardada PRIMERO para evitar loops de detección
     try {
-      localStorage.setItem(VERSION_STORAGE_KEY, newVersion);
+      localStorage.setItem(DEPLOY_STORAGE_KEY, newVersion);
     } catch (e) {
       console.warn('⚠️ Failed to save version to localStorage:', e);
     }

@@ -125,16 +125,13 @@ class NoCacheMiddleware:
                 request.path.startswith(settings.MEDIA_URL)):
                 
                 if is_js_file:
-                    # Extra aggressive headers for ES6 modules
-                    # Chrome, Firefox and Edge aggressively cache modules
+                    # Strong no-cache for ES modules without Clear-Site-Data (avoids wiping
+                    # the whole origin cache on every .js request during development).
                     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0'
                     response['Pragma'] = 'no-cache'
                     response['Expires'] = '0'
                     response['Last-Modified'] = ''
                     response['ETag'] = ''
-                    # Additional header to prevent Chrome's "memory cache"
-                    response['Clear-Site-Data'] = '"cache"'
-                    # Vary header to ensure each request is unique
                     response['Vary'] = '*'
                     print(f"[NoCacheMiddleware] Applied aggressive headers to: {request.path}")
                 else:
@@ -151,11 +148,10 @@ class NoCacheMiddleware:
                   request.path.endswith('.ico')):
                 
                 if is_js_file:
-                    # Extra aggressive headers for JavaScript
+                    # Extra aggressive headers for JavaScript (no Clear-Site-Data — see above)
                     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0'
                     response['Pragma'] = 'no-cache'
                     response['Expires'] = '0'
-                    response['Clear-Site-Data'] = '"cache"'
                     response['Vary'] = '*'
                 else:
                     response['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0'

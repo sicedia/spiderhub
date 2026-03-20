@@ -1,3 +1,11 @@
+/**
+ * Optional webpack build for legacy/analysis bundles.
+ *
+ * Runtime: Production pages load ES modules via Django templates (MainEntry.js,
+ * AnalysisEntry.js, etc.) and collectstatic + ManifestStaticFilesStorage for
+ * fingerprinting. This config is not wired in HTML; use only if you add bundles
+ * to templates or a webpack manifest integration.
+ */
 const path = require('path');
 
 module.exports = {

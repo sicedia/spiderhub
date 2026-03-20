@@ -137,4 +137,7 @@ if os.getenv('CSP_REPORT_URI'):
 # Enable nonce generation for script-src to allow inline scripts with nonces
 CSP_INCLUDE_NONCE_IN = ['script-src']
 
+# Deploy / static bundle id (manifest digest when collectstatic has been run locally)
+from config.build_id import compute_build_id
+BUILD_ID = compute_build_id(STATIC_ROOT)
 

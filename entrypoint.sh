@@ -74,6 +74,9 @@ fi
 echo "Collecting static files..."
 python manage.py collectstatic --no-input --clear
 
+echo "Validating static deploy (manifest + critical paths)..."
+python manage.py validate_static_deploy
+
 # Translation messages are now compiled during Docker build
 # echo "Compiling translation messages..."
 # python manage.py compilemessages --ignore=node_modules --ignore=pyspider

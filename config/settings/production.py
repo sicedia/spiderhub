@@ -53,8 +53,21 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 # Static files
+# Django 5+ uses STORAGES["staticfiles"]; STATICFILES_STORAGE alone is ignored when
+# the default STORAGES entry is present, which broke manifest hashing / staticfiles.json.
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    },
+}
+
+# Identity of the collected static bundle (digest of staticfiles.json or BUILD_ID env)
+from config.build_id import compute_build_id
+BUILD_ID = compute_build_id(STATIC_ROOT)
 
 # Media files
 MEDIA_ROOT = BASE_DIR / 'media'

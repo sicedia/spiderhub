@@ -1,6 +1,10 @@
 from .base import *
 
+from config.build_id import compute_build_id
+
 DEBUG = False
+
+BUILD_ID = compute_build_id(STATIC_ROOT)
 
 ALLOWED_HOSTS = ['testserver']
 
