@@ -546,6 +546,7 @@ All documentation files now include **version numbers** for easy identification:
 
 ### 🚀 Deployment & Operations
 - **[Deployment Checklist v1.3](docs/DEPLOYMENT_CHECKLIST_v1.3.md)** - Complete checklist for safe deployments
+- **[Server / production access](docs/SERVER_PRODUCTION_ACCESS_v1.0.md)** - SSH, Linux paths, build, Docker Hub, compose, logs
 - **[Static assets & cache](docs/STATIC_ASSETS_AND_CACHE_v1.0.md)** - Manifest hashing, `BUILD_ID`, nginx, VersionCheckService
 
 ### 🔒 Security

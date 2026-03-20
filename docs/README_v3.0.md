@@ -12,6 +12,8 @@ This folder contains technical documentation and development guides for SPIDERHU
   - Deployment process and post-deployment verification
 
 - **[DEPLOYMENT_PRODUCTION.md](DEPLOYMENT_PRODUCTION.md)** - Docker save/load vs Docker Hub, verificación post-deploy
+
+- **[SERVER_PRODUCTION_ACCESS_v1.0.md](SERVER_PRODUCTION_ACCESS_v1.0.md)** - SSH, carpeta `~/spiderhub`, build local, push, actualizar compose, logs y debug en producción
   
 - **[STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md)** - Static files, HTTP cache, `STORAGES`, `BUILD_ID`, nginx, VersionCheckService
 

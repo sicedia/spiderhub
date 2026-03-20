@@ -14,6 +14,7 @@ Complete list of all documentation files with version tracking and chronological
 |----------|---------|---------|--------|
 | [DEPLOYMENT_CHECKLIST_v1.3.md](DEPLOYMENT_CHECKLIST_v1.3.md) | v1.3 | Mar 2026 | ✅ Active |
 | [STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md) | v1.0 | Mar 2026 | ✅ Active |
+| [SERVER_PRODUCTION_ACCESS_v1.0.md](SERVER_PRODUCTION_ACCESS_v1.0.md) | v1.0 | Mar 2026 | ✅ Active |
 
 ### 🔒 Security
 
@@ -109,6 +110,7 @@ Complete list of all documentation files with version tracking and chronological
 ### March 2026
 22. **DEPLOYMENT_CHECKLIST_v1.3.md** - Replaces v1.2; aligns with manifest/`BUILD_ID` deploy
 23. **STATIC_ASSETS_AND_CACHE_v1.0.md** - Canonical static + cache doc (removes V2 summary + pipeline doc)
+24. **SERVER_PRODUCTION_ACCESS_v1.0.md** - SSH, `~/spiderhub`, Docker build/push, production ops
 
 ---
 
@@ -140,7 +142,8 @@ Complete list of all documentation files with version tracking and chronological
 
 ### "I need to deploy the application"
 1. [DEPLOYMENT_CHECKLIST_v1.3.md](DEPLOYMENT_CHECKLIST_v1.3.md)
-2. [STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md)
+2. [SERVER_PRODUCTION_ACCESS_v1.0.md](SERVER_PRODUCTION_ACCESS_v1.0.md) — SSH, paths, build, compose
+3. [STATIC_ASSETS_AND_CACHE_v1.0.md](STATIC_ASSETS_AND_CACHE_v1.0.md)
 
 ### "I need to add translations"
 1. [TRANSLATIONS_v1.0.md](TRANSLATIONS_v1.0.md) ⭐ Start Here
