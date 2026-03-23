@@ -773,13 +773,15 @@ msgstr ""
 
 #: .\apps\core\templates\core\about.html:260
 msgid ""
-"Fosters digital innovation and entrepreneurship, supporting early-stage "
-"start-ups through co-funding and services with 300+ partners and 220+ "
-"ventures in Europe."
+"28digital is Europe's largest open innovation ecosystem. It connects "
+"hundreds of partners across Europe to accelerate digital innovation and "
+"entrepreneurship through talent programmes, startup and scaleup support, "
+"and research-to-market activities."
 msgstr ""
-"Fomenta la innovación digital y el emprendimiento, apoyando startups en "
-"etapa inicial a través de cofinanciación y servicios con más de 300 socios y "
-"220 ventures en Europa."
+"28digital es el mayor ecosistema europeo de innovación abierta. Conecta a "
+"cientos de socios en Europa para acelerar la innovación digital y el "
+"emprendimiento mediante programas de talento, apoyo a startups y scaleups, "
+"y actividades de investigación hasta el mercado."
 
 #: .\apps\core\templates\core\about.html:270
 msgid ""

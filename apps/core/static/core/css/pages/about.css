@@ -186,6 +186,11 @@
   filter: grayscale(0.3);
 }
 
+.partner-logo img.partner-logo__img--fullcolor {
+  max-width: 180px;
+  filter: none;
+}
+
 .partner-card:hover .partner-logo img {
   transform: scale(1.05);
   filter: grayscale(0);
