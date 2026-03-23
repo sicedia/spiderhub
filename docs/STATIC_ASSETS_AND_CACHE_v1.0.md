@@ -91,6 +91,7 @@ Fails if `staticfiles.json` is missing or critical logical paths do not resolve.
 | Old CSS/JS after deploy | `STORAGES['staticfiles']` in production; `staticfiles.json` in volume; new image actually pulled. |
 | `validate_static_deploy` fails | Run with production settings after `collectstatic`. |
 | API never triggers reload | Compare `build_id` in API vs `localStorage` key `spiderhub_deploy_id`. |
+| Diseño viejo **solo en móvil** (todas las rutas) | Algunos WebViews cachean HTML o mezclan estáticos: `base.html` hace un `fetch` temprano a `/api/v1/app/version/` y, si `build_id` ≠ `localStorage`, fuerza recarga con `?_v=…`; nginx oculta cabeceras de caché del upstream en `location /`. Tras cambiar `nginx.conf`, copiar al servidor y `nginx -s reload`. |
 
 ---
 

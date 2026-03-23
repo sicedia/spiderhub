@@ -4,10 +4,53 @@
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:'en' }}">
 <head>
-  <!-- Theme initialization - loaded synchronously to prevent FOUC -->
-  {% js_versioned 'core/js/theme-init.js' %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  {# Algunos navegadores móviles / WebViews respetan http-equiv aunque ignoren cabeceras HTTP en documentos HTML #}
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  {# Antes de CSS/JS: alinear localStorage con build_id real del servidor (mitiga HTML/estáticos viejos en móvil) #}
+  <script{% if request.csp_nonce %} nonce="{{ request.csp_nonce }}"{% endif %}>
+  (function () {
+    var API = '/api/v1/app/version/';
+    var KEY = 'spiderhub_deploy_id';
+    function apply(serverId) {
+      if (!serverId || serverId === 'unknown') return;
+      try {
+        var u = new URL(window.location.href);
+        if (u.searchParams.has('_v')) {
+          localStorage.setItem(KEY, serverId);
+          u.searchParams.delete('_v');
+          var qs = u.search ? u.search : '';
+          window.history.replaceState({}, '', u.pathname + qs + u.hash);
+          return;
+        }
+        var stored = localStorage.getItem(KEY);
+        if (!stored) {
+          localStorage.setItem(KEY, serverId);
+          return;
+        }
+        if (stored !== serverId) {
+          localStorage.setItem(KEY, serverId);
+          u.searchParams.set('_v', String(Date.now()));
+          window.location.replace(u.toString());
+        }
+      } catch (e) {}
+    }
+    fetch(API, {
+      method: 'GET',
+      cache: 'no-store',
+      credentials: 'same-origin',
+      headers: { Accept: 'application/json', Pragma: 'no-cache' }
+    })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (data) { apply(data.build_id || data.version); })
+      .catch(function () {});
+  })();
+  </script>
+  <!-- Theme initialization - loaded synchronously to prevent FOUC -->
+  {% js_versioned 'core/js/theme-init.js' %}
   <meta name="description" content="{% block description %}{% trans "SPIDERHUB: Mapping EU-LAC Digital Transformation Dialogues & Agreements. Discover connections driving digital transformation between Europe and Latin America." %}{% endblock %}">
   <meta name="keywords" content="{% trans "digital transformation, EU-LAC, agreements, policies, digital cooperation, Europe, Latin America, Caribbean" %}">
   <meta name="author" content="SPIDER Project">
